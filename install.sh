@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 function installDotfiles() {
+  scriptFor "git"
   installFor "hammerspoon"
 }
 
@@ -17,6 +18,11 @@ function installFor() {
   echo "Linking $FROM..."
   rm ~/.$TO
   ln -s $PWD/$FROM ~/.$TO
+}
+
+function scriptFor() {
+  echo "Installing $1..."
+  . $1/install.sh
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
