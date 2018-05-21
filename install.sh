@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
+# brew install zsh-syntax-highlighting
+# brew install zsh-autosuggestions
+
 function installDotfiles() {
   scriptFor "git"
+  installFor "zsh/zshrc" "zshrc"
+  installFor "zsh/scripts" "zsh"
   installFor "hammerspoon"
 }
 
@@ -16,7 +21,7 @@ function installFor() {
   fi
 
   echo "Linking $FROM..."
-  rm ~/.$TO
+  rm ~/.$TO 2> /dev/null
   ln -s $PWD/$FROM ~/.$TO
 }
 

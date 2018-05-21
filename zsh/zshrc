@@ -1,0 +1,39 @@
+# Source my scripts
+export PATH_DROPBOX="/Users/jqno/Dropbox/config"
+. $PATH_DROPBOX/terminal/run.sh terminal/session
+
+# History
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory
+
+# Settings
+setopt autocd nomatch
+unsetopt beep extendedglob notify
+
+# Completions
+zstyle :compinstall filename '/Users/jqno/.zshrc'
+autoload -Uz compinit
+compinit
+
+# VIM mode
+bindkey -v
+export KEYTIMEOUT=1
+export EDITOR=vim
+
+# Fancy prompt
+source ~/.zsh/prompt.zsh
+
+# So we can type `git add *Test*` instead of `git add "*Test*"`
+alias git="noglob git"
+
+source ~/.zsh/git-branch-inject.sh
+
+# Auto-suggesions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^[[Z' autosuggest-accept  # Shift-tab
+
+# Syntax highlighting (must be at the end of .zshrc!)
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
