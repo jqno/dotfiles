@@ -19,9 +19,10 @@ export KEYTIMEOUT=1
 export EDITOR=vim
 
 # Source my scripts (including fancy prompt!)
-for f in ~/.zsh/*; do
+for f in ~/.zsh/environment/*; do
   . $f
 done
+export PATH=$PATH:~/.zsh/scripts
 
 # Auto-suggesions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
