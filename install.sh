@@ -8,6 +8,7 @@ function installDotfiles() {
   installFor "zsh/zshrc" "zshrc"
   installFor "zsh/scripts" "zsh"
   installFor "hammerspoon"
+  installFor "tigrc"
 }
 
 PWD=$(pwd)
