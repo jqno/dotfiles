@@ -1,7 +1,3 @@
-# Source my scripts
-export PATH_DROPBOX="/Users/jqno/Dropbox/config"
-. $PATH_DROPBOX/terminal/run.sh terminal/session
-
 # History
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -22,13 +18,10 @@ bindkey -v
 export KEYTIMEOUT=1
 export EDITOR=vim
 
-# Fancy prompt
-source ~/.zsh/prompt.zsh
-
-# So we can type `git add *Test*` instead of `git add "*Test*"`
-alias git="noglob git"
-
-source ~/.zsh/git-branch-inject.sh
+# Source my scripts (including fancy prompt!)
+for f in ~/.zsh/*; do
+  . $f
+done
 
 # Auto-suggesions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
