@@ -5,22 +5,29 @@
 
 function installDotfiles() {
   scriptFor "git"
+  installFor "hammerspoon"
+  installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
+  installFor "tigrc"
   installFor "zsh/zshrc" "zshrc"
   installFor "zsh/scripts" "zsh"
-  installFor "hammerspoon"
-  installFor "tigrc"
-  mkdir -p ~/.config/karabiner
-  installFor "karabiner.json" "config/karabiner/karabiner.json"
 }
 
 PWD=$(pwd)
 
+
+## $1 = FROM
+## $2 = TO
+## $3 = IN
 function installFor() {
   FROM=$1
   if [ "$2" == "" ]; then
     TO=$FROM
   else
     TO=$2
+  fi
+
+  if [ "$3" != "" ]; then
+    mkdir -p ./"$3"
   fi
 
   echo "Linking $FROM to ~/.$TO..."
