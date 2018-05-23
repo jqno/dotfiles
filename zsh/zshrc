@@ -12,6 +12,8 @@ unsetopt beep extendedglob notify
 zstyle :compinstall filename '/Users/jqno/.zshrc'
 autoload -Uz compinit
 compinit
+# Case-insensitive completions
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # VIM mode
 bindkey -v
@@ -22,6 +24,9 @@ export EDITOR=vim
 export PATH=$PATH:~/.zsh/scripts
 . run-all-scripts-in-dir.sh ~/.zsh/environment
 . run-all-scripts-in-dir.sh ~/work/environment 2> /dev/null
+
+# Colors in ls
+export CLICOLOR=1
 
 # Auto-suggesions
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
