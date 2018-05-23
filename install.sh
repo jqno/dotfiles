@@ -8,6 +8,7 @@ function installDotfiles() {
   installFor "hammerspoon"
   installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
   installFor "tigrc"
+  installFor "vimrc"
   installFor "zsh/zshrc" "zshrc"
   installFor "zsh/scripts" "zsh"
 }
