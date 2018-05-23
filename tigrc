@@ -1,2 +1,6 @@
 bind main g none
+bind diff g none
+
 bind main gg move-first-line
+bind diff gg move-first-line
+
