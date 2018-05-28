@@ -7,6 +7,7 @@ call plug#begin("~/.vim/plugged")
 Plug 'fcpg/vim-fahrenheit'
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
+Plug 'wincent/terminus'
 
 call plug#end()
 
@@ -45,6 +46,8 @@ colorscheme fahrenheit
 set background=dark
 " Show line-numbers
 set number
+" Don't wrap lines in the middle of a word. That's not cool.
+set linebreak
 
 
 
