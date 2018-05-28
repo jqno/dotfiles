@@ -8,9 +8,14 @@ function installDotfiles() {
   installFor "hammerspoon"
   installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
   installFor "tigrc"
-  installFor "vimrc"
+  installFor "vim"
   installFor "zsh/zshrc" "zshrc"
   installFor "zsh/scripts" "zsh"
+
+  echo "Installing Vim plugins..."
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  vim +PlugInstall +qall
 }
 
 PWD=$(pwd)
