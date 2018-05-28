@@ -44,6 +44,13 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
 silent! colorscheme fahrenheit
 set background=dark
+" Use a nice font with ligatures
+if has('gui_running')
+    set guifont=Fira\ Code\ Retina:h13
+    if has('gui_macvim')
+        set macligatures
+    endif
+endif
 " Show line-numbers
 set number
 " Don't wrap lines in the middle of a word. That's not cool.
