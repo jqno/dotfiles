@@ -64,3 +64,19 @@ augroup VimWiki
     autocmd FileType vimwiki setlocal foldexpr=StackedMarkdownFolds()
 augroup END
 
+
+
+" ***************************************
+" ***  VIM itself!
+" ***************************************
+
+" Open .vimrc.
+:command! EditVimrc e ~/.vimrc
+" Reload .vimrc.
+:command! ReloadVimrc source ~/.vimrc
+" Reload .vimrc whenever it's written.
+augroup AutoSourceVimrc
+    autocmd!
+    autocmd BufWritePost ~/.vimrc ReloadVimrc
+augroup END
+
