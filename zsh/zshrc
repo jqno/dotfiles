@@ -23,7 +23,7 @@ export EDITOR=vim
 # Source my scripts (including fancy prompt!)
 export PATH=$PATH:~/.zsh/scripts
 . run-all-scripts-in-dir.sh ~/.zsh/environment
-. run-all-scripts-in-dir.sh ~/work/environment 2> /dev/null
+. ~/work/environment.sh 2> /dev/null
 
 # Colors in ls
 export CLICOLOR=1
