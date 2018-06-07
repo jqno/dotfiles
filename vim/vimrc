@@ -35,6 +35,28 @@ set backupdir+=.
 " and if the count > 5, we'll also add it to the jump list so we can do C-O and C-I
 nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+" Allow for easy window switching.
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+
+
+
+" ***************************************
+" ***  Tabbing
+" ***************************************
+
+" Set a nice default tab stop level.
+set expandtab smarttab tabstop=2 shiftwidth=2 softtabstop=2
+" Make it possible to change tab stop levels quickly.
+map <silent> <Leader>t2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
+map <silent> <Leader>t4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
+map <silent> <Leader>t8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
+map <silent> <Leader>t0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
+function! SetTabstop(stop)
+    exec 'set expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
+endfunction
 
 
 
