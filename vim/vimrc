@@ -23,6 +23,9 @@ set directory-=.
 set directory+=.
 set backupdir-=.
 set backupdir+=.
+" Leaders.
+let g:mapleader="\<space>"
+let g:maplocalleader=','
 
 
 
