@@ -23,9 +23,11 @@ set directory-=.
 set directory+=.
 set backupdir-=.
 set backupdir+=.
-" Leaders.
+" Leaders
 let g:mapleader="\<space>"
 let g:maplocalleader=','
+" Search more easily
+set ignorecase smartcase
 
 
 
