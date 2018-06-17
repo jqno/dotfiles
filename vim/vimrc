@@ -34,40 +34,6 @@ set ignorecase smartcase
 
 
 " ***************************************
-" ***  Navigation
-" ***************************************
-
-" Pressing up in a long line gets you to the above line 'in the screen',
-" but if you precede it with a count, you get the old behavior
-" and if the count > 5, we'll also add it to the jump list so we can do C-O and C-I
-nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-" Allow for easy window switching.
-map <C-H> <C-W>h
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-L> <C-W>l
-
-
-
-" ***************************************
-" ***  Tabbing
-" ***************************************
-
-" Set a nice default tab stop level.
-set expandtab smarttab tabstop=2 shiftwidth=2 softtabstop=2
-" Make it possible to change tab stop levels quickly.
-map <silent> <Leader>t2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
-map <silent> <Leader>t4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
-map <silent> <Leader>t8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
-map <silent> <Leader>t0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
-function! SetTabstop(stop)
-    exec 'set expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
-endfunction
-
-
-
-" ***************************************
 " ***  Appearance
 " ***************************************
 
@@ -107,12 +73,11 @@ endif
 
 
 " ***************************************
-" ***  Plugin configuration
+" ***  Plugin configurations
 " ***************************************
 
 " FZF
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <C-P> :FzfFiles<CR>
 " Key mappings within FZF to define how to open a file
 let g:fzf_action = {
     \ 'enter': 'split',
@@ -121,12 +86,8 @@ let g:fzf_action = {
 
 " Vim-Test
 let test#strategy = "dispatch"
-nnoremap <leader>ta :TestSuite<CR>
-nnoremap <leader>tf :TestFile<CR>
-nnoremap <leader>tt :TestNearest<CR>
 
 " VimWiki
-nnoremap <F12> :VimwikiIndex<CR>
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.wiki'}]
 let g:vimwiki_folding = 'expr'
 augroup VimWiki
@@ -162,4 +123,61 @@ augroup Maven
     autocmd FileType java compiler maven
     autocmd FileType scala compiler maven
 augroup END
+
+
+
+" ***************************************
+" ***  Functions and defaults
+" ***************************************
+
+" Set a nice default tab stop level.
+function! SetTabstop(stop)
+    exec 'set expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
+endfunction
+call SetTabstop(2)
+
+" Wrapping
+function! ToggleWrap()
+    if &wrap
+        set nowrap
+    else
+        set wrap
+    endif
+endfunction
+set nowrap
+
+
+
+" ***************************************
+" ***  Mappings
+" ***************************************
+
+" No prefix: general mappings
+
+" Pressing up in a long line gets you to the above line 'in the screen',
+" but if you precede it with a count, you get the old behavior
+" and if the count > 5, we'll also add it to the jump list so we can do C-O and C-I
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
+" Allow for easy window switching.
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+nnoremap <C-P> :FzfFiles<CR>
+nnoremap <F12> :VimwikiIndex<CR>
+
+" Prefix <leader>: change settings
+nnoremap <silent> <Leader><Leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
+nnoremap <silent> <Leader><Leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
+nnoremap <silent> <Leader><Leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
+nnoremap <silent> <Leader><Leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
+nnoremap <silent> <Leader><Leader>w :call ToggleWrap()<CR>
+
+" Prefix t: running tests
+nnoremap <leader>ta :TestSuite<CR>
+nnoremap <leader>tf :TestFile<CR>
+nnoremap <leader>tt :TestNearest<CR>
 
