@@ -123,6 +123,9 @@ augroup Maven
     autocmd FileType java compiler maven
     autocmd FileType scala compiler maven
 augroup END
+augroup Vim
+    autocmd FileType vim :call SetTabstop(4)
+augroup END
 
 
 
