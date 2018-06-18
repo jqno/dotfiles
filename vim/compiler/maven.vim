@@ -6,7 +6,7 @@ endif
 
 let current_compiler = "maven"
 
-CompilerSet makeprg=mvn\ -B\ $*
+CompilerSet makeprg=mvn
 
 " The errorformat for recognize following errors
 " 1. Error due to POM file
@@ -27,19 +27,14 @@ CompilerSet makeprg=mvn\ -B\ $*
 " Surefire Plugin Version: 2.14~
 " http://maven.apache.org/plugins/maven-surefire-plugin/
 CompilerSet errorformat=
+    \%-G[ERROR]\ COMPILATION\ ERROR\ :%.%#,
     \%-A[INFO]\ BUILD\ FAILURE%.%#,%-C%.%#,%-Z%.%#,
+    \%-A[ERROR]\ Failures:%.%#,%-C%.%#,%-Z%.%#,
     \%-G[INFO]\ %.%#,
     \%-G[debug]\ %.%#,
     \[%tRROR]%\\s%#Malformed\ POM\ %\\f%\\+:%m@\ %f\\,\ line\ %l\\,\ column\ %c%.%#,
     \[%tRROR]\ %f:[%l\\,%c]\ %m,
     \[%tARNING]\ %f:[%l\\,%c]\ %m,
-    \[%tRROR]\ %f:\ %m,
-    \[%tARNING]\ %f:\ %m,
     \[%tRROR]\ %m,
-    \[%tARNING]\ %m,
-    \Failed\ tests:%\\s%#%s(%f):\ %m,
-    \%E%>%s(%f)%.%#FAILURE!,
-    \%C%>%.%#java.lang.AssertionError:\ %m,
-    \%-C%>%.%#at\ %.%#Assert%.%#,
-    \%Z%\\s%#at\ %[%^(]%\\+%m
+    \[%tARNING]\ %m
 
