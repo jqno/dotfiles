@@ -88,7 +88,8 @@ let g:fzf_action = {
 let test#strategy = "dispatch"
 
 " VimWiki
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.wiki'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'expr'
 augroup VimWiki
     autocmd!
