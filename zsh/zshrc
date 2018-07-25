@@ -36,3 +36,6 @@ bindkey '^[[Z' autosuggest-accept  # Shift-tab
 # Syntax highlighting (must be at the end of .zshrc!)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Enable FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
