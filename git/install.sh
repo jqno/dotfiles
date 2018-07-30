@@ -19,7 +19,6 @@ git config --global alias.l10 "!git --no-pager log -10 --pretty=format:'%Cred%h%
 git config --global alias.mail "config user.email"
 git config --global alias.master "!git stash && git co master && git pull && git prune-local && git stash pop"
 git config --global alias.sts "status -s"
-# git config --global alias.prune-local "!f() { if [ -n \"\$1\" ]; then git branch --merged \$1 | grep -v \$1\$ | xargs -n 1 git branch -d; else echo 'Name a branch'; fi; }; f"
 git config --global alias.prune-local "!git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -d"
 git config --global alias.uncommit "reset HEAD^"
 git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
