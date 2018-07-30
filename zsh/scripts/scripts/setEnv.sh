@@ -55,6 +55,10 @@
 #
 # If you need more custom initialization for your profile, create a file called init.sh inside the profile directory.
 # It will be called once all the other profile configurations have been properly configured.
+#
+# If you need to clean up when leaving the current profile (for instance, if you need to shut down a docker container),
+# create a file called shutdown.sh inside the profile directory. It will be called right before switching to a new
+# profile.
 
 if [[ -z "$1" ]]; then
   echo "No parameter"
@@ -68,11 +72,12 @@ if [[ ! -d "$ENVDIR" ]]; then
   exit 1
 fi
 
-echo "Swapping to $ENVDIR"
-
-if [[ -e $ENVDIR/banner ]]; then
-  cat $ENVDIR/banner
+if [[ -e $SETENVDIR/shutdown.sh ]]; then
+  echo "Shutting down current environment"
+  . $SETENVDIR/shutdown.sh
 fi
+
+echo "Swapping to $ENVDIR"
 
 if [[ -e $HOME/.setEnv/use-npmrc ]]; then
   if [[ -e $ENVDIR/npmrc ]]; then
@@ -97,7 +102,16 @@ if [[ -e $ENVDIR/prompt ]]; then
   cp $ENVDIR/prompt $SETENVDIR
 fi
 
+if [[ -e $ENVDIR/shutdown.sh ]]; then
+  rm $SETENVDIR/shutdown.sh
+  cp $ENVDIR/shutdown.sh $SETENVDIR
+fi
+
 if [[ -e $ENVDIR/init.sh ]]; then
   . $ENVDIR/init.sh
+fi
+
+if [[ -e $ENVDIR/banner ]]; then
+  cat $ENVDIR/banner
 fi
 
