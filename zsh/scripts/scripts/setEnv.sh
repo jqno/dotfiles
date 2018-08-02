@@ -97,13 +97,19 @@ if [[ -e $ENVDIR/settings.xml ]]; then
   cp $ENVDIR/settings.xml ~/.m2/settings.xml
 fi
 
-if [[ -e $ENVDIR/prompt ]]; then
+if [[ -e $SETENVDIR/prompt ]]; then
   rm $SETENVDIR/prompt
+fi
+
+if [[ -e $ENVDIR/prompt ]]; then
   cp $ENVDIR/prompt $SETENVDIR
 fi
 
-if [[ -e $ENVDIR/shutdown.sh ]]; then
+if [[ -e $SETENVDIR/shutdown.sh ]]; then
   rm $SETENVDIR/shutdown.sh
+fi
+
+if [[ -e $ENVDIR/shutdown.sh ]]; then
   cp $ENVDIR/shutdown.sh $SETENVDIR
 fi
 
