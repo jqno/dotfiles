@@ -192,6 +192,7 @@ nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftw
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 
 " Prefix f: finding things
+nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
 
