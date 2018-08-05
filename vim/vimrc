@@ -4,6 +4,7 @@
 
 call plug#begin("~/.vim/plugged")
 
+Plug 'derekwyatt/vim-scala'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
@@ -87,6 +88,7 @@ let g:fzf_action = {
 
 " Gutentags
 let g:gutentags_ctags_tagfile='.git/tags'
+" Store full paths for tags to make it possible to stash the tags into .git/tags
 set notagrelative
 
 " Vim-Test
