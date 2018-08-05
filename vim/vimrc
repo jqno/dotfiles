@@ -5,6 +5,7 @@
 call plug#begin("~/.vim/plugged")
 
 Plug 'derekwyatt/vim-scala'
+Plug 'ervandew/supertab'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
