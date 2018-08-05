@@ -184,11 +184,11 @@ nnoremap = <C-W>=
 nnoremap <F12> :VimwikiIndex<CR>
 
 " Prefix <leader>: change settings
-nnoremap <silent> <Leader><Leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
-nnoremap <silent> <Leader><Leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
-nnoremap <silent> <Leader><Leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
-nnoremap <silent> <Leader><Leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
-nnoremap <silent> <Leader><Leader>w :call ToggleWrap()<CR>
+nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
+nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
+nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
+nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
+nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 
 " Prefix f: finding things
 nnoremap <leader>ff :FzfFiles<CR>
