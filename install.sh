@@ -6,6 +6,7 @@
 
 function installDotfiles() {
   scriptFor "git"
+  installFor "ctags"
   installFor "hammerspoon"
   installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
   installFor "tigrc"

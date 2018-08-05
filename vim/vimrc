@@ -7,6 +7,7 @@ call plug#begin("~/.vim/plugged")
 Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
@@ -83,6 +84,10 @@ let g:fzf_action = {
     \ 'enter': 'split',
     \ 'space': 'e'
     \ }
+
+" Gutentags
+let g:gutentags_ctags_tagfile='.git/tags'
+set notagrelative
 
 " Vim-Test
 let test#strategy = "dispatch"
@@ -174,7 +179,6 @@ nnoremap - <C-W>-
 nnoremap + <C-W>+
 nnoremap = <C-W>=
 
-nnoremap <C-P> :FzfFiles<CR>
 nnoremap <F12> :VimwikiIndex<CR>
 
 " Prefix <leader>: change settings
@@ -183,6 +187,10 @@ nnoremap <silent> <Leader><Leader>4 :call SetTabstop(4)<CR>:echo "Indentation le
 nnoremap <silent> <Leader><Leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
 nnoremap <silent> <Leader><Leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
 nnoremap <silent> <Leader><Leader>w :call ToggleWrap()<CR>
+
+" Prefix f: finding things
+nnoremap <leader>ff :FzfFiles<CR>
+nnoremap <leader>ft :FzfTags<CR>
 
 " Prefix t: running tests
 nnoremap <leader>ta :TestSuite<CR>
