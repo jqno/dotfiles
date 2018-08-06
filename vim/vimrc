@@ -94,7 +94,7 @@ endif
 " ***  Plugin configurations
 " ***************************************
 
-" FZF
+" *** FZF
 let g:fzf_command_prefix = 'Fzf'
 " Key mappings within FZF to define how to open a file
 let g:fzf_action = {
@@ -102,15 +102,15 @@ let g:fzf_action = {
     \ 'space': 'e'
     \ }
 
-" Gutentags
+" *** Gutentags
 let g:gutentags_ctags_tagfile='.git/tags'
 " Store full paths for tags to make it possible to stash the tags into .git/tags
 set notagrelative
 
-" Vim-Test
+" *** Vim-Test
 let test#strategy = "dispatch"
 
-" VimWiki
+" *** VimWiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'expr'
@@ -179,7 +179,7 @@ set nowrap
 " ***  Mappings
 " ***************************************
 
-" No prefix: general mappings
+" *** No prefix: general mappings
 
 " Pressing up in a long line gets you to the above line 'in the screen',
 " but if you precede it with a count, you get the old behavior
@@ -199,21 +199,21 @@ nnoremap = <C-W>=
 
 nnoremap <F12> :VimwikiIndex<CR>
 
-" Prefix <leader>: change settings
+" *** Prefix <leader>: change settings
 nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
 nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
 nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
 nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 
-" Prefix f: finding things
+" *** Prefix f: finding things
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
 nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
 
-" Prefix t: running tests
+" *** Prefix t: running tests
 nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
