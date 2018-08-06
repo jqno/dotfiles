@@ -10,6 +10,7 @@ Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'vimwiki/vimwiki'
@@ -156,7 +157,7 @@ augroup END
 " ***  Functions and defaults
 " ***************************************
 
-" Set a nice default tab stop level.
+" Set a nice default tab stop level
 function! SetTabstop(stop)
     exec 'set expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
 endfunction
@@ -209,6 +210,8 @@ nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
+nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
+nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
 
 " Prefix t: running tests
 nnoremap <leader>ta :TestSuite<CR>
