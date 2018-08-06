@@ -13,6 +13,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-grepper'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
 Plug 'wincent/terminus'
 
@@ -106,6 +107,9 @@ let g:fzf_action = {
 let g:gutentags_ctags_tagfile='.git/tags'
 " Store full paths for tags to make it possible to stash the tags into .git/tags
 set notagrelative
+
+" *** netrw
+let g:netrw_liststyle = 3
 
 " *** Vim-Test
 let test#strategy = "dispatch"
@@ -212,6 +216,8 @@ nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
 nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
+" Open netrw
+nmap <leader>fn <Plug>VinegarVerticalSplitUp
 
 " *** Prefix t: running tests
 nnoremap <leader>ta :TestSuite<CR>
