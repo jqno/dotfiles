@@ -101,8 +101,8 @@ endif
 let g:fzf_command_prefix = 'Fzf'
 " Key mappings within FZF to define how to open a file
 let g:fzf_action = {
-    \ 'enter': 'split',
-    \ 'space': 'e'
+    \ 'enter': 'e',
+    \ 'space': 'split'
     \ }
 
 " *** Gutentags
