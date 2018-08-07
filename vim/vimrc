@@ -227,6 +227,9 @@ nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
 " Open netrw
 nmap <leader>fn <Plug>VinegarVerticalSplitUp
 
+" *** Prefix b: running builds
+nnoremap <leader>bb :Make<CR>
+
 " *** Prefix t: running tests
 nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
