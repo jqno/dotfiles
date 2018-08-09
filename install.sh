@@ -8,6 +8,7 @@ function installDotfiles() {
   scriptFor "git"
   installFor "ctags"
   installFor "hammerspoon"
+  installFor "ideavimrc"
   installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
   installFor "tigrc"
   installFor "vim"

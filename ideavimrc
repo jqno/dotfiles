@@ -1,0 +1,58 @@
+" Set Leader to Space.
+let mapleader=" "
+
+" Reload this file.
+nnoremap <Leader>rv :source ~/.ideavimrc<CR>:echo "Reloaded .ideavimrc"<CR>
+
+" Pleasant defaults.
+set clipboard=unnamed
+set ignorecase
+set nrformats-=octal
+set number
+set relativenumber
+set scrolloff=4
+set showmode
+set sidescrolloff=5
+set smartcase
+set visualbell
+
+" Search.
+set hlsearch
+noremap <Leader><Leader>/ <Esc>:nohlsearch<Bar>:echo<CR>
+
+" When finding =, include the whitespace around it!
+noremap t= /\s*=<CR>
+noremap T= ?=\s*?e<CR>
+
+" Navigate splits.
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+
+" Indent and de-indent.
+vnoremap < <gv
+vnoremap > >gv
+
+" Introduce shortcuts for my favourite refactorings.
+" Also, go directly to insert mode when renaming or introducing a new variable.
+nnoremap <Leader><Leader>r :action RenameElement<CR>i
+nnoremap <Leader><Leader>v :action IntroduceVariable<CR>i
+vnoremap <Leader><Leader>v :action IntroduceVariable<CR>
+nnoremap <Leader><Leader>o :action OptimizeImports<CR>
+nnoremap <Leader><Leader>i :action Inline<CR>
+nnoremap <Leader><Leader>m :action ExtractMethod<CR>
+nnoremap <Leader><Leader>g :action GotoImplementation<CR>
+
+" Run tests
+nnoremap <Leader><Leader>t :action RunClass<CR>
+
+" Bind 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
+nnoremap <Leader><Leader>b :action Annotate<CR>:action Annotate<CR>
+
+" Close all windows except active.
+nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
+
+" Hide all toolwindows and give focus to the edit pane.
+nnoremap <Leader><Leader>f :action HideAllWindows<CR>
+
