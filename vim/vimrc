@@ -241,7 +241,7 @@ nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
-" *** Insert mode
+" *** Insert mode paren and quote expansion
 inoremap ( ()<left>
 inoremap (<cr> (<cr>)<esc>O
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
@@ -257,6 +257,9 @@ inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == '"' ? "\<Right>" : '""<left>'
 inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "'" ? "\<Right>" : "''<left>"
 inoremap <expr> ` strpart(getline('.'), col('.')-1, 1) == "`" ? "\<Right>" : "``<left>"
+
+" *** Insert mode completion mappings
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
