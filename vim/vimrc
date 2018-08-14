@@ -147,10 +147,13 @@ augroup END
 " ***  File types
 " ***************************************
 
-augroup Maven
+augroup Java
     autocmd!
     autocmd BufRead pom.xml compiler maven
     autocmd FileType java compiler maven
+    autocmd FileType java :call SetTabstop(4)
+augroup END
+augroup Scala
     autocmd FileType scala compiler maven
 augroup END
 augroup SQL
@@ -169,7 +172,7 @@ augroup END
 
 " Set a nice default tab stop level
 function! SetTabstop(stop)
-    exec 'set expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
+    exec 'setlocal expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
 endfunction
 call SetTabstop(2)
 
