@@ -209,7 +209,7 @@ nnoremap _ <C-W>_
 nnoremap - <C-W>-
 nnoremap + <C-W>+
 nnoremap = <C-W>=
-nmap <leader>] :vsp<CR>:exec("tag " . expand("<cword>"))<CR>
+nmap <leader>] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
