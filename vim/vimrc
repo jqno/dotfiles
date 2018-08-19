@@ -162,7 +162,7 @@ augroup END
 
 
 " ***************************************
-" ***  Functions and defaults
+" ***  Toggles
 " ***************************************
 
 " Set a nice default tab stop level
@@ -240,21 +240,31 @@ nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
 " *** Insert mode paren and quote expansion
-inoremap ( ()<left>
+inoremap <expr> ( <SID>ExpandParenFully() ? "()\<Left>" : "("
 inoremap (<cr> (<cr>)<esc>O
-inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> ) <SID>NextChar() == ")" ? "\<Right>" : ")"
 
-inoremap [ []<left>
+inoremap <expr> [ <SID>ExpandParenFully() ? "[]\<Left>" : "["
 inoremap [<cr> [<cr>]<esc>O
-inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> ] <SID>NextChar() == "]" ? "\<Right>" : "]"
 
-inoremap { {}<left>
+inoremap <expr> { <SID>ExpandParenFully() ? "{}\<Left>" : "{"
 inoremap {<cr> {<cr>}<esc>O
-inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> } <SID>NextChar() == "}" ? "\<Right>" : "}"
 
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == '"' ? "\<Right>" : '""<left>'
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "'" ? "\<Right>" : "''<left>"
-inoremap <expr> ` strpart(getline('.'), col('.')-1, 1) == "`" ? "\<Right>" : "``<left>"
+inoremap <expr> " <SID>NextChar() == '"' ? "\<Right>" : <SID>ExpandParenFully() ? '""<left>' : '"'
+inoremap <expr> ' <SID>NextChar() == "'" ? "\<Right>" : <SID>ExpandParenFully() ? "''<left>" : "'"
+inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() ? "``<left>" : "`"
+
+function! s:ExpandParenFully()
+    let char = <SID>NextChar()
+    return char == "" || char == " " || char == ")" || char == "]" || char == "}" || char == '"' || char == "'" || char == "`"
+endfunction
+
+function! s:NextChar()
+    return strpart(getline('.'), col('.')-1, 1)
+endfunction
+
 
 " *** Insert mode completion mappings
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
