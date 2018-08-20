@@ -262,7 +262,7 @@ inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() 
 
 function! s:ExpandParenFully()
     let char = <SID>NextChar()
-    return char == "" || char == " " || char == ")" || char == "]" || char == "}" || char == '"' || char == "'" || char == "`"
+    return char == "" || " )]}\"'`" =~ char
 endfunction
 
 function! s:NextChar()
