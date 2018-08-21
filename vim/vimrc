@@ -243,37 +243,46 @@ nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
-" *** Insert mode paren and quote expansion
+" *** Insert mode paren, quote and <CR> expansion
 inoremap <expr> ( <SID>ExpandParenFully() ? "()\<Left>" : "("
-inoremap (<cr> (<cr>)<esc>O
 inoremap <expr> ) <SID>NextChar() == ")" ? "\<Right>" : ")"
 
 inoremap <expr> [ <SID>ExpandParenFully() ? "[]\<Left>" : "["
-inoremap [<cr> [<cr>]<esc>O
 inoremap <expr> ] <SID>NextChar() == "]" ? "\<Right>" : "]"
 
 inoremap <expr> { <SID>ExpandParenFully() ? "{}\<Left>" : "{"
-inoremap {<cr> {<cr>}<esc>O
 inoremap <expr> } <SID>NextChar() == "}" ? "\<Right>" : "}"
 
 inoremap <expr> " <SID>NextChar() == '"' ? "\<Right>" : <SID>ExpandParenFully() ? '""<left>' : '"'
 inoremap <expr> ' <SID>NextChar() == "'" ? "\<Right>" : <SID>ExpandParenFully() ? "''<left>" : "'"
 inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() ? "``<left>" : "`"
 
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : <SID>SmartReturn()
+
 function! s:ExpandParenFully()
     let char = <SID>NextChar()
     return char == "" || " )]}\"'`" =~ char
+endfunction
+
+function! s:SmartReturn()
+    let prev = <SID>PrevChar()
+    if prev != "" && "([{" =~ <SID>PrevChar()
+        return "\<CR>\<Esc>O"
+    else
+        return "\<CR>"
+    endif
 endfunction
 
 function! s:NextChar()
     return strpart(getline('.'), col('.')-1, 1)
 endfunction
 
-
-" *** Insert mode completion mappings
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+function! s:PrevChar()
+    return strpart(getline('.'), col('.')-2, 1)
+endfunction
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
 " # is the 'other' file, because % would be the Command-Line window itself.
 cnoremap %% <C-R>=expand('#:h').'/'<CR>
+
