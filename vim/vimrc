@@ -2,7 +2,7 @@
 " ***  Define plugins
 " ***************************************
 
-call plug#begin("~/.vim/plugged")
+call plug#begin('~/.vim/plugged')
 
 Plug 'derekwyatt/vim-scala'
 Plug 'ervandew/supertab'
@@ -110,7 +110,7 @@ let g:fzf_action = {
 let g:netrw_liststyle = 3
 
 " *** Vim-Test
-let test#strategy = "dispatch"
+let test#strategy = 'dispatch'
 
 " *** VimWiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
@@ -169,7 +169,7 @@ augroup END
 " Define a set of tabstop settings and raise a flag if we have done so in this buffer
 function! SetTabstop(stop)
     exec 'setlocal expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
-    let b:TabstopDefined = "¯\_(ツ)_/¯"
+    let b:TabstopDefined = '¯\_(ツ)_/¯'
 endfunction
 " Set a nice default tab stop level if it wasn't already set by an autocmd
 if !exists('b:TabstopDefined')
@@ -262,12 +262,12 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : <SID>SmartReturn()
 
 function! s:ExpandParenFully()
     let char = <SID>NextChar()
-    return char == "" || " )]}\"'`" =~ char
+    return char ==? '' || ' )]}"''`' =~? char
 endfunction
 
 function! s:SmartReturn()
     let prev = <SID>PrevChar()
-    if prev != "" && "([{" =~ <SID>PrevChar()
+    if prev !=? '' && '([{' =~? <SID>PrevChar()
         return "\<CR>\<Esc>O"
     else
         return "\<CR>"
