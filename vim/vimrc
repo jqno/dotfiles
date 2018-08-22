@@ -261,13 +261,13 @@ inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : <SID>SmartReturn()
 
 function! s:ExpandParenFully()
-    let char = <SID>NextChar()
-    return char ==? '' || ' )]}"''`' =~? char
+    let l:char = <SID>NextChar()
+    return l:char ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:char) >= 0
 endfunction
 
 function! s:SmartReturn()
-    let prev = <SID>PrevChar()
-    if prev !=? '' && '([{' =~? <SID>PrevChar()
+    let l:prev = <SID>PrevChar()
+    if l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
         return "\<CR>\<Esc>O"
     else
         return "\<CR>"
