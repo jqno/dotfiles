@@ -18,6 +18,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
 Plug 'wincent/terminus'
+Plug 'w0rp/ale'
 
 call plug#end()
 
