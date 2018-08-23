@@ -116,10 +116,6 @@ let test#strategy = 'dispatch'
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'expr'
-augroup VimWiki
-    autocmd!
-    autocmd FileType vimwiki setlocal foldexpr=StackedMarkdownFolds()
-augroup END
 
 
 
@@ -143,6 +139,11 @@ augroup END
 " ***  File types
 " ***************************************
 
+augroup VimWiki
+    autocmd!
+    autocmd FileType vimwiki setlocal foldexpr=StackedMarkdownFolds()
+    autocmd FileType vimwiki :call SetTabstop(2)
+augroup END
 augroup Java
     autocmd!
     autocmd BufRead pom.xml compiler maven
