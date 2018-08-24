@@ -260,6 +260,7 @@ inoremap <expr> ' <SID>NextChar() == "'" ? "\<Right>" : <SID>ExpandParenFully() 
 inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() ? "``<left>" : "`"
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : <SID>SmartReturn()
+inoremap <expr> <BS> <SID>SmartBackspace()
 
 function! s:ExpandParenFully()
     let l:char = <SID>NextChar()
@@ -272,6 +273,18 @@ function! s:SmartReturn()
         return "\<CR>\<Esc>O"
     else
         return "\<CR>"
+    endif
+endfunction
+
+function! s:SmartBackspace()
+    let l:prev = <SID>PrevChar()
+    let l:next = <SID>NextChar()
+    let l:doIt = (l:prev ==? '(' && l:next ==? ')') || (l:prev ==? '[' && l:next ==? ']') || (l:prev ==? '{' && l:next ==? '}') ||
+                \ (l:prev ==? '''' && l:next ==? '''') || (l:prev ==? '"' && l:next ==? '"') || (l:prev ==? '`' && l:next ==? '`')
+    if l:doIt
+        return "\<Esc>xxa"
+    else
+        return "\<BS>"
     endif
 endfunction
 
