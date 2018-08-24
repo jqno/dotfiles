@@ -98,6 +98,10 @@ endif
 " ***  Plugin configurations
 " ***************************************
 
+" *** ALE
+" Run linting on save only
+let g:ale_lint_on_text_changed = 'never'
+
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
 " Key mappings within FZF to define how to open a file
