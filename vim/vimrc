@@ -287,9 +287,9 @@ function! s:SmartBackspace()
     let l:prev = <SID>PrevChar()
     let l:next = <SID>NextChar()
     let l:doIt = (l:prev ==? '(' && l:next ==? ')') || (l:prev ==? '[' && l:next ==? ']') || (l:prev ==? '{' && l:next ==? '}') ||
-                \ (l:prev ==? '''' && l:next ==? '''') || (l:prev ==? '"' && l:next ==? '"') || (l:prev ==? '`' && l:next ==? '`')
+               \ (l:prev ==? '''' && l:next ==? '''') || (l:prev ==? '"' && l:next ==? '"') || (l:prev ==? '`' && l:next ==? '`')
     if l:doIt
-        return "\<Esc>xxa"
+        return "\<BS>\<Del>"
     else
         return "\<BS>"
     endif
