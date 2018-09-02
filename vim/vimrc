@@ -5,13 +5,14 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'derekwyatt/vim-scala'
-Plug 'ervandew/supertab'
 Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-grepper'
 Plug 'sheerun/vim-polyglot'
+Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
@@ -51,7 +52,6 @@ augroup vimStartup
       \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
       \ |   exe "normal! g`\""
       \ | endif
-
 augroup END
 
 
@@ -114,6 +114,11 @@ let g:fzf_action = {
     \ 'space': 'split'
     \ }
 
+" *** MUcomplete
+set completeopt+=menuone,noinsert
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default  = ['omni', 'path', 'keyn', 'dict', 'uspl']
+
 " *** netrw
 let g:netrw_liststyle = 3
 
@@ -167,6 +172,9 @@ augroup SQL
 augroup END
 augroup Vim
     autocmd FileType vim :call SetTabstop(4)
+augroup END
+augroup XML
+    autocmd FileType xml :call SetTabstop(4)
 augroup END
 
 
