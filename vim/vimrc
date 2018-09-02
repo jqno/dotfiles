@@ -30,6 +30,7 @@ call plug#end()
 " ***  Behavior
 " ***************************************
 
+scriptencoding utf-8
 " Put swap files and backups in . only as a last resort
 set directory-=.
 set directory+=.
