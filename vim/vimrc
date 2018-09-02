@@ -117,10 +117,15 @@ let g:fzf_action = {
 " *** MUcomplete
 set completeopt+=menuone,noinsert
 let g:mucomplete#chains = {}
-let g:mucomplete#chains.default  = ['omni', 'path', 'keyn', 'dict', 'uspl']
+let g:mucomplete#chains.default  = ['ulti', 'omni', 'path', 'keyn', 'dict', 'uspl']
 
 " *** netrw
 let g:netrw_liststyle = 3
+
+" *** Ultisnips
+" Override key bindings not avoid conflict with MUcomplete
+let g:UltiSnipsExpandTrigger = '<F20>'         " Do not use <tab>
+let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'  " Do not use <c-j>
 
 " *** Vim-Test
 let test#strategy = 'dispatch'
@@ -275,7 +280,7 @@ inoremap <expr> " <SID>NextChar() == '"' ? "\<Right>" : <SID>ExpandParenFully() 
 inoremap <expr> ' <SID>NextChar() == "'" ? "\<Right>" : <SID>ExpandParenFully() ? "''<left>" : "'"
 inoremap <expr> ` <SID>NextChar() == "`" ? "\<Right>" : <SID>ExpandParenFully() ? "``<left>" : "`"
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : <SID>SmartReturn()
+inoremap <expr> <CR> mucomplete#ultisnips#expand_snippet(<SID>SmartReturn())
 inoremap <expr> <BS> <SID>SmartBackspace()
 
 function! s:ExpandParenFully()
