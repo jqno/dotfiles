@@ -40,7 +40,7 @@ set backupdir+=.
 let g:mapleader="\<space>"
 let g:maplocalleader=','
 " Search more easily
-set ignorecase smartcase
+set incsearch hlsearch ignorecase smartcase
 
 augroup vimStartup
     autocmd!
@@ -248,6 +248,7 @@ nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation le
 nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
 nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
+nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
 
 " *** Prefix <leader>f: finding things
 nnoremap <leader>fB :b#<CR>

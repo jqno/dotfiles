@@ -18,7 +18,7 @@ set visualbell
 
 " Search.
 set hlsearch
-noremap <Leader><Leader>/ <Esc>:nohlsearch<Bar>:echo<CR>
+noremap <Leader><Leader>/ <Esc>:nohlsearch<CR>
 
 " When finding =, include the whitespace around it!
 noremap t= /\s*=<CR>
