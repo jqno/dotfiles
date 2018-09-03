@@ -5,8 +5,8 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'derekwyatt/vim-scala'
-Plug 'fcpg/vim-fahrenheit'
 Plug 'janko-m/vim-test'
+Plug 'jqno/vim-reversal'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
@@ -62,7 +62,7 @@ augroup END
 " ***************************************
 
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
-silent! colorscheme fahrenheit
+silent! colorscheme reversal
 set background=dark
 " Use a nice font with ligatures
 if has('gui_running')
