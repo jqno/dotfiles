@@ -171,6 +171,9 @@ augroup Java
 augroup END
 augroup Scala
     autocmd FileType scala compiler maven
+    " vim-scala's syntax highlighter makes some ... interesting choices
+    autocmd FileType scala :highlight! link scalaCapitalWord Type
+    autocmd FileType scala :highlight! link scalaInstanceDeclaration Type
 augroup END
 augroup SQL
     autocmd!
