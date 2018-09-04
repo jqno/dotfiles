@@ -239,6 +239,12 @@ nmap \ <Plug>Commentary
 omap \ <Plug>Commentary
 nmap \\ <Plug>CommentaryLine
 nmap <leader>\ <Plug>Commentary<Plug>Commentary
+" Center on the line with the match when searching
+nnoremap n nzz
+nnoremap N Nzz
+" When finding `=` include the whitespace around it
+nnoremap t= /\s*=<CR>:nohls<CR>
+nnoremap T= ?=\s*?e<CR>:nohls<CR>
 
 nnoremap <F12> :VimwikiIndex<CR>
 
