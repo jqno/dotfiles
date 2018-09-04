@@ -232,7 +232,7 @@ nnoremap _ <C-W>_
 nnoremap - <C-W>-
 nnoremap + <C-W>+
 nnoremap = <C-W>=
-nmap <leader>] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
+nnoremap <leader>] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
@@ -264,7 +264,7 @@ nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
 nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
 " Open netrw
-nmap <leader>fn <Plug>VinegarVerticalSplitUp
+nnoremap <leader>fn <Plug>VinegarVerticalSplitUp
 
 " *** Prefix <leader>b: running builds
 nnoremap <leader>bb :Make<CR>
