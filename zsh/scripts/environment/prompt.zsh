@@ -120,24 +120,23 @@ function build_prompt() {
 
   if [[ "$VIMODE" == "n" ]]
   then
-    local RED="%{$bg_bold[yellow]$fg_bold[black]%}"
-    local GREEN="%{$bg_bold[yellow]$fg_bold[black]%}"
-    local YELLOW="%{$bg_bold[yellow]$fg_bold[black]%}"
-    local CYAN="%{$bg_bold[yellow]$fg_bold[black]%}"
-    local MAGENTA="%{$bg_bold[yellow]$fg_bold[black]%}"
-    local WHITE="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cERROR="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cDIR="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cBRANCH="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cGITSTATUS="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cSEP="%{$bg_bold[yellow]$fg_bold[black]%}"
+    local cARROW="%{$bg_bold[yellow]$fg_bold[black]%}"
   else
-    local RED="%{$fg_bold[red]%}"
-    local GREEN="%{$fg_bold[green]%}"
-    local YELLOW="%{$fg_bold[yellow]%}"
-    local CYAN="%{$fg_bold[cyan]%}"
-    local MAGENTA="%{$fg_bold[magenta]%}"
-    local WHITE="%{$fg_bold[white]%}"
+    local cERROR="%{$fg_bold[red]%}"
+    local cDIR="%{$fg_bold[green]%}"
+    local cBRANCH="%{$fg_bold[yellow]%}"
+    local cGITSTATUS="%{$fg_bold[yellow]%}"
+    local cSEP="%{$fg_bold[cyan]%}"
+    local cARROW="%{$fg_bold[white]%}"
   fi
 
   local RAW_SEP="❯"
-  local SEPCOLOR=$CYAN
-  local SEP="$SEPCOLOR$RAW_SEP"
+  local SEP="$cSEP$RAW_SEP"
   local P=""
 
   local WORKING_DIR=$(prompt_working_directory)
@@ -145,37 +144,37 @@ function build_prompt() {
   local GIT_STATUS_FULL=$(git status -sb 2> /dev/null)
   local GIT_WARNINGS=""
 
-  P+="$WHITE┌ "
-  P+="$SEP $GREEN$WORKING_DIR"
-  [[ -n "$INJECTION" ]] && P+=" $SEP $GREEN$INJECTION"
+  P+="$cARROW┌ "
+  P+="$SEP $cDIR$WORKING_DIR"
+  [[ -n "$INJECTION" ]] && P+=" $SEP $cDIR$INJECTION"
 
   if prompt_is_inside_git
   then
     GIT_STATUS=$(git status --porcelain 2> /dev/null)
 
-    P+=" $SEP $YELLOW$(prompt_git_branch)"
+    P+=" $SEP $cBRANCH$(prompt_git_branch)"
 
     local REMOTE=$(prompt_git_remote)
     local LOCAL=$(prompt_git_local)
-    [[ -n "$REMOTE" ]] && P+=" $SEP $YELLOW$REMOTE"
-    [[ -n "$LOCAL" ]] && P+=" $SEP $YELLOW$LOCAL"
+    [[ -n "$REMOTE" ]] && P+=" $SEP $cGITSTATUS$REMOTE"
+    [[ -n "$LOCAL" ]] && P+=" $SEP $cGITSTATUS$LOCAL"
 
     GIT_WARNINGS=$(prompt_git_warnings)
   fi
 
   P+=" $SEP"
   P+="\n"
-  P+="$WHITE└ "
+  P+="$cARROW└ "
 
   local SYMS=$(prompt_root_and_jobs)
   local RET_STATUS=$(prompt_ret_status $EXIT)
   [[ -n "$RET_STATUS$SYMS$GIT_WARNINGS" ]] && P+="$SEP "
-  [[ -n "$SYMS" ]] && P+="$YELLOW$SYMS"
-  [[ -n "$RET_STATUS" ]] && P+="$RED$RET_STATUS"
-  [[ -n "$GIT_WARNINGS" ]] && P+="$RED$GIT_WARNINGS"
+  [[ -n "$SYMS" ]] && P+="$cGITSTATUS$SYMS"
+  [[ -n "$RET_STATUS" ]] && P+="$cERROR$RET_STATUS"
+  [[ -n "$GIT_WARNINGS" ]] && P+="$cERROR$GIT_WARNINGS"
   [[ -n "$RET_STATUS$SYMS$GIT_WARNINGS" ]] && P+=" "
 
-  P+="$(prompt_is_git_dirty $RED $SEPCOLOR)$RAW_SEP"
+  P+="$(prompt_is_git_dirty $cERROR $cSEP)$RAW_SEP"
 
   P+="%{$reset_color%} "
 
