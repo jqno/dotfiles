@@ -99,6 +99,10 @@ hyper.bindKey({"cmd"}, "t", function()
   hs.pasteboard.setContents(time)
 end)
 
+hyper.bindKey({}, "b", function()
+  hs.alert.show("🔋 " .. hs.battery.percentage() .. "%")
+end)
+
 
 -- Loaded successfully!
 hs.alert.show('🔨🥄✅')
