@@ -120,7 +120,7 @@ function build_prompt() {
 
   if [[ "$VIMODE" == "n" ]]
   then
-    local cVIMODE="%F{0}%K{116}"
+    local cVIMODE="%F{16}%K{116}"
     local cERROR=$cVIMODE
     local cDIR=$cVIMODE
     local cBRANCH=$cVIMODE
@@ -128,12 +128,12 @@ function build_prompt() {
     local cSEP=$cVIMODE
     local cARROW=$cVIMODE
   else
-    local cERROR="%F{124}%K{0}"
-    local cDIR="%F{215}%K{0}"
-    local cBRANCH="%F{215}%K{0}"
-    local cGITSTATUS="%F{188}%K{0}"
-    local cSEP="%F{245}%K{0}"
-    local cARROW="%F{188}%K{0}"
+    local cERROR="%F{124}%k"
+    local cDIR="%F{215}%k"
+    local cBRANCH="%F{215}%k"
+    local cGITSTATUS="%F{188}%k"
+    local cSEP="%F{245}%k"
+    local cARROW="%F{188}%k"
   fi
 
   local RAW_SEP="❯"
