@@ -89,13 +89,13 @@ hyper.bindKey({"cmd"}, "b", function() hs.alert.show(hs.window.focusedWindow():a
 -- Show the time
 hyper.bindKey({}, "t", function()
   local time = os.date("%H:%M")
-  hs.alert.show(time)
+  hs.alert.show("🕓 " .. time)
   hs.pasteboard.setContents(time)
 end)
 
 hyper.bindKey({"cmd"}, "t", function()
   local time = os.date("%Y-%m-%d")
-  hs.alert.show(time)
+  hs.alert.show("📆 " .. time)
   hs.pasteboard.setContents(time)
 end)
 
