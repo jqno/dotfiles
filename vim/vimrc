@@ -275,14 +275,14 @@ nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
 
 " *** Prefix <leader>f: finding things
-nnoremap <leader>fB :b#<CR>
+nnoremap <leader>f<tab> :b#<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
 nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
 " Open netrw
-nnoremap <leader>fn <Plug>VinegarVerticalSplitUp
+nmap <leader>fn <Plug>VinegarSplitUp
 
 " *** Prefix <leader>b: running builds
 nnoremap <leader>bb :Make<CR>
