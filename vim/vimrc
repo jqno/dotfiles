@@ -161,44 +161,9 @@ augroup END
 " ***  File types
 " ***************************************
 
-augroup Java
+augroup pom
     autocmd!
     autocmd BufRead pom.xml compiler maven
-    autocmd FileType java compiler maven
-    autocmd FileType java :call SetTabstop(4)
-augroup END
-augroup Markdown
-    autocmd!
-    autocmd FileType markdown :call SetTabstop(2)
-    autocmd FileType markdown set wrap
-augroup END
-augroup Scala
-    autocmd!
-    autocmd FileType scala compiler maven
-    " vim-scala's syntax highlighter makes some ... interesting choices
-    autocmd FileType scala :highlight! link scalaCapitalWord Type
-    autocmd FileType scala :highlight! link scalaInstanceDeclaration Type
-augroup END
-augroup Shell
-    autocmd!
-    autocmd FileType sh,zsh :call SetTabstop(2)
-augroup END
-augroup SQL
-    autocmd!
-    autocmd FileType sql setlocal commentstring=--\ %s
-augroup END
-augroup Vim
-    autocmd!
-    autocmd FileType vim :call SetTabstop(4)
-augroup END
-augroup VimWiki
-    autocmd!
-    autocmd FileType vimwiki setlocal foldexpr=StackedMarkdownFolds()
-    autocmd FileType vimwiki :call SetTabstop(2)
-augroup END
-augroup XML
-    autocmd!
-    autocmd FileType xml :call SetTabstop(4)
 augroup END
 
 
