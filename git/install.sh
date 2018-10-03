@@ -2,7 +2,7 @@
 
 # Install global ignore file
 mkdir -p ~/.config/git
-cp $(dirname "$0")/ignore ~/.config/git/ignore
+cp $(dirname "$BASH_SOURCE")/ignore ~/.config/git/ignore
 
 git config --global user.name "Jan Ouwens"
 git config --global color.ui true
