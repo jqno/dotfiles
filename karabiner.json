@@ -171,10 +171,18 @@
                 },
                 {
                     "from": {
-                        "key_code": "non_us_backslash"
+                        "key_code": "caps_lock"
                     },
                     "to": {
+                        "key_code": "f18"
+                    }
+                },
+                {
+                    "from": {
                         "key_code": "grave_accent_and_tilde"
+                    },
+                    "to": {
+                        "key_code": "non_us_backslash"
                     }
                 },
                 {
@@ -182,20 +190,13 @@
                         "key_code": "right_option"
                     },
                     "to": {
-                        "key_code": "non_us_backslash"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "caps_lock"
-                    },
-                    "to": {
-                        "key_code": "f18"
+                        "key_code": "grave_accent_and_tilde"
                     }
                 }
             ],
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
+                "country_code": 0,
                 "keyboard_type": "ansi"
             }
         }
