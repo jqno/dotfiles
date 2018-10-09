@@ -26,9 +26,8 @@ hyper.bindKey({"cmd"}, "space", function() am.newItermWindow() end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("it.bloop.airmail2") end)
--- hyper.bindKey({}, "\\", function() am.switchToAndFromApp("org.keepassx.keepassxc") end)
 hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.MacPass") end)
-hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.saenzramiro.rambox") end)
+hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
 hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") end)
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
@@ -65,7 +64,7 @@ local layouts = {
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "com.saenzramiro.rambox", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
