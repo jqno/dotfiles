@@ -28,3 +28,4 @@ zle -N inject_current_branch
 zle -N inject_current_ticket_number
 bindkey "\C-b" inject_current_branch
 bindkey "\C-n" inject_current_ticket_number
+
