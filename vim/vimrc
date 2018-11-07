@@ -10,7 +10,6 @@ Plug 'jqno/vim-reversal'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'mhinz/vim-grepper'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
@@ -244,8 +243,8 @@ nnoremap <leader>f<tab> :b#<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
-nnoremap <leader>fg :Grepper -tool ag -grepprg ag --vimgrep "$*"<CR>
-nnoremap <leader>f* :Grepper -open -switch -cword -noprompt<CR>
+nnoremap <leader>fg :FzfAg<Space>
+nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 " Open netrw
 nmap <leader>fn <Plug>VinegarSplitUp
 
