@@ -13,9 +13,6 @@ end
 
 local exitHyperMode = function()
   hyperMode:exit()
-  if not hyperMode.triggered then
-    hs.eventtap.keyStroke({}, 'ESCAPE')
-  end
 end
 
 This.bindKey = function(modifiers, key, pressedfn, releasedfn)
