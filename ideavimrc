@@ -34,6 +34,10 @@ nnoremap <C-L> <C-W>l
 vnoremap < <gv
 vnoremap > >gv
 
+" Comment like in vim-commentary
+nmap <Bslash><Bslash> :action CommentByLineComment<CR>
+vnoremap <Bslash> :action CommentByLineComment<CR>
+
 " Introduce shortcuts for my favourite refactorings.
 " Also, go directly to insert mode when renaming or introducing a new variable.
 nnoremap <Leader><Leader>r :action RenameElement<CR>i
