@@ -42,7 +42,7 @@ function prompt_root_and_jobs() {
 }
 
 function prompt_is_inside_git() {
-  [[ -n "$GIT_STATUS_FULL" ]]
+  [[ -n "$GIT_STATUS" ]]
 }
 
 function prompt_is_git_dirty() {
@@ -80,14 +80,14 @@ function prompt_git_remote() {
   local INFO=""
 
   # Has remote
-  echo $GIT_STATUS_FULL | grep "\.\.\." > /dev/null 2>&1
+  echo $GIT_STATUS | grep "\.\.\." > /dev/null 2>&1
   [[ "$?" -ne "0" ]] && INFO+="¤"
 
   # Ahead, behind
-  echo $GIT_STATUS_FULL | grep "ahead" > /dev/null 2>&1
-  [[ "$?" -eq "0" ]] && INFO+="↑$(echo "$GIT_STATUS_FULL" | sed 's/.*ahead \([0-9]*\).*/\1/; 1q')"
-  echo $GIT_STATUS_FULL | grep "behind" > /dev/null 2>&1
-  [[ "$?" -eq "0" ]] && INFO+="↓$(echo "$GIT_STATUS_FULL" | sed 's/.*behind \([0-9]*\).*/\1/; 1q')"
+  echo $GIT_STATUS | grep "ahead" > /dev/null 2>&1
+  [[ "$?" -eq "0" ]] && INFO+="↑$(echo "$GIT_STATUS" | sed 's/.*ahead \([0-9]*\).*/\1/; 1q')"
+  echo $GIT_STATUS | grep "behind" > /dev/null 2>&1
+  [[ "$?" -eq "0" ]] && INFO+="↓$(echo "$GIT_STATUS" | sed 's/.*behind \([0-9]*\).*/\1/; 1q')"
 
   # Stashes flag
   local GIT_STASHED=$(git stash list 2> /dev/null)
@@ -100,11 +100,11 @@ function prompt_git_warnings() {
   local WARNINGS=""
 
   # Diverged
-  echo $GIT_STATUS_FULL | grep "ahead" | grep "behind" > /dev/null 2>&1
+  echo $GIT_STATUS | grep "ahead" | grep "behind" > /dev/null 2>&1
   [[ "$?" -eq "0" ]] && WARNINGS+="Δ"
 
   # Merging
-  echo $GIT_STATUS_FULL | grep "Unmerged paths" > /dev/null 2>&1
+  echo $GIT_STATUS | grep "Unmerged paths" > /dev/null 2>&1
   [[ "$?" -eq "0" ]] && WARNINGS+="🔀 "
 
   # Warning for no email setting
@@ -142,7 +142,7 @@ function build_prompt() {
 
   local WORKING_DIR=$(prompt_working_directory)
   local INJECTION=$(prompt_setenv_prompt_injection)
-  local GIT_STATUS_FULL=$(git status -sb 2> /dev/null)
+  local GIT_STATUS=$(git status -sb --porcelain 2> /dev/null)
   local GIT_WARNINGS=""
 
   P+="$cARROW┌ "
@@ -151,8 +151,6 @@ function build_prompt() {
 
   if prompt_is_inside_git
   then
-    GIT_STATUS=$(git status --porcelain 2> /dev/null)
-
     P+=" $SEP $cBRANCH$(prompt_git_branch)"
 
     local REMOTE=$(prompt_git_remote)
