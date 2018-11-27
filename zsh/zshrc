@@ -43,3 +43,15 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+
+# ## Benchmark prompt
+# typeset -F SECONDS start
+# precmd() {
+#   start=$SECONDS
+# }
+# zle-line-init() {
+#   PREDISPLAY="[$(( $SECONDS - $start ))] "
+# }
+# zle -N zle-line-init
+
