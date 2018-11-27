@@ -46,8 +46,9 @@ function prompt_is_inside_git() {
 }
 
 function prompt_is_git_dirty() {
-  # This regex looks like a smiley but it means there must be no space on the second char of the line
-  echo $GIT_STATUS | grep "^.[^ ]" > /dev/null 2>&1
+  # This regex looks like a smiley but it means there must be no space on the second char of the line.
+  # Also: remove the first line, because it speaks of branches, not of changed files.
+  echo $GIT_STATUS | sed 1d | grep "^.[^ ]" > /dev/null 2>&1
   [[ "$?" -eq 0 ]] && echo $1 || echo $2
 }
 
