@@ -36,7 +36,7 @@ function installFor() {
   fi
 
   if [ "$3" != "" ]; then
-    mkdir -p ./"$3"
+    mkdir -p ~/.$3
   fi
 
   echo "Linking $FROM to ~/.$TO..."
