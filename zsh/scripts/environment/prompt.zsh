@@ -90,8 +90,8 @@ function prompt_git_remote() {
   [[ "$?" -eq "0" ]] && INFO+="↓$(echo "$GIT_STATUS" | sed 's/.*behind \([0-9]*\).*/\1/; 1q')"
 
   # Stashes flag
-  local GIT_STASHED=$(git stash list 2> /dev/null)
-  [[ "${#GIT_STASHED}" -gt 0 ]] && INFO+="Σ$(echo "$GIT_STASHED" | wc -l | sed 's/^[ \t]*//')" # strip tabs
+  # (We're not using `git stash` because that's very slow)
+  [[ -e "$(git rev-parse --show-toplevel)/.git/refs/stash" ]] && INFO+="Σ"
 
   echo $INFO
 }
