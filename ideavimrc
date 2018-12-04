@@ -1,9 +1,6 @@
 " Set Leader to Space.
 let mapleader=" "
 
-" Reload this file.
-nnoremap <Leader>rv :source ~/.ideavimrc<CR>:echo "Reloaded .ideavimrc"<CR>
-
 " Pleasant defaults.
 set clipboard=unnamed
 set ignorecase
@@ -18,7 +15,6 @@ set visualbell
 
 " Search.
 set hlsearch
-noremap <Leader><Leader>/ <Esc>:nohlsearch<CR>
 
 " When finding =, include the whitespace around it!
 noremap t= /\s*=<CR>
@@ -38,25 +34,35 @@ vnoremap > >gv
 nmap <Bslash><Bslash> :action CommentByLineComment<CR>
 vnoremap <Bslash> :action CommentByLineComment<CR>
 
-" Introduce shortcuts for my favourite refactorings.
-" Also, go directly to insert mode when renaming or introducing a new variable.
-nnoremap <Leader><Leader>r :action RenameElement<CR>i
-nnoremap <Leader><Leader>v :action IntroduceVariable<CR>i
-vnoremap <Leader><Leader>v :action IntroduceVariable<CR>
-nnoremap <Leader><Leader>o :action OptimizeImports<CR>
-nnoremap <Leader><Leader>i :action Inline<CR>
-nnoremap <Leader><Leader>m :action ExtractMethod<CR>
-nnoremap <Leader><Leader>g :action GotoImplementation<CR>
-
-" Run tests
-nnoremap <Leader><Leader>t :action RunClass<CR>
-
-" Bind 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
-nnoremap <Leader><Leader>b :action Annotate<CR>:action Annotate<CR>
-
 " Close all windows except active.
 nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
 
+" *** Prefix <leader><leader>: general things
+noremap <leader><leader>/ <Esc>:nohlsearch<CR>
+" Bind 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
+nnoremap <leader><leader>b :action Annotate<CR>:action Annotate<CR>
 " Hide all toolwindows and give focus to the edit pane.
-nnoremap <Leader><Leader>f :action HideAllWindows<CR>
+nnoremap <leader><leader>f :action HideAllWindows<CR>
+" Reload this file.
+nnoremap <leader><leader>r :source ~/.ideavimrc<CR>:echo "Reloaded .ideavimrc"<CR>
+
+
+" *** Prefix <leader>f: finding things
+nnoremap <leader>fb :action Switcher<CR>
+nnoremap <leader>fc :action GotoClass<CR>
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>f* viw:action FindInPath<CR>
+
+" *** Prefix <leader>r: refactoring things
+" Also, go directly to insert mode when renaming or introducing a new variable.
+nnoremap <leader>rr :action RenameElement<CR>i
+nnoremap <leader>rv :action IntroduceVariable<CR>i
+vnoremap <leader>rv :action IntroduceVariable<CR>
+nnoremap <leader>ro :action OptimizeImports<CR>
+nnoremap <leader>ri :action Inline<CR>
+nnoremap <leader>rm :action ExtractMethod<CR>
+
+" *** Prefix <leader>t: running tests
+nnoremap <leader>tt :action RunClass<CR>
 
