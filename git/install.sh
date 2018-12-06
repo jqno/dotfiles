@@ -50,9 +50,9 @@ git config --global alias.unassume "update-index --no-assume-unchanged"
 git config --global alias.assumed "!git ls-files -v | grep ^h | cut -c 3-"
 
 
-git config --global merge.tool gvimdiff
+git config --global merge.tool vimdiff
 git config --global merge.conflictstyle diff3
-git config --global diff.tool gvimdiff
+git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 git config --global alias.review "!f() { git difftool --tool=kdiff3 --dir-diff \$1..; }; f"
 
