@@ -73,10 +73,15 @@ if has('gui_running')
         set macligatures
     endif
 endif
-" Show line-numbers
-set number
 " Don't wrap lines in the middle of a word. That's not cool.
 set linebreak
+" Show relative line-numbers, but only in the current split
+set number relativenumber
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+augroup END
 
 
 
