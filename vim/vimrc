@@ -323,6 +323,9 @@ function! s:PrevChar()
     return strpart(getline('.'), col('.')-2, 1)
 endfunction
 
+" *** ToggleMovement: 0 moves to beginning of text first, then to beginning of line
+nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
+
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
 " # is the 'other' file, because % would be the Command-Line window itself.
