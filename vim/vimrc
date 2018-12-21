@@ -41,6 +41,7 @@ let g:mapleader="\<space>"
 let g:maplocalleader=','
 " Search more easily
 set incsearch hlsearch ignorecase smartcase
+set nowrap
 " Join lines more intuitively
 set nojoinspaces
 set formatoptions+=j
@@ -177,33 +178,6 @@ augroup pom
     autocmd!
     autocmd BufRead pom.xml compiler maven
 augroup END
-
-
-
-" ***************************************
-" ***  Toggles
-" ***************************************
-
-" Define a set of tabstop settings and raise a flag if we have done so in this buffer
-function! SetTabstop(stop)
-    exec 'setlocal expandtab smarttab tabstop=' . a:stop . ' shiftwidth=' . a:stop . ' softtabstop=' . a:stop
-    let b:TabstopDefined = '¯\_(ツ)_/¯'
-endfunction
-" Set a nice default tab stop level if it wasn't already set by an autocmd
-if !exists('b:TabstopDefined')
-    call SetTabstop(2)
-endif
-
-" Wrapping
-function! ToggleWrap()
-    if &wrap
-        set nowrap
-    else
-        set wrap
-    endif
-endfunction
-set nowrap
-
 
 
 " ***************************************
