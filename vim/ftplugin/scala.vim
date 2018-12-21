@@ -1,2 +1,3 @@
 compiler maven
+call AutocloseForProgramming()
 

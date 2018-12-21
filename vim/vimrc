@@ -246,17 +246,7 @@ nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
-" *** Autoclose in Insert mode
-imap ( <Plug>AutocloseOpenParen
-imap ) <Plug>AutocloseCloseParen
-imap [ <Plug>AutocloseOpenBracket
-imap ] <Plug>AutocloseCloseBracket
-imap { <Plug>AutocloseOpenBrace
-imap } <Plug>AutocloseCloseBrace
-imap " <Plug>AutocloseToggleDoubleQuote
-imap ' <Plug>AutocloseToggleSingleQuote
-imap ` <Plug>AutocloseToggleBacktick
-imap <BS> <Plug>AutocloseSmartBackspace
+" *** Make Autoclose and Mucomplete work together nicely
 inoremap <expr> <CR> mucomplete#ultisnips#expand_snippet("\<C-R>=AutocloseSmartReturn()\<CR>")
 
 " *** ToggleMovement: 0 moves to beginning of text first, then to beginning of line

@@ -13,11 +13,6 @@ function s:Toggle(char)
     return <SID>NextChar() == a:char ? "\<Right>" : <SID>ExpandParenFully() ? a:char . a:char . "\<Left>" : a:char
 endfunction
 
-function s:ExpandParenFully()
-    let l:char = <SID>NextChar()
-    return l:char ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:char) >= 0
-endfunction
-
 function AutocloseSmartReturn()
     let l:prev = <SID>PrevChar()
     if l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
@@ -39,6 +34,11 @@ function AutocloseSmartBackspace()
     endif
 endfunction
 
+function s:ExpandParenFully()
+    let l:char = <SID>NextChar()
+    return l:char ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:char) >= 0
+endfunction
+
 function s:NextChar()
     return strpart(getline('.'), col('.')-1, 1)
 endfunction
@@ -46,6 +46,7 @@ endfunction
 function s:PrevChar()
     return strpart(getline('.'), col('.')-2, 1)
 endfunction
+
 
 " ***
 " Mappings
@@ -74,6 +75,14 @@ function s:AutocloseCloseBrace()
     return <SID>Close('}')
 endfunction
 
+function s:AutocloseOpenHook()
+    return <SID>Open('<', '>')
+endfunction
+
+function s:AutocloseCloseHook()
+    return <SID>Close('>')
+endfunction
+
 function s:AutocloseToggleDoubleQuote()
     return <SID>Toggle('"')
 endfunction
@@ -92,6 +101,8 @@ inoremap <silent> <Plug>AutocloseOpenBracket <C-R>=<SID>AutocloseOpenBracket()<C
 inoremap <silent> <Plug>AutocloseCloseBracket <C-R>=<SID>AutocloseCloseBracket()<CR>
 inoremap <silent> <Plug>AutocloseOpenBrace <C-R>=<SID>AutocloseOpenBrace()<CR>
 inoremap <silent> <Plug>AutocloseCloseBrace <C-R>=<SID>AutocloseCloseBrace()<CR>
+inoremap <silent> <Plug>AutocloseOpenHook <C-R>=<SID>AutocloseOpenHook()<CR>
+inoremap <silent> <Plug>AutocloseCloseHook <C-R>=<SID>AutocloseCloseHook()<CR>
 
 inoremap <silent> <Plug>AutocloseToggleDoubleQuote <C-R>=<SID>AutocloseToggleDoubleQuote()<CR>
 inoremap <silent> <Plug>AutocloseToggleSingleQuote <C-R>=<SID>AutocloseToggleSingleQuote()<CR>
@@ -99,4 +110,50 @@ inoremap <silent> <Plug>AutocloseToggleBacktick <C-R>=<SID>AutocloseToggleBackti
 
 inoremap <silent> <Plug>AutocloseSmartBackspace <C-R>=AutocloseSmartBackspace()<CR>
 inoremap <silent> <Plug>AutocloseSmartReturn <C-R>=AutocloseSmartReturn()<CR>
+
+
+" ***
+" Public functions
+" ***
+function AutocloseForProse()
+    imap <buffer> ( <Plug>AutocloseOpenParen
+    imap <buffer> ) <Plug>AutocloseCloseParen
+    imap <buffer> [ <Plug>AutocloseOpenBracket
+    imap <buffer> ] <Plug>AutocloseCloseBracket
+    imap <buffer> { <Plug>AutocloseOpenBrace
+    imap <buffer> } <Plug>AutocloseCloseBrace
+    imap <buffer> " <Plug>AutocloseToggleDoubleQuote
+    imap <buffer> <BS> <Plug>AutocloseSmartBackspace
+    imap <buffer> <CR> <Plug>AutocloseSmartReturn
+endfunction
+
+function AutocloseForProgramming()
+    imap <buffer> ( <Plug>AutocloseOpenParen
+    imap <buffer> ) <Plug>AutocloseCloseParen
+    imap <buffer> [ <Plug>AutocloseOpenBracket
+    imap <buffer> ] <Plug>AutocloseCloseBracket
+    imap <buffer> { <Plug>AutocloseOpenBrace
+    imap <buffer> } <Plug>AutocloseCloseBrace
+    imap <buffer> " <Plug>AutocloseToggleDoubleQuote
+    imap <buffer> ' <Plug>AutocloseToggleSingleQuote
+    imap <buffer> ` <Plug>AutocloseToggleBacktick
+    imap <buffer> <BS> <Plug>AutocloseSmartBackspace
+    imap <buffer> <CR> <Plug>AutocloseSmartReturn
+endfunction
+
+function AutocloseForXml()
+    imap <buffer> ( <Plug>AutocloseOpenParen
+    imap <buffer> ) <Plug>AutocloseCloseParen
+    imap <buffer> [ <Plug>AutocloseOpenBracket
+    imap <buffer> ] <Plug>AutocloseCloseBracket
+    imap <buffer> { <Plug>AutocloseOpenBrace
+    imap <buffer> } <Plug>AutocloseCloseBrace
+    imap <buffer> < <Plug>AutocloseOpenHook
+    imap <buffer> > <Plug>AutocloseCloseHook
+    imap <buffer> " <Plug>AutocloseToggleDoubleQuote
+    imap <buffer> ' <Plug>AutocloseToggleSingleQuote
+    imap <buffer> ` <Plug>AutocloseToggleBacktick
+    imap <buffer> <BS> <Plug>AutocloseSmartBackspace
+    imap <buffer> <CR> <Plug>AutocloseSmartReturn
+endfunction
 
