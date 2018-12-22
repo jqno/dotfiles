@@ -216,7 +216,11 @@ nnoremap N Nzz
 " When finding `=` include the whitespace around it
 nnoremap t= /\s*=<CR>:nohls<CR>
 nnoremap T= ?=\s*?e<CR>:nohls<CR>
-
+" ToggleMovement : 0 moves to beginning of text first, then to beginning of line
+nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
+" Make Autoclose and Mucomplete work together nicely
+inoremap <expr> <CR> mucomplete#ultisnips#expand_snippet("\<C-R>=AutocloseSmartReturn()\<CR>")
+" Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
 
 " *** Prefix <leader><leader>: change settings
@@ -245,12 +249,6 @@ nnoremap <leader>bb :Make<CR>
 nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
-
-" *** Make Autoclose and Mucomplete work together nicely
-inoremap <expr> <CR> mucomplete#ultisnips#expand_snippet("\<C-R>=AutocloseSmartReturn()\<CR>")
-
-" *** ToggleMovement: 0 moves to beginning of text first, then to beginning of line
-nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
