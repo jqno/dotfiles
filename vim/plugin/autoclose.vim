@@ -1,15 +1,15 @@
 " ***
 " Logic
 " ***
-function s:Open(open, close)
+function AutocloseOpen(open, close)
     return <SID>ExpandParenFully() ? a:open . a:close . "\<Left>" : a:open
 endfunction
 
-function s:Close(close)
+function AutocloseClose(close)
     return <SID>NextChar() ==? a:close ? "\<Right>" : a:close
 endfunction
 
-function s:Toggle(char)
+function AutocloseToggle(char)
     return <SID>NextChar() == a:char ? "\<Right>" : <SID>ExpandParenFully() ? a:char . a:char . "\<Left>" : a:char
 endfunction
 
@@ -49,111 +49,47 @@ endfunction
 
 
 " ***
-" Mappings
-" ***
-function s:AutocloseOpenParen()
-    return <SID>Open('(', ')')
-endfunction
-
-function s:AutocloseCloseParen()
-    return <SID>Close(')')
-endfunction
-
-function s:AutocloseOpenBracket()
-    return <SID>Open('[', ']')
-endfunction
-
-function s:AutocloseCloseBracket()
-    return <SID>Close(']')
-endfunction
-
-function s:AutocloseOpenBrace()
-    return <SID>Open('{', '}')
-endfunction
-
-function s:AutocloseCloseBrace()
-    return <SID>Close('}')
-endfunction
-
-function s:AutocloseOpenHook()
-    return <SID>Open('<', '>')
-endfunction
-
-function s:AutocloseCloseHook()
-    return <SID>Close('>')
-endfunction
-
-function s:AutocloseToggleDoubleQuote()
-    return <SID>Toggle('"')
-endfunction
-
-function s:AutocloseToggleSingleQuote()
-    return <SID>Toggle("'")
-endfunction
-
-function s:AutocloseToggleBacktick()
-    return <SID>Toggle('`')
-endfunction
-
-inoremap <silent> <Plug>MapAutocloseOpenParen <C-R>=<SID>AutocloseOpenParen()<CR>
-inoremap <silent> <Plug>MapAutocloseCloseParen <C-R>=<SID>AutocloseCloseParen()<CR>
-inoremap <silent> <Plug>MapAutocloseOpenBracket <C-R>=<SID>AutocloseOpenBracket()<CR>
-inoremap <silent> <Plug>MapAutocloseCloseBracket <C-R>=<SID>AutocloseCloseBracket()<CR>
-inoremap <silent> <Plug>MapAutocloseOpenBrace <C-R>=<SID>AutocloseOpenBrace()<CR>
-inoremap <silent> <Plug>MapAutocloseCloseBrace <C-R>=<SID>AutocloseCloseBrace()<CR>
-inoremap <silent> <Plug>MapAutocloseOpenHook <C-R>=<SID>AutocloseOpenHook()<CR>
-inoremap <silent> <Plug>MapAutocloseCloseHook <C-R>=<SID>AutocloseCloseHook()<CR>
-
-inoremap <silent> <Plug>MapAutocloseToggleDoubleQuote <C-R>=<SID>AutocloseToggleDoubleQuote()<CR>
-inoremap <silent> <Plug>MapAutocloseToggleSingleQuote <C-R>=<SID>AutocloseToggleSingleQuote()<CR>
-inoremap <silent> <Plug>MapAutocloseToggleBacktick <C-R>=<SID>AutocloseToggleBacktick()<CR>
-
-inoremap <silent> <Plug>MapAutocloseSmartBackspace <C-R>=AutocloseSmartBackspace()<CR>
-inoremap <silent> <Plug>MapAutocloseSmartReturn <C-R>=AutocloseSmartReturn()<CR>
-
-
-" ***
 " Public functions
 " ***
 function AutocloseForProse()
-    imap <buffer> ( <Plug>MapAutocloseOpenParen
-    imap <buffer> ) <Plug>MapAutocloseCloseParen
-    imap <buffer> [ <Plug>MapAutocloseOpenBracket
-    imap <buffer> ] <Plug>MapAutocloseCloseBracket
-    imap <buffer> { <Plug>MapAutocloseOpenBrace
-    imap <buffer> } <Plug>MapAutocloseCloseBrace
-    imap <buffer> " <Plug>MapAutocloseToggleDoubleQuote
-    imap <buffer> <BS> <Plug>MapAutocloseSmartBackspace
-    imap <buffer> <CR> <Plug>MapAutocloseSmartReturn
+    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
+    inoremap <expr><buffer> ) AutocloseClose(')')
+    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
+    inoremap <expr><buffer> ] AutocloseClose(']')
+    inoremap <expr><buffer> { AutocloseOpen('{', '}')
+    inoremap <expr><buffer> } AutocloseClose('}')
+    inoremap <expr><buffer> " AutocloseToggle('"')
+    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
+    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
 function AutocloseForProgramming()
-    imap <buffer> ( <Plug>MapAutocloseOpenParen
-    imap <buffer> ) <Plug>MapAutocloseCloseParen
-    imap <buffer> [ <Plug>MapAutocloseOpenBracket
-    imap <buffer> ] <Plug>MapAutocloseCloseBracket
-    imap <buffer> { <Plug>MapAutocloseOpenBrace
-    imap <buffer> } <Plug>MapAutocloseCloseBrace
-    imap <buffer> " <Plug>MapAutocloseToggleDoubleQuote
-    imap <buffer> ' <Plug>MapAutocloseToggleSingleQuote
-    imap <buffer> ` <Plug>MapAutocloseToggleBacktick
-    imap <buffer> <BS> <Plug>MapAutocloseSmartBackspace
-    imap <buffer> <CR> <Plug>MapAutocloseSmartReturn
+    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
+    inoremap <expr><buffer> ) AutocloseClose(')')
+    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
+    inoremap <expr><buffer> ] AutocloseClose(']')
+    inoremap <expr><buffer> { AutocloseOpen('{', '}')
+    inoremap <expr><buffer> } AutocloseClose('}')
+    inoremap <expr><buffer> " AutocloseToggle('"')
+    inoremap <expr><buffer> ' AutocloseToggle("'")
+    inoremap <expr><buffer> ` AutocloseToggle('`')
+    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
+    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
 function AutocloseForXml()
-    imap <buffer> ( <Plug>MapAutocloseOpenParen
-    imap <buffer> ) <Plug>MapAutocloseCloseParen
-    imap <buffer> [ <Plug>MapAutocloseOpenBracket
-    imap <buffer> ] <Plug>MapAutocloseCloseBracket
-    imap <buffer> { <Plug>MapAutocloseOpenBrace
-    imap <buffer> } <Plug>MapAutocloseCloseBrace
-    imap <buffer> < <Plug>MapAutocloseOpenHook
-    imap <buffer> > <Plug>MapAutocloseCloseHook
-    imap <buffer> " <Plug>MapAutocloseToggleDoubleQuote
-    imap <buffer> ' <Plug>MapAutocloseToggleSingleQuote
-    imap <buffer> ` <Plug>MapAutocloseToggleBacktick
-    imap <buffer> <BS> <Plug>MapAutocloseSmartBackspace
-    imap <buffer> <CR> <Plug>MapAutocloseSmartReturn
+    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
+    inoremap <expr><buffer> ) AutocloseClose(')')
+    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
+    inoremap <expr><buffer> ] AutocloseClose(']')
+    inoremap <expr><buffer> { AutocloseOpen('{', '}')
+    inoremap <expr><buffer> } AutocloseClose('}')
+    inoremap <expr><buffer> < AutocloseOpen('<', '>')
+    inoremap <expr><buffer> > AutocloseClose('>')
+    inoremap <expr><buffer> " AutocloseToggle('"')
+    inoremap <expr><buffer> ' AutocloseToggle("'")
+    inoremap <expr><buffer> ` AutocloseToggle('`')
+    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
+    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
