@@ -4,5 +4,5 @@ if (&filetype ==# 'markdown')
 endif
 
 call SetTabstop(2)
-call AutocloseForXml()
+call AutocloseForProse()
 

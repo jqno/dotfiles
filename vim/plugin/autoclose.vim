@@ -82,21 +82,3 @@ function AutocloseForProgramming()
     endif
 endfunction
 
-function AutocloseForXml()
-    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
-    inoremap <expr><buffer> ) AutocloseClose(')')
-    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
-    inoremap <expr><buffer> ] AutocloseClose(']')
-    inoremap <expr><buffer> { AutocloseOpen('{', '}')
-    inoremap <expr><buffer> } AutocloseClose('}')
-    inoremap <expr><buffer> < AutocloseOpen('<', '>')
-    inoremap <expr><buffer> > AutocloseClose('>')
-    inoremap <expr><buffer> " AutocloseToggle('"')
-    inoremap <expr><buffer> ' AutocloseToggle("'")
-    inoremap <expr><buffer> ` AutocloseToggle('`')
-    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
-    if !hasmapto('<CR>', 'i')
-        inoremap <expr><buffer> <CR> AutocloseSmartReturn()
-    endif
-endfunction
-
