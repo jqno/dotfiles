@@ -9,6 +9,7 @@ git config --global color.ui true
 git config --global push.default simple
 git config --global pull.rebase true
 git config --global remote.origin.prune true
+git config --global commit.verbose true
 git config --global diff.algorithm patience
 git config --global diff.compactionHeuristic true
 
