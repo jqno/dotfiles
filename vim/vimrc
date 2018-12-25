@@ -252,6 +252,9 @@ nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
+" *** Prefix <leader>b: buffers
+nnoremap <leader>bd :bp\|bd #<CR>
+
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
 " # is the 'other' file, because % would be the Command-Line window itself.
