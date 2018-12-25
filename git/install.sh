@@ -51,7 +51,8 @@ git config --global alias.unassume "update-index --no-assume-unchanged"
 git config --global alias.assumed "!git ls-files -v | grep ^h | cut -c 3-"
 
 
-git config --global merge.tool vimdiff
+git config --global mergetool.vim.cmd "vim -d \$LOCAL \$BASE \$REMOTE \$MERGED -c '\$wincmd w' -c 'wincmd J'"
+git config --global merge.tool vim
 git config --global merge.conflictstyle diff3
 git config --global diff.tool vimdiff
 git config --global difftool.prompt false
