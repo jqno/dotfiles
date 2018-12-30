@@ -216,6 +216,11 @@ nmap \ <Plug>Commentary
 omap \ <Plug>Commentary
 nmap \\ <Plug>CommentaryLine
 nmap <leader>\ <Plug>Commentary<Plug>Commentary
+" Handy ALE mappings in Unimpaired style.
+map <silent> [W <Plug>(ale_first)
+map <silent> [w <Plug>(ale_previous)
+map <silent> ]w <Plug>(ale_next)
+map <silent> ]W <Plug>(ale_last)
 " Center on the line with the match when searching
 nnoremap n nzz
 nnoremap N Nzz
