@@ -1,6 +1,6 @@
 if [ -z "$1" ]
 then
-  FOLDER="2018"
+  FOLDER="2019"
 else
   FOLDER=$1
 fi
