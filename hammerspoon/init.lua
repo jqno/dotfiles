@@ -28,10 +28,12 @@ hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("it.bloop.airmail2") end)
 hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.MacPass") end)
-hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
 hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") end)
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
+hyper.bindKey({}, "1", function() am.switchToAndFromApp("desktop.WhatsApp") end)
+hyper.bindKey({}, "2", function() am.switchToAndFromApp("com.tinyspeck.slackmacgap") end)
+hyper.bindKey({}, "3", function() am.switchToAndFromApp("chat.rocket") end)
 
 
 -- Window management
@@ -60,6 +62,7 @@ hyper.bindKey({"cmd"}, "k", function() wm.fw():moveOneScreenNorth() end)
 hyper.bindKey({"cmd"}, "l", function() wm.fw():moveOneScreenEast() end)
 
 local layouts = {
+  { bundle = "chat.rocket", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.apple.iCal", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.apple.Safari", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
@@ -67,6 +70,8 @@ local layouts = {
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "com.tinyspeck.slackmacgap", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "desktop.WhatsApp", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "org.mozilla.firefox", func = function(win) wm.windowMaximize(0, win) end }
