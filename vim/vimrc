@@ -209,10 +209,8 @@ nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
-nnoremap _ <C-W>_
-nnoremap - <C-W>-
 nnoremap + <C-W>+
-nnoremap = <C-W>=
+nnoremap - <C-W>-
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
@@ -267,6 +265,10 @@ nnoremap <leader>tt :TestNearest<CR>
 
 " *** Prefix <leader>b: buffers
 nnoremap <leader>bd :bp\|bd #<CR>
+
+" *** Prefix <leader>w: windows
+nnoremap <leader>w- <C-W>_
+nnoremap <leader>w= <C-W>=
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
