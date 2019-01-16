@@ -213,7 +213,6 @@ nnoremap _ <C-W>_
 nnoremap - <C-W>-
 nnoremap + <C-W>+
 nnoremap = <C-W>=
-nnoremap <leader>] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
@@ -254,6 +253,7 @@ nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :FzfAg<Space>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
+nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 " Open netrw
 nmap <leader>fn <Plug>VinegarSplitUp
 
