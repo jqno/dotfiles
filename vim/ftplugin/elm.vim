@@ -1,9 +1,9 @@
 call SetTabstop(4)
 call AutocloseForProgramming()
 
-nnoremap <buffer> <leader>bb :ElmMake<CR>
-nnoremap <buffer> <leader>be :ElmErrorDetail<CR>
-nnoremap <buffer> <leader>bd :ElmShowDocs<CR>
+nnoremap <buffer> <leader>mb :ElmMake<CR>
+nnoremap <buffer> <leader>me :ElmErrorDetail<CR>
+nnoremap <buffer> <leader>md :ElmShowDocs<CR>
 nnoremap <buffer> <leader>tt :ElmTest<CR>
 
 augroup Elm

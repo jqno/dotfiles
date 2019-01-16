@@ -253,8 +253,8 @@ nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 " Open netrw
 nmap <leader>fn <Plug>VinegarSplitUp
 
-" *** Prefix <leader>b: running builds
-nnoremap <leader>bb :Make<CR>
+" *** Prefix <leader>m: running make
+nnoremap <leader>mm :Make<CR>
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
