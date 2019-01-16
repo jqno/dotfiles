@@ -200,6 +200,10 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 vnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
+" Keep the visual selection after < and > so we can repeat these buttons
+" instead of tring to find .
+vnoremap < <gv
+vnoremap > >gv
 " Allow for easy window switching.
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
