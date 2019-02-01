@@ -8,7 +8,7 @@ Plug 'derekwyatt/vim-scala'
 Plug 'ElmCast/elm-vim'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-reversal'
-Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'sheerun/vim-polyglot'
