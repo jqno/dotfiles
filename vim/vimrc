@@ -248,7 +248,6 @@ nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
 
 " *** Prefix <leader>f: finding things
-nnoremap <leader>f<tab> :b#<CR>
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
 nnoremap <leader>ft :FzfTags<CR>
@@ -267,6 +266,7 @@ nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
 " *** Prefix <leader>b: buffers
+nnoremap <leader>bb :b#<CR>
 nnoremap <leader>bd :bp\|bd #<CR>
 
 " *** Prefix <leader>w: windows
