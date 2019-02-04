@@ -49,6 +49,8 @@ set nojoinspaces
 set formatoptions+=j
 " Smart diffing
 set diffopt+=indent-heuristic,algorithm:patience
+" Always ignore node_modules
+set wildignore=node_modules
 
 " Tags are stored in the project's .git folder
 " This strategy requires vim-fugitive and Gutentags
