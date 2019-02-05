@@ -1,8 +1,6 @@
 call SetTabstop(4)
 call AutocloseForProgramming()
 
-augroup Elm
-    autocmd!
-    autocmd BufWritePre *.elm :ElmFormat
-augroup END
+let g:ale_fixers.elm = ['elm-format']
+let b:ale_fix_on_save = 1
 
