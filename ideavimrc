@@ -55,6 +55,7 @@ nnoremap <leader>fg :action FindInPath<CR>
 nnoremap <leader>f* viw:action FindInPath<CR>
 
 " *** Prefix <leader>m: making things
+nnoremap <leader>mf :action ReformatCode<CR>
 nnoremap <leader>mr :action Maven.Reimport<CR>
 
 " *** Prefix <leader>r: refactoring things
