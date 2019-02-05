@@ -11,6 +11,7 @@ Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'TaDaa/vimade'
@@ -254,6 +255,7 @@ nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :FzfAg<Space>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
+nnoremap <leader>fd :Dash<CR>
 " Open netrw
 nmap <leader>fn <Plug>VinegarSplitUp
 
