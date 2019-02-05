@@ -24,6 +24,7 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 hyper.bindKey({}, "space", function() am.switchToAndFromApp("com.googlecode.iterm2") end)
 hyper.bindKey({"cmd"}, "space", function() am.newItermWindow() end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
+hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("it.bloop.airmail2") end)
@@ -68,6 +69,7 @@ local layouts = {
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "com.kapeli.dashdoc", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.tinyspeck.slackmacgap", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.rockysandstudio.app-for-whatsapp", func = function(win) wm.windowMaximize(1, win) end },
