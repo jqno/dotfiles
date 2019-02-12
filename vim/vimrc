@@ -268,8 +268,8 @@ nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
 " *** Prefix <leader>b: buffers
-nnoremap <leader>bb :b#<CR>
-nnoremap <leader>bd :bp\|bd #<CR>
+nnoremap <silent> <leader>bb :b#<CR>
+nnoremap <silent> <leader>bd :bp\|bd #<CR>
 
 " *** Prefix <leader>w: windows
 nnoremap <leader>w- <C-W>_
