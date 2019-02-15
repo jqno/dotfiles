@@ -22,7 +22,7 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 
 -- App switching
 hyper.bindKey({}, "space", function() am.switchToAndFromApp("com.googlecode.iterm2") end)
-hyper.bindKey({"cmd"}, "space", function() wm.windowMaximize(0, am.newItermWindow()) end)
+hyper.bindKey({"cmd"}, "space", function() am.newItermWindow() end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
