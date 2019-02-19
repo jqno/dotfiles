@@ -119,6 +119,9 @@ function build_prompt() {
   # Capturing the exit code must happen first
   local EXIT=$?
 
+  # Colors function like this: %F = Foreground color, 
+  # these are explained here http://www.manpagez.com/man/1/zshmisc/ under "Visual effects".
+  # Color codes are based off this: https://jonasjacek.github.io/colors/ 
   if [[ "$VIMODE" == "n" ]]
   then
     local cVIMODE="%F{16}%K{116}"
