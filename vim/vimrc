@@ -10,6 +10,7 @@ Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'mhinz/vim-tree'
 Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
@@ -19,7 +20,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'vimwiki/vimwiki'
 Plug 'wincent/terminus'
 Plug 'w0rp/ale'
@@ -145,9 +145,6 @@ set completeopt+=menuone,noinsert
 let g:mucomplete#chains = {}
 let g:mucomplete#chains.default  = ['ulti', 'omni', 'path', 'keyn', 'dict', 'uspl']
 
-" *** netrw
-let g:netrw_liststyle = 3
-
 " *** Ultisnips
 " Override key bindings not avoid conflict with MUcomplete
 let g:UltiSnipsExpandTrigger = '<F20>'         " Do not use <tab>
@@ -255,8 +252,7 @@ nnoremap <leader>fg :FzfAg<Space>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fd :Dash<CR>
-" Open netrw
-nmap <leader>fn <Plug>VinegarSplitUp
+nnoremap <leader>fn :Tree<CR>
 
 " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
