@@ -25,6 +25,10 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd "\C-v" edit-command-line
 
+# The delete button doesn't work unless we bind it to `delete-char`
+bindkey "^[[3~" delete-char
+bindkey -M vicmd "^[[3~" delete-char
+
 # Source my scripts (including fancy prompt!)
 export PATH=$PATH:~/.zsh/scripts
 . run-all-scripts-in-dir.sh ~/.zsh/environment
