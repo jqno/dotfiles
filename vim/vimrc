@@ -247,8 +247,9 @@ nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
 " *** Prefix <leader>f: finding things
 nnoremap <leader>fb :FzfBuffers<CR>
 nnoremap <leader>ff :FzfFiles<CR>
-nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fg :FzfAg<Space>
+nnoremap <leader>ft :FzfTags<CR>
+nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fd :Dash<CR>
