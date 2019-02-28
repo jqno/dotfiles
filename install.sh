@@ -46,7 +46,7 @@ function installFor() {
 
 function scriptFor() {
   echo "Installing $1..."
-  . $1/install.sh
+  . $PWD/$1.sh
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
