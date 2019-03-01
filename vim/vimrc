@@ -8,7 +8,6 @@ Plug 'derekwyatt/vim-scala'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
-Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-tree'
 Plug 'rizzatti/dash.vim'
@@ -51,6 +50,9 @@ set formatoptions+=j
 set diffopt+=indent-heuristic,algorithm:patience
 " Always ignore node_modules
 set wildignore=node_modules
+" Completion
+set completeopt+=menuone,noinsert
+
 
 " Tags are stored in the project's .git folder
 " This strategy requires vim-fugitive and Gutentags
@@ -137,15 +139,8 @@ let g:fzf_action = {
     \ 'space': 'split'
     \ }
 
-" *** MUcomplete
-set completeopt+=menuone,noinsert
-let g:mucomplete#chains = {}
-let g:mucomplete#chains.default  = ['ulti', 'omni', 'path', 'keyn', 'dict', 'uspl']
-
-" *** Ultisnips
-" Override key bindings not avoid conflict with MUcomplete
-let g:UltiSnipsExpandTrigger = '<F20>'         " Do not use <tab>
-let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'  " Do not use <c-j>
+" *** UltiSnips
+let g:UltiSnipsExpandTrigger = '<S-Tab>'
 
 " *** Vim-Test
 let test#strategy = 'dispatch'
@@ -227,8 +222,6 @@ nnoremap t= /\s*=<CR>:nohls<CR>
 nnoremap T= ?=\s*?e<CR>:nohls<CR>
 " ToggleMovement : 0 moves to beginning of text first, then to beginning of line
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
-" Make Autoclose and Mucomplete work together nicely
-inoremap <expr> <CR> mucomplete#ultisnips#expand_snippet("\<C-R>=AutocloseSmartReturn()\<CR>")
 " Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
 

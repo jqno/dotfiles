@@ -61,9 +61,7 @@ function AutocloseForProse()
     inoremap <expr><buffer> " AutocloseToggle('"')
     inoremap <expr><buffer> ` AutocloseToggle('`')
     inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
-    if !hasmapto('<CR>', 'i')
-        inoremap <expr><buffer> <CR> AutocloseSmartReturn()
-    endif
+    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
 function AutocloseForProgramming()
@@ -77,8 +75,6 @@ function AutocloseForProgramming()
     inoremap <expr><buffer> ' AutocloseToggle("'")
     inoremap <expr><buffer> ` AutocloseToggle('`')
     inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
-    if !hasmapto('<CR>', 'i')
-        inoremap <expr><buffer> <CR> AutocloseSmartReturn()
-    endif
+    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
