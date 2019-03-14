@@ -34,6 +34,16 @@
 #                    directory.
 #
 #
+# Configuring SSH
+# ===============
+#
+# Place a folder called ssh in the profile directory to have its contents symlinked to ~/.ssh on profile activation.
+# Before copying the profile version, this script removes the entire ~/.ssh directory. This means if you do not
+# have an ssh folder in the profile directory, you will lose all of your ssh configuration.
+#
+# The directory is symlinked so that any edits you make will be persisted across sessions.
+#
+#
 # Configuring a banner
 # ====================
 #
@@ -95,6 +105,11 @@ fi
 if [[ -e $ENVDIR/settings.xml ]]; then
   rm ~/.m2/settings.xml
   cp $ENVDIR/settings.xml ~/.m2/settings.xml
+fi
+
+if [[ -e $ENVDIR/ssh ]]; then
+  rm -rf ~/.ssh
+  ln -s $ENVDIR/ssh ~/.ssh
 fi
 
 if [[ -e $SETENVDIR/prompt ]]; then
