@@ -20,6 +20,6 @@ then
     export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
   }
 
-  setjdk-silent 1.8
+  setjdk-silent 11
 fi
 
