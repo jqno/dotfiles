@@ -11,6 +11,7 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-tree'
 Plug 'rizzatti/dash.vim'
+Plug 'RRethy/vim-hexokinase'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'TaDaa/vimade'
@@ -81,6 +82,7 @@ augroup END
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
 silent! colorscheme reversal
 set background=dark
+set termguicolors
 " Use a nice font with ligatures
 if has('gui_running')
     set guifont=Fira\ Code\ Retina:h13
@@ -138,6 +140,10 @@ let g:fzf_action = {
     \ 'enter': 'e',
     \ 'space': 'split'
     \ }
+
+" *** Hexokinase
+let g:Hexokinase_ftAutoload = ['css', 'scss', 'html']
+let g:Hexokinase_refreshEvents = ['BufWritePost']
 
 " *** UltiSnips
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
