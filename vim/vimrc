@@ -93,6 +93,8 @@ if has('gui_running')
 endif
 " Highlight merge conflict markers
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
+" Always show the sign column so it doesn't appear and disappear all the time
+set signcolumn=yes
 " Don't wrap lines in the middle of a word. That's not cool.
 set linebreak
 " Show relative line-numbers, but only in the current split
