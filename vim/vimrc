@@ -148,6 +148,10 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 " *** UltiSnips
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 
+" *** Vimade
+let g:vimade = {}
+let g:vimade.fadelevel = 0.7
+
 " *** Vim-Test
 let test#strategy = 'dispatch'
 
