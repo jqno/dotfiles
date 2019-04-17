@@ -20,7 +20,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vimwiki/vimwiki'
 Plug 'wincent/terminus'
 Plug 'w0rp/ale'
@@ -154,12 +153,6 @@ let g:UltiSnipsExpandTrigger = '<S-Tab>'
 " *** Vimade
 let g:vimade = {}
 let g:vimade.fadelevel = 0.7
-
-" *** Vim-pandoc
-augroup pandoc
-    autocmd!
-    autocmd BufNewFile,BufRead *.md set filetype=pandoc
-augroup END
 
 " *** Vim-Test
 let test#strategy = 'dispatch'
