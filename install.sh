@@ -6,6 +6,7 @@
 
 function installDotfiles() {
   scriptFor "git"
+  scriptFor "iterm2"
   installFor "ctags"
   installFor "hammerspoon"
   installFor "ideavimrc"
