@@ -12,8 +12,14 @@
 	<string>manual</string>
 	<key>Default Bookmark Guid</key>
 	<string>60776F45-4927-4A5C-AAEB-E663115EB9D8</string>
+	<key>HideActivityIndicator</key>
+	<true/>
+	<key>HideTabCloseButton</key>
+	<true/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>JobName</key>
+	<false/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -708,6 +714,10 @@
 	<key>SULastCheckTime</key>
 	<date>2019-04-18T14:03:31Z</date>
 	<key>SUSendProfileInfo</key>
+	<false/>
+	<key>ShowNewOutputIndicator</key>
+	<false/>
+	<key>ShowPaneTitles</key>
 	<false/>
 	<key>iTerm Version</key>
 	<string>3.2.8</string>
