@@ -719,6 +719,8 @@
 	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
+	<key>SmartPlacement</key>
+	<true/>
 	<key>iTerm Version</key>
 	<string>3.2.8</string>
 </dict>
