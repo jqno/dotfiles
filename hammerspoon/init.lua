@@ -38,29 +38,25 @@ hyper.bindKey({}, "3", function() am.switchToAndFromApp("chat.rocket") end)
 
 
 -- Window management
-hyper.bindKey({}, "left", function() wm.fw().focusWindowWest() end)
-hyper.bindKey({}, "down", function() wm.fw().focusWindowSouth() end)
-hyper.bindKey({}, "up", function() wm.fw().focusWindowNorth() end)
-hyper.bindKey({}, "right", function() wm.fw().focusWindowEast() end)
 hyper.bindKey({}, "h", function() wm.fw().focusWindowWest() end)
 hyper.bindKey({}, "j", function() wm.fw().focusWindowSouth() end)
 hyper.bindKey({}, "k", function() wm.fw().focusWindowNorth() end)
 hyper.bindKey({}, "l", function() wm.fw().focusWindowEast() end)
 
-hyper.bindKey({"cmd"}, "left", wm.leftPressed, wm.leftReleased)
-hyper.bindKey({"cmd"}, "down", wm.downPressed, wm.downReleased)
-hyper.bindKey({"cmd"}, "up", wm.upPressed, wm.upReleased)
-hyper.bindKey({"cmd"}, "right", wm.rightPressed, wm.rightReleased)
+hyper.bindKey({"cmd"}, "h", wm.leftPressed, wm.leftReleased)
+hyper.bindKey({"cmd"}, "j", wm.downPressed, wm.downReleased)
+hyper.bindKey({"cmd"}, "k", wm.upPressed, wm.upReleased)
+hyper.bindKey({"cmd"}, "l", wm.rightPressed, wm.rightReleased)
 
 hyper.bindKey({"cmd"}, "1", function() wm.windowMaximize(0) end)
 hyper.bindKey({"cmd"}, "2", function() wm.windowMaximize(1) end)
 hyper.bindKey({"cmd"}, "3", function() wm.windowMaximize(2) end)
 hyper.bindKey({"cmd"}, "4", function() wm.windowMaximize(3) end)
 
-hyper.bindKey({"cmd"}, "h", function() wm.fw():moveOneScreenWest() end)
-hyper.bindKey({"cmd"}, "j", function() wm.fw():moveOneScreenSouth() end)
-hyper.bindKey({"cmd"}, "k", function() wm.fw():moveOneScreenNorth() end)
-hyper.bindKey({"cmd"}, "l", function() wm.fw():moveOneScreenEast() end)
+hyper.bindKey({"cmd"}, "left", function() wm.fw():moveOneScreenWest() end)
+hyper.bindKey({"cmd"}, "down", function() wm.fw():moveOneScreenSouth() end)
+hyper.bindKey({"cmd"}, "up", function() wm.fw():moveOneScreenNorth() end)
+hyper.bindKey({"cmd"}, "right", function() wm.fw():moveOneScreenEast() end)
 
 local layouts = {
   { bundle = "chat.rocket", func = function(win) wm.windowMaximize(1, win) end },
