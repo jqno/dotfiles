@@ -10,6 +10,8 @@ Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-tree'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'sheerun/vim-polyglot'
@@ -263,6 +265,9 @@ nnoremap T= ?=\s*?e<CR>:nohls<CR>
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 " Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
+
+" Close extraneous windows
+nnoremap <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>
 
 " *** Prefix <leader><leader>: change settings
 nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
