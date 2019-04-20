@@ -11,3 +11,5 @@ inoremap <expr><buffer> ` AutocloseToggle('`')
 inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
 inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 
+setlocal omnifunc=syntaxcomplete#Complete
+
