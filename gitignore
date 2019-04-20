@@ -1,1 +1,5 @@
 # Place globally ignored file patterns here
+
+# Eclipse JDT, the Java language server
+.metadata
+
