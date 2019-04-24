@@ -30,7 +30,7 @@ bindkey "^[[3~" delete-char
 bindkey -M vicmd "^[[3~" delete-char
 
 # Source my scripts (including fancy prompt!)
-export PATH=$PATH:~/.zsh/scripts
+export PATH=$PATH:~/.zsh/util
 . run-all-scripts-in-dir.sh ~/.zsh/environment
 . ~/work/environment/environment.sh 2> /dev/null
 
