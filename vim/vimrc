@@ -220,6 +220,20 @@ set statusline+=%P        " percentage through the file
 
 
 " ***************************************
+" ***  Terminal mode configuration
+" ***************************************
+
+" Easier access to Normal mode in Terminal
+tnoremap <Esc><Esc> <C-\><C-N>
+" Split navigation
+tnoremap <C-H> <C-W>h
+tnoremap <C-J> <C-W>j
+tnoremap <C-K> <C-W>k
+tnoremap <C-L> <C-W>l
+
+
+
+" ***************************************
 " ***  Mappings
 " ***************************************
 
