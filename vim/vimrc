@@ -303,7 +303,7 @@ nnoremap <silent> <leader>bb :b#<CR>
 nnoremap <silent> <leader>bd :bp\|bd #<CR>
 
 " *** Prefix <leader>w: windows
-nnoremap <leader>w- <C-W>_
+nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
 
 " *** Command-line mode
