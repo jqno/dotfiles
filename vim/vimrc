@@ -224,7 +224,7 @@ set statusline+=%P        " percentage through the file
 " ***************************************
 
 " Easier access to Normal mode in Terminal
-tnoremap <Esc><Esc> <C-\><C-N>
+tnoremap <S-Esc> <C-\><C-N>
 " Split navigation
 tnoremap <C-H> <C-W>h
 tnoremap <C-J> <C-W>j
