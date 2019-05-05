@@ -251,13 +251,17 @@ vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 " instead of tring to find .
 vnoremap < <gv
 vnoremap > >gv
-" Allow for easy window switching.
+" Allow for easy window switching
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
-nnoremap + <C-W>+
-nnoremap - <C-W>-
+" Allow for easy window resizing
+" (˙∆˚¬ are Alt+hjkl on macOS)
+noremap <silent> ˙ :call ResizeLikeTmux('h', 1)<CR>
+noremap <silent> ∆ :call ResizeLikeTmux('j', 1)<CR>
+noremap <silent> ˚ :call ResizeLikeTmux('k', 1)<CR>
+noremap <silent> ¬ :call ResizeLikeTmux('l', 1)<CR>
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
