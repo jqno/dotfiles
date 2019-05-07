@@ -14,6 +14,7 @@ Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
+Plug 'rhysd/git-messenger.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'TaDaa/vimade'
@@ -144,6 +145,10 @@ let g:fzf_action = {
     \ 'enter': 'e',
     \ 'space': 'split'
     \ }
+
+" *** Git-messenger.vim
+let g:git_messenger_no_default_mappings = v:true
+let g:git_messenger_include_diff = 'current'
 
 " *** Hexokinase
 let g:Hexokinase_ftAutoload = ['css', 'scss', 'html']
@@ -292,7 +297,7 @@ nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation le
 nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
 nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
 nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
-nnoremap <silent> <leader><leader>b :Gblame<CR>
+nnoremap <silent> <leader><leader>b :GitMessenger<CR>
 nnoremap <silent> <leader><leader>t :call ToggleListChars()<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
