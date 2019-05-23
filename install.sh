@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# brew install zsh-syntax-highlighting
-# brew install zsh-autosuggestions
-# brew install fzf
+PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installDotfiles() {
+  . $PWD/macos/install.sh 
+
   scriptFor "git"
   scriptFor "iterm2"
   installFor "ctags"
@@ -21,8 +21,6 @@ function installDotfiles() {
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   vim +PlugInstall +qall
 }
-
-PWD=$(pwd)
 
 
 ## $1 = FROM

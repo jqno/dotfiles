@@ -1,0 +1,68 @@
+cask_args appdir: '/Applications'
+
+tap "AdoptOpenJDK/openjdk"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "olafurpg/scalafmt"
+tap "scalacenter/bloop"
+
+brew "mas"
+
+brew "bat"
+brew "ctags"
+brew "figlet"
+brew "fzf"
+brew "git"
+brew "gnupg"
+brew "jq"
+brew "maven"
+brew "node"
+brew "pandoc"
+brew "rsync"
+brew "sbt"
+brew "scala"
+brew "the_silver_searcher"
+brew "tig"
+brew "tree"
+brew "vim"
+brew "wget"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+
+brew "heroku/brew/heroku"
+brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
+brew "scalacenter/bloop/bloop"
+
+cask "adoptopenjdk8"
+cask "adoptopenjdk11"
+cask "alfred"
+cask "avast-security"
+cask "bartender"
+cask "citrix-receiver"
+cask "dropbox"
+cask "firefox"
+cask "font-fira-code"
+cask "gitup"
+cask "google-chrome"
+cask "hammerspoon"
+cask "intellij-idea"
+cask "iterm2"
+cask "karabiner-elements"
+cask "macpass"
+cask "macvim"
+cask "microsoft-office"
+cask "night-owl"
+cask "rambox"
+cask "rocket"
+cask "spotify"
+cask "tunnelblick"
+
+mas "Airmail 3", id: 918858936
+mas "NordVPN IKE", id: 1116599239
+mas "Pixelmator", id: 407963104
+
