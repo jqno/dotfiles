@@ -3,7 +3,9 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installDotfiles() {
-  . $PWD/macos/install.sh 
+  if [ "$(uname -s)" == "Darwin" ]; then
+    . $PWD/macos/install.sh 
+  fi
 
   scriptFor "git"
   scriptFor "iterm2"
