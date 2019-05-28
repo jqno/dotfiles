@@ -4,7 +4,6 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'derekwyatt/vim-scala'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
