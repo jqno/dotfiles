@@ -10,7 +10,8 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mhinz/vim-tree'
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
+Plug 'prabirshrestha/vim-lsp', { 'commit': 'cf257bcd87f7bbca46fa2b29474a146593483905' }
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'rhysd/git-messenger.vim'
