@@ -16,13 +16,12 @@ Plug 'RRethy/vim-hexokinase'
 Plug 'rhysd/git-messenger.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
-Plug 'TaDaa/vimade'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'wincent/terminus'
 Plug 'w0rp/ale'
 
@@ -155,10 +154,6 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 
 " *** UltiSnips
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
-
-" *** Vimade
-let g:vimade = {}
-let g:vimade.fadelevel = 0.7
 
 " *** Vim-Test
 let test#strategy = 'dispatch'
