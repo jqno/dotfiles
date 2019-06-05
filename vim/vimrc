@@ -143,6 +143,10 @@ let g:fzf_action = {
     \ 'enter': 'e',
     \ 'space': 'split'
     \ }
+" Hacky way to make FZF respect .gitignore in GVIM (where env variables may not be set)
+if has('gui_running')
+    let $FZF_DEFAULT_COMMAND='ag -g ""'
+endif
 
 " *** Git-messenger.vim
 let g:git_messenger_no_default_mappings = v:true
