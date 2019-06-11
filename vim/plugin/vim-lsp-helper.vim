@@ -3,7 +3,7 @@ function SetupLsp(name, ispresent, server_info)
         call lsp#register_server(a:server_info)
 
         nnoremap <silent><buffer> K :LspHover<CR>
-        nnoremap <silent><buffer> <C-]> :LspDefinition<CR>
+        nnoremap <silent><buffer> <leader>fd :LspDefinition<CR>
         nnoremap <silent><buffer> <leader>fr :LspReferences<CR>
         nnoremap <silent><buffer> <leader>mf :LspDocumentFormat<CR>
         nnoremap <silent><buffer> <leader>rr :LspRename<CR>
