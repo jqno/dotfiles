@@ -10,6 +10,8 @@ tap "olafurpg/scalafmt"
 tap "scalacenter/bloop"
 
 brew "mas"
+brew "node"
+mas "Xcode", id: 497799835
 
 brew "bat"
 brew "ctags"
@@ -19,7 +21,6 @@ brew "git"
 brew "gnupg"
 brew "jq"
 brew "maven"
-brew "node"
 brew "pandoc"
 brew "rsync"
 brew "sbt"
