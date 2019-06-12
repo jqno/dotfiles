@@ -26,6 +26,11 @@ nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 
+" Wildfire-like highlighting
+nmap <CR> :action EditorSelectWord<CR>
+vmap <CR> :action EditorSelectWord<CR>
+vmap <Backspace> :action EditorUnSelectWord<CR>
+
 " Indent and de-indent.
 vnoremap < <gv
 vnoremap > >gv
