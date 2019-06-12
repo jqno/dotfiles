@@ -25,6 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
+Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
 Plug 'w0rp/ale'
 
