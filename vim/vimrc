@@ -88,13 +88,6 @@ augroup END
 silent! colorscheme reversal
 set background=dark
 set termguicolors
-" Use a nice font with ligatures
-if has('gui_running')
-    set guifont=Fira\ Code\ Retina:h13
-    if has('gui_macvim')
-        set macligatures
-    endif
-endif
 " Highlight merge conflict markers
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
 " Always show the sign column so it doesn't appear and disappear all the time
@@ -130,6 +123,25 @@ endif
 
 
 " ***************************************
+" ***  GVIM configuration
+" ***************************************
+if has('gui_running')
+
+    " Use a nice font with ligatures
+    set guifont=Fira\ Code\ Retina:h13
+    if has('gui_macvim')
+        set macligatures
+    endif
+    " Hacky way to make FZF respect .gitignore in GVIM (where env variables may not be set)
+    let $FZF_DEFAULT_COMMAND='ag -g ""'
+    " Hacky way to make GVIM respect UTF-8 character sets
+    let $LC_ALL='en_US.UTF-8'
+
+endif
+
+
+
+" ***************************************
 " ***  Plugin configurations
 " ***************************************
 
@@ -147,10 +159,6 @@ let g:fzf_action = {
     \ 'enter': 'e',
     \ 'space': 'split'
     \ }
-" Hacky way to make FZF respect .gitignore in GVIM (where env variables may not be set)
-if has('gui_running')
-    let $FZF_DEFAULT_COMMAND='ag -g ""'
-endif
 
 " *** Git-messenger.vim
 let g:git_messenger_no_default_mappings = v:true
