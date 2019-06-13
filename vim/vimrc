@@ -10,13 +10,13 @@ Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'kana/vim-textobj-user'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'mhinz/vim-tree'
 Plug 'prabirshrestha/async.vim'
 " Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
 Plug 'prabirshrestha/vim-lsp', { 'commit': 'cf257bcd87f7bbca46fa2b29474a146593483905' }
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'rhysd/git-messenger.vim'
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
@@ -333,7 +333,7 @@ nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fh :Dash<CR>
-nnoremap <leader>fn :Tree<CR>
+nnoremap <leader>fn :NERDTreeToggle<CR>
 
 " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
