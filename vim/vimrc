@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
+Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'kana/vim-textobj-user'
@@ -344,6 +345,10 @@ nnoremap <leader>mf :ALEFix<CR>
 nnoremap <leader>ta :TestSuite<CR>
 nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
+
+" *** Prefix <leader>r: refactorings
+nmap <space>rv <Plug>(extractVariableNormal)
+vmap <space>rv <Plug>(extractVariableVisual)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
