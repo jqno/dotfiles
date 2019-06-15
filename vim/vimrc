@@ -7,9 +7,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-extract-variable'
+Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
-Plug 'kana/vim-textobj-user'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'prabirshrestha/async.vim'
 " Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
@@ -174,15 +174,6 @@ let g:UltiSnipsExpandTrigger = '<S-Tab>'
 
 " *** Vim-Test
 let test#strategy = 'dispatch'
-
-" *** Vim-Textobj-User
-call textobj#user#plugin('functioncall', {
-    \   'function_call': {
-    \     'pattern': '\<[0-9A-Za-z_.]\+(.\{-})',
-    \     'select': ['af', 'if'],
-    \     'scan': 'cursor',
-    \   },
-    \ })
 
 " *** VimWiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
