@@ -12,11 +12,12 @@ function installDotfiles() {
   installFor "ctags"
   installFor "hammerspoon"
   installFor "ideavimrc"
-  installFor "karabiner.json" "config/karabiner/karabiner.json" "config/karabiner"
+  installFor "karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
+  installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
-  installFor "zsh/zshrc" "zshrc"
-  installFor "zsh/scripts" "zsh"
+  installFor "zsh/zshrc" ".zshrc"
+  installFor "zsh/config" ".zsh"
 
   echo "Installing Vim plugins..."
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -31,18 +32,18 @@ function installDotfiles() {
 function installFor() {
   FROM=$1
   if [ "$2" == "" ]; then
-    TO=$FROM
+    TO=".$FROM"
   else
     TO=$2
   fi
 
   if [ "$3" != "" ]; then
-    mkdir -p ~/.$3
+    mkdir -p ~/$3
   fi
 
-  echo "Linking $FROM to ~/.$TO..."
-  rm ~/.$TO 2> /dev/null
-  ln -s $PWD/$FROM ~/.$TO
+  echo "Linking $FROM to ~/$TO..."
+  rm ~/$TO 2> /dev/null
+  ln -s $PWD/$FROM ~/$TO
 }
 
 function scriptFor() {
