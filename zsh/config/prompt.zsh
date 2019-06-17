@@ -1,4 +1,4 @@
-autoload colors; colors;
+setopt prompt_subst
 
 function prompt_working_directory() {
   echo "%~"
@@ -157,3 +157,15 @@ function build_prompt() {
 }
 
 PROMPT='$(build_prompt)'
+
+
+# ## Benchmark prompt
+# typeset -F SECONDS start
+# precmd() {
+#   start=$SECONDS
+# }
+# zle-line-init() {
+#   PREDISPLAY="[$(( $SECONDS - $start ))] "
+# }
+# zle -N zle-line-init
+

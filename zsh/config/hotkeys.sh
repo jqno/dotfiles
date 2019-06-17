@@ -1,3 +1,13 @@
+bindkey '^[[Z' autosuggest-accept  # Shift-tab
+
+###
+# Open VIM with current command line
+###
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd "\C-v" edit-command-line
+
+
 ###
 # FZF Git branches
 ###
