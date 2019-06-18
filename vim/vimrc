@@ -2,6 +2,8 @@
 " ***  Define plugins
 " ***************************************
 
+packadd! matchit
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'gcmt/wildfire.vim'
@@ -23,7 +25,6 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'whiteinge/diffconflicts'
@@ -38,23 +39,40 @@ call plug#end()
 " ***  Behavior
 " ***************************************
 
+" Always use UTF-8
 scriptencoding utf-8
 " Put swap files and backups in . only as a last resort
 set directory-=.
 set directory+=.
 set backupdir-=.
 set backupdir+=.
+" Store a big chunk of : command history
+set history=1000
+" Automatically re-read file in current buffer if it was edited outside vim
+set autoread
+" Enable filetypes and syntax
+filetype plugin indent on
+syntax on
 " Leaders
 let g:mapleader="\<space>"
 let g:maplocalleader=','
+" Indent automatically
+set autoindent
+" Backspace over indents, eols, line-starts: just like normal editors
+set backspace=indent,eol,start
+" Don't recognise octal numbers with <C-A> and <C-X>
+set nrformats-=octal
 " Search more easily
 set incsearch hlsearch ignorecase smartcase
-set nowrap
+" Don't wrap lines, but if you do, don't wrap in the middle of a word
+set nowrap linebreak
 " Join lines more intuitively
 set nojoinspaces
 set formatoptions+=j
 " Smart diffing
 set diffopt+=indent-heuristic,algorithm:patience
+" Enhanced command-line completion
+set wildmenu
 " Always ignore node_modules
 set wildignore=node_modules
 " Completion
@@ -93,8 +111,11 @@ set termguicolors
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
 " Always show the sign column so it doesn't appear and disappear all the time
 set signcolumn=yes
-" Don't wrap lines in the middle of a word. That's not cool.
-set linebreak
+" See context while scrolling
+set scrolloff=1
+set sidescrolloff=5
+" Show as much as possible of lines that don't fit in the screen
+set display+=lastline
 
 " Show relative line-numbers, but only in the current split, and not for
 " certain filetypes
