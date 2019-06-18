@@ -1,3 +1,6 @@
+# Default editor
+export EDITOR=vim
+
 # Required for GPG
 export GPG_TTY=$(tty)
 
