@@ -1,61 +1,19 @@
-# History
-HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
-setopt hist_expire_dups_first
-setopt appendhistory
+source ~/.zsh/init.zsh
+source ~/.zsh/functions.sh
+source ~/.zsh/environment.sh
+source ~/.zsh/aliases.sh
+source ~/.zsh/hotkeys.sh
+source ~/.zsh/completion.zsh
+source ~/.zsh/prompt.zsh
 
-# Settings
-setopt autocd nomatch
-unsetopt beep extendedglob notify
+source ~/.zsh/iterm.sh
+source ~/.zsh/vim-terminal-mode.sh
+source ~/work/environment/environment.sh 2> /dev/null
 
-# Completions
-zstyle :compinstall filename '/Users/jqno/.zshrc'
-autoload -Uz compinit
-compinit
-# Case-insensitive completions
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# VIM mode
-bindkey -v
-export KEYTIMEOUT=1
-export EDITOR=vim
-# Open VIM with current command line
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd "\C-v" edit-command-line
-
-# The delete button doesn't work unless we bind it to `delete-char`
-bindkey "^[[3~" delete-char
-bindkey -M vicmd "^[[3~" delete-char
-
-# Source my scripts (including fancy prompt!)
-export PATH=$PATH:~/.zsh/util
-. run-all-scripts-in-dir.sh ~/.zsh/environment
-. ~/work/environment/environment.sh 2> /dev/null
-
-# Colors in ls
-export CLICOLOR=1
-
-# Auto-suggesions
+# Zsh plugins
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^[[Z' autosuggest-accept  # Shift-tab
-
-# Syntax highlighting (must be at the end of .zshrc!)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Enable FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-
-# ## Benchmark prompt
-# typeset -F SECONDS start
-# precmd() {
-#   start=$SECONDS
-# }
-# zle-line-init() {
-#   PREDISPLAY="[$(( $SECONDS - $start ))] "
-# }
-# zle -N zle-line-init
 

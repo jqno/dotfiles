@@ -1,24 +1,4 @@
-autoload colors; colors;
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
 setopt prompt_subst
-
-# Assign the current VI mode to the env variable VIMODE
-function zle-keymap-select zle-line-init zle-line-finish {
-  case $KEYMAP in
-    vicmd)
-      export VIMODE='n'
-      ;;
-    viins|main)
-      export VIMODE='i'
-      ;;
-  esac
-
-  zle reset-prompt
-  zle -R
-}
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
 
 function prompt_working_directory() {
   echo "%~"
@@ -50,11 +30,6 @@ function prompt_is_git_dirty() {
   # Also: remove the first line, because it speaks of branches, not of changed files.
   echo $GIT_STATUS | sed 1d | grep "^.[^ ]" > /dev/null 2>&1
   [[ "$?" -eq 0 ]] && echo $1 || echo $2
-}
-
-function prompt_git_branch() {
-  local BRANCH=$(git branch --no-color 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/\1/")
-  [[ -n $BRANCH ]] && echo $BRANCH || echo '?'
 }
 
 function prompt_git_local() {
@@ -152,7 +127,7 @@ function build_prompt() {
 
   if prompt_is_inside_git
   then
-    P+=" $SEP $cBRANCH$(prompt_git_branch)"
+    P+=" $SEP $cBRANCH$(git_current_branch)"
 
     local REMOTE=$(prompt_git_remote)
     local LOCAL=$(prompt_git_local)
@@ -182,3 +157,15 @@ function build_prompt() {
 }
 
 PROMPT='$(build_prompt)'
+
+
+# ## Benchmark prompt
+# typeset -F SECONDS start
+# precmd() {
+#   start=$SECONDS
+# }
+# zle-line-init() {
+#   PREDISPLAY="[$(( $SECONDS - $start ))] "
+# }
+# zle -N zle-line-init
+
