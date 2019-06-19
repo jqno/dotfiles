@@ -25,7 +25,6 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-unimpaired'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
@@ -321,7 +320,14 @@ nmap \ <Plug>Commentary
 omap \ <Plug>Commentary
 nmap \\ <Plug>CommentaryLine
 nmap <leader>\ <Plug>Commentary<Plug>Commentary
-" Handy ALE mappings in Unimpaired style.
+" Mappings from Unimpaired that I actually use
+map <silent> [b :bprevious<CR>
+map <silent> ]b :bnext<CR>
+map <silent> [q :cprevious<CR>
+map <silent> ]q :cnext<CR>
+map <silent> [Q :cfirst<CR>
+map <silent> ]Q :clast<CR>
+" Handy ALE mappings in Unimpaired style
 map <silent> [W <Plug>(ale_first)
 map <silent> [w <Plug>(ale_previous)
 map <silent> ]w <Plug>(ale_next)
