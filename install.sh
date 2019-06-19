@@ -18,6 +18,7 @@ function installDotfiles() {
   installFor "vim"
   installFor "zsh/zshrc" ".zshrc"
   installFor "zsh/config" ".zsh"
+  installFor "zsh/config/environment.sh" ".zprofile" # Makes sure environment variables are loaded in MacVim as well
 
   echo "Installing Vim plugins..."
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

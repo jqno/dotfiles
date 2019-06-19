@@ -159,10 +159,6 @@ if has('gui_running')
     if has('gui_macvim')
         set macligatures
     endif
-    " Hacky way to make FZF respect .gitignore in GVIM (where env variables may not be set)
-    let $FZF_DEFAULT_COMMAND='ag -g ""'
-    " Hacky way to make GVIM respect UTF-8 character sets
-    let $LC_ALL='en_US.UTF-8'
 
 endif
 
