@@ -100,6 +100,16 @@ augroup END
 
 
 " ***************************************
+" ***  Copy/paste
+" ***************************************
+
+" Yank everything into the + register so it goes on to the system clipboard
+nnoremap Y "+y
+vnoremap Y "+y
+
+
+
+" ***************************************
 " ***  Appearance
 " ***************************************
 
