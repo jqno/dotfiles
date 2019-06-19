@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
@@ -115,26 +116,8 @@ set scrolloff=1
 set sidescrolloff=5
 " Show as much as possible of lines that don't fit in the screen
 set display+=lastline
-
-" Show relative line-numbers, but only in the current split, and not for
-" certain filetypes
+" Show relative line-numbers
 set number relativenumber
-let g:relativenumber_ignore = ['help', 'nerdtree']
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * call <SID>ToggleLineNumbers(1)
-    autocmd BufLeave,FocusLost,InsertEnter * call <SID>ToggleLineNumbers(0)
-augroup END
-function! s:ToggleLineNumbers(enter)
-    if index(g:relativenumber_ignore, &filetype) != -1
-        return
-    endif
-    if a:enter == 1
-        set relativenumber
-    else
-        set norelativenumber
-    endif
-endfunction
 
 
 
