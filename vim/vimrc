@@ -171,16 +171,15 @@ endif
 " *** ALE
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
-" Put the results in the quickfix list instead of the location list
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
 
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
 " Key mappings within FZF to define how to open a file
+" Ctrl+Q sends results to quickfix
 let g:fzf_action = {
     \ 'enter': 'e',
-    \ 'space': 'split'
+    \ 'space': 'split',
+    \ 'ctrl-q': 'sink'
     \ }
 
 " *** Git-messenger.vim
