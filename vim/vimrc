@@ -220,6 +220,23 @@ augroup AutoSourceVimrc
     autocmd BufWritePost vimrc ReloadVimrc
 augroup END
 
+" Manage a lockfile for Vim plugins
+let g:jqno_plugin_lockfile = $HOME . '/.vim/plugin.lock.vim'
+function! s:JqnoPlugInstall()
+    PlugInstall
+    execute 'source ' . g:jqno_plugin_lockfile
+    qall
+endfunction
+function! s:JqnoPlugUpdate()
+    execute 'PlugSnapshot! ' . g:jqno_plugin_lockfile
+    quit
+    execute 'source ' . g:jqno_plugin_lockfile
+    quit
+endfunction
+command! JqnoPlugInstall call <SID>JqnoPlugInstall()
+" Slight hack: name this function `PlugUpdat` so it doesn't replace `PlugUpdate`, but does get autocompleted first
+command! PlugUpdat call <SID>JqnoPlugUpdate()
+
 
 
 " ***************************************
