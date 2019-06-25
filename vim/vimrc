@@ -222,20 +222,15 @@ augroup END
 
 " Manage a lockfile for Vim plugins
 let g:jqno_plugin_lockfile = $HOME . '/.vim/plugin.lock.vim'
-function! s:JqnoPlugInstall()
+function! s:JqnoPlugInitialInstall()
     PlugInstall
     execute 'source ' . g:jqno_plugin_lockfile
     qall
 endfunction
-function! s:JqnoPlugUpdate()
-    execute 'PlugSnapshot! ' . g:jqno_plugin_lockfile
-    quit
-    execute 'source ' . g:jqno_plugin_lockfile
-    quit
-endfunction
-command! JqnoPlugInstall call <SID>JqnoPlugInstall()
-" Slight hack: name this function `PlugUpdat` so it doesn't replace `PlugUpdate`, but does get autocompleted first
-command! PlugUpdat call <SID>JqnoPlugUpdate()
+command! JqnoPlugInitialInstall call <SID>JqnoPlugInitialInstall()
+" Slight hack: this command omits the last letter from the command it replaces, so it doesn't replace the original but does get autocompleted first
+command! PlugSnapsho execute 'PlugSnapshot! ' . g:jqno_plugin_lockfile
+command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 
 
 
