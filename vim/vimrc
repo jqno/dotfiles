@@ -114,9 +114,9 @@ vnoremap Y "+y
 " ***************************************
 
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
-silent! colorscheme reversal
 set background=dark
 set termguicolors
+silent! colorscheme reversal
 " Highlight merge conflict markers
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
 " Always show the sign column so it doesn't appear and disappear all the time
