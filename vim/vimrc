@@ -13,6 +13,7 @@ Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
+Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'prabirshrestha/async.vim'
 " Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
