@@ -247,32 +247,6 @@ augroup END
 
 
 " ***************************************
-" ***  Statusline
-" ***************************************
-
-set laststatus=2          " always show statusline
-set statusline=           " clear statusline
-set statusline+=%f        " short filename
-set statusline+=%m        " modified flag
-set statusline+=%h        " help flag
-set statusline+=%w        " preview window flag
-set statusline+=%r        " readonly flag
-set statusline+=%=        " right align
-set statusline+=%y        " file type
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}] " file encoding
-set statusline+=[%{&ff}]  " file format
-set statusline+=\         " space
-set statusline+=#%n       " buffer number
-set statusline+=\         " space
-set statusline+=%l        " current line
-set statusline+=:         " colon
-set statusline+=%c        " current column
-set statusline+=\         " space
-set statusline+=%P        " percentage through the file
-
-
-
-" ***************************************
 " ***  Terminal mode configuration
 " ***************************************
 
