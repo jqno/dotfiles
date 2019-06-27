@@ -24,9 +24,15 @@ function! JqnoStatusLineFileFormat() abort
     return 'unknown format'
 endfunction
 
+function! JqnoStatusLineFileType() abort
+    if &filetype !=# ''
+        return &filetype
+    endif
+    return '-'
+endfunction
+
 function! JqnoStatusLine() abort
     let l:is_active = '('. win_getid() .' == win_getid())'
-    let l:has_flags = '(!&modifiable || &modified || &readonly || &previewwindow)'
 
     let l:ale_counts = ale#statusline#Count(bufnr('%'))
     let l:ale_errors = l:ale_counts.error + l:ale_counts.style_error
@@ -43,14 +49,13 @@ function! JqnoStatusLine() abort
             \ '%<' .
             \ '%f' .
             \ ' ' .
-            \ '%{'. l:is_active .' && '. l:has_flags .' ? "[" : ""}' .
-            \ '%{'. l:is_active .' && !&modifiable ? "-" : ""}' .
-            \ '%{'. l:is_active .' && &modified ? "+" : ""}' .
-            \ '%{'. l:is_active .' && &readonly ? "RO" : ""}' .
-            \ '%{'. l:is_active .' && &previewwindow ? "P" : ""}' .
-            \ '%{'. l:is_active .' && '. l:has_flags .' ? "]" : ""}' .
+            \ '%{'. l:is_active .' && &readonly ? "| RO " : ""}' .
+            \ '%{'. l:is_active .' && &previewwindow ? "| P " : ""}' .
+            \ '%{'. l:is_active .' && !&modifiable ? "| - " : ""}' .
+            \ '%{'. l:is_active .' && &modified ? "| + " : ""}' .
             \ '%*' .
             \ '%=' .
+            \ ' ' .
                 \ '%#SLaleok#' .
                 \ (l:ale_counts.total == 0 ? '%{' . l:is_active . ' ? " ✓ " : ""}' : '') .
                 \ '%#SLaleerror#' .
@@ -65,7 +70,7 @@ function! JqnoStatusLine() abort
                 \ '" | ".' .
                 \ 'JqnoStatusLineFileFormat().' .
                 \ '" | ".' .
-                \ '&filetype.' .
+                \ 'JqnoStatusLineFileType().' .
                 \ '" | "' .
             \ ' : ""}' .
             \ '#%n' .
