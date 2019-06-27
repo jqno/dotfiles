@@ -1,0 +1,210 @@
+extends xml
+
+
+# Characters and symbols
+
+snippet nbsp "&nbsp;"
+&nbsp;
+endsnippet
+
+
+# HTML attributes
+
+snippet id "id global attribute"
+id="$1"
+endsnippet
+
+snippet id "id global attribute"
+id="$1"
+endsnippet
+
+
+# HTML tags
+
+snippet a "Link" w
+<a href="${1:https://www.${2:url.com}}"${3: target="_blank"}>$4</a>
+endsnippet
+
+snippet b "<b>" w
+<b>$1</b>
+endsnippet
+
+snippet blockquote "<blockquote>"
+<blockquote>$1</blockquote>
+endsnippet
+
+snippet body "<body>"
+<body>
+    $0
+</body>
+endsnippet
+
+snippet br "<br>" w
+<br/>
+endsnippet
+
+snippet div "<div> with .class" w
+<div class="$1">$2</div>
+endsnippet
+
+snippet div# "<div> with #id and .class"
+<div id="$1" class="$2">$3</div>
+endsnippet
+
+snippet em "<em>" w
+<em>$1</em>
+endsnippet
+
+snippet h1 "<h1>" w
+<h1>${1:${VISUAL}}</h1>
+endsnippet
+
+snippet h2 "<h2>" w
+<h2>${1:${VISUAL}}</h2>
+endsnippet
+
+snippet h3 "<h3>" w
+<h3>${1:${VISUAL}}</h3>
+endsnippet
+
+snippet h4 "<h4>" w
+<h4>${1:${VISUAL}}</h4>
+endsnippet
+
+snippet h5 "<h5>" w
+<h5>${1:${VISUAL}}</h5>
+endsnippet
+
+snippet h6 "<h6>" w
+<h6>${1:${VISUAL}}</h6>
+endsnippet
+
+snippet head "<head>"
+<head>
+    <meta charset="utf-8">
+    <title>$1</title>
+    ${0:${VISUAL}}
+</head>
+endsnippet
+
+snippet html "HTML basic structure" b
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>$1</title>
+    </head>
+    <body>
+        ${0:body}
+    </body>
+</html>
+endsnippet
+
+snippet i "<i>" w
+<i>$1</i>
+endsnippet
+
+snippet img "<img>"
+<img src="$1" alt="$2"/>
+endsnippet
+
+snippet input "<input>" w
+<input type="${1:text/submit/hidden/button}" name="$2" value="$3"/>
+endsnippet
+
+snippet li "list item" w
+<li>${1:${VISUAL}}</li>
+endsnippet
+
+snippet link "<link>" w
+<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" title="${4:no title}" charset="${5:utf-8}"/>
+endsnippet
+
+snippet meta "HTML <meta>" w
+<meta name="${1:name}" content="${2:content}"/>
+endsnippet
+
+snippet ol "<ol>"
+<ol>
+    <li>$1</li>$2
+</ol>
+endsnippet
+
+snippet p "paragraph" w
+<p>${0:${VISUAL}}</p>
+endsnippet
+
+snippet pre "<pre>"
+<pre>$1</pre>
+endsnippet
+
+snippet script "<script>" w
+<script src="$1" charset="${2:utf-8}"/>
+endsnippet
+
+snippet small "<small>" w
+<small>$1</small>
+endsnippet
+
+snippet span "<span> with .class" w
+<span class="$1">$2</span>
+endsnippet
+
+snippet span# "<span> with #id and .class"
+<span id="$1" class="$2">$3</span>
+endsnippet
+
+snippet strong "<strong>" w
+<strong>$1</strong>
+endsnippet
+
+snippet style "HTML <style>" w
+<style type="text/css" media="screen">
+    ${0:${VISUAL}}
+</style>
+endsnippet
+
+snippet sub "<sub>" w
+<sub>$1</sub>
+endsnippet
+
+snippet sup "<sup>" w
+<sup>$1</sup>
+endsnippet
+
+snippet table "<table>" w
+<table>
+    ${0:${VISUAL}}
+</table>
+endsnippet
+
+snippet tbody "<tbody>"
+<tbody>$1</tbody>
+endsnippet
+
+snippet td "<td>" w
+<td>${1:${VISUAL}}</td>
+endsnippet
+
+snippet textarea "<textarea>" w
+<textarea name="$1" rows="${2:8}" cols="${3:40}">$4</textarea>
+endsnippet
+
+snippet th "<th>" w
+<th>${1:${VISUAL}}</th>
+endsnippet
+
+snippet title "HTML <title>" w
+<title>$1</title>
+endsnippet
+
+snippet tr "<tr>" w
+<tr>${1:${VISUAL}}</tr>
+endsnippet
+
+snippet ul "unordered list" w
+<ul>
+    <li>$1</li>$2
+</ul>
+endsnippet
+
