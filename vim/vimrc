@@ -237,17 +237,6 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 
 
 " ***************************************
-" ***  File types
-" ***************************************
-
-augroup pom
-    autocmd!
-    autocmd BufRead pom.xml compiler maven
-augroup END
-
-
-
-" ***************************************
 " ***  Terminal mode configuration
 " ***************************************
 
