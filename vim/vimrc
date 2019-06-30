@@ -215,7 +215,7 @@ let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
 " Open vimrc
 :command! EditVimrc e ~/.vim/vimrc
 " Reload vimrc
-:command! ReloadVimrc source ~/.vim/vimrc
+:command! ReloadVimrc source ~/.vim/vimrc<bar>doautocmd ColorScheme
 " Reload vimrc whenever it's written
 augroup AutoSourceVimrc
     autocmd!
