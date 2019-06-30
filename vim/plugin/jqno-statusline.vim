@@ -70,7 +70,7 @@ function! JqnoStatusLine() abort
                 \ '%#SLalewarning#' .
                 \ (l:ale_warnings > 0 ? '%{' . l:is_active . ' ? printf(" ◆%d ", ' . l:ale_warnings . ') : ""}' : '') .
                 \ '%*' .
-                \ ' ' .
+                \ '  ' .
             \ '%{'. l:is_active .' ? ' .
                 \ ' ' .
                 \ 'JqnoStatusLineFileEncoding().' .
