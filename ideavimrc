@@ -1,5 +1,5 @@
 " Set Leader to Space.
-let mapleader=" "
+let mapleader=' '
 
 " Pleasant defaults.
 set clipboard=unnamed
