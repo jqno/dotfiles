@@ -243,7 +243,7 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 " ***************************************
 
 " Easier access to Normal mode in Terminal
-tnoremap <S-Esc> <C-\><C-N>
+tnoremap <Esc><Esc> <C-\><C-N>
 " Split navigation
 tnoremap <C-H> <C-W>h
 tnoremap <C-J> <C-W>j
@@ -322,6 +322,7 @@ nnoremap <silent> <leader><leader>b :GitMessenger<CR>
 nnoremap <silent> <leader><leader>t :call ToggleListChars()<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
+nnoremap <silent> <leader><leader><leader> za
 
 " *** Prefix <leader>f: finding things
 nnoremap <leader>fb :FzfBuffers<CR>
@@ -345,8 +346,10 @@ nnoremap <leader>tf :TestFile<CR>
 nnoremap <leader>tt :TestNearest<CR>
 
 " *** Prefix <leader>r: refactorings
-nmap <space>rv <Plug>(extractVariableNormal)
-vmap <space>rv <Plug>(extractVariableVisual)
+nmap <leader>rv <Plug>(extractVariableNormal)
+vmap <leader>rv <Plug>(extractVariableVisual)
+nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
+nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
