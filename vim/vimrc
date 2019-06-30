@@ -70,6 +70,8 @@ set nowrap linebreak
 " Join lines more intuitively
 set nojoinspaces
 set formatoptions+=j
+" Managing splits
+set splitright
 " Smart diffing
 set diffopt+=indent-heuristic,algorithm:patience
 " Enhanced command-line completion
