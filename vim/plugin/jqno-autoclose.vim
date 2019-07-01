@@ -34,6 +34,16 @@ function! AutocloseSmartBackspace() abort
     endif
 endfunction
 
+function! AutocloseSmartJump() abort
+    let l:i = 0
+    let l:result = ''
+    while index([')', ']', '}', '"', '''', '`'], <SID>NextChar(l:i)) >= 0
+        let l:result .= "\<Right>"
+        let l:i += 1
+    endwhile
+    return l:result
+endfunction
+
 function! s:ExpandParenFully(expandIfAfterWord) abort
     let l:nextchar = <SID>NextChar()
     let l:nextok = l:nextchar ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:nextchar) >= 0
@@ -42,8 +52,8 @@ function! s:ExpandParenFully(expandIfAfterWord) abort
     return l:nextok && l:prevok
 endfunction
 
-function! s:NextChar() abort
-    return strpart(getline('.'), col('.')-1, 1)
+function! s:NextChar(i = 0) abort
+    return strpart(getline('.'), col('.')-1+a:i, 1)
 endfunction
 
 function! s:PrevChar() abort
@@ -65,6 +75,7 @@ function! AutocloseForProse() abort
     inoremap <expr><buffer> ` AutocloseToggle('`')
     inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
     inoremap <expr><buffer> <CR> AutocloseSmartReturn()
+    inoremap <expr><buffer> <C-L> AutocloseSmartJump()
 endfunction
 
 function! AutocloseForProgramming() abort
@@ -79,5 +90,6 @@ function! AutocloseForProgramming() abort
     inoremap <expr><buffer> ` AutocloseToggle('`')
     inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
     inoremap <expr><buffer> <CR> AutocloseSmartReturn()
+    inoremap <expr><buffer> <C-L> AutocloseSmartJump()
 endfunction
 
