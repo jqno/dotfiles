@@ -1,19 +1,19 @@
 " ***
 " Logic
 " ***
-function AutocloseOpen(open, close)
+function! AutocloseOpen(open, close) abort
     return <SID>ExpandParenFully() ? a:open . a:close . "\<Left>" : a:open
 endfunction
 
-function AutocloseClose(close)
+function! AutocloseClose(close) abort
     return <SID>NextChar() ==? a:close ? "\<Right>" : a:close
 endfunction
 
-function AutocloseToggle(char)
+function! AutocloseToggle(char) abort
     return <SID>NextChar() == a:char ? "\<Right>" : <SID>ExpandParenFully() ? a:char . a:char . "\<Left>" : a:char
 endfunction
 
-function AutocloseSmartReturn()
+function! AutocloseSmartReturn() abort
     let l:prev = <SID>PrevChar()
     if l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
         return "\<CR>\<Esc>O"
@@ -22,7 +22,7 @@ function AutocloseSmartReturn()
     endif
 endfunction
 
-function AutocloseSmartBackspace()
+function! AutocloseSmartBackspace() abort
     let l:prev = <SID>PrevChar()
     let l:next = <SID>NextChar()
     let l:doIt = (l:prev ==? '(' && l:next ==? ')') || (l:prev ==? '[' && l:next ==? ']') || (l:prev ==? '{' && l:next ==? '}') ||
@@ -34,16 +34,16 @@ function AutocloseSmartBackspace()
     endif
 endfunction
 
-function s:ExpandParenFully()
+function! s:ExpandParenFully() abort
     let l:char = <SID>NextChar()
     return l:char ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:char) >= 0
 endfunction
 
-function s:NextChar()
+function! s:NextChar() abort
     return strpart(getline('.'), col('.')-1, 1)
 endfunction
 
-function s:PrevChar()
+function! s:PrevChar() abort
     return strpart(getline('.'), col('.')-2, 1)
 endfunction
 
@@ -51,7 +51,7 @@ endfunction
 " ***
 " Public functions
 " ***
-function AutocloseForProse()
+function! AutocloseForProse() abort
     inoremap <expr><buffer> ( AutocloseOpen('(', ')')
     inoremap <expr><buffer> ) AutocloseClose(')')
     inoremap <expr><buffer> [ AutocloseOpen('[', ']')
@@ -64,7 +64,7 @@ function AutocloseForProse()
     inoremap <expr><buffer> <CR> AutocloseSmartReturn()
 endfunction
 
-function AutocloseForProgramming()
+function! AutocloseForProgramming() abort
     inoremap <expr><buffer> ( AutocloseOpen('(', ')')
     inoremap <expr><buffer> ) AutocloseClose(')')
     inoremap <expr><buffer> [ AutocloseOpen('[', ']')
