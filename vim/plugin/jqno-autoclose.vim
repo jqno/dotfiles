@@ -2,7 +2,7 @@
 " Logic
 " ***
 function! AutocloseOpen(open, close) abort
-    return <SID>ExpandParenFully() ? a:open . a:close . "\<Left>" : a:open
+    return <SID>ExpandParenFully(1) ? a:open . a:close . "\<Left>" : a:open
 endfunction
 
 function! AutocloseClose(close) abort
@@ -10,7 +10,7 @@ function! AutocloseClose(close) abort
 endfunction
 
 function! AutocloseToggle(char) abort
-    return <SID>NextChar() == a:char ? "\<Right>" : <SID>ExpandParenFully() ? a:char . a:char . "\<Left>" : a:char
+    return <SID>NextChar() == a:char ? "\<Right>" : <SID>ExpandParenFully(0) ? a:char . a:char . "\<Left>" : a:char
 endfunction
 
 function! AutocloseSmartReturn() abort
@@ -34,9 +34,12 @@ function! AutocloseSmartBackspace() abort
     endif
 endfunction
 
-function! s:ExpandParenFully() abort
-    let l:char = <SID>NextChar()
-    return l:char ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:char) >= 0
+function! s:ExpandParenFully(expandIfAfterWord) abort
+    let l:nextchar = <SID>NextChar()
+    let l:nextok = l:nextchar ==? '' || index([' ', ')', ']', '}', '"', '''', '`'], l:nextchar) >= 0
+    let l:prevchar = <SID>PrevChar()
+    let l:prevok = a:expandIfAfterWord || l:prevchar !~# '\w'
+    return l:nextok && l:prevok
 endfunction
 
 function! s:NextChar() abort
