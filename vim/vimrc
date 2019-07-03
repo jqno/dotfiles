@@ -15,6 +15,7 @@ Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'machakann/vim-swap'
 Plug 'prabirshrestha/async.vim'
 " Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
 Plug 'prabirshrestha/vim-lsp', { 'commit': 'cf257bcd87f7bbca46fa2b29474a146593483905' }
@@ -197,6 +198,9 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
 
+" *** Vim-swap
+let g:swap_no_default_key_mappings = 1
+
 " *** Vim-Test
 let test#strategy = 'dispatch'
 
@@ -350,6 +354,8 @@ nmap <leader>rv <Plug>(extractVariableNormal)
 vmap <leader>rv <Plug>(extractVariableVisual)
 nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
+nmap <leader>r< <Plug>(swap-prev)
+nmap <leader>r> <Plug>(swap-next)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>

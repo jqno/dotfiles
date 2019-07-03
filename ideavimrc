@@ -72,6 +72,8 @@ vnoremap <leader>rv :action IntroduceVariable<CR>
 nnoremap <leader>ro :action OptimizeImports<CR>
 nnoremap <leader>ri :action Inline<CR>
 nnoremap <leader>rm :action ExtractMethod<CR>
+nnoremap <leader>r< :action MoveElementLeft<CR>
+nnoremap <leader>r> :action MoveElementRight<CR>
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>tt :action RunClass<CR>
