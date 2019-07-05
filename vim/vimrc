@@ -264,9 +264,15 @@ let g:swap_no_default_key_mappings = 1
 let test#strategy = 'dispatch'
 
 " *** VimWiki
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_location = '~/Dropbox/vimwiki'
+let g:vimwiki_list = [{'path': g:vimwiki_location, 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_folding = 'expr'
+" Search VimWiki using Fzf and Ag
+command! -nargs=+ FzfVimwiki 
+    \ call fzf#vim#ag_raw(
+    \   <q-args> . ' ' . g:vimwiki_location,
+    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}))
 
 " *** Wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
@@ -356,6 +362,7 @@ nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fD :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
+nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
 " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
