@@ -1,3 +1,6 @@
+# Path
+export PATH=$PATH:~/Library/Python/3.7/bin
+
 # Default editor
 export EDITOR=vim
 
