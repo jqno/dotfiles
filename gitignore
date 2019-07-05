@@ -7,3 +7,6 @@
 .metals
 .bloop
 
+# Vim session description
+Session.vim
+
