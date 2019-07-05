@@ -249,6 +249,10 @@ let g:git_messenger_include_diff = 'current'
 let g:Hexokinase_ftAutoload = ['css', 'scss', 'html']
 let g:Hexokinase_refreshEvents = ['BufWritePost']
 
+" *** Terminus
+" Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
+let g:TerminusFocusReporting=0
+
 " *** UltiSnips
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
