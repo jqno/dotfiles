@@ -40,6 +40,7 @@ endfunction
 
 function! JqnoStatusLine() abort
     let l:is_active = '('. win_getid() .' == win_getid())'
+    let l:is_active_not_terminal = l:is_active . ' && term_getstatus(bufnr("%")) == ""'
 
     let l:ale_counts = ale#statusline#Count(bufnr('%'))
     let l:ale_errors = l:ale_counts.error + l:ale_counts.style_error
@@ -59,20 +60,20 @@ function! JqnoStatusLine() abort
             \ ' ' .
             \ '%{'. l:is_active .' && &readonly ? "| RO " : ""}' .
             \ '%{'. l:is_active .' && &previewwindow ? "| P " : ""}' .
-            \ '%{'. l:is_active .' && !&modifiable ? "| - " : ""}' .
-            \ '%{'. l:is_active .' && &modified ? "| + " : ""}' .
+            \ '%{'. l:is_active_not_terminal .' && !&modifiable ? "| - " : ""}' .
+            \ '%{'. l:is_active_not_terminal .' && &modified ? "| + " : ""}' .
             \ '%*' .
             \ '%=' .
             \ ' ' .
                 \ '%#SLaleok#' .
-                \ (l:ale_counts.total == 0 ? '%{' . l:is_active . ' ? " ✓ " : ""}' : '') .
+                \ (l:ale_counts.total == 0 ? '%{' . l:is_active_not_terminal . ' ? " ✓ " : ""}' : '') .
                 \ '%#SLaleerror#' .
-                \ (l:ale_errors > 0 ? '%{' . l:is_active . ' ? printf(" ✗%d ", ' . l:ale_errors. ') : ""}' : '') .
+                \ (l:ale_errors > 0 ? '%{' . l:is_active_not_terminal . ' ? printf(" ✗%d ", ' . l:ale_errors. ') : ""}' : '') .
                 \ '%#SLalewarning#' .
-                \ (l:ale_warnings > 0 ? '%{' . l:is_active . ' ? printf(" ◆%d ", ' . l:ale_warnings . ') : ""}' : '') .
+                \ (l:ale_warnings > 0 ? '%{' . l:is_active_not_terminal . ' ? printf(" ◆%d ", ' . l:ale_warnings . ') : ""}' : '') .
                 \ '%*' .
                 \ '  ' .
-            \ '%{'. l:is_active .' ? ' .
+            \ '%{'. l:is_active_not_terminal .' ? ' .
                 \ ' ' .
                 \ 'JqnoStatusLineFileEncoding().' .
                 \ '" | ".' .
