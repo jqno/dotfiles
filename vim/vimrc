@@ -154,6 +154,20 @@ endif
 
 
 " ***************************************
+" ***  Terminal mode configuration
+" ***************************************
+
+" Easier access to Normal mode in Terminal
+tnoremap <Esc><Esc> <C-\><C-N>
+" Split navigation
+tnoremap <C-H> <C-W>h
+tnoremap <C-J> <C-W>j
+tnoremap <C-K> <C-W>k
+tnoremap <C-L> <C-W>l
+
+
+
+" ***************************************
 " ***  GVIM configuration
 " ***************************************
 if has('gui_running')
@@ -165,6 +179,34 @@ if has('gui_running')
     endif
 
 endif
+
+
+
+" ***************************************
+" ***  VIM itself!
+" ***************************************
+
+" Open vimrc
+command! EditVimrc e ~/.vim/vimrc
+" Reload vimrc
+command! ReloadVimrc source ~/.vim/vimrc<bar>doautocmd ColorScheme
+" Reload vimrc whenever it's written
+augroup AutoSourceVimrc
+    autocmd!
+    autocmd BufWritePost vimrc ReloadVimrc
+augroup END
+
+" Manage a lockfile for Vim plugins
+let g:jqno_plugin_lockfile = $HOME . '/.vim/plugin.lock.vim'
+function! s:JqnoPlugInitialInstall()
+    PlugInstall
+    execute 'source ' . g:jqno_plugin_lockfile
+    qall
+endfunction
+command! JqnoPlugInitialInstall call <SID>JqnoPlugInitialInstall()
+" Slight hack: this command omits the last letter from the command it replaces, so it doesn't replace the original but does get autocompleted first
+command! PlugSnapsho execute 'PlugSnapshot! ' . g:jqno_plugin_lockfile
+command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 
 
 
@@ -211,48 +253,6 @@ let g:vimwiki_folding = 'expr'
 
 " *** Wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
-
-
-
-" ***************************************
-" ***  VIM itself!
-" ***************************************
-
-" Open vimrc
-:command! EditVimrc e ~/.vim/vimrc
-" Reload vimrc
-:command! ReloadVimrc source ~/.vim/vimrc<bar>doautocmd ColorScheme
-" Reload vimrc whenever it's written
-augroup AutoSourceVimrc
-    autocmd!
-    autocmd BufWritePost vimrc ReloadVimrc
-augroup END
-
-" Manage a lockfile for Vim plugins
-let g:jqno_plugin_lockfile = $HOME . '/.vim/plugin.lock.vim'
-function! s:JqnoPlugInitialInstall()
-    PlugInstall
-    execute 'source ' . g:jqno_plugin_lockfile
-    qall
-endfunction
-command! JqnoPlugInitialInstall call <SID>JqnoPlugInitialInstall()
-" Slight hack: this command omits the last letter from the command it replaces, so it doesn't replace the original but does get autocompleted first
-command! PlugSnapsho execute 'PlugSnapshot! ' . g:jqno_plugin_lockfile
-command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
-
-
-
-" ***************************************
-" ***  Terminal mode configuration
-" ***************************************
-
-" Easier access to Normal mode in Terminal
-tnoremap <Esc><Esc> <C-\><C-N>
-" Split navigation
-tnoremap <C-H> <C-W>h
-tnoremap <C-J> <C-W>j
-tnoremap <C-K> <C-W>k
-tnoremap <C-L> <C-W>l
 
 
 
