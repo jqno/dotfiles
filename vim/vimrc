@@ -136,6 +136,19 @@ set number relativenumber
 
 
 " ***************************************
+" ***  Sessions
+" ***************************************
+
+" Don't save mappings and options: vimrc will take care of those
+set sessionoptions-=options
+" Always overwrite Session.vim in the current directory
+command! SaveSession mksession! Session.vim<bar>echo "Saved Session.vim"
+" Always load Session.vim from the current directory
+command! LoadSession source Session.vim
+
+
+
+" ***************************************
 " ***  Silly shift-pressing mistakes
 " ***************************************
 
