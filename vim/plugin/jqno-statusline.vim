@@ -55,6 +55,8 @@ function! JqnoStatusLine() abort
             \ '%*' .
             \ '%{' . l:is_active .' ? "" : "    "}' .
             \ ' ' .
+            \ '#%n' .
+            \ ' | ' .
             \ '%<' .
             \ '%f' .
             \ ' ' .
@@ -80,15 +82,14 @@ function! JqnoStatusLine() abort
                 \ 'JqnoStatusLineFileFormat().' .
                 \ '" | ".' .
                 \ 'JqnoStatusLineFileType().' .
-                \ '" | "' .
-            \ ' : ""}' .
-            \ '#%n' .
-            \ '%{'. l:is_active .' ? " | " . line("$")."L" : ""}' .
-            \ ' | ' .
-            \ '%l' .
-            \ ':' .
-            \ '%c' .
-            \ ' '
+                \ '" | ".' .
+                \ 'line("$")."L".' .
+                \ '" | ".' .
+                \ 'line(".").' .
+                \ '":".' .
+                \ 'col(".").' .
+                \ '" "' .
+            \ ' : ""}'
 
     return l:statusline
 endfunction
