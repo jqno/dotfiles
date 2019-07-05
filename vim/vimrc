@@ -233,6 +233,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
+let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
 " Key mappings within FZF to define how to open a file
 " Ctrl+Q sends results to quickfix
 let g:fzf_action = {
@@ -240,6 +241,9 @@ let g:fzf_action = {
     \ 'space': 'split',
     \ 'ctrl-q': 'sink'
     \ }
+" Adds preview window to FzfAg
+command! -bang -nargs=+ FzfAg
+    \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(g:fzf_preview_window), <bang>0)
 
 " *** Git-messenger.vim
 let g:git_messenger_no_default_mappings = v:true
@@ -272,7 +276,7 @@ let g:vimwiki_folding = 'expr'
 command! -nargs=+ FzfVimwiki 
     \ call fzf#vim#ag_raw(
     \   <q-args> . ' ' . g:vimwiki_location,
-    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}))
+    \   fzf#vim#with_preview(g:fzf_preview_window))
 
 " *** Wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
