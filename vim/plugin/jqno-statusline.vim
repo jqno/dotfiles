@@ -47,13 +47,13 @@ function! JqnoStatusLine() abort
     let l:ale_warnings = l:ale_counts.total - l:ale_errors
 
     let l:statusline =
-            \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N " : ""}' .
-            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="t" ? "  T " : ""}' .
-            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="i" ? "  I " : ""}' .
-            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="r" ? "  R " : ""}' .
-            \ '%#SLvisualmode#%{'. l:is_active .' && mode()=="v" ? "  V " : ""}' .
+            \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N |" : ""}' .
+            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="t" ? "  T  " : ""}' .
+            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="i" ? "  I  " : ""}' .
+            \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="r" ? "  R  " : ""}' .
+            \ '%#SLvisualmode#%{'. l:is_active .' && mode()=="v" ? "  V  " : ""}' .
             \ '%*' .
-            \ '%{' . l:is_active .' ? "" : "    "}' .
+            \ '%{' . l:is_active .' ? "" : "     "}' .
             \ ' ' .
             \ '#%n' .
             \ ' | ' .
