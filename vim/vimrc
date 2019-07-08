@@ -241,6 +241,22 @@ let g:fzf_action = {
     \ 'space': 'split',
     \ 'ctrl-q': 'sink'
     \ }
+" Define colors
+let g:fzf_colors = {
+    \ 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'Normal'],
+    \ 'hl':      ['fg', 'String'],
+    \ 'fg+':     ['fg', 'CursorLine'],
+    \ 'bg+':     ['bg', 'CursorLine'],
+    \ 'hl+':     ['fg', 'String'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', 'Ignore'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment']
+    \ }
 " Adds preview window to FzfAg
 command! -bang -nargs=+ FzfAg
     \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(g:fzf_preview_window), <bang>0)
