@@ -6,7 +6,9 @@ function SetupLsp(name, ispresent, server_info)
         nnoremap <silent><buffer> <leader>fd :LspDefinition<CR>
         nnoremap <silent><buffer> <leader>fr :LspReferences<CR>
         nnoremap <silent><buffer> <leader>mf :LspDocumentFormat<CR>
+        vnoremap <silent><buffer> <leader>mf :LspDocumentRangeFormat<CR>
         nnoremap <silent><buffer> <leader>rr :LspRename<CR>
+        nnoremap <silent><buffer> <leader>r<CR> :LspCodeAction<CR>
 
         setlocal omnifunc=lsp#complete
     else
