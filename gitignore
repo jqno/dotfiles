@@ -2,6 +2,7 @@
 
 # Eclipse JDT, the Java language server
 .metadata
+jdt.ls-java-project
 
 # Metals, the Scala language server
 .metals
