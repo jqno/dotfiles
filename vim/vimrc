@@ -61,6 +61,8 @@ let g:maplocalleader=','
 set autoindent
 " Backspace over indents, eols, line-starts: just like normal editors
 set backspace=indent,eol,start
+" Align indents with < and > with indent
+set shiftround
 " Don't recognise octal numbers with <C-A> and <C-X>
 set nrformats-=octal
 " Search more easily
