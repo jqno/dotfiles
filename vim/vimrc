@@ -15,9 +15,6 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
-Plug 'prabirshrestha/async.vim'
-" Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
-Plug 'prabirshrestha/vim-lsp', { 'commit': 'cf257bcd87f7bbca46fa2b29474a146593483905' }
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3

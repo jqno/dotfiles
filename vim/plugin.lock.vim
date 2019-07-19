@@ -4,7 +4,6 @@
 " or execute: vim -S snapshot.vim
 
 silent! let g:plugs['ale'].commit = '65ba4b8'
-silent! let g:plugs['async.vim'].commit = 'f301455'
 silent! let g:plugs['dash.vim'].commit = '25b17d9'
 silent! let g:plugs['diffconflicts'].commit = 'b097baa'
 silent! let g:plugs['fzf.vim'].commit = '35e6297'
