@@ -15,6 +15,7 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
@@ -227,6 +228,9 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 " *** ALE
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
+
+" *** CoC
+let g:coc_global_extensions = ['coc-java', 'coc-tsserver', 'coc-vimlsp']
 
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
