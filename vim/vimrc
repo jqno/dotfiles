@@ -15,9 +15,7 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
-Plug 'prabirshrestha/async.vim'
-" Keep specified version until this issue is fixed: https://github.com/prabirshrestha/vim-lsp/issues/377
-Plug 'prabirshrestha/vim-lsp', { 'commit': 'cf257bcd87f7bbca46fa2b29474a146593483905' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
@@ -81,6 +79,7 @@ set wildmenu
 set wildignore=node_modules
 " Completion
 set completeopt+=menuone,noinsert
+set shortmess+=c
 
 
 " Tags are stored in the project's .git folder
@@ -231,6 +230,16 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
 
+" *** CoC
+let g:coc_global_extensions = ['coc-java', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp']
+set formatexpr=CocAction('formatSelected')
+set updatetime=300
+augroup CoC
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup END
+
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
@@ -270,8 +279,9 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:TerminusFocusReporting=0
 
 " *** UltiSnips
-let g:UltiSnipsExpandTrigger = '<S-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
+" Mappings are handled by CoC
+let g:UltiSnipsExpandTrigger = '<NOP>'
+let g:UltiSnipsJumpForwardTrigger = '<NOP>'
 
 " *** Vim-swap
 let g:swap_no_default_key_mappings = 1
@@ -353,6 +363,16 @@ nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 " Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
 
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " Close extraneous windows
 nnoremap <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>
 
@@ -376,13 +396,20 @@ nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
-nnoremap <leader>fD :Dash<CR>
+nnoremap <leader>fd :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
 nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
+" *** Prefix <leader>g: going to places
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <laeder>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
 " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
-nnoremap <leader>mf :ALEFix<CR>
+nmap <silent> <leader>mf <Plug>(coc-format)
+vmap <silent> <leader>mf <Plug>(coc-format-selected)
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
@@ -396,6 +423,12 @@ nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 nmap <leader>r< <Plug>(swap-prev)
 nmap <leader>r> <Plug>(swap-next)
+nmap <leader>rf <Plug>(coc-fix-current)
+nnoremap <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>r<cr> <Plug>(coc-codeaction)
+vmap <leader>r<cr> <Plug>(coc-codeaction-selected)
+nmap <leader>r<space> <Plug>(coc-refactor)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
@@ -404,6 +437,9 @@ nnoremap <silent> <leader>bd :bp\|bd #<CR>
 " *** Prefix <leader>w: windows
 nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
+
+" *** Prefix <leader>c: CoC
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.

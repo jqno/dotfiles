@@ -15,7 +15,9 @@ endfunction
 
 function! AutocloseSmartReturn() abort
     let l:prev = <SID>PrevChar()
-    if l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
+    if pumvisible()
+        return "\<C-Y>"
+    elseif l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
         return "\<CR>\<Esc>O"
     else
         return "\<CR>"
