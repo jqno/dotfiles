@@ -1,6 +1,7 @@
 {
   "coc.preferences.diagnostic.displayByAle": true,
   "suggest.noselect": false,
+  "java.completion.importOrder": ["com", "nl", "org", "java", "javax"],
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
