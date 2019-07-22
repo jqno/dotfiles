@@ -79,6 +79,7 @@ set wildmenu
 set wildignore=node_modules
 " Completion
 set completeopt+=menuone,noinsert
+set shortmess+=c
 
 
 " Tags are stored in the project's .git folder
@@ -231,6 +232,12 @@ let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
 let g:coc_global_extensions = ['coc-java', 'coc-tsserver', 'coc-vimlsp']
+set updatetime=300
+augroup CoC
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup END
 
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
