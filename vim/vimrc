@@ -232,6 +232,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
 let g:coc_global_extensions = ['coc-java', 'coc-tsserver', 'coc-vimlsp']
+set formatexpr=CocAction('formatSelected')
 set updatetime=300
 augroup CoC
     autocmd!
@@ -361,6 +362,16 @@ nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 " Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
 
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " Close extraneous windows
 nnoremap <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>
 
@@ -384,13 +395,20 @@ nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
-nnoremap <leader>fD :Dash<CR>
+nnoremap <leader>fd :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
 nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
+" *** Prefix <leader>g: going to places
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <laeder>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
 " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
-nnoremap <leader>mf :ALEFix<CR>
+nmap <silent> <leader>mf <Plug>(coc-format)
+vmap <silent> <leader>mf <Plug>(coc-format-selected)
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
@@ -404,6 +422,12 @@ nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 nmap <leader>r< <Plug>(swap-prev)
 nmap <leader>r> <Plug>(swap-next)
+nmap <leader>rf <Plug>(coc-fix-current)
+nnoremap <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>r<cr> <Plug>(coc-codeaction)
+vmap <leader>r<cr> <Plug>(coc-codeaction-selected)
+nmap <leader>r<space> <Plug>(coc-refactor)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
@@ -412,6 +436,9 @@ nnoremap <silent> <leader>bd :bp\|bd #<CR>
 " *** Prefix <leader>w: windows
 nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
+
+" *** Prefix <leader>c: CoC
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
