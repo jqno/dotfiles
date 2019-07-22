@@ -1,5 +1,6 @@
 {
   "coc.preferences.diagnostic.displayByAle": true,
+  "suggest.noselect": false,
   "languageserver": {
     "bash": {
       "command": "bash-language-server",
