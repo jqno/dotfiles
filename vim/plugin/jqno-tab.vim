@@ -13,7 +13,11 @@ function! JqnoTab()
     endif
 
     if g:did_coc_loaded
-        return coc#refresh()
+        if coc#expandableOrJumpable()
+            return "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>"
+        else
+            return coc#refresh()
+        endif
     endif
 
     let has_slash = match(substr, '\/') != -1

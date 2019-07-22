@@ -231,7 +231,7 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
-let g:coc_global_extensions = ['coc-java', 'coc-tsserver', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-java', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp']
 set formatexpr=CocAction('formatSelected')
 set updatetime=300
 augroup CoC
@@ -279,8 +279,9 @@ let g:Hexokinase_refreshEvents = ['BufWritePost']
 let g:TerminusFocusReporting=0
 
 " *** UltiSnips
-let g:UltiSnipsExpandTrigger = '<S-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
+" Mappings are handled by CoC
+let g:UltiSnipsExpandTrigger = '<NOP>'
+let g:UltiSnipsJumpForwardTrigger = '<NOP>'
 
 " *** Vim-swap
 let g:swap_no_default_key_mappings = 1
