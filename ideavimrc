@@ -2,7 +2,7 @@
 let mapleader=' '
 
 " Pleasant defaults.
-set clipboard=unnamed
+set clipboard=unnamed,ideaput
 set ignorecase
 set nrformats-=octal
 set number
