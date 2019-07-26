@@ -1,7 +1,10 @@
 # Place globally ignored file patterns here
 
 # Eclipse JDT, the Java language server
+.classpath
 .metadata
+.project
+.settings
 jdt.ls-java-project
 
 # Metals, the Scala language server
