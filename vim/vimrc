@@ -6,6 +6,7 @@ packadd! matchit
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'dhruvasagar/vim-zoom'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-extract-variable'
@@ -300,6 +301,9 @@ command! -nargs=+ FzfVimwiki
     \   <q-args> . ' ' . g:vimwiki_location,
     \   fzf#vim#with_preview(g:fzf_preview_window))
 
+" *** Vim-Zoom
+let g:zoom#statustext = '[ZOOMED]'
+
 " *** Wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
 
@@ -437,6 +441,7 @@ nnoremap <silent> <leader>bd :bp\|bd #<CR>
 " *** Prefix <leader>w: windows
 nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
+nmap <leader>w<space> <Plug>(zoom-toggle)
 
 " *** Prefix <leader>c: CoC
 nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
