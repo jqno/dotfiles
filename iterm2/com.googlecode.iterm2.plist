@@ -72,7 +72,7 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>269 572 770 429 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1925 5 1907 1047 1920 0 1920 1057 </string>
+	<string>800 350 570 379 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>212 101 570 379 0 0 1680 1027 </string>
 	<key>New Bookmarks</key>
@@ -698,7 +698,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>B97B9193-7040-469C-952F-7B373641A599</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>2</integer>
+	<integer>5</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1432,6 +1432,8 @@
 	<true/>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>TabStyleWithAutomaticOption</key>
+	<integer>5</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>iTerm Version</key>
