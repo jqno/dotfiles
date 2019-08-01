@@ -232,7 +232,7 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
-let g:coc_global_extensions = ['coc-java', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-xml']
+let g:coc_global_extensions = ['coc-css', 'coc-java', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-xml']
 let g:coc_filetype_map = {
     \ 'xml.pom': 'xml'
     \ }
