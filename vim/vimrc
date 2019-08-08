@@ -6,6 +6,7 @@ packadd! matchit
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'dense-analysis/ale'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
@@ -29,7 +30,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
-Plug 'w0rp/ale'
 
 call plug#end()
 
