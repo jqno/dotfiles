@@ -22,7 +22,7 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 
 -- App switching
 hyper.bindKey({}, "space", function() am.switchToAndFromApp("com.googlecode.iterm2") end)
-hyper.bindKey({"alt"}, "space", function() am.newItermWindow() end)
+hyper.bindKey({}, "return", function() am.newItermWindow() end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
@@ -60,7 +60,6 @@ local layouts = {
   { bundle = "com.apple.iCal", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.apple.Safari", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.googlecode.iterm2", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
