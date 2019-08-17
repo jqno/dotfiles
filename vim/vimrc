@@ -17,7 +17,6 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
@@ -31,6 +30,14 @@ Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
+
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh' }
+Plug 'neoclide/coc-css', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'iamcco/coc-vimlsp', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'fannheyward/coc-xml', { 'do': 'yarn install --frozen-lockfile' }
 
 call plug#end()
 
@@ -234,7 +241,6 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
-let g:coc_global_extensions = ['coc-css', 'coc-java', 'coc-snippets', 'coc-tsserver', 'coc-vimlsp', 'coc-xml']
 let g:coc_filetype_map = {
     \ 'xml.pom': 'xml'
     \ }
