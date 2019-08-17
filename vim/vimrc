@@ -18,6 +18,7 @@ Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
 Plug 'RRethy/vim-hexokinase'
@@ -287,6 +288,10 @@ let g:TerminusFocusReporting=0
 " Mappings are handled by CoC
 let g:UltiSnipsExpandTrigger = '<NOP>'
 let g:UltiSnipsJumpForwardTrigger = '<NOP>'
+
+" *** Vim-Markdown
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_folding_disabled = 1
 
 " *** Vim-swap
 let g:swap_no_default_key_mappings = 1
