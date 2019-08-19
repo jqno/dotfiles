@@ -4,6 +4,7 @@ PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installSoftware() {
   installMacos
+  installNpm
 }
 
 function installMacos() {
@@ -13,6 +14,12 @@ function installMacos() {
 
   echo "Installing brew dependencies..."
   brew bundle install --no-upgrade --file=$PWD/software/Brewfile
+}
+
+function installNpm() {
+  pushd $PWD/software > /dev/null
+  npm install --global
+  popd > /dev/null
 }
 
 
