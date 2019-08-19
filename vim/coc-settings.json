@@ -1,5 +1,6 @@
 {
   "coc.preferences.diagnostic.displayByAle": true,
+  "coc.preferences.extensionUpdateCheck": "never",
   "suggest.noselect": false,
   "java.completion.importOrder": ["com", "nl", "org", "java", "javax"],
   "languageserver": {
