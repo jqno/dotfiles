@@ -7,23 +7,19 @@ function installDotfiles() {
     . $PWD/macos/install.sh 
   fi
 
-  scriptFor "git"
-  scriptFor "iterm2"
   installFor "ctags"
+  scriptFor "git"
   installFor "hammerspoon"
   installFor "ideavimrc"
+  scriptFor "iterm2"
   installFor "karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
   installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
+  scriptFor "vim"
   installFor "zsh/zshrc" ".zshrc"
   installFor "zsh/config" ".zsh"
   installFor "zsh/config/environment.sh" ".zprofile" # Makes sure environment variables are loaded in MacVim as well
-
-  echo "Installing Vim plugins..."
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim -c JqnoPlugInitialInstall
 }
 
 
