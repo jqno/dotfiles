@@ -3,7 +3,13 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installSoftware() {
-  installMacos
+  if [ "$(uname -s)" == "Darwin" ]; then
+    installMacos
+  else
+    echo "Not running on a supported OS! Can't install software! Abort abort!"
+    exit 1
+  fi
+
   installNpm
 }
 
