@@ -11,6 +11,7 @@ function installSoftware() {
   fi
 
   installNpm
+  installGem
 }
 
 function installMacos() {
@@ -26,6 +27,11 @@ function installNpm() {
   pushd $PWD/software > /dev/null
   npm install --global
   popd > /dev/null
+}
+
+function installGem() {
+  gem install bundler
+  bundle install --gemfile=$PWD/software/Gemfile
 }
 
 
