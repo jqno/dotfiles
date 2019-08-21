@@ -12,6 +12,7 @@ function installSoftware() {
 
   installNpm
   installGem
+  installPip
 }
 
 function installMacos() {
@@ -32,6 +33,17 @@ function installNpm() {
 function installGem() {
   gem install bundler
   bundle install --gemfile=$PWD/software/Gemfile
+}
+
+function installPip() {
+  if [ -x "$(command -v pip3)" ]; then
+    pip3 install -r $PWD/software/Pipfile
+  elif [ -x "$(command -v pip)" ]; then
+    pip install -r $PWD/software/Pipfile
+  else
+    echo "Could not find a valid Pip executable. Aborting!"
+    exit 1
+  fi
 }
 
 
