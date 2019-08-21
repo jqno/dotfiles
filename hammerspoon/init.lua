@@ -21,8 +21,8 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 
 
 -- App switching
-hyper.bindKey({}, "space", function() am.switchToAndFromApp("com.googlecode.iterm2") end)
-hyper.bindKey({}, "return", function() am.newItermWindow() end)
+hyper.bindKey({}, "return", function() am.switchToAndFromApp("com.googlecode.iterm2") end)
+hyper.bindKey({"cmd"}, "return", function() am.newItermWindow() end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
@@ -69,7 +69,7 @@ local layouts = {
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "org.mozilla.firefox", func = function(win) wm.windowMaximize(0, win) end }
 }
-hyper.bindKey({"cmd"}, "return", function() wm.applyLayouts(layouts) end)
+hyper.bindKey({"cmd"}, "delete", function() wm.applyLayouts(layouts) end)
 hyper.bindKey({}, "tab", function() wm.cycleScreen() end)
 
 
