@@ -1,5 +1,7 @@
+# Install software here
 cask_args appdir: '/Applications'
 
+# Taps
 tap "AdoptOpenJDK/openjdk"
 tap "heroku/brew"
 tap "homebrew/bundle"
@@ -9,6 +11,7 @@ tap "homebrew/services"
 tap "olafurpg/scalafmt"
 tap "scalacenter/bloop"
 
+# Required for installing other things
 brew "mas"
 mas "Xcode", id: 497799835
 brew "node"
@@ -17,6 +20,7 @@ brew "ruby"
 cask "adoptopenjdk8"
 cask "adoptopenjdk11"
 
+# Software to install
 brew "bat"
 brew "ctags"
 brew "figlet"
