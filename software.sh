@@ -22,17 +22,29 @@ function installMacos() {
 
   echo "Installing brew dependencies..."
   brew bundle install --no-upgrade --file=$PWD/software/Brewfile
+
+  if [ $? -ne 0 ]; then
+    echo "Brew failed (did you sign into the App Store?)"
+    exit 1
+  fi
 }
 
 function installNpm() {
   pushd $PWD/software > /dev/null
   npm install --global
+  if [ $? -ne 0 ]; then
+    echo "NPM failed"
+    exit 1
+  fi
   popd > /dev/null
 }
 
 function installGem() {
-  gem install bundler
-  bundle install --gemfile=$PWD/software/Gemfile
+  gem install --file $PWD/software/Gemfile
+  if [ $? -ne 0 ]; then
+    echo "Gem failed"
+    exit 1
+  fi
 }
 
 function installPip() {
@@ -42,6 +54,10 @@ function installPip() {
     pip install -r $PWD/software/Pipfile
   else
     echo "Could not find a valid Pip executable. Aborting!"
+    exit 1
+  fi
+  if [ $? -ne 0 ]; then
+    echo "Pip failed"
     exit 1
   fi
 }
