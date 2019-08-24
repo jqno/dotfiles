@@ -20,6 +20,7 @@ function installMacos() {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  echo "** Installing mas and Xcode. This may take a while; the Launchpad icon has a nice progress bar."
   brew bundle install --no-upgrade --file=$PWD/software/Brewfile-pre
   if [ $? -ne 0 ]; then
     echo "** Unable to install Xcode: aborting."
