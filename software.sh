@@ -20,6 +20,12 @@ function installMacos() {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  brew bundle install --no-upgrade --file=$PWD/software/Brewfile-pre
+  if [ $? -ne 0 ]; then
+    echo "** Unable to install Xcode: aborting."
+    exit 1
+  fi
+
   sudo xcodebuild -license accept
   if [ $? -ne 0 ]; then
     echo "** Sadly, I can't continue if you don't accept the license... 😕"

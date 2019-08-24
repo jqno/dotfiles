@@ -12,8 +12,6 @@ tap "olafurpg/scalafmt"
 tap "scalacenter/bloop"
 
 # Required for installing other things
-brew "mas"
-mas "Xcode", id: 497799835
 brew "node"
 brew "python"
 brew "ruby"
