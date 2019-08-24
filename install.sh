@@ -3,8 +3,14 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installDotfiles() {
+  echo "*************************"
+  echo "** INSTALLING SOFTWARE **"
+  echo "*************************"
   . $PWD/software.sh
 
+  echo "******************************"
+  echo "** INSTALLING CONFIGURATION **"
+  echo "******************************"
   installFor "ctags"
   scriptFor "git"
   installFor "hammerspoon"
@@ -36,20 +42,20 @@ function installFor() {
     mkdir -p ~/$3
   fi
 
-  echo "Linking $FROM to ~/$TO..."
+  echo "** Linking $FROM to ~/$TO..."
   rm ~/$TO 2> /dev/null
   ln -s $PWD/$FROM ~/$TO
 }
 
 function scriptFor() {
-  echo "Installing $1..."
+  echo "** Installing $1..."
   . $PWD/$1.sh
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
   installDotfiles
 else
-  read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+  read -p "** This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
   echo ""
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     installDotfiles
