@@ -20,6 +20,12 @@ function installMacos() {
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 
+  sudo xcodebuild -license accept
+  if [ $? -ne 0 ]; then
+    echo "Sadly, I can't continue if you don't accept the license... 😕"
+    exit 1
+  fi
+
   echo "Installing brew dependencies..."
   brew bundle install --no-upgrade --file=$PWD/software/Brewfile
 
