@@ -46,7 +46,8 @@ function installNpm() {
 }
 
 function installGem() {
-  gem install --file $PWD/software/Gemfile
+  # Built-in gem won't install globally, and brew refuses to replace its version with the built-in one: let's call it directly.
+  /usr/local/opt/ruby/bin/gem install --file $PWD/software/Gemfile
   if [ $? -ne 0 ]; then
     echo "Gem failed"
     exit 1
