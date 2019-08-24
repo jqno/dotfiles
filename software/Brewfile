@@ -12,6 +12,8 @@ tap "scalacenter/bloop"
 brew "mas"
 brew "node"
 mas "Xcode", id: 497799835
+cask "adoptopenjdk8"
+cask "adoptopenjdk11"
 
 brew "bat"
 brew "ctags"
@@ -41,8 +43,6 @@ brew "heroku/brew/heroku"
 brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "scalacenter/bloop/bloop"
 
-cask "adoptopenjdk8"
-cask "adoptopenjdk11"
 cask "alfred"
 cask "avast-security"
 cask "bartender"
