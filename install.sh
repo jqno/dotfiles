@@ -17,6 +17,7 @@ function installDotfiles() {
   installFor "ideavimrc"
   scriptFor "iterm2"
   installFor "karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
+  scriptFor "macos"
   installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
