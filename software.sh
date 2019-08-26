@@ -3,6 +3,9 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 function installSoftware() {
+  echo "** Some dependencies need the administrator password:"
+  sudo -v
+
   if [ "$(uname -s)" == "Darwin" ]; then
     installMacos
   else
