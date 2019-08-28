@@ -47,19 +47,16 @@ function installMacos() {
 
 function installNpm() {
   echo "** Installing npm dependencies..."
-  pushd $PWD/software > /dev/null
-  npm install --global
+  source $PWD/software/npm.sh
   if [ $? -ne 0 ]; then
     echo "** npm failed"
     exit 1
   fi
-  popd > /dev/null
 }
 
 function installGem() {
   echo "** Installing Gem dependencies..."
-  # Built-in gem won't install globally, and brew refuses to replace its version with the built-in one: let's call it directly.
-  /usr/local/opt/ruby/bin/gem install --file $PWD/software/Gemfile
+  source $PWD/software/gem.sh
   if [ $? -ne 0 ]; then
     echo "** Gem failed"
     exit 1
@@ -68,14 +65,7 @@ function installGem() {
 
 function installPip() {
   echo "** Installing Pip dependencies..."
-  if [ -x "$(command -v pip3)" ]; then
-    pip3 install -r $PWD/software/Pipfile
-  elif [ -x "$(command -v pip)" ]; then
-    pip install -r $PWD/software/Pipfile
-  else
-    echo "** Could not find a valid Pip executable. Aborting!"
-    exit 1
-  fi
+  source $PWD/software/pip.sh
   if [ $? -ne 0 ]; then
     echo "** Pip failed"
     exit 1
