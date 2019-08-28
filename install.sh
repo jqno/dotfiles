@@ -25,6 +25,7 @@ function installDotfiles() {
   installFor "zsh/zshrc" ".zshrc"
   installFor "zsh/config" ".zsh"
   installFor "zsh/config/environment.sh" ".zprofile" # Makes sure environment variables are loaded in MacVim as well
+  scriptFor "zsh"
 }
 
 
