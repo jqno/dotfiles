@@ -20,7 +20,6 @@ Plug 'machakann/vim-swap'
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
-Plug 'RRethy/vim-hexokinase'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
