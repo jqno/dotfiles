@@ -4,12 +4,6 @@
   "suggest.noselect": false,
   "java.completion.importOrder": ["com", "nl", "org", "java", "javax"],
   "languageserver": {
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh", "zsh"],
-      "ignoredRootPaths": ["~"]
-    },
     "metals": {
       "command": "metals-vim",
       "rootPatterns": ["build.sbt"],
