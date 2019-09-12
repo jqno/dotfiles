@@ -39,7 +39,7 @@ endfunction
 function! AutocloseSmartJump() abort
     let l:i = 0
     let l:result = ''
-    while index([')', ']', '}', '"', '''', '`'], <SID>NextChar(l:i)) >= 0
+    while index([' ', ')', ']', '}', '"', '''', '`'], <SID>NextChar(l:i)) >= 0
         let l:result .= "\<Right>"
         let l:i += 1
     endwhile
