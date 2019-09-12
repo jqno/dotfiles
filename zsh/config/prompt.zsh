@@ -1,11 +1,21 @@
 setopt prompt_subst
 
+export VIRTUAL_ENV_DISABLE_PROMPT="disabled"
+
 function prompt_working_directory() {
   echo "%~"
 }
 
-function prompt_setenv_prompt_injection() {
-  [[ -e ~/.setEnv/prompt ]] && cat ~/.setEnv/prompt
+function prompt_environment() {
+  local ENVIRONMENT=""
+
+  # setEnv prompt file
+  [[ -e ~/.setEnv/prompt ]] && ENVIRONMENT+=$(cat ~/.setEnv/prompt)
+
+  # Python virtual env
+  [[ -n $VIRTUAL_ENV ]] && ENVIRONMENT+="🐍$(basename "$VIRTUAL_ENV")"
+
+  echo $ENVIRONMENT
 }
 
 function prompt_ret_status() {
@@ -117,13 +127,13 @@ function build_prompt() {
   local P=""
 
   local WORKING_DIR=$(prompt_working_directory)
-  local INJECTION=$(prompt_setenv_prompt_injection)
+  local ENVIRONMENT=$(prompt_environment)
   local GIT_STATUS=$(git status -sb --porcelain 2> /dev/null)
   local GIT_WARNINGS=""
 
   P+="$cARROW┌ "
   P+="$SEP $cDIR$WORKING_DIR"
-  [[ -n "$INJECTION" ]] && P+=" $SEP $cDIR$INJECTION"
+  [[ -n "$ENVIRONMENT" ]] && P+=" $SEP $cDIR$ENVIRONMENT"
 
   if prompt_is_inside_git
   then
