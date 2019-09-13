@@ -13,10 +13,10 @@ function prompt_environment() {
   [[ -e ~/.setEnv/prompt ]] && ENVIRONMENT+=$(cat ~/.setEnv/prompt)
 
   # Java version
-  [[ -n $JAVA_MAJOR_VERSION ]] && ENVIRONMENT+="☕$JAVA_MAJOR_VERSION"
+  [[ -n $JAVA_MAJOR_VERSION ]] && ENVIRONMENT+=" ☕$JAVA_MAJOR_VERSION"
 
   # Python virtual env
-  [[ -n $VIRTUAL_ENV ]] && ENVIRONMENT+="🐍$(basename "$VIRTUAL_ENV")"
+  [[ -n $VIRTUAL_ENV ]] && ENVIRONMENT+=" 🐍$(basename "$VIRTUAL_ENV")"
 
   echo $ENVIRONMENT
 }
