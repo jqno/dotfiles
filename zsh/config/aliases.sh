@@ -44,6 +44,7 @@ then
       fi
       export JAVA_HOME=`/usr/libexec/java_home -v $@`
       export PATH=$JAVA_HOME/bin:$PATH
+      export JAVA_MAJOR_VERSION="$(java -version 2>&1 | grep 'version' | sed -E 's/.*version "(.*)".*/\1/')"
     fi
   }
   function removeFromPath() {
@@ -51,5 +52,7 @@ then
   }
 
   setjdk-silent 11
+
+  export JAVA_MAJOR_VERSION=""
 fi
 
