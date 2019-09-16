@@ -8,7 +8,7 @@ source ~/.zsh/prompt.zsh
 
 source ~/.zsh/iterm.sh
 source ~/.zsh/vim-terminal-mode.sh
-source ~/work/environment/environment.sh 2> /dev/null
+source ~/.setEnv/session.sh
 
 # Zsh plugins
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh

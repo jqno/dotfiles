@@ -51,15 +51,6 @@
 # the profile directory. It will be output to the terminal when switching to this profile. No file means no banner.
 #
 #
-# Injecting something into the prompt
-# ===================================
-#
-# If you want to inject a symbol or some text into your prompt when a certain profile is active, just create a file
-# called prompt inside the profile directory. It will be copied to the ~/.setEnv directory, where your prompt
-# configuration can pick it up.
-# Note that this script doesn't actually add it to your prompt; you need to arrange for that yourself.
-#
-#
 # Custom initialization
 # =====================
 #
@@ -69,6 +60,28 @@
 # If you need to clean up when leaving the current profile (for instance, if you need to shut down a docker container),
 # create a file called shutdown.sh inside the profile directory. It will be called right before switching to a new
 # profile.
+#
+# Custom terminal session environment
+# ===================================
+#
+# If you need to configure your terminal session environment, for instance if you want to define some environment
+# variables or aliases specific to your profile, create a file called session.sh inside the profile directory.
+# It will be sourced every time your terminal starts.
+#
+# NOTE: to make that work, you have to add the following line to your .bashrc or .zshrc:
+# 
+#     source ~/.setEnv/session.sh
+#
+#
+# Injecting something into the prompt
+# ===================================
+#
+# If you want to inject a symbol or some text into your prompt when a certain profile is active, just set the
+# SETENV_MARKER environment variable in your session.sh, for example:
+#
+#     export SETENV_MARKER=🏠
+#
+# Note that this script doesn't actually add it to your prompt; you need to arrange for that yourself.
 
 if [[ -z "$1" ]]; then
   echo "No parameter"
@@ -112,12 +125,12 @@ if [[ -e $ENVDIR/ssh ]]; then
   ln -s $ENVDIR/ssh ~/.ssh
 fi
 
-if [[ -e $SETENVDIR/prompt ]]; then
-  rm $SETENVDIR/prompt
+if [[ -e $SETENVDIR/session.sh ]]; then
+  rm $SETENVDIR/session.sh
 fi
 
-if [[ -e $ENVDIR/prompt ]]; then
-  cp $ENVDIR/prompt $SETENVDIR
+if [[ -e $ENVDIR/session.sh ]]; then
+  cp $ENVDIR/session.sh $SETENVDIR
 fi
 
 if [[ -e $SETENVDIR/shutdown.sh ]]; then
@@ -135,4 +148,6 @@ fi
 if [[ -e $ENVDIR/banner ]]; then
   cat $ENVDIR/banner
 fi
+
+source $ENVDIR/session.sh
 

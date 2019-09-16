@@ -10,7 +10,7 @@ function prompt_environment() {
   local ENVIRONMENT=""
 
   # setEnv prompt file
-  [[ -e ~/.setEnv/prompt ]] && ENVIRONMENT+=$(cat ~/.setEnv/prompt)
+  [[ -n $SETENV_MARKER ]] && ENVIRONMENT+=$SETENV_MARKER
 
   # Java version
   [[ -n $JAVA_MAJOR_VERSION ]] && ENVIRONMENT+=" ☕$JAVA_MAJOR_VERSION"
