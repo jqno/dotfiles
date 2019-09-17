@@ -59,6 +59,7 @@ then
       fi
       export JAVA_HOME=`/usr/libexec/java_home -v $@`
       export PATH=$JAVA_HOME/bin:$PATH
+      export JAVA_MAJOR_VERSION=""
     fi
   }
   function removeFromPath() {
