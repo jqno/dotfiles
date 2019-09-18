@@ -2,7 +2,7 @@
 cask_args appdir: '/Applications'
 
 # Taps
-tap "AdoptOpenJDK/openjdk"
+tap "AdoptOpenJDK/openjdk"  # For versions, see: https://github.com/AdoptOpenJDK/homebrew-openjdk
 tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
