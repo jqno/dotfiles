@@ -1,6 +1,9 @@
 # General
 alias cd..='cd ..'
 
+# setEnv.sh
+alias session="source ~/.setEnv/session.sh"
+
 # Vim
 alias vanilla-vim="vim -u NONE -U NONE -N"
 
