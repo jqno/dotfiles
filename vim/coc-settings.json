@@ -2,6 +2,7 @@
   "coc.preferences.diagnostic.displayByAle": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "suggest.noselect": false,
+  "snippets.priority": 100,
   "java.completion.importOrder": ["com", "nl", "org", "java", "javax"],
   "languageserver": {
     "metals": {
