@@ -417,7 +417,7 @@ nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
 " *** Prefix <leader>g: going to places
 nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <laeder>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 
