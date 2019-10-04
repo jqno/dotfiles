@@ -1,5 +1,5 @@
 {
-  "coc.preferences.diagnostic.displayByAle": true,
+  "diagnostic.displayByAle": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "suggest.noselect": false,
   "snippets.priority": 100,
