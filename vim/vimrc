@@ -380,6 +380,8 @@ nnoremap T= ?=\s*?e<CR>:nohls<CR>
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 " Open VimWiki
 nnoremap <F12> :VimwikiIndex<CR>
+" Start CoC engine
+nnoremap <silent> <F2> :CocStart<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
