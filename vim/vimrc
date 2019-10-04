@@ -242,6 +242,7 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 let g:ale_lint_on_text_changed = 'never'
 
 " *** CoC
+let g:coc_start_at_startup = 0
 set formatexpr=CocAction('formatSelected')
 set updatetime=300
 augroup CoC
