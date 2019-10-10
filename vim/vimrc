@@ -20,7 +20,7 @@ Plug 'machakann/vim-swap'
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
@@ -418,6 +418,7 @@ nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fd :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
+nnoremap <leader>fN :NERDTreeFind<CR>
 nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
 " *** Prefix <leader>g: going to places
