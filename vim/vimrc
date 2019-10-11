@@ -93,11 +93,6 @@ set completeopt+=menuone,noinsert
 set shortmess+=c
 
 
-" Tags are stored in the project's .git folder
-" This strategy requires vim-fugitive and Gutentags
-let g:gutentags_ctags_tagfile='.git/tags'
-set notagrelative
-
 augroup vimStartup
     autocmd!
 
