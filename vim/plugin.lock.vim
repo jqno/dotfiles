@@ -4,14 +4,6 @@
 " or execute: vim -S snapshot.vim
 
 silent! let g:plugs['ale'].commit = '41ff80dc'
-silent! let g:plugs['coc-css'].commit = '235009a'
-silent! let g:plugs['coc-java'].commit = '7e3bdee'
-silent! let g:plugs['coc-json'].commit = 'd47bbf7'
-silent! let g:plugs['coc-snippets'].commit = '9a8da3f'
-silent! let g:plugs['coc-tsserver'].commit = 'd64d956'
-silent! let g:plugs['coc-vimlsp'].commit = '6ee91b6'
-silent! let g:plugs['coc-xml'].commit = '11386f8'
-silent! let g:plugs['coc.nvim'].commit = '25171cab'
 silent! let g:plugs['dash.vim'].commit = '25b17d9'
 silent! let g:plugs['diffconflicts'].commit = '61765d0'
 silent! let g:plugs['fzf.vim'].commit = '35e6297'

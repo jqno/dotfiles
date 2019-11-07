@@ -69,7 +69,6 @@ function! JqnoStatusLine() abort
             \ '%{'. l:is_active_not_terminal .' && &modified ? "| + " : ""}' .
             \ '%*' .
             \ '%=' .
-            \ '%{'. l:is_active .' ? coc#status() : ""}' .
             \ '  ' .
                 \ '%#SLaleok#' .
                 \ (l:ale_counts.total == 0 ? '%{' . l:is_active_not_terminal . ' ? " ✓ " : ""}' : '') .
