@@ -33,7 +33,15 @@ endfunction
 
 function! JqnoStatusLineFileType() abort
     if &filetype !=# ''
-        return &filetype
+        let l:lsc_status = LSCServerStatus()
+        if l:lsc_status ==# 'running'
+            let l:lsc = 'λ '
+        elseif l:lsc_status ==# 'unexpected exit' || l:lsc_status ==# 'failed'
+            let l:lsc = '! '
+        else
+            let l:lsc = ''
+        endif
+        return l:lsc . &filetype
     endif
     return '-'
 endfunction
