@@ -17,6 +17,7 @@ Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
+Plug 'natebosch/vim-lsc'
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
@@ -391,7 +392,7 @@ nnoremap <leader>f<F12> :FzfVimwiki<Space>
 " nmap <silent> <leader>gr <Plug>(coc-references)
 
 " " *** Prefix <leader>m: running make
-" nnoremap <leader>mm :Make<CR>
+nnoremap <leader>mm :Make<CR>
 " nmap <silent> <leader>mf <Plug>(coc-format)
 " vmap <silent> <leader>mf <Plug>(coc-format-selected)
 
@@ -427,4 +428,31 @@ nmap <leader>w<space> <Plug>(zoom-toggle)
 " Expand %% to the directory of the currently open file, in Command-Line mode.
 " # is the 'other' file, because % would be the Command-Line window itself.
 cnoremap %% <C-R>=expand('#:h').'/'<CR>
+
+" LSC
+let g:lsc_enable_autocomplete = v:false
+
+let g:lsc_server_commands = {
+    \ 'elm': 'elm-language-server --stdio',
+    \ 'javascript': 'typescript-language-server --stdio',
+    \ 'scala': 'metals-vim',
+    \ 'sbt.scala': 'metals-vim',
+    \ 'typescript': 'typescript-language-server --stdio',
+    \ }
+
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<leader>gd',
+    \ 'GoToDefinitionSplit': '<leader>gD',
+    \ 'FindReferences': '<leader>fr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': '<leader>gi',
+    \ 'FindCodeActions': '<leader>r<cr>',
+    \ 'Rename': '<leader>rr',
+    \ 'ShowHover': 'K',
+    \ 'DocumentSymbol': '<leader>fs',
+    \ 'WorkspaceSymbol': '<leader>fS',
+    \ 'SignatureHelp': '<leader>ms',
+    \ 'Completion': 'omnifunc',
+    \ }
 
