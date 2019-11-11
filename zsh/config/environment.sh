@@ -1,5 +1,5 @@
 # Path
-export PATH=~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
+export PATH=~/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
 
 # Default editor
 export EDITOR=vim

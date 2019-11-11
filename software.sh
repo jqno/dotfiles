@@ -16,6 +16,7 @@ function installSoftware() {
   installNpm
   installGem
   installPip
+  installManual
 }
 
 function installMacos() {
@@ -68,6 +69,15 @@ function installPip() {
   source $PWD/software/pip.sh
   if [ $? -ne 0 ]; then
     echo "** Pip failed"
+    exit 1
+  fi
+}
+
+function installManual() {
+  echo "** Installing manual dependencies..."
+  source $PWD/software/manual.sh
+  if [ $? -ne 0 ]; then
+    echo "** Manual failed"
     exit 1
   fi
 }
