@@ -6,6 +6,7 @@ packadd! matchit
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'chrisbra/Colorizer'
 Plug 'dense-analysis/ale'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'gcmt/wildfire.vim'
@@ -227,6 +228,9 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
 
+" *** Colorizer
+let g:colorizer_auto_filetype = 'css,html,scss'
+
 " *** FZF
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
@@ -256,10 +260,6 @@ let g:fzf_colors = {
 " Adds preview window to FzfAg
 command! -bang -nargs=+ FzfAg
     \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(g:fzf_preview_window), <bang>0)
-
-" *** Hexokinase
-let g:Hexokinase_ftAutoload = ['css', 'scss', 'html']
-let g:Hexokinase_refreshEvents = ['BufWritePost']
 
 " *** Terminus
 " Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
