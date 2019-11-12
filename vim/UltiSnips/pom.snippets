@@ -1,0 +1,172 @@
+snippet parent "<parent>"
+<parent>
+    <groupId>$1</groupId>
+    <artifactId>$2</artifactId>
+    <version>$3</version>
+</parent>
+endsnippet
+
+snippet project "<project>"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>$1</groupId>
+    <artifactId>$2</artifactId>
+    <packaging>${3:jar/pom}</packaging>
+
+    <name>$4</name>
+    <version>${5:0.1-SNAPSHOT}</version>
+    <description>$6</description>
+
+    <properties>
+        $7
+    </properties>
+
+    <dependencies>
+        $8
+    </dependencies>
+
+    <build>
+        <plugins>
+            $9
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            $10
+        </plugins>
+    </reporting>
+</project>
+endsnippet
+
+snippet properties "<properties>"
+<properties>
+    $1
+</properties>
+endsnippet
+
+snippet repositories "<repositories>"
+<repositories>
+    <repository>
+        <id>$1</id>
+        <url>$2</url>
+    </repository>
+    $3
+</repositories>
+endsnippet
+
+snippet repo "<repository>"
+<repository>
+    <id>$1</id>
+    <url>$2</url>
+</repository>
+endsnippet
+
+snippet dependencies "<dependencies>"
+<dependencies>
+    <dependency>
+        <groupId>$1</groupId>
+        <artifactId>$2</artifactId>
+        <version>$3</version>
+        ${4:<scope>${5:test/provided}</scope>}
+    </dependency>
+    $6
+</dependencies>
+endsnippet
+
+snippet dep "<dependency>"
+<dependency>
+    <groupId>$1</groupId>
+    <artifactId>$2</artifactId>
+    <version>$3</version>
+    ${4:<scope>${5:test/provided}</scope>}
+</dependency>
+endsnippet
+
+snippet build "<build>"
+<build>
+    <plugins>
+        $1
+    </plugins>
+</build>
+endsnippet
+
+snippet reporting "<reporting>"
+<reporting>
+    <plugins>
+        $0
+    </plugins>
+</reporting>
+endsnippet
+
+snippet plugins "<plugins>"
+<plugins>
+    <plugin>
+        <groupId>$1</groupId>
+        <artifactId>$2</artifactId>
+        <version>$3</version>
+    </plugin>
+    $4
+</plugins>
+endsnippet
+
+snippet plugin "<plugin>"
+<plugin>
+    <groupId>$1</groupId>
+    <artifactId>$2</artifactId>
+    <version>$3</version>
+</plugin>
+endsnippet
+
+snippet configuration "<configuration>"
+<configuration>
+    $1
+</configuration>
+endsnippet
+
+snippet executions "<executions>"
+<executions>
+    <execution>
+        <id>$1</id>
+        <phase>$2</phase>
+        <goals>
+            <goal>$3</goal>
+        </goals>
+    </execution>
+    $4
+</executions>
+endsnippet
+
+snippet execution "<execution>"
+<execution>
+    <id>$1</id>
+    <phase>$2</phase>
+    <goals>
+        <goal>$3</goal>
+    </goals>
+</execution>
+endsnippet
+
+snippet profiles "<profiles>"
+<profiles>
+    <profile>
+        <id>$1</id>
+        <activation>
+            $2
+        </activation>
+        $3
+    </profile>
+    $4
+</profiles>
+endsnippet
+
+snippet profile "<profile>"
+<profile>
+    <id>$1</id>
+    <activation>
+        $2
+    </activation>
+    $3
+</profile>
+endsnippet
+
