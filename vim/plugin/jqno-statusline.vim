@@ -33,7 +33,15 @@ endfunction
 
 function! JqnoStatusLineFileType() abort
     if &filetype !=# ''
-        return &filetype
+        let l:lsc_status = LSCServerStatus()
+        if l:lsc_status ==# 'running'
+            let l:lsc = 'λ '
+        elseif l:lsc_status ==# 'unexpected exit' || l:lsc_status ==# 'failed'
+            let l:lsc = '! '
+        else
+            let l:lsc = ''
+        endif
+        return l:lsc . &filetype
     endif
     return '-'
 endfunction
@@ -69,7 +77,6 @@ function! JqnoStatusLine() abort
             \ '%{'. l:is_active_not_terminal .' && &modified ? "| + " : ""}' .
             \ '%*' .
             \ '%=' .
-            \ '%{'. l:is_active .' ? coc#status() : ""}' .
             \ '  ' .
                 \ '%#SLaleok#' .
                 \ (l:ale_counts.total == 0 ? '%{' . l:is_active_not_terminal . ' ? " ✓ " : ""}' : '') .
