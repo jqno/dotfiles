@@ -270,6 +270,34 @@ let g:TerminusFocusReporting=0
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<NOP>'
 
+" *** vim-lsc
+let g:lsc_enable_autocomplete = v:false
+
+let g:lsc_server_commands = {
+    \ 'elm': 'elm-language-server --stdio',
+    \ 'java': 'eclipse-jdt-ls.sh -data ' . getcwd(),
+    \ 'javascript': 'typescript-language-server --stdio',
+    \ 'scala': 'metals-vim',
+    \ 'sbt.scala': 'metals-vim',
+    \ 'typescript': 'typescript-language-server --stdio',
+    \ }
+
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<leader>gd',
+    \ 'GoToDefinitionSplit': '<leader>gD',
+    \ 'FindReferences': '<leader>fr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': '<leader>gi',
+    \ 'FindCodeActions': '<leader>r<cr>',
+    \ 'Rename': '<leader>rr',
+    \ 'ShowHover': 'K',
+    \ 'DocumentSymbol': '<leader>fs',
+    \ 'WorkspaceSymbol': '<leader>fS',
+    \ 'SignatureHelp': '<leader>ms',
+    \ 'Completion': 'omnifunc',
+    \ }
+
 " *** Vim-Markdown
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
@@ -384,17 +412,18 @@ nnoremap <leader>fd :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
 nnoremap <leader>fN :NERDTreeFind<CR>
 nnoremap <leader>f<F12> :FzfVimwiki<Space>
+" nnoremap <leader>fr :LSClientFindReferences<CR> " Managed by vim-lsc
+" nnoremap <leader>fs :LSClientDocumentSymbol<CR> " Managed by vim-lsc
+" nnoremap <leader>fS :LSClientWorkspaceSymbol<CR> " Managed by vim-lsc
 
 " " *** Prefix <leader>g: going to places
-" nmap <silent> <leader>gd <Plug>(coc-definition)
-" nmap <silent> <leader>gt <Plug>(coc-type-definition)
-" nmap <silent> <leader>gi <Plug>(coc-implementation)
-" nmap <silent> <leader>gr <Plug>(coc-references)
+" nnoremap <leader>gd :LSClientGoToDefinition<CR> " Managed by vim-lsc
+" nnoremap <leader>gD :LSClientGoToDefinitionSplit<CR> " Managed by vim-lsc
+" nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
 
 " " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
-" nmap <silent> <leader>mf <Plug>(coc-format)
-" vmap <silent> <leader>mf <Plug>(coc-format-selected)
+" nnoremap <leader>ms :LSClientSignatureHelp<CR> " Managed by vim-lsc
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
@@ -408,12 +437,8 @@ nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 nmap <leader>r< <Plug>(swap-prev)
 nmap <leader>r> <Plug>(swap-next)
-" nmap <leader>rf <Plug>(coc-fix-current)
-" nnoremap <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
-" nmap <leader>rr <Plug>(coc-rename)
-" nmap <leader>r<cr> <Plug>(coc-codeaction)
-" vmap <leader>r<cr> <Plug>(coc-codeaction-selected)
-" nmap <leader>r<space> <Plug>(coc-refactor)
+" nnoremap <leader>rr :LSClientRename<CR> " Managed by vim-lsc
+" nnoremap <leader>r<cr> :LSClientFindCodeActions<CR> " Managed by vim-lsc
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
@@ -428,32 +453,4 @@ nmap <leader>w<space> <Plug>(zoom-toggle)
 " Expand %% to the directory of the currently open file, in Command-Line mode.
 " # is the 'other' file, because % would be the Command-Line window itself.
 cnoremap %% <C-R>=expand('#:h').'/'<CR>
-
-" LSC
-let g:lsc_enable_autocomplete = v:false
-
-let g:lsc_server_commands = {
-    \ 'elm': 'elm-language-server --stdio',
-    \ 'java': 'eclipse-jdt-ls.sh -data ' . getcwd(),
-    \ 'javascript': 'typescript-language-server --stdio',
-    \ 'scala': 'metals-vim',
-    \ 'sbt.scala': 'metals-vim',
-    \ 'typescript': 'typescript-language-server --stdio',
-    \ }
-
-let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<leader>gd',
-    \ 'GoToDefinitionSplit': '<leader>gD',
-    \ 'FindReferences': '<leader>fr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': '<leader>gi',
-    \ 'FindCodeActions': '<leader>r<cr>',
-    \ 'Rename': '<leader>rr',
-    \ 'ShowHover': 'K',
-    \ 'DocumentSymbol': '<leader>fs',
-    \ 'WorkspaceSymbol': '<leader>fS',
-    \ 'SignatureHelp': '<leader>ms',
-    \ 'Completion': 'omnifunc',
-    \ }
 
