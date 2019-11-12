@@ -82,7 +82,6 @@ set wildmenu
 set wildignore=node_modules
 " Completion
 set completeopt+=menuone,noinsert
-set shortmess+=c
 
 
 augroup vimStartup
