@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+npm install --global bash-language-server
 npm install --global chokidar chokidar-cli
 npm install --global elm elm-format elm-test
 npm install --global @elm-tooling/elm-language-server
