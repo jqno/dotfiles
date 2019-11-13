@@ -280,6 +280,7 @@ let g:lsc_server_commands = {
     \ 'sbt.scala': 'metals-vim',
     \ 'sh': 'bash-language-server start',
     \ 'typescript': 'typescript-language-server --stdio',
+    \ 'vim': 'vim-language-server --stdio'
     \ }
 
 let g:lsc_auto_map = {
