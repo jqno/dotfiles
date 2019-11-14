@@ -60,12 +60,12 @@ local layouts = {
   { bundle = "com.apple.iCal", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.apple.Safari", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(1, win) end },
+  { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.kapeli.dashdoc", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(1, win) end },
+  { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "org.mozilla.firefox", func = function(win) wm.windowMaximize(0, win) end }
 }
