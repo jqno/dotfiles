@@ -272,9 +272,32 @@ let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
 " *** vim-lsc
 let g:lsc_enable_autocomplete = v:false
 
+" Turn the invalid java.apply.workspaceEdit commands into an edit
+" action which complies with the LSP spec
+function! s:fixEdits(actions) abort
+    return map(a:actions, function('<SID>fixEdit'))
+endfunction
+
+function! s:fixEdit(idx, maybeEdit) abort
+    if !has_key(a:maybeEdit, 'command') ||
+        \ !has_key(a:maybeEdit.command, 'command') ||
+        \ a:maybeEdit.command.command !=# 'java.apply.workspaceEdit'
+            return a:maybeEdit
+    endif
+    return {
+        \ 'edit': a:maybeEdit.command.arguments[0],
+        \ 'title': a:maybeEdit.command.title
+        \ }
+endfunction
+
 let g:lsc_server_commands = {
     \ 'elm': 'elm-language-server --stdio',
-    \ 'java': 'eclipse-jdt-ls.sh -data ' . getcwd(),
+    \ 'java': {
+    \   'command': 'eclipse-jdt-ls.sh -data ' . getcwd(),
+    \   'response_hooks': {
+    \     'textDocument/codeAction': function('<SID>fixEdits'),
+    \   },
+    \ },
     \ 'javascript': 'typescript-language-server --stdio',
     \ 'scala': 'metals-vim',
     \ 'sbt.scala': 'metals-vim',
