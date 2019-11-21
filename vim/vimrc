@@ -274,10 +274,6 @@ let g:lsc_enable_autocomplete = v:false
 
 " Turn the invalid java.apply.workspaceEdit commands into an edit
 " action which complies with the LSP spec
-function! s:fixEdits(actions) abort
-    return map(a:actions, function('<SID>fixEdit'))
-endfunction
-
 function! s:fixEdit(idx, maybeEdit) abort
     if !has_key(a:maybeEdit, 'command') ||
         \ !has_key(a:maybeEdit.command, 'command') ||
@@ -288,6 +284,10 @@ function! s:fixEdit(idx, maybeEdit) abort
         \ 'edit': a:maybeEdit.command.arguments[0],
         \ 'title': a:maybeEdit.command.title
         \ }
+endfunction
+
+function! s:fixEdits(actions) abort
+    return map(a:actions, function('<SID>fixEdit'))
 endfunction
 
 let g:lsc_server_commands = {
