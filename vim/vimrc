@@ -446,6 +446,8 @@ nnoremap <leader>f<F12> :FzfVimwiki<Space>
 " nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
 
 " " *** Prefix <leader>m: running make
+nnoremap <leader>mf magggqG`a
+vnoremap <leader>mf gq
 nnoremap <leader>mm :Make<CR>
 " nnoremap <leader>ms :LSClientSignatureHelp<CR> " Managed by vim-lsc
 
