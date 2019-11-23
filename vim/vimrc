@@ -14,7 +14,7 @@ Plug 'janko-m/vim-test'
 Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
-Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
+Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
