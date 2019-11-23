@@ -225,14 +225,23 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 " ***  Plugin configurations
 " ***************************************
 
-" *** ALE
+" *** chrisbra/Colorizer
+let g:colorizer_auto_filetype = 'css,html,scss'
+
+" *** dense-analysis/ale
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
 
-" *** Colorizer
-let g:colorizer_auto_filetype = 'css,html,scss'
+" *** dhruvasagar/vim-zoom
+let g:zoom#statustext = '[ZOOMED]'
 
-" *** FZF
+" *** gcmt/wildfire
+let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
+
+" *** janko-m/vim-test
+let test#strategy = 'dispatch'
+
+" *** junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
 " Key mappings within FZF to define how to open a file
@@ -262,18 +271,13 @@ let g:fzf_colors = {
 command! -bang -nargs=+ FzfAg
     \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(g:fzf_preview_window), <bang>0)
 
-" *** Terminus
-" Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
-let g:TerminusFocusReporting=0
-
-" *** UltiSnips
-let g:UltiSnipsExpandTrigger = '<S-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
-
-" *** vim-doge
+" *** kkoomen/vim-doge
 let g:doge_enable_mappings = 0
 
-" *** vim-lsc
+" *** machakann/vim-swap
+let g:swap_no_default_key_mappings = 1
+
+" *** natebosch/vim-lsc
 let g:lsc_enable_autocomplete = v:false
 
 " Turn the invalid java.apply.workspaceEdit commands into an edit
@@ -327,17 +331,15 @@ let g:lsc_auto_map = {
     \ 'Completion': 'omnifunc',
     \ }
 
-" *** Vim-Markdown
+" *** plasticboy/vim-markdown
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 
-" *** Vim-swap
-let g:swap_no_default_key_mappings = 1
+" *** SirVer/ultisnips
+let g:UltiSnipsExpandTrigger = '<S-Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
 
-" *** Vim-Test
-let test#strategy = 'dispatch'
-
-" *** VimWiki
+" *** vimwiki/vimwiki
 let g:vimwiki_location = '~/Dropbox/vimwiki'
 let g:vimwiki_list = [{'path': g:vimwiki_location, 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_global_ext = 0
@@ -348,11 +350,9 @@ command! -nargs=+ FzfVimwiki
     \   <q-args> . ' ' . g:vimwiki_location,
     \   fzf#vim#with_preview(g:fzf_preview_window))
 
-" *** Vim-Zoom
-let g:zoom#statustext = '[ZOOMED]'
-
-" *** Wildfire
-let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
+" *** wincent/terminus
+" Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
+let g:TerminusFocusReporting=0
 
 
 
