@@ -11,6 +11,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "olafurpg/scalafmt"
 tap "scalacenter/bloop"
+tap "universal-ctags/universal-ctags"
 
 # Required for installing other things
 brew "node"
@@ -45,6 +46,7 @@ brew "zsh-syntax-highlighting"
 brew "heroku/brew/heroku"
 brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "scalacenter/bloop/bloop"
+brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 
 cask "alfred"
 cask "avast-security"

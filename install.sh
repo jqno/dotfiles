@@ -11,7 +11,7 @@ function installDotfiles() {
   echo "******************************"
   echo "** INSTALLING CONFIGURATION **"
   echo "******************************"
-  installFor "ctags"
+  installFor "ctags.d"
   scriptFor "git"
   installFor "hammerspoon"
   installFor "ideavimrc"
