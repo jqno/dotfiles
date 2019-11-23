@@ -3,6 +3,7 @@
 " ***************************************
 
 packadd! matchit
+runtime ftplugin/man.vim
 
 call plug#begin('~/.vim/plugged')
 
