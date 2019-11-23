@@ -15,6 +15,7 @@ Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'jqno/fzf.vim' | Plug '/usr/local/opt/fzf' " This is my fork
+Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
@@ -269,6 +270,9 @@ let g:TerminusFocusReporting=0
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
 
+" *** vim-doge
+let g:doge_enable_mappings = 0
+
 " *** vim-lsc
 let g:lsc_enable_autocomplete = v:false
 
@@ -447,6 +451,7 @@ nnoremap <leader>f<F12> :FzfVimwiki<Space>
 " nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
 
 " " *** Prefix <leader>m: running make
+nnoremap <leader>md :DogeGenerate<CR>
 nnoremap <leader>mf magggqG`a
 vnoremap <leader>mf gq
 nnoremap <leader>mm :Make<CR>
