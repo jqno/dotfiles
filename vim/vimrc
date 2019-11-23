@@ -294,6 +294,7 @@ let g:lsc_server_commands = {
     \ 'elm': 'elm-language-server --stdio',
     \ 'java': {
     \   'command': 'eclipse-jdt-ls.sh -data ' . getcwd(),
+    \   'log_level': 'Warning',
     \   'response_hooks': {
     \     'textDocument/codeAction': function('<SID>fixEdits'),
     \   },
