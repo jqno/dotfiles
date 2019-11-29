@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chrisbra/Colorizer'
 Plug 'dense-analysis/ale'
 Plug 'dhruvasagar/vim-zoom'
+Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-extract-variable'

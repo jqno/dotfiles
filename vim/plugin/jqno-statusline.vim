@@ -94,11 +94,11 @@ function! JqnoStatusLine() abort
                 \ '" | ".' .
                 \ 'JqnoStatusLineFileType().' .
                 \ '" | ".' .
-                \ 'line("$")."L".' .
-                \ '" | ".' .
                 \ 'line(".").' .
                 \ '":".' .
                 \ 'col(".").' .
+                \ '" ".' .
+                \ '"' . LineNoIndicator() . '".' .
                 \ '" "' .
             \ ' : ""}'
 
