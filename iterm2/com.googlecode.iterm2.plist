@@ -23,6 +23,13 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x2d-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>28</integer>
+			<key>Text</key>
+			<string>60776F45-4927-4A5C-AAEB-E663115EB9D8</string>
+		</dict>
 		<key>0x48-0x60000</key>
 		<dict>
 			<key>Action</key>
@@ -50,6 +57,13 @@
 			<integer>19</integer>
 			<key>Text</key>
 			<string></string>
+		</dict>
+		<key>0x5c-0x100000</key>
+		<dict>
+			<key>Action</key>
+			<integer>29</integer>
+			<key>Text</key>
+			<string>60776F45-4927-4A5C-AAEB-E663115EB9D8</string>
 		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
