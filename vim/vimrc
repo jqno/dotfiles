@@ -19,6 +19,7 @@ Plug 'jqno/vim-reversal'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
+Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
 Plug 'natebosch/vim-lsc'
@@ -86,6 +87,7 @@ set wildmenu
 set wildignore=node_modules
 " Completion
 set completeopt+=menuone,noinsert
+set shortmess+=c
 
 
 augroup vimStartup
@@ -275,6 +277,14 @@ command! -bang -nargs=+ FzfAg
 
 " *** kkoomen/vim-doge
 let g:doge_enable_mappings = 0
+
+" *** lifepillar/vim-mucomplete
+let g:mucomplete#enable_auto_at_startup = 1
+
+let g:mucomplete#chains = {
+    \ 'default': ['ulti', 'omni', 'path', 'c-n'],
+    \ 'vim':     ['ulti', 'omni', 'cmd', 'path', 'c-n']
+    \ }
 
 " *** machakann/vim-swap
 let g:swap_no_default_key_mappings = 1
