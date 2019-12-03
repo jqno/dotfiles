@@ -16,7 +16,7 @@ endfunction
 function! AutocloseSmartReturn() abort
     let l:prev = <SID>PrevChar()
     if pumvisible()
-        return "\<C-Y>"
+        return "\<C-Y>\<C-R>=mucomplete#ultisnips#do_expand('')\<CR>"
     elseif l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
         return "\<CR>\<Esc>O"
     else
@@ -67,31 +67,31 @@ endfunction
 " Public functions
 " ***
 function! AutocloseForProse() abort
-    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
-    inoremap <expr><buffer> ) AutocloseClose(')')
-    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
-    inoremap <expr><buffer> ] AutocloseClose(']')
-    inoremap <expr><buffer> { AutocloseOpen('{', '}')
-    inoremap <expr><buffer> } AutocloseClose('}')
-    inoremap <expr><buffer> " AutocloseToggle('"')
-    inoremap <expr><buffer> ` AutocloseToggle('`')
-    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
-    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
-    inoremap <expr><buffer> <C-L> AutocloseSmartJump()
+    inoremap <expr><buffer><silent> ( AutocloseOpen('(', ')')
+    inoremap <expr><buffer><silent> ) AutocloseClose(')')
+    inoremap <expr><buffer><silent> [ AutocloseOpen('[', ']')
+    inoremap <expr><buffer><silent> ] AutocloseClose(']')
+    inoremap <expr><buffer><silent> { AutocloseOpen('{', '}')
+    inoremap <expr><buffer><silent> } AutocloseClose('}')
+    inoremap <expr><buffer><silent> " AutocloseToggle('"')
+    inoremap <expr><buffer><silent> ` AutocloseToggle('`')
+    inoremap <expr><buffer><silent> <BS> AutocloseSmartBackspace()
+    inoremap <expr><buffer><silent> <CR> AutocloseSmartReturn()
+    inoremap <expr><buffer><silent> <C-L> AutocloseSmartJump()
 endfunction
 
 function! AutocloseForProgramming() abort
-    inoremap <expr><buffer> ( AutocloseOpen('(', ')')
-    inoremap <expr><buffer> ) AutocloseClose(')')
-    inoremap <expr><buffer> [ AutocloseOpen('[', ']')
-    inoremap <expr><buffer> ] AutocloseClose(']')
-    inoremap <expr><buffer> { AutocloseOpen('{', '}')
-    inoremap <expr><buffer> } AutocloseClose('}')
-    inoremap <expr><buffer> " AutocloseToggle('"')
-    inoremap <expr><buffer> ' AutocloseToggle("'")
-    inoremap <expr><buffer> ` AutocloseToggle('`')
-    inoremap <expr><buffer> <BS> AutocloseSmartBackspace()
-    inoremap <expr><buffer> <CR> AutocloseSmartReturn()
-    inoremap <expr><buffer> <C-L> AutocloseSmartJump()
+    inoremap <expr><buffer><silent> ( AutocloseOpen('(', ')')
+    inoremap <expr><buffer><silent> ) AutocloseClose(')')
+    inoremap <expr><buffer><silent> [ AutocloseOpen('[', ']')
+    inoremap <expr><buffer><silent> ] AutocloseClose(']')
+    inoremap <expr><buffer><silent> { AutocloseOpen('{', '}')
+    inoremap <expr><buffer><silent> } AutocloseClose('}')
+    inoremap <expr><buffer><silent> " AutocloseToggle('"')
+    inoremap <expr><buffer><silent> ' AutocloseToggle("'")
+    inoremap <expr><buffer><silent> ` AutocloseToggle('`')
+    inoremap <expr><buffer><silent> <BS> AutocloseSmartBackspace()
+    inoremap <expr><buffer><silent> <CR> AutocloseSmartReturn()
+    inoremap <expr><buffer><silent> <C-L> AutocloseSmartJump()
 endfunction
 
