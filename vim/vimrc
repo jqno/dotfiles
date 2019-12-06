@@ -14,12 +14,12 @@ Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
 Plug 'jqno/vim-extract-variable'
+Plug 'jqno/vim-tab-jqno'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-swap'
 Plug 'natebosch/vim-lsc'
@@ -277,15 +277,6 @@ command! -bang -nargs=+ FzfAg
 
 " *** kkoomen/vim-doge
 let g:doge_enable_mappings = 0
-
-" *** lifepillar/vim-mucomplete
-let g:mucomplete#enable_auto_at_startup = 1
-
-let g:mucomplete#chains = {
-    \ 'default': ['ulti', 'omni', 'path', 'c-n'],
-    \ 'sh':      ['ulti', 'omni', 'cmd', 'path', 'keyn'],
-    \ 'vim':     ['ulti', 'omni', 'cmd', 'path', 'c-n']
-    \ }
 
 " *** machakann/vim-swap
 let g:swap_no_default_key_mappings = 1

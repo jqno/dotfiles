@@ -16,7 +16,7 @@ endfunction
 function! AutocloseSmartReturn() abort
     let l:prev = <SID>PrevChar()
     if pumvisible()
-        return "\<C-Y>\<C-R>=mucomplete#ultisnips#do_expand('')\<CR>"
+        return "\<C-Y>"
     elseif l:prev !=? '' && index(['(', '[', '{'], l:prev) >= 0
         return "\<CR>\<Esc>O"
     else
