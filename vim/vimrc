@@ -283,6 +283,7 @@ let g:mucomplete#enable_auto_at_startup = 1
 
 let g:mucomplete#chains = {
     \ 'default': ['ulti', 'omni', 'path', 'c-n'],
+    \ 'sh':      ['ulti', 'omni', 'cmd', 'path', 'keyn'],
     \ 'vim':     ['ulti', 'omni', 'cmd', 'path', 'c-n']
     \ }
 
