@@ -8,6 +8,7 @@ runtime ftplugin/man.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'chrisbra/Colorizer'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
 Plug 'dhruvasagar/vim-zoom'
 Plug 'drzel/vim-line-no-indicator'
@@ -122,6 +123,8 @@ vnoremap Y "+y
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
 set background=dark
 set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 silent! colorscheme reversal
 " Highlight merge conflict markers
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
@@ -174,11 +177,11 @@ endif
 
 " Easier access to Normal mode in Terminal
 tnoremap <F1> <C-\><C-N>
-" Split navigation
-tnoremap <C-H> <C-W>h
-tnoremap <C-J> <C-W>j
-tnoremap <C-K> <C-W>k
-tnoremap <C-L> <C-W>l
+" " Split navigation
+tnoremap <C-H> <C-\><C-N>:TmuxNavigateLeft<CR>
+tnoremap <C-J> <C-\><C-N>:TmuxNavigateDown<CR>
+tnoremap <C-K> <C-\><C-N>:TmuxNavigateUp<CR>
+tnoremap <C-L> <C-\><C-N>:TmuxNavigateRight<CR>
 
 
 
@@ -378,11 +381,6 @@ vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 " instead of tring to find .
 vnoremap < <gv
 vnoremap > >gv
-" Allow for easy window switching
-nnoremap <C-H> <C-W>h
-nnoremap <C-J> <C-W>j
-nnoremap <C-K> <C-W>k
-nnoremap <C-L> <C-W>l
 " Allow for easy window resizing
 " (˙∆˚¬ are Alt+hjkl on macOS)
 noremap <silent> ˙ :call ResizeLikeTmux('h', 1)<CR>
