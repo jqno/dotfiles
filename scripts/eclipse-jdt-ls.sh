@@ -10,18 +10,34 @@ if [ "$(uname -s)" == "Darwin" ]; then
   CONFIGPATH=config_mac
 fi
 
-java \
-    -Declipse.application=org.eclipse.jdt.ls.core.id1 \
-    -Dosgi.bundles.defaultStartLevel=4 \
-    -Declipse.product=org.eclipse.jdt.ls.core.product \
-    -Dlog.level=ALL \
-    -Dfile.encoding=UTF-8 \
-    -noverify \
-    -Xms1G \
-    --add-modules=ALL-SYSTEM \
-    --add-opens java.base/java.util=ALL-UNNAMED \
-    --add-opens java.base/java.lang=ALL-UNNAMED \
-    -jar $SERVERPATH/plugins/org.eclipse.equinox.launcher_1.*.jar \
-    -configuration $SERVERPATH/$CONFIGPATH/ \
-    "$@"
-
+JAVA_VERSION="$(java -version 2>&1 | grep 'version' | sed -E 's/.*version "(.*)".*/\1/')"
+if [[ $JAVA_VERSION == "1."* ]]; then
+  # Java 8
+  java \
+      -Declipse.application=org.eclipse.jdt.ls.core.id1 \
+      -Dosgi.bundles.defaultStartLevel=4 \
+      -Declipse.product=org.eclipse.jdt.ls.core.product \
+      -Dlog.level=ALL \
+      -Dfile.encoding=UTF-8 \
+      -noverify \
+      -Xms1G \
+      -jar $SERVERPATH/plugins/org.eclipse.equinox.launcher_1.*.jar \
+      -configuration $SERVERPATH/$CONFIGPATH/ \
+      "$@"
+else
+  # Java 9+
+  java \
+      -Declipse.application=org.eclipse.jdt.ls.core.id1 \
+      -Dosgi.bundles.defaultStartLevel=4 \
+      -Declipse.product=org.eclipse.jdt.ls.core.product \
+      -Dlog.level=ALL \
+      -Dfile.encoding=UTF-8 \
+      -noverify \
+      -Xms1G \
+      --add-modules=ALL-SYSTEM \
+      --add-opens java.base/java.util=ALL-UNNAMED \
+      --add-opens java.base/java.lang=ALL-UNNAMED \
+      -jar $SERVERPATH/plugins/org.eclipse.equinox.launcher_1.*.jar \
+      -configuration $SERVERPATH/$CONFIGPATH/ \
+      "$@"
+fi
