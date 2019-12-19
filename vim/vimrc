@@ -316,6 +316,7 @@ let g:lsc_server_commands = {
     \   },
     \ },
     \ 'javascript': 'typescript-language-server --stdio',
+    \ 'python': 'pyls',
     \ 'scala': 'metals-vim',
     \ 'sbt.scala': 'metals-vim',
     \ 'sh': 'bash-language-server start',
