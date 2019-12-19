@@ -35,7 +35,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
 
@@ -348,17 +347,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:UltiSnipsExpandTrigger = '<S-Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
 
-" *** vimwiki/vimwiki
-let g:vimwiki_location = '~/Dropbox/vimwiki'
-let g:vimwiki_list = [{'path': g:vimwiki_location, 'syntax': 'markdown', 'ext': '.md'}]
-let g:vimwiki_global_ext = 0
-let g:vimwiki_folding = 'expr'
-" Search VimWiki using Fzf and Ag
-command! -nargs=+ FzfVimwiki 
-    \ call fzf#vim#ag_raw(
-    \   <q-args> . ' ' . g:vimwiki_location,
-    \   fzf#vim#with_preview(g:fzf_preview_window))
-
 " *** wincent/terminus
 " Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
 let g:TerminusFocusReporting=0
@@ -415,8 +403,6 @@ nnoremap t= /\s*=<CR>:nohls<CR>
 nnoremap T= ?=\s*?e<CR>:nohls<CR>
 " ToggleMovement : 0 moves to beginning of text first, then to beginning of line
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
-" Open VimWiki
-nnoremap <F12> :VimwikiIndex<CR>
 
 " Close extraneous windows
 nnoremap <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>
@@ -443,7 +429,6 @@ nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fd :Dash<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
 nnoremap <leader>fN :NERDTreeFind<CR>
-nnoremap <leader>f<F12> :FzfVimwiki<Space>
 " nnoremap <leader>fr :LSClientFindReferences<CR> " Managed by vim-lsc
 " nnoremap <leader>fs :LSClientDocumentSymbol<CR> " Managed by vim-lsc
 " nnoremap <leader>fS :LSClientWorkspaceSymbol<CR> " Managed by vim-lsc
