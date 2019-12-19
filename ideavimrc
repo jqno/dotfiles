@@ -45,7 +45,7 @@ nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
 " *** Prefix <leader><leader>: general things
 noremap <leader><leader>/ <Esc>:nohlsearch<CR>
 " Bind 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
-nnoremap <leader><leader>b :action Annotate<CR>:action Annotate<CR>
+nnoremap <leader>gb :action Annotate<CR>:action Annotate<CR>
 " Hide all toolwindows and give focus to the edit pane.
 nnoremap <leader><leader>f :action HideAllWindows<CR>
 " Reload this file.

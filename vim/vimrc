@@ -425,7 +425,6 @@ nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation le
 nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
 nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation level: 8"<CR>
 nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
-nnoremap <silent> <leader><leader>b :Gblame<CR>
 nnoremap <silent> <leader><leader>t :call ToggleListChars()<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
@@ -448,7 +447,9 @@ nnoremap <leader>f<F12> :FzfVimwiki<Space>
 " nnoremap <leader>fs :LSClientDocumentSymbol<CR> " Managed by vim-lsc
 " nnoremap <leader>fS :LSClientWorkspaceSymbol<CR> " Managed by vim-lsc
 
-" " *** Prefix <leader>g: going to places
+" " *** Prefix <leader>g: going to places and Gitting things
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :0Glog!<CR>
 " nnoremap <leader>gd :LSClientGoToDefinition<CR> " Managed by vim-lsc
 " nnoremap <leader>gD :LSClientGoToDefinitionSplit<CR> " Managed by vim-lsc
 " nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
