@@ -77,7 +77,7 @@ function! AutocloseForProse() abort
     inoremap <expr><buffer><silent> ` AutocloseToggle('`')
     inoremap <expr><buffer><silent> <BS> AutocloseSmartBackspace()
     inoremap <expr><buffer><silent> <CR> AutocloseSmartReturn()
-    inoremap <expr><buffer><silent> <C-L> AutocloseSmartJump()
+    inoremap <expr><buffer><silent> <C-B> AutocloseSmartJump()
 endfunction
 
 function! AutocloseForProgramming() abort
@@ -92,6 +92,6 @@ function! AutocloseForProgramming() abort
     inoremap <expr><buffer><silent> ` AutocloseToggle('`')
     inoremap <expr><buffer><silent> <BS> AutocloseSmartBackspace()
     inoremap <expr><buffer><silent> <CR> AutocloseSmartReturn()
-    inoremap <expr><buffer><silent> <C-L> AutocloseSmartJump()
+    inoremap <expr><buffer><silent> <C-B> AutocloseSmartJump()
 endfunction
 
