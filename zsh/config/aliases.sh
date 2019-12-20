@@ -29,11 +29,6 @@ then
   alias ctags="`brew --prefix`/bin/ctags"
 fi
 
-# iTerm2
-function set-iterm-title() {
-  echo -ne "\e]1;$1\a"
-}
-
 # Java
 if [[ "$(uname -s)" == "Darwin" ]]
 then

@@ -1,1 +1,0 @@
-set-iterm-title ""

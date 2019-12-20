@@ -6,7 +6,6 @@ source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/prompt.zsh
 
-source ~/.zsh/iterm.sh
 source ~/.zsh/vim-terminal-mode.sh
 source ~/.setEnv/session.sh
 
