@@ -27,6 +27,7 @@ hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") en
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("it.bloop.airmail2") end)
+hyper.bindKey({}, "n", function() am.switchToAndFromApp("net.cozic.joplin-desktop") end)
 hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.MacPass") end)
 hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") end)
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
@@ -59,13 +60,14 @@ local layouts = {
   { bundle = "com.apple.iCal", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.apple.Safari", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "net.kovidgoyal.kitty", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.kapeli.dashdoc", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "net.cozic.joplin-desktop", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "net.kovidgoyal.kitty", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
   { bundle = "org.mozilla.firefox", func = function(win) wm.windowMaximize(0, win) end }
 }
