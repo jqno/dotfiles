@@ -23,6 +23,11 @@ alias home='. setEnv.sh home'
 # bat: a better `cat`
 alias cat=bat
 
+# mcd
+function mcd() {
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
 # MacOS pre-installs a bad version of ctags so we substitute our own.
 if [[ "$(uname -s)" == "Darwin" ]]
 then
