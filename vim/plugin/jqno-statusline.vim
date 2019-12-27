@@ -64,8 +64,6 @@ function! JqnoStatusLine() abort
             \ '%{' . l:is_active .' ? "" : "     "}' .
             \ ' ' .
             \ '#%n' .
-            \ '%{zoom#statusline()!="" ? " | " : "" }' .
-            \ '%#SLvisualmode#%{zoom#statusline()!="" ? zoom#statusline() : "" }' .
             \ '%*' .
             \ ' | ' .
             \ '%<' .

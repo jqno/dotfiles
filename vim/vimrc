@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'chrisbra/Colorizer'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
-Plug 'dhruvasagar/vim-zoom'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
@@ -20,6 +19,7 @@ Plug 'jqno/vim-tab-jqno'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
+Plug 'junegunn/goyo.vim'
 Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
@@ -239,9 +239,6 @@ let g:colorizer_auto_filetype = 'css,html,scss'
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
 
-" *** dhruvasagar/vim-zoom
-let g:zoom#statustext = '[ZOOMED]'
-
 " *** gcmt/wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
 
@@ -277,6 +274,9 @@ let g:fzf_colors = {
 " Adds preview window to FzfAg
 command! -bang -nargs=+ FzfAg
     \ call fzf#vim#ag_raw(<q-args>, fzf#vim#with_preview(g:fzf_preview_window), <bang>0)
+
+" *** junegunn/goyo
+let g:goyo_width=120
 
 " *** kkoomen/vim-doge
 let g:doge_enable_mappings = 0
@@ -358,6 +358,9 @@ let g:TerminusFocusReporting=0
 " ***************************************
 
 " *** No prefix: general mappings
+
+" Toggle Goyo for distraction-free writing
+nnoremap <F12> :Goyo<CR>
 
 " Pressing up in a long line gets you to the above line 'in the screen',
 " but if you precede it with a count, you get the old behavior
