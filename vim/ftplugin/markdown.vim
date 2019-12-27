@@ -1,5 +1,4 @@
 call SetTabstop(2)
-call AutocloseForProse()
 setlocal wrap
 
 " Taken from https://gist.github.com/romainl/ac63e108c3d11084be62b3c04156c263
