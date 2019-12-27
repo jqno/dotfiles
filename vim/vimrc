@@ -18,6 +18,7 @@ Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-tab-jqno'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
+Plug 'Julian/vim-textobj-variable-segment'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'kkoomen/vim-doge'
@@ -241,7 +242,7 @@ let g:colorizer_auto_filetype = 'css,html,scss'
 let g:ale_lint_on_text_changed = 'never'
 
 " *** gcmt/wildfire
-let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'if', 'ip', 'it']
+let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
 
 " *** janko-m/vim-test
 let test#strategy = 'dispatch'
