@@ -85,7 +85,11 @@ end)
 
 
 -- Show the bundleID of the currently open window
-hyper.bindKey({"cmd"}, "b", function() hs.alert.show(hs.window.focusedWindow():application():bundleID()) end)
+hyper.bindKey({"cmd"}, 'b', function() 
+  local bundleId = hs.window.focusedWindow():application():bundleID()
+  hs.alert.show(bundleId)
+  hs.pasteboard.setContents(bundleId)
+end)
 
 
 -- Show the time
@@ -101,6 +105,8 @@ hyper.bindKey({"cmd"}, "t", function()
   hs.pasteboard.setContents(time)
 end)
 
+
+-- Show the battery status
 hyper.bindKey({}, "b", function()
   hs.alert.show("🔋 " .. hs.battery.percentage() .. "%")
 end)
