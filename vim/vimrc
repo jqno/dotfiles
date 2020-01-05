@@ -31,6 +31,7 @@ Plug 'natebosch/vim-lsc'
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
+Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
@@ -420,7 +421,6 @@ nnoremap <silent> <leader><leader>8 :call SetTabstop(8)<CR>:echo "Indentation le
 nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftwidth=4 softtabstop=4<CR>:echo "Indentation level: tab"<CR>
 nnoremap <silent> <leader><leader>t :call ToggleListChars()<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
-nnoremap <silent> <leader><leader>/ :nohlsearch<CR>
 nnoremap <silent> <leader><leader><leader> za
 
 " *** Prefix <leader>f: finding things
