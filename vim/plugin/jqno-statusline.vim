@@ -59,7 +59,7 @@ function! JqnoStatusLine() abort
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="t" ? "  T  " : ""}' .
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="i" ? "  I  " : ""}' .
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="r" ? "  R  " : ""}' .
-            \ '%#SLvisualmode#%{'. l:is_active .' && mode()=="v" ? "  V  " : ""}' .
+            \ '%#SLvisualmode#%{'. l:is_active .' && (mode()=="v" || mode()=="") ? "  V  " : ""}' .
             \ '%*' .
             \ '%{' . l:is_active .' ? "" : "     "}' .
             \ ' ' .
