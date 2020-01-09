@@ -319,7 +319,16 @@ let g:lsc_server_commands = {
     \   },
     \ },
     \ 'javascript': 'typescript-language-server --stdio',
-    \ 'python': 'pyls',
+    \ 'python': {
+    \   'command': 'pyls',
+    \   'workspace_config': { 'pyls': { 'plugins': {
+    \     'mccabe': { 'enabled': v:false },
+    \     'pycodestyle': { 'enabled': v:false },
+    \     'pydocstyle': { 'enabled': v:false },
+    \     'pyflakes': { 'enabled': v:false },
+    \     'yapf': { 'enabled': v:false },
+    \   } } }
+    \ },
     \ 'scala': 'metals-vim',
     \ 'sbt.scala': 'metals-vim',
     \ 'sh': 'bash-language-server start',
