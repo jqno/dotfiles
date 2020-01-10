@@ -33,8 +33,3 @@ coursier bootstrap \
   -r sonatype:snapshots \
   -o /usr/local/bin/metals-vim -f
 
-
-# Poetry, Python dependency manager
-curl -SL -o "$BIN/get-poetry.py" https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
-POETRY_HOME="$BIN/poetry" python $BIN/get-poetry.py
-

@@ -10,6 +10,7 @@ else
   exit 1
 fi
 
+$PIP install poetry
 $PIP install pylint
 $PIP install "python-language-server[all]"
 $PIP install vim-vint
