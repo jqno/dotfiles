@@ -33,3 +33,7 @@ coursier bootstrap \
   -r sonatype:snapshots \
   -o /usr/local/bin/metals-vim -f
 
+
+# Rust toolchain
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
+
