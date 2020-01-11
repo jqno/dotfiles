@@ -249,6 +249,9 @@ let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
 " *** janko-m/vim-test
 let test#strategy = 'dispatch'
 
+" *** jiangmiao/auto-pairs
+let g:AutoPairsFlyMode = 1
+
 " *** junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
