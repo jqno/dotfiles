@@ -14,9 +14,9 @@ Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
 Plug 'janko-m/vim-test'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'jiangmiao/auto-pairs'
 Plug 'jqno/vim-extract-variable'
 Plug 'jqno/vim-tab-jqno'
+Plug 'jqno/vim-autoclose-jqno'
 Plug 'jqno/vim-textobj-functioncall' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/vim-reversal'
 Plug 'Julian/vim-textobj-variable-segment'
@@ -248,9 +248,6 @@ let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
 
 " *** janko-m/vim-test
 let test#strategy = 'dispatch'
-
-" *** jiangmiao/auto-pairs
-let g:AutoPairsFlyMode = 1
 
 " *** junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
