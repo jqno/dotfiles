@@ -6,7 +6,7 @@ mkdir $BIN
 
 # Eclipse JDT Language Server
 echo "** Installing Eclipse JDT Language Server"
-ECLIPSE_JDT_LS_SOURCE="http://download.eclipse.org/jdtls/milestones/0.43.0/jdt-language-server-0.43.0-201909181008.tar.gz"
+ECLIPSE_JDT_LS_SOURCE="http://download.eclipse.org/jdtls/milestones/0.48.0/jdt-language-server-0.48.0-201912040033.tar.gz"
 ECLIPSE_JDT_LS_TARGET="$BIN/eclipse-jdt-ls"
 mkdir $ECLIPSE_JDT_LS_TARGET
 pushd $ECLIPSE_JDT_LS_TARGET > /dev/null
