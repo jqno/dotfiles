@@ -346,8 +346,8 @@ let g:lsc_server_commands = {
     \ }
 
 let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<leader>gd',
-    \ 'GoToDefinitionSplit': '<leader>gD',
+    \ 'GoToDefinition': '<leader>g]',
+    \ 'GoToDefinitionSplit': '<leader>g<C-]>',
     \ 'FindReferences': '<leader>fr',
     \ 'NextReference': '<C-n>',
     \ 'PreviousReference': '<C-p>',
