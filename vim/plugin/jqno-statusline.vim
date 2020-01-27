@@ -55,10 +55,10 @@ function! JqnoStatusLine() abort
 
     let l:ok = l:ale_ok . l:lsp_ok
     let l:ok = len(l:ok) == 0 ? '' : ' ' . l:ok . ' '
-    let l:error = l:ale_error . l:lsp_error
-    let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
     let l:warning = l:ale_warning
     let l:warning = len(l:warning) == 0 ? '' : '  ' . l:warning . ' '
+    let l:error = l:ale_error . l:lsp_error
+    let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
 
     let l:statusline =
             \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N |" : ""}' .
@@ -83,8 +83,8 @@ function! JqnoStatusLine() abort
             \ '%=' .
             \ '  ' .
             \ '%#SLok#%{' . l:is_active_not_terminal . ' ? "' . l:ok . '" : "" }' .
-            \ '%#SLerror#%{' . l:is_active_not_terminal . ' ? "' . l:error . '" : "" }' .
             \ '%#SLwarning#%{' . l:is_active_not_terminal . ' ? "' . l:warning . '" : "" }' .
+            \ '%#SLerror#%{' . l:is_active_not_terminal . ' ? "' . l:error . '" : "" }' .
             \ '%*' .
             \ ' ' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() . " | " : "" }' .
