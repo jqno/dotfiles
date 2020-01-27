@@ -58,7 +58,7 @@ function! JqnoStatusLine() abort
     let l:error = l:ale_error . l:lsp_error
     let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
     let l:warning = l:ale_warning
-    let l:warning = len(l:warning) == 0 ? '' : ' ' . l:warning . ' '
+    let l:warning = len(l:warning) == 0 ? '' : '  ' . l:warning . ' '
 
     let l:statusline =
             \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N |" : ""}' .
