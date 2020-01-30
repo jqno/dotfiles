@@ -248,6 +248,9 @@ let g:colorizer_auto_filetype = 'css,html,scss'
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
 
+" *** drzel/vim-line-no-indicator
+let g:line_no_indicator_chars = ['↑', '↗', '→', '↘', '↓']
+
 " *** gcmt/wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
 
