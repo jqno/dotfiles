@@ -375,8 +375,9 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 
 " *** SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<S-Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<S-Tab>'
+let g:UltiSnipsExpandTrigger = '<Nop>'
+let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
 " *** wincent/terminus
 " Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
