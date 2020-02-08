@@ -375,7 +375,7 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
 
 " *** SirVer/ultisnips
-let g:UltiSnipsExpandTrigger = '<Nop>'
+let g:UltiSnipsExpandTrigger = '<F19>' " It would be better to map <Nop> but it doesn't register correctly and conflicts with the regular < symbol.
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
