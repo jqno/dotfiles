@@ -21,7 +21,6 @@ Plug 'jqno/jqno-textobj-functioncall.vim' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/reversal.vim'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
-Plug 'kkoomen/vim-doge'
 Plug 'lifepillar/vim-colortemplate'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
@@ -290,9 +289,6 @@ command! -bang -nargs=+ FzfAg
 " *** junegunn/goyo
 let g:goyo_width=120
 
-" *** kkoomen/vim-doge
-let g:doge_enable_mappings = 0
-
 " *** machakann/vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
 
@@ -475,7 +471,6 @@ nnoremap <silent> <leader>gl :0Glog!<CR>
 " nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
 
 " " *** Prefix <leader>m: running make
-nnoremap <leader>md :DogeGenerate<CR>
 nnoremap <leader>mf magggqG`a
 vnoremap <leader>mf gq
 nnoremap <leader>mm :Make<CR>
