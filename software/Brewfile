@@ -22,7 +22,6 @@ cask "adoptopenjdk11"
 
 # Software to install
 brew "bat"
-brew "ctags"
 brew "figlet"
 brew "fzf"
 brew "git"
@@ -45,6 +44,7 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
+brew "coursier/formulas/coursier"
 brew "heroku/brew/heroku"
 brew "olafurpg/scalafmt/scalafmt", args: ["HEAD"]
 brew "scalacenter/bloop/bloop"

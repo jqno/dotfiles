@@ -16,14 +16,8 @@ rm archive.tar.gz
 popd > /dev/null
 
 
-# Coursier
-echo "** Installing Coursier"
-curl -L -o "$BIN/coursier" https://git.io/coursier
-
-
 # Scala Metals Language Server
 echo "** Installing Scala Metals Language Server"
-chmod +x "$BIN/coursier"
 coursier bootstrap \
   --java-opt -Xss4m \
   --java-opt -Xms100m \
