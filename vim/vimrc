@@ -502,6 +502,5 @@ nmap <leader>w<space> <Plug>(zoom-toggle)
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
-" # is the 'other' file, because % would be the Command-Line window itself.
-cnoremap %% <C-R>=expand('#:h').'/'<CR>
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
