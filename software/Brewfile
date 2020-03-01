@@ -51,7 +51,7 @@ brew "scalacenter/bloop/bloop"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 
 cask "alfred"
-cask "avast-security"
+cask "avira-antivirus"
 cask "bartender"
 cask "dropbox"
 cask "firefox"
