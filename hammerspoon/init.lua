@@ -26,7 +26,7 @@ hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
-hyper.bindKey({}, "m", function() am.switchToAndFromApp("it.bloop.airmail2") end)
+hyper.bindKey({}, "m", function() am.switchToAndFromApp("com.apple.mail") end)
 hyper.bindKey({}, "n", function() am.switchToAndFromApp("net.cozic.joplin-desktop") end)
 hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.rememberthemilk.Deskmilk") end)
 hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.MacPass") end)
@@ -67,7 +67,7 @@ local layouts = {
   { bundle = "com.kapeli.dashdoc", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "com.rememberthemilk.Deskmilk", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "it.bloop.airmail2", func = function(win) wm.windowMaximize(0, win) end },
+  { bundle = "com.apple.mail", func = function(win) wm.windowMaximize(1, win) end },
   { bundle = "net.cozic.joplin-desktop", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "net.kovidgoyal.kitty", func = function(win) wm.windowMaximize(0, win) end },
   { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },

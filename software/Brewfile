@@ -74,7 +74,6 @@ cask "rocket"
 cask "spotify"
 cask "tunnelblick"
 
-mas "Airmail 3", id: 918858936
 mas "NordVPN IKE", id: 1116599239
 mas "Pixelmator", id: 407963104
 
