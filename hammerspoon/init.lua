@@ -25,7 +25,6 @@ hyper.bindKey({}, "return", function() am.switchToAndFromApp("net.kovidgoyal.kit
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
-hyper.bindKey({}, "i", function() am.switchToAndFromApp("com.jetbrains.intellij") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("com.apple.mail") end)
 hyper.bindKey({}, "n", function() am.switchToAndFromApp("net.cozic.joplin-desktop") end)
 hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.rememberthemilk.Deskmilk") end)
