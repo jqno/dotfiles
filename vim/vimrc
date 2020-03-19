@@ -221,6 +221,10 @@ augroup AutoSourceVimrc
     autocmd BufWritePost vimrc ReloadVimrc
 augroup END
 
+" Help with syntax highlighting
+" See also https://vim.fandom.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+command! IdentifyHighlight echo 'highlight: ' . synIDattr(synID(line('.'), col('.'), 1), 'name') . ' → ' . synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
+
 " Manage a lockfile for Vim plugins
 let g:jqno_plugin_lockfile = $HOME . '/.vim/plugin.lock.vim'
 function! s:JqnoPlugInitialInstall()
