@@ -6,12 +6,12 @@ augroup JqnoStatusLineColors
 augroup END
 
 function! JqnoStatusLineHighlights() abort
-    highlight SLnormalmode ctermfg=236 ctermbg=111 guifg=#2b2b2b guibg=#89cddc
-    highlight SLinsertmode ctermfg=111 ctermbg=236 guifg=#89cddc guibg=#2b2b2b
-    highlight SLvisualmode ctermfg=236 ctermbg=215 guifg=#2b2b2b guibg=#ffa630
-    highlight SLok ctermfg=65 ctermbg=151 guifg=#5c7b54 guibg=#acc8a5
-    highlight SLerror ctermfg=215 ctermbg=124 guifg=#ffa630 guibg=#ae2e2b
-    highlight SLwarning ctermfg=124 ctermbg=215 guifg=#ae2e2b guibg=#ffa630
+    highlight link SLnormalmode StatusLine
+    highlight link SLinsertmode Constant
+    highlight link SLvisualmode Visual
+    highlight link SLok DiffAdd
+    highlight link SLerror DiffDelete
+    highlight link SLwarning DiffChange
 endfunction
 
 function! JqnoStatusLineFileEncoding() abort
@@ -53,11 +53,11 @@ function! JqnoStatusLine() abort
     let l:lsp_ok = l:lsp_status ==# 'running' ? 'λ' : ''
     let l:lsp_error = l:lsp_status ==# 'unexpected exit' || l:lsp_status ==# 'failed' ? 'λ' : ''
 
-    let l:ok = l:ale_ok . l:lsp_ok
+    let l:ok = l:lsp_ok . l:ale_ok
     let l:ok = len(l:ok) == 0 ? '' : ' ' . l:ok . ' '
     let l:warning = l:ale_warning
     let l:warning = len(l:warning) == 0 ? '' : '  ' . l:warning . ' '
-    let l:error = l:ale_error . l:lsp_error
+    let l:error = l:lsp_error . l:ale_error
     let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
 
     let l:statusline =
