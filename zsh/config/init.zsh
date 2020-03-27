@@ -1,6 +1,3 @@
-# PATH
-export PATH=$PATH:~/scripts
-
 # Settings
 # See for meanings: https://linux.die.net/man/1/zshoptions
 setopt autocd nomatch
