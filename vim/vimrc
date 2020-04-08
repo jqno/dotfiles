@@ -91,13 +91,6 @@ set wildignore=node_modules
 set completeopt+=menuone,noinsert
 set shortmess+=c
 
-augroup completeDone
-    autocmd!
-
-    " Close the preview window when completion is done
-    autocmd CompleteDone * silent! pclose
-augroup END
-
 augroup vimStartup
     autocmd!
 
