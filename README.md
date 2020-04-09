@@ -2,15 +2,15 @@ This repository contains my dotfiles. 🎉
 
 # Disclaimer
 
-These dotfiles set things up the way *I* like things. Yes, that includes NERDTree. You may or may not like things this way. If you do, you're welcome to copy everything that seems useful to you; if you don't, you're welcome to ignore this repo.
+These dotfiles set things up the way I like things. Please copy everything that seems useful to you!
 
 # Contents
 
 * Ctags
 * Hammerspoon
 * IdeaVim, attempting to mirror Vim config as much as possible
-* iTerm2
 * Karabiner
+* KiTTY
 * Tig
 * Vim, using vim-plug
 * Zsh, without oh-my-zsh or similar package manager
