@@ -30,7 +30,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
 Plug 'romainl/vim-cool'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
+Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
@@ -444,7 +444,7 @@ nnoremap T= ?=\s*?e<CR>:nohls<CR>
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 
 " Close extraneous windows
-nnoremap <silent> <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>:Vista!<CR>
+nnoremap <silent> <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>:Vista!<CR>:NERDTreeClose<CR>
 
 " *** Prefix <leader><leader>: change settings
 nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
