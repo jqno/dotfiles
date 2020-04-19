@@ -505,7 +505,7 @@ nmap <leader>r> <Plug>(swap-next)
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
 nnoremap <silent> <leader>bd :bp\|bd #<CR>
-nnoremap <silent> <leader>b<Esc> :%bd\|e#<CR>
+nnoremap <silent> <leader>b<Esc> :%bd\|e#<CR>:echo "All other buffers closed."<CR>
 
 " *** Prefix <leader>w: windows
 nnoremap <leader>w_ <C-W>_
