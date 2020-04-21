@@ -49,7 +49,7 @@ function! JqnoStatusLine() abort
     let l:ale_error = l:ale_error_count > 0 ? printf('✗%d', l:ale_error_count) : ''
     let l:ale_warning = l:ale_warning_count > 0 ? printf('◆%d', l:ale_warning_count) : ''
 
-    let l:lsp_status = LSCServerStatus()
+    let l:lsp_status = ''
     let l:lsp_ok = l:lsp_status ==# 'running' ? 'λ' : ''
     let l:lsp_error = l:lsp_status ==# 'unexpected exit' || l:lsp_status ==# 'failed' ? 'λ' : ''
 

@@ -25,7 +25,6 @@ Plug 'liuchengxu/vista.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-swap'
-Plug 'natebosch/vim-lsc'
 Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'SirVer/ultisnips'
@@ -294,12 +293,9 @@ let g:goyo_width=120
 " *** liuchengxu/vista.vim
 let g:vista#renderer#enable_icon = 0
 let g:vista_executive_for = {
-    \ 'java': 'vim_lsc',
-    \ 'javascript': 'vim_lsc',
-    \ 'python': 'vim_lsc',
-    \ 'rust': 'vim_lsc',
-    \ 'scala': 'vim_lsc',
-    \ 'typescript': 'vim_lsc',
+    \ 'java': 'coc',
+    \ 'rust': 'coc',
+    \ 'scala': 'coc',
     \ }
 
 " *** machakann/vim-sandwich
@@ -307,77 +303,6 @@ runtime macros/sandwich/keymap/surround.vim
 
 " *** machakann/vim-swap
 let g:swap_no_default_key_mappings = 1
-
-" *** natebosch/vim-lsc
-let g:lsc_enable_autocomplete = v:false
-
-" Turn the invalid java.apply.workspaceEdit commands into an edit
-" action which complies with the LSP spec
-function! s:fixEdit(idx, maybeEdit) abort
-    if !has_key(a:maybeEdit, 'command') ||
-        \ !has_key(a:maybeEdit.command, 'command') ||
-        \ a:maybeEdit.command.command !=# 'java.apply.workspaceEdit'
-            return a:maybeEdit
-    endif
-    return {
-        \ 'edit': a:maybeEdit.command.arguments[0],
-        \ 'title': a:maybeEdit.command.title
-        \ }
-endfunction
-
-function! s:fixEdits(actions) abort
-    return map(a:actions, function('<SID>fixEdit'))
-endfunction
-
-let g:lsc_server_commands = {
-    \ 'elm': 'elm-language-server --stdio',
-    \ 'java': {
-    \   'command': 'eclipse-jdt-ls.sh -data ' . getcwd(),
-    \   'log_level': 'Warning',
-    \   'response_hooks': {
-    \     'textDocument/codeAction': function('<SID>fixEdits'),
-    \   },
-    \ },
-    \ 'javascript': 'typescript-language-server --stdio',
-    \ 'python': {
-    \   'command': 'pyls',
-    \   'workspace_config': { 'pyls': { 'plugins': {
-    \     'mccabe': { 'enabled': v:false },
-    \     'pycodestyle': { 'enabled': v:false },
-    \     'pydocstyle': { 'enabled': v:false },
-    \     'pyflakes': { 'enabled': v:false },
-    \     'yapf': { 'enabled': v:false },
-    \   } } }
-    \ },
-    \ 'rust': 'rls',
-    \ 'scala': 'metals-vim',
-    \ 'sbt.scala': 'metals-vim',
-    \ 'sh': 'bash-language-server start',
-    \ 'typescript': 'typescript-language-server --stdio',
-    \ 'vim': {
-    \   'command': 'vim-language-server --stdio',
-    \   'message_hooks': { 'initialize': {
-    \     'vimruntime': $VIMRUNTIME,
-    \     'runtimepath': &runtimepath,
-    \   } }
-    \ }
-    \ }
-
-let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<leader>g]',
-    \ 'GoToDefinitionSplit': '<leader>g<C-]>',
-    \ 'FindReferences': '<leader>fr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': '<leader>gi',
-    \ 'FindCodeActions': '<leader>r<cr>',
-    \ 'Rename': '<leader>rr',
-    \ 'ShowHover': 'K',
-    \ 'DocumentSymbol': '<leader>fs',
-    \ 'WorkspaceSymbol': '<leader>fS',
-    \ 'SignatureHelp': '<leader>ms',
-    \ 'Completion': 'omnifunc',
-    \ }
 
 " *** plasticboy/vim-markdown
 let g:vim_markdown_frontmatter = 1
