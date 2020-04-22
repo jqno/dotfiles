@@ -1,0 +1,7 @@
+{
+  "diagnostic.displayByAle": true,
+  "coc.preferences.extensionUpdateCheck": "never",
+  "suggest.autoTrigger": "trigger",
+  "suggest.noselect": false,
+  "snippets.priority": 100
+}

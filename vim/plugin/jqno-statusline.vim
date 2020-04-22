@@ -49,15 +49,14 @@ function! JqnoStatusLine() abort
     let l:ale_error = l:ale_error_count > 0 ? printf('✗%d', l:ale_error_count) : ''
     let l:ale_warning = l:ale_warning_count > 0 ? printf('◆%d', l:ale_warning_count) : ''
 
-    let l:lsp_status = ''
-    let l:lsp_ok = l:lsp_status ==# 'running' ? 'λ' : ''
-    let l:lsp_error = l:lsp_status ==# 'unexpected exit' || l:lsp_status ==# 'failed' ? 'λ' : ''
+    let l:lsp_status = coc#status()
+    let l:lsp_status = len(l:lsp_status) == 0 ? '' : l:lsp_status . ' | '
 
-    let l:ok = l:lsp_ok . l:ale_ok
+    let l:ok = l:ale_ok
     let l:ok = len(l:ok) == 0 ? '' : ' ' . l:ok . ' '
     let l:warning = l:ale_warning
     let l:warning = len(l:warning) == 0 ? '' : '  ' . l:warning . ' '
-    let l:error = l:lsp_error . l:ale_error
+    let l:error = l:ale_error
     let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
 
     let l:statusline =
@@ -81,17 +80,18 @@ function! JqnoStatusLine() abort
             \ '%{'. l:is_active_not_terminal .' && &modified ? "| + " : ""}' .
             \ '%*' .
             \ '%=' .
-            \ '  ' .
-            \ '%#SLok#%{' . l:is_active_not_terminal . ' ? "' . l:ok . '" : "" }' .
-            \ '%#SLwarning#%{' . l:is_active_not_terminal . ' ? "' . l:warning . '" : "" }' .
-            \ '%#SLerror#%{' . l:is_active_not_terminal . ' ? "' . l:error . '" : "" }' .
-            \ '%*' .
             \ ' ' .
+            \ '%{' . l:is_active_not_terminal . ' ? "' . l:lsp_status . '" : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() . " | " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() . " | " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() . " | " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? line(".") . ":" . col(".") . " " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? LineNoIndicator() . " " : "" }'
+            \ '%{' . l:is_active_not_terminal . ' ? LineNoIndicator() : "" }' .
+            \ ' ' .
+            \ '%#SLok#%{' . l:is_active_not_terminal . ' ? "' . l:ok . '" : "" }' .
+            \ '%#SLwarning#%{' . l:is_active_not_terminal . ' ? "' . l:warning . '" : "" }' .
+            \ '%#SLerror#%{' . l:is_active_not_terminal . ' ? "' . l:error . '" : "" }' .
+            \ '%*'
 
     return l:statusline
 endfunction

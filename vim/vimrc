@@ -38,6 +38,13 @@ Plug 'wincent/terminus'
 Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 
+" CoC plugins
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh' }
+Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-rls', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
+
 call plug#end()
 
 
@@ -304,6 +311,37 @@ runtime macros/sandwich/keymap/surround.vim
 " *** machakann/vim-swap
 let g:swap_no_default_key_mappings = 1
 
+" *** neoclide/coc.nvim
+set formatexpr=CocAction('formatSelected')
+set updatetime=300
+augroup CoC
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup END
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <F2> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
 " *** plasticboy/vim-markdown
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_folding_disabled = 1
@@ -379,9 +417,20 @@ nnoremap t= /\s*=<CR>:nohls<CR>
 nnoremap T= ?=\s*?e<CR>:nohls<CR>
 " ToggleMovement : 0 moves to beginning of text first, then to beginning of line
 nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
-
 " Close extraneous windows
 nnoremap <silent> <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>:Vista!<CR>:NERDTreeClose<CR>
+
+" Start CoC engine
+nnoremap <silent> <F2> :CocStart<CR>
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+    if (index(['vim', 'help'], &filetype) >= 0)
+        execute 'h ' . expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
 
 " *** Prefix <leader><leader>: change settings
 nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
@@ -404,24 +453,20 @@ nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <leader>fn :NERDTreeToggle<CR>
 nnoremap <leader>fN :NERDTreeFind<CR>
-" nnoremap <leader>fr :LSClientFindReferences<CR> " Managed by vim-lsc
-" nnoremap <leader>fs :LSClientDocumentSymbol<CR> " Managed by vim-lsc
-" nnoremap <leader>fS :LSClientWorkspaceSymbol<CR> " Managed by vim-lsc
+nmap <silent> <leader>fr <Plug>(coc-references)
 nnoremap <leader>fv :Vista<CR><C-W><C-P>
-
 
 " " *** Prefix <leader>g: going to places and Gitting things
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :0Glog!<CR>
-" nnoremap <leader>gd :LSClientGoToDefinition<CR> " Managed by vim-lsc
-" nnoremap <leader>gD :LSClientGoToDefinitionSplit<CR> " Managed by vim-lsc
-" nnoremap <leader>gi :LSClientFindImllementation<CR> " Managed by vim-lsc
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
 
 " " *** Prefix <leader>m: running make
-nnoremap <leader>mf magggqG`a
-vnoremap <leader>mf gq
 nnoremap <leader>mm :Make<CR>
-" nnoremap <leader>ms :LSClientSignatureHelp<CR> " Managed by vim-lsc
+nmap <silent> <leader>mf <Plug>(coc-format) " TODO: 'magggqG`a' when CoC is inactive
+vmap <silent> <leader>mf <Plug>(coc-format-selected) " TODO: 'gq' when CoC is inactive
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
@@ -435,8 +480,12 @@ nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 nmap <leader>r< <Plug>(swap-prev)
 nmap <leader>r> <Plug>(swap-next)
-" nnoremap <leader>rr :LSClientRename<CR> " Managed by vim-lsc
-" nnoremap <leader>r<cr> :LSClientFindCodeActions<CR> " Managed by vim-lsc
+nmap <silent> <leader>rf <Plug>(coc-fix-current)
+nnoremap <silent> <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
+nmap <silent> <leader>rr <Plug>(coc-rename)
+nmap <silent> <leader>r<CR> <Plug>(coc-codeaction)
+vmap <silent> <leader>r<CR> <Plug>(coc-codeaction-selected)
+nmap <silent> <leader>r<Space> <Plug>(coc-refactor)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
@@ -447,6 +496,9 @@ nnoremap <silent> <leader>b<Esc> :%bd\|e#<CR>:echo "All other buffers closed."<C
 nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
 nmap <leader>w<space> <Plug>(zoom-toggle)
+
+" *** Prefix <leader>c: CoC
+nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
