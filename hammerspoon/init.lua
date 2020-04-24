@@ -23,6 +23,7 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 -- App switching
 hyper.bindKey({}, "return", function() am.switchToAndFromApp("net.kovidgoyal.kitty") end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
+hyper.bindKey({"cmd"}, "c", function() am.switchToAndFromApp("com.google.Chrome") end)
 hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("com.apple.mail") end)
