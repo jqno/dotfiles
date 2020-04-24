@@ -41,6 +41,7 @@ Plug 'RGBD/vim-xml-indent'
 " CoC plugins
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh' }
 Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-rls', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
