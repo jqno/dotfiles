@@ -460,7 +460,7 @@ nnoremap <leader>fv :Vista<CR><C-W><C-P>
 " " *** Prefix <leader>g: going to places and Gitting things
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :0Glog!<CR>
-nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>g] <Plug>(coc-definition)
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 
