@@ -26,8 +26,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-swap'
 Plug 'natebosch/vim-lsc'
-Plug 'plasticboy/vim-markdown'
-Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
 Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
@@ -38,6 +36,10 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'whiteinge/diffconflicts'
 Plug 'wincent/terminus'
+
+" Filetype plugins
+Plug 'plasticboy/vim-markdown'
+Plug 'RGBD/vim-xml-indent'
 
 call plug#end()
 
