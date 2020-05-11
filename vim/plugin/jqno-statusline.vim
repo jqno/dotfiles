@@ -49,7 +49,7 @@ function! JqnoStatusLine() abort
     let l:ale_error = l:ale_error_count > 0 ? printf('✗%d', l:ale_error_count) : ''
     let l:ale_warning = l:ale_warning_count > 0 ? printf('◆%d', l:ale_warning_count) : ''
 
-    let l:lsp_status = coc#status()
+    let l:lsp_status = exists('g:did_coc_loaded') ? coc#status() : ''
     let l:lsp_status = len(l:lsp_status) == 0 ? '' : l:lsp_status . ' | '
 
     let l:ok = l:ale_ok
