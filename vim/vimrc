@@ -31,7 +31,6 @@ Plug 'RGBD/vim-xml-indent'
 Plug 'rizzatti/dash.vim'
 Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
-Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
