@@ -5,8 +5,6 @@
 
 silent! let g:plugs['Colorizer'].commit = '5fbdf24'
 silent! let g:plugs['ale'].commit = '41ff80dc'
-silent! let g:plugs['dash.vim'].commit = '25b17d9'
-silent! let g:plugs['diffconflicts'].commit = '61765d0'
 silent! let g:plugs['fzf.vim'].commit = '98cf399'
 silent! let g:plugs['goyo.vim'].commit = '6b6ed27'
 silent! let g:plugs['jqno-autoclose.vim'].commit = 'acf72fc'
