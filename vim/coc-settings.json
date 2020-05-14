@@ -3,5 +3,6 @@
   "coc.preferences.extensionUpdateCheck": "never",
   "suggest.autoTrigger": "trigger",
   "suggest.noselect": false,
-  "snippets.priority": 100
+  "snippets.priority": 100,
+  "metals.statusBarEnabled": true
 }
