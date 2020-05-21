@@ -56,8 +56,6 @@ set backupdir-=.
 set backupdir+=.
 " Store a big chunk of : command history
 set history=1000
-" Automatically re-read file in current buffer if it was edited outside vim
-set autoread
 " Enable filetypes and syntax
 filetype plugin indent on
 syntax on
@@ -90,6 +88,12 @@ set wildignore=node_modules
 " Completion
 set completeopt+=menuone,noinsert
 set shortmess+=c
+" Automatically re-read file in current buffer if it was edited outside vim
+set autoread
+augroup auto_checktime
+    autocmd!
+    autocmd FocusGained,BufEnter,CursorHold * silent! checktime
+augroup end
 
 augroup vimStartup
     autocmd!
