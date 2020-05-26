@@ -37,44 +37,27 @@ hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.grupovrs.ramboxce")
 
 
 -- Window management
-hyper.bindKey({}, "h", function() wm.fw().focusWindowWest() end)
-hyper.bindKey({}, "j", function() wm.fw().focusWindowSouth() end)
-hyper.bindKey({}, "k", function() wm.fw().focusWindowNorth() end)
-hyper.bindKey({}, "l", function() wm.fw().focusWindowEast() end)
+local yabai = "/usr/local/bin/yabai -m "
+local yabai = function(cmd)
+    hs.execute(yabai .. cmd)
+end
 
-hyper.bindKey({"cmd"}, "h", wm.leftPressed, wm.leftReleased)
-hyper.bindKey({"cmd"}, "j", wm.downPressed, wm.downReleased)
-hyper.bindKey({"cmd"}, "k", wm.upPressed, wm.upReleased)
-hyper.bindKey({"cmd"}, "l", wm.rightPressed, wm.rightReleased)
+hyper.bindKey({"cmd"}, "h", function() yabai("window --focus west") end)
+hyper.bindKey({"cmd"}, "j", function() yabai("window --focus south") end)
+hyper.bindKey({"cmd"}, "k", function() yabai("window --focus north") end)
+hyper.bindKey({"cmd"}, "l", function() yabai("window --focus east") end)
 
-hyper.bindKey({"cmd"}, "1", function() wm.windowMaximize(0) end)
-hyper.bindKey({"cmd"}, "2", function() wm.windowMaximize(1) end)
-hyper.bindKey({"cmd"}, "3", function() wm.windowMaximize(2) end)
-hyper.bindKey({"cmd"}, "4", function() wm.windowMaximize(3) end)
+hyper.bindKey({"cmd"}, "left", function() yabai("window --swap west") end)
+hyper.bindKey({"cmd"}, "down", function() yabai("window --swap south") end)
+hyper.bindKey({"cmd"}, "up", function() yabai("window --swap north") end)
+hyper.bindKey({"cmd"}, "right", function() yabai("window --swap east") end)
 
-hyper.bindKey({"cmd"}, "left", function() wm.fw():moveOneScreenWest() end)
-hyper.bindKey({"cmd"}, "down", function() wm.fw():moveOneScreenSouth() end)
-hyper.bindKey({"cmd"}, "up", function() wm.fw():moveOneScreenNorth() end)
-hyper.bindKey({"cmd"}, "right", function() wm.fw():moveOneScreenEast() end)
+hyper.bindKey({"cmd"}, "[", function() yabai("window --display 1"); yabai("display --focus 1") end)
+hyper.bindKey({"cmd"}, "]", function() yabai("window --display 2"); yabai("display --focus 2") end)
 
-local layouts = {
-  { bundle = "com.apple.iCal", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.apple.Safari", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.google.Chrome", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.grupovrs.ramboxce", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "com.hicknhacksoftware.MacPass", func = function(win) wm.windowMaximize(2, win) end },
-  { bundle = "com.jetbrains.intellij", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "com.kapeli.dashdoc", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "com.rememberthemilk.Deskmilk", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "com.spotify.client", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "com.apple.mail", func = function(win) wm.windowMaximize(1, win) end },
-  { bundle = "net.cozic.joplin-desktop", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "net.kovidgoyal.kitty", func = function(win) wm.windowMaximize(0, win) end },
-  { bundle = "org.keepassx.keepassxc", func = function(win) wm.windowMaximize(2, win) end },
-  { bundle = "org.mozilla.firefox", func = function(win) wm.windowMaximize(0, win) end }
-}
-hyper.bindKey({"cmd"}, "delete", function() wm.applyLayouts(layouts) end)
-hyper.bindKey({}, "tab", function() wm.cycleScreen() end)
+hyper.bindKey({"cmd"}, "delete", function() yabai("window --toggle float"); yabai("window --grid 9:9:1:1:7:7") end)
+hyper.bindKey({"cmd"}, "return", function() yabai("window --toggle zoom-parent") end)
+hyper.bindKey({"cmd"}, "\\", function() yabai("space --rotate 90") end)
 
 
 -- Lock the screen
