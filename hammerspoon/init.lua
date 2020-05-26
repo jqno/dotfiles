@@ -23,8 +23,6 @@ hyper.bindKey({"cmd"}, "r", hs.reload)
 -- App switching
 hyper.bindKey({}, "return", function() am.switchToAndFromApp("net.kovidgoyal.kitty") end)
 hyper.bindKey({}, "c", function() am.switchToAndFromApp("com.apple.iCal") end)
-hyper.bindKey({"cmd"}, "c", function() am.switchToAndFromApp("com.google.Chrome") end)
-hyper.bindKey({}, "d", function() am.switchToAndFromApp("com.kapeli.dashdoc") end)
 hyper.bindKey({}, "f", function() am.switchToAndFromApp("com.apple.finder") end)
 hyper.bindKey({}, "m", function() am.switchToAndFromApp("com.apple.mail") end)
 hyper.bindKey({}, "n", function() am.switchToAndFromApp("net.cozic.joplin-desktop") end)
@@ -34,6 +32,7 @@ hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") en
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
 hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
+hyper.bindKey({}, "2", function() am.switchToAndFromApp("com.google.Chrome") end)
 
 
 -- Window management
@@ -82,7 +81,7 @@ hyper.bindKey({}, "t", function()
   hs.pasteboard.setContents(time)
 end)
 
-hyper.bindKey({"cmd"}, "t", function()
+hyper.bindKey({}, "d", function()
   local time = os.date("%Y-%m-%d")
   hs.alert.show("📆 " .. time)
   hs.pasteboard.setContents(time)
