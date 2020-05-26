@@ -2,6 +2,7 @@
 
 rm -rf ~/.vim/autoload
 rm -rf ~/.vim/plugged
+rm -rf ~/.config/coc
 
 echo "Installing Vim plugins..."
 

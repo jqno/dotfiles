@@ -4,6 +4,7 @@
 tags
 tags.lock
 Session.vim
+.vim
 
 # Eclipse JDT, the Java language server
 .classpath
