@@ -468,7 +468,7 @@ nmap <leader>r> <Plug>(swap-next)
 nmap <silent> <leader>rf <Plug>(coc-fix-current)
 nnoremap <silent> <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
 nmap <silent> <leader>rr <Plug>(coc-rename)
-nmap <silent> <leader>r<CR> <Plug>(coc-codeaction)
+nmap <silent> <leader>r<CR> :CocAction<CR>
 vmap <silent> <leader>r<CR> <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>r<Space> <Plug>(coc-refactor)
 
