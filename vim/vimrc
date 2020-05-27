@@ -39,11 +39,13 @@ Plug 'plasticboy/vim-markdown'
 Plug 'RGBD/vim-xml-indent'
 
 " CoC plugins
-Plug 'neoclide/coc.nvim', { 'for': ['java', 'scala', 'json', 'rust'], 'branch': 'release', 'do': './install.sh' }
+Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh',
+    \ 'for': ['java', 'javascript', 'json', 'rust', 'scala', 'typescript'] }
 Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-rls', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
 
 call plug#end()
