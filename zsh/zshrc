@@ -16,6 +16,3 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Start tmux (if we're not in tmux already)
-source ~/.zsh/tmux.sh
-

@@ -1,7 +1,5 @@
 # PATH
-if [[ -z $TMUX ]]; then
-  export PATH=/sbin:~/bin:~/scripts:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
-fi
+export PATH=/sbin:~/bin:~/scripts:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
 
 # Default editor
 export EDITOR=vim

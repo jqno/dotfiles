@@ -31,7 +31,6 @@ brew "joplin"
 brew "jq"
 brew "maven"
 brew "pandoc"
-brew "pstree" # Needed for tmux-check-if-vim script
 brew "rsync"
 brew "sbt"
 brew "scala"

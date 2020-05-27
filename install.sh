@@ -22,7 +22,6 @@ function installDotfiles() {
   installFor "tigrc"
   installFor "vim"
   scriptFor "vim"
-  installFor "tmux.conf"
   installFor "yabairc"
   installFor "zsh/zshrc" ".zshrc"
   installFor "zsh/config" ".zsh"
