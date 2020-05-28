@@ -1,5 +1,4 @@
 local am = require('app-management')
-local wm = require('window-management')
 local caffeine = require('caffeine')
 local clamshell = require('clamshell-monitor')
 local hyper = require('hyper')
