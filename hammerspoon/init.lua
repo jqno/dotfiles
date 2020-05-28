@@ -33,6 +33,9 @@ hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") e
 hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
 hyper.bindKey({}, "2", function() am.switchToAndFromApp("com.google.Chrome") end)
 
+local kitty = "/usr/local/bin/kitty @ --to unix:/tmp/kitty-socket new-window --window-type os"
+hyper.bindKey({"cmd"}, "return", function() hs.execute(kitty) end)
+
 
 -- Window management
 local yabai = "/usr/local/bin/yabai -m "
@@ -53,9 +56,9 @@ hyper.bindKey({"cmd"}, "right", function() yabai("window --swap east") end)
 hyper.bindKey({"cmd"}, "[", function() yabai("window --display 1"); yabai("display --focus 1") end)
 hyper.bindKey({"cmd"}, "]", function() yabai("window --display 2"); yabai("display --focus 2") end)
 
-hyper.bindKey({"cmd"}, "delete", function() yabai("window --toggle float"); yabai("window --grid 9:9:1:1:7:7") end)
-hyper.bindKey({"cmd"}, "return", function() yabai("window --toggle zoom-parent") end)
-hyper.bindKey({"cmd"}, "\\", function() yabai("space --rotate 90") end)
+hyper.bindKey({"cmd"}, "1", function() yabai("window --toggle zoom-parent") end)
+hyper.bindKey({"cmd"}, "2", function() yabai("window --toggle float"); yabai("window --grid 9:9:1:1:7:7") end)
+hyper.bindKey({"cmd"}, "3", function() yabai("space --rotate 90") end)
 
 
 -- Lock the screen

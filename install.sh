@@ -16,7 +16,7 @@ function installDotfiles() {
   installFor "hammerspoon"
   installFor "ideavimrc"
   installFor "karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
-  installFor "kitty.conf" ".config/kitty/kitty.conf" ".config/kitty"
+  installFor "kitty" ".config/kitty" ".config"
   scriptFor "macos"
   installFor "scripts" "scripts"
   installFor "tigrc"
