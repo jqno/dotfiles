@@ -81,6 +81,7 @@ set shiftround
 set nrformats-=octal
 " Search more easily
 set incsearch hlsearch ignorecase smartcase
+set shortmess-=S
 " Don't wrap lines, but if you do, don't wrap in the middle of a word
 set nowrap linebreak
 " Join lines more intuitively
