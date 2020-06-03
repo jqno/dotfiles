@@ -43,18 +43,18 @@ local yabai = function(cmd)
     hs.execute(yabai .. cmd)
 end
 
-hyper.bindKey({"cmd"}, "h", function() yabai("window --focus west") end)
-hyper.bindKey({"cmd"}, "j", function() yabai("window --focus south") end)
-hyper.bindKey({"cmd"}, "k", function() yabai("window --focus north") end)
-hyper.bindKey({"cmd"}, "l", function() yabai("window --focus east") end)
+hyper.bindKey({"cmd"}, "h", function() hs.window.focusedWindow().focusWindowWest() end)
+hyper.bindKey({"cmd"}, "j", function() hs.window.focusedWindow().focusWindowSouth() end)
+hyper.bindKey({"cmd"}, "k", function() hs.window.focusedWindow().focusWindowNorth() end)
+hyper.bindKey({"cmd"}, "l", function() hs.window.focusedWindow().focusWindowEast() end)
 
 hyper.bindKey({"cmd"}, "left", function() yabai("window --swap west") end)
 hyper.bindKey({"cmd"}, "down", function() yabai("window --swap south") end)
 hyper.bindKey({"cmd"}, "up", function() yabai("window --swap north") end)
 hyper.bindKey({"cmd"}, "right", function() yabai("window --swap east") end)
 
-hyper.bindKey({"cmd"}, "[", function() yabai("window --display 1"); yabai("display --focus 1") end)
-hyper.bindKey({"cmd"}, "]", function() yabai("window --display 2"); yabai("display --focus 2") end)
+hyper.bindKey({"cmd"}, "[", function() hs.window.focusedWindow():moveOneScreenWest() end)
+hyper.bindKey({"cmd"}, "]", function() hs.window.focusedWindow():moveOneScreenEast() end)
 
 hyper.bindKey({"cmd"}, "1", function() yabai("window --toggle zoom-parent") end)
 hyper.bindKey({"cmd"}, "2", function() yabai("window --toggle float"); yabai("window --grid 9:9:1:1:7:7") end)
