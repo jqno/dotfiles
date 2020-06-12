@@ -8,7 +8,6 @@ runtime ftplugin/man.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'chrisbra/Colorizer'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'dense-analysis/ale'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
@@ -195,10 +194,10 @@ endif
 " Easier access to Normal mode in Terminal
 tnoremap <F1> <C-\><C-N>
 " " Split navigation
-tnoremap <C-H> <C-\><C-N>:TmuxNavigateLeft<CR>
-tnoremap <C-J> <C-\><C-N>:TmuxNavigateDown<CR>
-tnoremap <C-K> <C-\><C-N>:TmuxNavigateUp<CR>
-tnoremap <C-L> <C-\><C-N>:TmuxNavigateRight<CR>
+tnoremap <C-H> <C-\><C-N><C-W>h
+tnoremap <C-J> <C-\><C-N><C-W>j
+tnoremap <C-K> <C-\><C-N><C-W>k
+tnoremap <C-L> <C-\><C-N><C-W>l
 
 
 
@@ -361,8 +360,17 @@ let g:TerminusFocusReporting=0
 
 " *** No prefix: general mappings
 
-" Toggle Goyo for distraction-free writing
-nnoremap <F12> :Goyo<CR>
+" Easy window switching
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+" Allow for easy window resizing
+" (˙∆˚¬ are Alt+hjkl on macOS)
+noremap <silent> ˙ :call ResizeLikeTmux('h', 1)<CR>
+noremap <silent> ∆ :call ResizeLikeTmux('j', 1)<CR>
+noremap <silent> ˚ :call ResizeLikeTmux('k', 1)<CR>
+noremap <silent> ¬ :call ResizeLikeTmux('l', 1)<CR>
 
 " Pressing up in a long line gets you to the above line 'in the screen',
 " but if you precede it with a count, you get the old behavior
@@ -372,16 +380,13 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 vnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
+" Toggle Goyo for distraction-free writing
+nnoremap <F12> :Goyo<CR>
+
 " Keep the visual selection after < and > so we can repeat these buttons
 " instead of tring to find .
 vnoremap < <gv
 vnoremap > >gv
-" Allow for easy window resizing
-" (˙∆˚¬ are Alt+hjkl on macOS)
-noremap <silent> ˙ :call ResizeLikeTmux('h', 1)<CR>
-noremap <silent> ∆ :call ResizeLikeTmux('j', 1)<CR>
-noremap <silent> ˚ :call ResizeLikeTmux('k', 1)<CR>
-noremap <silent> ¬ :call ResizeLikeTmux('l', 1)<CR>
 " Mappings for vim-commentary
 xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
