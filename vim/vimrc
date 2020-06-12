@@ -27,6 +27,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-swap'
 Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
+Plug 'uiiaoo/java-syntax.vim'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
