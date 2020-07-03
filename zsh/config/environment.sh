@@ -1,5 +1,5 @@
 # PATH
-export PATH=/sbin:~/bin:~/scripts:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
+export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
 
 # Default editor
 export EDITOR=vim
