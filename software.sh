@@ -13,6 +13,7 @@ function installSoftware() {
     exit 1
   fi
 
+  installCoursier
   installNpm
   installGem
   installPip
@@ -42,6 +43,15 @@ function installMacos() {
 
   if [ $? -ne 0 ]; then
     echo "** Brew failed (did you sign into the App Store?)"
+    exit 1
+  fi
+}
+
+function installCoursier() {
+  echo "** Installing Coursier dependencies..."
+  source $PWD/software/coursier.sh
+  if [ $? -ne 0 ]; then
+    echo "** Coursier failed"
     exit 1
   fi
 }
