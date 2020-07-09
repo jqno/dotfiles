@@ -20,6 +20,7 @@ cask "adoptopenjdk11"
 
 # Software to install
 brew "bat"
+brew "exa"
 brew "figlet"
 brew "fzf"
 brew "git"
