@@ -14,9 +14,9 @@ function! s:RunJavaProgram() abort
     exec 'Dispatch run-java.sh -r ' . l:fqn
 endfunction
 
-nnoremap <silent> <leader>mc :Dispatch! run-java.sh -cp<CR>
-nnoremap <silent> <leader>mr :call <SID>RunJavaProgram()<CR>
-nnoremap <silent> <F5> :call <SID>RunJavaProgram()<CR>
+nnoremap <buffer><silent> <leader>mc :Dispatch! run-java.sh -cp<CR>
+nnoremap <buffer><silent> <leader>mr :call <SID>RunJavaProgram()<CR>
+nnoremap <buffer><silent> <F5> :call <SID>RunJavaProgram()<CR>
 
 
 " *** Formatting
@@ -29,7 +29,7 @@ function! s:OrganizeImports() abort
     setlocal formatprg=google-java-format\ --aosp\ -
 endfunction
 
-nnoremap <buffer> <leader>ro :call <SID>OrganizeImports()<CR>
-nnoremap <silent> <leader>mf magggqG`a
-vnoremap <silent> <leader>mf gq
+nnoremap <buffer><silent> <leader>ro :call <SID>OrganizeImports()<CR>
+nnoremap <buffer><silent> <leader>mf magggqG`a
+vnoremap <buffer><silent> <leader>mf gq
 
