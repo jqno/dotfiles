@@ -459,6 +459,7 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 
 " " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
+nnoremap <leader>md :CocList diagnostics<CR>
 nmap <silent> <leader>mf <Plug>(coc-format) " TODO: 'magggqG`a' when CoC is inactive
 vmap <silent> <leader>mf <Plug>(coc-format-selected) " TODO: 'gq' when CoC is inactive
 
