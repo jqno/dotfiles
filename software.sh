@@ -22,7 +22,7 @@ function installSoftware() {
 
 function installMacos() {
   if ! [ -x "$(command -v brew)" ]; then
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
 
   echo "** Installing mas and Xcode. This may take a while; the Launchpad icon has a nice progress bar."
