@@ -20,6 +20,7 @@ Plug 'jqno/jqno-textobj-functioncall.vim' | Plug 'kana/vim-textobj-user'
 Plug 'jqno/reversal.vim'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'liuchengxu/vista.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
@@ -300,6 +301,10 @@ command! -bang -nargs=+ FzfAg
 
 " *** junegunn/goyo
 let g:goyo_width=120
+
+" *** junegunn/rainbow-parentheses.vim
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+let g:rainbow#blacklist = ['#000000']
 
 " *** liuchengxu/vista.vim
 let g:vista#renderer#enable_icon = 0
