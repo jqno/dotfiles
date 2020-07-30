@@ -50,6 +50,7 @@ brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "alfred"
 cask "avira-antivirus"
 cask "bartender"
+cask "docker"
 cask "dropbox"
 cask "firefox"
 cask "font-comic-neue"
