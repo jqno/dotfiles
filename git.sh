@@ -12,6 +12,7 @@ git config --global remote.origin.prune true
 git config --global commit.verbose true
 git config --global diff.algorithm patience
 git config --global diff.compactionHeuristic true
+git config --global init.defaultBranch main
 
 git config --global alias.amend "commit --amend"
 git config --global alias.ci "commit -v"
