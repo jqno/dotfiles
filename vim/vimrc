@@ -467,6 +467,7 @@ nnoremap <leader>mm :Make<CR>
 nnoremap <leader>md :CocList diagnostics<CR>
 nmap <silent> <leader>mf <Plug>(coc-format) " TODO: 'magggqG`a' when CoC is inactive
 vmap <silent> <leader>mf <Plug>(coc-format-selected) " TODO: 'gq' when CoC is inactive
+nnoremap <leader>m<Esc> :AbortDispatch<CR>
 
 " *** Prefix <leader>t: running tests
 nnoremap <leader>ta :TestSuite<CR>
