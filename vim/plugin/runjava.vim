@@ -10,14 +10,14 @@ function! s:RunJavaProgram() abort
     let l:fqn = l:package . '.' . l:class
 
     if matchstr(l:class, 'Test$') ==# ''
-        exec 'Dispatch run-java.sh -r org.junit.runner.JUnitCore ' . l:fqn
+        exec 'Dispatch run-java.sh -r ' . expand('%') . ' org.junit.runner.JUnitCore ' . l:fqn
     else
         if &filetype ==# 'scala'
             let l:fqn .= '$delayedInit$body'
         elseif &filetype ==# 'kotlin'
             let l:fqn .= 'Kt'
         endif
-        exec 'Dispatch run-java.sh -r ' . l:fqn
+        exec 'Dispatch run-java.sh -r ' . expand('%') . ' ' . l:fqn
     endif
 endfunction
 

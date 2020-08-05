@@ -13,7 +13,8 @@ elif [[ "$1" == "-r" ]]; then
   if [[ ! -f $CLASSPATH_FILE ]]; then
     . $0 -cp
   fi
-  java -cp $(cat $CLASSPATH_FILE) $2 $3
+  javac -d target/classes -cp $(cat $CLASSPATH_FILE) $2
+  java -cp $(cat $CLASSPATH_FILE) $3 $4
 else
   NAME=$(basename "$0")
   echo "Usage:"
@@ -21,7 +22,8 @@ else
   echo "*  $NAME -cp"
   echo "   Generates .vim/classpath, containing the program's complete classpath."
   echo
-  echo "*  $NAME -r <classname>"
-  echo "   Runs the given classname as a Java program against the generated classpath."
+  echo "*  $NAME -r <filename> <classname> <parameters>"
+  echo "   Runs javac on the given filename, then runs the given classname as a"
+  echo "   Java program against the generated classpath, with the given parameters."
   echo
 fi
