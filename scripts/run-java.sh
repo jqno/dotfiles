@@ -13,7 +13,7 @@ elif [[ "$1" == "-r" ]]; then
   if [[ ! -f $CLASSPATH_FILE ]]; then
     . $0 -cp
   fi
-  java -cp $(cat $CLASSPATH_FILE) $2
+  java -cp $(cat $CLASSPATH_FILE) $2 $3
 else
   NAME=$(basename "$0")
   echo "Usage:"

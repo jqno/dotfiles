@@ -8,12 +8,17 @@ function! s:RunJavaProgram() abort
     let l:package=matchstr(getline(l:line), l:pattern)
     let l:class=expand('%:t:r')
     let l:fqn = l:package . '.' . l:class
-    if &filetype ==# 'scala'
-        let l:fqn .= '$delayedInit$body'
-    elseif &filetype ==# 'kotlin'
-        let l:fqn .= 'Kt'
+
+    if matchstr(l:class, 'Test$') ==# ''
+        exec 'Dispatch run-java.sh -r org.junit.runner.JUnitCore ' . l:fqn
+    else
+        if &filetype ==# 'scala'
+            let l:fqn .= '$delayedInit$body'
+        elseif &filetype ==# 'kotlin'
+            let l:fqn .= 'Kt'
+        endif
+        exec 'Dispatch run-java.sh -r ' . l:fqn
     endif
-    exec 'Dispatch run-java.sh -r ' . l:fqn
 endfunction
 
 function! s:GenerateJavaClasspath() abort
