@@ -1,0 +1,120 @@
+#!/usr/bin/env python3
+
+"""Runs a Java program"""
+
+import os
+import re
+import sys
+
+
+CLASSPATH_DIR = ".vim"
+CLASSPATH_FILE = f"{CLASSPATH_DIR}/classpath"
+TARGET_DIR = "target/classes"
+
+
+def main():
+    argc = len(sys.argv)
+    if argc == 0:
+        print_help()
+    else:
+        run_program(sys.argv[1], sys.argv[2:])
+
+
+def print_help():
+    print("Usage:")
+    print
+    print("*  $NAME <filename> <parameters>")
+    print("   Compiles the given filename if necessary, then runs it as a")
+    print("   Java program against the generated classpath, with the given parameters.")
+    print
+
+
+def generate_classpath():
+    print("Generating classpath...")
+    if not os.path.exists(CLASSPATH_DIR):
+        os.mkdir(CLASSPATH_DIR)
+    cmd = f"""mvn -q org.codehaus.mojo:exec-maven-plugin:exec \
+            -Dexec.classpathScope="compile" \
+            -Dexec.executable="echo" \
+            -Dexec.args="%classpath" > {CLASSPATH_FILE}"""
+    execute(cmd)
+
+
+def run_program(filename, params):
+    if not os.path.exists(CLASSPATH_FILE):
+        generate_classpath()
+    classpath = read_classpath()
+    classname = determine_classname(filename)
+
+    name, ext = os.path.splitext(filename)
+    if ext == '.java' and is_stale(filename, determine_classfile(classname)):
+        compile_java_file(filename, classpath)
+    if name.endswith("Test"):
+        runner = determine_junit_runner(classpath)
+        run_java_class(runner, [classname] + params, classpath)
+    else:
+        run_java_class(classname, params, classpath)
+
+
+def determine_classname(filename):
+    packagename = determine_packagename(filename)
+    basename = os.path.basename(filename)
+    name, ext = os.path.splitext(basename)
+    if ext == '.scala':
+        return f"{packagename}.{name}$delayedInit$body"
+    elif ext == '.kt':
+        return f"{packagename}.{name}Kt"
+    else:
+        return f"{packagename}.{name}"
+
+
+def determine_classfile(classname):
+    replaced = classname.replace(".", "/")
+    return f"{TARGET_DIR}/{replaced}.class"
+
+
+def determine_packagename(filename):
+    with open(filename) as f:
+        for line in f:
+            if line.startswith("package"):
+                return re.findall("^package ([A-Za-z.]*);?$", line)[0]
+
+
+def run_java_class(classname, params, classpath):
+    joined_params = " ".join(params)
+    cmd = f"java -cp {classpath} {classname} {joined_params}"
+    execute(cmd)
+
+
+def compile_java_file(filename, classpath):
+    cmd = f"javac -d {TARGET_DIR} -cp {classpath} {filename}"
+    execute(cmd)
+
+
+def determine_junit_runner(classpath):
+    if "junit/4." in classpath:
+        return "org.junit.runner.JUnitCore"
+    elif "junit/3." in classpath:
+        return "junit.textui.TestRunner"
+
+
+def read_classpath():
+    with open(CLASSPATH_FILE) as f:
+        return f.read().rstrip()
+
+
+def is_stale(first, second):
+    try:
+        first_time = os.path.getmtime(first)
+        second_time = os.path.getmtime(second)
+        return first_time > second_time
+    except FileNotFoundError:
+        return True
+
+
+def execute(cmd):
+    os.system(cmd)
+
+
+if __name__ == "__main__":
+    main()
