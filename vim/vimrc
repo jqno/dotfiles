@@ -42,9 +42,10 @@ Plug 'RGBD/vim-xml-indent'
 
 " CoC plugins
 Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh',
-    \ 'for': ['java', 'javascript', 'json', 'rust', 'scala', 'typescript'] }
+    \ 'for': ['java', 'javascript', 'json', 'python', 'rust', 'scala', 'typescript'] }
 Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-rls', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
@@ -311,6 +312,7 @@ let g:rainbow#blacklist = ['#000000']
 let g:vista#renderer#enable_icon = 0
 let g:vista_executive_for = {
     \ 'java': 'coc',
+    \ 'python': 'coc',
     \ 'rust': 'coc',
     \ 'scala': 'coc',
     \ }
