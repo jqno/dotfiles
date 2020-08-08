@@ -14,7 +14,7 @@ TARGET_DIR = "target/classes"
 
 def main():
     argc = len(sys.argv)
-    if argc == 0:
+    if argc == 1:
         print_help()
     else:
         run_program(sys.argv[1], sys.argv[2:])
@@ -22,14 +22,15 @@ def main():
 
 def print_help():
     print("Usage:")
-    print
-    print("*  $NAME <filename> [<jvm-parameters> --] [<cmd-line parameters>]")
+    print("")
+    print("*  runjava.py <filename> [<jvm-parameters> --] [<cmd-line parameters>]")
+    print("")
     print("   Compiles the given filename if necessary, then runs it as a")
     print("   Java program against the generated classpath,")
     print("   with the given JVM parameters and command-line parameters,")
     print("   if present. Note that the JVM parameters must be followed by")
     print("   two dashes (--), even if no command-line parameters follow.")
-    print
+    print("")
 
 
 def generate_classpath():
