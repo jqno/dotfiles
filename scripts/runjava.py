@@ -23,9 +23,12 @@ def main():
 def print_help():
     print("Usage:")
     print
-    print("*  $NAME <filename> <parameters>")
+    print("*  $NAME <filename> [<jvm-parameters> --] [<cmd-line parameters>]")
     print("   Compiles the given filename if necessary, then runs it as a")
-    print("   Java program against the generated classpath, with the given parameters.")
+    print("   Java program against the generated classpath,")
+    print("   with the given JVM parameters and command-line parameters,")
+    print("   if present. Note that the JVM parameters must be followed by")
+    print("   two dashes (--), even if no command-line parameters follow.")
     print
 
 
@@ -45,15 +48,16 @@ def run_program(filename, params):
         generate_classpath()
     classpath = read_classpath()
     classname = determine_classname(filename)
+    jvm_params, app_params = split_params(params)
 
     name, ext = os.path.splitext(filename)
     if ext == '.java' and is_stale(filename, determine_classfile(classname)):
         compile_java_file(filename, classpath)
     if name.endswith("Test"):
         runner = determine_junit_runner(classpath)
-        run_java_class(runner, [classname] + params, classpath)
+        run_java_class(runner, jvm_params, [classname] + app_params, classpath)
     else:
-        run_java_class(classname, params, classpath)
+        run_java_class(classname, jvm_params, app_params, classpath)
 
 
 def determine_classname(filename):
@@ -80,9 +84,10 @@ def determine_packagename(filename):
                 return re.findall("^package ([A-Za-z.]*);?$", line)[0]
 
 
-def run_java_class(classname, params, classpath):
-    joined_params = " ".join(params)
-    cmd = f"java -cp {classpath} {classname} {joined_params}"
+def run_java_class(classname, compiler_params, app_params, classpath):
+    joined_compiler_params = " ".join(compiler_params)
+    joined_app_params = " ".join(app_params)
+    cmd = f"java -cp {classpath} {joined_compiler_params} {classname} {joined_app_params}"
     execute(cmd)
 
 
@@ -101,6 +106,18 @@ def determine_junit_runner(classpath):
 def read_classpath():
     with open(CLASSPATH_FILE) as f:
         return f.read().rstrip()
+
+
+def split_params(params):
+    jvm_params = []
+    app_params = []
+    for p in params:
+        if p == "--":
+            jvm_params = app_params
+            app_params = []
+        else:
+            app_params.append(p)
+    return (jvm_params, app_params)
 
 
 def is_stale(first, second):
