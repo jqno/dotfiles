@@ -62,8 +62,8 @@ def run_program(filename, params):
     if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
         compile_java_file(filename, classpath)
     if name.endswith("Test"):
-        runner = determine_junit_runner(classpath)
-        run_java_class(runner, jvm_params, [classname] + app_params, classpath)
+        runner_params = determine_junit_runner_params(classpath, classname)
+        run_java_class(runner_params[0], jvm_params, runner_params[1:] + app_params, classpath)
     else:
         run_java_class(classname, jvm_params, app_params, classpath)
 
@@ -113,13 +113,13 @@ def determine_target_dir(filename):
         return MAVEN_TARGET_DIR
 
 
-def determine_junit_runner(classpath):
+def determine_junit_runner_params(classpath, classname):
     if "scalatest" in classpath:
-        return "org.scalatest.tools.Runner -oW -s "
+        return ["org.scalatest.tools.Runner", "-oW", "-s", classname]
     elif "junit/4." in classpath:
-        return "org.junit.runner.JUnitCore"
+        return ["org.junit.runner.JUnitCore", classname]
     elif "junit/3." in classpath:
-        return "junit.textui.TestRunner"
+        return ["junit.textui.TestRunner", classname]
     else:
         raise "Can't figure out which unit test runner to use"
 
