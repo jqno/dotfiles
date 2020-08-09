@@ -16,6 +16,8 @@ def main():
     argc = len(sys.argv)
     if argc == 1:
         print_help()
+    elif sys.argv[1] == "-cp":
+        generate_classpath()
     else:
         run_program(sys.argv[1], sys.argv[2:])
 
@@ -30,6 +32,10 @@ def print_help():
     print("   with the given JVM parameters and command-line parameters,")
     print("   if present. Note that the JVM parameters must be followed by")
     print("   two dashes (--), even if no command-line parameters follow.")
+    print("")
+    print("*  runjava.py -cp")
+    print("")
+    print("   Refreshes the generated classpath file.")
     print("")
 
 
