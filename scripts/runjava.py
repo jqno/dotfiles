@@ -9,7 +9,8 @@ import sys
 
 CLASSPATH_DIR = ".vim"
 CLASSPATH_FILE = f"{CLASSPATH_DIR}/classpath"
-TARGET_DIR = "target/classes"
+MAVEN_TARGET_DIR = "target/classes"
+MAVEN_TARGET_TEST_DIR = "target/test-classes"
 
 
 def main():
@@ -58,7 +59,7 @@ def run_program(filename, params):
     jvm_params, app_params = split_params(params)
 
     name, ext = os.path.splitext(filename)
-    if ext == '.java' and is_stale(filename, determine_classfile(classname)):
+    if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
         compile_java_file(filename, classpath)
     if name.endswith("Test"):
         runner = determine_junit_runner(classpath)
@@ -79,9 +80,10 @@ def determine_classname(filename):
         return f"{packagename}.{name}"
 
 
-def determine_classfile(classname):
+def determine_classfile(filename, classname):
+    target = determine_target_dir(filename)
     replaced = classname.replace(".", "/")
-    return f"{TARGET_DIR}/{replaced}.class"
+    return f"{target}/{replaced}.class"
 
 
 def determine_packagename(filename):
@@ -99,8 +101,16 @@ def run_java_class(classname, compiler_params, app_params, classpath):
 
 
 def compile_java_file(filename, classpath):
-    cmd = f"javac -d {TARGET_DIR} -cp {classpath} {filename}"
+    target = determine_target_dir(filename)
+    cmd = f"javac -d {target} -cp {classpath} {filename}"
     execute(cmd)
+
+
+def determine_target_dir(filename):
+    if filename.startswith("src/test"):
+        return MAVEN_TARGET_TEST_DIR
+    else:
+        return MAVEN_TARGET_DIR
 
 
 def determine_junit_runner(classpath):
@@ -110,6 +120,8 @@ def determine_junit_runner(classpath):
         return "org.junit.runner.JUnitCore"
     elif "junit/3." in classpath:
         return "junit.textui.TestRunner"
+    else:
+        raise "Can't figure out which unit test runner to use"
 
 
 def read_classpath():
