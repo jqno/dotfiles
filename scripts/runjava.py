@@ -116,6 +116,10 @@ def determine_target_dir(filename):
 def determine_junit_runner_params(classpath, classname):
     if "scalatest" in classpath:
         return ["org.scalatest.tools.Runner", "-oW", "-s", classname]
+    elif "junit-platform-console" in classpath:
+        return ["org.junit.platform.console.ConsoleLauncher", "--disable-ansi-colors", "--select-class", classname]
+    elif "junit-jupiter-engine" in classpath:
+        raise "When using JUnit 5, add junit-platform-console to your dependencies!"
     elif "junit/4." in classpath:
         return ["org.junit.runner.JUnitCore", classname]
     elif "junit/3." in classpath:
