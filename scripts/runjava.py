@@ -44,7 +44,7 @@ def generate_classpath():
     if not os.path.exists(CLASSPATH_DIR):
         os.mkdir(CLASSPATH_DIR)
     cmd = f"""mvn -q org.codehaus.mojo:exec-maven-plugin:exec \
-            -Dexec.classpathScope="compile" \
+            -Dexec.classpathScope="test" \
             -Dexec.executable="echo" \
             -Dexec.args="%classpath" > {CLASSPATH_FILE}"""
     execute(cmd)
@@ -104,7 +104,9 @@ def compile_java_file(filename, classpath):
 
 
 def determine_junit_runner(classpath):
-    if "junit/4." in classpath:
+    if "scalatest" in classpath:
+        return "org.scalatest.tools.Runner -oW -s "
+    elif "junit/4." in classpath:
         return "org.junit.runner.JUnitCore"
     elif "junit/3." in classpath:
         return "junit.textui.TestRunner"
