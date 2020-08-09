@@ -11,7 +11,6 @@ Plug 'chrisbra/Colorizer'
 Plug 'dense-analysis/ale'
 Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
-Plug 'janko-m/vim-test'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'jqno/jqno-autoclose.vim'
 Plug 'jqno/jqno-extractvariable.vim'
@@ -268,9 +267,6 @@ let g:line_no_indicator_chars = ['↑', '↗', '→', '↘', '↓']
 " *** gcmt/wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
 
-" *** janko-m/vim-test
-let test#strategy = 'dispatch'
-
 " *** junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
 let g:fzf_preview_window = {'options': '--delimiter : --nth 4..'}
@@ -471,11 +467,6 @@ nnoremap <leader>md :CocList diagnostics<CR>
 nmap <silent> <leader>mf <Plug>(coc-format) " TODO: 'magggqG`a' when CoC is inactive
 vmap <silent> <leader>mf <Plug>(coc-format-selected) " TODO: 'gq' when CoC is inactive
 nnoremap <leader>m<Esc> :AbortDispatch<CR>
-
-" *** Prefix <leader>t: running tests
-nnoremap <leader>ta :TestSuite<CR>
-nnoremap <leader>tf :TestFile<CR>
-nnoremap <leader>tt :TestNearest<CR>
 
 " *** Prefix <leader>r: refactorings
 nmap <leader>rv <Plug>(extractVariableNormal)
