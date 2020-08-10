@@ -19,20 +19,30 @@ def main():
         print_help()
     elif sys.argv[1] == "-cp":
         generate_classpath()
+    elif sys.argv[1] == "-c":
+        compile_files(sys.argv[2:])
+    elif sys.argv[1] == "-r":
+        run_program(sys.argv[2], sys.argv[3:])
     else:
-        run_program(sys.argv[1], sys.argv[2:])
+        print_help()
 
 
 def print_help():
     print("Usage:")
     print("")
-    print("*  runjava.py <filename> [<jvm-parameters> --] [<cmd-line parameters>]")
+    print("*  runjava.py -r <filename> [<jvm-parameters> --] [<cmd-line parameters>]")
     print("")
     print("   Compiles the given filename if necessary, then runs it as a")
     print("   Java program against the generated classpath,")
     print("   with the given JVM parameters and command-line parameters,")
     print("   if present. Note that the JVM parameters must be followed by")
     print("   two dashes (--), even if no command-line parameters follow.")
+    print("")
+    print("")
+    print("*  runjava.py -c <filename> [<filename>]...")
+    print("")
+    print("   Compiles the given files if necessary.")
+    print("")
     print("")
     print("*  runjava.py -cp")
     print("")
@@ -49,6 +59,17 @@ def generate_classpath():
             -Dexec.executable="echo" \
             -Dexec.args="%classpath" > {CLASSPATH_FILE}"""
     execute(cmd)
+
+
+def compile_files(filenames):
+    if not os.path.exists(CLASSPATH_FILE):
+        generate_classpath()
+    classpath = read_classpath()
+    for filename in filenames:
+        _, ext = os.path.splitext(filename)
+        classname = determine_classname(filename)
+        if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
+            compile_java_file(filename, classpath)
 
 
 def run_program(filename, params):
