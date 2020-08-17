@@ -20,8 +20,10 @@ cask "adoptopenjdk8"
 cask "adoptopenjdk11"
 
 # Software to install
+brew "bandwhich"
 brew "bat"
 brew "exa"
+brew "fd"
 brew "figlet"
 brew "fzf"
 brew "git"
