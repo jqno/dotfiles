@@ -98,6 +98,7 @@
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     # time                  # current time
+    setenv_marker           # I made this!
     # =========================[ Line #2 ]=========================
     newline
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -1646,6 +1647,15 @@
   # If p10k is already loaded, reload configuration.
   # This works even with POWERLEVEL9K_DISABLE_HOT_RELOAD=true.
   (( ! $+functions[p10k] )) || p10k reload
+
+
+  #################################[ env-var: SETENV_MARKER ]##################################
+  function prompt_setenv_marker() {
+    p10k segment -b 0 -f 3 -t "$SETENV_MARKER" -c "$SETENV_MARKER"
+  }
+  function instant_prompt_setenv_marker() {
+    prompt_setenv_marker
+  }
 }
 
 # Tell `p10k configure` which file it should overwrite.
