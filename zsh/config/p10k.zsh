@@ -35,6 +35,7 @@
     # os_icon               # os identifier
     dir                     # current directory
     vcs                     # git status
+    git_mail                # whether a git mail address is set
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -1649,6 +1650,17 @@
   (( ! $+functions[p10k] )) || p10k reload
 
 
+  ###############################[ git_mail: GIT MAIL ADDRESS ]################################
+  function prompt_git_mail() {
+    local MAIL=""
+    local GIT_STATUS=$(git status -sb 2> /dev/null)
+    git config user.email | grep @ > /dev/null 2>&1
+    [[ -n $GIT_STATUS && "$?" -ne "0" ]] && MAIL="1"
+    p10k segment -b 1 -f 15 -t "!!! NO EMAIL SET !!!" -c "$MAIL"
+  }
+  function instant_prompt_git_mail() {
+    p10k segment -b 1 -f 15 -t "" -c ""
+  }
   #################################[ env-var: SETENV_MARKER ]##################################
   function prompt_setenv_marker() {
     p10k segment -b 0 -f 3 -t "$SETENV_MARKER" -c "$SETENV_MARKER"
