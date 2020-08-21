@@ -153,8 +153,6 @@ set sidescrolloff=5
 set display+=lastline
 " Show relative line-numbers
 set number relativenumber
-" Hide concealed characters unless they have a replacement character
-set conceallevel=2
 
 
 
