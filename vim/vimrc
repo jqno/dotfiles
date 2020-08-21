@@ -385,7 +385,7 @@ vnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " Toggle Goyo for distraction-free writing
-nnoremap <F12> :Goyo<CR>
+nnoremap <silent> <F12> :Goyo<CR>
 
 " Keep the visual selection after < and > so we can repeat these buttons
 " instead of tring to find .
