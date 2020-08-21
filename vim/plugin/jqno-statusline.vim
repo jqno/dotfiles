@@ -50,7 +50,7 @@ function! JqnoStatusLine() abort
     let l:ale_warning = l:ale_warning_count > 0 ? printf('◆%d', l:ale_warning_count) : ''
 
     let l:lsp_status = exists('g:did_coc_loaded') ? coc#status() : ''
-    let l:lsp_status = len(l:lsp_status) == 0 ? '' : l:lsp_status . ' | '
+    let l:lsp_status = len(l:lsp_status) == 0 ? '' : l:lsp_status . ' │ '
 
     let l:ok = l:ale_ok
     let l:ok = len(l:ok) == 0 ? '' : ' ' . l:ok . ' '
@@ -60,7 +60,7 @@ function! JqnoStatusLine() abort
     let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
 
     let l:statusline =
-            \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N |" : ""}' .
+            \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N │" : ""}' .
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="t" ? "  T  " : ""}' .
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="i" ? "  I  " : ""}' .
             \ '%#SLinsertmode#%{'. l:is_active .' && mode()=="r" ? "  R  " : ""}' .
@@ -70,21 +70,21 @@ function! JqnoStatusLine() abort
             \ ' ' .
             \ '#%n' .
             \ '%*' .
-            \ ' | ' .
+            \ ' │ ' .
             \ '%<' .
             \ '%f' .
             \ ' ' .
-            \ '%{'. l:is_active .' && &readonly ? "| RO " : ""}' .
-            \ '%{'. l:is_active .' && &previewwindow ? "| P " : ""}' .
-            \ '%{'. l:is_active_not_terminal .' && !&modifiable ? "| - " : ""}' .
-            \ '%{'. l:is_active_not_terminal .' && &modified ? "| + " : ""}' .
+            \ '%{'. l:is_active .' && &readonly ? "│ RO " : ""}' .
+            \ '%{'. l:is_active .' && &previewwindow ? "│ P " : ""}' .
+            \ '%{'. l:is_active_not_terminal .' && !&modifiable ? "│ - " : ""}' .
+            \ '%{'. l:is_active_not_terminal .' && &modified ? "│ + " : ""}' .
             \ '%*' .
             \ '%=' .
             \ ' ' .
             \ '%{' . l:is_active_not_terminal . ' ? "' . l:lsp_status . '" : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() . " | " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() . " | " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() . " | " : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() . " │ " : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() . " │ " : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() . " │ " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? line(".") . ":" . col(".") . " " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? LineNoIndicator() : "" }' .
             \ ' ' .
