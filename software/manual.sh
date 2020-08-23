@@ -9,6 +9,11 @@ mkdir $BIN
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
 
 
+# Powerlevel10k prompt
+mkdir $BIN/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $BIN/powerlevel10k
+
+
 # Yabai window manager
 brew install koekeishiya/formulae/yabai
 sudo yabai --install-sa
