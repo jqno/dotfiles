@@ -111,7 +111,7 @@ def determine_packagename(filename):
     with open(filename) as f:
         for line in f:
             if line.startswith("package"):
-                return re.findall("^package ([A-Za-z.]*);?$", line)[0]
+                return re.findall("^package ([A-Za-z_.]*);?$", line)[0]
 
 
 def run_java_class(classname, compiler_params, app_params, classpath):
