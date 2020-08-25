@@ -1,5 +1,8 @@
 # Place globally ignored file patterns here
 
+# Javascript
+node_modules
+
 # Vim
 tags
 tags.lock
