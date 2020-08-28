@@ -4,11 +4,19 @@ local This = {}
 -- (Thanks Teije)
 local previousApp = ""
 
-This.switchToAndFromApp = function(bundleID)
+local launchOrFocus = function(bundleID, launchIfNotRunning)
+  if launchIfNotRunning then
+    hs.application.launchOrFocusByBundleID(bundleID)
+  else
+    hs.application.applicationsForBundleID(bundleID)[1]:activate()
+  end
+end
+
+local switch = function(bundleID, launchIfNotRunning)
   local focusedWindow = hs.window.focusedWindow()
 
   if focusedWindow == nil then
-    hs.application.launchOrFocusByBundleID(bundleID)
+    launchOrFocus(bundleID, launchIfNotRunning)
   elseif focusedWindow:application():bundleID() == bundleID then
     if previousApp == nil then
       hs.window.switcher.nextWindow()
@@ -17,8 +25,16 @@ This.switchToAndFromApp = function(bundleID)
     end
   else
     previousApp = focusedWindow:application()
-    hs.application.launchOrFocusByBundleID(bundleID)
+    launchOrFocus(bundleID, launchIfNotRunning)
   end
+end
+
+This.switchToAndFromApp = function(bundleID)
+  switch(bundleID, true)
+end
+
+This.switchToAndFromAppNoLaunch = function(bundleID)
+  switch(bundleID, false)
 end
 
 return This
