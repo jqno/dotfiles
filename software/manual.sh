@@ -5,6 +5,12 @@ rm -rf $BIN
 mkdir $BIN
 
 
+# Java toolchain
+curl -s "https://get.sdkman.io?rcupdate=false" | bash
+sdk install java 8.0.265.j9-adpt 
+sdk install java 11.0.8.j9-adpt 
+
+
 # Rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
 

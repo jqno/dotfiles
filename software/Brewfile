@@ -2,7 +2,6 @@
 cask_args appdir: '/Applications'
 
 # Taps
-tap "AdoptOpenJDK/openjdk"  # For versions, see: https://github.com/AdoptOpenJDK/homebrew-openjdk
 tap "coursier/formulas"
 tap "heroku/brew"
 tap "homebrew/bundle"
@@ -16,8 +15,6 @@ tap "universal-ctags/universal-ctags"
 brew "node"
 brew "python"
 brew "ruby"
-cask "adoptopenjdk8"
-cask "adoptopenjdk11"
 
 # Software to install
 brew "bandwhich"

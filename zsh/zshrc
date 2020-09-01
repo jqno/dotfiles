@@ -22,6 +22,10 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Enable FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/jqno/.sdkman"
+[[ -s "/Users/jqno/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jqno/.sdkman/bin/sdkman-init.sh"
+
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/bin/powerlevel10k/powerlevel10k.zsh-theme
