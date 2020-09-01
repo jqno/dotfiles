@@ -31,7 +31,7 @@ hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.
 hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") end)
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
-hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
+hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.kytwb.ferdi") end)
 hyper.bindKey({}, "2", function() am.switchToAndFromAppNoLaunch("com.google.Chrome") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromAppNoLaunch("com.jetbrains.intellij") end)
 
