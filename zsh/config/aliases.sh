@@ -1,9 +1,6 @@
 # General
 alias cd..='cd ..'
 
-# setEnv.sh
-alias session="source ~/.setEnv/session.sh"
-
 # Vim
 alias vanilla-vim="vim -u NONE -U NONE -N"
 
@@ -17,6 +14,7 @@ alias git="noglob git"   # So we can type `git add *Test*` instead of `git add "
 alias mvn='mvn -C'
 
 # setEnv
+alias session="source ~/.setEnv/session.sh"
 alias work='. setEnv.sh work'
 alias home='. setEnv.sh home'
 
