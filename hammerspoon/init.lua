@@ -60,8 +60,8 @@ hyper.bindKey({"cmd", "shift"}, "down", function() yabai("window --swap south") 
 hyper.bindKey({"cmd", "shift"}, "up", function() yabai("window --swap north") end)
 hyper.bindKey({"cmd", "shift"}, "right", function() yabai("window --swap east") end)
 
-hyper.bindKey({"cmd"}, "1", function() yabai("window --toggle float"); yabai("window --grid 1:1:1:1:1:1") end)
-hyper.bindKey({"cmd"}, "2", function() yabai("window --toggle float"); yabai("window --grid 9:9:1:1:7:7") end)
+hyper.bindKey({"cmd"}, "1", function() yabai("space --layout bsp") end)
+hyper.bindKey({"cmd"}, "2", function() yabai("space --layout stack") end)
 hyper.bindKey({"cmd"}, "3", function() yabai("space --rotate 90") end)
 
 
