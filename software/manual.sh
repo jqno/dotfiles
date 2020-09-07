@@ -7,6 +7,7 @@ mkdir $BIN
 
 # Java toolchain
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
+. $HOME/.sdkman/bin/sdkman-init.sh
 sdk install java 8.0.265.j9-adpt 
 sdk install java 11.0.8.j9-adpt 
 

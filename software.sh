@@ -13,11 +13,11 @@ function installSoftware() {
     exit 1
   fi
 
+  installManual
   installCoursier
   installNpm
   installGem
   installPip
-  installManual
 }
 
 function installMacos() {
