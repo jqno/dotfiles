@@ -447,8 +447,8 @@ nnoremap <leader>ft :FzfTags<CR>
 nnoremap <leader>fo :FzfBTags<CR>
 nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
-nnoremap <leader>fn :NERDTreeToggle<CR>
-nnoremap <leader>fN :NERDTreeFind<CR>
+nnoremap <silent> <leader>fn :NERDTreeToggle<CR>
+nnoremap <silent> <leader>fN :NERDTreeFind<CR>
 nmap <silent> <leader>fr <Plug>(coc-references)
 nnoremap <leader>fv :Vista<CR><C-W><C-P>
 
