@@ -142,6 +142,9 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 silent! colorscheme reversal
+" Make sure the terminal title is updated
+set title
+set titlestring=%t\ \-\ vim
 " Highlight merge conflict markers
 match ErrorMsg '^\(<\|=\||\|>\)\{7\}\([^=].\+\)\?$'
 " Always show the sign column so it doesn't appear and disappear all the time
