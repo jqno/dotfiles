@@ -12,6 +12,7 @@ function installDotfiles() {
   echo "** INSTALLING CONFIGURATION **"
   echo "******************************"
   installFor "ctags.d"
+  installFor "fzf.zsh"
   scriptFor "git"
   installFor "hammerspoon"
   installFor "ideavimrc"
