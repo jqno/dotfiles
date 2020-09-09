@@ -2,12 +2,12 @@ scriptencoding utf-8
 
 function! s:CompileOpenJavaFiles() abort
     let buffers = map(filter(copy(getbufinfo()), 'v:val.listed'), 'v:val.name')
-    let cmd = 'Dispatch runjava.py -c ' . join(buffers)
-    exec cmd
+    let cmd = 'runjava.py -c ' . join(buffers)
+    return cmd
 endfunction
 
 function! s:RunJavaProgram(ask_jvm_params, ask_app_params) abort
-    let cmd = 'Dispatch runjava.py -r ' . expand('%')
+    let cmd = 'runjava.py -r ' . expand('%')
     if a:ask_jvm_params
         let in = input('JVM parameters: ')
         let cmd .= ' ' . in . ' --'
@@ -16,12 +16,15 @@ function! s:RunJavaProgram(ask_jvm_params, ask_app_params) abort
         let in = input('Command-line parameters: ')
         let cmd .= ' ' . in
     endif
-    exec cmd
+    return cmd
 endfunction
 
 function! s:CompileAndRunJavaProgram(ask_jvm_params, ask_app_params) abort
-    call <SID>CompileOpenJavaFiles()
-    call <SID>RunJavaProgram(a:ask_jvm_params, a:ask_app_params)
+    let l:cmd='Dispatch '
+    let l:cmd.=<SID>CompileOpenJavaFiles()
+    let l:cmd.=' && '
+    let l:cmd.=<SID>RunJavaProgram(a:ask_jvm_params, a:ask_app_params)
+    exec l:cmd
 endfunction
 
 function! s:CreateMappings() abort

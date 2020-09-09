@@ -13,6 +13,7 @@ alias git="noglob git"   # So we can type `git add *Test*` instead of `git add "
 # Java
 alias setjdk='. setjdk.sh'
 alias mvn='mvn -C'
+alias runjava=runjava.py
 
 # setEnv
 alias session="source ~/.setEnv/session.sh"
