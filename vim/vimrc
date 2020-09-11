@@ -40,7 +40,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'uiiaoo/java-syntax.vim'
 
 " CoC plugins
-Plug 'neoclide/coc.nvim', { 'branch': 'release', 'do': './install.sh',
+Plug 'neoclide/coc.nvim', { 'branch': 'release',
     \ 'for': ['java', 'javascript', 'json', 'python', 'rust', 'scala', 'typescript'] }
 Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
