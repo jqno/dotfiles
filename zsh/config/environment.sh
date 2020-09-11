@@ -1,5 +1,6 @@
 # PATH
-export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/Library/Application\ Support/Coursier/bin:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
+GEMDIR=`gem env gemdir`/bin
+export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/Library/Application\ Support/Coursier/bin:~/.cargo/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$GEMDIR:$PATH
 
 # Default editor
 export EDITOR=vim
