@@ -43,7 +43,6 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
-brew "coursier/formulas/coursier"
 brew "heroku/brew/heroku"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 
