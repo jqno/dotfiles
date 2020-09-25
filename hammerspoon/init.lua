@@ -66,6 +66,13 @@ hyper.bindKey({"cmd"}, "3", function() yabai("window --toggle float"); yabai("wi
 hyper.bindKey({"cmd"}, "0", function() yabai("space --rotate 90") end)
 
 
+-- Re-bind useful keys that are missing on a macbook keyboard
+hyper.bindKey({"shift"}, "up", function() hs.eventtap.keyStroke({}, "pageup") end)
+hyper.bindKey({"shift"}, "down", function() hs.eventtap.keyStroke({}, "pagedown") end)
+hyper.bindKey({"shift"}, "left", function() hs.eventtap.keyStroke({}, "home") end)
+hyper.bindKey({"shift"}, "right", function() hs.eventtap.keyStroke({}, "end") end)
+
+
 -- Lock the screen
 hyper.bindKey({}, "f12", function()
   -- hs.caffeinate.lockScreen()
