@@ -27,7 +27,3 @@ sudo yabai --install-sa
 brew services start yabai
 killall Dock
 
-
-# Joplin - don't keep syncing lock files
-xattr -w com.dropbox.ignored 1 $HOME/Dropbox/Apps/Joplin/locks
-
