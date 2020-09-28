@@ -29,6 +29,10 @@ function installDotfiles() {
   installFor "zsh/config/environment.sh" ".zprofile" # Makes sure environment variables are loaded in MacVim as well
   scriptFor "zsh"
 
+  # Python linting
+  installFor "flake8"
+  installFor "pylintrc"
+
   # .yabairc needs to be executed as a script
   ~/.yabairc
 }
