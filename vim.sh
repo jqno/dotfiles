@@ -11,3 +11,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 vim -c JqnoPlugInitialInstall
 
+ln -s $HOME/.vim/plugged/vim-kitty-navigator/pass_keys.py ~/.config/kitty
+ln -s $HOME/.vim/plugged/vim-kitty-navigator/neighboring_window.py ~/.config/kitty

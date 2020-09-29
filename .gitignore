@@ -2,4 +2,6 @@ vim/autoload
 vim/plugged
 vim/view
 vim/.netrwhist
+kitty/pass_keys.py
+kitty/neighboring_window.py
 
