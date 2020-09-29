@@ -31,6 +31,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 Plug 'wincent/terminus'
 
 " Filetype plugins
@@ -353,6 +354,17 @@ let g:UltiSnipsExpandTrigger = '<F19>' " It would be better to map <Nop> but it 
 let g:UltiSnipsJumpForwardTrigger = '<Tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
 
+" *** vimwiki/vimwiki
+let g:vimwiki_location = '~/Dropbox/notes'
+let g:vimwiki_list = [{'path': g:vimwiki_location, 'syntax': 'markdown', 'ext': '.mkdn', 'links_space_char': '_'}]
+let g:vimwiki_global_ext = 0
+let g:vimwiki_markdown_link_ext = 1
+" Search Vimwiki using Fzf and Ag
+command! -nargs=+ FzfVimwiki
+    \ call fzf#vim#ag_raw(
+    \   <q-args> . ' ' . g:vimwiki_location,
+    \   fzf#vim#with_preview(g:fzf_preview_window))
+
 " *** wincent/terminus
 " Having this enabled causes garbage characters to be printedin :terminal when switching macOS spaces
 let g:TerminusFocusReporting=0
@@ -386,7 +398,9 @@ vnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
 " Toggle Goyo for distraction-free writing
-nnoremap <silent> <F12> :Goyo<CR>
+nnoremap <silent> <F5> :Goyo<CR>
+" Enter Vimwiki
+nnoremap <silent> <F12> :VimwikiIndex<CR>
 
 " Keep the visual selection after < and > so we can repeat these buttons
 " instead of tring to find .
@@ -454,6 +468,7 @@ nnoremap <silent> <leader>fn :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fN :NERDTreeFind<CR>
 nmap <silent> <leader>fr <Plug>(coc-references)
 nnoremap <leader>fv :Vista<CR><C-W><C-P>
+nnoremap <leader>f<F12> :FzfVimwiki<Space>
 
 " " *** Prefix <leader>g: going to places and Gitting things
 nnoremap <silent> <leader>gb :Gblame<CR>
