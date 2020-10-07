@@ -19,6 +19,7 @@ brew "ruby"
 # Software to install
 brew "bandwhich"
 brew "bat"
+brew "docker-compose"
 brew "exa"
 brew "fd"
 brew "figlet"
