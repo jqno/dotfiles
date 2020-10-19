@@ -14,6 +14,7 @@ alias git="noglob git"   # So we can type `git add *Test*` instead of `git add "
 alias setjdk='. setjdk.sh'
 alias mvn='mvn -C'
 alias runjava=runjava.py
+alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
 # setEnv
 alias session="source ~/.setEnv/session.sh"
