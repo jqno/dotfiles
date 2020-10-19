@@ -32,6 +32,7 @@ hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
 hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.kytwb.ferdi") end)
 hyper.bindKey({}, "2", function() am.switchToAndFromAppNoLaunch("com.google.Chrome") end)
+hyper.bindKey({}, "3", function() am.switchToAndFromAppNoLaunch("com.microsoft.teams") end)
 hyper.bindKey({}, "i", function() am.switchToAndFromAppNoLaunch("com.jetbrains.intellij") end)
 
 local kitty = "/usr/local/bin/kitty @ --to unix:/tmp/kitty-socket new-window --window-type os"
