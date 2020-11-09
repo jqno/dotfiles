@@ -3,3 +3,7 @@ snippet #! "shebang"
 
 endsnippet
 
+snippet directory "get the script source directory"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+endsnippet
+
