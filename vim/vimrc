@@ -413,7 +413,6 @@ xmap \ <Plug>Commentary
 nmap \ <Plug>Commentary
 omap \ <Plug>Commentary
 nmap \\ <Plug>CommentaryLine
-nmap <leader>\ <Plug>Commentary<Plug>Commentary
 " Mappings to navigate a file quickly
 nnoremap ]] ]m
 nnoremap [[ [m
