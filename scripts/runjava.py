@@ -95,10 +95,9 @@ def determine_classname(filename):
     name, ext = os.path.splitext(basename)
     if ext == '.scala':
         return f"{packagename}.{name}$delayedInit$body"
-    elif ext == '.kt':
+    if ext == '.kt':
         return f"{packagename}.{name}Kt"
-    else:
-        return f"{packagename}.{name}"
+    return f"{packagename}.{name}"
 
 
 def determine_classfile(filename, classname):
@@ -108,10 +107,11 @@ def determine_classfile(filename, classname):
 
 
 def determine_packagename(filename):
-    with open(filename) as f:
-        for line in f:
+    with open(filename) as file:
+        for line in file:
             if line.startswith("package"):
                 return re.findall("^package ([A-Za-z_.]*);?$", line)[0]
+    raise "Could not determine package name"
 
 
 def run_java_class(classname, compiler_params, app_params, classpath):
@@ -130,39 +130,40 @@ def compile_java_file(filename, classpath):
 def determine_target_dir(filename):
     if filename.startswith("src/test"):
         return MAVEN_TARGET_TEST_DIR
-    else:
-        return MAVEN_TARGET_DIR
+    return MAVEN_TARGET_DIR
 
 
 def determine_junit_runner_params(classpath, classname):
     if "scalatest" in classpath:
         return ["org.scalatest.tools.Runner", "-oW", "-s", classname]
-    elif "junit-platform-console" in classpath:
-        return ["org.junit.platform.console.ConsoleLauncher", "--disable-ansi-colors", "--select-class", classname]
-    elif "junit-jupiter-engine" in classpath:
+    if "junit-platform-console" in classpath:
+        return ["org.junit.platform.console.ConsoleLauncher",
+                "--disable-ansi-colors",
+                "--select-class",
+                classname]
+    if "junit-jupiter-engine" in classpath:
         raise "When using JUnit 5, add junit-platform-console to your dependencies!"
-    elif "junit/4." in classpath:
+    if "junit/4." in classpath:
         return ["org.junit.runner.JUnitCore", classname]
-    elif "junit/3." in classpath:
+    if "junit/3." in classpath:
         return ["junit.textui.TestRunner", classname]
-    else:
-        raise "Can't figure out which unit test runner to use"
+    raise "Can't figure out which unit test runner to use"
 
 
 def read_classpath():
-    with open(CLASSPATH_FILE) as f:
-        return f.read().rstrip()
+    with open(CLASSPATH_FILE) as file:
+        return file.read().rstrip()
 
 
 def split_params(params):
     jvm_params = []
     app_params = []
-    for p in params:
-        if p == "--":
+    for param in params:
+        if param == "--":
             jvm_params = app_params
             app_params = []
         else:
-            app_params.append(p)
+            app_params.append(param)
     return (jvm_params, app_params)
 
 
