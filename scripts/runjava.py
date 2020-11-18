@@ -56,7 +56,7 @@ def print_help():
 
 
 def generate_classpath():
-    print("Generating classpath...")
+    log("Generating classpath...")
     if not os.path.exists(CLASSPATH_DIR):
         os.mkdir(CLASSPATH_DIR)
     cmd = f"""mvn -q org.codehaus.mojo:exec-maven-plugin:exec \
@@ -120,6 +120,8 @@ def determine_packagename(filename):
 
 
 def run_java_class(classname, compiler_params, app_params, classpath):
+    log(f"Running class {classname}...")
+    log("")
     joined_compiler_params = " ".join(compiler_params)
     joined_app_params = " ".join(app_params)
     cmd = f"java -cp {classpath} {joined_compiler_params} {classname} {joined_app_params}"
@@ -127,6 +129,7 @@ def run_java_class(classname, compiler_params, app_params, classpath):
 
 
 def compile_file(filename, classpath):
+    log(f"Compiling stale file {os.path.basename(filename)}...")
     _, ext = os.path.splitext(filename)
     compilername = EXT_TO_COMPILER.get(ext, 'javac')
     target = determine_target_dir(filename)
@@ -181,6 +184,10 @@ def is_stale(first, second):
         return first_time > second_time
     except FileNotFoundError:
         return True
+
+
+def log(message):
+    print(message, flush=True)
 
 
 def execute(cmd):
