@@ -12,6 +12,11 @@ CLASSPATH_FILE = f"{CLASSPATH_DIR}/classpath"
 MAVEN_TARGET_DIR = "target/classes"
 MAVEN_TARGET_TEST_DIR = "target/test-classes"
 
+EXT_TO_COMPILER = {
+    '.java': 'javac',
+    '.scala': 'scalac'
+}
+
 
 def main():
     argc = len(sys.argv)
@@ -66,22 +71,22 @@ def compile_files(filenames):
         generate_classpath()
     classpath = read_classpath()
     for filename in filenames:
-        _, ext = os.path.splitext(filename)
-        classname = determine_classname(filename)
-        if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
-            compile_java_file(filename, classpath)
+        classname = determine_classname(filename, False)
+        if is_stale(filename, determine_classfile(filename, classname)):
+            compile_file(filename, classpath)
 
 
 def run_program(filename, params):
     if not os.path.exists(CLASSPATH_FILE):
         generate_classpath()
     classpath = read_classpath()
-    classname = determine_classname(filename)
     jvm_params, app_params = split_params(params)
 
-    name, ext = os.path.splitext(filename)
-    if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
-        compile_java_file(filename, classpath)
+    name, _ = os.path.splitext(filename)
+    if is_stale(filename, determine_classfile(filename, determine_classname(filename, False))):
+        compile_file(filename, classpath)
+
+    classname = determine_classname(filename, True)
     if name.endswith("Test"):
         runner_params = determine_junit_runner_params(classpath, classname)
         run_java_class(runner_params[0], jvm_params, runner_params[1:] + app_params, classpath)
@@ -89,13 +94,13 @@ def run_program(filename, params):
         run_java_class(classname, jvm_params, app_params, classpath)
 
 
-def determine_classname(filename):
+def determine_classname(filename, find_main):
     packagename = determine_packagename(filename)
     basename = os.path.basename(filename)
     name, ext = os.path.splitext(basename)
-    if ext == '.scala':
+    if ext == '.scala' and find_main:
         return f"{packagename}.{name}$delayedInit$body"
-    if ext == '.kt':
+    if ext == '.kt' and find_main:
         return f"{packagename}.{name}Kt"
     return f"{packagename}.{name}"
 
@@ -121,9 +126,11 @@ def run_java_class(classname, compiler_params, app_params, classpath):
     execute(cmd)
 
 
-def compile_java_file(filename, classpath):
+def compile_file(filename, classpath):
+    _, ext = os.path.splitext(filename)
+    compilername = EXT_TO_COMPILER.get(ext, 'javac')
     target = determine_target_dir(filename)
-    cmd = f"javac -d {target} -cp {classpath} {filename}"
+    cmd = f"{compilername} -d {target} -classpath {classpath} {filename}"
     execute(cmd)
 
 
