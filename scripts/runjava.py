@@ -72,9 +72,11 @@ def compile_files(filenames):
         generate_classpath()
     classpath = read_classpath()
     for filename in filenames:
-        classname = determine_classname(filename, False)
-        if is_stale(filename, determine_classfile(filename, classname)):
-            compile_file(filename, classpath)
+        _, ext = os.path.splitext(filename)
+        if ext in [".java", ".scala"]:
+            classname = determine_classname(filename, False)
+            if is_stale(filename, determine_classfile(filename, classname)):
+                compile_file(filename, classpath)
 
 
 def run_program(filename, params):
