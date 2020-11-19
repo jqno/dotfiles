@@ -5,6 +5,7 @@
 import os
 import re
 import sys
+from pathlib import Path
 
 
 CLASSPATH_DIR = ".vim"
@@ -89,7 +90,11 @@ def run_program(filename, params):
     classname = determine_classname(filename, True)
     if name.endswith("Test"):
         runner_params = determine_junit_runner_params(classpath, classname)
-        run_java_class(runner_params[0], jvm_params, runner_params[1:] + app_params, classpath)
+        run_java_class(
+            runner_params[1],
+            jvm_params,
+            runner_params[2:] + app_params,
+            runner_params[0])
     else:
         run_java_class(classname, jvm_params, app_params, classpath)
 
@@ -116,7 +121,7 @@ def determine_packagename(filename):
         for line in file:
             if line.startswith("package"):
                 return re.findall("^package ([A-Za-z_.]*);?$", line)[0]
-    raise "Could not determine package name"
+    raise Exception("Could not determine package name")
 
 
 def run_java_class(classname, compiler_params, app_params, classpath):
@@ -145,19 +150,43 @@ def determine_target_dir(filename):
 
 def determine_junit_runner_params(classpath, classname):
     if "scalatest" in classpath:
-        return ["org.scalatest.tools.Runner", "-oW", "-s", classname]
-    if "junit-platform-console" in classpath:
-        return ["org.junit.platform.console.ConsoleLauncher",
+        return [classpath, "org.scalatest.tools.Runner", "-oW", "-s", classname]
+    if "junit-jupiter-engine" in classpath:
+        new_classpath = classpath
+        if "junit-platform-console" not in new_classpath:
+            junit5_cp = determine_junit5_runner_location()
+            if junit5_cp is None:
+                msg = "Could not find junit-platform-console in your dependencies " + \
+                      "or in your local repository."
+                raise Exception(msg)
+            new_classpath = f"{classpath}:{junit5_cp}"
+        return [new_classpath,
+                "org.junit.platform.console.ConsoleLauncher",
                 "--disable-ansi-colors",
                 "--select-class",
                 classname]
-    if "junit-jupiter-engine" in classpath:
-        raise "When using JUnit 5, add junit-platform-console to your dependencies!"
     if "junit/4." in classpath:
-        return ["org.junit.runner.JUnitCore", classname]
+        return [classpath, "org.junit.runner.JUnitCore", classname]
     if "junit/3." in classpath:
-        return ["junit.textui.TestRunner", classname]
-    raise "Can't figure out which unit test runner to use"
+        return [classpath, "junit.textui.TestRunner", classname]
+    raise Exception("Can't figure out which unit test runner to use")
+
+
+def determine_junit5_runner_location():
+    junit_path = os.path.join(
+        Path.home(),
+        ".m2/repository/org/junit/platform")
+    junit_console_path = os.path.join(junit_path, "junit-platform-console")
+    junit_launcher_path = os.path.join(junit_path, "junit-platform-launcher")
+    if not os.path.isdir(junit_console_path):
+        return None
+    versions = sorted(filter(lambda s: s[0].isdigit(), os.listdir(junit_console_path)))
+    if len(versions) == 0:
+        return None
+    version = versions[-1]
+    jars = [os.path.join(junit_console_path, version, f"junit-platform-console-{version}.jar"),
+            os.path.join(junit_launcher_path, version, f"junit-platform-launcher-{version}.jar")]
+    return ':'.join(jars)
 
 
 def read_classpath():
