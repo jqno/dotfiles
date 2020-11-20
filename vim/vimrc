@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'chrisbra/Colorizer'
 Plug 'dense-analysis/ale'
-Plug 'drzel/vim-line-no-indicator'
 Plug 'gcmt/wildfire.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'jqno/jqno-autoclose.vim'
@@ -264,9 +263,6 @@ let g:colorizer_auto_filetype = 'css,html,scss'
 " *** dense-analysis/ale
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
-
-" *** drzel/vim-line-no-indicator
-let g:line_no_indicator_chars = ['↑', '↗', '→', '↘', '↓']
 
 " *** gcmt/wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']

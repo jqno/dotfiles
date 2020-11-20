@@ -98,8 +98,7 @@ function! JqnoStatusLine() abort
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? line(".") . ":" . col(".") . " " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? LineNoIndicator() : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? line(".") . ":" . col(".") . " [" . line("$") . "] " : "" }' .
             \ ' ' .
             \ '%#SLok#%{' . l:is_active_not_terminal . ' ? "' . l:ok . '" : "" }' .
             \ '%#SLwarning#%{' . l:is_active_not_terminal . ' ? "' . l:warning . '" : "" }' .
