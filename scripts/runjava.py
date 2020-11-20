@@ -5,12 +5,18 @@
 import os
 import re
 import sys
+from pathlib import Path
 
 
 CLASSPATH_DIR = ".vim"
 CLASSPATH_FILE = f"{CLASSPATH_DIR}/classpath"
 MAVEN_TARGET_DIR = "target/classes"
 MAVEN_TARGET_TEST_DIR = "target/test-classes"
+
+EXT_TO_COMPILER = {
+    '.java': 'javac',
+    '.scala': 'scalac'
+}
 
 
 def main():
@@ -51,7 +57,7 @@ def print_help():
 
 
 def generate_classpath():
-    print("Generating classpath...")
+    log("Generating classpath...")
     if not os.path.exists(CLASSPATH_DIR):
         os.mkdir(CLASSPATH_DIR)
     cmd = f"""mvn -q org.codehaus.mojo:exec-maven-plugin:exec \
@@ -67,38 +73,43 @@ def compile_files(filenames):
     classpath = read_classpath()
     for filename in filenames:
         _, ext = os.path.splitext(filename)
-        classname = determine_classname(filename)
-        if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
-            compile_java_file(filename, classpath)
+        if ext in [".java", ".scala"]:
+            classname = determine_classname(filename, False)
+            if is_stale(filename, determine_classfile(filename, classname)):
+                compile_file(filename, classpath)
 
 
 def run_program(filename, params):
     if not os.path.exists(CLASSPATH_FILE):
         generate_classpath()
     classpath = read_classpath()
-    classname = determine_classname(filename)
     jvm_params, app_params = split_params(params)
 
-    name, ext = os.path.splitext(filename)
-    if ext == '.java' and is_stale(filename, determine_classfile(filename, classname)):
-        compile_java_file(filename, classpath)
+    name, _ = os.path.splitext(filename)
+    if is_stale(filename, determine_classfile(filename, determine_classname(filename, False))):
+        compile_file(filename, classpath)
+
+    classname = determine_classname(filename, True)
     if name.endswith("Test"):
         runner_params = determine_junit_runner_params(classpath, classname)
-        run_java_class(runner_params[0], jvm_params, runner_params[1:] + app_params, classpath)
+        run_java_class(
+            runner_params[1],
+            jvm_params,
+            runner_params[2:] + app_params,
+            runner_params[0])
     else:
         run_java_class(classname, jvm_params, app_params, classpath)
 
 
-def determine_classname(filename):
+def determine_classname(filename, find_main):
     packagename = determine_packagename(filename)
     basename = os.path.basename(filename)
     name, ext = os.path.splitext(basename)
-    if ext == '.scala':
+    if ext == '.scala' and find_main:
         return f"{packagename}.{name}$delayedInit$body"
-    elif ext == '.kt':
+    if ext == '.kt' and find_main:
         return f"{packagename}.{name}Kt"
-    else:
-        return f"{packagename}.{name}"
+    return f"{packagename}.{name}"
 
 
 def determine_classfile(filename, classname):
@@ -108,61 +119,92 @@ def determine_classfile(filename, classname):
 
 
 def determine_packagename(filename):
-    with open(filename) as f:
-        for line in f:
+    with open(filename) as file:
+        for line in file:
             if line.startswith("package"):
                 return re.findall("^package ([A-Za-z_.]*);?$", line)[0]
+    raise Exception("Could not determine package name")
 
 
 def run_java_class(classname, compiler_params, app_params, classpath):
+    log(f"Running class {classname}...")
+    log("")
     joined_compiler_params = " ".join(compiler_params)
     joined_app_params = " ".join(app_params)
     cmd = f"java -cp {classpath} {joined_compiler_params} {classname} {joined_app_params}"
     execute(cmd)
 
 
-def compile_java_file(filename, classpath):
+def compile_file(filename, classpath):
+    log(f"Compiling stale file {os.path.basename(filename)}...")
+    _, ext = os.path.splitext(filename)
+    compilername = EXT_TO_COMPILER.get(ext, 'javac')
     target = determine_target_dir(filename)
-    cmd = f"javac -d {target} -cp {classpath} {filename}"
+    cmd = f"{compilername} -d {target} -classpath {classpath} {filename}"
     execute(cmd)
 
 
 def determine_target_dir(filename):
     if filename.startswith("src/test"):
         return MAVEN_TARGET_TEST_DIR
-    else:
-        return MAVEN_TARGET_DIR
+    return MAVEN_TARGET_DIR
 
 
 def determine_junit_runner_params(classpath, classname):
     if "scalatest" in classpath:
-        return ["org.scalatest.tools.Runner", "-oW", "-s", classname]
-    elif "junit-platform-console" in classpath:
-        return ["org.junit.platform.console.ConsoleLauncher", "--disable-ansi-colors", "--select-class", classname]
-    elif "junit-jupiter-engine" in classpath:
-        raise "When using JUnit 5, add junit-platform-console to your dependencies!"
-    elif "junit/4." in classpath:
-        return ["org.junit.runner.JUnitCore", classname]
-    elif "junit/3." in classpath:
-        return ["junit.textui.TestRunner", classname]
-    else:
-        raise "Can't figure out which unit test runner to use"
+        return [classpath, "org.scalatest.tools.Runner", "-oW", "-s", classname]
+    if "junit-jupiter-engine" in classpath:
+        new_classpath = classpath
+        if "junit-platform-console" not in new_classpath:
+            junit5_cp = determine_junit5_runner_location()
+            if junit5_cp is None:
+                msg = "Could not find junit-platform-console in your dependencies " + \
+                      "or in your local repository."
+                raise Exception(msg)
+            new_classpath = f"{classpath}:{junit5_cp}"
+        return [new_classpath,
+                "org.junit.platform.console.ConsoleLauncher",
+                "--disable-ansi-colors",
+                "--select-class",
+                classname]
+    if "junit/4." in classpath:
+        return [classpath, "org.junit.runner.JUnitCore", classname]
+    if "junit/3." in classpath:
+        return [classpath, "junit.textui.TestRunner", classname]
+    raise Exception("Can't figure out which unit test runner to use")
+
+
+def determine_junit5_runner_location():
+    junit_path = os.path.join(
+        Path.home(),
+        ".m2/repository/org/junit/platform")
+    junit_console_path = os.path.join(junit_path, "junit-platform-console")
+    junit_launcher_path = os.path.join(junit_path, "junit-platform-launcher")
+    if not os.path.isdir(junit_console_path):
+        return None
+    versions = sorted(filter(lambda s: s[0].isdigit(), os.listdir(junit_console_path)))
+    if len(versions) == 0:
+        return None
+    version = versions[-1]
+    jars = [os.path.join(junit_console_path, version, f"junit-platform-console-{version}.jar"),
+            os.path.join(junit_launcher_path, version, f"junit-platform-launcher-{version}.jar")]
+    return ':'.join(jars)
 
 
 def read_classpath():
-    with open(CLASSPATH_FILE) as f:
-        return f.read().rstrip()
+    with open(CLASSPATH_FILE) as file:
+        return file.read().rstrip()
 
 
 def split_params(params):
     jvm_params = []
     app_params = []
-    for p in params:
-        if p == "--":
+    for param in params:
+        if param == "--":
             jvm_params = app_params
             app_params = []
         else:
-            app_params.append(p)
+            app_params.append(param)
     return (jvm_params, app_params)
 
 
@@ -173,6 +215,10 @@ def is_stale(first, second):
         return first_time > second_time
     except FileNotFoundError:
         return True
+
+
+def log(message):
+    print(message, flush=True)
 
 
 def execute(cmd):
