@@ -15,27 +15,37 @@ function! JqnoStatusLineHighlights() abort
 endfunction
 
 function! JqnoStatusLineFileEncoding() abort
-    if &fileencoding !=# ''
-        return &fileencoding
+    let l:result = &fileencoding
+    if l:result ==# ''
+        let l:result = &encoding
     endif
-    if &encoding !=# ''
-        return &encoding
+    if l:result ==# ''
+        let l:result = 'unknown encoding'
     endif
-    return 'unknown encoding'
+
+    if l:result !=# 'utf-8'
+        return l:result . ' │ '
+    endif
+    return ''
 endfunction
 
 function! JqnoStatusLineFileFormat() abort
-    if &fileformat !=# ''
-        return &fileformat
+    let l:result = &fileformat
+    if l:result ==# ''
+        let l:result = 'unknown format'
     endif
-    return 'unknown format'
+
+    if l:result !=# 'unix'
+        return l:result . ' │ '
+    endif
+    return ''
 endfunction
 
 function! JqnoStatusLineFileType() abort
     if &filetype !=# ''
-        return &filetype
+        return &filetype . ' │ '
     endif
-    return '-'
+    return ''
 endfunction
 
 function! JqnoStatusLine() abort
@@ -58,6 +68,9 @@ function! JqnoStatusLine() abort
     let l:warning = len(l:warning) == 0 ? '' : '  ' . l:warning . ' '
     let l:error = l:ale_error
     let l:error = len(l:error) == 0 ? '' : '  ' . l:error . ' '
+
+    let l:encoding = JqnoStatusLineFileEncoding()
+    let l:format = JqnoStatusLineFileFormat()
 
     let l:statusline =
             \ '%#SLnormalmode#%{'. l:is_active .' && mode()=="n" ? "  N │" : ""}' .
@@ -82,9 +95,9 @@ function! JqnoStatusLine() abort
             \ '%=' .
             \ ' ' .
             \ '%{' . l:is_active_not_terminal . ' ? "' . l:lsp_status . '" : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() . " │ " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() . " │ " : "" }' .
-            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() . " │ " : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileEncoding() : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileFormat() : "" }' .
+            \ '%{' . l:is_active_not_terminal . ' ? JqnoStatusLineFileType() : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? line(".") . ":" . col(".") . " " : "" }' .
             \ '%{' . l:is_active_not_terminal . ' ? LineNoIndicator() : "" }' .
             \ ' ' .
