@@ -263,6 +263,9 @@ let g:colorizer_auto_filetype = 'css,html,scss'
 " *** dense-analysis/ale
 " Run linting on save only
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_fixers = {
+    \ 'java': ['prettier']
+    \ }
 
 " *** gcmt/wildfire
 let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
@@ -480,8 +483,7 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 " " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
 nnoremap <leader>md :CocList diagnostics<CR>
-nmap <silent> <leader>mf <Plug>(coc-format) " TODO: 'magggqG`a' when CoC is inactive
-vmap <silent> <leader>mf <Plug>(coc-format-selected) " TODO: 'gq' when CoC is inactive
+nmap <silent> <leader>mf :ALEFix<CR>
 nnoremap <leader>m<Esc> :AbortDispatch<CR>
 
 " *** Prefix <leader>r: refactorings
