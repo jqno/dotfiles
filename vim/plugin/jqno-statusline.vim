@@ -42,10 +42,11 @@ function! JqnoStatusLineFileFormat() abort
 endfunction
 
 function! JqnoStatusLineFileType() abort
-    if &filetype !=# ''
-        return &filetype . ' │ '
+    let l:result = &filetype
+    if l:result ==# ''
+        let l:result = '⊥'
     endif
-    return ''
+    return l:result . ' │ '
 endfunction
 
 function! JqnoStatusLine() abort
