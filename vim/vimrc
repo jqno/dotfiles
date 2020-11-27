@@ -141,9 +141,19 @@ vnoremap Y "+y
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
 set background=dark
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 silent! colorscheme reversal
+" Define true colors
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+" Define italics
+set t_ZH=[3m
+set t_ZR=[0m
+" Define underline
+set t_us=[4m
+set t_ue=[0m
+" Define undercurl
+set t_Cs=[4:3m
+set t_Ce=[4:0m
 " Make sure the terminal title is updated
 set title
 set titlestring=%t\ \-\ vim
