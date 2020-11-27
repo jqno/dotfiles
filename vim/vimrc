@@ -268,7 +268,11 @@ let g:ale_fixers = {
     \ }
 
 " *** gcmt/wildfire
-let g:wildfire_objects = ["i'", 'i"', 'i)', 'i]', 'i}', 'iv', 'if', 'ip', 'it']
+" if from jqno/jqno-textobj-functioncall.vim
+let g:wildfire_objects = {
+    \ '*': ["i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'if', 'ip'],
+    \ 'html,xml,xml.pom': ['i}', 'a}', 'it', 'at']
+    \ }
 
 " *** junegunn/fzf.vim
 let g:fzf_command_prefix = 'Fzf'
