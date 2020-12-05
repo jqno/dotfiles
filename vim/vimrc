@@ -374,6 +374,7 @@ let g:vimwiki_location = '~/Dropbox/notes'
 let g:vimwiki_list = [{'path': g:vimwiki_location, 'syntax': 'markdown', 'ext': '.mkdn', 'links_space_char': '_'}]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_markdown_link_ext = 1
+let g:vimwiki_key_mappings = {'table_mappings': 0}
 " Search Vimwiki using Fzf and Ag
 command! -nargs=+ FzfVimwiki
     \ call fzf#vim#ag_raw(
