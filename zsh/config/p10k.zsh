@@ -38,11 +38,14 @@
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
     dir                     # current directory
+    java_version            # java version (https://www.java.com/)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    setenv_marker           # I made this!
     vcs                     # git status
     git_mail                # whether a git mail address is set
-    background_jobs         # presence of background jobs
     # =========================[ Line #2 ]=========================
     newline                 # \n
+    background_jobs         # presence of background jobs
     prompt_char             # prompt symbol
   )
 
@@ -52,11 +55,11 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    status                  # exit code of the last command
-    command_execution_time  # duration of the last command
-    direnv                  # direnv status (https://direnv.net/)
+    # status                # exit code of the last command
+    # command_execution_time# duration of the last command
+    # direnv                # direnv status (https://direnv.net/)
     # asdf                  # asdf version manager (https://github.com/asdf-vm/asdf)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    # virtualenv            # python virtual environment (https://docs.python.org/3/library/venv.html)
     # anaconda              # conda environment (https://conda.io/)
     # pyenv                 # python environment (https://github.com/pyenv/pyenv)
     # goenv                 # go environment (https://github.com/syndbg/goenv)
@@ -69,7 +72,7 @@
     # dotnet_version        # .NET version (https://dotnet.microsoft.com)
     # php_version           # php version (https://www.php.net/)
     # laravel_version       # laravel php framework version (https://laravel.com/)
-    java_version            # java version (https://www.java.com/)
+    # java_version          # java version (https://www.java.com/)
     # package               # name@version from package.json (https://docs.npmjs.com/files/package.json)
     # rbenv                 # ruby version from rbenv (https://github.com/rbenv/rbenv)
     # rvm                   # ruby version from rvm (https://rvm.io)
@@ -80,22 +83,22 @@
     # phpenv                # php version from phpenv (https://github.com/phpenv/phpenv)
     # scalaenv              # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     # haskell_stack         # haskell version from stack (https://haskellstack.org/)
-    kubecontext             # current kubernetes context (https://kubernetes.io/)
-    terraform               # terraform workspace (https://www.terraform.io)
-    aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-    aws_eb_env              # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
-    azure                   # azure account name (https://docs.microsoft.com/en-us/cli/azure)
-    gcloud                  # google cloud cli account and project (https://cloud.google.com/)
-    google_app_cred         # google application credentials (https://cloud.google.com/docs/authentication/production)
-    context                 # user@hostname
-    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    # kubecontext           # current kubernetes context (https://kubernetes.io/)
+    # terraform             # terraform workspace (https://www.terraform.io)
+    # aws                   # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
+    # aws_eb_env            # aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/)
+    # azure                 # azure account name (https://docs.microsoft.com/en-us/cli/azure)
+    # gcloud                # google cloud cli account and project (https://cloud.google.com/)
+    # google_app_cred       # google application credentials (https://cloud.google.com/docs/authentication/production)
+    # context               # user@hostname
+    # nordvpn               # nordvpn connection status, linux only (https://nordvpn.com/)
     # ranger                # ranger shell (https://github.com/ranger/ranger)
     # nnn                   # nnn shell (https://github.com/jarun/nnn)
     # vim_shell             # vim shell indicator (:sh)
     # midnight_commander    # midnight commander shell (https://midnight-commander.org/)
     # nix_shell             # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     # vi_mode               # vi mode (you don't need this if you've enabled prompt_char)
-    vpn_ip                  # virtual private network indicator
+    # vpn_ip                # virtual private network indicator
     # load                  # CPU load
     # disk_usage            # disk usage
     # ram                   # free RAM
@@ -104,9 +107,8 @@
     # timewarrior           # timewarrior tracking status (https://timewarrior.net/)
     # taskwarrior           # taskwarrior task count (https://taskwarrior.org/)
     # time                  # current time
-    setenv_marker           # I made this!
     # =========================[ Line #2 ]=========================
-    newline
+    # newline
     # ip                    # ip address and bandwidth usage for a specified network interface
     # public_ip             # public IP address
     # proxy                 # system-wide http/https/ftp proxy
@@ -141,7 +143,7 @@
   # as POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND below.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%244F┌─'
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%244F├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%244F└─ '
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%244F└─'
   # Connect right prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
@@ -151,7 +153,7 @@
   # '─'. The last two make it easier to see the alignment between left and right prompt and to
   # separate prompt from command output. You might want to set POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
   # for more compact prompt if using using this option.
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='·'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' '
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_GAP_BACKGROUND=
   if [[ $POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR != ' ' ]]; then
@@ -196,7 +198,7 @@
   # Green prompt symbol if the last command succeeded.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$DEFAULT_BACKGROUND
   # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$DEFAULT_ERROR
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -535,8 +537,8 @@
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$DEFAULT_FOREGROUND
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   # Custom icon.
