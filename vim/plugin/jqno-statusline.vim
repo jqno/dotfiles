@@ -82,11 +82,8 @@ function! JqnoStatusLine() abort
             \ '%*' .
             \ '%{' . l:is_active .' ? "" : "     "}' .
             \ ' ' .
-            \ '#%n' .
-            \ '%*' .
-            \ ' │ ' .
             \ '%<' .
-            \ '%f' .
+            \ '%t' .
             \ ' ' .
             \ '%{'. l:is_active .' && &readonly ? "│ RO " : ""}' .
             \ '%{'. l:is_active .' && &previewwindow ? "│ P " : ""}' .
