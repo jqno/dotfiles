@@ -22,9 +22,11 @@
 () {
   emulate -L zsh -o extended_glob
 
-  typeset -g DEFAULT_BACKGROUND="117"
-  typeset -g DEFAULT_ERROR="162"
-  typeset -g DEFAULT_FOREGROUND="0"
+  typeset -g HIGHLIGHT_BACKGROUND="117"
+  typeset -g HIGHLIGHT_FOREGROUND="0"
+  typeset -g HIGHLIGHT_ERROR="162"
+  typeset -g SECONDARY_BACKGROUND="240"
+  typeset -g SECONDARY_FOREGROUND="188"
 
   # Unset all configuration options. This allows you to apply configuration changes without
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
@@ -38,11 +40,13 @@
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
     dir                     # current directory
-    java_version            # java version (https://www.java.com/)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     setenv_marker           # I made this!
     vcs                     # git status
     git_mail                # whether a git mail address is set
+    status                  # exit code of the last command
+    java_version            # java version (https://www.java.com/)
+    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
     background_jobs         # presence of background jobs
@@ -187,8 +191,8 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_OS_ICON_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
 
@@ -196,9 +200,9 @@
   # Transparent background.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND=
   # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_BACKGROUND
   # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_ERROR
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -217,19 +221,19 @@
 
   ##################################[ dir: current directory ]##################################
   # Current directory background color.
-  typeset -g POWERLEVEL9K_DIR_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_DIR_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Default current directory foreground color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$HIGHLIGHT_FOREGROUND
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=$HIGHLIGHT_FOREGROUND
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=$HIGHLIGHT_FOREGROUND
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -348,11 +352,11 @@
 
   #####################################[ vcs: git status ]######################################
   # Version control system colors.
-  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$DEFAULT_BACKGROUND
-  typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$DEFAULT_BACKGROUND
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$DEFAULT_BACKGROUND
-  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=$DEFAULT_ERROR
-  typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=$HIGHLIGHT_BACKGROUND
 
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
   typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
@@ -380,11 +384,11 @@
     fi
 
     # Styling for different parts of Git status.
-    local       meta="%${DEFAULT_FOREGROUND}F"
-    local      clean="%${DEFAULT_FOREGROUND}F"
-    local   modified="%${DEFAULT_ERROR}F"
-    local  untracked="%${DEFAULT_ERROR}F"
-    local conflicted="%${DEFAULT_FOREGROUND}F"
+    local       meta="%${HIGHLIGHT_FOREGROUND}F"
+    local      clean="%${HIGHLIGHT_FOREGROUND}F"
+    local   modified="%${HIGHLIGHT_ERROR}F"
+    local  untracked="%${HIGHLIGHT_ERROR}F"
+    local conflicted="%${HIGHLIGHT_FOREGROUND}F"
 
     local res
     local where  # branch or tag
@@ -486,44 +490,44 @@
 
   # Status on success. No content, just an icon. No need to show it if prompt_char is enabled as
   # it will signify success by turning green.
-  typeset -g POWERLEVEL9K_STATUS_OK=true
+  typeset -g POWERLEVEL9K_STATUS_OK=false
   typeset -g POWERLEVEL9K_STATUS_OK_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_STATUS_OK_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND=$HIGHLIGHT_BACKGROUND
 
   # Status when some part of a pipe command fails but the overall exit status is zero. It may look
   # like this: 1|0.
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE=false
   typeset -g POWERLEVEL9K_STATUS_OK_PIPE_VISUAL_IDENTIFIER_EXPANSION='✔'
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_OK_PIPE_BACKGROUND=$HIGHLIGHT_BACKGROUND
 
   # Status when it's just an error code (e.g., '1'). No need to show it if prompt_char is enabled as
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=$HIGHLIGHT_ERROR
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=false
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=$HIGHLIGHT_ERROR
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=$HIGHLIGHT_ERROR
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Execution time color.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$SECONDARY_FOREGROUND
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=$SECONDARY_BACKGROUND
   # Show duration of the last command if takes at least this many seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
   # Show this many fractional digits. Zero means round to seconds.
@@ -537,8 +541,8 @@
 
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$DEFAULT_BACKGROUND
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$HIGHLIGHT_FOREGROUND
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   # Custom icon.
@@ -735,8 +739,8 @@
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Custom icon.
   # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -776,19 +780,19 @@
 
   ###########[ vi_mode: vi mode (you don't need this if you've enabled prompt_char) ]###########
   # Foreground color.
-  typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=$HIGHLIGHT_FOREGROUND
   # Text and color for normal (a.k.a. command) vi mode.
   typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING=NORMAL
-  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Text and color for visual vi mode.
   typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING=VISUAL
-  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Text and color for overtype (a.k.a. overwrite and replace) vi mode.
   typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING=OVERTYPE
-  typeset -g POWERLEVEL9K_VI_MODE_OVERWRITE_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VI_MODE_OVERWRITE_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Text and color for insert vi mode.
   typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=
-  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=$HIGHLIGHT_FOREGROUND
 
   ######################################[ ram: free RAM ]#######################################
   # RAM color.
@@ -881,14 +885,14 @@
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=$HIGHLIGHT_ERROR
   # Context color in SSH without privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=$HIGHLIGHT_ERROR
   # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND=$DEFAULT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND=$HIGHLIGHT_ERROR
 
   # Context format when running with privileges: user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%n@%m'
@@ -908,8 +912,8 @@
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.
-  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$SECONDARY_FOREGROUND
+  typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=$SECONDARY_BACKGROUND
   # Don't show Python version next to the virtual environment name.
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   # Don't show virtualenv if pyenv is already shown.
@@ -955,8 +959,8 @@
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
-  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_PYENV_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_PYENV_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_PYENV_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Hide python version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_PYENV_SOURCES=(shell local global)
   # If set to false, hide python version if it's the same as global:
@@ -996,8 +1000,8 @@
 
   ##########[ nodenv: node.js version from nodenv (https://github.com/nodenv/nodenv) ]##########
   # Nodenv color.
-  typeset -g POWERLEVEL9K_NODENV_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_NODENV_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_NODENV_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_NODENV_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Hide node version if it doesn't come from one of these sources.
   typeset -g POWERLEVEL9K_NODENV_SOURCES=(shell local global)
   # If set to false, hide node version if it's the same as global:
@@ -1010,15 +1014,15 @@
 
   ##############[ nvm: node.js version from nvm (https://github.com/nvm-sh/nvm) ]###############
   # Nvm color.
-  typeset -g POWERLEVEL9K_NVM_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_NVM_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_NVM_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_NVM_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Custom icon.
   # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
   # Nodeenv color.
-  typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_NODEENV_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_NODEENV_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Don't show Node version next to the environment name.
   typeset -g POWERLEVEL9K_NODEENV_SHOW_NODE_VERSION=false
   # Separate environment name from Node version only with a space.
@@ -1028,8 +1032,8 @@
 
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
-  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_NODE_VERSION_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Show node version only when in a directory tree containing package.json.
   typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
   # Custom icon.
@@ -1046,8 +1050,8 @@
 
   #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
   # Rust version color.
-  typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_RUST_VERSION_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_RUST_VERSION_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # Show rust version only when in a rust project subdirectory.
   typeset -g POWERLEVEL9K_RUST_VERSION_PROJECT_ONLY=true
   # Custom icon.
@@ -1094,8 +1098,8 @@
 
   ####################[ java_version: java version (https://www.java.com/) ]####################
   # Java version color.
-  typeset -g POWERLEVEL9K_JAVA_VERSION_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_JAVA_VERSION_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_JAVA_VERSION_FOREGROUND=$SECONDARY_FOREGROUND
+  typeset -g POWERLEVEL9K_JAVA_VERSION_BACKGROUND=$SECONDARY_BACKGROUND
   # Show java version only when in a java project subdirectory.
   typeset -g POWERLEVEL9K_JAVA_VERSION_PROJECT_ONLY=true
   # Show brief version.
@@ -1491,8 +1495,8 @@
 
   ########################[ vpn_ip: virtual private network indicator ]#########################
   # VPN IP color.
-  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=$DEFAULT_FOREGROUND
-  typeset -g POWERLEVEL9K_VPN_IP_BACKGROUND=$DEFAULT_BACKGROUND
+  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_VPN_IP_BACKGROUND=$HIGHLIGHT_BACKGROUND
   # When on VPN, show just an icon without the IP address.
   # Tip: To display the private IP address when on VPN, remove the next line.
   typeset -g POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION=
@@ -1536,8 +1540,8 @@
 
   ################################[ battery: internal battery ]#################################
   # Show battery in red when it's below this level and not connected to power supply.
-  typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=$DEFAULT_ERROR
-  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=$DEFAULT_FOREGROUND
+  typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=$HIGHLIGHT_FOREGROUND
   # Show battery in green when it's charging or fully charged.
   typeset -g POWERLEVEL9K_BATTERY_{CHARGING,CHARGED}_FOREGROUND=2
   # Show battery in yellow when it's discharging.
@@ -1665,14 +1669,14 @@
     local GIT_STATUS=$(git status -sb 2> /dev/null)
     git config user.email | grep @ > /dev/null 2>&1
     [[ -n $GIT_STATUS && "$?" -ne "0" ]] && MAIL="1"
-    p10k segment -b $DEFAULT_ERROR -f $DEFAULT_FOREGROUND -t "!!! NO EMAIL SET !!!" -c "$MAIL"
+    p10k segment -b $HIGHLIGHT_ERROR -f $HIGHLIGHT_FOREGROUND -t "!!! NO EMAIL SET !!!" -c "$MAIL"
   }
   function instant_prompt_git_mail() {
-    p10k segment -b $DEFAULT_ERROR -f $DEFAULT_FOREGROUND -t "" -c ""
+    p10k segment -b $HIGHLIGHT_ERROR -f $HIGHLIGHT_FOREGROUND -t "" -c ""
   }
   #################################[ env-var: SETENV_MARKER ]##################################
   function prompt_setenv_marker() {
-    p10k segment -b $DEFAULT_BACKGROUND -f $DEFAULT_FOREGROUND -t "$SETENV_MARKER" -c "$SETENV_MARKER"
+    p10k segment -b $HIGHLIGHT_BACKGROUND -f $HIGHLIGHT_FOREGROUND -t "$SETENV_MARKER" -c "$SETENV_MARKER"
   }
   function instant_prompt_setenv_marker() {
     prompt_setenv_marker
