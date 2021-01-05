@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-yabai -m config layout bsp
+yabai -m config layout stack
 
 yabai -m config top_padding 5
 yabai -m config bottom_padding 5
