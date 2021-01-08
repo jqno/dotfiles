@@ -421,11 +421,6 @@ nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 vnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
 vnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
 
-" Toggle Goyo for distraction-free writing
-nnoremap <silent> <F5> :Goyo<CR>
-" Enter Vimwiki
-nnoremap <silent> <F12> :VimwikiIndex<CR>
-
 " Keep the visual selection after < and > so we can repeat these buttons
 " instead of tring to find .
 vnoremap < <gv
@@ -479,6 +474,10 @@ nnoremap <silent> <leader><leader>0 :set noexpandtab nosmarttab tabstop=4 shiftw
 nnoremap <silent> <leader><leader>t :call ToggleListChars()<CR>
 nnoremap <silent> <leader><leader>w :call ToggleWrap()<CR>
 nnoremap <silent> <leader><leader><leader> za
+" Toggle Goyo for distraction-free writing
+nnoremap <silent> <leader><leader><Esc> :Goyo<CR>
+" Enter Vimwiki
+nnoremap <silent> <leader><leader><CR> :VimwikiIndex<CR>
 
 " *** Prefix <leader>f: finding things
 nnoremap <leader>f<space> :Vista finder<CR>
