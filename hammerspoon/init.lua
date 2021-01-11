@@ -28,6 +28,7 @@ hyper.bindKey({"cmd"}, "m", function() am.switchToAndFromApp("com.microsoft.Outl
 hyper.bindKey({}, "r", function() am.switchToAndFromApp("com.rememberthemilk.Deskmilk") end)
 hyper.bindKey({}, "\\", function() am.switchToAndFromApp("com.hicknhacksoftware.MacPass") end)
 hyper.bindKey({}, "s", function() am.switchToAndFromApp("com.spotify.client") end)
+hyper.bindKey({"cmd"}, "s", function() am.switchToAndFromApp("tv.plex.player") end)
 hyper.bindKey({}, "v", function() am.switchToAndFromApp("org.vim.MacVim") end)
 hyper.bindKey({}, "w", function() am.switchToAndFromApp("org.mozilla.firefox") end)
 hyper.bindKey({}, "1", function() am.switchToAndFromApp("com.grupovrs.ramboxce") end)
