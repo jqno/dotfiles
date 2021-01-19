@@ -2,7 +2,7 @@ call SetTabstop(4)
 setlocal wrap
 
 function! s:Linkify() abort
-    let l:url = expand('<cWORD>')
+    let l:url = shellescape(expand('<cWORD>'))
     let l:link = system('linkify.py ' . l:url)
     let l:chomped = substitute(l:link, '\n\+$', '', '')
     let l:prevchar = strpart(getline('.'), col('.') -2, 1)
