@@ -22,11 +22,12 @@
 () {
   emulate -L zsh -o extended_glob
 
-  typeset -g HIGHLIGHT_BACKGROUND="117"
-  typeset -g HIGHLIGHT_FOREGROUND="0"
-  typeset -g HIGHLIGHT_ERROR="162"
-  typeset -g SECONDARY_BACKGROUND="240"
-  typeset -g SECONDARY_FOREGROUND="188"
+  typeset -g HIGHLIGHT_BACKGROUND="223"
+  typeset -g HIGHLIGHT_FOREGROUND="241"
+  typeset -g ERROR_BACKGROUND="88"
+  typeset -g ERROR_FOREGROUND="223"
+  typeset -g SECONDARY_BACKGROUND="239"
+  typeset -g SECONDARY_FOREGROUND="223"
 
   # Unset all configuration options. This allows you to apply configuration changes without
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
@@ -202,7 +203,7 @@
   # Green prompt symbol if the last command succeeded.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_BACKGROUND
   # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$ERROR_BACKGROUND
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -355,7 +356,7 @@
   typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$HIGHLIGHT_BACKGROUND
   typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$HIGHLIGHT_BACKGROUND
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$HIGHLIGHT_BACKGROUND
-  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_BACKGROUND=$ERROR_BACKGROUND
   typeset -g POWERLEVEL9K_VCS_LOADING_BACKGROUND=$HIGHLIGHT_BACKGROUND
 
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
@@ -386,8 +387,8 @@
     # Styling for different parts of Git status.
     local       meta="%${HIGHLIGHT_FOREGROUND}F"
     local      clean="%${HIGHLIGHT_FOREGROUND}F"
-    local   modified="%${HIGHLIGHT_ERROR}F"
-    local  untracked="%${HIGHLIGHT_ERROR}F"
+    local   modified="%${ERROR_BACKGROUND}F"
+    local  untracked="%${ERROR_BACKGROUND}F"
     local conflicted="%${HIGHLIGHT_FOREGROUND}F"
 
     local res
@@ -506,23 +507,23 @@
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_BACKGROUND=$ERROR_BACKGROUND
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=false
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_BACKGROUND=$ERROR_BACKGROUND
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_BACKGROUND=$ERROR_BACKGROUND
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Execution time color.
@@ -885,14 +886,14 @@
 
   ##################################[ context: user@hostname ]##################################
   # Context color when running with privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=$ERROR_BACKGROUND
   # Context color in SSH without privileges.
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_BACKGROUND=$ERROR_BACKGROUND
   # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND=$HIGHLIGHT_ERROR
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND=$ERROR_FOREGROUND
+  typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND=$ERROR_BACKGROUND
 
   # Context format when running with privileges: user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%n@%m'
@@ -1540,8 +1541,8 @@
 
   ################################[ battery: internal battery ]#################################
   # Show battery in red when it's below this level and not connected to power supply.
-  typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=$HIGHLIGHT_ERROR
-  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=$HIGHLIGHT_FOREGROUND
+  typeset -g POWERLEVEL9K_BATTERY_LOW_THRESHOLD=$ERROR_BACKGROUND
+  typeset -g POWERLEVEL9K_BATTERY_LOW_FOREGROUND=$ERROR_FOREGROUND
   # Show battery in green when it's charging or fully charged.
   typeset -g POWERLEVEL9K_BATTERY_{CHARGING,CHARGED}_FOREGROUND=2
   # Show battery in yellow when it's discharging.
@@ -1669,10 +1670,10 @@
     local GIT_STATUS=$(git status -sb 2> /dev/null)
     git config user.email | grep @ > /dev/null 2>&1
     [[ -n $GIT_STATUS && "$?" -ne "0" ]] && MAIL="1"
-    p10k segment -b $HIGHLIGHT_ERROR -f $HIGHLIGHT_FOREGROUND -t "!!! NO EMAIL SET !!!" -c "$MAIL"
+    p10k segment -b $ERROR_BACKGROUND -f $ERROR_FOREGROUND -t "!!! NO EMAIL SET !!!" -c "$MAIL"
   }
   function instant_prompt_git_mail() {
-    p10k segment -b $HIGHLIGHT_ERROR -f $HIGHLIGHT_FOREGROUND -t "" -c ""
+    p10k segment -b $ERROR_BACKGROUND -f $ERROR_FOREGROUND -t "" -c ""
   }
   #################################[ env-var: SETENV_MARKER ]##################################
   function prompt_setenv_marker() {

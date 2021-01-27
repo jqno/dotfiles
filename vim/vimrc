@@ -25,6 +25,7 @@ Plug 'liuchengxu/vista.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
 Plug 'machakann/vim-swap'
+Plug 'morhetz/gruvbox'
 Plug 'romainl/vim-cool'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind', 'NERDTreeClose'] }  " I know, I know. It's just that netrw is incredibly weird and buggy when g:netrw_liststype = 3
 Plug 'SirVer/ultisnips'
@@ -141,9 +142,15 @@ vnoremap Y "+y
 
 " Make it look purty (but suppress the error if the colorscheme doesn't exist)
 set background=dark
-set termguicolors
-silent! colorscheme reversal
+let g:gruvbox_transparent_bg=1
+let g:gruvbox_italic=1
+let g:gruvbox_invert_selection=0
+silent! colorscheme gruvbox
+if !has('gui')
+    hi Normal guibg=NONE
+endif
 " Define true colors
+set termguicolors
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 " Define italics
