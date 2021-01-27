@@ -6,6 +6,7 @@ node_modules
 # Vim
 tags
 tags.lock
+tags.temp
 Session.vim
 .vim
 
