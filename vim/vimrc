@@ -500,7 +500,7 @@ nnoremap <silent> <leader>fn :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fN :NERDTreeFind<CR>
 nmap <silent> <leader>fr <Plug>(coc-references)
 nnoremap <leader>fv :Vista<CR><C-W><C-P>
-nnoremap <leader>f<F12> :FzfVimwiki<Space>
+nnoremap <leader>fw :FzfVimwiki<Space>
 
 " " *** Prefix <leader>g: going to places and Gitting things
 nnoremap <silent> <leader>gb :Gblame<CR>
