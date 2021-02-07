@@ -203,7 +203,7 @@
   # Green prompt symbol if the last command succeeded.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_BACKGROUND
   # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$ERROR_BACKGROUND
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=$HIGHLIGHT_BACKGROUND
   # Default prompt symbol.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
   # Prompt symbol in command vi mode.
@@ -543,7 +543,7 @@
   #######################[ background_jobs: presence of background jobs ]#######################
   # Background jobs color.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND=$HIGHLIGHT_BACKGROUND
-  typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$HIGHLIGHT_FOREGROUND
+  # typeset -g POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$HIGHLIGHT_FOREGROUND
   # Don't show the number of background jobs.
   typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=false
   # Custom icon.
