@@ -45,11 +45,10 @@ Plug 'uiiaoo/java-syntax.vim'
 
 " CoC plugins
 Plug 'neoclide/coc.nvim', { 'branch': 'release',
-    \ 'for': ['java', 'javascript', 'json', 'python', 'rust', 'scala', 'typescript'] }
+    \ 'for': ['java', 'javascript', 'json', 'python', 'scala', 'typescript'] }
 Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-rls', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
