@@ -148,6 +148,7 @@ let g:gruvbox_invert_selection=0
 silent! colorscheme gruvbox
 if !has('gui')
     hi Normal guibg=NONE
+    hi VertSplit ctermfg=223 ctermbg=223 guifg=#504945 guibg=#504945
 endif
 " Define true colors
 set termguicolors
