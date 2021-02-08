@@ -1,5 +1,6 @@
 call SetTabstop(4)
 setlocal wrap
+setlocal conceallevel=2
 
 function! s:Linkify() abort
     let l:url = shellescape(expand('<cWORD>'))
