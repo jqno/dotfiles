@@ -8,10 +8,10 @@ runtime ftplugin/man.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'chrisbra/Colorizer'
+Plug 'cohama/lexima.vim'
 Plug 'dense-analysis/ale'
 Plug 'gcmt/wildfire.vim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'jqno/jqno-autoclose.vim'
 Plug 'jqno/jqno-extractvariable.vim'
 Plug 'jqno/jqno-statusline.vim'
 Plug 'jqno/jqno-tab.vim'
@@ -31,7 +31,6 @@ Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeFind
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
@@ -55,8 +54,6 @@ Plug 'iamcco/coc-vimlsp', { 'do': 'yarn install --frozen-lockfile' }
 Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
 
 call plug#end()
-
-
 
 " ***************************************
 " ***  Behavior
@@ -278,6 +275,12 @@ command! PlugRevert execute 'source ' . g:jqno_plugin_lockfile
 
 " *** chrisbra/Colorizer
 let g:colorizer_auto_filetype = 'css,html,scss'
+
+" *** cohama/lexima.vim
+" To allow remapping <CR> consistently, set default rules manually.
+let g:lexima_no_default_rules = 1
+call lexima#set_default_rules()
+inoremap <expr><silent> <CR> pumvisible() ? tabjqno#accept() : lexima#expand('<LT>CR>', 'i')
 
 " *** dense-analysis/ale
 " Run linting on save only
