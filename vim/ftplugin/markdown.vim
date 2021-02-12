@@ -15,5 +15,5 @@ function! s:Linkify() abort
 endfunction
 
 command! Linkify call <SID>Linkify()
-nnoremap <leader>l :call <SID>Linkify()<CR>
+nnoremap <silent> <leader>l :call <SID>Linkify()<CR>
 
