@@ -1,4 +1,4 @@
-let s:jqnoautoclose_punctuation = [ '.', ',', ':', ';', '?', '!', '=', '+', '-', '*', '/' ]
+let s:jqnoautoclose_punctuation = [ ' ', '.', ',', ':', ';', '?', '!', '=', '+', '-', '*', '/' ]
 let s:jqnoautoclose_allclosers = [ ')', ']', '}', '>', '"', "'", '`' ]
 let s:jqnoautoclose_parenclosers = [ ')', ']', '}', '>' ]
 
