@@ -34,6 +34,11 @@ function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+# title: set terminal title
+function title() {
+  echo -en "\033]0;$1\a"
+}
+
 # MacOS pre-installs a bad version of ctags so we substitute our own.
 if [[ "$(uname -s)" == "Darwin" ]]
 then
