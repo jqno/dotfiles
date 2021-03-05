@@ -1,6 +1,5 @@
 local am = require('app-management')
 local caffeine = require('caffeine')
-local clamshell = require('clamshell-monitor')
 local hyper = require('hyper')
 
 
@@ -11,7 +10,6 @@ dofile("/Users/jqno/.secretaresse/secretaresse.lua")
 
 -- Activate plugins
 caffeine.activate()
-clamshell.activate()
 hyper.activate("F18", "F17")
 
 
