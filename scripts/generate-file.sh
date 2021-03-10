@@ -4,7 +4,7 @@
 
 case $1 in
 	"scalafix")
-		cat > .scalafix.conf <<-EOL
+		cat > .scalafix.conf <<-EOF
 		rules = [OrganizeImports]
 		
 		OrganizeImports.groups = [
@@ -12,7 +12,27 @@ case $1 in
 		  "*"
 		  "scala."
 		]
-		EOL
+		EOF
 		;;
+	"gitignore")
+		cat > .gitignore <<-EOF
+		# Maven
+		target
+		pom.xml.versionsBackup
+		dependency-reduced-pom.xml
+
+		# IDE
+		.idea
+		*.iml
+		.project
+		.classpath
+		.settings
+
+		# OS
+		.DS_Store
+		EOF
+		;;
+	*)
+		echo "Unknown file type: [$1]"
 esac
 
