@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+if [ "$1" = "install" ]; then
+  brew install koekeishiya/formulae/yabai
+  sudo yabai --install-sa
+  brew services start yabai
+  killall Dock
+fi
+
 yabai -m config layout stack
 
 yabai -m config top_padding 5

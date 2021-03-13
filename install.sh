@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+OSNAME="$(uname -s)"
 
 function installDotfiles() {
   echo "*************************"
@@ -14,16 +15,12 @@ function installDotfiles() {
   installFor "ctags.d"
   installFor "fzf.zsh"
   scriptFor "git"
-  installFor "hammerspoon"
   installFor "ideavimrc"
-  installFor "karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
   installFor "kitty" ".config/kitty" ".config"
-  scriptFor "macos"
   installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
   scriptFor "vim"
-  installFor "yabairc"
   installFor "zsh/zshrc" ".zshrc"
   installFor "zsh/config" ".zsh"
   installFor "zsh/config/environment.sh" ".zprofile" # Makes sure environment variables are loaded in MacVim as well
@@ -33,8 +30,16 @@ function installDotfiles() {
   installFor "flake8"
   installFor "pylintrc"
 
-  # .yabairc needs to be executed as a script
-  ~/.yabairc
+  # OS-dependent
+  if [ "$OSNAME" == "Darwin" ]; then
+    scriptFor "macos/macos"
+    installFor "macos/hammerspoon" ".hammerspoon"
+    installFor "macos/karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
+    installFor "macos/yabairc" ".yabairc"
+
+    # .yabairc needs to be executed as a script
+    ~/.yabairc install
+  fi
 }
 
 

@@ -26,7 +26,7 @@ function installMacos() {
   fi
 
   echo "** Installing mas and Xcode. This may take a while; the Launchpad icon has a nice progress bar."
-  brew bundle install --no-upgrade --file=$PWD/software/Brewfile-pre
+  brew bundle install --no-upgrade --file=$PWD/macos/software/Brewfile-pre
   if [ $? -ne 0 ]; then
     echo "** Unable to install Xcode: aborting."
     exit 1
@@ -39,7 +39,7 @@ function installMacos() {
   fi
 
   echo "** Installing brew dependencies..."
-  brew bundle install --no-upgrade --file=$PWD/software/Brewfile
+  brew bundle install --no-upgrade --file=$PWD/macos/software/Brewfile
 
   if [ $? -ne 0 ]; then
     echo "** Brew failed (did you sign into the App Store?)"
