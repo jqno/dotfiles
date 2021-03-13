@@ -15,6 +15,7 @@ function installDotfiles() {
   installFor "ctags.d"
   installFor "fzf.zsh"
   scriptFor "git"
+  installFor "gitignore" ".config/git/ignore" ".config/git"
   installFor "ideavimrc"
   installFor "kitty" ".config/kitty" ".config"
   installFor "scripts" "scripts"

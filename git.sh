@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# Install global ignore file
-mkdir -p ~/.config/git
-ln -s $(dirname "$BASH_SOURCE")/gitignore ~/.config/git/ignore
-
 git config --global user.name "Jan Ouwens"
 git config --global color.ui true
 git config --global push.default simple
