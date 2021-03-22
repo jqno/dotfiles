@@ -8,7 +8,7 @@ case $1 in
 		rules = [OrganizeImports]
 		
 		OrganizeImports.groups = [
-		  "re:javax?\\."
+		  "re:javax?\\\\."
 		  "*"
 		  "scala."
 		]
