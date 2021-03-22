@@ -3,11 +3,6 @@ local caffeine = require('caffeine')
 local hyper = require('hyper')
 
 
--- Secretaresse: sync calendars
-_G.secretaresseDir = '~/.secretaresse'
-dofile("/Users/jqno/.secretaresse/secretaresse.lua")
-
-
 -- Activate plugins
 caffeine.activate()
 hyper.activate("F18", "F17")
