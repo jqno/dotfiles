@@ -18,6 +18,7 @@ function installDotfiles() {
   installFor "gitignore" ".config/git/ignore" ".config/git"
   installFor "ideavimrc"
   installFor "kitty" ".config/kitty" ".config"
+  installFor "nvim" ".config/nvim" ".config"
   installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
