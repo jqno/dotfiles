@@ -19,6 +19,7 @@ function installDotfiles() {
   installFor "ideavimrc"
   installFor "kitty" ".config/kitty" ".config"
   installFor "nvim" ".config/nvim" ".config"
+  scriptFor "nvim"
   installFor "scripts" "scripts"
   installFor "tigrc"
   installFor "vim"
