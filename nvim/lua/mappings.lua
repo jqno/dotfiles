@@ -8,6 +8,6 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- COMPLETION --
-map(modes.i, '<S-Tab>', 'pumvisible() ? "<C-p>" : "<Tab>"', { expr = true })
-map(modes.i, '<Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { expr = true })
+map(modes.i, '<Tab>', 'v:lua.tab_complete()', { expr = true })
+map(modes.i, '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
 map(modes.i, '<CR>', 'compe#confirm("<CR>")', { expr = true })
