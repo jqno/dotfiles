@@ -10,3 +10,5 @@ set(vim.bo, 'expandtab', true)
 set(vim.bo, 'tabstop', indent)
 set(vim.bo, 'shiftwidth', indent)
 set(vim.bo, 'softtabstop', indent)
+
+set(vim.o, 'completeopt', 'menuone,noselect')
