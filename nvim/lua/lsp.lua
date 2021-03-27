@@ -22,3 +22,11 @@ end
 require('nlua.lsp.nvim').setup(lsp, {
   on_attach = on_attach
 })
+
+Metals_config = require("metals").bare_config
+Metals_config.init_options.statusBarProvider = 'on'
+
+vim.cmd [[augroup lsp]]
+vim.cmd [[autocmd!]]
+vim.cmd [[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
+vim.cmd [[augroup end]]

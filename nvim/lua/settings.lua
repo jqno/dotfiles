@@ -17,3 +17,4 @@ set(vim.wo, 'signcolumn', 'yes')
 
 set(vim.o, 'completeopt', 'menuone,noselect,preview')
 set(vim.o, 'updatetime', 300)
+vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
