@@ -12,3 +12,4 @@ set(vim.bo, 'shiftwidth', indent)
 set(vim.bo, 'softtabstop', indent)
 
 set(vim.o, 'completeopt', 'menuone,noselect')
+set(vim.o, 'updatetime', 300)
