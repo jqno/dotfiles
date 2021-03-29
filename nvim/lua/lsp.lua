@@ -28,5 +28,6 @@ Metals_config.init_options.statusBarProvider = 'on'
 
 vim.cmd [[augroup lsp]]
 vim.cmd [[autocmd!]]
-vim.cmd [[autocmd FileType scala,sbt lua require("metals").initialize_or_attach(Metals_config)]]
+vim.cmd [[autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'jdtls.sh'}})]]
+vim.cmd [[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)]]
 vim.cmd [[augroup end]]
