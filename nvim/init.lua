@@ -6,4 +6,5 @@ vim.cmd('source $HOME/.config/nvim/plugins.vim')
 require 'settings'
 require 'completion'
 require 'lsp'
+require 'statusline'
 require 'mappings'

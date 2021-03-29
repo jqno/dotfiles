@@ -1,5 +1,6 @@
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
 Plug 'neovim/nvim-lspconfig', { 'commit': 'f978505' }
 Plug 'nvim-lua/plenary.nvim', { 'commit': '2768ba7' }
