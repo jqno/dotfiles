@@ -3,8 +3,9 @@
 vim.g.loaded_python_provider = 0
 
 vim.cmd('source $HOME/.config/nvim/plugins.vim')
-require 'settings'
-require 'completion'
-require 'lsp'
-require 'statusline'
-require 'mappings'
+
+require('settings').setup()
+require('completion').setup()
+require('lsp').setup()
+require('statusline').setup()
+require('mappings').setup()

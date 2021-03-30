@@ -1,7 +1,9 @@
+local M = {}
+
 local lsp = require'lspconfig'
 
 local on_attach = function(client, bufnr)
-  _G.lsp_mappings(client, bufnr)
+  require('mappings').setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -19,15 +21,19 @@ local on_attach = function(client, bufnr)
   end
 end
 
-require('nlua.lsp.nvim').setup(lsp, {
-  on_attach = on_attach
-})
+function M.setup()
+  require('nlua.lsp.nvim').setup(lsp, {
+    on_attach = on_attach
+  })
 
-Metals_config = require("metals").bare_config
-Metals_config.init_options.statusBarProvider = 'on'
+  Metals_config = require("metals").bare_config
+  Metals_config.init_options.statusBarProvider = 'on'
 
-vim.cmd [[augroup lsp]]
-vim.cmd [[autocmd!]]
-vim.cmd [[autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'jdtls.sh'}})]]
-vim.cmd [[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)]]
-vim.cmd [[augroup end]]
+  vim.cmd [[augroup lsp]]
+  vim.cmd [[autocmd!]]
+  vim.cmd [[autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'jdtls.sh'}})]]
+  vim.cmd [[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)]]
+  vim.cmd [[augroup end]]
+end
+
+return M
