@@ -1,5 +1,6 @@
 call plug#begin(stdpath('data') . '/plugged')
 
+Plug 'ChristianChiarulli/nvcode-color-schemes.vim', { 'commit': '3164eaa' }
 Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
 Plug 'mfussenegger/nvim-jdtls', { 'commit': '4ebad2d' }

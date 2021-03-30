@@ -21,8 +21,10 @@ function M.setup()
 
   set(vim.o, 'completeopt', 'menuone,noselect,preview')
   set(vim.o, 'showmode', false)
+  set(vim.o, 'termguicolors', true)
   set(vim.o, 'updatetime', 300)
   vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
+  vim.cmd('colorscheme onedark')
 end
 
 return M
