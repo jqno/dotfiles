@@ -3,6 +3,7 @@ local M = {}
 function M.setup()
   require'compe'.setup {
     autocomplete = false;
+    preselect = 'always';
 
     source = {
       path = true;
