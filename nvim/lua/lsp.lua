@@ -9,9 +9,9 @@ local on_attach = function(client, bufnr)
 
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
+      hi link LspReferenceRead DiffAdd
+      hi link LspReferenceWrite DiffDelete
+      hi LspReferenceText gui=italic
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
@@ -26,14 +26,27 @@ function M.setup()
     on_attach = on_attach
   })
 
-  Metals_config = require("metals").bare_config
-  Metals_config.init_options.statusBarProvider = 'on'
+  Jdtls_config = {
+    on_attach = on_attach,
+    cmd = { 'jdtls.sh' }
+  }
 
-  vim.cmd [[augroup lsp]]
-  vim.cmd [[autocmd!]]
-  vim.cmd [[autocmd FileType java lua require('jdtls').start_or_attach({cmd = {'jdtls.sh'}})]]
-  vim.cmd [[autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)]]
-  vim.cmd [[augroup end]]
+  local metals_config = {
+    on_attach = on_attach,
+    init_options = {
+      statusBarProvider = 'on'
+    }
+  }
+  Metals_config = require("metals").bare_config
+  for k,v in pairs(metals_config) do Metals_config[k] = v end
+
+  vim.api.nvim_exec([[
+    augroup lsp
+      autocmd!
+      autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
+      autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)
+    augroup end
+  ]], false)
 end
 
 return M
