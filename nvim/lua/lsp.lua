@@ -7,15 +7,25 @@ local on_attach = function(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      underline = true,
+      signs = true,
+    }
+  )
+
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
       hi link LspReferenceRead DiffAdd
       hi link LspReferenceWrite DiffDelete
       hi LspReferenceText gui=italic
-      augroup lsp_document_highlight
+      augroup lsp_attach
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
+        autocmd CursorHoldI <buffer> silent! lua vim.lsp.buf.signature_help()
       augroup END
     ]], false)
   end
@@ -41,7 +51,7 @@ function M.setup()
   for k,v in pairs(metals_config) do Metals_config[k] = v end
 
   vim.api.nvim_exec([[
-    augroup lsp
+    augroup lsp_define
       autocmd!
       autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
       autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)
