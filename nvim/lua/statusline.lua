@@ -1,6 +1,7 @@
 local fn = vim.fn
 
 local M = {}
+local highlight = require'util'.highlight
 
 
 -- HELPERS --
@@ -48,12 +49,6 @@ local separators = {
   open = function() return symbols.open end,
   close = function() return symbols.close end
 } 
-
-local function highlight(group, fg, bg, gui)
-  local cmd = string.format('highlight %s guifg=%s guibg=%s', group, fg, bg)
-  if gui ~= nil then cmd = cmd .. ' gui=' .. gui end
-  vim.cmd(cmd)
-end
 
 local function space()
   return ' '

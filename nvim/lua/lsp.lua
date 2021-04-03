@@ -1,6 +1,7 @@
 local M = {}
 
 local lsp = require'lspconfig'
+local util = require'util'
 
 local on_attach = function(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
@@ -16,18 +17,16 @@ local on_attach = function(client, bufnr)
   )
 
   if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-      hi link LspReferenceRead DiffAdd
-      hi link LspReferenceWrite DiffDelete
-      hi LspReferenceText gui=italic
-      augroup lsp_attach
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
-        autocmd CursorHoldI <buffer> silent! lua vim.lsp.buf.signature_help()
-      augroup END
-    ]], false)
+    util.highlight_link('LspReferenceRead', 'DiffAdd')
+    util.highlight_link('LspReferenceWrite', 'DiffDelete')
+    util.highlight('LspReferenceText', nil, nil, 'italic')
+
+    util.augroup('lsp_attach', [[
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
+      autocmd CursorHoldI <buffer> silent! lua vim.lsp.buf.signature_help()
+    ]])
   end
 end
 
@@ -50,13 +49,10 @@ function M.setup()
   Metals_config = require("metals").bare_config
   for k,v in pairs(metals_config) do Metals_config[k] = v end
 
-  vim.api.nvim_exec([[
-    augroup lsp_define
-      autocmd!
-      autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
-      autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)
-    augroup end
-  ]], false)
+  util.augroup('lsp_define', [[
+    autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
+    autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)
+  ]])
 end
 
 return M
