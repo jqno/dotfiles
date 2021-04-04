@@ -26,3 +26,30 @@ popd > /dev/null
 
 # Rust toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
+
+
+# Sumneko Lua Language Server
+pushd $BIN
+OSNAME="$(uname -s)"
+if [ "$OSNAME" == "Darwin" ]; then
+  PLATFORM="macos"
+else
+  PLATFORM="linux"
+fi
+
+git clone https://github.com/sumneko/lua-language-server
+cd lua-language-server
+git submodule update --init --recursive
+
+cd 3rd/luamake
+ninja -f ninja/$PLATFORM.ninja
+cd ../..
+./3rd/luamake/luamake rebuild
+
+if [ "$PLATFORM" == "macos" ]; then
+  mv $BIN/lua-language-server/bin/macOS $BIN/lua-language-server/bin/OSX
+fi
+
+mkdir -p $HOME/.cache/nvim/nlua/sumneko_lua
+ln -s $BIN/lua-language-server $HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server
+popd
