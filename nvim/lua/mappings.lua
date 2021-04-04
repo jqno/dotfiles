@@ -1,7 +1,7 @@
 local M = {}
 
 -- HELPERS --
-local modes = { i = 'i', n = 'n' }
+local modes = { i = 'i', n = 'n', v = 'v', c = 'c' }
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
@@ -9,49 +9,104 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-function M.setup()
+
+-- COMMANDS --
+local function define_commands()
+  -- prevent silly shift-pressing mistakes
+  vim.api.nvim_exec([[
+    command! -bang -nargs=* -complete=file E e<bang> <args>
+    command! -bang -nargs=* -complete=file W w<bang> <args>
+    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+  ]], false)
+end
+
+
+-- MAPPINGS --
+local function define_mappings()
   -- LEADER --
   vim.g.mapleader = ' '
+
+
+  -- VARIOUS --
+  map(modes.n, 'Y', '"+y')
+  map(modes.v, 'Y', '"+y')
+
+
+  -- NAVIGATION --
+  map(modes.n, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(modes.n, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(modes.v, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(modes.v, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+
 
   -- COMPLETION --
   local c = require('completion')
   _G.tab_complete = c.tab_complete
   _G.s_tab_complete = c.s_tab_complete
   map(modes.i, '<Tab>', 'v:lua.tab_complete()', { expr = true })
-  map(modes.i, '<S-Tab>', 'v:lua_s_tab_complete()', { expr = true })
+  map(modes.i, '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
   map(modes.i, '<CR>', 'compe#confirm("<CR>")', { expr = true })
+
 
   -- FINDING --
   map(modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
   map(modes.n, '<leader>fg', '<cmd>Telescope live_grep<CR>')
+
+
+  -- COMMAND-LINE MODE --
+  -- Expand %% to the directory of the currently open file
+  map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 end
 
--- LSP --
+
+-- LSP MAPPINGS --
 function M.setup_lsp(client, bufnr)
   local function buf_map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local opts = { noremap = true, silent = true }
 
+
+  -- VARIOUS --
   buf_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_map('i', '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
+
+  -- FINDING --
   buf_map('n', '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
   buf_map('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
-  buf_map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_map('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+
+  -- GOING PLACES  --
+  buf_map('n', '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_map('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   buf_map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
-  buf_map('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 
+  -- MAKE-ING --
   if client.resolved_capabilities.document_formatting then
     buf_map("n", "<space>mf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   elseif client.resolved_capabilities.document_range_formatting then
     buf_map("n", "<space>mf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
+
+
+  -- REFACTORING --
+  buf_map('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
+
+function M.setup()
+  define_commands()
+  define_mappings()
+end
 
 return M

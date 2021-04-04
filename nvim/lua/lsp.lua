@@ -25,7 +25,6 @@ local on_attach = function(client, bufnr)
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
-      autocmd CursorHoldI <buffer> silent! lua vim.lsp.buf.signature_help()
     ]])
   end
 end
