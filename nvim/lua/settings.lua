@@ -41,6 +41,8 @@ function M.setup()
   set(vim.o, 'showmode', false)
   set(vim.o, 'smartcase', true)
   set(vim.o, 'termguicolors', true)
+  set(vim.o, 'title', true)
+  set(vim.o, 'titlestring', '%t - nvim')
   set(vim.o, 'updatetime', 300)
   vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
   vim.cmd('colorscheme onedark')
