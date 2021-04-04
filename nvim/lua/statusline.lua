@@ -549,7 +549,7 @@ function M.setup()
   gls.short_line_left = {
     {
       InactiveSpaces = {
-        provider = function() return '      ' end,
+        provider = function() return '       ' end,
         highlight = schemes.faded_i
       }
     },
