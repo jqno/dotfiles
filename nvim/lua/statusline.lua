@@ -65,6 +65,7 @@ local function vimode_color()
     N = colors.green,
     I = colors.white,
     V = colors.gray,
+    [''] = colors.gray,
     T = colors.yellow,
     C = colors.purple
   }
@@ -80,7 +81,17 @@ local function vimode()
   highlight('GalaxyViMode', schemes.regular[1], c)
   highlight('GalaxyViModeOpen', c, schemes.regular_i[2])
   highlight('GalaxyViModeClose', c, schemes.regular_i[2])
-  return fn.mode():upper()
+
+  local mode = fn.mode():upper()
+  if mode == '' then
+    return 'V'
+  elseif mode == '' then
+    return '^S'
+  elseif mode == 'no' then
+    return 'no^V'
+  else
+    return mode
+  end
 end
 
 
