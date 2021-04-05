@@ -1,5 +1,27 @@
 local M = {}
 
+local g = vim.g
+
+
+local function setup_nvim_tree()
+  g.nvim_tree_auto_close = 1
+  g.nvim_tree_follow = 1
+  g.nvim_tree_gitignore = 1
+  g.nvim_tree_show_icons = { git = 0, folders = 1 }
+  g.nvim_tree_quit_on_open = 1
+  g.nvim_tree_icons = {
+    folder = {
+      default = '>',
+      open = '∨',
+      empty = '>',
+      empty_open = '∨',
+      symlink = '>',
+      symlink_open = '∨'
+    }
+  }
+end
+
+
 local function setup_telescope()
   local telescope = require('telescope') 
   local actions = require('telescope.actions')
@@ -19,7 +41,9 @@ local function setup_telescope()
   telescope.load_extension('fzy_native')
 end
 
+
 function M.setup()
+  setup_nvim_tree()
   setup_telescope()
 end
 

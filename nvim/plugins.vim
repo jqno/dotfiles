@@ -6,6 +6,7 @@ Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
 Plug 'junegunn/goyo.vim', { 'commit': 'a865dec' }
 Plug 'knubie/vim-kitty-navigator', { 'commit': 'f09007b' }
+Plug 'kyazdani42/nvim-tree.lua', { 'commit': 'de93da7' }
 Plug 'mfussenegger/nvim-jdtls', { 'commit': '4ebad2d' }
 Plug 'neovim/nvim-lspconfig', { 'commit': 'f978505' }
 Plug 'nvim-lua/plenary.nvim', { 'commit': '2768ba7' }

@@ -57,6 +57,8 @@ local function define_mappings()
   -- FINDING --
   map(modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>')
   map(modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
+  map(modes.n, '<leader>fn', '<cmd>NvimTreeToggle<CR>')
+  map(modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
   map(modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
   map(modes.n, '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
 
