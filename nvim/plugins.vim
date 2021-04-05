@@ -11,6 +11,7 @@ Plug 'neovim/nvim-lspconfig', { 'commit': 'f978505' }
 Plug 'nvim-lua/plenary.nvim', { 'commit': '2768ba7' }
 Plug 'nvim-lua/popup.nvim', { 'commit': 'bc98ca6' }
 Plug 'nvim-telescope/telescope.nvim', { 'commit': 'a7fa604' }
+Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'commit': '654dffd' }
 Plug 'romainl/vim-cool', { 'commit': '27ad4ec' }
 Plug 'scalameta/nvim-metals', { 'commit': '63b8b75' }
 Plug 'tjdevries/nlua.nvim', { 'commit': 'c0e8fbc' }
