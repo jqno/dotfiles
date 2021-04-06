@@ -17,6 +17,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'commit': '654dffd' }
 Plug 'romainl/vim-cool', { 'commit': '27ad4ec' }
 Plug 'scalameta/nvim-metals', { 'commit': '63b8b75' }
 Plug 'tjdevries/nlua.nvim', { 'commit': 'c0e8fbc' }
+Plug 'tpope/vim-endwise', { 'commit': '4289889' }
 Plug 'tpope/vim-eunuch', { 'commit': 'dbbbf85' }
 Plug 'wincent/terminus', { 'commit': '51c9bf4' }
 
