@@ -46,11 +46,9 @@ local function define_mappings()
 
 
   -- COMPLETION --
-  local c = require('completion')
-  _G.tab_complete = c.tab_complete
-  _G.s_tab_complete = c.s_tab_complete
-  map(modes.i, '<Tab>', 'v:lua.tab_complete()', { expr = true })
-  map(modes.i, '<S-Tab>', 'v:lua.s_tab_complete()', { expr = true })
+  _G.compe = require('completion')
+  map(modes.i, '<Tab>', 'v:lua.compe.tab_complete()', { expr = true })
+  map(modes.i, '<S-Tab>', 'v:lua.compe.s_tab_complete()', { expr = true })
   map(modes.i, '<CR>', 'compe#confirm("<CR>")', { expr = true })
 
 
@@ -76,30 +74,30 @@ function M.setup_lsp(client, bufnr)
 
 
   -- VARIOUS --
-  buf_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_map('i', '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_map(modes.n, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_map(modes.n, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_map(modes.i, '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
 
   -- FINDING --
-  buf_map('n', '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-  buf_map('n', '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_map(modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
+  buf_map(modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
 
   -- GOING PLACES  --
-  buf_map('n', '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_map('n', '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_map('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_map('n', '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_map('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_map('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  buf_map(modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_map(modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_map(modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_map(modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_map(modes.n, '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  buf_map(modes.n, ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 
 
   -- MAKE-ING --
   if client.resolved_capabilities.document_formatting then
-    buf_map("n", "<space>mf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_map("n", "<space>mf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
 
 
