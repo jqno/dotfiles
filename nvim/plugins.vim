@@ -4,6 +4,7 @@ Plug 'ChristianChiarulli/nvcode-color-schemes.vim', { 'commit': '3164eaa' }
 Plug 'farmergreg/vim-lastplace', { 'commit': '8f6c445' }
 Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
+Plug 'jqno/jqno-autoclose.vim', { 'commit': '1553436' }
 Plug 'junegunn/goyo.vim', { 'commit': 'a865dec' }
 Plug 'knubie/vim-kitty-navigator', { 'commit': 'f09007b' }
 Plug 'kyazdani42/nvim-tree.lua', { 'commit': 'de93da7' }

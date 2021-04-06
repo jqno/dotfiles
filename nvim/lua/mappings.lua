@@ -49,7 +49,7 @@ local function define_mappings()
   _G.compe = require('completion')
   map(modes.i, '<Tab>', 'v:lua.compe.tab_complete()', { expr = true })
   map(modes.i, '<S-Tab>', 'v:lua.compe.s_tab_complete()', { expr = true })
-  map(modes.i, '<CR>', 'compe#confirm("<CR>")', { expr = true })
+  map(modes.i, '<CR>', 'v:lua.compe.cr_complete()', { expr = true })
 
 
   -- FINDING --
