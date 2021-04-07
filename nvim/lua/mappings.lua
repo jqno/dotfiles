@@ -36,6 +36,8 @@ local function define_mappings()
   -- VARIOUS --
   map(modes.n, 'Y', '"+y')
   map(modes.v, 'Y', '"+y')
+  map(modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
+  map(modes.v, '\\', '<Plug>Commentary', { noremap = false })
 
 
   -- NAVIGATION --
