@@ -77,7 +77,7 @@ function M.setup_lsp(client, bufnr)
 
   -- VARIOUS --
   buf_map(modes.n, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_map(modes.n, '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_map(modes.n, '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_map(modes.i, '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
 
