@@ -45,7 +45,10 @@ end
 local function setup_treesitter()
   require('nvim-treesitter.configs').setup({
     ensure_installed = 'maintained',
-    highlight = { enable = true },
+    highlight = { 
+      enable = true,
+      disable = { "lua" } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
+    },
     incremental_selection = {
       enable = true,
       keymaps = {
