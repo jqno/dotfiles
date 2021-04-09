@@ -5,7 +5,7 @@ Plug 'farmergreg/vim-lastplace', { 'commit': '8f6c445' }
 Plug 'gcmt/wildfire.vim', { 'commit': 'e2baded' }
 Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
-Plug 'jqno/jqno-autoclose.vim', { 'commit': '1553436' }
+Plug 'jqno/jqno-autoclose.vim', { 'commit': '69e83bb' }
 Plug 'jqno/jqno-textobj-functioncall.vim', { 'commit': '42dfe11' }
 Plug 'junegunn/goyo.vim', { 'commit': 'a865dec' }
 Plug 'knubie/vim-kitty-navigator', { 'commit': 'f09007b' }
