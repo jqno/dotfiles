@@ -11,6 +11,7 @@ function M.setup()
       tags = true;
       nvim_lsp = true;
       nvim_lua = true;
+      ultisnips = true;
     }
   }
 end

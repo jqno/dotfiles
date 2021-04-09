@@ -1,0 +1,27 @@
+snippet comment "Comment"
+/*
+ * $0
+ */
+endsnippet
+
+snippet doc "Javadoc comment"
+/**
+ * $0
+ */
+endsnippet
+
+snippet sysout "Print to System.out"
+System.out.println($0);
+endsnippet
+
+snippet syserr "Print to System.err"
+System.err.println($0);
+endsnippet
+
+snippet test "JUnit test case"
+@Test
+public void $1() {
+    $0
+}
+endsnippet
+

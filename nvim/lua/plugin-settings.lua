@@ -42,6 +42,14 @@ local function setup_telescope()
 end
 
 
+local function setup_ultisnips()
+  -- Mapping F19 instead of NOP because the latter isn't recognised properly
+  vim.g.UltiSnipsExpandTrigger = '<F19>'
+  vim.g.UltiSnipsJumpForwardTrigger = '<F19>'
+  vim.g.UltiSnipsJumpBackwardTrigger = '<F19>'
+end
+
+
 local function setup_wildfire()
   -- textobject 'if' from jqno/jqno-textobj-functioncall.vim
   g.wildfire_objects = {
@@ -54,6 +62,7 @@ end
 function M.setup()
   setup_nvim_tree()
   setup_telescope()
+  setup_ultisnips()
   setup_wildfire()
 end
 

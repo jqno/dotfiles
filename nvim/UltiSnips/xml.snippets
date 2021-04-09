@@ -1,0 +1,8 @@
+snippet comment "<!-- -->"
+<!-- $0 -->
+endsnippet
+
+snippet < "tag" b
+<${1:tag}>${2:${VISUAL}}$0</${1/([\w:._-]+).*/$1/}>
+endsnippet
+

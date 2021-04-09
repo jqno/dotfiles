@@ -1,7 +1,7 @@
 local M = {}
 
 -- HELPERS --
-local modes = { i = 'i', n = 'n', v = 'v', c = 'c' }
+local modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's' }
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
@@ -38,6 +38,7 @@ local function define_mappings()
   map(modes.v, 'Y', '"+y')
   map(modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
   map(modes.v, '\\', '<Plug>Commentary', { noremap = false })
+  map(modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
 
 
   -- NAVIGATION --
