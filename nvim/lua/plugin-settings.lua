@@ -42,6 +42,52 @@ local function setup_telescope()
 end
 
 
+local function setup_treesitter()
+  require('nvim-treesitter.configs').setup({
+    ensure_installed = 'maintained',
+    highlight = { enable = true },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<CR>',
+        node_incremental = '<CR>'
+      }
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        keymaps = { ['if'] = '@call.outer' }
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ['<leader>r>'] = '@parameter.inner'
+        },
+        swap_previous = {
+          ['<leader>r<'] = '@parameter.inner'
+        }
+      },
+      move = {
+        enable = true,
+        goto_next_start = {
+          [']]'] = '@function.outer'
+        },
+        goto_previous_start = {
+          ['[['] = '@function.outer'
+        }
+      },
+      lsp_interop = {
+        enable = true,
+        peek_definition_code = {
+          ['<leader>sc'] = '@class.outer',
+          ['<leader>sf'] = '@function.outer'
+        }
+      }
+    }
+  })
+end
+
+
 local function setup_ultisnips()
   -- Mapping F19 instead of NOP because the latter isn't recognised properly
   vim.g.UltiSnipsExpandTrigger = '<F19>'
@@ -51,10 +97,8 @@ end
 
 
 local function setup_wildfire()
-  -- textobject 'if' from jqno/jqno-textobj-functioncall.vim
   g.wildfire_objects = {
-    ['*'] = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'if', 'ip'},
-    ['html,xml,xml.pom'] = {'i}', 'a}', 'it', 'at'}
+    ['scala'] = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip'}
   }
 end
 
@@ -62,6 +106,7 @@ end
 function M.setup()
   setup_nvim_tree()
   setup_telescope()
+  setup_treesitter()
   setup_ultisnips()
   setup_wildfire()
 end

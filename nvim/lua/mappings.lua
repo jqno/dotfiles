@@ -58,6 +58,7 @@ local function define_mappings()
   -- FINDING --
   map(modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>')
   map(modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
+  map(modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>')
   map(modes.n, '<leader>fn', '<cmd>NvimTreeToggle<CR>')
   map(modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
   map(modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
@@ -78,7 +79,6 @@ function M.setup_lsp(client, bufnr)
 
   -- VARIOUS --
   buf_map(modes.n, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_map(modes.n, '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_map(modes.i, '<C-Space>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 
 
@@ -106,6 +106,10 @@ function M.setup_lsp(client, bufnr)
 
   -- REFACTORING --
   buf_map('n', '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+
+
+  -- SHOWING THINGS --
+  buf_map(modes.n, '<leader>ss', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 end
 
 
