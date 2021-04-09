@@ -44,7 +44,7 @@ end
 
 local function setup_wildfire()
   -- textobject 'if' from jqno/jqno-textobj-functioncall.vim
-  vim.g.wildfire_objects = {
+  g.wildfire_objects = {
     ['*'] = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'if', 'ip'},
     ['html,xml,xml.pom'] = {'i}', 'a}', 'it', 'at'}
   }
