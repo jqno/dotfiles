@@ -6,12 +6,12 @@ function M.setup()
     preselect = 'always';
 
     source = {
-      path = true;
-      buffer = true;
-      tags = true;
-      nvim_lsp = true;
-      nvim_lua = true;
-      ultisnips = true;
+      path = { priority = 100 };
+      buffer = { priority = 50 };
+      tags = { priority = 60 };
+      nvim_lsp = { priority = 70 };
+      nvim_lua = { priority = 80 };
+      ultisnips = { priority = 90 };
     }
   }
 end
