@@ -71,6 +71,22 @@ local function define_mappings()
 end
 
 
+-- TREESITTER MAPPINGS --
+function M.treesitter()
+  return {
+    incremental_selection = '<CR>',
+    goto_next_function = ']]',
+    goto_prev_function = '[[',
+    refactor_swap_next = '<leader>r>',
+    refactor_swap_prev = '<leader>r<',
+    show_peek_class = '<leader>sc',
+    show_peek_function = '<leader>sf',
+    telescope_i_split = '<space>',
+    telescope_i_close = '<esc>'
+  }
+end
+
+
 -- LSP MAPPINGS --
 function M.setup_lsp(client, bufnr)
   local function buf_map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end

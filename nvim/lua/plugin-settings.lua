@@ -1,6 +1,7 @@
 local M = {}
 
 local g = vim.g
+local mappings = require('mappings').treesitter()
 
 
 local function setup_nvim_tree()
@@ -30,8 +31,8 @@ local function setup_telescope()
     defaults = {
       mappings = {
         i = {
-          ['<space>'] = actions.select_horizontal,
-          ['<esc>'] = actions.close
+          [mappings.telescope_i_split] = actions.select_horizontal,
+          [mappings.telescope_i_close] = actions.close
         },
       },
       prompt_prefix = '❯ ',
@@ -47,13 +48,13 @@ local function setup_treesitter()
     ensure_installed = 'maintained',
     highlight = { 
       enable = true,
-      disable = { "lua" } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
+      disable = { 'lua' } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
     },
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = '<CR>',
-        node_incremental = '<CR>'
+        init_selection = mappings.incremental_selection,
+        node_incremental = mappings.incremental_selection
       }
     },
     textobjects = {
@@ -64,26 +65,26 @@ local function setup_treesitter()
       swap = {
         enable = true,
         swap_next = {
-          ['<leader>r>'] = '@parameter.inner'
+          [mappings.refactor_swap_next] = '@parameter.inner'
         },
         swap_previous = {
-          ['<leader>r<'] = '@parameter.inner'
+          [mappings.refactor_swap_prev] = '@parameter.inner'
         }
       },
       move = {
         enable = true,
         goto_next_start = {
-          [']]'] = '@function.outer'
+          [mappings.goto_next_function] = '@function.outer'
         },
         goto_previous_start = {
-          ['[['] = '@function.outer'
+          [mappings.goto_prev_function] = '@function.outer'
         }
       },
       lsp_interop = {
         enable = true,
         peek_definition_code = {
-          ['<leader>sc'] = '@class.outer',
-          ['<leader>sf'] = '@function.outer'
+          [mappings.show_peek_class] = '@class.outer',
+          [mappings.show_peek_function] = '@function.outer'
         }
       }
     }
