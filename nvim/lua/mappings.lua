@@ -39,6 +39,7 @@ local function define_mappings()
   map(modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
   map(modes.v, '\\', '<Plug>Commentary', { noremap = false })
   map(modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
+  map(modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
 
 
   -- NAVIGATION --
@@ -63,6 +64,11 @@ local function define_mappings()
   map(modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
   map(modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
   map(modes.n, '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
+  map(modes.n, '<leader>f<F12>', '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
+
+
+  -- EXECUTING THINGS --
+  map(modes.n, '<leader>xl', '<cmd>Linkify<CR>', { silent = true })
 
 
   -- COMMAND-LINE MODE --

@@ -24,6 +24,7 @@ Plug 'tjdevries/nlua.nvim', { 'commit': 'c0e8fbc' }
 Plug 'tpope/vim-commentary', { 'commit': '349340d' }
 Plug 'tpope/vim-endwise', { 'commit': '4289889' }
 Plug 'tpope/vim-eunuch', { 'commit': 'dbbbf85' }
+Plug 'vimwiki/vimwiki', { 'commit': '619f04f' }
 Plug 'wincent/terminus', { 'commit': '51c9bf4' }
 
 let g:metals_server_version = '0.10.0'

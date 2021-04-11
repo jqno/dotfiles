@@ -100,6 +100,17 @@ local function setup_ultisnips()
 end
 
 
+local function setup_vimwiki()
+  g.vimwiki_location = '~/Dropbox/notes'
+  g.vimwiki_list = {
+    { path = g.vimwiki_location, syntax = 'markdown', ext = '.mkdn', links_space_char = '_' }
+  }
+  g.vimwiki_global_ext = 0
+  g.vimwiki_markdown_link_ext = 1
+  g.vimwiki_key_mappings = { table_mappings = 0}
+end
+
+
 local function setup_wildfire()
   g.wildfire_objects = {
     ['scala'] = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip'}
@@ -112,6 +123,7 @@ function M.setup()
   setup_telescope()
   setup_treesitter()
   setup_ultisnips()
+  setup_vimwiki()
   setup_wildfire()
 end
 
