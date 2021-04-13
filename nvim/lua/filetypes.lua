@@ -19,10 +19,14 @@ end
 
 
 function M.setup()
-  util.augroup('filetypes', [[
+  util.augroup('configure_filetypes', [[
     autocmd FileType java     lua require('filetypes').java()
     autocmd FileType markdown lua require('filetypes').markdown()
     autocmd FileType vimwiki  lua require('filetypes').vimwiki()
+  ]])
+
+  util.augroup('recognise_filetypes', [[
+    autocmd BufRead,BufNewFile *.worksheet.sc set filetype=scala
   ]])
 end
 

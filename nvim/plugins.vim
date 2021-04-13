@@ -19,7 +19,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim', { 'commit': '654dffd' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate', 'commit': 'de4fbe8' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects', { 'commit': '111cf35' }
 Plug 'romainl/vim-cool', { 'commit': '27ad4ec' }
-Plug 'scalameta/nvim-metals', { 'commit': '63b8b75' }
+Plug 'scalameta/nvim-metals', { 'commit': '94ecdde' }
 Plug 'SirVer/ultisnips', { 'commit': 'b974a13' }
 Plug 'tjdevries/nlua.nvim', { 'commit': 'c0e8fbc' }
 Plug 'tpope/vim-commentary', { 'commit': '349340d' }
@@ -28,6 +28,6 @@ Plug 'tpope/vim-eunuch', { 'commit': 'dbbbf85' }
 Plug 'vimwiki/vimwiki', { 'commit': '619f04f' }
 Plug 'wincent/terminus', { 'commit': '51c9bf4' }
 
-let g:metals_server_version = '0.10.0'
+let g:metals_server_version = '0.10.1'
 
 call plug#end()

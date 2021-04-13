@@ -54,8 +54,15 @@ function M.setup()
   }
 
   local metals_config = {
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      util.buf_map(bufnr, util.modes.n, mappings.consts().refactor_organize_imports, '<cmd>MetalsOrganizeImports<CR>')
+      util.buf_map(bufnr, util.modes.n, mappings.consts().make_rebuild, '<cmd>MetalsCompileClean<CR>')
+    end,
     init_options = {
+      showImplicitArguments = true,
+      showImplicitConversionsAndClasses = true,
+      showInferredType = true,
       statusBarProvider = 'on'
     }
   }
@@ -64,7 +71,7 @@ function M.setup()
 
   util.augroup('lsp_define', [[
     autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
-    autocmd FileType scala,sbt lua require('metals').initialize_or_attach(Metals_config)
+    autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(Metals_config)
   ]])
 end
 
