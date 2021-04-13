@@ -1,13 +1,6 @@
 local M = {}
-
--- HELPERS --
-local modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's' }
-
-local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true }
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = require('util').map
+local modes = require('util').modes
 
 
 -- COMMANDS --
@@ -95,9 +88,10 @@ end
 
 -- LSP MAPPINGS --
 function M.setup_lsp(client, bufnr)
-  local function buf_map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local opts = { noremap = true, silent = true }
-
+  local function buf_map(...)
+    require('util').buf_map(bufnr, ...)
+  end
 
   -- VARIOUS --
   buf_map(modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>', opts)

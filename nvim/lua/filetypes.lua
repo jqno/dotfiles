@@ -12,10 +12,17 @@ function M.java()
 end
 
 
+function M.vimwiki()
+  M.markdown()
+  util.buf_map(0, util.modes.i, '<CR>', 'pumvisible() ? v:lua.compe.cr_complete() : "<C-]><Esc>:VimwikiReturn 1 5<CR>"', { silent = true, expr = true })
+end
+
+
 function M.setup()
   util.augroup('filetypes', [[
     autocmd FileType java     lua require('filetypes').java()
     autocmd FileType markdown lua require('filetypes').markdown()
+    autocmd FileType vimwiki  lua require('filetypes').vimwiki()
   ]])
 end
 
