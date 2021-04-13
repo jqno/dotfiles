@@ -1,7 +1,7 @@
 local M = {}
 
 local g = vim.g
-local mappings = require('mappings').treesitter()
+local mappings = require('mappings').consts()
 
 
 local function setup_nvim_tree()

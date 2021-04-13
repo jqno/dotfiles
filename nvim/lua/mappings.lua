@@ -71,7 +71,7 @@ end
 
 
 -- TREESITTER MAPPINGS --
-function M.treesitter()
+function M.consts()
   return {
     incremental_selection = '<CR>',
     goto_next_function = ']]',
@@ -88,50 +88,49 @@ end
 
 -- LSP MAPPINGS --
 function M.setup_lsp(client, bufnr)
-  local opts = { noremap = true, silent = true }
-  local function buf_map(...)
-    require('util').buf_map(bufnr, ...)
+  local function buf_map(mode, lhs, rhs, opts)
+    require('util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
 
   -- VARIOUS --
-  buf_map(modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>', opts)
-  buf_map(modes.i, '<C-Space>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>', opts)
-  buf_map(modes.n, '<leader><c-d>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', opts)
-  buf_map(modes.n, '<leader><c-u>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', opts)
+  buf_map(modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>')
+  buf_map(modes.i, '<C-Space>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+  buf_map(modes.n, '<leader><c-d>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
+  buf_map(modes.n, '<leader><c-u>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
 
 
   -- FINDING --
-  buf_map(modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>', opts)
-  buf_map(modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_map(modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  buf_map(modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
 
 
   -- GOING PLACES  --
-  buf_map(modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_map(modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_map(modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_map(modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_map(modes.n, '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-  buf_map(modes.n, ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+  buf_map(modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>')
+  buf_map(modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  buf_map(modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  buf_map(modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  buf_map(modes.n, '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
+  buf_map(modes.n, ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>')
 
 
   -- MAKE-ING --
   if client.resolved_capabilities.document_formatting then
-    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
+    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   end
 
 
   -- REFACTORING --
-  buf_map(modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_map(modes.n, '<leader>r<CR>', '<cmd>Lspsaga code_action<CR>', opts)
-  buf_map(modes.v, '<leader>r<CR>', '<cmd>Lspsaga range_code_action<CR>', opts)
+  buf_map(modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
+  buf_map(modes.n, '<leader>r<CR>', '<cmd>Lspsaga code_action<CR>')
+  buf_map(modes.v, '<leader>r<CR>', '<cmd>Lspsaga range_code_action<CR>')
 
 
   -- SHOWING THINGS --
-  buf_map(modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>', opts)
-  buf_map(modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>', opts)
-  buf_map(modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>', opts)
+  buf_map(modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>')
+  buf_map(modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
+  buf_map(modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>')
 end
 
 

@@ -1,10 +1,11 @@
 local M = {}
 
 local lsp = require'lspconfig'
+local mappings = require'mappings'
 local util = require'util'
 
 local on_attach = function(client, bufnr)
-  require('mappings').setup_lsp(client, bufnr)
+  mappings.setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
