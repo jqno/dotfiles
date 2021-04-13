@@ -4,6 +4,7 @@ Plug 'ChristianChiarulli/nvcode-color-schemes.vim', { 'commit': '3164eaa' }
 Plug 'farmergreg/vim-lastplace', { 'commit': '8f6c445' }
 Plug 'gcmt/wildfire.vim', { 'commit': 'e2baded' }  " Needed until Treesitter supports Scala
 Plug 'glepnir/galaxyline.nvim', { 'commit': '19488f5' }
+Plug 'glepnir/lspsaga.nvim', { 'commit': 'b77a08b' }
 Plug 'hrsh7th/nvim-compe', { 'commit': 'a392842' }
 Plug 'jqno/jqno-autoclose.vim', { 'commit': '69e83bb' }
 Plug 'junegunn/goyo.vim', { 'commit': 'a865dec' }

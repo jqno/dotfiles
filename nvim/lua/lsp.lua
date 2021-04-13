@@ -24,7 +24,6 @@ local on_attach = function(client, bufnr)
     util.augroup('lsp_attach', [[
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()
     ]])
   end
 end
@@ -32,6 +31,20 @@ end
 function M.setup()
   require('nlua.lsp.nvim').setup(lsp, {
     on_attach = on_attach
+  })
+
+  require('lspsaga').init_lsp_saga({
+    use_saga_diagnostic_sign = false,
+    error_sign = '✗',
+    warn_sign = '◆',
+    hint_sign = 'H',
+    infor_sign = 'i',
+    code_action_icon = '·',
+    code_action_prompt = { virtual_text = false },
+    code_action_keys = { quit = '<Esc>' },
+    finder_action_keys = { quit = '<Esc>' },
+    rename_action_keys = { quit = '<Esc>' },
+    border_style = 2
   })
 
   Jdtls_config = {
