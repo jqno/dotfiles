@@ -73,17 +73,21 @@ end
 -- TREESITTER MAPPINGS --
 function M.consts()
   return {
-    incremental_selection = '<CR>',
     goto_next_function = ']]',
     goto_prev_function = '[[',
+    incremental_selection = '<CR>',
     make_rebuild = '<leader>mr',
+    refactor_code_action = '<leader>r<CR>',
+    refactor_extract_method = '<leader>rm',
+    refactor_extract_variable = '<leader>rv',
+    refactor_menu = '<leader>r<space>',
+    refactor_organize_imports = '<leader>ro',
     refactor_swap_next = '<leader>r>',
     refactor_swap_prev = '<leader>r<',
-    refactor_organize_imports = '<leader>ro',
     show_peek_class = '<leader>sc',
     show_peek_function = '<leader>sf',
-    telescope_i_split = '<space>',
-    telescope_i_close = '<esc>'
+    telescope_i_close = '<esc>',
+    telescope_i_split = '<space>'
   }
 end
 
@@ -125,8 +129,8 @@ function M.setup_lsp(client, bufnr)
 
   -- REFACTORING --
   buf_map(modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  buf_map(modes.n, '<leader>r<CR>', '<cmd>Lspsaga code_action<CR>')
-  buf_map(modes.v, '<leader>r<CR>', '<cmd>Lspsaga range_code_action<CR>')
+  buf_map(modes.n, M.consts().refactor_code_action, '<cmd>Lspsaga code_action<CR>')
+  buf_map(modes.v, M.consts().refactor_code_action, '<cmd>Lspsaga range_code_action<CR>')
 
 
   -- SHOWING THINGS --

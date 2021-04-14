@@ -9,6 +9,7 @@ CONFIGPATH=config_linux
 if [ "$(uname -s)" == "Darwin" ]; then
   CONFIGPATH=config_mac
 fi
+DATAPATH="$HOME/.jdtls/${1:-unspecified}"
 
 JAVA_VERSION="$(java -version 2>&1 | grep 'version' | sed -E 's/.*version "(.*)".*/\1/')"
 if [[ $JAVA_VERSION == "1."* ]]; then
@@ -17,12 +18,14 @@ if [[ $JAVA_VERSION == "1."* ]]; then
       -Declipse.application=org.eclipse.jdt.ls.core.id1 \
       -Dosgi.bundles.defaultStartLevel=4 \
       -Declipse.product=org.eclipse.jdt.ls.core.product \
+      -Dlog.protocol=true \
       -Dlog.level=ALL \
       -Dfile.encoding=UTF-8 \
       -noverify \
       -Xms1G \
       -jar $SERVERPATH/plugins/org.eclipse.equinox.launcher_1.*.jar \
       -configuration $SERVERPATH/$CONFIGPATH/ \
+      -data $DATAPATH \
       "$@"
 else
   # Java 9+
@@ -30,6 +33,7 @@ else
       -Declipse.application=org.eclipse.jdt.ls.core.id1 \
       -Dosgi.bundles.defaultStartLevel=4 \
       -Declipse.product=org.eclipse.jdt.ls.core.product \
+      -Dlog.protocol=true \
       -Dlog.level=ALL \
       -Dfile.encoding=UTF-8 \
       -noverify \
@@ -39,5 +43,6 @@ else
       --add-opens java.base/java.lang=ALL-UNNAMED \
       -jar $SERVERPATH/plugins/org.eclipse.equinox.launcher_1.*.jar \
       -configuration $SERVERPATH/$CONFIGPATH/ \
+      -data $DATAPATH \
       "$@"
 fi

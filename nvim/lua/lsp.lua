@@ -1,11 +1,10 @@
 local M = {}
 
 local lsp = require'lspconfig'
-local mappings = require'mappings'
 local util = require'util'
 
 local on_attach = function(client, bufnr)
-  mappings.setup_lsp(client, bufnr)
+  require('mappings').setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -30,6 +29,10 @@ local on_attach = function(client, bufnr)
 end
 
 function M.setup()
+  local mappings = require('mappings').consts()
+  local buf_map = util.buf_map
+  local modes = util.modes
+
   require('nlua.lsp.nvim').setup(lsp, {
     on_attach = on_attach
   })
@@ -49,15 +52,30 @@ function M.setup()
   })
 
   Jdtls_config = {
-    on_attach = on_attach,
-    cmd = { 'jdtls.sh' }
+    cmd = { 'jdtls.sh', vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t') },
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+
+      require('jdtls.setup').add_commands()
+
+      buf_map(bufnr, modes.n, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action()<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action(true)<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor_menu, '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>')
+
+      buf_map(bufnr, modes.n, mappings.refactor_extract_variable, '<cmd>lua require("jdtls").extract_variable()<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor_extract_variable, '<cmd>lua require("jdtls").extract_variable(true)<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor_extract_method, '<cmd>lua require("jdtls").extract_method(true)<CR>')
+
+      buf_map(bufnr, modes.n, mappings.refactor_organize_imports, '<cmd>lua require("jdtls").organize_imports()<CR>')
+      buf_map(bufnr, modes.n, mappings.make_rebuild, '<cmd>lua require("jdtls").update_project_config()<CR>')
+    end,
   }
 
   local metals_config = {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      util.buf_map(bufnr, util.modes.n, mappings.consts().refactor_organize_imports, '<cmd>MetalsOrganizeImports<CR>')
-      util.buf_map(bufnr, util.modes.n, mappings.consts().make_rebuild, '<cmd>MetalsCompileClean<CR>')
+      buf_map(bufnr, modes.n, mappings.refactor_organize_imports, '<cmd>MetalsOrganizeImports<CR>')
+      buf_map(bufnr, modes.n, mappings.make_rebuild, '<cmd>MetalsCompileClean<CR>')
     end,
     init_options = {
       showImplicitArguments = true,
