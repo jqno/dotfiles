@@ -161,8 +161,8 @@ function M.setup_dap(bufnr)
 
 
   -- SHOWING THINGS --
-  buf_map(modes.n, '<leader>sv', '<cmd>lua require("dap").hover()<CR>')
-  buf_map(modes.v, '<leader>sv', '<cmd>lua require("dap").visual_hover()<CR>')
+  buf_map(modes.n, '<leader>sv', '<cmd>lua require("dap.ui.variables").hover()<CR>')
+  buf_map(modes.v, '<leader>sv', '<cmd>lua require("dap.ui.variables").visual_hover()<CR>')
 end
 
 
