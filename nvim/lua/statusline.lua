@@ -331,7 +331,7 @@ function M.setup()
   local gl = require('galaxyline')
   local gls = gl.section
 
-  gl.short_line_list = { 'NvimTree' }
+  gl.short_line_list = { 'NvimTree', 'dap-repl' }
 
   --- LEFT ---
   gls.left = {

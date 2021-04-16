@@ -73,6 +73,8 @@ end
 -- TREESITTER MAPPINGS --
 function M.consts()
   return {
+    debug_run = '<leader>dr',
+    debug_test = '<leader>dt',
     goto_next_function = ']]',
     goto_prev_function = '[[',
     incremental_selection = '<CR>',
@@ -137,6 +139,28 @@ function M.setup_lsp(client, bufnr)
   buf_map(modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>')
   buf_map(modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
   buf_map(modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>')
+end
+
+
+-- DAP MAPPINGS --
+function M.setup_dap(bufnr)
+  local function buf_map(mode, lhs, rhs, opts)
+    require('util').buf_map(bufnr, mode, lhs, rhs, opts)
+  end
+
+
+  -- DEBUGGING --
+  buf_map(modes.n, '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
+  buf_map(modes.n, '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
+  buf_map(modes.n, '<leader>do', '<cmd>lua require("dap").step_over()<CR>')
+  buf_map(modes.n, '<leader>dx', '<cmd>lua require("dap").step_out()<CR>')
+  buf_map(modes.n, '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
+  buf_map(modes.n, '<leader>dl', '<cmd>lua require("dap").run_last()<CR>')
+
+
+  -- SHOWING THINGS --
+  buf_map(modes.n, '<leader>sv', '<cmd>lua require("dap").hover()<CR>')
+  buf_map(modes.v, '<leader>sv', '<cmd>lua require("dap").visual_hover()<CR>')
 end
 
 

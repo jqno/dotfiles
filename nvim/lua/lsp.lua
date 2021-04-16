@@ -1,9 +1,34 @@
 local M = {}
 
-local lsp = require'lspconfig'
-local util = require'util'
+local dap = require('dap')
+local lsp = require('lspconfig')
+local util = require('util')
 
-local on_attach = function(client, bufnr)
+
+function M.dap_run(config)
+  dap.repl.open()
+  dap.run(config)
+end
+
+function M.dap_run_scala_run()
+  M.dap_run({
+    type = 'scala',
+    request = 'launch',
+    name = 'Run',
+    metalsRunType = 'run'
+  })
+end
+
+function M.dap_run_scala_test()
+  M.dap_run({
+    type = 'scala',
+    request = 'launch',
+    name = 'Test File',
+    metalsRunType = 'testFile'
+  })
+end
+
+local function on_attach(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -74,6 +99,12 @@ function M.setup()
   local metals_config = {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
+
+      require('metals').setup_dap()
+      require('mappings').setup_dap(bufnr)
+
+      buf_map(bufnr, modes.n, mappings.debug_run, '<cmd>lua require("lsp").dap_run_scala_run()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug_test, '<cmd>lua require("lsp").dap_run_scala_test()<CR>')
       buf_map(bufnr, modes.n, mappings.refactor_organize_imports, '<cmd>MetalsOrganizeImports<CR>')
       buf_map(bufnr, modes.n, mappings.make_rebuild, '<cmd>MetalsCompileClean<CR>')
     end,

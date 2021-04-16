@@ -10,6 +10,7 @@ Plug 'jqno/jqno-autoclose.vim', { 'commit': '69e83bb' }
 Plug 'junegunn/goyo.vim', { 'commit': 'a865dec' }
 Plug 'knubie/vim-kitty-navigator', { 'commit': 'f09007b' }
 Plug 'kyazdani42/nvim-tree.lua', { 'commit': '090697e' }
+Plug 'mfussenegger/nvim-dap', { 'commit': '0314abd' }
 Plug 'mfussenegger/nvim-jdtls', { 'commit': 'e16fb1b' }
 Plug 'neovim/nvim-lspconfig', { 'commit': '5029746' }
 Plug 'nvim-lua/plenary.nvim', { 'commit': 'a3276a4' }
