@@ -25,6 +25,25 @@ rm archive.tar.gz
 popd > /dev/null
 
 
+# Java-debug
+echo "** Installing java-debug"
+pushd $BIN > /dev/null
+git clone git@github.com:microsoft/java-debug.git
+cd java-debug
+./mvnw clean install -DskipTests
+popd > /dev/null
+
+
+# VSCode-java-test
+echo "** Installing vscode-java-test"
+pushd $BIN > /dev/null
+git clone git@github.com:microsoft/vscode-java-test.git
+cd vscode-java-test
+npm install
+npm run build-plugin
+popd > /dev/null
+
+
 # Rust toolchain
 echo "** Installing Rust toolchain"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete

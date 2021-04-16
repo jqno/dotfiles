@@ -75,6 +75,7 @@ function M.consts()
   return {
     debug_run = '<leader>dr',
     debug_test = '<leader>dt',
+    debug_test_nearest = '<leader>dn',
     goto_next_function = ']]',
     goto_prev_function = '[[',
     incremental_selection = '<CR>',
@@ -150,6 +151,7 @@ function M.setup_dap(bufnr)
 
 
   -- DEBUGGING --
+  buf_map(modes.n, '<leader>d<space>', '<cmd>lua require("dap").repl.toggle()<CR>')
   buf_map(modes.n, '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
   buf_map(modes.n, '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
   buf_map(modes.n, '<leader>do', '<cmd>lua require("dap").step_over()<CR>')

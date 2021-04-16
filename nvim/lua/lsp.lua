@@ -28,6 +28,16 @@ function M.dap_run_scala_test()
   })
 end
 
+function M.dap_run_java_test_class()
+  dap.repl.open()
+  require('jdtls').test_class()
+end
+
+function M.dap_run_java_test_nearest()
+  dap.repl.open()
+  require('jdtls').test_nearest_method()
+end
+
 local function on_attach(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
 
@@ -76,12 +86,25 @@ function M.setup()
     border_style = 2
   })
 
+  local jdtls_bundles = {
+    vim.fn.glob("~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
+  }
+  vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
   Jdtls_config = {
     cmd = { 'jdtls.sh', vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t') },
+    init_options = {
+      bundles = jdtls_bundles
+    },
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
 
       require('jdtls.setup').add_commands()
+      require('jdtls').setup_dap()
+      require('mappings').setup_dap(bufnr)
+
+      buf_map(bufnr, modes.n, mappings.debug_run, '<cmd>lua require("dap").continue()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug_test, '<cmd>lua require("lsp").dap_run_java_test_class()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug_test_nearest, '<cmd>lua require("lsp").dap_run_java_test_nearest()<CR>')
 
       buf_map(bufnr, modes.n, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action()<CR>')
       buf_map(bufnr, modes.v, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action(true)<CR>')
