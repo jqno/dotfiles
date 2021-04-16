@@ -6,6 +6,7 @@ mkdir $BIN
 
 
 # Java toolchain
+echo "** Installing Java toolchain"
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
 . $HOME/.sdkman/bin/sdkman-init.sh
 sdk install java 8.0.265.hs-adpt 
@@ -25,11 +26,13 @@ popd > /dev/null
 
 
 # Rust toolchain
+echo "** Installing Rust toolchain"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
 
 
 # Sumneko Lua Language Server
-pushd $BIN
+echo "** Installing Sumneko-lua language server"
+pushd $BIN > /dev/null
 OSNAME="$(uname -s)"
 if [ "$OSNAME" == "Darwin" ]; then
   PLATFORM="macos"
@@ -47,9 +50,9 @@ cd ../..
 ./3rd/luamake/luamake rebuild
 
 if [ "$PLATFORM" == "macos" ]; then
-  mv $BIN/lua-language-server/bin/macOS $BIN/lua-language-server/bin/OSX
+  ln -s $BIN/lua-language-server/bin/macOS $BIN/lua-language-server/bin/OSX
 fi
 
 mkdir -p $HOME/.cache/nvim/nlua/sumneko_lua
 ln -s $BIN/lua-language-server $HOME/.cache/nvim/nlua/sumneko_lua/lua-language-server
-popd
+popd > /dev/null
