@@ -20,6 +20,14 @@ local function define_commands()
 end
 
 
+function M.close_everything()
+  vim.api.nvim_command('pclose')
+  vim.api.nvim_command('cclose')
+  vim.api.nvim_command('NvimTreeClose')
+  require('dap').repl.close()
+end
+
+
 -- MAPPINGS --
 local function define_mappings()
   -- LEADER --
@@ -33,6 +41,7 @@ local function define_mappings()
   map(modes.v, '\\', '<Plug>Commentary', { noremap = false })
   map(modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
   map(modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
+  map(modes.n, '<leader><Esc>', '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
 
 
   -- NAVIGATION --
