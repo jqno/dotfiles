@@ -1,6 +1,7 @@
 local M = {}
 local map = require('util').map
-local modes = require('util').modes
+
+M.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's' }
 
 
 -- COMMANDS --
@@ -35,47 +36,47 @@ local function define_mappings()
 
 
   -- VARIOUS --
-  map(modes.n, 'Y', '"+y')
-  map(modes.v, 'Y', '"+y')
-  map(modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
-  map(modes.v, '\\', '<Plug>Commentary', { noremap = false })
-  map(modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
-  map(modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
-  map(modes.n, '<leader><Esc>', '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
+  map(M.modes.n, 'Y', '"+y')
+  map(M.modes.v, 'Y', '"+y')
+  map(M.modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
+  map(M.modes.v, '\\', '<Plug>Commentary', { noremap = false })
+  map(M.modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
+  map(M.modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
+  map(M.modes.n, '<leader><Esc>', '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
 
 
   -- NAVIGATION --
-  map(modes.n, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(modes.n, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
-  map(modes.v, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(modes.v, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(M.modes.n, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(M.modes.n, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(M.modes.v, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(M.modes.v, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
 
 
   -- COMPLETION --
   _G.compe = require('completion')
-  map(modes.i, '<Tab>', 'v:lua.compe.tab_complete()', { expr = true })
-  map(modes.i, '<S-Tab>', 'v:lua.compe.s_tab_complete()', { expr = true })
-  map(modes.i, '<CR>', 'v:lua.compe.cr_complete()', { expr = true })
+  map(M.modes.i, '<Tab>', 'v:lua.compe.tab_complete()', { expr = true })
+  map(M.modes.i, '<S-Tab>', 'v:lua.compe.s_tab_complete()', { expr = true })
+  map(M.modes.i, '<CR>', 'v:lua.compe.cr_complete()', { expr = true })
 
 
   -- FINDING --
-  map(modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>')
-  map(modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
-  map(modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>')
-  map(modes.n, '<leader>fn', '<cmd>NvimTreeToggle<CR>')
-  map(modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
-  map(modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
-  map(modes.n, '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
-  map(modes.n, '<leader>f<F12>', '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
+  map(M.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>')
+  map(M.modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
+  map(M.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>')
+  map(M.modes.n, '<leader>fn', '<cmd>NvimTreeToggle<CR>')
+  map(M.modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
+  map(M.modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
+  map(M.modes.n, '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
+  map(M.modes.n, '<leader>f<F12>', '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
 
 
   -- EXECUTING THINGS --
-  map(modes.n, '<leader>xl', '<cmd>Linkify<CR>', { silent = true })
+  map(M.modes.n, '<leader>xl', '<cmd>Linkify<CR>', { silent = true })
 
 
   -- COMMAND-LINE MODE --
   -- Expand %% to the directory of the currently open file
-  map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
+  map(M.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 end
 
 
@@ -111,44 +112,44 @@ function M.setup_lsp(client, bufnr)
   end
 
   -- VARIOUS --
-  buf_map(modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>')
-  buf_map(modes.i, '<C-Space>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-  buf_map(modes.n, '<leader><c-d>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
-  buf_map(modes.n, '<leader><c-u>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+  buf_map(M.modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>')
+  buf_map(M.modes.i, '<C-Space>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+  buf_map(M.modes.n, '<leader><c-d>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
+  buf_map(M.modes.n, '<leader><c-u>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
 
 
   -- FINDING --
-  buf_map(modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-  buf_map(modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  buf_map(M.modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  buf_map(M.modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
 
 
   -- GOING PLACES  --
-  buf_map(modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  buf_map(modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  buf_map(modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  buf_map(modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  buf_map(modes.n, '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
-  buf_map(modes.n, ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>')
+  buf_map(M.modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>')
+  buf_map(M.modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  buf_map(M.modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  buf_map(M.modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  buf_map(M.modes.n, '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
+  buf_map(M.modes.n, ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>')
 
 
   -- MAKE-ING --
   if client.resolved_capabilities.document_formatting then
-    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    buf_map(M.modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_map(modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
+    buf_map(M.modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   end
 
 
   -- REFACTORING --
-  buf_map(modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  buf_map(modes.n, M.consts().refactor_code_action, '<cmd>Lspsaga code_action<CR>')
-  buf_map(modes.v, M.consts().refactor_code_action, '<cmd>Lspsaga range_code_action<CR>')
+  buf_map(M.modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
+  buf_map(M.modes.n, M.consts().refactor_code_action, '<cmd>Lspsaga code_action<CR>')
+  buf_map(M.modes.v, M.consts().refactor_code_action, '<cmd>Lspsaga range_code_action<CR>')
 
 
   -- SHOWING THINGS --
-  buf_map(modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>')
-  buf_map(modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
-  buf_map(modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>')
+  buf_map(M.modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>')
+  buf_map(M.modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
+  buf_map(M.modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>')
 end
 
 
@@ -160,18 +161,18 @@ function M.setup_dap(bufnr)
 
 
   -- DEBUGGING --
-  buf_map(modes.n, '<leader>d<space>', '<cmd>lua require("dap").repl.toggle()<CR>')
-  buf_map(modes.n, '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
-  buf_map(modes.n, '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
-  buf_map(modes.n, '<leader>do', '<cmd>lua require("dap").step_over()<CR>')
-  buf_map(modes.n, '<leader>dx', '<cmd>lua require("dap").step_out()<CR>')
-  buf_map(modes.n, '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
-  buf_map(modes.n, '<leader>dl', '<cmd>lua require("dap").run_last()<CR>')
+  buf_map(M.modes.n, '<leader>d<space>', '<cmd>lua require("dap").repl.toggle()<CR>')
+  buf_map(M.modes.n, '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
+  buf_map(M.modes.n, '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
+  buf_map(M.modes.n, '<leader>do', '<cmd>lua require("dap").step_over()<CR>')
+  buf_map(M.modes.n, '<leader>dx', '<cmd>lua require("dap").step_out()<CR>')
+  buf_map(M.modes.n, '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
+  buf_map(M.modes.n, '<leader>dl', '<cmd>lua require("dap").run_last()<CR>')
 
 
   -- SHOWING THINGS --
-  buf_map(modes.n, '<leader>sv', '<cmd>lua require("dap.ui.variables").hover()<CR>')
-  buf_map(modes.v, '<leader>sv', '<cmd>lua require("dap.ui.variables").visual_hover()<CR>')
+  buf_map(M.modes.n, '<leader>sv', '<cmd>lua require("dap.ui.variables").hover()<CR>')
+  buf_map(M.modes.v, '<leader>sv', '<cmd>lua require("dap.ui.variables").visual_hover()<CR>')
 end
 
 

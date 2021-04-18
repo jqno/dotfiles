@@ -66,7 +66,7 @@ end
 function M.setup()
   local mappings = require('mappings').consts()
   local buf_map = util.buf_map
-  local modes = util.modes
+  local modes = require('mappings').modes
 
   require('nlua.lsp.nvim').setup(lsp, {
     on_attach = on_attach

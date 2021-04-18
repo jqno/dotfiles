@@ -1,5 +1,6 @@
 local M = {}
 local util = require('util')
+local mappings = require('mappings')
 local settings = require('settings')
 
 function M.markdown()
@@ -14,7 +15,7 @@ end
 
 function M.vimwiki()
   M.markdown()
-  util.buf_map(0, util.modes.i, '<CR>', 'pumvisible() ? v:lua.compe.cr_complete() : "<C-]><Esc>:VimwikiReturn 1 5<CR>"', { silent = true, expr = true })
+  util.buf_map(0, mappings.modes.i, '<CR>', 'pumvisible() ? v:lua.compe.cr_complete() : "<C-]><Esc>:VimwikiReturn 1 5<CR>"', { silent = true, expr = true })
 end
 
 
