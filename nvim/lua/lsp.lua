@@ -79,7 +79,7 @@ function M.setup()
     hint_sign = 'H',
     infor_sign = 'i',
     code_action_icon = '·',
-    code_action_prompt = { virtual_text = false },
+    code_action_prompt = { sign_priority = 1, virtual_text = false },
     code_action_keys = { quit = '<Esc>' },
     finder_action_keys = { quit = '<Esc>' },
     rename_action_keys = { quit = '<Esc>' },
