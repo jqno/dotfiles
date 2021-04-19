@@ -3,6 +3,94 @@ local map = require('util').map
 
 M.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's' }
 
+M.mappings = {
+  various = {
+    close_everything    = '<leader><Esc>',
+    comment             = '\\',
+    comment_line        = '\\\\',
+    scroll_popup_down   = '<leader><C-D>',
+    scroll_popup_up     = '<leader><C-U>',
+    signature_help      = '<C-Space>',
+    vimwiki             = '<F12>',
+    yank_to_clipboard   = 'Y'
+  },
+  specific_modes = {
+    expand_current_path = '%%',
+    ulti_jump           = '<C-L>'
+  },
+  unimpaired = {
+    diagnostic_prev     = '[d',
+    diagnostic_next     = ']d'
+  },
+  debug = {
+    breakpoint          = '<leader>db',
+    continue            = '<leader>dc',
+    run_last            = '<leader>dl',
+    step_into           = '<leader>di',
+    step_over           = '<leader>do',
+    step_out            = '<leader>dx',
+    toggle_repl         = '<leader>d<Space>'
+  },
+  execute = {
+    linkify             = '<leader>xf'
+  },
+  find = {
+    buffers             = '<leader>fb',
+    current_word        = '<leader>f*',
+    files               = '<leader>ff',
+    grep                = '<leader>fg',
+    identifier          = '<leader>fi',
+    references          = '<leader>fr',
+    symbols             = '<leader>fs',
+    tree                = '<leader>fn',
+    tree_follow         = '<leader>fN',
+    wiki                = '<leader>f<F12>'
+  },
+  go = {
+    definition          = '<leader>g]',
+    declaration         = '<leader>gd',
+    implementation      = '<leader>gi',
+    type_definition     = '<leader>gt',
+  },
+  make = {
+    format              = '<leader>mf'
+  },
+  refactor = {
+    code_action         = '<leader>r<CR>',
+    rename              = '<leader>rr'
+  },
+  show = {
+    debug_value         = '<leader>sv',
+    diagnostic          = '<leader>sd',
+    diagnostic_line     = '<leader>sD',
+    signature_help      = '<leader>ss'
+  }
+}
+
+
+function M.consts()
+  return {
+    debug_run = '<leader>dr',
+    debug_test = '<leader>dt',
+    debug_test_nearest = '<leader>dn',
+    goto_next_function = ']]',
+    goto_prev_function = '[[',
+    incremental_selection = '<CR>',
+    make_rebuild = '<leader>mr',
+    refactor_code_action = '<leader>r<CR>',
+    refactor_extract_method = '<leader>rm',
+    refactor_extract_variable = '<leader>rv',
+    refactor_menu = '<leader>r<space>',
+    refactor_organize_imports = '<leader>ro',
+    refactor_swap_next = '<leader>r>',
+    refactor_swap_prev = '<leader>r<',
+    show_peek_class = '<leader>sc',
+    show_peek_function = '<leader>sf',
+    telescope_i_close = '<esc>',
+    telescope_i_split = '<space>'
+  }
+end
+
 
 -- COMMANDS --
 local function define_commands()
@@ -36,72 +124,75 @@ local function define_mappings()
 
 
   -- VARIOUS --
-  map(M.modes.n, 'Y', '"+y')
-  map(M.modes.v, 'Y', '"+y')
-  map(M.modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
-  map(M.modes.v, '\\', '<Plug>Commentary', { noremap = false })
-  map(M.modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
-  map(M.modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
-  map(M.modes.n, '<leader><Esc>', '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
+  local various = M.mappings.various
+  map(M.modes.n, various.yank_to_clipboard,
+      '"+y')
+  map(M.modes.v, various.yank_to_clipboard,
+      '"+y')
+  map(M.modes.n, various.comment_line,
+      '<Plug>CommentaryLine', { noremap = false })
+  map(M.modes.v, various.comment,
+      '<Plug>Commentary', { noremap = false })
+  map(M.modes.n, various.vimwiki,
+      '<cmd>VimwikiIndex<CR>')
+  map(M.modes.n, various.close_everything,
+      '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
 
 
   -- NAVIGATION --
-  map(M.modes.n, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(M.modes.n, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
-  map(M.modes.v, 'j', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(M.modes.v, 'k', [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(M.modes.n, 'j',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(M.modes.n, 'k',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(M.modes.v, 'j',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(M.modes.v, 'k',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
 
 
   -- COMPLETION --
   _G.compe = require('completion')
-  map(M.modes.i, '<Tab>', 'v:lua.compe.tab_complete()', { expr = true })
-  map(M.modes.i, '<S-Tab>', 'v:lua.compe.s_tab_complete()', { expr = true })
-  map(M.modes.i, '<CR>', 'v:lua.compe.cr_complete()', { expr = true })
+  map(M.modes.i, '<Tab>',
+      'v:lua.compe.tab_complete()', { expr = true })
+  map(M.modes.i, '<S-Tab>',
+      'v:lua.compe.s_tab_complete()', { expr = true })
+  map(M.modes.i, '<CR>',
+      'v:lua.compe.cr_complete()', { expr = true })
 
 
   -- FINDING --
-  map(M.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>')
-  map(M.modes.n, '<leader>ff', '<cmd>Telescope find_files<CR>')
-  map(M.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>')
-  map(M.modes.n, '<leader>fn', '<cmd>NvimTreeToggle<CR>')
-  map(M.modes.n, '<leader>fN', '<cmd>NvimTreeFindFile<CR>')
-  map(M.modes.n, '<leader>fg', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
-  map(M.modes.n, '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
-  map(M.modes.n, '<leader>f<F12>', '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
+  local find = M.mappings.find
+  map(M.modes.n, find.buffers,
+      '<cmd>Telescope buffers show_all_buffers=true<CR>')
+  map(M.modes.n, find.files,
+      '<cmd>Telescope find_files<CR>')
+  map(M.modes.n, find.identifier,
+      '<cmd>Telescope treesitter<CR>')
+  map(M.modes.n, find.tree,
+      '<cmd>NvimTreeToggle<CR>')
+  map(M.modes.n, find.tree_follow,
+      '<cmd>NvimTreeFindFile<CR>')
+  map(M.modes.n, find.grep,
+      '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>')
+  map(M.modes.n, find.current_word,
+      '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
+  map(M.modes.n, find.wiki,
+      '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
 
 
   -- EXECUTING THINGS --
-  map(M.modes.n, '<leader>xl', '<cmd>Linkify<CR>', { silent = true })
+  local execute = M.mappings.execute
+  map(M.modes.n, execute.linkify,
+      '<cmd>Linkify<CR>', { silent = true })
 
 
-  -- COMMAND-LINE MODE --
+  -- IN SPECIFIC MODES --
+  local specific_modes = M.mappings.specific_modes
+  map(M.modes.s, specific_modes.ulti_jump,
+      '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
   -- Expand %% to the directory of the currently open file
-  map(M.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
-end
-
-
--- TREESITTER MAPPINGS --
-function M.consts()
-  return {
-    debug_run = '<leader>dr',
-    debug_test = '<leader>dt',
-    debug_test_nearest = '<leader>dn',
-    goto_next_function = ']]',
-    goto_prev_function = '[[',
-    incremental_selection = '<CR>',
-    make_rebuild = '<leader>mr',
-    refactor_code_action = '<leader>r<CR>',
-    refactor_extract_method = '<leader>rm',
-    refactor_extract_variable = '<leader>rv',
-    refactor_menu = '<leader>r<space>',
-    refactor_organize_imports = '<leader>ro',
-    refactor_swap_next = '<leader>r>',
-    refactor_swap_prev = '<leader>r<',
-    show_peek_class = '<leader>sc',
-    show_peek_function = '<leader>sf',
-    telescope_i_close = '<esc>',
-    telescope_i_split = '<space>'
-  }
+  map(M.modes.c, specific_modes.expand_current_path,
+      [[<C-R>=expand('%:h') . '/'<CR>]])
 end
 
 
@@ -111,45 +202,72 @@ function M.setup_lsp(client, bufnr)
     require('util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
 
-  -- VARIOUS --
-  buf_map(M.modes.n, 'K', '<cmd>Lspsaga hover_doc<CR>')
-  buf_map(M.modes.i, '<C-Space>', '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-  buf_map(M.modes.n, '<leader><c-d>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
-  buf_map(M.modes.n, '<leader><c-u>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+  -- -- VARIOUS --
+  local various = M.mappings.various
+  buf_map(M.modes.n, 'K',
+      '<cmd>Lspsaga hover_doc<CR>')
+  buf_map(M.modes.i, various.signature_help,
+      '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
+  buf_map(M.modes.n, various.scroll_popup_down,
+      '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
+  buf_map(M.modes.n, various.scroll_popup_up,
+      '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
 
 
   -- FINDING --
-  buf_map(M.modes.n, '<leader>fs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-  buf_map(M.modes.n, '<leader>fr', '<cmd>lua vim.lsp.buf.references()<CR>')
+  local find = M.mappings.find
+  buf_map(M.modes.n, find.symbols,
+      '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  buf_map(M.modes.n, find.references,
+      '<cmd>lua vim.lsp.buf.references()<CR>')
 
 
-  -- GOING PLACES  --
-  buf_map(M.modes.n, '<leader>g]', '<cmd>lua vim.lsp.buf.definition()<CR>')
-  buf_map(M.modes.n, '<leader>gd', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-  buf_map(M.modes.n, '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-  buf_map(M.modes.n, '<leader>dt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  buf_map(M.modes.n, '[d', '<cmd>Lspsaga diagnostic_jump_prev<CR>')
-  buf_map(M.modes.n, ']d', '<cmd>Lspsaga diagnostic_jump_next<CR>')
+  -- -- GOING PLACES  --
+  local go = M.mappings.go
+  local unimpaired = M.mappings.unimpaired
+  buf_map(M.modes.n, go.definition,
+      '<cmd>lua vim.lsp.buf.definition()<CR>')
+  buf_map(M.modes.n, go.declaration,
+    '<cmd>lua vim.lsp.buf.declaration()<CR>')
+  buf_map(M.modes.n, go.implementation,
+      '<cmd>lua vim.lsp.buf.implementation()<CR>')
+  buf_map(M.modes.n, go.type_definition,
+      '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  buf_map(M.modes.n, unimpaired.diagnostic_prev,
+      '<cmd>Lspsaga diagnostic_jump_prev<CR>')
+  buf_map(M.modes.n, unimpaired.diagnostic_next,
+      '<cmd>Lspsaga diagnostic_jump_next<CR>')
 
 
   -- MAKE-ING --
+  local make = M.mappings.make
   if client.resolved_capabilities.document_formatting then
-    buf_map(M.modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+    buf_map(M.modes.n, make.format,
+        '<cmd>lua vim.lsp.buf.formatting()<CR>')
   elseif client.resolved_capabilities.document_range_formatting then
-    buf_map(M.modes.n, '<space>mf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
+    buf_map(M.modes.n, make.format,
+        '<cmd>lua vim.lsp.buf.range_formatting()<CR>')
   end
 
 
   -- REFACTORING --
-  buf_map(M.modes.n, '<leader>rr', '<cmd>lua vim.lsp.buf.rename()<CR>')
-  buf_map(M.modes.n, M.consts().refactor_code_action, '<cmd>Lspsaga code_action<CR>')
-  buf_map(M.modes.v, M.consts().refactor_code_action, '<cmd>Lspsaga range_code_action<CR>')
+  local refactor = M.mappings.refactor
+  buf_map(M.modes.n, refactor.rename,
+      '<cmd>lua vim.lsp.buf.rename()<CR>')
+  buf_map(M.modes.n, refactor.code_action,
+      '<cmd>Lspsaga code_action<CR>')
+  buf_map(M.modes.v, refactor.code_action,
+      '<cmd>Lspsaga range_code_action<CR>')
 
 
   -- SHOWING THINGS --
-  buf_map(M.modes.n, '<leader>ss', '<cmd>Lspsaga signature_help<CR>')
-  buf_map(M.modes.n, '<leader>sd', '<cmd>Lspsaga show_cursor_diagnostics<CR>')
-  buf_map(M.modes.n, '<leader>sD', '<cmd>Lspsaga show_line_diagnostics<CR>')
+  local show = M.mappings.show
+  buf_map(M.modes.n, show.signature_help,
+      '<cmd>Lspsaga signature_help<CR>')
+  buf_map(M.modes.n, show.diagnostic,
+      '<cmd>Lspsaga show_cursor_diagnostics<CR>')
+  buf_map(M.modes.n, show.diagnostic_line,
+      '<cmd>Lspsaga show_line_diagnostics<CR>')
 end
 
 
@@ -161,18 +279,29 @@ function M.setup_dap(bufnr)
 
 
   -- DEBUGGING --
-  buf_map(M.modes.n, '<leader>d<space>', '<cmd>lua require("dap").repl.toggle()<CR>')
-  buf_map(M.modes.n, '<leader>dc', '<cmd>lua require("dap").continue()<CR>')
-  buf_map(M.modes.n, '<leader>di', '<cmd>lua require("dap").step_into()<CR>')
-  buf_map(M.modes.n, '<leader>do', '<cmd>lua require("dap").step_over()<CR>')
-  buf_map(M.modes.n, '<leader>dx', '<cmd>lua require("dap").step_out()<CR>')
-  buf_map(M.modes.n, '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<CR>')
-  buf_map(M.modes.n, '<leader>dl', '<cmd>lua require("dap").run_last()<CR>')
+  local debug = M.mappings.debug
+  buf_map(M.modes.n, debug.toggle_repl,
+      '<cmd>lua require("dap").repl.toggle()<CR>')
+  buf_map(M.modes.n, debug.continue,
+      '<cmd>lua require("dap").continue()<CR>')
+  buf_map(M.modes.n, debug.step_into,
+      '<cmd>lua require("dap").step_into()<CR>')
+  buf_map(M.modes.n, debug.step_over,
+      '<cmd>lua require("dap").step_over()<CR>')
+  buf_map(M.modes.n, debug.step_out,
+      '<cmd>lua require("dap").step_out()<CR>')
+  buf_map(M.modes.n, debug.breakpoint,
+      '<cmd>lua require("dap").toggle_breakpoint()<CR>')
+  buf_map(M.modes.n, debug.run_last,
+      '<cmd>lua require("dap").run_last()<CR>')
 
 
   -- SHOWING THINGS --
-  buf_map(M.modes.n, '<leader>sv', '<cmd>lua require("dap.ui.variables").hover()<CR>')
-  buf_map(M.modes.v, '<leader>sv', '<cmd>lua require("dap.ui.variables").visual_hover()<CR>')
+  local show = M.mappings.show
+  buf_map(M.modes.n, show.debug_value,
+      '<cmd>lua require("dap.ui.variables").hover()<CR>')
+  buf_map(M.modes.v, show.debug_value,
+      '<cmd>lua require("dap.ui.variables").visual_hover()<CR>')
 end
 
 
