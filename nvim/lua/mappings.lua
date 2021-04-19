@@ -85,23 +85,6 @@ M.mappings = {
 }
 
 
--- COMMANDS --
-local function define_commands()
-  -- prevent silly shift-pressing mistakes
-  vim.api.nvim_exec([[
-    command! -bang -nargs=* -complete=file E e<bang> <args>
-    command! -bang -nargs=* -complete=file W w<bang> <args>
-    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-    command! -bang Wa wa<bang>
-    command! -bang WA wa<bang>
-    command! -bang Q q<bang>
-    command! -bang QA qa<bang>
-    command! -bang Qa qa<bang>
-  ]], false)
-end
-
-
 function M.close_everything()
   vim.api.nvim_command('pclose')
   vim.api.nvim_command('cclose')
@@ -298,9 +281,26 @@ function M.setup_dap(bufnr)
 end
 
 
+-- COMMANDS --
+local function define_commands()
+  -- prevent silly shift-pressing mistakes
+  vim.api.nvim_exec([[
+    command! -bang -nargs=* -complete=file E e<bang> <args>
+    command! -bang -nargs=* -complete=file W w<bang> <args>
+    command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+  ]], false)
+end
+
+
 function M.setup()
-  define_commands()
   define_mappings()
+  define_commands()
 end
 
 return M
