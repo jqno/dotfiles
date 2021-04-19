@@ -1,7 +1,7 @@
 local fn = vim.fn
 
 local M = {}
-local highlight = require'util'.highlight
+local highlight = require('vim-util').highlight
 
 
 -- HELPERS --

@@ -1,5 +1,5 @@
 local M = {}
-local map = require('util').map
+local map = require('vim-util').map
 
 M.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's' }
 
@@ -175,7 +175,7 @@ end
 -- LSP MAPPINGS --
 function M.setup_lsp(client, bufnr)
   local function buf_map(mode, lhs, rhs, opts)
-    require('util').buf_map(bufnr, mode, lhs, rhs, opts)
+    require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
 
   -- -- VARIOUS --
@@ -250,7 +250,7 @@ end
 -- DAP MAPPINGS --
 function M.setup_dap(bufnr)
   local function buf_map(mode, lhs, rhs, opts)
-    require('util').buf_map(bufnr, mode, lhs, rhs, opts)
+    require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
 
 

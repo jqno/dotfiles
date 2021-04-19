@@ -2,7 +2,7 @@ local M = {}
 
 local dap = require('dap')
 local lsp = require('lspconfig')
-local util = require('util')
+local vim_util = require('vim-util')
 
 
 function M.dap_run(config)
@@ -52,11 +52,11 @@ local function on_attach(client, bufnr)
   )
 
   if client.resolved_capabilities.document_highlight then
-    util.highlight_link('LspReferenceRead', 'DiffAdd')
-    util.highlight_link('LspReferenceWrite', 'DiffDelete')
-    util.highlight('LspReferenceText', nil, nil, 'italic')
+    vim_util.highlight_link('LspReferenceRead', 'DiffAdd')
+    vim_util.highlight_link('LspReferenceWrite', 'DiffDelete')
+    vim_util.highlight('LspReferenceText', nil, nil, 'italic')
 
-    util.augroup('lsp_attach', [[
+    vim_util.augroup('lsp_attach', [[
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     ]])
@@ -66,7 +66,7 @@ end
 function M.setup()
   local mappings = require('mappings').mappings
   local modes = require('mappings').modes
-  local buf_map = util.buf_map
+  local buf_map = vim_util.buf_map
 
   require('nlua.lsp.nvim').setup(lsp, {
     on_attach = on_attach
@@ -156,7 +156,7 @@ function M.setup()
   Metals_config = require("metals").bare_config
   for k,v in pairs(metals_config) do Metals_config[k] = v end
 
-  util.augroup('lsp_define', [[
+  vim_util.augroup('lsp_define', [[
     autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
     autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(Metals_config)
   ]])
