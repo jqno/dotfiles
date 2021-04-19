@@ -12,27 +12,35 @@ M.mappings = {
     scroll_popup_up     = '<leader><C-U>',
     signature_help      = '<C-Space>',
     vimwiki             = '<F12>',
+    wildfire            = '<CR>',
     yank_to_clipboard   = 'Y'
   },
   specific_modes = {
     expand_current_path = '%%',
+    telescope_i_close   = '<Esc>',
+    telescope_i_split   = '<Space>',
     ulti_jump           = '<C-L>'
   },
   unimpaired = {
+    diagnostic_next     = ']d',
     diagnostic_prev     = '[d',
-    diagnostic_next     = ']d'
+    function_next       = ']]',
+    function_prev       = '[['
   },
   debug = {
     breakpoint          = '<leader>db',
     continue            = '<leader>dc',
+    run                 = '<leader>dr',
     run_last            = '<leader>dl',
     step_into           = '<leader>di',
     step_over           = '<leader>do',
     step_out            = '<leader>dx',
+    test                = '<leader>dt',
+    test_nearest        = '<leader>dn',
     toggle_repl         = '<leader>d<Space>'
   },
   execute = {
-    linkify             = '<leader>xf'
+    linkify             = '<leader>xl'
   },
   find = {
     buffers             = '<leader>fb',
@@ -53,43 +61,28 @@ M.mappings = {
     type_definition     = '<leader>gt',
   },
   make = {
-    format              = '<leader>mf'
+    format              = '<leader>mf',
+    rebuild             = '<leader>mr'
   },
   refactor = {
     code_action         = '<leader>r<CR>',
-    rename              = '<leader>rr'
+    extract_method      = '<leader>rm',
+    extract_variable    = '<leader>rv',
+    menu                = '<leader>r<Space>',
+    organize_imports    = '<leader>ro',
+    rename              = '<leader>rr',
+    swap_next           = '<leader>r>',
+    swap_prev           = '<leader>r<'
   },
   show = {
     debug_value         = '<leader>sv',
     diagnostic          = '<leader>sd',
     diagnostic_line     = '<leader>sD',
+    peek_class          = '<leader>sc',
+    peek_function       = '<leader>sf',
     signature_help      = '<leader>ss'
   }
 }
-
-
-function M.consts()
-  return {
-    debug_run = '<leader>dr',
-    debug_test = '<leader>dt',
-    debug_test_nearest = '<leader>dn',
-    goto_next_function = ']]',
-    goto_prev_function = '[[',
-    incremental_selection = '<CR>',
-    make_rebuild = '<leader>mr',
-    refactor_code_action = '<leader>r<CR>',
-    refactor_extract_method = '<leader>rm',
-    refactor_extract_variable = '<leader>rv',
-    refactor_menu = '<leader>r<space>',
-    refactor_organize_imports = '<leader>ro',
-    refactor_swap_next = '<leader>r>',
-    refactor_swap_prev = '<leader>r<',
-    show_peek_class = '<leader>sc',
-    show_peek_function = '<leader>sf',
-    telescope_i_close = '<esc>',
-    telescope_i_split = '<space>'
-  }
-end
 
 
 -- COMMANDS --

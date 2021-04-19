@@ -64,9 +64,9 @@ local function on_attach(client, bufnr)
 end
 
 function M.setup()
-  local mappings = require('mappings').consts()
-  local buf_map = util.buf_map
+  local mappings = require('mappings').mappings
   local modes = require('mappings').modes
+  local buf_map = util.buf_map
 
   require('nlua.lsp.nvim').setup(lsp, {
     on_attach = on_attach
@@ -102,20 +102,31 @@ function M.setup()
       require('jdtls').setup_dap()
       require('mappings').setup_dap(bufnr)
 
-      buf_map(bufnr, modes.n, mappings.debug_run, '<cmd>lua require("dap").continue()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug_test, '<cmd>lua require("lsp").dap_run_java_test_class()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug_test_nearest, '<cmd>lua require("lsp").dap_run_java_test_nearest()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug.run,
+          '<cmd>lua require("dap").continue()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug.test,
+          '<cmd>lua require("lsp").dap_run_java_test_class()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug.test_nearest,
+          '<cmd>lua require("lsp").dap_run_java_test_nearest()<CR>')
 
-      buf_map(bufnr, modes.n, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor_code_action, '<cmd>lua require("jdtls").code_action(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor_menu, '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>')
+      buf_map(bufnr, modes.n, mappings.refactor.code_action,
+          '<cmd>lua require("jdtls").code_action()<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor.code_action,
+          '<cmd>lua require("jdtls").code_action(true)<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor.menu,
+          '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>')
 
-      buf_map(bufnr, modes.n, mappings.refactor_extract_variable, '<cmd>lua require("jdtls").extract_variable()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor_extract_variable, '<cmd>lua require("jdtls").extract_variable(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor_extract_method, '<cmd>lua require("jdtls").extract_method(true)<CR>')
+      buf_map(bufnr, modes.n, mappings.refactor.extract_variable,
+          '<cmd>lua require("jdtls").extract_variable()<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor.extract_variable,
+          '<cmd>lua require("jdtls").extract_variable(true)<CR>')
+      buf_map(bufnr, modes.v, mappings.refactor.extract_method,
+          '<cmd>lua require("jdtls").extract_method(true)<CR>')
 
-      buf_map(bufnr, modes.n, mappings.refactor_organize_imports, '<cmd>lua require("jdtls").organize_imports()<CR>')
-      buf_map(bufnr, modes.n, mappings.make_rebuild, '<cmd>lua require("jdtls").update_project_config()<CR>')
+      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
+          '<cmd>lua require("jdtls").organize_imports()<CR>')
+      buf_map(bufnr, modes.n, mappings.make.rebuild,
+          '<cmd>lua require("jdtls").update_project_config()<CR>')
     end,
   }
 
@@ -126,10 +137,14 @@ function M.setup()
       require('metals').setup_dap()
       require('mappings').setup_dap(bufnr)
 
-      buf_map(bufnr, modes.n, mappings.debug_run, '<cmd>lua require("lsp").dap_run_scala_run()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug_test, '<cmd>lua require("lsp").dap_run_scala_test()<CR>')
-      buf_map(bufnr, modes.n, mappings.refactor_organize_imports, '<cmd>MetalsOrganizeImports<CR>')
-      buf_map(bufnr, modes.n, mappings.make_rebuild, '<cmd>MetalsCompileClean<CR>')
+      buf_map(bufnr, modes.n, mappings.debug.run,
+          '<cmd>lua require("lsp").dap_run_scala_run()<CR>')
+      buf_map(bufnr, modes.n, mappings.debug.test,
+          '<cmd>lua require("lsp").dap_run_scala_test()<CR>')
+      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
+          '<cmd>MetalsOrganizeImports<CR>')
+      buf_map(bufnr, modes.n, mappings.make.rebuild,
+          '<cmd>MetalsCompileClean<CR>')
     end,
     init_options = {
       showImplicitArguments = true,

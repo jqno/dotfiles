@@ -1,7 +1,7 @@
 local M = {}
 
 local g = vim.g
-local mappings = require('mappings').consts()
+local mappings = require('mappings').mappings
 
 
 local function setup_nvim_tree()
@@ -31,8 +31,8 @@ local function setup_telescope()
     defaults = {
       mappings = {
         i = {
-          [mappings.telescope_i_split] = actions.select_horizontal,
-          [mappings.telescope_i_close] = actions.close
+          [mappings.specific_modes.telescope_i_split] = actions.select_horizontal,
+          [mappings.specific_modes.telescope_i_close] = actions.close
         },
       },
       prompt_prefix = '❯ ',
@@ -53,8 +53,8 @@ local function setup_treesitter()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = mappings.incremental_selection,
-        node_incremental = mappings.incremental_selection
+        init_selection = mappings.various.wildfire,
+        node_incremental = mappings.various.wildfire
       }
     },
     textobjects = {
@@ -65,26 +65,26 @@ local function setup_treesitter()
       swap = {
         enable = true,
         swap_next = {
-          [mappings.refactor_swap_next] = '@parameter.inner'
+          [mappings.refactor.swap_next] = '@parameter.inner'
         },
         swap_previous = {
-          [mappings.refactor_swap_prev] = '@parameter.inner'
+          [mappings.refactor.swap_prev] = '@parameter.inner'
         }
       },
       move = {
         enable = true,
         goto_next_start = {
-          [mappings.goto_next_function] = '@function.outer'
+          [mappings.unimpaired.function_next] = '@function.outer'
         },
         goto_previous_start = {
-          [mappings.goto_prev_function] = '@function.outer'
+          [mappings.unimpaired.function_prev] = '@function.outer'
         }
       },
       lsp_interop = {
         enable = true,
         peek_definition_code = {
-          [mappings.show_peek_class] = '@class.outer',
-          [mappings.show_peek_function] = '@function.outer'
+          [mappings.show.peek_class] = '@class.outer',
+          [mappings.show.peek_function] = '@function.outer'
         }
       }
     }
