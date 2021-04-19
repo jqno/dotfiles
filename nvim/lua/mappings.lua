@@ -85,14 +85,6 @@ M.mappings = {
 }
 
 
-function M.close_everything()
-  vim.api.nvim_command('pclose')
-  vim.api.nvim_command('cclose')
-  vim.api.nvim_command('NvimTreeClose')
-  require('dap').repl.close()
-end
-
-
 -- MAPPINGS --
 local function define_mappings()
   -- LEADER --
@@ -112,7 +104,7 @@ local function define_mappings()
   map(M.modes.n, various.vimwiki,
       '<cmd>VimwikiIndex<CR>')
   map(M.modes.n, various.close_everything,
-      '<cmd>lua require("mappings").close_everything()<CR>', { silent = true })
+      '<cmd>lua require("util").close_everything()<CR>', { silent = true })
 
 
   -- NAVIGATION --
