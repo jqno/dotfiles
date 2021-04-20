@@ -51,6 +51,7 @@ This.mappings = {
     identifier          = '<leader>fi',
     references          = '<leader>fr',
     symbols             = '<leader>fs',
+    symbols_workspace   = '<leader>fS',
     tree                = '<leader>fn',
     tree_follow         = '<leader>fN',
     wiki                = '<leader>f<F12>'
@@ -62,6 +63,8 @@ This.mappings = {
     type_definition     = '<leader>gt',
   },
   make = {
+    diagnostics         = '<leader>md',
+    diagnostics_workspace = '<leader>mD',
     format              = '<leader>mf',
     rebuild             = '<leader>mr'
   },
@@ -186,12 +189,14 @@ function This.setup_lsp(client, bufnr)
   -- FINDING --
   local find = This.mappings.find
   buf_map(This.modes.n, find.symbols,
-      '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+      '<cmd>Telescope lsp_document_symbols<CR>')
+  buf_map(This.modes.n, find.symbols_workspace,
+      '<cmd>Telescope lsp_workspace_symbols<CR>')
   buf_map(This.modes.n, find.references,
-      '<cmd>lua vim.lsp.buf.references()<CR>')
+      '<cmd>Telescope lsp_references<CR>')
 
 
-  -- -- GOING PLACES  --
+  -- GOING PLACES  --
   local go = This.mappings.go
   local unimpaired = This.mappings.unimpaired
   buf_map(This.modes.n, go.definition,
@@ -210,6 +215,10 @@ function This.setup_lsp(client, bufnr)
 
   -- MAKE-ING --
   local make = This.mappings.make
+  buf_map(This.modes.n, make.diagnostics,
+      '<cmd>Telescope lsp_document_diagnostics<CR>')
+  buf_map(This.modes.n, make.diagnostics_workspace,
+      '<cmd>Telescope lsp_workspace_diagnostics<CR>')
   if client.resolved_capabilities.document_formatting then
     buf_map(This.modes.n, make.format,
         '<cmd>lua vim.lsp.buf.formatting()<CR>')
@@ -224,9 +233,9 @@ function This.setup_lsp(client, bufnr)
   buf_map(This.modes.n, refactor.rename,
       '<cmd>lua vim.lsp.buf.rename()<CR>')
   buf_map(This.modes.n, refactor.code_action,
-      '<cmd>Lspsaga code_action<CR>')
+      '<cmd>Telescope lsp_code_actions<CR>')
   buf_map(This.modes.v, refactor.code_action,
-      '<cmd>Lspsaga range_code_action<CR>')
+      '<cmd>Telescope lsp_range_code_actions<CR>')
 
 
   -- SHOWING THINGS --
