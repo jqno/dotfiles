@@ -12,6 +12,11 @@ function This.buf_map(bufnr, mode, lhs, rhs, opts)
   vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
 end
 
+function This.set(scope, key, value)
+  scope[key] = value
+  if scope ~= vim.o then vim.o[key] = value end
+end
+
 function This.augroup(group, cmd)
   vim.api.nvim_exec([[
     augroup ]] .. group .. [[

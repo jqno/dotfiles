@@ -1,11 +1,8 @@
 local This = {}
 
--- HELPERS --
-local function set(scope, key, value)
-  scope[key] = value
-  if scope ~= vim.o then vim.o[key] = value end
-end
+local set = require('vim-util').set
 
+-- HELPERS --
 local default_indent = 2
 
 function This.set_buf_indent(indent)
@@ -16,6 +13,7 @@ function This.set_buf_indent(indent)
     vim.bo.softtabstop = 8
     vim.bo.tabstop = 8
   else
+    -- spaces
     vim.bo.expandtab = true
     vim.bo.shiftwidth = indent
     vim.bo.softtabstop = indent
