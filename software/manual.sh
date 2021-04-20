@@ -69,7 +69,7 @@ cd ../..
 ./3rd/luamake/luamake rebuild
 
 if [ "$PLATFORM" == "macos" ]; then
-  ln -s $BIN/lua-language-server/bin/macOS $BIN/lua-language-server/bin/OSX
+  ln -s $BIN/lua-language-server/bin/OSX $BIN/lua-language-server/bin/macOS
 fi
 
 mkdir -p $HOME/.cache/nvim/nlua/sumneko_lua
