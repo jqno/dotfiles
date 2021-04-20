@@ -3,7 +3,7 @@ local M = {}
 local lsp = require('lspconfig')
 local vim_util = require('vim-util')
 
-local function on_attach(client, bufnr)
+function M.on_attach(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -28,15 +28,18 @@ local function on_attach(client, bufnr)
   end
 end
 
-function M.setup()
-  local mappings = require('mappings').mappings
-  local modes = require('mappings').modes
-  local buf_map = vim_util.buf_map
-
+local function setup_lsp()
   require('nlua.lsp.nvim').setup(lsp, {
-    on_attach = on_attach
+    on_attach = M.on_attach
   })
 
+  vim_util.augroup('lsp_define', [[
+    autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
+    autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(require('filetypes.scala').metals_config())
+  ]])
+end
+
+local function setup_lspsaga()
   require('lspsaga').init_lsp_saga({
     use_saga_diagnostic_sign = false,
     error_sign = '✗',
@@ -50,81 +53,11 @@ function M.setup()
     rename_action_keys = { quit = '<Esc>' },
     border_style = 2
   })
+end
 
-  local jdtls_bundles = {
-    vim.fn.glob("~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
-  }
-  vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
-  Jdtls_config = {
-    cmd = { 'jdtls.sh', vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t') },
-    init_options = {
-      bundles = jdtls_bundles
-    },
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-
-      require('jdtls.setup').add_commands()
-      require('jdtls').setup_dap()
-      require('mappings').setup_dap(bufnr)
-
-      buf_map(bufnr, modes.n, mappings.debug.run,
-          '<cmd>lua require("dap").continue()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("filetypes.java").dap_run_test()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test_nearest,
-          '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>')
-
-      buf_map(bufnr, modes.n, mappings.refactor.code_action,
-          '<cmd>lua require("jdtls").code_action()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.code_action,
-          '<cmd>lua require("jdtls").code_action(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.menu,
-          '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>')
-
-      buf_map(bufnr, modes.n, mappings.refactor.extract_variable,
-          '<cmd>lua require("jdtls").extract_variable()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.extract_variable,
-          '<cmd>lua require("jdtls").extract_variable(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.extract_method,
-          '<cmd>lua require("jdtls").extract_method(true)<CR>')
-
-      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
-          '<cmd>lua require("jdtls").organize_imports()<CR>')
-      buf_map(bufnr, modes.n, mappings.make.rebuild,
-          '<cmd>lua require("jdtls").update_project_config()<CR>')
-    end,
-  }
-
-  local metals_config = {
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-
-      require('metals').setup_dap()
-      require('mappings').setup_dap(bufnr)
-
-      buf_map(bufnr, modes.n, mappings.debug.run,
-          '<cmd>lua require("filetypes.scala").dap_run()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("filetypes.scala").dap_run_test()<CR>')
-      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
-          '<cmd>MetalsOrganizeImports<CR>')
-      buf_map(bufnr, modes.n, mappings.make.rebuild,
-          '<cmd>MetalsCompileClean<CR>')
-    end,
-    init_options = {
-      showImplicitArguments = true,
-      showImplicitConversionsAndClasses = true,
-      showInferredType = true,
-      statusBarProvider = 'on'
-    }
-  }
-  Metals_config = require("metals").bare_config
-  for k,v in pairs(metals_config) do Metals_config[k] = v end
-
-  vim_util.augroup('lsp_define', [[
-    autocmd FileType java lua require('jdtls').start_or_attach(Jdtls_config)
-    autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(Metals_config)
-  ]])
+function M.setup()
+  setup_lsp()
+  setup_lspsaga()
 end
 
 return M
