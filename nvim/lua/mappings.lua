@@ -151,7 +151,7 @@ local function define_mappings()
   -- EXECUTING THINGS --
   local execute = M.mappings.execute
   map(M.modes.n, execute.linkify,
-      '<cmd>Linkify<CR>', { silent = true })
+      '<cmd>lua require("util").linkify()<CR>', { silent = true })
 
 
   -- IN SPECIFIC MODES --
