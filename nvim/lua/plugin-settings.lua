@@ -23,6 +23,11 @@ local function setup_nvim_tree()
 end
 
 
+local function setup_sandwich()
+  vim.api.nvim_exec('runtime macros/sandwich/keymap/surround.vim', false)
+end
+
+
 local function setup_telescope()
   local telescope = require('telescope') 
   local actions = require('telescope.actions')
@@ -120,6 +125,7 @@ end
 
 function This.setup()
   setup_nvim_tree()
+  setup_sandwich()
   setup_telescope()
   setup_treesitter()
   setup_ultisnips()
