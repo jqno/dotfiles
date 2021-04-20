@@ -297,6 +297,12 @@ local function define_commands()
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
   ]], false)
+
+  -- plugin management
+  vim.api.nvim_exec([[
+    command! PlugLock execute 'PlugSnapshot! ' . g:plugin_lockfile
+    command! PlugRevert execute 'source ' . g:plugin_lockfile
+  ]], false)
 end
 
 
