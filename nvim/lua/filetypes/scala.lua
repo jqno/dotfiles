@@ -1,4 +1,4 @@
-local M = {}
+local This = {}
 local dap = require('dap')
 
 local function dap_run(config)
@@ -6,7 +6,7 @@ local function dap_run(config)
   dap.run(config)
 end
 
-function M.dap_run()
+function This.dap_run()
   dap_run({
     type = 'scala',
     request = 'launch',
@@ -15,7 +15,7 @@ function M.dap_run()
   })
 end
 
-function M.dap_run_test()
+function This.dap_run_test()
   dap_run({
     type = 'scala',
     request = 'launch',
@@ -24,7 +24,7 @@ function M.dap_run_test()
   })
 end
 
-function M.metals_config()
+function This.metals_config()
   local metals_config = {
     on_attach = function(client, bufnr)
       require('lsp').on_attach(client, bufnr)
@@ -59,5 +59,5 @@ function M.metals_config()
   return merged
 end
 
-return M
+return This
 

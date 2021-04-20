@@ -1,6 +1,6 @@
-local M = {}
+local This = {}
 
-function M.setup()
+function This.setup()
   require'compe'.setup {
     autocomplete = false;
     preselect = 'always';
@@ -25,7 +25,7 @@ local function check_back_space()
     return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
 end
 
-function M.tab_complete()
+function This.tab_complete()
   if vim.fn.pumvisible() == 1 then
     return t '<C-n>'
   elseif check_back_space() then
@@ -35,7 +35,7 @@ function M.tab_complete()
   end
 end
 
-function M.s_tab_complete()
+function This.s_tab_complete()
   if vim.fn.pumvisible() == 1 then
     return t '<C-p>'
   else
@@ -43,7 +43,7 @@ function M.s_tab_complete()
   end
 end
 
-function M.cr_complete()
+function This.cr_complete()
   if vim.fn.pumvisible() == 1 then
     return vim.fn['compe#confirm']('<CR>')
   else
@@ -51,4 +51,4 @@ function M.cr_complete()
   end
 end
 
-return M
+return This

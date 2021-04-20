@@ -1,4 +1,4 @@
-local M = {}
+local This = {}
 
 -- HELPERS --
 local function set(scope, key, value)
@@ -8,7 +8,7 @@ end
 
 local default_indent = 2
 
-function M.set_buf_indent(indent)
+function This.set_buf_indent(indent)
   if indent == nil then
     -- tab
     vim.bo.expandtab = false
@@ -24,7 +24,7 @@ function M.set_buf_indent(indent)
 end
 
 -- SETTINGS --
-function M.setup()
+function This.setup()
   set(vim.bo, 'expandtab', true)
   set(vim.bo, 'shiftwidth', default_indent)
   set(vim.bo, 'softtabstop', default_indent)
@@ -48,4 +48,4 @@ function M.setup()
   vim.cmd('colorscheme onedark')
 end
 
-return M
+return This

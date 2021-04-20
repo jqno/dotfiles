@@ -1,8 +1,9 @@
-local M = {}
+local This = {}
+
 local vim_util = require('vim-util')
 
 
-function M.setup()
+function This.setup()
   vim_util.augroup('configure_filetypes', [[
     autocmd FileType java     lua require('filetypes.java').setup()
     autocmd FileType markdown lua require('filetypes.markdown').setup()
@@ -15,4 +16,4 @@ function M.setup()
 end
 
 
-return M
+return This

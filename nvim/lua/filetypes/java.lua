@@ -1,24 +1,24 @@
-local M = {}
+local This = {}
 
 local dap = require('dap')
 local jdtls = require('jdtls')
 local settings = require('settings')
 
-function M.setup()
+function This.setup()
   settings.set_buf_indent(4)
 end
 
-function M.dap_run_test()
+function This.dap_run_test()
   dap.repl.open()
   jdtls.test_class()
 end
 
-function M.dap_run_test_nearest()
+function This.dap_run_test_nearest()
   dap.repl.open()
   jdtls.test_nearest_method()
 end
 
-function M.jdtls_config()
+function This.jdtls_config()
   local jdtls_bundles = {
     vim.fn.glob("~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
   }
@@ -69,4 +69,4 @@ function M.jdtls_config()
   }
 end
 
-return M
+return This

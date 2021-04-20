@@ -1,9 +1,9 @@
-local M = {}
+local This = {}
 
 local lsp = require('lspconfig')
 local vim_util = require('vim-util')
 
-function M.on_attach(client, bufnr)
+function This.on_attach(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -30,7 +30,7 @@ end
 
 local function setup_lsp()
   require('nlua.lsp.nvim').setup(lsp, {
-    on_attach = M.on_attach
+    on_attach = This.on_attach
   })
 
   vim_util.augroup('lsp_define', [[
@@ -55,9 +55,9 @@ local function setup_lspsaga()
   })
 end
 
-function M.setup()
+function This.setup()
   setup_lsp()
   setup_lspsaga()
 end
 
-return M
+return This

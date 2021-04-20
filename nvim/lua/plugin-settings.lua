@@ -1,4 +1,4 @@
-local M = {}
+local This = {}
 
 local g = vim.g
 local mappings = require('mappings').mappings
@@ -118,7 +118,7 @@ local function setup_wildfire()
 end
 
 
-function M.setup()
+function This.setup()
   setup_nvim_tree()
   setup_telescope()
   setup_treesitter()
@@ -127,4 +127,4 @@ function M.setup()
   setup_wildfire()
 end
 
-return M
+return This

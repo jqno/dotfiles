@@ -1,13 +1,13 @@
-M = {}
+This = {}
 
-function M.close_everything()
+function This.close_everything()
   vim.api.nvim_command('pclose')
   vim.api.nvim_command('cclose')
   vim.api.nvim_command('NvimTreeClose')
   require('dap').repl.close()
 end
 
-function M.linkify()
+function This.linkify()
   local fn = vim.fn
   local url = fn.shellescape(fn.expand('<cWORD>'))
   local link = fn.system('linkify.py ' .. url)
@@ -20,4 +20,4 @@ function M.linkify()
   end
 end
 
-return M
+return This

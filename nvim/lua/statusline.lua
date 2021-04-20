@@ -1,6 +1,6 @@
-local fn = vim.fn
+local This = {}
 
-local M = {}
+local fn = vim.fn
 local highlight = require('vim-util').highlight
 
 
@@ -327,7 +327,7 @@ end
 
 
 -- STATUSLINE --
-function M.setup()
+function This.setup()
   local gl = require('galaxyline')
   local gls = gl.section
 
@@ -562,4 +562,4 @@ function M.setup()
   }
 end
 
-return M
+return This

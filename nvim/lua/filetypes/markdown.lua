@@ -1,7 +1,7 @@
-local M = {}
+local This = {}
 
-function M.setup()
+function This.setup()
   vim.wo.wrap = true
 end
 
-return M
+return This
