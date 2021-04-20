@@ -1,42 +1,7 @@
 local M = {}
 
-local dap = require('dap')
 local lsp = require('lspconfig')
 local vim_util = require('vim-util')
-
-
-function M.dap_run(config)
-  dap.repl.open()
-  dap.run(config)
-end
-
-function M.dap_run_scala_run()
-  M.dap_run({
-    type = 'scala',
-    request = 'launch',
-    name = 'Run',
-    metalsRunType = 'run'
-  })
-end
-
-function M.dap_run_scala_test()
-  M.dap_run({
-    type = 'scala',
-    request = 'launch',
-    name = 'Test File',
-    metalsRunType = 'testFile'
-  })
-end
-
-function M.dap_run_java_test_class()
-  dap.repl.open()
-  require('jdtls').test_class()
-end
-
-function M.dap_run_java_test_nearest()
-  dap.repl.open()
-  require('jdtls').test_nearest_method()
-end
 
 local function on_attach(client, bufnr)
   require('mappings').setup_lsp(client, bufnr)
@@ -105,9 +70,9 @@ function M.setup()
       buf_map(bufnr, modes.n, mappings.debug.run,
           '<cmd>lua require("dap").continue()<CR>')
       buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("lsp").dap_run_java_test_class()<CR>')
+          '<cmd>lua require("filetypes.java").dap_run_test()<CR>')
       buf_map(bufnr, modes.n, mappings.debug.test_nearest,
-          '<cmd>lua require("lsp").dap_run_java_test_nearest()<CR>')
+          '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>')
 
       buf_map(bufnr, modes.n, mappings.refactor.code_action,
           '<cmd>lua require("jdtls").code_action()<CR>')
@@ -138,9 +103,9 @@ function M.setup()
       require('mappings').setup_dap(bufnr)
 
       buf_map(bufnr, modes.n, mappings.debug.run,
-          '<cmd>lua require("lsp").dap_run_scala_run()<CR>')
+          '<cmd>lua require("filetypes.scala").dap_run()<CR>')
       buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("lsp").dap_run_scala_test()<CR>')
+          '<cmd>lua require("filetypes.scala").dap_run_test()<CR>')
       buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
           '<cmd>MetalsOrganizeImports<CR>')
       buf_map(bufnr, modes.n, mappings.make.rebuild,
