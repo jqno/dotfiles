@@ -145,6 +145,10 @@ local function setup_vimwiki()
   g.vimwiki_global_ext = 0
   g.vimwiki_markdown_link_ext = 1
   g.vimwiki_key_mappings = { table_mappings = 0}
+  g.vimwiki_diary_months =
+    { ['1'] = 'Januari', ['2'] = 'Februari', ['3'] = 'Maart', ['4'] = 'April',
+      ['5'] = 'Mei', ['6'] = 'Juni', ['7'] = 'Juli', ['8'] = 'Augustus',
+      ['9'] = 'September', ['10'] = 'Oktober', ['11'] = 'November', ['12'] = 'December' }
 end
 
 

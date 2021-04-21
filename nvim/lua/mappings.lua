@@ -12,7 +12,6 @@ This.mappings = {
     scroll_popup_down   = '<leader><C-D>',
     scroll_popup_up     = '<leader><C-U>',
     signature_help      = '<C-Space>',
-    vimwiki             = '<F12>',
     wildfire            = '<CR>',
     yank_to_clipboard   = 'Y'
   },
@@ -34,7 +33,9 @@ This.mappings = {
     quickfix_first      = '[Q',
     quickfix_last       = ']Q',
     quickfix_next       = ']q',
-    quickfix_prev       = '[q'
+    quickfix_prev       = '[q',
+    vimwiki_diary_next  = ']n',
+    vimwiki_diary_prev  = '[n'
   },
   toggles = {
     list                = '<leader><leader>l',
@@ -94,6 +95,12 @@ This.mappings = {
     diagnostics_workspace = '<leader>mD',
     format              = '<leader>mf',
     rebuild             = '<leader>mr'
+  },
+  notes = {
+    diary_gen           = '<leader>ng',
+    diary_index         = '<leader>nd',
+    diary_today         = '<F11>',
+    index               = '<F12>'
   },
   refactor = {
     code_action         = '<leader>r<CR>',
@@ -164,8 +171,6 @@ local function define_mappings()
       '<Plug>CommentaryLine', { noremap = false })
   map(This.modes.v, various.comment,
       '<Plug>Commentary', { noremap = false })
-  map(This.modes.n, various.vimwiki,
-      '<cmd>VimwikiIndex<CR>')
   map(This.modes.n, various.close_everything,
       '<cmd>lua require("util").close_everything()<CR>', { silent = true })
 
@@ -194,6 +199,10 @@ local function define_mappings()
       '<cmd>cnext<CR>')
   map(This.modes.n, unimpaired.quickfix_last,
       '<cmd>clast<CR>')
+  map(This.modes.n, unimpaired.vimwiki_diary_next,
+      '<cmd>VimwikiDiaryNextDay<CR>')
+  map(This.modes.n, unimpaired.vimwiki_diary_prev,
+      '<cmd>VimwikiDiaryPrevDay<CR>')
 
 
   -- TOGGLES --
@@ -242,6 +251,18 @@ local function define_mappings()
       '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>')
   map(This.modes.n, find.wiki,
       '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
+
+
+  -- NOTES --
+  local notes = This.mappings.notes
+  map(This.modes.n, notes.diary_gen,
+      '<cmd>VimwikiDiaryGenerateLinks<CR>')
+  map(This.modes.n, notes.diary_index,
+      '<cmd>VimwikiDiaryIndex<CR>')
+  map(This.modes.n, notes.diary_today,
+      '<Plug>VimwikiMakeDiaryNote', { noremap = false })
+  map(This.modes.n, notes.index,
+      '<cmd>VimwikiIndex<CR>')
 
 
   -- WINDOW --
