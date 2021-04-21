@@ -4,6 +4,38 @@ local g = vim.g
 local mappings = require('mappings').mappings
 
 
+local function setup_gitsigns()
+  require('gitsigns').setup {
+    keymaps = {
+      noremap = true,
+      buffer = true,
+      
+      ['n ' .. mappings.unimpaired.git_hunk_next] =
+          { expr = true, [[&diff ? ']c' : '<cmd>lua require("gitsigns").next_hunk()<CR>']]},
+      ['n ' .. mappings.unimpaired.git_hunk_prev] =
+          { expr = true, [[&diff ? '[c' : '<cmd>lua require("gitsigns").prev_hunk()<CR>']]},
+
+      ['n ' .. mappings.git.stage_hunk] =
+          '<cmd>lua require("gitsigns").stage_hunk()<CR>',
+      ['n ' .. mappings.git.undo_stage_hunk] =
+          '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
+      ['n ' .. mappings.git.reset_hunk] =
+          '<cmd>lua require("gitsigns").reset_hunk()<CR>',
+      ['n ' .. mappings.git.reset_buffer] =
+          '<cmd>lua require("gitsigns").reset_buffer()<CR>',
+      ['n ' .. mappings.git.preview_hunk] =
+          '<cmd>lua require("gitsigns").preview_hunk()<CR>',
+      ['n ' .. mappings.git.blame_line] =
+          '<cmd>lua require("gitsigns").blame_line()<CR>',
+
+      -- Text objects
+      ['o ig'] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
+      ['x ig'] = ':<C-U>lua require("gitsigns").select_hunk()<CR>'
+    }
+  }
+end
+
+
 local function setup_nvim_tree()
   g.nvim_tree_auto_close = 1
   g.nvim_tree_follow = 1
@@ -124,6 +156,7 @@ end
 
 
 function This.setup()
+  setup_gitsigns()
   setup_nvim_tree()
   setup_sandwich()
   setup_telescope()

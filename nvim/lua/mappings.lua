@@ -27,6 +27,8 @@ This.mappings = {
     buffer_prev         = '[b',
     diagnostic_next     = ']d',
     diagnostic_prev     = '[d',
+    git_hunk_next       = ']g',
+    git_hunk_prev       = '[g',
     function_next       = ']]',
     function_prev       = '[[',
     quickfix_first      = '[Q',
@@ -72,6 +74,14 @@ This.mappings = {
     tree                = '<leader>fn',
     tree_follow         = '<leader>fN',
     wiki                = '<leader>f<F12>'
+  },
+  git = {
+    blame_line          = '<leader>Gb',
+    preview_hunk        = '<leader>Gp',
+    reset_hunk          = '<leader>Gr',
+    reset_buffer        = '<leader>GR',
+    stage_hunk          = '<leader>Gs',
+    undo_stage_hunk     = '<leader>Gu',
   },
   go = {
     definition          = '<leader>g]',
