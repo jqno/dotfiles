@@ -23,10 +23,24 @@ This.mappings = {
     ulti_jump           = '<C-L>'
   },
   unimpaired = {
+    buffer_next         = ']b',
+    buffer_prev         = '[b',
     diagnostic_next     = ']d',
     diagnostic_prev     = '[d',
     function_next       = ']]',
-    function_prev       = '[['
+    function_prev       = '[[',
+    quickfix_first      = '[Q',
+    quickfix_last       = ']Q',
+    quickfix_next       = ']q',
+    quickfix_prev       = '[q'
+  },
+  toggles = {
+    list                = '<leader><leader>l',
+    tabstop_2           = '<leader><leader>2',
+    tabstop_4           = '<leader><leader>4',
+    tabstop_8           = '<leader><leader>8',
+    tabstop_tab         = '<leader><leader><tab>',
+    wrap                = '<leader><leader>w'
   },
   debug = {
     breakpoint          = '<leader>db',
@@ -95,6 +109,33 @@ local function define_mappings()
   vim.g.mapleader = ' '
 
 
+  -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
+  -- Navigate the screen, not the lines, and update the jump list when the count > 5
+  map(This.modes.n, 'j',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(This.modes.n, 'k',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  map(This.modes.v, 'j',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
+  map(This.modes.v, 'k',
+      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  -- Keep the selection after re-indenting
+  map(This.modes.v, '<',
+      '<gv')
+  map(This.modes.v, '>',
+      '>gv')
+  -- Center search matches
+  map(This.modes.n, 'n',
+      'nzz')
+  map(This.modes.n, 'N',
+      'Nzz')
+  -- Toggle movements
+  map(This.modes.n, ';',
+      '<cmd>lua require("util").toggle_movement(";", "0;")<CR>')
+  map(This.modes.n, ',',
+      '<cmd>lua require("util").toggle_movement(",", "$,")<CR>')
+
+
   -- VARIOUS --
   local various = This.mappings.various
   map(This.modes.n, various.yank_to_clipboard,
@@ -111,17 +152,6 @@ local function define_mappings()
       '<cmd>lua require("util").close_everything()<CR>', { silent = true })
 
 
-  -- NAVIGATION --
-  map(This.modes.n, 'j',
-      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(This.modes.n, 'k',
-      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
-  map(This.modes.v, 'j',
-      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
-  map(This.modes.v, 'k',
-      [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
-
-
   -- COMPLETION --
   _G.compe = require('completion')
   map(This.modes.i, '<Tab>',
@@ -130,6 +160,38 @@ local function define_mappings()
       'v:lua.compe.s_tab_complete()', { expr = true })
   map(This.modes.i, '<CR>',
       'v:lua.compe.cr_complete()', { expr = true })
+
+
+  -- UNIMPAIRED --
+  local unimpaired = This.mappings.unimpaired
+  map(This.modes.n, unimpaired.buffer_prev,
+      '<cmd>bprevious<CR>')
+  map(This.modes.n, unimpaired.buffer_next,
+      '<cmd>bnext<CR>')
+  map(This.modes.n, unimpaired.quickfix_first,
+      '<cmd>cfirst<CR>')
+  map(This.modes.n, unimpaired.quickfix_prev,
+      '<cmd>cprevious<CR>')
+  map(This.modes.n, unimpaired.quickfix_next,
+      '<cmd>cnext<CR>')
+  map(This.modes.n, unimpaired.quickfix_last,
+      '<cmd>clast<CR>')
+
+
+  -- TOGGLES --
+  local toggles = This.mappings.toggles
+  map(This.modes.n, toggles.tabstop_2,
+      '<cmd>lua require("util").set_buf_indent(2, true)<CR>')
+  map(This.modes.n, toggles.tabstop_4,
+      '<cmd>lua require("util").set_buf_indent(4, true)<CR>')
+  map(This.modes.n, toggles.tabstop_8,
+      '<cmd>lua require("util").set_buf_indent(8, true)<CR>')
+  map(This.modes.n, toggles.tabstop_tab,
+      '<cmd>lua require("util").set_buf_indent(nil, true)<CR>')
+  map(This.modes.n, toggles.list,
+      '<cmd>set list! list?<CR>')
+  map(This.modes.n, toggles.wrap,
+      '<cmd>set wrap! wrap?<CR>')
 
 
   -- FINDING --

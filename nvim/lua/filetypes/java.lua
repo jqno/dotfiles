@@ -2,10 +2,10 @@ local This = {}
 
 local dap = require('dap')
 local jdtls = require('jdtls')
-local settings = require('settings')
+local util = require('util')
 
 function This.setup()
-  settings.set_buf_indent(4)
+  util.set_buf_indent(4)
 end
 
 function This.dap_run_test()

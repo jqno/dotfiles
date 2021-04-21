@@ -2,26 +2,8 @@ local This = {}
 
 local set = require('vim-util').set
 
--- HELPERS --
 local default_indent = 2
 
-function This.set_buf_indent(indent)
-  if indent == nil then
-    -- tab
-    vim.bo.expandtab = false
-    vim.bo.shiftwidth = 8
-    vim.bo.softtabstop = 8
-    vim.bo.tabstop = 8
-  else
-    -- spaces
-    vim.bo.expandtab = true
-    vim.bo.shiftwidth = indent
-    vim.bo.softtabstop = indent
-    vim.bo.tabstop = indent
-  end
-end
-
--- SETTINGS --
 function This.setup()
   set(vim.bo, 'expandtab', true)
   set(vim.bo, 'shiftwidth', default_indent)
@@ -29,6 +11,7 @@ function This.setup()
   set(vim.bo, 'tabstop', default_indent)
 
   set(vim.wo, 'linebreak', true)
+  set(vim.wo, 'listchars', 'tab:჻ ,trail:·,precedes:←,extends:→,nbsp:·')
   set(vim.wo, 'number', true)
   set(vim.wo, 'relativenumber', true)
   set(vim.wo, 'scrolloff', 1)
