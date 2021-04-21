@@ -42,6 +42,9 @@ This.mappings = {
     tabstop_tab         = '<leader><leader><tab>',
     wrap                = '<leader><leader>w'
   },
+  buffer = {
+    delete              = '<leader>bd'
+  },
   debug = {
     breakpoint          = '<leader>db',
     continue            = '<leader>dc',
@@ -99,6 +102,11 @@ This.mappings = {
     peek_class          = '<leader>sc',
     peek_function       = '<leader>sf',
     signature_help      = '<leader>ss'
+  },
+  window = {
+    equalize            = '<leader>w=',
+    rotate              = '<leader>w0',
+    zoom                = '<leader>wz'
   }
 }
 
@@ -194,6 +202,18 @@ local function define_mappings()
       '<cmd>set wrap! wrap?<CR>')
 
 
+  -- BUFFER --
+  local buffer = This.mappings.buffer
+  map(This.modes.n, buffer.delete,
+      '<cmd>bd<CR>')
+
+
+  -- EXECUTING THINGS --
+  local execute = This.mappings.execute
+  map(This.modes.n, execute.linkify,
+      '<cmd>lua require("util").linkify()<CR>', { silent = true })
+
+
   -- FINDING --
   local find = This.mappings.find
   map(This.modes.n, find.buffers,
@@ -214,13 +234,17 @@ local function define_mappings()
       '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
 
 
-  -- EXECUTING THINGS --
-  local execute = This.mappings.execute
-  map(This.modes.n, execute.linkify,
-      '<cmd>lua require("util").linkify()<CR>', { silent = true })
+  -- WINDOW --
+  local window = This.mappings.window
+  map(This.modes.n, window.equalize,
+      '<cmd>wincmd =<CR>')
+  map(This.modes.n, window.rotate,
+      '<cmd>wincmd r<CR>')
+  map(This.modes.n, window.zoom,
+      '<cmd>wincmd _<CR>')
 
 
-  -- IN SPECIFIC ThisODES --
+  -- IN SPECIFIC MODES --
   local specific_modes = This.mappings.specific_modes
   map(This.modes.s, specific_modes.ulti_jump,
       '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
@@ -236,7 +260,7 @@ function This.setup_lsp(client, bufnr)
     require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
 
-  -- -- VARIOUS --
+  -- VARIOUS --
   local various = This.mappings.various
   buf_map(This.modes.n, 'K',
       '<cmd>Lspsaga hover_doc<CR>')
@@ -264,7 +288,7 @@ function This.setup_lsp(client, bufnr)
   buf_map(This.modes.n, go.definition,
       '<cmd>lua vim.lsp.buf.definition()<CR>')
   buf_map(This.modes.n, go.declaration,
-    '<cmd>lua vim.lsp.buf.declaration()<CR>')
+      '<cmd>lua vim.lsp.buf.declaration()<CR>')
   buf_map(This.modes.n, go.implementation,
       '<cmd>lua vim.lsp.buf.implementation()<CR>')
   buf_map(This.modes.n, go.type_definition,
