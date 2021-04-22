@@ -61,6 +61,8 @@ function This.jdtls_config()
       buf_map(bufnr, modes.v, mappings.refactor.extract_method,
           '<cmd>lua require("jdtls").extract_method(true)<CR>')
 
+      buf_map(bufnr, modes.n, mappings.make.format,
+          '<cmd>PrettierAsync<CR>')
       buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
           '<cmd>lua require("jdtls").organize_imports()<CR>')
       buf_map(bufnr, modes.n, mappings.make.rebuild,
