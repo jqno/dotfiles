@@ -1,5 +1,5 @@
 let g:plugin_lockfile = '$HOME/.config/nvim/plugin.lock.vim'
-let g:metals_server_version = '0.10.1'
+let g:metals_server_version = '0.10.2'
 
 
 call plug#begin(stdpath('data') . '/plugged')
