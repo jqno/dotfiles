@@ -4,6 +4,11 @@ local g = vim.g
 local mappings = require('mappings').mappings
 
 
+local function setup_colorizer()
+  require('colorizer').setup { 'css', 'html' }
+end
+
+
 local function setup_gitsigns()
   require('gitsigns').setup {
     keymaps = {
@@ -161,6 +166,7 @@ end
 
 
 function This.setup()
+  setup_colorizer()
   setup_gitsigns()
   setup_nvim_tree()
   setup_sandwich()
