@@ -2,6 +2,7 @@
 alias cd..='cd ..'
 
 # Vim
+alias vim=nvim
 alias vanilla-vim="vim -u NONE -U NONE -N"
 
 # Git
