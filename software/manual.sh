@@ -44,6 +44,14 @@ npm run build-plugin
 popd > /dev/null
 
 
+# Coursier
+echo "** Installing Coursier"
+pushd $BIN > /dev/null
+curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
+chmod +x cs
+popd > /dev/null
+
+
 # Rust toolchain
 echo "** Installing Rust toolchain"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete

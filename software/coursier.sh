@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 
-brew install coursier/formulas/coursier
-
-cs install bloop
-cs install scalafmt
-cs install scalafix
+$HOME/bin/cs install bloop
+$HOME/bin/cs install scalafmt
+$HOME/bin/cs install scalafix
 
