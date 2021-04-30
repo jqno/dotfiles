@@ -22,14 +22,6 @@ alias session="source ~/.setEnv/session.sh"
 alias work='. setEnv.sh work'
 alias home='. setEnv.sh home'
 
-# bat: a better `cat`
-alias cat=bat
-
-# exa: a better `ls`
-alias ls=exa
-alias lsa='exa -abghHliS'
-alias tree='exa --tree'
-
 # mcd
 function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"
