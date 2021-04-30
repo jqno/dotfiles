@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 

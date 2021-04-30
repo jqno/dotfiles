@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 GEM="gem"
 if [ "$(uname -s)" == "Darwin" ]; then
