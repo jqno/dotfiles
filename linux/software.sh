@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+
+function install_apt() {
+  sudo apt install --yes $1
+}
+
+function install_snap() {
+  sudo snap install $1
+}
+
+
+install_apt software-properties-common
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+
+
+install_apt npm
+install_apt python3
+install_apt python3-pip
+install_snap ruby
+
+install_apt curl
+install_apt docker
+install_apt docker-compose
+install_apt fd-find
+install_apt fonts-comic-neue
+install_apt fonts-firacode
+install_apt fonts-open-sans
+install_apt fzf
+install_apt git
+install_apt gnupg
+install_apt jq
+install_apt kitty
+install_apt maven
+install_apt neovim
+install_apt ninja-build
+install_apt pandoc
+install_apt rsync
+install_apt scala
+install_apt silversearcher-ag
+install_apt subversion
+install_apt tig
+install_apt vim
+install_apt zsh
+install_apt zsh-autosuggestions
+install_apt zsh-syntax-highlighting
+
+install_snap chromium
+install_snap intellij-idea-community
+install_snap keepassxc
+install_snap rambox
+install_snap spotify
+

@@ -8,6 +8,8 @@ function installSoftware() {
 
   if [ "$(uname -s)" == "Darwin" ]; then
     installMacos
+  elif [ "$(uname -s)" == "Linux" ]; then
+    installLinux
   else
     echo "** Not running on a supported OS! Can't install software! Abort abort!"
     exit 1
@@ -45,6 +47,11 @@ function installMacos() {
     echo "** Brew failed (did you sign into the App Store?)"
     exit 1
   fi
+}
+
+function installLinux() {
+  echo "** Installing Linux dependencies..."
+  source $PWD/linux/software.sh
 }
 
 function installCoursier() {
