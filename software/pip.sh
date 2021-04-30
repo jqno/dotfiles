@@ -10,6 +10,9 @@ else
   exit 1
 fi
 
+$PIP install --upgrade pyflakes
+$PIP install --upgrade pycodestyle
+
 $PIP install poetry
 $PIP install pylint
 $PIP install "python-language-server[all]"

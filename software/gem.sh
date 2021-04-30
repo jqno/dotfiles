@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 
+GEM="gem"
+if [ "$(uname -s)" == "Darwin" ]; then
+  GEM="/usr/local/opt/ruby/bin/gem"
+fi
+
 # Built-in gem won't install globally, and brew refuses to replace its version with the built-in one: let's call it directly.
-/usr/local/opt/ruby/bin/gem install bundler
-/usr/local/opt/ruby/bin/gem install jekyll
-/usr/local/opt/ruby/bin/gem install github-pages
+$GEM install bundler
+$GEM install jekyll
+$GEM install github-pages
 

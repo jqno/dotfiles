@@ -6,9 +6,9 @@ if [ -z ${ZSH_ENV_LOADED+x} ]; then
   if [ "$(uname -s)" == "Darwin" ]; then
     export PATH=~/Library/Application\ Support/Coursier/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$PATH
   elif [ "$(uname -s)" == "Linux" ]; then
-    export PATH=~/.local/share/coursier/bin:$PATH
+    export PATH=~/.local/bin:~/.local/share/coursier/bin:$PATH
   fi
-  export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.cargo/bin:$GEMDIR:$PATH
+  export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.npm-global:~/.cargo/bin:$GEMDIR:$PATH
 fi
 
 # Default editor
