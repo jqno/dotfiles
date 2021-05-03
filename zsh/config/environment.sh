@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # PATH
 if [ -z ${ZSH_ENV_LOADED+x} ]; then
   ZSH_ENV_LOADED=1

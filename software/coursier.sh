@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 $HOME/bin/cs install bloop
 $HOME/bin/cs install scalafmt

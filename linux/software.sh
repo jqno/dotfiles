@@ -35,6 +35,7 @@ install_apt maven
 install_apt neovim
 install_apt ninja-build
 install_apt pandoc
+install_apt python3-neovim
 install_apt rsync
 install_apt scala
 install_apt silversearcher-ag

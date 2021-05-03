@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 PIP=""
 if [ -x "$(command -v pip3)" ]; then

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 BIN="$HOME/bin"
 rm -rf $BIN
