@@ -42,17 +42,6 @@ Plug 'RGBD/vim-xml-indent'
 Plug 'udalov/kotlin-vim'
 Plug 'uiiaoo/java-syntax.vim'
 
-" CoC plugins
-Plug 'neoclide/coc.nvim', { 'branch': 'release',
-    \ 'for': ['java', 'javascript', 'json', 'python', 'scala', 'typescript', 'vim'] }
-Plug 'neoclide/coc-java', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-json', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-python', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-snippets', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'neoclide/coc-tsserver', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'iamcco/coc-vimlsp', { 'do': 'yarn install --frozen-lockfile' }
-Plug 'scalameta/coc-metals', { 'do': 'yarn install --frozen-lockfile' }
-
 call plug#end()
 
 " ***************************************
@@ -343,35 +332,12 @@ let g:rainbow#blacklist = ['#000000']
 
 " *** liuchengxu/vista.vim
 let g:vista#renderer#enable_icon = 0
-let g:vista_executive_for = {
-    \ 'java': 'coc',
-    \ 'python': 'coc',
-    \ 'rust': 'coc',
-    \ 'scala': 'coc',
-    \ }
 
 " *** machakann/vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
 
 " *** machakann/vim-swap
 let g:swap_no_default_key_mappings = 1
-
-" *** neoclide/coc.nvim
-augroup CoC
-    autocmd!
-    autocmd User CocNvimInit call <SID>initialize_coc()
-augroup END
-
-function! s:initialize_coc() abort
-    set formatexpr=CocAction('formatSelected')
-    set updatetime=300
-
-    augroup CoCInitialized
-        autocmd!
-        autocmd CursorHold * silent call CocActionAsync('highlight')
-        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-    augroup END
-endfunction
 
 " *** plasticboy/vim-markdown
 let g:vim_markdown_frontmatter = 1
@@ -472,16 +438,6 @@ nnoremap <silent> 0 :call ToggleMovement('^', '0')<CR>
 " Close extraneous windows
 nnoremap <silent> <leader><Esc> :pclose<CR>:cclose<CR>:lclose<CR>:Vista!<CR>:NERDTreeClose<CR>
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-    if (index(['vim', 'help'], &filetype) >= 0)
-        execute 'h ' . expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
 " *** Prefix <leader><leader>: change settings
 nnoremap <silent> <leader><leader>2 :call SetTabstop(2)<CR>:echo "Indentation level: 2"<CR>
 nnoremap <silent> <leader><leader>4 :call SetTabstop(4)<CR>:echo "Indentation level: 4"<CR>
@@ -507,20 +463,15 @@ nnoremap <leader>f* "ayiw:FzfAg <C-R>a<CR>
 nnoremap <leader>f] :sp<CR>:exec("tag " . expand("<cword>"))<CR>
 nnoremap <silent> <leader>fn :NERDTreeToggle<CR>
 nnoremap <silent> <leader>fN :NERDTreeFind<CR>
-nmap <silent> <leader>fr <Plug>(coc-references)
 nnoremap <leader>fv :Vista<CR><C-W><C-P>
 nnoremap <leader>fw :FzfVimwiki<Space>
 
 " " *** Prefix <leader>g: going to places and Gitting things
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :0Glog!<CR>
-nmap <silent> <leader>g] <Plug>(coc-definition)
-nmap <silent> <leader>gt <Plug>(coc-type-definition)
-nmap <silent> <leader>gi <Plug>(coc-implementation)
 
 " " *** Prefix <leader>m: running make
 nnoremap <leader>mm :Make<CR>
-nnoremap <leader>md :CocList diagnostics<CR>
 nmap <silent> <leader>mf :ALEFix<CR>
 nnoremap <leader>m<Esc> :AbortDispatch<CR>
 
@@ -531,12 +482,6 @@ nnoremap <Leader>r* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
 nnoremap <Leader>r# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 nmap <leader>r< <Plug>(swap-prev)
 nmap <leader>r> <Plug>(swap-next)
-nmap <silent> <leader>rf <Plug>(coc-fix-current)
-nnoremap <silent> <leader>ro :call CocAction('runCommand', 'editor.action.organizeImport')<CR>
-nmap <silent> <leader>rr <Plug>(coc-rename)
-nmap <silent> <leader>r<CR> :CocAction<CR>
-vmap <silent> <leader>r<CR> <Plug>(coc-codeaction-selected)
-nmap <silent> <leader>r<Space> <Plug>(coc-refactor)
 
 " *** Prefix <leader>b: buffers
 nnoremap <silent> <leader>bb :b#<CR>
@@ -547,9 +492,6 @@ nnoremap <silent> <leader>b<Esc> :%bd\|e#<CR>:echo "All other buffers closed."<C
 nnoremap <leader>w_ <C-W>_
 nnoremap <leader>w= <C-W>=
 nmap <leader>w<space> <Plug>(zoom-toggle)
-
-" *** Prefix <leader>c: CoC
-nnoremap <silent> <leader>cc :<C-u>CocList commands<cr>
 
 " *** Command-line mode
 " Expand %% to the directory of the currently open file, in Command-Line mode.
