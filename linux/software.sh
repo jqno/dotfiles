@@ -28,6 +28,7 @@ install_apt fonts-firacode
 install_apt fonts-open-sans
 install_apt fzf
 install_apt git
+install_apt gnome-tweaks
 install_apt gnupg
 install_apt jq
 install_apt kitty
@@ -42,6 +43,8 @@ install_apt silversearcher-ag
 install_apt subversion
 install_apt tig
 install_apt vim
+install_apt wmctrl
+install_apt xclip
 install_apt zsh
 install_apt zsh-autosuggestions
 install_apt zsh-syntax-highlighting
