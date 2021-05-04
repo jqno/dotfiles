@@ -13,14 +13,14 @@ source ~/.zsh/aliases.sh
 source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/vim-terminal-mode.sh
-source ~/.setEnv/session.sh
+#source ~/.setEnv/session.sh
 
 # Zsh plugins
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Enable FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -32,6 +32,6 @@ fi
 
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
+#source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+#[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 
