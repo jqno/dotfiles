@@ -1,4 +1,6 @@
-if [ "$(uname -s)" == "Darwin" ]; then
+#!/usr/bin/env bash
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
   echo "Writing macOS settings..."
 
   # Ideas taken from https://mths.be/macos

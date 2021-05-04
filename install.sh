@@ -34,7 +34,7 @@ function installDotfiles() {
   installFor "pylintrc"
 
   # OS-dependent
-  if [ "$OSNAME" == "Darwin" ]; then
+  if [[ "$OSNAME" == "Darwin" ]]; then
     scriptFor "macos/macos"
     installFor "macos/hammerspoon" ".hammerspoon"
     installFor "macos/karabiner.json" ".config/karabiner/karabiner.json" ".config/karabiner"
@@ -51,7 +51,7 @@ function installDotfiles() {
 ## $3 = IN
 function installFor() {
   FROM=$1
-  if [ "$2" == "" ]; then
+  if [[ "$2" == "" ]]; then
     TO=".$FROM"
   else
     TO=$2
@@ -71,7 +71,7 @@ function scriptFor() {
   . $PWD/$1.sh
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
+if [[ "$1" == "--force" -o "$1" == "-f" ]]; then
   installDotfiles
 else
   read -p "** This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;

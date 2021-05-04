@@ -6,9 +6,9 @@ function installSoftware() {
   echo "** Some dependencies need the administrator password:"
   sudo -v
 
-  if [ "$(uname -s)" == "Darwin" ]; then
+  if [[ "$(uname -s)" == "Darwin" ]]; then
     installMacos
-  elif [ "$(uname -s)" == "Linux" ]; then
+  elif [[ "$(uname -s)" == "Linux" ]]; then
     installLinux
   else
     echo "** Not running on a supported OS! Can't install software! Abort abort!"

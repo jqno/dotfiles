@@ -28,7 +28,7 @@ popd > /dev/null
 # Java-debug
 echo "** Installing java-debug"
 pushd $BIN > /dev/null
-git clone git@github.com:microsoft/java-debug.git
+git clone https://github.com/microsoft/java-debug.git
 cd java-debug
 ./mvnw clean install -DskipTests
 popd > /dev/null
@@ -37,7 +37,7 @@ popd > /dev/null
 # VSCode-java-test
 echo "** Installing vscode-java-test"
 pushd $BIN > /dev/null
-git clone git@github.com:microsoft/vscode-java-test.git
+git clone https://github.com/microsoft/vscode-java-test.git
 cd vscode-java-test
 npm install
 npm run build-plugin
@@ -61,7 +61,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile c
 echo "** Installing Sumneko-lua language server"
 pushd $BIN > /dev/null
 OSNAME="$(uname -s)"
-if [ "$OSNAME" == "Darwin" ]; then
+if [[ "$OSNAME" == "Darwin" ]]; then
   PLATFORM="macos"
 else
   PLATFORM="linux"
@@ -76,7 +76,7 @@ compile/install.sh
 cd ../..
 ./3rd/luamake/luamake rebuild
 
-if [ "$PLATFORM" == "macos" ]; then
+if [[ "$PLATFORM" == "macos" ]]; then
   ln -s $BIN/lua-language-server/bin/OSX $BIN/lua-language-server/bin/macOS
 fi
 

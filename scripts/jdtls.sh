@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 SERVERPATH="$HOME/bin/eclipse-jdt-ls"
 
@@ -6,7 +6,7 @@ SERVERPATH="$HOME/bin/eclipse-jdt-ls"
 #   -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044 \
 
 CONFIGPATH=config_linux
-if [ "$(uname -s)" == "Darwin" ]; then
+if [[ "$(uname -s)" == "Darwin" ]]; then
   CONFIGPATH=config_mac
 fi
 DATAPATH="$HOME/.jdtls/${1:-unspecified}"
