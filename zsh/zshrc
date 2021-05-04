@@ -32,6 +32,6 @@ fi
 
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-#[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
+source $HOME/bin/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 

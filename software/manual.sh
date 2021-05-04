@@ -5,6 +5,11 @@ rm -rf $BIN
 mkdir $BIN
 
 
+# Powerlevel10k
+echo "** Installing Powerlevel10k"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $BIN/powerlevel10k
+
+
 # Java toolchain
 echo "** Installing Java toolchain"
 curl -s "https://get.sdkman.io?rcupdate=false" | bash

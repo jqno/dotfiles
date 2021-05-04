@@ -9,7 +9,6 @@ tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "romkatv/powerlevel10k"
 tap "universal-ctags/universal-ctags"
 
 # Required for installing other things
@@ -46,7 +45,6 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 
 brew "heroku/brew/heroku"
-brew "romkatv/powerlevel10k/powerlevel10k"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 
 cask "alfred"
