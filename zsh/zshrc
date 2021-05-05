@@ -16,8 +16,13 @@ source ~/.zsh/vim-terminal-mode.sh
 #source ~/.setEnv/session.sh
 
 # Zsh plugins
-#source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [[ "$(uname -s)" == "Linux" ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 if [[ "$(uname -s)" == "Darwin" ]]; then
