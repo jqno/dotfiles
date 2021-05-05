@@ -19,9 +19,6 @@ source ~/.zsh/vim-terminal-mode.sh
 #source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Enable FZF
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 if [[ "$(uname -s)" == "Darwin" ]]; then
   export SDKMAN_DIR="/Users/jqno/.sdkman"
