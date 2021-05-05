@@ -63,9 +63,10 @@ git config --global alias.review "!f() { git difftool --tool=kdiff3 --dir-diff \
 if [[ `uname -s` == MINGW* ]]; then
   # Windows
   git config --global core.autocrlf true
+elif [[ `uname -s` == "Darwin" ]]; then
+  git config --global credential.helper osxkeychain
 else
   # Unix
-  # git config --global credential.helper cache
-  git config --global credential.helper osxkeychain
+  git config --global credential.helper cache
 fi
 
