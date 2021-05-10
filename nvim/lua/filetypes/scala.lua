@@ -11,7 +11,9 @@ function This.dap_run()
     type = 'scala',
     request = 'launch',
     name = 'Run',
-    metalsRunType = 'run'
+    metals = {
+      runType = "run"
+    }
   })
 end
 
@@ -20,7 +22,9 @@ function This.dap_run_test()
     type = 'scala',
     request = 'launch',
     name = 'Test File',
-    metalsRunType = 'testFile'
+    metals = {
+      runType = "run"
+    }
   })
 end
 
