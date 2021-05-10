@@ -54,4 +54,5 @@ install_snap intellij-idea-community
 install_snap keepassxc
 install_snap rambox
 install_snap spotify
+install_snap universal-ctags
 
