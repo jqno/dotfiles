@@ -12,6 +12,7 @@ source ~/.zsh/environment.sh
 source ~/.zsh/aliases.sh
 source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
+source ~/.zsh/fzf.zsh
 source ~/.zsh/vim-terminal-mode.sh
 #source ~/.setEnv/session.sh
 
