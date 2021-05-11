@@ -28,5 +28,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
 # Initialize JAVA_HOME for use in `.zprofile` where `setjdk` is not available
-export JAVA_HOME="$SDKMAN_DIR/candidates/java/current"
+export JAVA_HOME="$JABBA_HOME/jdk/adopt@1.11.0-11"
 
