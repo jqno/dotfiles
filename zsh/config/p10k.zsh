@@ -47,6 +47,8 @@
     status                  # exit code of the last command
     java_version            # java version (https://www.java.com/)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
+    vpn_ip                  # virtual private network indicator
     command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -1496,8 +1498,8 @@
 
   ########################[ vpn_ip: virtual private network indicator ]#########################
   # VPN IP color.
-  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_VPN_IP_BACKGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_VPN_IP_FOREGROUND=$SECONDARY_FOREGROUND
+  typeset -g POWERLEVEL9K_VPN_IP_BACKGROUND=$SECONDARY_BACKGROUND
   # When on VPN, show just an icon without the IP address.
   # Tip: To display the private IP address when on VPN, remove the next line.
   typeset -g POWERLEVEL9K_VPN_IP_CONTENT_EXPANSION=
