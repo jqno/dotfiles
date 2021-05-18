@@ -25,7 +25,10 @@ function This.jdtls_config()
   vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
 
   return {
-    cmd = { 'jdtls.sh', vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t') },
+    cmd = {
+      require('lspinstall/util').install_path('java') .. '/' .. 'jdtls.sh',
+      vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+    },
     init_options = {
       bundles = jdtls_bundles
     },

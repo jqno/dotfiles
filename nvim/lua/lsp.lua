@@ -1,6 +1,7 @@
 local This = {}
 
 local lsp = require('lspconfig')
+local lspinstall = require('lspinstall')
 local vim_util = require('vim-util')
 
 function This.on_attach(client, bufnr)
@@ -28,10 +29,27 @@ function This.on_attach(client, bufnr)
   end
 end
 
-local function setup_lsp()
-  require('nlua.lsp.nvim').setup(lsp, {
+local function make_config()
+  return {
     on_attach = This.on_attach
-  })
+  }
+end
+
+local function setup_lsp()
+  lspinstall.setup()
+
+  local servers = lspinstall.installed_servers()
+  for _, server in pairs(servers) do
+    local config = make_config()
+
+    if server == 'lua' then
+      config.settings = require('filetypes.lua').lsp_config
+    end
+
+    if server ~= 'java' and server ~= 'scala' then
+      lsp[server].setup(config)
+    end
+  end
 
   vim_util.augroup('lsp_define', [[
     autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
@@ -55,9 +73,17 @@ local function setup_lspsaga()
   })
 end
 
+local function setup_lspinstall_hook()
+  require('lspinstall').post_install_hook = function()
+    setup_lsp()
+    vim.cmd('bufdo e')
+  end
+end
+
 function This.setup()
   setup_lsp()
   setup_lspsaga()
+  setup_lspinstall_hook()
 end
 
 return This

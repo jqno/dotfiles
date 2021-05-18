@@ -25,12 +25,6 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  export JABBA_HOME="/Users/jqno/.jabba"
-elif [[ "$(uname -s)" == "Linux" ]]; then
-  export JABBA_HOME="/home/jqno/.jabba"
-fi
 [ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
 
 # Enable Powerlevel10k

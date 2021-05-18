@@ -5,6 +5,7 @@ local vim_util = require('vim-util')
 
 function This.setup()
   vim_util.augroup('configure_filetypes', [[
+    autocmd FileType lua      lua require('filetypes.lua').setup()
     autocmd FileType java     lua require('filetypes.java').setup()
     autocmd FileType markdown lua require('filetypes.markdown').setup()
     autocmd FileType vimwiki  lua require('filetypes.vimwiki').setup()

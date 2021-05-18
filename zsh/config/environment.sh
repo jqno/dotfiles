@@ -28,5 +28,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
 # Initialize JAVA_HOME for use in `.zprofile` where `setjdk` is not available
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  export JABBA_HOME="/Users/jqno/.jabba"
+elif [[ "$(uname -s)" == "Linux" ]]; then
+  export JABBA_HOME="/home/jqno/.jabba"
+fi
 export JAVA_HOME="$JABBA_HOME/jdk/adopt@1.11.0-11"
 
