@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 # Allows for the switching of certain specific configuration files between profiles. Currently it supports:
 #

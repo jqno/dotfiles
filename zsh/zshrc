@@ -14,7 +14,7 @@ source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/fzf.zsh
 source ~/.zsh/vim-terminal-mode.sh
-#source ~/.setEnv/session.sh
+source ~/.setEnv/session.sh
 
 # Zsh plugins
 if [[ "$(uname -s)" == "Darwin" ]]; then
