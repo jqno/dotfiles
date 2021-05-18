@@ -74,7 +74,7 @@ This.mappings = {
     symbols_workspace   = '<leader>fS',
     tree                = '<leader>fn',
     tree_follow         = '<leader>fN',
-    wiki                = '<leader>f<F12>'
+    wiki                = '<leader>fw'
   },
   git = {
     blame_line          = '<leader>Gb',
@@ -96,12 +96,6 @@ This.mappings = {
     format              = '<leader>mf',
     rebuild             = '<leader>mr'
   },
-  notes = {
-    diary_gen           = '<leader>ng',
-    diary_index         = '<leader>nd',
-    diary_today         = '<F11>',
-    index               = '<F12>'
-  },
   refactor = {
     code_action         = '<leader>r<CR>',
     extract_method      = '<leader>rm',
@@ -120,10 +114,16 @@ This.mappings = {
     peek_function       = '<leader>sf',
     signature_help      = '<leader>ss'
   },
+  wiki = {
+    diary_gen           = '<leader>wg',
+    diary_index         = '<leader>wd',
+    diary_today         = '<F12>',
+    index               = '<leader>ww'
+  },
   window = {
-    equalize            = '<leader>w=',
-    rotate              = '<leader>w0',
-    zoom                = '<leader>wz'
+    equalize            = '<leader>W=',
+    rotate              = '<leader>W0',
+    zoom                = '<leader>Wz'
   }
 }
 
@@ -253,15 +253,15 @@ local function define_mappings()
       '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>')
 
 
-  -- NOTES --
-  local notes = This.mappings.notes
-  map(This.modes.n, notes.diary_gen,
+  -- WIKI --
+  local wiki = This.mappings.wiki
+  map(This.modes.n, wiki.diary_gen,
       '<cmd>VimwikiDiaryGenerateLinks<CR>')
-  map(This.modes.n, notes.diary_index,
+  map(This.modes.n, wiki.diary_index,
       '<cmd>VimwikiDiaryIndex<CR>')
-  map(This.modes.n, notes.diary_today,
+  map(This.modes.n, wiki.diary_today,
       '<Plug>VimwikiMakeDiaryNote', { noremap = false })
-  map(This.modes.n, notes.index,
+  map(This.modes.n, wiki.index,
       '<cmd>VimwikiIndex<CR>')
 
 
