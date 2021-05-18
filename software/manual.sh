@@ -57,11 +57,6 @@ chmod +x cs
 popd > /dev/null
 
 
-# Rust toolchain
-echo "** Installing Rust toolchain"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile complete
-
-
 # Sumneko Lua Language Server
 echo "** Installing Sumneko-lua language server"
 pushd $BIN > /dev/null
