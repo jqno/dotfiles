@@ -272,7 +272,7 @@ local function define_mappings()
   map(This.modes.n, window.rotate,
       '<cmd>wincmd r<CR>')
   map(This.modes.n, window.zoom,
-      '<cmd>wincmd _<CR>')
+      '<cmd>ZenMode<CR>')
 
 
   -- IN SPECIFIC MODES --
