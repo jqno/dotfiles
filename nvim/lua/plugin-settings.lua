@@ -2,6 +2,7 @@ local This = {}
 
 local g = vim.g
 local mappings = require('mappings').mappings
+local vim_util = require('vim-util')
 
 
 local function setup_colorizer()
@@ -145,7 +146,7 @@ end
 local function setup_vimwiki()
   g.vimwiki_location = '~/Dropbox/notes'
   g.vimwiki_list = {
-    { path = g.vimwiki_location, syntax = 'markdown', ext = '.mkdn', links_space_char = '_' }
+    { path = g.vimwiki_location, syntax = 'markdown', ext = '.mkdn', links_space_char = '_', diary_caption_level = -1 }
   }
   g.vimwiki_global_ext = 0
   g.vimwiki_markdown_link_ext = 1
@@ -155,6 +156,10 @@ local function setup_vimwiki()
     { ['1'] = 'Januari', ['2'] = 'Februari', ['3'] = 'Maart', ['4'] = 'April',
       ['5'] = 'Mei', ['6'] = 'Juni', ['7'] = 'Juli', ['8'] = 'Augustus',
       ['9'] = 'September', ['10'] = 'Oktober', ['11'] = 'November', ['12'] = 'December' }
+
+  vim_util.augroup('vimwiki', [[
+    autocmd BufRead,BufNewFile diary.mkdn VimwikiDiaryGenerateLinks
+  ]])
 end
 
 
