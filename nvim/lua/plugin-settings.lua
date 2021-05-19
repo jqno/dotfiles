@@ -14,7 +14,7 @@ local function setup_gitsigns()
     keymaps = {
       noremap = true,
       buffer = true,
-      
+
       ['n ' .. mappings.unimpaired.git_hunk_next] =
           { expr = true, [[&diff ? ']c' : '<cmd>lua require("gitsigns").next_hunk()<CR>']]},
       ['n ' .. mappings.unimpaired.git_hunk_prev] =

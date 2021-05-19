@@ -48,7 +48,7 @@ local schemes = {
 local separators = {
   open = function() return symbols.open end,
   close = function() return symbols.close end
-} 
+}
 
 local function space()
   return ' '
