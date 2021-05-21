@@ -19,9 +19,11 @@ install_apt python3
 install_apt python3-pip
 install_snap ruby
 
+install_apt abcde
 install_apt curl
 install_apt docker
 install_apt docker-compose
+install_apt eyed3
 install_apt fd-find
 install_apt fonts-comic-neue
 install_apt fonts-firacode
@@ -32,6 +34,7 @@ install_apt gnome-tweaks
 install_apt gnupg
 install_apt jq
 install_apt kitty
+install_apt lame
 install_apt maven
 install_apt neovim
 install_apt ninja-build

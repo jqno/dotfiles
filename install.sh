@@ -41,6 +41,8 @@ function installDotfiles() {
 
     # .yabairc needs to be executed as a script
     ~/.yabairc install
+  elif [[ "$OSNAME" == "Linux" ]]; then
+    installFor "linux/abcde.conf" ".abcde.conf"
   fi
 }
 
