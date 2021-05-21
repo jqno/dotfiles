@@ -67,7 +67,7 @@ end
 
 
 local function setup_telescope()
-  local telescope = require('telescope') 
+  local telescope = require('telescope')
   local actions = require('telescope.actions')
 
   telescope.setup({
@@ -89,7 +89,7 @@ end
 local function setup_treesitter()
   require('nvim-treesitter.configs').setup({
     ensure_installed = 'maintained',
-    highlight = { 
+    highlight = {
       enable = true,
       disable = { 'lua' } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
     },
