@@ -81,6 +81,10 @@
 #
 #     export SETENV_MARKER=🏠
 #
+# For completeness, you can add the same text into the `marker` file. This is important if you want to
+# make sure that the prompt knows when the environment was changed in another session: changed environment
+# aren't propagated to other sessions, but files are.
+#
 # Note that this script doesn't actually add it to your prompt; you need to arrange for that yourself.
 
 if [[ -z "$1" ]]; then
@@ -101,6 +105,11 @@ if [[ -e $SETENVDIR/shutdown.sh ]]; then
 fi
 
 echo "Swapping to $ENVDIR"
+
+if [[ -e $ENVDIR/marker ]]; then
+  rm $SETENVDIR/marker
+  cp $ENVDIR/marker $SETENVDIR/marker
+fi
 
 if [[ -e $HOME/.setEnv/use-npmrc ]]; then
   if [[ -e $ENVDIR/npmrc ]]; then

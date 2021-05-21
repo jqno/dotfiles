@@ -1679,7 +1679,13 @@
   }
   #################################[ env-var: SETENV_MARKER ]##################################
   function prompt_setenv_marker() {
-    p10k segment -b $HIGHLIGHT_BACKGROUND -f $HIGHLIGHT_FOREGROUND -t "$SETENV_MARKER" -c "$SETENV_MARKER"
+    SETENV_FILE_MARKER="$(cat ~/.setEnv/marker)"
+    if [ -z "$SETENV_FILE_MARKER" ]; then
+      SETENV_FILE_MARKER="⊥"
+    fi
+    SETENV_DISPLAY="$SETENV_MARKER$SETENV_FILE_MARKER"
+    [[ "$SETENV_FILE_MARKER" == "$SETENV_MARKER" ]] && SETENV_DISPLAY="$SETENV_MARKER"
+    p10k segment -b $HIGHLIGHT_BACKGROUND -f $HIGHLIGHT_FOREGROUND -t "$SETENV_DISPLAY" -c "$SETENV_MARKER"
   }
   function instant_prompt_setenv_marker() {
     prompt_setenv_marker
