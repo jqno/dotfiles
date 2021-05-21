@@ -45,7 +45,7 @@ end
 local function setup_nvim_tree()
   g.nvim_tree_auto_close = 1
   g.nvim_tree_follow = 1
-  g.nvim_tree_gitignore = 1
+  g.nvim_tree_gitignore = 0
   g.nvim_tree_show_icons = { git = 0, folders = 1 }
   g.nvim_tree_quit_on_open = 1
   g.nvim_tree_icons = {
