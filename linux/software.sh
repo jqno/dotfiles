@@ -46,6 +46,8 @@ install_apt scala
 install_apt silversearcher-ag
 install_apt subversion
 install_apt tig
+install_apt tlp
+install_apt tlp-rdw
 install_apt vim
 install_apt wmctrl
 install_apt xclip
