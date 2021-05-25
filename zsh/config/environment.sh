@@ -33,5 +33,4 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 elif [[ "$(uname -s)" == "Linux" ]]; then
   export JABBA_HOME="/home/jqno/.jabba"
 fi
-export JAVA_HOME="$JABBA_HOME/jdk/adopt@1.11.0-11"
 

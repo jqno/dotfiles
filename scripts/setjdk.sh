@@ -5,7 +5,7 @@
 # alias setjdk=". setjdk.sh"
 
 function print_usage() {
-    echo "Available versions: "
+    echo "Available JDK versions: "
     jabba ls
     echo
     echo "Current:"
@@ -20,7 +20,7 @@ if [[ $# -eq 1 ]]; then
   if [[ -z $IDENTIFIER ]]; then
     echo "No valid JDK found for version [$VERSION_NUMBER]"
   else
-    echo "Switching to $IDENTIFIER"
+    echo "Switching JDK to $IDENTIFIER"
     jabba use $IDENTIFIER
   fi
 else

@@ -26,6 +26,7 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 fi
 
 [ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
+source setjdk.sh 11 > /dev/null
 
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
