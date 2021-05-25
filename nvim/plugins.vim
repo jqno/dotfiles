@@ -6,6 +6,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 Plug 'farmergreg/vim-lastplace'
+Plug 'folke/which-key.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'gcmt/wildfire.vim'
 Plug 'glepnir/galaxyline.nvim'

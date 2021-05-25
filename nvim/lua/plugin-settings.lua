@@ -1,7 +1,6 @@
 local This = {}
 
 local g = vim.g
-local mappings = require('mappings').mappings
 local vim_util = require('vim-util')
 
 
@@ -16,23 +15,15 @@ local function setup_gitsigns()
       noremap = true,
       buffer = true,
 
-      ['n ' .. mappings.unimpaired.git_hunk_next] =
-          { expr = true, [[&diff ? ']c' : '<cmd>lua require("gitsigns").next_hunk()<CR>']]},
-      ['n ' .. mappings.unimpaired.git_hunk_prev] =
-          { expr = true, [[&diff ? '[c' : '<cmd>lua require("gitsigns").prev_hunk()<CR>']]},
+      ['n ]g'] = { expr = true, [[&diff ? ']c' : '<cmd>lua require("gitsigns").next_hunk()<CR>']]},
+      ['n [g'] = { expr = true, [[&diff ? '[c' : '<cmd>lua require("gitsigns").prev_hunk()<CR>']]},
 
-      ['n ' .. mappings.git.stage_hunk] =
-          '<cmd>lua require("gitsigns").stage_hunk()<CR>',
-      ['n ' .. mappings.git.undo_stage_hunk] =
-          '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
-      ['n ' .. mappings.git.reset_hunk] =
-          '<cmd>lua require("gitsigns").reset_hunk()<CR>',
-      ['n ' .. mappings.git.reset_buffer] =
-          '<cmd>lua require("gitsigns").reset_buffer()<CR>',
-      ['n ' .. mappings.git.preview_hunk] =
-          '<cmd>lua require("gitsigns").preview_hunk()<CR>',
-      ['n ' .. mappings.git.blame_line] =
-          '<cmd>lua require("gitsigns").blame_line()<CR>',
+      ['n <leader>Gs'] = '<cmd>lua require("gitsigns").stage_hunk()<CR>',
+      ['n <leader>Gu'] = '<cmd>lua require("gitsigns").undo_stage_hunk()<CR>',
+      ['n <leader>Gr'] = '<cmd>lua require("gitsigns").reset_hunk()<CR>',
+      ['n <leader>GR'] = '<cmd>lua require("gitsigns").reset_buffer()<CR>',
+      ['n <leader>Gp'] = '<cmd>lua require("gitsigns").preview_hunk()<CR>',
+      ['n <leader>Gb'] = '<cmd>lua require("gitsigns").blame_line()<CR>',
 
       -- Text objects
       ['o ig'] = ':<C-U>lua require("gitsigns").select_hunk()<CR>',
@@ -74,8 +65,8 @@ local function setup_telescope()
     defaults = {
       mappings = {
         i = {
-          [mappings.specific_modes.telescope_i_split] = actions.select_horizontal,
-          [mappings.specific_modes.telescope_i_close] = actions.close
+          ['<Space>'] = actions.select_horizontal,
+          ['<Esc>'] = actions.close
         },
       },
       prompt_prefix = '❯ ',
@@ -96,8 +87,8 @@ local function setup_treesitter()
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = mappings.various.wildfire,
-        node_incremental = mappings.various.wildfire
+        init_selection = '<CR>',
+        node_incremental = '<CR>'
       }
     },
     textobjects = {
@@ -108,26 +99,26 @@ local function setup_treesitter()
       swap = {
         enable = true,
         swap_next = {
-          [mappings.refactor.swap_next] = '@parameter.inner'
+          ['<leader>r>'] = '@parameter.inner'
         },
         swap_previous = {
-          [mappings.refactor.swap_prev] = '@parameter.inner'
+          ['<leader>r<'] = '@parameter.inner'
         }
       },
       move = {
         enable = true,
         goto_next_start = {
-          [mappings.unimpaired.function_next] = '@function.outer'
+          [']]'] = '@function.outer'
         },
         goto_previous_start = {
-          [mappings.unimpaired.function_prev] = '@function.outer'
+          ['[['] = '@function.outer'
         }
       },
       lsp_interop = {
         enable = true,
         peek_definition_code = {
-          [mappings.show.peek_class] = '@class.outer',
-          [mappings.show.peek_function] = '@function.outer'
+          ['<leader>sc'] = '@class.outer',
+          ['<leader>sf'] = '@function.outer'
         }
       }
     }
@@ -163,6 +154,11 @@ local function setup_vimwiki()
 end
 
 
+local function setup_whichkey()
+  require('which-key').setup({})
+end
+
+
 local function setup_wildfire()
   g.wildfire_objects = {
     ['scala'] = { 'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip' },
@@ -180,6 +176,7 @@ function This.setup()
   setup_treesitter()
   setup_ultisnips()
   setup_vimwiki()
+  setup_whichkey()
   setup_wildfire()
 end
 

@@ -1,4 +1,6 @@
 local This = {}
+
+local wk = require('which-key').register
 local dap = require('dap')
 
 local function dap_run(config)
@@ -36,18 +38,18 @@ function This.metals_config()
       require('metals').setup_dap()
       require('mappings').setup_dap(bufnr)
 
-      local buf_map = require('vim-util').buf_map
-      local mappings = require('mappings').mappings
-      local modes = require('mappings').modes
-
-      buf_map(bufnr, modes.n, mappings.debug.run,
-          '<cmd>lua require("filetypes.scala").dap_run()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("filetypes.scala").dap_run_test()<CR>')
-      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
-          '<cmd>MetalsOrganizeImports<CR>')
-      buf_map(bufnr, modes.n, mappings.make.rebuild,
-          '<cmd>MetalsCompileClean<CR>')
+      wk({
+        ['<leader>d'] = {
+          r = { '<cmd>lua require("filetypes.scala").dap_run()<CR>', 'run' },
+          t = { '<cmd>lua require("filetypes.scala").dap_run_test()<CR>', 'test' },
+        },
+        ['<leader>r'] = {
+          o = { '<cmd>MetalsOrganizeImports<CR>', 'organize imports' }
+        },
+        ['<leader>m'] = {
+          r = { '<cmd>MetalsCompileClean<CR>', 'rebuild' }
+        }
+      })
     end,
     init_options = {
       showImplicitArguments = true,

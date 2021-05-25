@@ -35,6 +35,7 @@ silent! let g:plugs['vim-numbertoggle'].commit = '97f2a3c7e9ab769686a5f29109bd1a
 silent! let g:plugs['vim-prettier'].commit = 'e7564653bccc34a2564ccd9463483af2965d148e'
 silent! let g:plugs['vim-sandwich'].commit = '9e6340affe9f53c11a6975a5f50b9bf48adb692c'
 silent! let g:plugs['vimwiki'].commit = '619f04f89861c58e5a6415a4f83847752928252d'
+silent! let g:plugs['which-key.nvim'].commit = '20a85bd8bc54a11cf040aafa5d60f8a735eecfbd'
 silent! let g:plugs['wildfire.vim'].commit = 'e2baded7162260e05d2527f5bca9fca81f0bc8f2'
 silent! let g:plugs['zen-mode.nvim'].commit = 'f90fd8ddbbb0516416a372ce15f9b7cf40a6c233'
 

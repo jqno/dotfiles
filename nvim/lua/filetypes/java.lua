@@ -1,5 +1,6 @@
 local This = {}
 
+local wk = require('which-key').register
 local dap = require('dap')
 local jdtls = require('jdtls')
 local util = require('util')
@@ -39,37 +40,33 @@ function This.jdtls_config()
       require('jdtls').setup_dap()
       require('mappings').setup_dap(bufnr)
 
-      local buf_map = require('vim-util').buf_map
-      local mappings = require('mappings').mappings
       local modes = require('mappings').modes
 
-      buf_map(bufnr, modes.n, mappings.debug.run,
-          '<cmd>lua require("dap").continue()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test,
-          '<cmd>lua require("filetypes.java").dap_run_test()<CR>')
-      buf_map(bufnr, modes.n, mappings.debug.test_nearest,
-          '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>')
+      wk({
+        ['<leader>d'] = {
+          r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
+          t = { '<cmd>lua require("filetypes.java").dap_run_test()<CR>', 'test file' },
+          n = { '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>', 'test nearest' }
+        },
+        ['<leader>r'] = {
+          j = { '<cmd>lua require("jdtls").code_action()<CR>', 'Java code actions' },
+          R = { '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>', 'menu' },
+          o = { '<cmd>lua require("jdtls").organize_imports()<CR>', 'organize imports' },
+          v = { '<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable' }
+        },
+        ['<leader>m'] = {
+          f = { '<cmd>PrettierAsync<CR>', 'format' },
+          r = { '<cmd>lua require("jdtls").update_project_config()<CR>', 'reload' }
+        }
+      }, { buffer = bufnr })
 
-      buf_map(bufnr, modes.n, mappings.refactor.code_action,
-          '<cmd>lua require("jdtls").code_action()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.code_action,
-          '<cmd>lua require("jdtls").code_action(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.menu,
-          '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>')
-
-      buf_map(bufnr, modes.n, mappings.refactor.extract_variable,
-          '<cmd>lua require("jdtls").extract_variable()<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.extract_variable,
-          '<cmd>lua require("jdtls").extract_variable(true)<CR>')
-      buf_map(bufnr, modes.v, mappings.refactor.extract_method,
-          '<cmd>lua require("jdtls").extract_method(true)<CR>')
-
-      buf_map(bufnr, modes.n, mappings.make.format,
-          '<cmd>PrettierAsync<CR>')
-      buf_map(bufnr, modes.n, mappings.refactor.organize_imports,
-          '<cmd>lua require("jdtls").organize_imports()<CR>')
-      buf_map(bufnr, modes.n, mappings.make.rebuild,
-          '<cmd>lua require("jdtls").update_project_config()<CR>')
+      wk({
+        ['<leader>r'] = {
+          j = { '<cmd>lua require("jdtls").code_action(true)<CR>', 'Java code actions' },
+          m = { '<cmd>lua require("jdtls").extract_method(true)<CR>', 'extract method' },
+          v = { '<cmd>lua require("jdtls").extract_variable(true)<CR>', 'extract variable' }
+        }
+      }, { buffer = bufnr, mode = modes.v })
     end,
   }
 end
