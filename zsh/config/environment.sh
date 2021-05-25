@@ -10,7 +10,7 @@ if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   elif [[ "$(uname -s)" == "Linux" ]]; then
     export PATH=~/.local/bin:~/.npm-global/bin:~/.local/share/coursier/bin:$PATH
   fi
-  export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.npm-global:~/.cargo/bin:$PATH
+  export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.setEnv/scripts:~/.npm-global:~/.cargo/bin:$PATH
 fi
 
 # Default editor

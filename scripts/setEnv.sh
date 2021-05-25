@@ -34,6 +34,14 @@
 #                    directory.
 #
 #
+# Configuring scripts
+# ===================
+#
+# Place a folder called scripts in the profile directory to have its contents symlinked to ~/.setEnv/scritps on
+# profile activation. You can place ~/.setEnv/scripts on the PATH so that any scripts contained within the directory
+# will be available.
+#
+#
 # Configuring SSH
 # ===============
 #
@@ -109,6 +117,11 @@ echo "Swapping to $ENVDIR"
 if [[ -e $ENVDIR/marker ]]; then
   rm $SETENVDIR/marker
   cp $ENVDIR/marker $SETENVDIR/marker
+fi
+
+rm $SETENVDIR/scripts 2> /dev/null
+if [[ -e $ENVDIR/scripts ]]; then
+  ln -s $ENVDIR/scripts $SETENVDIR/scripts
 fi
 
 if [[ -e $HOME/.setEnv/use-npmrc ]]; then
