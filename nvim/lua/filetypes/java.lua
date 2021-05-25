@@ -37,7 +37,8 @@ function This.jdtls_config()
       require('lsp').on_attach(client, bufnr)
 
       require('jdtls.setup').add_commands()
-      require('jdtls').setup_dap()
+      require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+      require('jdtls.dap').setup_dap_main_class_configs()
       require('mappings').setup_dap(bufnr)
 
       local modes = require('mappings').modes
