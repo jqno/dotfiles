@@ -71,7 +71,7 @@ local function define_mappings()
 
   -- IN SPECIFIC MODES --
   map(This.modes.n, '<F12>',
-      '<Plug>VimwikiMakeDiaryNote', { noremap = true })
+      '<cmd>VimwikiMakeDiaryNote<CR>')
   map(This.modes.s, '<C-L>',
       '<Esc>:call UltiSnips#JumpForwards()<CR>', { nowait = true, silent = true })
   -- Expand %% to the directory of the currently open file
@@ -176,8 +176,8 @@ local function define_mappings()
       name = 'wiki',
       d = { '<cmd>VimwikiDiaryIndex<CR>', 'diary index' },
       g = { '<cmd>VimwikiDiaryGenerateLinks<CR>', 'generate diary' },
-      n = { '<Plug>VimwikiMakeDiaryNote', 'today' },
-      w = 'index',
+      n = { '<cmd>VimwikiMakeDiaryNote<CR>', 'today' },
+      w = { '<cmd>VimwikiIndex<CR>', 'index' },
       x = 'additional'
     },
     -- WINDOW --
