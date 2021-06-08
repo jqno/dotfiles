@@ -43,6 +43,7 @@ function installDotfiles() {
     ~/.yabairc install
   elif [[ "$OSNAME" == "Linux" ]]; then
     installFor "linux/abcde.conf" ".abcde.conf"
+    installFor "linux/Xmodmap" ".Xmodmap"
   fi
 }
 
