@@ -4,6 +4,11 @@ local g = vim.g
 local vim_util = require('vim-util')
 
 
+local function setup_closetag()
+  g.closetag_filetypes = 'html,xml'
+end
+
+
 local function setup_colorizer()
   require('colorizer').setup { 'css', 'html' }
 end
@@ -168,6 +173,7 @@ end
 
 
 function This.setup()
+  setup_closetag()
   setup_colorizer()
   setup_gitsigns()
   setup_nvim_tree()
