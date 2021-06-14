@@ -20,6 +20,7 @@ install_apt python3-pip
 install_snap ruby
 
 install_apt abcde
+install_apt awesome
 install_apt curl
 install_apt docker
 install_apt docker-compose
