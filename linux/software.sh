@@ -42,6 +42,7 @@ install_apt ninja-build
 install_apt pandoc
 install_apt python3-neovim
 install_apt ripgrep
+install_apt rofi
 install_apt rsync
 install_apt scala
 install_apt silversearcher-ag
