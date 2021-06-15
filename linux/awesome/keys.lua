@@ -4,6 +4,7 @@ local client = _G.client
 local gears = require('gears')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local root = _G.root
+local util = require('util')
 
 local modkey = 'Mod4'
 
@@ -56,7 +57,7 @@ local globalkeys = gears.table.join(
             { description = 'quit awesome', group = 'system' }),
   awful.key({ modkey, 'Control' }, 'r', awesome.restart,
             { description = 'reload awesome', group = 'system' }),
-  awful.key({ modkey }, 'BackSpace', function() awful.spawn.with_shell('~/.config/awesome/scripts/lock.sh') end,
+  awful.key({ modkey }, 'BackSpace', function() awful.spawn.with_shell(util.script('lock.sh')) end,
             { description = 'lock screen', group = 'system' }),
   awful.key({ modkey }, 's', hotkeys_popup.show_help,
             { description = 'show help', group = 'system' }),
