@@ -26,6 +26,7 @@ install_apt docker
 install_apt docker-compose
 install_apt eyed3
 install_apt fd-find
+install_apt feh
 install_apt fonts-comic-neue
 install_apt fonts-firacode
 install_apt fonts-open-sans
