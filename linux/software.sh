@@ -33,6 +33,7 @@ install_apt fzf
 install_apt git
 install_apt gnome-tweaks
 install_apt gnupg
+install_apt i3lock
 install_apt jq
 install_apt kitty
 install_apt lame
@@ -45,6 +46,7 @@ install_apt ripgrep
 install_apt rofi
 install_apt rsync
 install_apt scala
+install_apt scrot
 install_apt silversearcher-ag
 install_apt subversion
 install_apt tig
@@ -52,6 +54,7 @@ install_apt tlp
 install_apt tlp-rdw
 install_apt vim
 install_apt wmctrl
+install_apt xautolock
 install_apt xclip
 install_apt zsh
 install_apt zsh-autosuggestions

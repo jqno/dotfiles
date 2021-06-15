@@ -10,6 +10,8 @@ local modkey = 'Mod4'
 
 
 local globalkeys = gears.table.join(
+  awful.key({ modkey }, 'BackSpace', function() awful.spawn.with_shell('~/.config/awesome/scripts/lock.sh') end,
+            { description = 'lock screen', group = 'system' }),
   awful.key({ modkey }, 's', hotkeys_popup.show_help,
             { description = 'show help', group = 'awesome' }),
 
