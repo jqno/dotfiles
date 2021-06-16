@@ -1,0 +1,1 @@
+jqno ALL = (root) NOPASSWD: /usr/bin/brightnessctl

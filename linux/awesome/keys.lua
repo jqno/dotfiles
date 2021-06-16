@@ -57,7 +57,7 @@ local globalkeys = gears.table.join(
             { description = 'quit awesome', group = 'system' }),
   awful.key({ modkey, 'Control' }, 'r', awesome.restart,
             { description = 'reload awesome', group = 'system' }),
-  awful.key({ modkey }, 'BackSpace', function() awful.spawn.with_shell(util.script('lock.sh')) end,
+  awful.key({ modkey }, 'BackSpace', function() util.run_script('lock.sh') end,
             { description = 'lock screen', group = 'system' }),
   awful.key({ modkey }, 's', hotkeys_popup.show_help,
             { description = 'show help', group = 'system' }),
@@ -70,7 +70,18 @@ local globalkeys = gears.table.join(
   awful.key({ modkey }, 'Left', awful.tag.viewprev,
             { description = 'view previous', group = 'tag' }),
   awful.key({ modkey }, 'Right', awful.tag.viewnext,
-            { description = 'view next', group = 'tag' })
+            { description = 'view next', group = 'tag' }),
+
+  -- special keys
+  awful.key({}, 'XF86AudioRaiseVolume', function() util.adjust_volume('+5%') end),
+  awful.key({}, 'XF86AudioLowerVolume', function() util.adjust_volume('-5%') end),
+  awful.key({}, 'XF86AudioMute', function() util.mute() end),
+  awful.key({}, 'XF86AudioPlay', function() util.player('play-pause') end),
+  awful.key({}, 'XF86AudioPause', function() util.player('play-pause') end),
+  awful.key({}, 'XF86AudioNext', function() util.player('next') end),
+  awful.key({}, 'XF86AudioPrev', function() util.player('previous') end),
+  awful.key({}, 'XF86MonBrightnessUp', function() util.adjust_brightness('10%+') end),
+  awful.key({}, 'XF86MonBrightnessDown', function() util.adjust_brightness('10%-') end)
 )
 
 -- Bind all key numbers to tags.

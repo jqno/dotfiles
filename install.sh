@@ -45,6 +45,8 @@ function installDotfiles() {
     installFor "linux/abcde.conf" ".abcde.conf"
     installFor "linux/awesome" ".config/awesome" ".config"
     installFor "linux/Xmodmap" ".Xmodmap"
+
+    sudo cat linux/awesome/append-to-sudoers | sudo EDITOR='tee -a' visudo
   fi
 }
 

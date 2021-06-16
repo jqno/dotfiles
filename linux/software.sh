@@ -21,6 +21,7 @@ install_snap ruby
 
 install_apt abcde
 install_apt awesome
+install_apt brightnessctl
 install_apt curl
 install_apt docker
 install_apt docker-compose
@@ -42,6 +43,7 @@ install_apt maven
 install_apt neovim
 install_apt ninja-build
 install_apt pandoc
+install_apt playerctl
 install_apt python3-neovim
 install_apt ripgrep
 install_apt rofi
