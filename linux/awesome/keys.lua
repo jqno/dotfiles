@@ -7,9 +7,41 @@ local root = _G.root
 local util = require('util')
 
 local modkey = 'Mod4'
+local hyper = 'Mod3'
 
+
+local function activate(app, app_class)
+  local matcher = function(c)
+    return awful.rules.match(c, {class = app_class})
+  end
+
+  awful.spawn.raise_or_spawn(app, nil, matcher)
+end
+
+local apps = {
+  ['1'] = { 'rambox', 'Rambox' },
+  ['2'] = { 'teams', 'Microsoft Teams - Preview' },
+  ['3'] = { 'chromium', 'Chromium' },
+  Return = { 'kitty', 'Kitty' },
+  f = { 'nautilus', 'Org.gnome.Nautilus' },
+  m = { 'mailspring', 'Mailspring' },
+  s = { 'spotify', 'Spotify' },
+  w = { 'firefox', 'Firefox' }
+}
+
+local function generate_app_keys()
+  local result = {}
+  for key, app in pairs(apps) do
+    local k = awful.key({ hyper }, key, function () activate(app[1], app[2]) end,
+                        { description = app[1], group = 'launcher' })
+    result = gears.table.join(result, k)
+  end
+  return result
+end
 
 local globalkeys = gears.table.join(
+  generate_app_keys(),
+
   -- client
   awful.key({ modkey, 'Shift' }, 'j', function () awful.client.swap.byidx(1) end,
             { description = 'swap with next client by index', group = 'client' }),
@@ -61,8 +93,6 @@ local globalkeys = gears.table.join(
             { description = 'lock screen', group = 'system' }),
   awful.key({ modkey }, 's', hotkeys_popup.show_help,
             { description = 'show help', group = 'system' }),
-  awful.key({ modkey }, 'w', function () mymainmenu:show() end,
-            { description = 'show main menu', group = 'system' }),
 
   -- tag
   awful.key({ modkey }, 'Escape', awful.tag.history.restore,
