@@ -23,26 +23,16 @@ local keys = require('keys')
 
 require('error-handler').setup()
 require('startup').setup()
+require('layout').setup()
 keys.setup()
 
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "kitty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
-
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.tile,
-    awful.layout.suit.max,
-    awful.layout.suit.floating,
-    awful.layout.suit.magnifier
-}
--- }}}
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
