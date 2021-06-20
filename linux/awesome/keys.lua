@@ -155,6 +155,18 @@ for i = 1, 9 do
   )
 end
 
+This.clientkeys = gears.table.join(
+  awful.key({ modkey }, "f",
+            function (c)
+                c.fullscreen = not c.fullscreen
+                c:raise()
+            end,
+            { description = "toggle fullscreen", group = "client" }),
+  awful.key({ modkey, "Shift" }, "q", function (c) c:kill() end,
+            { description = "close", group = "client" }),
+  awful.key({ modkey }, "o", function (c) c:move_to_screen() end,
+            { description = "move to next screen", group = "client" })
+)
 
 function This.setup()
   root.keys(globalkeys)
