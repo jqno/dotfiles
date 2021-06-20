@@ -1,9 +1,7 @@
 local awful = require('awful')
 local util = require('util')
 
-local function run(cmd)
-  awful.spawn.easy_async_with_shell(cmd)
-end
+local This = {}
 
 local autostart_apps = {
   util.script('display.sh'),
@@ -13,7 +11,11 @@ local autostart_apps = {
   'xautolock -time 2 -locker "' .. util.script('lock.sh') .. '"'
 }
 
-for app = 1, #autostart_apps do
-  run(autostart_apps[app])
+function This.setup()
+  for app = 1, #autostart_apps do
+    local cmd = autostart_apps[app]
+    awful.spawn.easy_async_with_shell(cmd)
+  end
 end
 
+return This

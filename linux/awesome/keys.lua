@@ -6,17 +6,10 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 local root = _G.root
 local util = require('util')
 
+local This = {}
+
 local modkey = 'Mod4'
 local hyper = 'Mod3'
-
-
-local function activate(app, app_class)
-  local matcher = function(c)
-    return awful.rules.match(c, {class = app_class})
-  end
-
-  awful.spawn.raise_or_spawn(app, nil, matcher)
-end
 
 local apps = {
   ['1'] = { 'rambox', 'Rambox' },
@@ -28,6 +21,14 @@ local apps = {
   s = { 'spotify', 'Spotify' },
   w = { 'firefox', 'Firefox' }
 }
+
+local function activate(app, app_class)
+  local matcher = function(c)
+    return awful.rules.match(c, {class = app_class})
+  end
+
+  awful.spawn.raise_or_spawn(app, nil, matcher)
+end
 
 local function generate_app_keys()
   local result = {}
@@ -155,4 +156,8 @@ for i = 1, 9 do
 end
 
 
-root.keys(globalkeys)
+function This.setup()
+  root.keys(globalkeys)
+end
+
+return This

@@ -20,9 +20,9 @@ local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 
 
-require('error-handler')
-require('keys')
-require('startup')
+require('error-handler').setup()
+require('startup').setup()
+require('keys').setup()
 
 
 
