@@ -15,19 +15,24 @@ local apps = {
   ['1'] = { 'rambox', 'Rambox' },
   ['2'] = { 'teams', 'Microsoft Teams - Preview' },
   ['3'] = { 'chromium', 'Chromium' },
-  Return = { 'kitty', 'Kitty' },
+  Return = { 'kitty', 'kitty' },
   f = { 'nautilus', 'Org.gnome.Nautilus' },
   m = { 'mailspring', 'Mailspring' },
   s = { 'spotify', 'Spotify' },
   w = { 'firefox', 'Firefox' }
 }
 
-local function activate(app, app_class)
-  local matcher = function(c)
-    return awful.rules.match(c, {class = app_class})
+local function activate(executable, class)
+  for _, c in ipairs(client.get()) do
+    if c.class == class then
+      c.first_tag:view_only()
+      client.focus = c
+      c:raise()
+      return
+    end
   end
 
-  awful.spawn.raise_or_spawn(app, nil, matcher)
+  awful.spawn(executable)
 end
 
 local function generate_app_keys()
