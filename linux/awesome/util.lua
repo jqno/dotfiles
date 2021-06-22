@@ -1,6 +1,7 @@
 local This = {}
 
 local awful = require('awful')
+local client = _G.client
 
 
 This.location_scripts = '~/.config/awesome/scripts/'
@@ -9,6 +10,19 @@ This.location_wallpapers = '~/Dropbox/wallpapers/'
 local app_volume = 'pactl '
 local app_player = 'playerctl '
 local app_brightness = 'sudo brightnessctl set '
+
+function This.activate(executable, class)
+  for _, c in ipairs(client.get()) do
+    if c.class == class then
+      c.first_tag:view_only()
+      client.focus = c
+      c:raise()
+      return
+    end
+  end
+
+  awful.spawn(executable)
+end
 
 function This.script(name)
   return This.location_scripts .. name

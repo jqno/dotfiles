@@ -1,3 +1,4 @@
+local apps = require('applications')
 local awesome = _G.awesome
 local awful = require('awful')
 local client = _G.client
@@ -12,36 +13,11 @@ local This = {}
 local modkey = constants.modkey
 local hyper = constants.hyper
 
-local apps = {
-  ['1'] = { 'rambox', 'Rambox' },
-  ['2'] = { 'teams', 'Microsoft Teams - Preview' },
-  ['3'] = { 'chromium', 'Chromium' },
-  Return = { 'kitty', 'kitty' },
-  f = { 'nautilus', 'Org.gnome.Nautilus' },
-  m = { 'mailspring', 'Mailspring' },
-  p = { os.getenv("HOME") .. '/bin/Plex_Media_Player_2.58.1-ae73e074_x64.AppImage', 'plexmediaplayer' },
-  s = { 'spotify', 'Spotify' },
-  w = { 'firefox', 'Firefox' }
-}
-
-local function activate(executable, class)
-  for _, c in ipairs(client.get()) do
-    if c.class == class then
-      c.first_tag:view_only()
-      client.focus = c
-      c:raise()
-      return
-    end
-  end
-
-  awful.spawn(executable)
-end
-
 local function generate_app_keys()
   local result = {}
-  for key, app in pairs(apps) do
-    local k = awful.key({ hyper }, key, function () activate(app[1], app[2]) end,
-                        { description = app[1], group = 'launcher' })
+  for name, app in pairs(apps) do
+    local k = awful.key({ hyper }, app.hotkey, function() util.activate(app.executable, app.class) end,
+                        { description = name, group = 'launcher' })
     result = gears.table.join(result, k)
   end
   return result
@@ -71,7 +47,7 @@ local global_keys = gears.table.join(
             { description = 'jump to urgent client', group = 'client' }),
 
   -- launcher
-  awful.key({ modkey }, 'Return', function () awful.spawn(terminal) end,
+  awful.key({ modkey }, 'Return', function () awful.spawn(apps.terminal.executable) end,
             { description = 'open a terminal', group = 'launcher' }),
   awful.key({ modkey }, 'space', function () awful.spawn('rofi -modi drun -show drun') end,
             { description = 'run prompt', group = 'launcher' }),

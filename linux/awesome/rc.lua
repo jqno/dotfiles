@@ -18,6 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
+local apps = require('applications')
 local keys = require('keys')
 local mouse = require('mouse')
 
@@ -31,7 +32,7 @@ keys.setup()
 -- {{{ Variable definitions
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
+terminal = apps.terminal.executable
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
