@@ -9,23 +9,17 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 
 local bar_menu = require('bar_menu')
-local bar = require('bar')
 local keys = require('keys')
 local mouse = require('mouse')
+bar_menu.setup()
 
 require('error-handler').setup()
 require('startup').setup()
 require('behavior').setup()
 require('layout').setup()
+require('screens').setup()
 keys.setup()
-bar_menu.setup()
 
-
-awful.screen.connect_for_each_screen(function(s)
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-
-    bar.create_for(s)
-end)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
