@@ -1,8 +1,10 @@
 local This = {}
 
+local apps = require('applications')
 local awesome = _G.awesome
 local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
+local menubar = require("menubar")
 local util = require('util')
 
 -- Load Debian menu entries
@@ -19,7 +21,7 @@ local awesome_menu = {
 }
 
 local menu_awesome = { "Awesome", awesome_menu }
-local menu_terminal = { "Open terminal", terminal }
+local menu_terminal = { "Open terminal", apps.terminal.executable }
 
 This.main = nil
 
@@ -38,6 +40,9 @@ function This.setup()
       }
     })
   end
+
+  -- Set the terminal for applications that require it
+  menubar.utils.terminal = apps.terminal.executable
 end
 
 return This

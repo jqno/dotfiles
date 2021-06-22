@@ -3,20 +3,15 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
-local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local menubar = require("menubar")
-
+local bar_menu = require('bar_menu')
+local bar = require('bar')
 local keys = require('keys')
 local mouse = require('mouse')
-local bar_menu = require('bar_menu')
-
 
 require('error-handler').setup()
 require('startup').setup()
@@ -26,69 +21,11 @@ keys.setup()
 bar_menu.setup()
 
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = bar_menu.main })
-
--- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
--- }}}
-
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
--- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
-
--- Create a wibox for each screen and add it
-
 awful.screen.connect_for_each_screen(function(s)
-    -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
-    -- Create an imagebox widget which will contain an icon indicating which layout we're using.
-    -- We need one layoutbox per screen.
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(mouse.layoutbox_buttons)
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = mouse.taglist_buttons
-    }
-
-    -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist {
-        screen  = s,
-        filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = mouse.tasklist_buttons
-    }
-
-    -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
+    bar.create_for(s)
 end)
--- }}}
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
