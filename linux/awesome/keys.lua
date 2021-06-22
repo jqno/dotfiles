@@ -15,7 +15,7 @@ local hyper = constants.hyper
 
 local function generate_app_keys()
   local result = {}
-  for name, app in pairs(apps) do
+  for name, app in pairs(apps.main) do
     local k = awful.key({ hyper }, app.hotkey, function() util.activate(app.executable, app.class) end,
                         { description = name, group = 'launcher' })
     result = gears.table.join(result, k)
@@ -47,7 +47,7 @@ local global_keys = gears.table.join(
             { description = 'jump to urgent client', group = 'client' }),
 
   -- launcher
-  awful.key({ modkey }, 'Return', function () awful.spawn(apps.terminal.executable) end,
+  awful.key({ modkey }, 'Return', function () awful.spawn(apps.terminal) end,
             { description = 'open a terminal', group = 'launcher' }),
   awful.key({ modkey }, 'space', function () awful.spawn('rofi -modi drun -show drun') end,
             { description = 'run prompt', group = 'launcher' }),

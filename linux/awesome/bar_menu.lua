@@ -5,7 +5,6 @@ local awesome = _G.awesome
 local awful = require('awful')
 local hotkeys_popup = require('awful.hotkeys_popup')
 local menubar = require("menubar")
-local util = require('util')
 
 -- Load Debian menu entries
 local debian = require('debian.menu')
@@ -14,14 +13,14 @@ local has_fdo, freedesktop = pcall(require, 'freedesktop')
 
 local awesome_menu = {
   { 'hotkeys', function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { 'manual', util.terminal .. ' -e man awesome' },
-  { 'edit config', util.editor_cmd .. ' ' .. awesome.conffile },
+  { 'manual', apps.terminal .. ' -e man awesome' },
+  { 'edit config', apps.editor .. ' ' .. awesome.conffile },
   { 'restart', awesome.restart },
   { 'quit', function() awesome.quit() end },
 }
 
 local menu_awesome = { "Awesome", awesome_menu }
-local menu_terminal = { "Open terminal", apps.terminal.executable }
+local menu_terminal = { "Open terminal", apps.terminal }
 
 This.main = nil
 
@@ -42,7 +41,7 @@ function This.setup()
   end
 
   -- Set the terminal for applications that require it
-  menubar.utils.terminal = apps.terminal.executable
+  menubar.utils.terminal = apps.terminal
 end
 
 return This

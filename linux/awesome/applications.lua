@@ -1,4 +1,9 @@
-local This = {
+local This = {}
+
+This.terminal = 'kitty'
+This.editor = This.terminal .. ' -e ' .. (os.getenv('EDITOR') or 'editor')
+
+This.main = {
   rambox = {
     executable = 'Rambox',
     class = 'Rambox',
@@ -15,8 +20,8 @@ local This = {
     hotkey = '3'
   },
   terminal = {
-    executable = 'kitty',
-    class = 'kitty',
+    executable = This.terminal,
+    class = This.terminal,
     hotkey = 'Return'
   },
   files = {
@@ -30,7 +35,7 @@ local This = {
     hotkey = 'm'
   },
   plex = {
-    executable = os.getenv("HOME") .. '/bin/Plex_Media_Player_2.58.1-ae73e074_x64.AppImage',
+    executable = os.getenv('HOME') .. '/bin/Plex_Media_Player_2.58.1-ae73e074_x64.AppImage',
     class = 'plexmediaplayer',
     hotkey = 'p'
   },

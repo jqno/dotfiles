@@ -5,9 +5,6 @@ local client = _G.client
 
 This.location_scripts = '~/.config/awesome/scripts/'
 This.location_wallpapers = '~/Dropbox/wallpapers/'
-This.terminal = require('applications').terminal.executable
-This.editor = os.getenv("EDITOR") or "editor"
-This.editor_cmd = This.terminal .. " -e " .. This.editor
 
 local app_volume = 'pactl '
 local app_player = 'playerctl '
