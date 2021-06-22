@@ -3,7 +3,6 @@ local This = {}
 local awful = require('awful')
 local client = _G.client
 
-
 This.location_scripts = '~/.config/awesome/scripts/'
 This.location_wallpapers = '~/Dropbox/wallpapers/'
 

@@ -1,7 +1,7 @@
+local This = {}
+
 local awful = require('awful')
 local util = require('util')
-
-local This = {}
 
 local autostart_apps = {
   util.script('display.sh'),

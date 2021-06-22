@@ -1,8 +1,8 @@
+local This = {}
+
 local awful = require('awful')
 local constants = require('constants')
 local gears = require('gears')
-
-local This = {}
 
 local modkey = constants.modkey
 local left = constants.button_left

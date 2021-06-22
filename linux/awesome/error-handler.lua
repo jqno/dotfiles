@@ -1,7 +1,7 @@
+local This = {}
+
 local awesome = _G.awesome
 local naughty = require('naughty')
-
-local This = {}
 
 function This.setup()
   -- Handle runtime errors after startup

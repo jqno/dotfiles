@@ -1,10 +1,10 @@
+local This = {}
+
 local awful = require('awful')
 local client = _G.client
 local beautiful = require('beautiful')
 local gears = require('gears')
 local wibox = require('wibox')
-
-local This = {}
 
 local function setup_layouts()
   awful.layout.layouts = {

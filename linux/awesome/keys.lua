@@ -1,3 +1,5 @@
+local This = {}
+
 local apps = require('applications')
 local awesome = _G.awesome
 local awful = require('awful')
@@ -7,8 +9,6 @@ local hotkeys_popup = require('awful.hotkeys_popup')
 local root = _G.root
 local util = require('util')
 local constants = require('constants')
-
-local This = {}
 
 local modkey = constants.modkey
 local hyper = constants.hyper
