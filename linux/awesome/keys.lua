@@ -19,6 +19,7 @@ local apps = {
   Return = { 'kitty', 'kitty' },
   f = { 'nautilus', 'Org.gnome.Nautilus' },
   m = { 'mailspring', 'Mailspring' },
+  p = { os.getenv("HOME") .. '/bin/Plex_Media_Player_2.58.1-ae73e074_x64.AppImage', 'plexmediaplayer' },
   s = { 'spotify', 'Spotify' },
   w = { 'firefox', 'Firefox' }
 }
