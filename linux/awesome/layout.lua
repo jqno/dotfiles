@@ -17,6 +17,7 @@ end
 
 local function setup_theme()
   beautiful.init(gears.filesystem.get_themes_dir() .. "zenburn/theme.lua")
+  beautiful.useless_gap = 4
 end
 
 local function setup_titlebars()
