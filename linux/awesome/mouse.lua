@@ -42,11 +42,4 @@ This.tasklist_buttons = gears.table.join(
   end)
 )
 
-function This.enable_focus_follows_mouse()
-  _G.client.connect_signal('mouse::enter', function(c)
-    c:emit_signal('request::activate', 'mouse_enter', { raise = false })
-  end)
-end
-
-
 return This
