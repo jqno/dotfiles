@@ -6,6 +6,7 @@ local This = {}
 local autostart_apps = {
   util.script('display.sh'),
   'feh --randomize --bg-fill ' .. util.location_wallpapers .. '*',
+  'numlockx on',
   'picom -b -f',
   'dropbox start',
   'xautolock -time 2 -locker "' .. util.script('lock.sh') .. '"'

@@ -42,6 +42,7 @@ install_apt lame
 install_apt maven
 install_apt neovim
 install_apt ninja-build
+install_apt numlockx
 install_apt pandoc
 install_apt playerctl
 install_apt python3-neovim
