@@ -19,6 +19,7 @@ local debian = require("debian.menu")
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 local keys = require('keys')
+local mouse = require('mouse')
 
 
 require('error-handler').setup()
@@ -78,21 +79,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-  awful.button({ }, 1, function(t) t:view_only() end),
-  awful.button({ }, 3, awful.tag.viewtoggle)
-)
-
-local tasklist_buttons = gears.table.join(
-  awful.button({ }, 1, function (c)
-                         if c == client.focus then
-                           c.minimized = true
-                         else
-                           c:emit_signal("request::activate", "tasklist", { raise = true })
-                         end
-                       end),
-  awful.button({ }, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end)
-)
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -121,21 +107,19 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create an imagebox widget which will contain an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(gears.table.join(
-      awful.button({ }, 1, function () awful.layout.inc( 1) end),
-      awful.button({ }, 3, function () awful.layout.inc(-1) end)))
+    s.mylayoutbox:buttons(mouse.layoutbox_buttons)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
+        buttons = mouse.taglist_buttons
     }
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = mouse.tasklist_buttons
     }
 
     -- Create the wibox
@@ -162,20 +146,6 @@ awful.screen.connect_for_each_screen(function(s)
 end)
 -- }}}
 
-clientbuttons = gears.table.join(
-    awful.button({ }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-    end),
-    awful.button({ "Mod4" }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-        awful.mouse.client.move(c)
-    end),
-    awful.button({ "Mod4", "Shift" }, 1, function (c)
-        c:emit_signal("request::activate", "mouse_click", {raise = true})
-        awful.mouse.client.resize(c)
-    end)
-)
-
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -185,8 +155,8 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = awful.client.focus.filter,
                      raise = true,
-                     keys = keys.clientkeys,
-                     buttons = clientbuttons,
+                     keys = keys.client_keys,
+                     buttons = mouse.client_buttons,
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen
      }
@@ -289,10 +259,7 @@ client.connect_signal("request::titlebars", function(c)
     }
 end)
 
--- Enable sloppy focus, so that focus follows mouse.
-client.connect_signal("mouse::enter", function(c)
-    c:emit_signal("request::activate", "mouse_enter", {raise = false})
-end)
+mouse.enable_focus_follows_mouse()
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
