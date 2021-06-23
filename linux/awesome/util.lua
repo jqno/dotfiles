@@ -23,6 +23,15 @@ function This.activate(executable, class)
   awful.spawn(executable)
 end
 
+function This.find_tag(name)
+  for _, t in ipairs(_G.root.tags()) do
+    if t.name == name then
+      return t
+    end
+  end
+  return nil
+end
+
 function This.script(name)
   return This.location_scripts .. name
 end

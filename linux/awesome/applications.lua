@@ -19,11 +19,6 @@ This.main = {
     class = 'Chromium',
     hotkey = '3'
   },
-  terminal = {
-    executable = This.terminal,
-    class = This.terminal,
-    hotkey = 'Return'
-  },
   keepass = {
     executable = 'keepassxc',
     class = 'KeePassXC',

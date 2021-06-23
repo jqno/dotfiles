@@ -8,7 +8,7 @@ local keys = require('keys')
 local mouse = require('mouse')
 
 local function configure_clients()
-  client.connect_signal("manage", function (c)
+  client.connect_signal("manage", function(c)
     -- Set the windows as the slave,
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
