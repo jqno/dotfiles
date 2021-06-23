@@ -24,6 +24,11 @@ This.main = {
     class = This.terminal,
     hotkey = 'Return'
   },
+  keepass = {
+    executable = 'keepassxc',
+    class = 'KeePassXC',
+    hotkey = '\\'
+  },
   files = {
     executable = 'nautilus',
     class = 'Org.gnome.Nautilus',
