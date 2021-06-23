@@ -31,6 +31,15 @@ local function define_mappings()
       [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']], { expr = true })
   map(This.modes.v, 'k',
       [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']], { expr = true })
+  -- Easy window switching
+  map(This.modes.n, '<C-h>',
+      '<C-w>h')
+  map(This.modes.n, '<C-j>',
+      '<C-w>j')
+  map(This.modes.n, '<C-k>',
+      '<C-w>k')
+  map(This.modes.n, '<C-l>',
+      '<C-w>l')
   -- Keep the selection after re-indenting
   map(This.modes.v, '<',
       '<gv')

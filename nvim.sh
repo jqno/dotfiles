@@ -12,5 +12,3 @@ nvim -c PlugInstall +qall
 nvim -c PlugRevert +qall
 nvim -c MetalsInstall +qall
 
-ln -s $HOME/.local/share/nvim/plugged/vim-kitty-navigator/pass_keys.py ~/.config/kitty
-ln -s $HOME/.local/share/nvim/plugged/vim-kitty-navigator/neighboring_window.py ~/.config/kitty

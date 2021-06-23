@@ -20,7 +20,6 @@ Plug 'jqno/reversal.vim'
 Plug 'junegunn/fzf.vim' | Plug '/usr/local/opt/fzf'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'knubie/vim-kitty-navigator'
 Plug 'liuchengxu/vista.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-sandwich'
@@ -379,11 +378,11 @@ let g:TerminusFocusReporting=0
 
 " *** No prefix: general mappings
 
-" " Easy window switching
-" nnoremap <C-H> <C-W>h
-" nnoremap <C-J> <C-W>j
-" nnoremap <C-K> <C-W>k
-" nnoremap <C-L> <C-W>l
+" Easy window switching
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
 " Allow for easy window resizing
 " (˙∆˚¬ are Alt+hjkl on macOS)
 noremap <silent> ˙ :call ResizeLikeTmux('h', 1)<CR>
