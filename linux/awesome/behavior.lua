@@ -4,6 +4,8 @@ local awesome = _G.awesome
 local awful = require('awful')
 local beautiful = require('beautiful')
 local client = _G.client
+local keys = require('keys')
+local mouse = require('mouse')
 
 local function configure_clients()
   client.connect_signal("manage", function (c)
@@ -20,6 +22,64 @@ local function configure_clients()
   end)
 end
 
+local function setup_rules()
+  awful.rules.rules = {
+    {
+      -- All clients will match this rule.
+      rule = { },
+      properties = {
+        border_width = beautiful.border_width,
+        border_color = beautiful.border_normal,
+        focus = awful.client.focus.filter,
+        raise = true,
+        keys = keys.client_keys,
+        buttons = mouse.client_buttons,
+        screen = awful.screen.preferred,
+        placement = awful.placement.no_overlap+awful.placement.no_offscreen
+      }
+    },
+
+    {
+      -- Floating clients.
+      rule_any = {
+        class = {
+          "Arandr",
+          "Blueman-manager",
+          "Gpick",
+          "Sxiv",
+          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
+          "Wpa_gui",
+          "veromix",
+          "xtightvncviewer"
+        },
+
+        -- Note that the name property shown in xprop might be set slightly after creation of the client
+        -- and the name shown there might not match defined rules here.
+        name = {
+          "Event Tester"  -- xev.
+        },
+
+        role = {
+          "pop-up"       -- e.g. Google Chrome's (detached) Developer Tools.
+        }
+      },
+      properties = {
+        floating = true
+      }
+    },
+
+    {
+      -- Add titlebars to normal clients and dialogs
+      rule_any = {
+        type = { "dialog" }
+      },
+      properties = {
+        titlebars_enabled = true
+      }
+    }
+  }
+end
+
 local function enable_focus_follows_mouse()
   client.connect_signal('mouse::enter', function(c)
     c:emit_signal('request::activate', 'mouse_enter', { raise = false })
@@ -33,6 +93,7 @@ end
 
 function This.setup()
   configure_clients()
+  setup_rules()
   enable_focus_follows_mouse()
   highlight_focused_border()
 end
