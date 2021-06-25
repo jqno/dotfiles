@@ -65,11 +65,11 @@ local function generate_general_keys(merge_with)
               { description = 'focus the previous screen', group = 'screen' }),
 
     -- system
-    awful.key({ modkey, 'Control', 'Shift' }, 'BackSpace', awesome.quit,
-              { description = 'quit awesome', group = 'system' }),
     awful.key({ modkey, 'Control' }, 'r', awesome.restart,
               { description = 'reload awesome', group = 'system' }),
-    awful.key({ modkey }, 'BackSpace', function() util.run_script('lock.sh') end,
+    awful.key({ modkey }, 'BackSpace', awesome.quit,
+              { description = 'power menu', group = 'system' }),
+    awful.key({ modkey, "Shift" }, 'BackSpace', function() util.power_menu() end,
               { description = 'lock screen', group = 'system' }),
     awful.key({ modkey }, 's', hotkeys_popup.show_help,
               { description = 'show help', group = 'system' }),

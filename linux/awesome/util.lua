@@ -63,4 +63,8 @@ function This.adjust_brightness(amount)
   This.run(app_brightness .. amount)
 end
 
+function This.power_menu()
+  This.run('rofi -show p -modi p:' .. This.location_scripts .. 'rofi-power-menu -lines 3')
+end
+
 return This
