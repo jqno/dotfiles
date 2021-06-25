@@ -73,6 +73,10 @@ local function generate_general_keys(merge_with)
               { description = 'lock screen', group = 'system' }),
     awful.key({ modkey }, 's', hotkeys_popup.show_help,
               { description = 'show help', group = 'system' }),
+    awful.key({}, 'Print', function() util.run_script('scrot.sh') end,
+              { description = 'take screenshot', group = 'system' }),
+    awful.key({ 'Shift' }, 'Print', function() util.run_script('scrot.sh window') end,
+              { description = 'take screenshot of window', group = 'system' }),
 
     -- tag
     awful.key({ modkey }, 'Escape', awful.tag.history.restore,
