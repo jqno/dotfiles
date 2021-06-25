@@ -135,7 +135,11 @@ local function keys_for_tag(merge_with, tag)
     merge_with,
 
     -- View tag only.
-    awful.key({ hyper }, key, function() tag:view_only() end,
+    awful.key({ hyper }, key,
+              function()
+                tag:view_only()
+                awful.screen.focus(tag.screen)
+              end,
               { description = 'view tag ' .. tag.name, group = 'tag' }),
     -- Move client to tag.
     awful.key({ hyper, modkey }, key,
