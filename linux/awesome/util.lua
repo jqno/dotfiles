@@ -3,6 +3,9 @@ local This = {}
 local awful = require('awful')
 local client = _G.client
 
+This.terminal = 'kitty'
+This.editor = This.terminal .. ' -e ' .. (os.getenv('EDITOR') or 'editor')
+
 This.location_scripts = '~/.config/awesome/scripts/'
 This.location_wallpapers = '~/Dropbox/wallpapers/'
 

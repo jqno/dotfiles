@@ -1,8 +1,5 @@
 local This = {}
 
-This.terminal = 'kitty'
-This.editor = This.terminal .. ' -e ' .. (os.getenv('EDITOR') or 'editor')
-
 This.main = {
   rambox = {
     executable = 'Rambox',
