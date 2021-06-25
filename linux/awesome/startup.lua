@@ -5,6 +5,8 @@ local util = require('util')
 
 local autostart_apps = {
   util.script('display.sh'),
+  'nm-applet',
+  'blueman-applet',
   'numlockx on',
   'picom -b -f',
   'dropbox start',

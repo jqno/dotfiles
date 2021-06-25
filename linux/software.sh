@@ -21,6 +21,7 @@ install_snap ruby
 
 install_apt abcde
 install_apt awesome
+install_apt blueman
 install_apt brightnessctl
 install_apt curl
 install_apt docker
