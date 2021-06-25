@@ -31,15 +31,19 @@ local function generate_general_keys(merge_with)
                 end
               end,
               { description = 'go back', group = 'client' }),
-    awful.key({ modkey }, 'j', function () awful.client.focus.byidx(1) end,
+    awful.key({ modkey }, 'h', function () awful.client.focus.global_bydirection('left') end,
               { description = 'focus next by index', group = 'client' }),
-    awful.key({ modkey }, 'k', function () awful.client.focus.byidx(-1) end,
+    awful.key({ modkey }, 'j', function () awful.client.focus.global_bydirection('down') end,
+              { description = 'focus next by index', group = 'client' }),
+    awful.key({ modkey }, 'k', function () awful.client.focus.global_bydirection('up') end,
               { description = 'focus previous by index', group = 'client' }),
+    awful.key({ modkey }, 'l', function () awful.client.focus.global_bydirection('right') end,
+              { description = 'focus next by index', group = 'client' }),
     awful.key({ modkey }, 'u', awful.client.urgent.jumpto,
               { description = 'jump to urgent client', group = 'client' }),
 
     -- launcher
-    awful.key({ modkey, hyper }, 'Return', function () awful.spawn(apps.terminal) end,
+    awful.key({ modkey }, 'Return', function () awful.spawn(apps.terminal) end,
               { description = 'open a terminal', group = 'launcher' }),
     awful.key({ modkey }, 'space', function () awful.spawn('rofi -modi drun -show drun') end,
               { description = 'run prompt', group = 'launcher' }),
@@ -49,9 +53,9 @@ local function generate_general_keys(merge_with)
               { description = 'select previous', group = 'layout' }),
     awful.key({ modkey, 'Control' }, 'space', function () awful.layout.inc(1) end,
               { description = 'select next', group = 'layout' }),
-    awful.key({ modkey }, 'h', function () awful.tag.incmwfact(-0.05) end,
+    awful.key({ modkey }, '=', function () awful.tag.incmwfact(-0.05) end,
               { description = 'decrease master width factor', group = 'layout' }),
-    awful.key({ modkey }, 'l', function () awful.tag.incmwfact(0.05) end,
+    awful.key({ modkey }, '-', function () awful.tag.incmwfact(0.05) end,
               { description = 'increase master width factor', group = 'layout' }),
 
     -- screen
@@ -77,10 +81,6 @@ local function generate_general_keys(merge_with)
               { description = 'view previous', group = 'tag' }),
     awful.key({ modkey }, 'Right', awful.tag.viewnext,
               { description = 'view next', group = 'tag' }),
-    awful.key({ hyper }, 'Return', function() util.find_tag(screens.special_tag_names.work):view_only() end,
-              { description = 'view work', group = 'launcher' }),
-    awful.key({ hyper }, 'BackSpace', function() util.find_tag(screens.special_tag_names.hobby):view_only() end,
-              { description = 'view hobby', group = 'launcher' }),
 
     -- special keys
     awful.key({}, 'XF86AudioRaiseVolume', function() util.adjust_volume('+5%') end),
@@ -106,16 +106,20 @@ local function generate_app_keys(merge_with)
 end
 
 local function key_for_tag(name)
-  if name == screens.special_tag_names.browse then
-    return 'w'
-  elseif name == screens.special_tag_names.chat then
-    return 'c'
+  if name == screens.special_tag_names.terminal_1 then
+    return '1'
+  elseif name == screens.special_tag_names.terminal_2 then
+    return '2'
+  elseif name == screens.special_tag_names.terminal_3 then
+    return '3'
+  elseif name == screens.special_tag_names.terminal_4 then
+    return '4'
   elseif name == screens.special_tag_names.music then
-    return 'm'
-  elseif name == screens.special_tag_names.work then
-    return 'Return'
-  elseif name == screens.special_tag_names.hobby then
-    return 'BackSpace'
+    return '5'
+  elseif name == screens.special_tag_names.chat then
+    return '6'
+  elseif name == screens.special_tag_names.browse then
+    return '7'
   else
     return name
   end
@@ -125,11 +129,12 @@ local function keys_for_tag(merge_with, tag)
   local key = key_for_tag(tag.name)
   return gears.table.join(
     merge_with,
+
     -- View tag only.
-    awful.key({ modkey }, key, function() tag:view_only() end,
-            { description = 'view tag ' .. tag.name, group = 'tag' }),
+    awful.key({ hyper }, key, function() tag:view_only() end,
+              { description = 'view tag ' .. tag.name, group = 'tag' }),
     -- Move client to tag.
-    awful.key({ modkey, 'Shift' }, key,
+    awful.key({ hyper, modkey }, key,
               function()
                 if client.focus then
                   client.focus:move_to_tag(tag)
@@ -137,7 +142,7 @@ local function keys_for_tag(merge_with, tag)
               end,
               { description = 'move focused client to tag ' .. tag.name, group = 'tag' }),
     -- Toggle tag on focused client.
-    awful.key({ modkey, 'Control', 'Shift' }, key,
+    awful.key({ hyper, modkey, 'Control' }, key,
               function()
                 if client.focus then
                   client.focus:toggle_tag(tag)

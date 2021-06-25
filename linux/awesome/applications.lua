@@ -7,17 +7,17 @@ This.main = {
   rambox = {
     executable = 'Rambox',
     class = 'Rambox',
-    hotkey = '1'
+    hotkey = 'r'
   },
   teams = {
     executable = 'teams',
     class = 'Microsoft Teams - Preview',
-    hotkey = '2'
+    hotkey = 't'
   },
   chromium = {
     executable = 'chromium',
     class = 'Chromium',
-    hotkey = '3'
+    hotkey = 'c'
   },
   keepass = {
     executable = 'keepassxc',
