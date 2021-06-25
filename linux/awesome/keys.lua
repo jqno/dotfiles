@@ -69,7 +69,7 @@ local function generate_general_keys(merge_with)
               { description = 'quit awesome', group = 'system' }),
     awful.key({ modkey, 'Control' }, 'r', awesome.restart,
               { description = 'reload awesome', group = 'system' }),
-    awful.key({ modkey }, 'F12', function() util.run_script('lock.sh') end,
+    awful.key({ modkey }, 'BackSpace', function() util.run_script('lock.sh') end,
               { description = 'lock screen', group = 'system' }),
     awful.key({ modkey }, 's', hotkeys_popup.show_help,
               { description = 'show help', group = 'system' }),
