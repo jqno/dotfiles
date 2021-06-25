@@ -8,7 +8,7 @@ local keys = require('keys')
 local mouse = require('mouse')
 
 local function configure_clients()
-  client.connect_signal("manage", function(c)
+  client.connect_signal('manage', function(c)
     -- Set the windows as the slave,
     -- i.e. put it at the end of others instead of setting it master.
     if not awesome.startup then awful.client.setslave(c) end
@@ -43,24 +43,24 @@ local function setup_rules()
       -- Floating clients.
       rule_any = {
         class = {
-          "Arandr",
-          "Blueman-manager",
-          "Gpick",
-          "Sxiv",
-          "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
-          "Wpa_gui",
-          "veromix",
-          "xtightvncviewer"
+          'Arandr',
+          'Blueman-manager',
+          'Gpick',
+          'Sxiv',
+          'Tor Browser', -- Needs a fixed window size to avoid fingerprinting by screen size.
+          'Wpa_gui',
+          'veromix',
+          'xtightvncviewer'
         },
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
-          "Event Tester"  -- xev.
+          'Event Tester'  -- xev.
         },
 
         role = {
-          "pop-up"       -- e.g. Google Chrome's (detached) Developer Tools.
+          'pop-up'       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       },
       properties = {
@@ -71,7 +71,7 @@ local function setup_rules()
     {
       -- Add titlebars to normal clients and dialogs
       rule_any = {
-        type = { "dialog" }
+        type = { 'dialog' }
       },
       properties = {
         titlebars_enabled = true
