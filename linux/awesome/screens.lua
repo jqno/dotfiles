@@ -9,8 +9,8 @@ This.special_tag_names = {
   browse = '',
   chat = '',
   music = '',
-  work = '',
-  hobby = ''
+  work = '¹',
+  hobby = '²'
 }
 
 This.tags = {}
