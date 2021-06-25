@@ -11,6 +11,10 @@ local autostart_apps = {
   'picom -b -f',
   'dropbox start',
   'xautolock -time 2 -locker "' .. util.script('lock.sh') .. '"',
+  'rambox',
+  'teams',
+  'mailspring',
+  'firefox',
   'feh --randomize --bg-fill ' .. util.location_wallpapers .. '*'
 }
 
