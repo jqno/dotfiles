@@ -1,5 +1,6 @@
 local This = {}
 
+local apps = require('applications')
 local awesome = _G.awesome
 local awful = require('awful')
 local beautiful = require('beautiful')
@@ -80,6 +81,22 @@ local function setup_rules()
   }
 end
 
+local function bind_apps_to_tags()
+  for _, app in pairs(apps.main) do
+    if app.tag then
+      local r = {
+        rule = {
+          class = app.class
+        },
+        properties = {
+          tag = app.tag
+        }
+      }
+      table.insert(awful.rules.rules, r)
+    end
+  end
+end
+
 local function enable_focus_follows_mouse()
   client.connect_signal('mouse::enter', function(c)
     c:emit_signal('request::activate', 'mouse_enter', { raise = false })
@@ -94,6 +111,7 @@ end
 function This.setup()
   configure_clients()
   setup_rules()
+  bind_apps_to_tags()
   enable_focus_follows_mouse()
   highlight_focused_border()
 end
