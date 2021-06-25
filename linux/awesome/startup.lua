@@ -5,11 +5,11 @@ local util = require('util')
 
 local autostart_apps = {
   util.script('display.sh'),
-  'feh --randomize --bg-fill ' .. util.location_wallpapers .. '*',
   'numlockx on',
   'picom -b -f',
   'dropbox start',
-  'xautolock -time 2 -locker "' .. util.script('lock.sh') .. '"'
+  'xautolock -time 2 -locker "' .. util.script('lock.sh') .. '"',
+  'feh --randomize --bg-fill ' .. util.location_wallpapers .. '*'
 }
 
 function This.setup()
