@@ -15,7 +15,7 @@ local autostart_apps = {
   'teams',
   'mailspring',
   'firefox',
-  'feh --randomize --bg-fill ' .. util.location_wallpapers .. '*'
+  util.change_background
 }
 
 function This.setup()

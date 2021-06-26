@@ -8,6 +8,8 @@ This.editor = This.terminal .. ' -e ' .. (os.getenv('EDITOR') or 'editor')
 
 This.location_scripts = '~/.config/awesome/scripts/'
 This.location_wallpapers = '~/Dropbox/wallpapers/'
+This.change_background = 'feh --randomize --bg-fill ' .. This.location_wallpapers .. '*'
+This.choose_known_background = 'feh --bg-fill ' .. This.location_wallpapers .. '2017-05-31*Kopenhagen*3*.jpg'
 
 local app_volume = 'pactl '
 local app_player = 'playerctl '
