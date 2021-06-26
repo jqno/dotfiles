@@ -30,7 +30,9 @@ function This.setup()
   set(vim.o, 'titlestring', '%t - nvim')
   set(vim.o, 'updatetime', 300)
   vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
-  vim.cmd('colorscheme onedark')
+
+  vim.cmd('colorscheme ayu')
+  vim.cmd('hi Normal guibg=NONE')
 end
 
 return This
