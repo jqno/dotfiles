@@ -22,12 +22,12 @@
 () {
   emulate -L zsh -o extended_glob
 
-  typeset -g HIGHLIGHT_BACKGROUND="223"
-  typeset -g HIGHLIGHT_FOREGROUND="241"
-  typeset -g ERROR_BACKGROUND="88"
-  typeset -g ERROR_FOREGROUND="223"
-  typeset -g SECONDARY_BACKGROUND="239"
-  typeset -g SECONDARY_FOREGROUND="223"
+  typeset -g HIGHLIGHT_BACKGROUND="15"
+  typeset -g HIGHLIGHT_FOREGROUND="0"
+  typeset -g ERROR_BACKGROUND="1"
+  typeset -g ERROR_FOREGROUND="0"
+  typeset -g SECONDARY_BACKGROUND="8"
+  typeset -g SECONDARY_FOREGROUND="15"
 
   # Unset all configuration options. This allows you to apply configuration changes without
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
