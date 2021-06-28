@@ -4,6 +4,7 @@ local awful = require('awful')
 local bar_menu = require('bar_menu')
 local beautiful = require('beautiful')
 local mouse = require('mouse')
+local util = require('util')
 local wibox = require('wibox')
 
 local function create_taglist_for(screen)
@@ -73,6 +74,7 @@ function This.create_for(screen)
       wibox.widget.systray(),
       create_layoutbox_for(screen),
       create_calendar_widget(),
+      util.power_widget()
     },
   })
 

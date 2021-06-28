@@ -1,7 +1,9 @@
 local This = {}
 
+local awesome = _G.awesome
 local awful = require('awful')
 local client = _G.client
+local logout = require('awesome-wm-widgets.logout-popup-widget.logout-popup')
 local root = _G.root
 
 This.terminal = 'kitty'
@@ -103,8 +105,21 @@ function This.adjust_brightness(amount)
   This.run(app_brightness .. amount)
 end
 
+local power_menu_config = {
+  phrases = {},
+  onlogout = function() awesome.quit() end,
+  onlock = function() This.run_script('lock.sh') end,
+  onsuspend = nil,
+  onreboot = function() This.run('sudo reboot -f') end,
+  onpoweroff = function() This.run('shutdown now') end
+}
+
 function This.power_menu()
-  This.run('rofi -show p -modi p:' .. This.location_scripts .. 'rofi-power-menu -lines 3')
+  return logout.launch(power_menu_config)
+end
+
+function This.power_widget()
+  return logout.widget(power_menu_config)
 end
 
 function This.debug_popup(msg)

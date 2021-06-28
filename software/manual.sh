@@ -49,4 +49,5 @@ popd > /dev/null
 if [[ "$(uname -s)" == "Linux" ]]; then
   echo "** Installing awesomewm-wm-widgets"
   git clone --depth=1 https://github.com/streetturtle/awesome-wm-widgets.git $BIN/aweomewm-wd-widgets
+  git clone --depth=1 https://github.com/streetturtle/awesome-buttons.git $BIN/aweomewm-buttons
 fi

@@ -48,6 +48,7 @@ function installDotfiles() {
 
     sudo cat linux/awesome/append-to-sudoers | sudo EDITOR='tee -a' visudo
     ln -s ~/bin/awesome-wm-widgets ~/.config/awesome
+    ln -s ~/bin/awesome-buttons ~/.config/awesome
   fi
 }
 
