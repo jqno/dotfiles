@@ -107,4 +107,13 @@ function This.power_menu()
   This.run('rofi -show p -modi p:' .. This.location_scripts .. 'rofi-power-menu -lines 3')
 end
 
+function This.debug_popup(msg)
+  local naughty = require('naughty')
+  naughty.notify({
+    preset = naughty.config.presets.critical,
+    title = 'debug',
+    text = tostring(msg)
+  })
+end
+
 return This
