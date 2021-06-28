@@ -105,6 +105,15 @@ local function generate_general_keys(merge_with)
   )
 end
 
+local function clear_hyper_keys(merge_with)
+  local result = {}
+  for key = 10, 61 do
+    local k = awful.key({ hyper }, '#' .. key, nil)
+    result = gears.table.join(result, k)
+  end
+  return gears.table.join(merge_with, result)
+end
+
 local function generate_app_keys(merge_with)
   local result = {}
   for name, app in pairs(apps.main) do
@@ -180,7 +189,8 @@ This.client_keys = gears.table.join(
 )
 
 local function generate_all_keys()
-  local all = generate_general_keys({})
+  local all = clear_hyper_keys({})
+  all = generate_general_keys(all)
   all = generate_app_keys(all)
   for _, t in ipairs(screens.tags) do
     all = keys_for_tag(all, t)
