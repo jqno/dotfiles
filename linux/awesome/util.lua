@@ -2,6 +2,7 @@ local This = {}
 
 local awful = require('awful')
 local client = _G.client
+local root = _G.root
 
 This.terminal = 'kitty'
 This.editor = This.terminal .. ' -e ' .. (os.getenv('EDITOR') or 'editor')
@@ -26,6 +27,34 @@ function This.activate(executable, class)
   end
 
   awful.spawn(executable)
+end
+
+function This.view_next(class)
+  -- Maybe not the best way to find the current tag (a client might have multiple
+  -- and screen.focused().selected_tag always returns the one where the mouse is
+  -- but that doesn't necessarily have focus), but it will do for now.
+  local current_tag = client.focus and client.focus.first_tag or awful.screen.focused().selected_tag
+  local all_tags = root.tags()
+  local found_current = false
+
+  -- Iterate over all tags, but start after the current one.
+  -- Ignore the ones at the beginning, then iterate over the rest,
+  -- and iterate over the first ones again
+  for _ = 1,2 do
+    for _, t in ipairs(all_tags) do
+      if found_current then
+        for _, c in ipairs(t:clients()) do
+          if c.class == class then
+            awful.screen.focus(t.screen)
+            t:view_only()
+            return
+          end
+        end
+      elseif t == current_tag then
+        found_current = true
+      end
+    end
+  end
 end
 
 function This.find_tag(name)

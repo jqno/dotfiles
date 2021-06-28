@@ -43,6 +43,8 @@ local function generate_general_keys(merge_with)
               { description = 'jump to urgent client', group = 'client' }),
 
     -- launcher
+    awful.key({ hyper }, 'Return', function () util.view_next(util.terminal) end,
+              { description = 'terminal', group = 'launcher' }),
     awful.key({ modkey }, 'Return', function () awful.spawn(util.terminal) end,
               { description = 'open a terminal', group = 'launcher' }),
     awful.key({ modkey }, 'space', function () awful.spawn('rofi -modi drun -show drun') end,
