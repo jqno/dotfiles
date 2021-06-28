@@ -49,7 +49,7 @@ local function dual_screen(a, b)
   create_tag(a, This.special_tag_names.chat, layouts.max, true)
   create_tag(a, This.special_tag_names.browse, layouts.tile, false)
 
-  create_tag(b, This.special_tag_names.terminal_1, layouts.tile, false)
+  create_tag(b, This.special_tag_names.terminal_1, layouts.tile, true)
   create_tag(b, This.special_tag_names.terminal_2, layouts.tile, false)
   create_tag(b, This.special_tag_names.terminal_3, layouts.tile, false)
   create_tag(b, This.special_tag_names.terminal_4, layouts.tile, false)
