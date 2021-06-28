@@ -45,6 +45,15 @@ function This.run(cmd)
   awful.spawn.with_shell(cmd)
 end
 
+function This.run_once(cmd, args)
+  awful.spawn.easy_async_with_shell('pgrep -u "$USER" "^' .. cmd .. '$"',
+    function(_, _, _, exitcode)
+      if exitcode ~= 0 then
+        awful.spawn(cmd .. ' ' .. args)
+      end
+    end)
+end
+
 function This.run_script(cmd)
   This.run(This.script(cmd))
 end
