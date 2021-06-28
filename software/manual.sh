@@ -44,3 +44,9 @@ curl -fLo cs https://git.io/coursier-cli-"$(uname | tr LD ld)"
 chmod +x cs
 popd > /dev/null
 
+
+# AwesomeWM wm widgets
+if [[ "$(uname -s)" == "Linux" ]]; then
+  echo "** Installing awesomewm-wm-widgets"
+  git clone --depth=1 https://github.com/streetturtle/awesome-wm-widgets.git $BIN/aweomewm-wd-widgets
+fi

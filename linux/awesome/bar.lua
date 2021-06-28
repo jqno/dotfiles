@@ -28,6 +28,27 @@ local function create_layoutbox_for(screen)
   return box
 end
 
+local function create_battery_widget()
+  local w = require('awesome-wm-widgets.batteryarc-widget.batteryarc')
+  return w({
+    show_current_level = true,
+    arc_thickness = 1
+  })
+end
+
+local function create_calendar_widget()
+  local w = require('awesome-wm-widgets.calendar-widget.calendar')
+  local cal = w({
+    placement = 'top_right'
+  })
+  local text = wibox.widget.textclock()
+  text:connect_signal('button::press',
+    function(_, _, _, button)
+      if button == 1 then cal.toggle() end
+    end)
+  return text
+end
+
 function This.create_for(screen)
   local menu = awful.widget.launcher({
     image = beautiful.awesome_icon,
@@ -48,9 +69,10 @@ function This.create_for(screen)
     create_tasklist_for(screen),
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
+      create_battery_widget(),
       wibox.widget.systray(),
-      wibox.widget.textclock(),
       create_layoutbox_for(screen),
+      create_calendar_widget(),
     },
   })
 

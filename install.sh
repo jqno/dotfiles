@@ -47,6 +47,7 @@ function installDotfiles() {
     installFor "linux/Xmodmap" ".Xmodmap"
 
     sudo cat linux/awesome/append-to-sudoers | sudo EDITOR='tee -a' visudo
+    ln -s ~/bin/awesome-wm-widgets ~/.config/awesome
   fi
 }
 
