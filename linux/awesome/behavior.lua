@@ -47,6 +47,7 @@ local function setup_rules()
           'Arandr',
           'Blueman-manager',
           'Gpick',
+          'Org.gnome.Characters',
           'Sxiv',
           'Tor Browser', -- Needs a fixed window size to avoid fingerprinting by screen size.
           'Wpa_gui',

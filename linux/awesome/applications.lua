@@ -8,6 +8,11 @@ This.main = {
     hotkey = 'c',
     tag = tags.chat
   },
+  emoji = {
+    executable = 'gnome-characters',
+    class = 'Org.gnome.Characters',
+    hotkey = 'e'
+  },
   files = {
     executable = 'nautilus',
     class = 'Org.gnome.Nautilus',
