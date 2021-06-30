@@ -28,7 +28,7 @@ function This.activate(executable, class)
     end
   end
 
-  awful.spawn(executable)
+  if executable then awful.spawn(executable) end
 end
 
 function This.view_next(class)

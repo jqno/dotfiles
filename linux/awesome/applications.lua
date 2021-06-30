@@ -4,7 +4,6 @@ local tags = require('screens').special_tag_names
 
 This.main = {
   chromium = {
-    executable = 'chromium',
     class = 'Chromium',
     hotkey = 'c',
     tag = tags.chat
@@ -54,6 +53,10 @@ This.main = {
     class = 'Firefox',
     hotkey = 'w',
     tag = tags.browse
+  },
+  zoom = {
+    class = 'zoom',
+    hotkey = 'z'
   }
 }
 
