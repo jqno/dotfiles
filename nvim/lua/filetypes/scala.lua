@@ -49,7 +49,7 @@ function This.metals_config()
         ['<leader>m'] = {
           r = { '<cmd>MetalsCompileClean<CR>', 'rebuild' }
         }
-      })
+      }, { buffer = bufnr })
     end,
     init_options = {
       showImplicitArguments = true,
