@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 function install_apt() {
   sudo apt install --yes $1
@@ -62,3 +62,28 @@ install_snap rambox
 install_snap spotify
 install_snap universal-ctags
 
+
+## Qtile
+PIP=""
+if [ -x "$(command -v pip3)" ]; then
+  PIP="pip3"
+elif [ -x "$(command -v pip)" ]; then
+  PIP="pip"
+else
+  echo "** Could not find a valid Pip executable. Aborting!"
+  exit 1
+fi
+
+$PIP install xcffib
+$PIP install --no-cache-dir cairocffi
+$PIP install dbus-next
+$PIP install qtile
+
+sudo cat > /usr/share/xsessions/qtile.desktop <<EOF
+[Desktop Entry]
+Name=Qtile
+Comment=Qtile session
+Exec=/home/jqno/.local/bin/qtile start
+Type=Application
+Keywords=tiling;wm;windowmanager
+EOF
