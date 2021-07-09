@@ -31,7 +31,7 @@ function This.setup()
   set(vim.o, 'updatetime', 300)
   vim.o.shortmess = string.gsub(vim.o.shortmess, 'F', '') .. 'c'
 
-  vim.cmd('colorscheme ayu')
+  vim.cmd('colorscheme nord')
   vim.cmd('hi Normal guibg=NONE')
 end
 
