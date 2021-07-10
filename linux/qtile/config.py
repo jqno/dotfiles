@@ -36,6 +36,8 @@ from libqtile.lazy import lazy
 mod = 'mod4'
 terminal = 'kitty'
 
+gap = 4
+
 keys = [
     # Switch between windows
     Key([mod], 'h', lazy.layout.left(), desc='Move focus to left'),
@@ -104,7 +106,7 @@ for i in groups:
 layouts = [
     layout.Columns(
         border_focus_stack = '#d75f5f',
-        margin = 4,
+        margin = gap,
         grow_amount = 5
     ),
     layout.Max()
@@ -133,7 +135,8 @@ def create_bar():
                 format='%d %b %Y %H:%M'
             )
         ],
-        24
+        24,
+        margin = gap
     )
 
 screens = [
