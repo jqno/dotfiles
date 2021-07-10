@@ -124,29 +124,29 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+
+def create_bar():
+    return bar.Bar(
+        [
+            widget.CurrentLayoutIcon(),
+            widget.GroupBox(),
+            widget.Prompt(),
+            widget.TaskList(),
+            widget.Systray(),
+            widget.Battery(
+                format='{char} {percent:2.0%}'
+            ),
+            widget.Clock(
+                format='%d %b %Y %H:%M'
+            )
+        ],
+        24
+    )
+
 screens = [
     Screen(
-        bottom=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.TextBox("default config", name="default"),
-                widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
-    ),
+        top=create_bar()
+    )
 ]
 
 # Drag floating layouts.
