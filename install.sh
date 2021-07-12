@@ -45,6 +45,9 @@ function installDotfiles() {
     installFor "linux/abcde.conf" ".abcde.conf"
     installFor "linux/qtile" ".config/qtile" ".config"
     installFor "linux/Xmodmap" ".Xmodmap"
+
+    # Make it possible to run some apps as root without asking for password
+    sudo cat linux/qtile/append-to-sudoers | sudo EDITOR='tee -a' visudo
   fi
 }
 
