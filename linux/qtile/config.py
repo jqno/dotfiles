@@ -105,13 +105,23 @@ for i in groups:
         #     desc='move focused window to group {}'.format(i.name)),
     ])
 
+layout_theme = {
+    'margin': gap
+}
+
 layouts = [
     layout.Columns(
         border_focus_stack = '#d75f5f',
-        margin = gap,
-        grow_amount = 5
+        grow_amount = 5,
+        **layout_theme
     ),
-    layout.Max()
+    layout.Stack(
+        num_stacks = 1,
+        **layout_theme
+    ),
+    layout.Floating(
+        **layout_theme
+    )
 ]
 
 widget_defaults = dict(
@@ -178,9 +188,9 @@ if number_of_monitors > 1:
 mouse = [
     Drag([mod], 'Button1', lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
-    Drag([mod], 'Button3', lazy.window.set_size_floating(),
+    Drag([mod, 'shift'], 'Button1', lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], 'Button2', lazy.window.bring_to_front())
+    Click([mod], 'Button1', lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
