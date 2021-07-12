@@ -165,11 +165,15 @@ extension_defaults = widget_defaults.copy()
 def create_bar():
     return bar.Bar(
         [
-            widget.CurrentLayoutIcon(),
+            widget.CurrentLayoutIcon(
+                scale=0.7
+            ),
             widget.GroupBox(),
             widget.Prompt(),
             widget.TaskList(),
-            widget.Systray(),
+            widget.Systray(
+                icon_size=16
+            ),
             widget.Battery(
                 format='{char} {percent:2.0%}'
             ),
