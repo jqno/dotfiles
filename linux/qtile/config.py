@@ -33,6 +33,8 @@ from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
+from Xlib import display as xdisplay
+
 mod = 'mod4'
 terminal = 'kitty'
 
@@ -139,11 +141,38 @@ def create_bar():
         margin = gap
     )
 
-screens = [
-    Screen(
+def get_number_of_monitors():
+    num_monitors = 0
+    try:
+        display = xdisplay.Display()
+        screen = display.screen()
+        resources = screen.root.xrandr_get_screen_resources()
+
+        for output in resources.outputs:
+            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
+            preferred = False
+            if hasattr(monitor, "preferred"):
+                preferred = monitor.preferred
+            elif hasattr(monitor, "num_preferred"):
+                preferred = monitor.num_preferred
+            if preferred:
+                num_monitors += 1
+    except:  
+        return 1
+    else:
+        return num_monitors
+
+
+def create_screen():
+    return Screen(
         top=create_bar()
     )
-]
+
+screens = [create_screen()]
+number_of_monitors = get_number_of_monitors()
+if number_of_monitors > 1:
+    for m in range(number_of_monitors - 1):
+        screens.append(create_screen())
 
 # Drag floating layouts.
 mouse = [

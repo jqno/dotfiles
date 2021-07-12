@@ -77,6 +77,7 @@ fi
 $PIP install xcffib
 $PIP install --no-cache-dir cairocffi
 $PIP install dbus-next
+$PIP install python-xlib
 $PIP install qtile
 
 sudo cat > /usr/share/xsessions/qtile.desktop <<EOF
