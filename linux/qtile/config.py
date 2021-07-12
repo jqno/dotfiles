@@ -40,6 +40,9 @@ terminal = 'kitty'
 
 gap = 4
 
+home = os.path.expanduser('~')
+script_location = home + '/.config/qtile/scripts'
+
 keys = [
     # Switch between windows
     Key([mod], 'h', lazy.layout.left(), desc='Move focus to left'),
@@ -86,6 +89,20 @@ keys = [
     Key([mod, 'shift'], 'BackSpace', lazy.shutdown(), desc='Shutdown Qtile'),
     Key([mod], 'r', lazy.spawncmd(),
         desc='Spawn a command using a prompt widget'),
+
+    # System keybindings
+    Key([mod], 'BackSpace', lazy.spawn(script_location + '/lock.sh'), desc='Lock screen'),
+    Key([mod], 'Print', lazy.spawn(script_location + '/scrot.sh window'), desc='Take screenshot of window'),
+    Key([], 'Print', lazy.spawn(script_location + '/scrot.sh'), desc='Take screenshot'),
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ +5%'), desc='Raise volume'),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%'), desc='Lower volume'),
+    Key([], 'XF86AudioMute', lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle'), desc='Mute audio'),
+    Key([], 'XF86AudioPlay', lazy.spawn('playerctl play-pause'), desc='Play audio'),
+    Key([], 'XF86AudioPause', lazy.spawn('playerctl play-pause'), desc='Pause audio'),
+    Key([], 'XF86AudioNext', lazy.spawn('playerctl next'), desc='Next track'),
+    Key([], 'XF86AudioPrev', lazy.spawn('playerctl previous'), desc='Previous track'),
+    Key([], 'XF86MonBrightnessUp', lazy.spawn('sudo brightnessctl set 10%+'), desc='Increase brightness'),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('sudo brightnessctl set 10%-'), desc='Decrease brightness'),
 ]
 
 groups = [Group(i) for i in '123456789']
@@ -218,8 +235,7 @@ auto_minimize = True
 
 @hook.subscribe.startup_once
 def autostart():
-    home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    subprocess.call([script_location + '/autostart.sh'])
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
