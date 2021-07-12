@@ -100,6 +100,8 @@ keys = [
         desc='Shutdown Qtile'),
     Key([mod], 'space', lazy.spawn('rofi -modi drun -show drun'),
         desc='Spawn an app using rofi'),
+    Key([mod], 'f', lazy.window.toggle_fullscreen(),
+        desc='Makes current window fullscreen'),
 
     # System keybindings
     Key([mod], 'b', lazy.spawn(script_location + '/background.sh'), desc='Set a random background'),
