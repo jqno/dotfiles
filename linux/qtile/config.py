@@ -102,6 +102,8 @@ keys = [
         desc='Spawn an app using rofi'),
 
     # System keybindings
+    Key([mod], 'b', lazy.spawn(script_location + '/background.sh'), desc='Set a random background'),
+    Key([mod, 'shift'], 'b', lazy.spawn(script_location + '/background.sh known'), desc='Set a known background'),
     Key([mod], 'BackSpace', lazy.spawn(script_location + '/lock.sh'), desc='Lock screen'),
     Key([mod], 'Print', lazy.spawn(script_location + '/scrot.sh window'), desc='Take screenshot of window'),
     Key([], 'Print', lazy.spawn(script_location + '/scrot.sh'), desc='Take screenshot'),
