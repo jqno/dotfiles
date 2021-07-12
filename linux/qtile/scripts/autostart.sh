@@ -5,6 +5,7 @@ SCRIPTS="$HOME/.config/qtile/scripts"
 numlockx on
 picom -b -f
 $SCRIPTS/display.sh
+$SCRIPTS/background.sh
 
 nm-applet &
 blueman-applet &
