@@ -30,7 +30,7 @@ import subprocess
 from typing import List  # noqa: F401
 
 from libqtile import bar, hook, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
 from Xlib import display as xdisplay
@@ -122,9 +122,21 @@ keys = [
     Key([mod, 'control'], 'r',
         lazy.restart(),
         desc='Restart Qtile'),
-    Key([mod, 'shift'], 'BackSpace',
-        lazy.shutdown(),
-        desc='Shutdown Qtile'),
+    Key([mod], 'BackSpace',
+        lazy.spawn(script_location + '/lock.sh'),
+        desc='Lock screen'),
+
+    KeyChord([mod, 'shift'], 'BackSpace', [
+        Key([], 'l',
+            lazy.shutdown(),
+            desc='Log out'),
+        Key([], 'r',
+            lazy.spawn('sudo reboot -f'),
+            desc='Reboot'),
+        Key([], 's',
+            lazy.spawn('shutdown now'),
+            desc='Shutdown')
+    ], mode='Exit: Log out | Reboot | Shut down'),
 
     # System keybindings
     Key([mod], 'b',
@@ -133,9 +145,6 @@ keys = [
     Key([mod, 'shift'], 'b',
         lazy.spawn(script_location + '/background.sh known'),
         desc='Set a known background'),
-    Key([mod], 'BackSpace',
-        lazy.spawn(script_location + '/lock.sh'),
-        desc='Lock screen'),
     Key([mod], 'Print',
         lazy.spawn(script_location + '/scrot.sh window'),
         desc='Take screenshot of window'),
@@ -223,6 +232,7 @@ def create_bar():
                 scale=0.7
             ),
             widget.GroupBox(),
+            widget.Chord(),
             widget.Prompt(),
             widget.TaskList(),
             widget.Systray(
