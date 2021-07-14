@@ -39,6 +39,7 @@ mod = 'mod4'
 terminal = 'kitty'
 
 gap = 4
+bar_height = 24
 
 home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
@@ -225,58 +226,65 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 
-def create_bar():
-    return bar.Bar(
-        [
-            widget.CurrentScreen(
-                active_text='',
-                inactive_text=''
-            ),
-            widget.CurrentLayoutIcon(
-                scale=0.7
-            ),
-            widget.GroupBox(),
-            widget.Chord(),
-            widget.Prompt(),
-            widget.TextBox(
-                text='|'
-            ),
-            widget.TaskList(),
-            widget.Systray(
-                icon_size=16
-            ),
-            widget.TextBox(
-                text='|'
-            ),
-            widget.TextBox(
-                text=''
-            ),
-            widget.Volume(),
-            widget.CheckUpdates(
-                distro='Ubuntu',
-                display_format='|  {updates}'
-            ),
-            widget.TextBox(
-                text='|'
-            ),
-            widget.Battery(
-                charge_char='↑',
-                discharge_char='↓',
-                empty_char='ø',
-                full_char='',
-                notify_below=0.15,
-                format='  {char} {percent:2.0%}'
-            ),
-            widget.TextBox(
-                text='|'
-            ),
-            widget.Clock(
-                format='%d %b %Y %H:%M'
-            )
-        ],
-        24,
-        margin = gap
+base_bar = [
+    widget.CurrentScreen(
+        active_text='',
+        inactive_text=''
+    ),
+    widget.CurrentLayoutIcon(
+        scale=0.7
+    ),
+    widget.GroupBox(),
+    widget.Chord(),
+    widget.Prompt(),
+    widget.TextBox(
+        text='|'
+    ),
+    widget.TaskList(),
+]
+
+short_bar = base_bar + [
+    widget.Clock(
+        format='%d %b %Y %H:%M'
     )
+]
+
+full_bar = base_bar + [
+    widget.Systray(
+        icon_size=16
+    ),
+    widget.TextBox(
+        text='|'
+    ),
+    widget.TextBox(
+        text=''
+    ),
+    widget.Volume(),
+    widget.CheckUpdates(
+        distro='Ubuntu',
+        display_format='|  {updates}'
+    ),
+    widget.TextBox(
+        text='|'
+    ),
+    widget.Battery(
+        charge_char='↑',
+        discharge_char='↓',
+        empty_char='ø',
+        full_char='',
+        notify_below=0.15,
+        format='  {char} {percent:2.0%}'
+    ),
+    widget.TextBox(
+        text='|'
+    ),
+    widget.Clock(
+        format='%d %b %Y %H:%M'
+    )
+]
+
+def create_bar(widgets):
+    return bar.Bar(widgets, bar_height, margin = gap)
 
 def get_number_of_monitors():
     num_monitors = 0
@@ -299,17 +307,16 @@ def get_number_of_monitors():
     else:
         return num_monitors
 
-
-def create_screen():
+def create_screen(widgets):
     return Screen(
-        top=create_bar()
+        top=create_bar(widgets)
     )
 
-screens = [create_screen()]
+screens = [create_screen(full_bar)]
 number_of_monitors = get_number_of_monitors()
 if number_of_monitors > 1:
     for m in range(number_of_monitors - 1):
-        screens.append(create_screen())
+        screens.append(create_screen(short_bar))
 
 # Drag floating layouts.
 mouse = [
