@@ -29,7 +29,7 @@ import subprocess
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, hook, layout, widget
+from libqtile import bar, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 
@@ -262,7 +262,8 @@ full_bar = base_bar + [
     widget.Volume(),
     widget.CheckUpdates(
         distro='Ubuntu',
-        display_format='|  {updates}'
+        display_format='|  {updates}',
+        mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') }
     ),
     widget.TextBox(
         text='|'
