@@ -228,18 +228,47 @@ extension_defaults = widget_defaults.copy()
 def create_bar():
     return bar.Bar(
         [
+            widget.CurrentScreen(
+                active_text='',
+                inactive_text=''
+            ),
             widget.CurrentLayoutIcon(
                 scale=0.7
             ),
             widget.GroupBox(),
             widget.Chord(),
             widget.Prompt(),
+            widget.TextBox(
+                text='|'
+            ),
             widget.TaskList(),
             widget.Systray(
                 icon_size=16
             ),
+            widget.TextBox(
+                text='|'
+            ),
+            widget.TextBox(
+                text=''
+            ),
+            widget.Volume(),
+            widget.CheckUpdates(
+                distro='Ubuntu',
+                display_format='|  {updates}'
+            ),
+            widget.TextBox(
+                text='|'
+            ),
             widget.Battery(
-                format='{char} {percent:2.0%}'
+                charge_char='↑',
+                discharge_char='↓',
+                empty_char='ø',
+                full_char='',
+                notify_below=0.15,
+                format='  {char} {percent:2.0%}'
+            ),
+            widget.TextBox(
+                text='|'
             ),
             widget.Clock(
                 format='%d %b %Y %H:%M'

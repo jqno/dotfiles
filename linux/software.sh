@@ -20,6 +20,7 @@ install_apt python3-pip
 install_snap ruby
 
 install_apt abcde
+install_apt aptitude
 install_apt blueman
 install_apt brightnessctl
 install_apt curl
