@@ -106,8 +106,18 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc='Makes current window fullscreen'),
 
-    # Toggle between different layouts as defined below
+    Key([mod], 'Left',
+        lazy.screen.prev_group(),
+        desc='Move to previous group'),
+    Key([mod], 'Right',
+        lazy.screen.next_group(),
+        desc='Move to next group'),
     Key([mod], 'Tab',
+        lazy.screen.toggle_group(),
+        desc='Move to last visited group'),
+
+    # Toggle between different layouts as defined below
+    Key([mod], 'backslash',
         lazy.next_layout(),
         desc='Toggle between layouts'),
     Key([mod, 'shift'], 'q',
