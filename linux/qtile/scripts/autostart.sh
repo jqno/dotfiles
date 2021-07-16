@@ -12,7 +12,13 @@ blueman-applet &
 dropbox start &
 xautolock -time 2 -locker "$SCRIPTS/lock.sh" &
 
-rambox &
-teams &
-mailspring &
-firefox &
+# Check that we have network, and if so, start some programs
+ping -c1 google.com > /dev/null 2>&1
+if [[ $? -eq 0 ]]; then
+
+  rambox &
+  teams &
+  mailspring &
+  firefox &
+
+fi
