@@ -264,13 +264,9 @@ def full_bar():
         widget.Systray(
             icon_size=16
         ),
-        widget.TextBox(
-            text='|'
+        widget.Volume(
+            emoji=True
         ),
-        widget.TextBox(
-            text=''
-        ),
-        widget.Volume(),
         widget.CheckUpdates(
             distro='Ubuntu',
             display_format='|  {updates}',
