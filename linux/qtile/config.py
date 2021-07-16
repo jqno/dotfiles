@@ -283,8 +283,9 @@ def full_bar():
             charge_char='↑',
             discharge_char='↓',
             empty_char='ø',
-            full_char='',
+            full_char='',
             notify_below=0.15,
+            show_short_text = False,
             format='  {char} {percent:2.0%}'
         ),
         widget.TextBox(
