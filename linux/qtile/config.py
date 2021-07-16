@@ -248,12 +248,15 @@ groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
 for (name, key, _) in group_descriptions:
     keys.extend([
-        # mod1 + letter of group = switch to group
+        # (super or hyper) + letter of group = switch to group
         Key([mod], key,
             lazy.group[name].toscreen(),
             desc='Switch to group {}'.format(name)),
+        Key([hyper], key,
+            lazy.group[name].toscreen(),
+            desc='Switch to group {}'.format(name)),
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
+        # super + shift + letter of group = switch to & move focused window to group
         Key([mod, 'shift'], key,
             lazy.window.togroup(name, switch_group=True),
             desc='Switch to & move focused window to group {}'.format(name)),
