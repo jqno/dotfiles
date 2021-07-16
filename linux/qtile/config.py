@@ -180,23 +180,31 @@ keys = [
         desc='Decrease brightness'),
 ]
 
-groups = [Group(i) for i in '123456789']
+group_descriptions = [
+    ('COMM₁', '1', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
+    ('WWW₂',  '2', {'layout': 'columns', 'matches': [Match(wm_class='Firefox')]}),
+    ('DEV₃',  '3', {'layout': 'columns'}),
+    ('TERM₄', '4', {'layout': 'columns'}),
+    ('ETC₅',  '5', {'layout': 'columns'}),
+    ('ETC₆',  '6', {'layout': 'columns'}),
+    ('ETC₇',  '7', {'layout': 'columns'}),
+    ('ETC₈',  '8', {'layout': 'columns'}),
+    ('ETC₉',  '9', {'layout': 'columns'}),
+    ('MUS₀',  '0', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]})
+]
+groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
-for i in groups:
+for (name, key, _) in group_descriptions:
     keys.extend([
         # mod1 + letter of group = switch to group
-        Key([mod], i.name,
-            lazy.group[i.name].toscreen(),
-            desc='Switch to group {}'.format(i.name)),
+        Key([mod], key,
+            lazy.group[name].toscreen(),
+            desc='Switch to group {}'.format(name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, 'shift'], i.name,
-            lazy.window.togroup(i.name, switch_group=True),
-            desc='Switch to & move focused window to group {}'.format(i.name)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, 'shift'], i.name, lazy.window.togroup(i.name),
-        #     desc='move focused window to group {}'.format(i.name)),
+        Key([mod, 'shift'], key,
+            lazy.window.togroup(name, switch_group=True),
+            desc='Switch to & move focused window to group {}'.format(name)),
     ])
 
 layout_theme = {
