@@ -36,6 +36,7 @@ from libqtile.lazy import lazy
 from Xlib import display as xdisplay
 
 mod = 'mod4'
+hyper = 'mod3'
 terminal = 'kitty'
 
 gap = 4
@@ -43,6 +44,19 @@ bar_height = 24
 
 home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
+
+def find_or_run(wmclass, app=None):
+    def __inner(qtile):
+        for w in qtile.windows_map.values():
+            if w.group and w.match(Match(wm_class = wmclass)):
+                qtile.current_screen.set_group(w.group)
+                w.group.focus(w)
+                return
+
+        if app is not None:
+            qtile.cmd_spawn(app)
+        
+    return __inner
 
 keys = [
     # Switch between windows
@@ -188,6 +202,34 @@ keys = [
     Key([], 'XF86MonBrightnessDown',
         lazy.spawn('sudo brightnessctl set 10%-'),
         desc='Decrease brightness'),
+
+    Key([hyper], 'c',
+        lazy.function(find_or_run('Chromium', 'chromium')),
+        desc='focus Chromium'),
+    Key([hyper], 'e',
+        lazy.function(find_or_run('Org.gnome.Characters', 'gnome-characters')),
+        desc='focus Characters'),
+    Key([hyper], 'f',
+        lazy.function(find_or_run('Org.gnome.Nautilus', 'nautilus')),
+        desc='focus Nautilus'),
+    Key([hyper], 'm',
+        lazy.function(find_or_run('Mailspring', 'mailspring')),
+        desc='focus Mailspring'),
+    Key([hyper], 'r',
+        lazy.function(find_or_run('Rambox', 'rambox')),
+        desc='focus Rambox'),
+    Key([hyper], 's',
+        lazy.function(find_or_run('Spotify', 'spotify')),
+        desc='focus Spotify'),
+    Key([hyper], 't',
+        lazy.function(find_or_run('Microsoft Teams - Preview')),
+        desc='focus Microsoft Teams'),
+    Key([hyper], 'w',
+        lazy.function(find_or_run('Firefox', 'firefox')),
+        desc='focus Firefox'),
+    Key([hyper], 'backslash',
+        lazy.function(find_or_run('KeePassXC', 'keepassxc')),
+        desc='focus KeePassXC'),
 ]
 
 group_descriptions = [
