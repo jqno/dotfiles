@@ -233,16 +233,16 @@ keys = [
 ]
 
 group_descriptions = [
-    ('COMM₁', '1', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
-    ('WWW₂',  '2', {'layout': 'columns', 'matches': [Match(wm_class='Firefox')]}),
+    ('DEV₁',  '1', {'layout': 'columns'}),
+    ('DEV₂',  '2', {'layout': 'columns'}),
     ('DEV₃',  '3', {'layout': 'columns'}),
-    ('TERM₄', '4', {'layout': 'columns'}),
-    ('ETC₅',  '5', {'layout': 'columns'}),
-    ('ETC₆',  '6', {'layout': 'columns'}),
+    ('COMM₄', '4', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
+    ('WWW₅',  '5', {'layout': 'columns', 'matches': [Match(wm_class='Firefox')]}),
+    ('MUS₆',  '6', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
     ('ETC₇',  '7', {'layout': 'columns'}),
     ('ETC₈',  '8', {'layout': 'columns'}),
     ('ETC₉',  '9', {'layout': 'columns'}),
-    ('MUS₀',  '0', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]})
+    ('ETC₀',  '0', {'layout': 'columns'}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
