@@ -40,6 +40,7 @@ hyper = 'mod3'
 terminal = 'kitty'
 
 gap = 4
+widegap = gap * 3
 bar_height = 24
 
 home = os.path.expanduser('~')
@@ -350,10 +351,11 @@ def base_bar():
         widget.CurrentLayoutIcon(
             scale=0.6
         ),
-        widget.TextBox(
-            text='|',
-            fontsize=32,
-            foreground=colors['inactive']
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
         ),
         widget.GroupBox(
             highlight_method='line',
@@ -368,13 +370,23 @@ def base_bar():
         ),
         widget.Chord(),
         widget.Prompt(),
-        widget.WindowName(
-            fmt=''
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
         ),
+        widget.Spacer(),
     ]
 
 def short_bar(): 
     return base_bar() + [
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
+        ),
         widget.Clock(
             format='%d %b %Y %H:%M'
         ),
@@ -383,16 +395,23 @@ def short_bar():
 
 def full_bar():
     return base_bar() + [
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
+        ),
         widget.Systray(
             icon_size=16
         ),
         widget.Volume(
             emoji=True
         ),
-        widget.TextBox(
-            text='|',
-            fontsize=32,
-            foreground=colors['inactive']
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
         ),
         widget.CheckUpdates(
             distro='Ubuntu',
@@ -404,10 +423,11 @@ def full_bar():
             color_have_updates=colors['warning'],
             foreground=colors['success']
         ),
-        widget.TextBox(
-            text='|',
-            fontsize=32,
-            foreground=colors['inactive']
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
         ),
         widget.Battery(
             charge_char='↑',
@@ -418,10 +438,11 @@ def full_bar():
             show_short_text = False,
             format='  {char} {percent:2.0%}'
         ),
-        widget.TextBox(
-            text='|',
-            fontsize=32,
-            foreground=colors['inactive']
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
         ),
         widget.Clock(
             format='%d %b %Y %H:%M'
