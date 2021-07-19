@@ -316,6 +316,11 @@ def base_bar():
         widget.CurrentLayoutIcon(
             scale=0.6
         ),
+        widget.TextBox(
+            text='|',
+            fontsize=32,
+            foreground=colors['inactive']
+        ),
         widget.GroupBox(
             highlight_method='line',
             highlight_color=[colors['panel'], colors['secondary']],
