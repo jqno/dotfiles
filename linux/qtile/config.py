@@ -232,6 +232,17 @@ keys = [
         desc='focus KeePassXC'),
 ]
 
+colors = {
+    'panel': '#3b4252',
+    'inactive': '#4c566a',
+    'text': '#eceff4',
+    'primary': '#88c0d0',
+    'secondary': '#5e81ac',
+    'error': '#bf616a',
+    'warning': '#ebcb8b',
+    'success': '#a3be8c'
+}
+
 group_descriptions = [
     ('DEV₁',  '1', {'layout': 'columns'}),
     ('DEV₂',  '2', {'layout': 'columns'}),
@@ -263,13 +274,16 @@ for (name, key, _) in group_descriptions:
     ])
 
 layout_theme = {
-    'margin': gap
+    'margin': gap,
+    'border_width': 2,
+    'border_focus': colors['primary'],
+    'border_normal': colors['inactive']
 }
 
 layouts = [
     layout.Columns(
-        border_focus_stack = '#d75f5f',
         grow_amount = 5,
+        border_on_single = True,
         **layout_theme
     ),
     layout.Stack(
@@ -285,6 +299,7 @@ widget_defaults = dict(
     font='sans',
     fontsize=12,
     padding=3,
+    foreground=colors['text']
 )
 extension_defaults = widget_defaults.copy()
 
@@ -293,18 +308,29 @@ def base_bar():
     return [
         widget.CurrentScreen(
             active_text='',
-            inactive_text=''
+            active_color=colors['primary'],
+            inactive_text='',
+            inactive_color=colors['inactive']
         ),
         widget.CurrentLayoutIcon(
-            scale=0.7
+            scale=0.6
         ),
-        widget.GroupBox(),
+        widget.GroupBox(
+            highlight_method='line',
+            highlight_color=[colors['panel'], colors['secondary']],
+            hide_unused=True,
+            this_screen_border=colors['secondary'],
+            this_current_screen_border=colors['primary'],
+            other_screen_border=colors['inactive'],
+            other_current_screen_border=colors['inactive'],
+            urgent_alert_method='line',
+            urgent_border=colors['error']
+        ),
         widget.Chord(),
         widget.Prompt(),
-        widget.TextBox(
-            text='|'
+        widget.WindowName(
+            fmt=''
         ),
-        widget.TaskList(),
     ]
 
 def short_bar(): 
@@ -322,13 +348,25 @@ def full_bar():
         widget.Volume(
             emoji=True
         ),
+        widget.TextBox(
+            text='|',
+            fontsize=32,
+            foreground=colors['inactive']
+        ),
         widget.CheckUpdates(
             distro='Ubuntu',
-            display_format='|  {updates}',
-            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') }
+            display_format=' {updates}',
+            no_update_string='',
+            restart_indicator='',
+            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') },
+            color_no_updates=colors['inactive'],
+            color_have_updates=colors['warning'],
+            foreground=colors['success']
         ),
         widget.TextBox(
-            text='|'
+            text='|',
+            fontsize=32,
+            foreground=colors['inactive']
         ),
         widget.Battery(
             charge_char='↑',
@@ -340,7 +378,9 @@ def full_bar():
             format='  {char} {percent:2.0%}'
         ),
         widget.TextBox(
-            text='|'
+            text='|',
+            fontsize=32,
+            foreground=colors['inactive']
         ),
         widget.Clock(
             format='%d %b %Y %H:%M'
@@ -348,7 +388,7 @@ def full_bar():
     ]
 
 def create_bar(widgets):
-    return bar.Bar(widgets, bar_height, margin = gap)
+    return bar.Bar(widgets, bar_height, margin = gap, background = colors['panel'])
 
 def get_number_of_monitors():
     num_monitors = 0
