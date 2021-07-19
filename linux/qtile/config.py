@@ -306,6 +306,7 @@ extension_defaults = widget_defaults.copy()
 
 def base_bar():
     return [
+        widget.Spacer(gap),
         widget.CurrentScreen(
             active_text='',
             active_color=colors['primary'],
@@ -337,7 +338,8 @@ def short_bar():
     return base_bar() + [
         widget.Clock(
             format='%d %b %Y %H:%M'
-        )
+        ),
+        widget.Spacer(gap),
     ]
 
 def full_bar():
@@ -384,7 +386,8 @@ def full_bar():
         ),
         widget.Clock(
             format='%d %b %Y %H:%M'
-        )
+        ),
+        widget.Spacer(gap),
     ]
 
 def create_bar(widgets):
