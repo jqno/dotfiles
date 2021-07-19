@@ -45,6 +45,7 @@ bar_height = 24
 home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
 
+
 def find_or_run(wmclass, app=None):
     def __inner(qtile):
         for w in qtile.windows_map.values():
@@ -56,6 +57,30 @@ def find_or_run(wmclass, app=None):
         if app is not None:
             qtile.cmd_spawn(app)
         
+    return __inner
+
+def focus_other_screen():
+    def __inner(qtile):
+        scr = qtile.screens.index(qtile.current_screen)
+        qtile.focus_screen(1 - scr)
+
+    return __inner
+
+def window_to_other_screen():
+    def __inner(qtile):
+        scr = qtile.screens.index(qtile.current_screen)
+        grp = qtile.screens[1 - scr].group.name
+        qtile.current_window.togroup(grp)
+        qtile.focus_screen(1 - scr)
+
+    return __inner
+
+def switch_screens():
+    def __inner(qtile):
+        scr = qtile.screens.index(qtile.current_screen)
+        grp = qtile.screens[1 - scr].group
+        qtile.current_screen.set_group(grp)
+
     return __inner
 
 keys = [
@@ -72,9 +97,12 @@ keys = [
     Key([mod], 'k',
         lazy.layout.up(),
         desc='Move focus up'),
-    Key([mod], 'o',
+    Key([mod], 'Tab',
         lazy.layout.next(),
         desc='Move window focus to other window'),
+    Key([mod], 'o',
+        lazy.function(focus_other_screen()),
+        desc='Move focus to other screen'),
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
@@ -90,6 +118,9 @@ keys = [
     Key([mod, 'shift'], 'k',
         lazy.layout.shuffle_up(),
         desc='Move window up'),
+    Key([mod, 'shift'], 'o',
+        lazy.function(window_to_other_screen()),
+        desc='Move window to other screen'),
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
@@ -120,13 +151,16 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc='Makes current window fullscreen'),
 
+    Key([mod], 'grave',
+        lazy.function(switch_screens()),
+        desc='Swap screens'),
     Key([mod], 'Left',
         lazy.screen.prev_group(),
         desc='Move to previous group'),
     Key([mod], 'Right',
         lazy.screen.next_group(),
         desc='Move to next group'),
-    Key([mod], 'Tab',
+    Key([mod, 'shift'], 'Tab',
         lazy.screen.toggle_group(),
         desc='Move to last visited group'),
 
@@ -443,7 +477,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = False
+cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
