@@ -1,39 +1,12 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the 'Software'), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 import os
 import subprocess
-
-from typing import List  # noqa: F401
-
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
-
 from Xlib import display as xdisplay
+
+
+### CONSTANTS ###
 
 mod = 'mod4'
 hyper = 'mod3'
@@ -46,8 +19,21 @@ bar_height = 24
 home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
 
+colors = {
+    'panel': '#3b4252',
+    'inactive': '#4c566a',
+    'text': '#eceff4',
+    'primary': '#88c0d0',
+    'secondary': '#5e81ac',
+    'error': '#bf616a',
+    'warning': '#ebcb8b',
+    'success': '#a3be8c'
+}
 
-def find_or_run(wmclass, app=None):
+
+### HELPER FUNCTIONS ###
+
+def find_or_run_app(wmclass, app=None):
     def __inner(qtile):
         for w in qtile.windows_map.values():
             if w.group and w.match(Match(wm_class = wmclass)):
@@ -60,18 +46,18 @@ def find_or_run(wmclass, app=None):
         
     return __inner
 
-def focus_other_screen():
-    def __inner(qtile):
-        scr = qtile.screens.index(qtile.current_screen)
-        qtile.focus_screen(1 - scr)
-
-    return __inner
-
-def window_to_other_screen():
+def move_window_to_other_screen():
     def __inner(qtile):
         scr = qtile.screens.index(qtile.current_screen)
         grp = qtile.screens[1 - scr].group.name
         qtile.current_window.togroup(grp)
+        qtile.focus_screen(1 - scr)
+
+    return __inner
+
+def focus_other_screen():
+    def __inner(qtile):
+        scr = qtile.screens.index(qtile.current_screen)
         qtile.focus_screen(1 - scr)
 
     return __inner
@@ -83,6 +69,9 @@ def switch_screens():
         qtile.current_screen.set_group(grp)
 
     return __inner
+
+
+### KEYS ###
 
 keys = [
     # Switch between windows
@@ -101,12 +90,8 @@ keys = [
     Key([mod], 'Tab',
         lazy.layout.next(),
         desc='Move window focus to other window'),
-    Key([mod], 'o',
-        lazy.function(focus_other_screen()),
-        desc='Move focus to other screen'),
 
-    # Move windows between left/right columns or move up/down in current stack.
-    # Moving out of range in Columns layout will create new column.
+    # Move windows between within layout.
     Key([mod, 'shift'], 'h',
         lazy.layout.shuffle_left(),
         desc='Move window to the left'),
@@ -120,11 +105,10 @@ keys = [
         lazy.layout.shuffle_up(),
         desc='Move window up'),
     Key([mod, 'shift'], 'o',
-        lazy.function(window_to_other_screen()),
+        lazy.function(move_window_to_other_screen()),
         desc='Move window to other screen'),
 
-    # Grow windows. If current window is on the edge of screen and direction
-    # will be to screen edge - window would shrink.
+    # Resize windows
     Key([mod, 'control'], 'h',
         lazy.layout.grow_left(),
         desc='Grow window to the left'),
@@ -140,21 +124,11 @@ keys = [
     Key([mod], 'n',
         lazy.layout.normalize(),
         desc='Reset all window sizes'),
-
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod, 'shift'], 'Return',
-        lazy.layout.toggle_split(),
-        desc='Toggle between split and unsplit sides of stack'),
     Key([mod], 'f',
         lazy.window.toggle_fullscreen(),
         desc='Makes current window fullscreen'),
 
-    Key([mod], 'grave',
-        lazy.function(switch_screens()),
-        desc='Swap screens'),
+    # Switch between groups
     Key([mod], 'Left',
         lazy.screen.prev_group(),
         desc='Move to previous group'),
@@ -165,27 +139,29 @@ keys = [
         lazy.screen.toggle_group(),
         desc='Move to last visited group'),
 
-    # Toggle between different layouts as defined below
+    # Switch between screens
+    Key([mod], 'o',
+        lazy.function(focus_other_screen()),
+        desc='Move focus to other screen'),
+    Key([mod], 'grave',
+        lazy.function(switch_screens()),
+        desc='Swap screens'),
+
+    # Toggle between different layouts
     Key([mod], 'backslash',
         lazy.next_layout(),
         desc='Toggle between layouts'),
+
+    # Close and reload things
     Key([mod, 'shift'], 'q',
         lazy.window.kill(),
         desc='Kill focused window'),
-
-    Key([mod], 'Return',
-        lazy.spawn(terminal),
-        desc='Launch terminal'),
-    Key([mod], 'space',
-        lazy.spawn('rofi -modi drun -show drun'),
-        desc='Spawn an app using rofi'),
     Key([mod, 'control'], 'r',
         lazy.restart(),
         desc='Restart Qtile'),
     Key([mod], 'BackSpace',
         lazy.spawn(script_location + '/lock.sh'),
         desc='Lock screen'),
-
     KeyChord([mod, 'shift'], 'BackSpace', [
         Key([], 'l',
             lazy.shutdown(),
@@ -238,45 +214,46 @@ keys = [
         lazy.spawn('sudo brightnessctl set 10%-'),
         desc='Decrease brightness'),
 
+    # Launching
+    Key([mod], 'Return',
+        lazy.spawn(terminal),
+        desc='Launch terminal'),
+    Key([mod], 'space',
+        lazy.spawn('rofi -modi drun -show drun'),
+        desc='Spawn an app using rofi'),
+
+    # Managing apps
     Key([hyper], 'c',
-        lazy.function(find_or_run('Chromium', 'chromium')),
+        lazy.function(find_or_run_app('Chromium', 'chromium')),
         desc='focus Chromium'),
     Key([hyper], 'e',
-        lazy.function(find_or_run('Org.gnome.Characters', 'gnome-characters')),
+        lazy.function(find_or_run_app('Org.gnome.Characters', 'gnome-characters')),
         desc='focus Characters'),
     Key([hyper], 'f',
-        lazy.function(find_or_run('Org.gnome.Nautilus', 'nautilus')),
+        lazy.function(find_or_run_app('Org.gnome.Nautilus', 'nautilus')),
         desc='focus Nautilus'),
     Key([hyper], 'm',
-        lazy.function(find_or_run('Mailspring', 'mailspring')),
+        lazy.function(find_or_run_app('Mailspring', 'mailspring')),
         desc='focus Mailspring'),
     Key([hyper], 'r',
-        lazy.function(find_or_run('Rambox', 'rambox')),
+        lazy.function(find_or_run_app('Rambox', 'rambox')),
         desc='focus Rambox'),
     Key([hyper], 's',
-        lazy.function(find_or_run('Spotify', 'spotify')),
+        lazy.function(find_or_run_app('Spotify', 'spotify')),
         desc='focus Spotify'),
     Key([hyper], 't',
-        lazy.function(find_or_run('Microsoft Teams - Preview')),
+        lazy.function(find_or_run_app('Microsoft Teams - Preview')),
         desc='focus Microsoft Teams'),
     Key([hyper], 'w',
-        lazy.function(find_or_run('Firefox', 'firefox')),
+        lazy.function(find_or_run_app('Firefox', 'firefox')),
         desc='focus Firefox'),
     Key([hyper], 'backslash',
-        lazy.function(find_or_run('KeePassXC', 'keepassxc')),
+        lazy.function(find_or_run_app('KeePassXC', 'keepassxc')),
         desc='focus KeePassXC'),
 ]
 
-colors = {
-    'panel': '#3b4252',
-    'inactive': '#4c566a',
-    'text': '#eceff4',
-    'primary': '#88c0d0',
-    'secondary': '#5e81ac',
-    'error': '#bf616a',
-    'warning': '#ebcb8b',
-    'success': '#a3be8c'
-}
+
+### GROUPS ###
 
 group_descriptions = [
     ('DEV₁',  '1', {'layout': 'columns'}),
@@ -308,6 +285,9 @@ for (name, key, _) in group_descriptions:
             desc='Switch to & move focused window to group {}'.format(name)),
     ])
 
+
+### LAYOUTS ###
+
 layout_theme = {
     'margin': gap,
     'border_width': 2,
@@ -330,14 +310,15 @@ layouts = [
     )
 ]
 
+
+### BAR ###
+
 widget_defaults = dict(
     font='sans',
     fontsize=12,
     padding=3,
     foreground=colors['text']
 )
-extension_defaults = widget_defaults.copy()
-
 
 def base_bar():
     return [
@@ -453,6 +434,9 @@ def full_bar():
 def create_bar(widgets):
     return bar.Bar(widgets, bar_height, margin = gap, background = colors['panel'])
 
+
+### SCREENS ###
+
 def get_number_of_monitors():
     num_monitors = 0
     try:
@@ -485,20 +469,20 @@ if number_of_monitors > 1:
     for m in range(number_of_monitors - 1):
         screens.append(create_screen(short_bar()))
 
-# Drag floating layouts.
+
+### FLOATING LAYOUT ###
+
 mouse = [
-    Drag([mod], 'Button1', lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod, 'shift'], 'Button1', lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], 'Button1', lazy.window.bring_to_front())
+    Drag([mod], 'Button1',
+        lazy.window.set_position_floating(),
+        start=lazy.window.get_position()),
+    Drag([mod, 'shift'], 'Button1',
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size()),
+    Click([mod], 'Button1',
+        lazy.window.bring_to_front())
 ]
 
-dgroups_key_binder = None
-dgroups_app_rules = []  # type: List
-follow_mouse_focus = True
-bring_front_click = False
-cursor_warp = True
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
@@ -509,24 +493,22 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='Event Tester'), # xev
     Match(title='pinentry'),  # GPG key password entry
 ])
+
+
+### OPTIONS ###
+
+follow_mouse_focus = True
+bring_front_click = True
+cursor_warp = True
 auto_fullscreen = True
 focus_on_window_activation = 'smart'
 reconfigure_screens = True
-
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
+wmname = 'LG3D'
+
+
+### HOOKS ###
 
 @hook.subscribe.startup_once
 def autostart():
     subprocess.call([script_location + '/autostart.sh'])
-
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
-wmname = 'LG3D'
