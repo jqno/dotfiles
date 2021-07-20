@@ -1,6 +1,7 @@
 local This = {}
 
 local set = require('vim-util').set
+local augroup = require('vim-util').augroup
 
 local default_indent = 2
 
@@ -33,6 +34,10 @@ function This.setup()
 
   vim.cmd('colorscheme nord')
   vim.cmd('hi Normal guibg=NONE')
+
+  augroup('HighlightOnYank', [[
+    autocmd TextYankPost * lua vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150, on_visual = true }
+  ]])
 end
 
 return This
