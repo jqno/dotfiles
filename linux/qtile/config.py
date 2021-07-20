@@ -349,14 +349,14 @@ def base_bar():
             urgent_alert_method='line',
             urgent_border=colors['error']
         ),
-        widget.Chord(),
-        widget.Prompt(),
         widget.Sep(
             foreground=colors['inactive'],
             padding=widegap,
             linewidth=2,
             size_percent=100
         ),
+        widget.Chord(),
+        widget.Prompt(),
         widget.Spacer(),
     ]
 
