@@ -57,22 +57,6 @@ local function setup_lsp()
   ]])
 end
 
-local function setup_lspsaga()
-  require('lspsaga').init_lsp_saga({
-    use_saga_diagnostic_sign = false,
-    error_sign = '✗',
-    warn_sign = '◆',
-    hint_sign = 'H',
-    infor_sign = 'i',
-    code_action_icon = '·',
-    code_action_prompt = { sign_priority = 1, virtual_text = false },
-    code_action_keys = { quit = '<Esc>' },
-    finder_action_keys = { quit = '<Esc>' },
-    rename_action_keys = { quit = '<Esc>' },
-    border_style = 2
-  })
-end
-
 local function setup_lspinstall_hook()
   require('lspinstall').post_install_hook = function()
     setup_lsp()
@@ -82,7 +66,6 @@ end
 
 function This.setup()
   setup_lsp()
-  setup_lspsaga()
   setup_lspinstall_hook()
 end
 

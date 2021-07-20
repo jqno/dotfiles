@@ -194,7 +194,8 @@ local function define_mappings()
       name = 'window',
       ['='] = { '<cmd>wincmd =<CR>', 'equalize' },
       ['0'] = { '<cmd>wincmd r<CR>', 'rotate' },
-      z = { '<cmd>ZenMode<CR>', 'zoom' }
+      z = { '<cmd>ZenMode<CR>', 'zoom' },
+      K = { '<C-w>w', 'move into floating window' }
     }
   })
 end
@@ -208,21 +209,17 @@ function This.setup_lsp(client, bufnr)
 
   -- VARIOUS --
   buf_map(This.modes.n, 'K',
-      '<cmd>Lspsaga hover_doc<CR>')
+      '<cmd>lua vim.lsp.buf.hover()<CR>')
   buf_map(This.modes.i, '<C-Space>',
-      '<cmd>lua require("lspsaga.signaturehelp").signature_help()<CR>')
-  buf_map(This.modes.n, '<leader><C-D>',
-      '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
-  buf_map(This.modes.n, '<leader><C-U>',
-      '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
   wk({
     -- UNIMPAIRED --
     ['['] = {
-      d = { '<cmd>Lspsaga diagnostic_jump_prev<CR>', 'diagnostic' }
+      d = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'diagnostic' }
     },
     [']'] = {
-      d = { '<cmd>Lspsaga diagnostic_jump_next<CR>', 'diagnostic' }
+      d = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'diagnostic' }
     },
     -- FINDING --
     ['<leader>f'] = {
@@ -249,9 +246,8 @@ function This.setup_lsp(client, bufnr)
     },
     -- SHOWING THINGS --
     ['<leader>s'] = {
-      s = { '<cmd>Lspsaga signature_help<CR>', 'signature help' },
-      d = { '<cmd>Lspsaga show_cursor_diagnostics<CR>', 'diagnostics' },
-      D = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'line diagnostics' }
+      s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help' },
+      d = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'diagnostics' }
     }
   }, { buffer = bufnr })
 
