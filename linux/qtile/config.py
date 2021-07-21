@@ -398,7 +398,7 @@ def full_bar():
             distro='Ubuntu',
             display_format=' {updates}',
             no_update_string='',
-            restart_indicator='',
+            restart_indicator=' ',
             mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') },
             color_no_updates=colors['inactive'],
             color_have_updates=colors['warning'],
