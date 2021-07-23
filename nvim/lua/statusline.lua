@@ -11,26 +11,24 @@ local symbols = {
   splitter = '│',
   bottom = '⊥',
   ok = '✔',
-  error = '✗', 
+  error = '✗',
   warning = '◆',
   hint = 'H',
   information = 'i'
 }
 
 local colors = {
-  black = '#2c323c',
-  blue = '#61afef',
-  darkgray = '#5c6370',
-  gray = '#abb2bf',
-  green = '#98c379',
-  purple = '#c586c0',
-  red = '#f44747',
-  white = '#ffffff',
-  yellow = '#e5c07b',
-  error = 'Red',
-  warning = 'Orange',
-  hint = 'LightGrey',
-  information = 'LightBlue'
+  black = '#4c566a',
+  gray = '#d8dee9',
+  green = '#88c0d0',
+  purple = '#b48ead',
+  red = '#bf616a',
+  white = '#eceff4',
+  yellow = '#ebcb8b',
+  error = '#bf616a',
+  warning = '#d08770',
+  hint = '#d8dee9',
+  information = '#8fbcbb'
 }
 
 local schemes = {
