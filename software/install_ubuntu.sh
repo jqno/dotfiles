@@ -63,6 +63,7 @@ install_apt subversion
 install_apt tig
 install_apt tlp
 install_apt tlp-rdw
+install_apt universal-ctags
 install_apt vim
 install_apt wmctrl
 install_apt xautolock
@@ -76,7 +77,6 @@ install_snap intellij-idea-community
 install_snap keepassxc
 install_snap rambox
 install_snap spotify
-install_snap universal-ctags
 
 
 ## Qtile
