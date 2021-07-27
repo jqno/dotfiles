@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Keeping this as a shell script instead of a .gitconfig file
+# so we can do some platform-specific things.
+
 git config --global user.name "Jan Ouwens"
 git config --global color.ui true
 git config --global push.default simple

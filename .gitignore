@@ -1,7 +1,7 @@
-vim/autoload
-vim/plugged
-vim/view
-vim/.netrwhist
+vim/.vim/autoload
+vim/.vim/plugged
+vim/.vim/view
+vim/.vim/.netrwhist
 kitty/pass_keys.py
 kitty/neighboring_window.py
 __pycache__

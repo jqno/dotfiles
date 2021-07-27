@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+echo "** Some dependencies need the administrator password:"
+sudo -v
+
+echo "** Installing Ubuntu dependencies..."
+
 function install_apt() {
   sudo apt install --yes $1
 }
@@ -53,6 +58,7 @@ install_apt rsync
 install_apt scala
 install_apt scrot
 install_apt silversearcher-ag
+install_apt stow
 install_apt subversion
 install_apt tig
 install_apt tlp

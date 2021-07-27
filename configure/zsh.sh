@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# Make zsh the default shell
+# Setting up .zprofile
+PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+ln -s $PWD/zsh/.zsh/environment.sh ~/.zprofile
 
+# Make zsh the default shell
 LOCATION=""
 if [[ "$(uname -s)" == "Darwin" ]]; then
   LOCATION="/usr/local/bin/zsh"
