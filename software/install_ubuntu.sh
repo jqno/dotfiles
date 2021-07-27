@@ -90,6 +90,8 @@ else
   exit 1
 fi
 
+$PIP install rofimoji
+
 $PIP install xcffib
 $PIP install --no-cache-dir cairocffi
 $PIP install dbus-next
