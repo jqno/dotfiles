@@ -142,7 +142,7 @@ local function define_mappings()
     ['<leader>f'] = {
       name = 'file',
       b = { '<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers' },
-      f = { '<cmd>Telescope find_files<CR>', 'files' },
+      f = { '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', 'files' },
       i = { '<cmd>Telescope treesitter<CR>', 'identifiers' },
       n = { '<cmd>NvimTreeToggle<CR>', 'tree' },
       N = { '<cmd>NvimTreeFindFile<CR>', 'tree (follow)' },
