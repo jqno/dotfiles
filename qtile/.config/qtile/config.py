@@ -388,19 +388,18 @@ def full_bar():
         widget.Systray(
             icon_size=16
         ),
-        widget.Volume(
-            emoji=True
-        ),
         widget.Sep(
             foreground=colors['inactive'],
             padding=widegap,
             linewidth=2,
             size_percent=100
         ),
+        widget.TextBox(
+            text=''
+        ),
         widget.CheckUpdates(
             distro='Ubuntu',
-            display_format=' {updates}',
-            no_update_string='',
+            display_format='{updates}',
             restart_indicator=' ',
             mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') },
             color_no_updates=colors['inactive'],
@@ -413,6 +412,19 @@ def full_bar():
             linewidth=2,
             size_percent=100
         ),
+        widget.TextBox(
+            text=''
+        ),
+        widget.Volume(),
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
+        ),
+        widget.TextBox(
+            text=''
+        ),
         widget.Battery(
             charge_char='↑',
             discharge_char='↓',
@@ -420,7 +432,7 @@ def full_bar():
             full_char='',
             notify_below=0.15,
             show_short_text = False,
-            format='  {char} {percent:2.0%}'
+            format='{char} {percent:2.0%}'
         ),
         widget.Sep(
             foreground=colors['inactive'],
