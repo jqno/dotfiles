@@ -3,6 +3,7 @@ import subprocess
 from libqtile import bar, hook, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
+from libqtile.widget import base
 from Xlib import display as xdisplay
 
 
@@ -314,6 +315,31 @@ layouts = [
 ]
 
 
+### CUSTOM WIDGETS ###
+
+class WidgetNetwork(base.InLoopPollText):
+    def __init__(self, **config):
+        base.InLoopPollText.__init__(self, **config)
+        self.update_interval = 10
+
+    def poll(self):
+        output = subprocess.run('ip link show | grep "state UP"', shell=True, capture_output=True)
+        connections = output.stdout.decode('utf-8').split('\n')
+        result = ''
+        for conn in connections:
+            c = conn[conn.find(' ') + 1 :]
+            if c.startswith('wl'):
+                result += ''
+            elif c.startswith('en'):
+                result += ''
+            else:
+                result += ''
+        if result == '':
+            result = ''
+
+        return result
+
+
 ### BAR ###
 
 widget_defaults = dict(
@@ -405,6 +431,15 @@ def full_bar():
             color_no_updates=colors['inactive'],
             color_have_updates=colors['warning'],
             foreground=colors['success']
+        ),
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
+        ),
+        WidgetNetwork(
+            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn(terminal + ' nmtui-connect') }
         ),
         widget.Sep(
             foreground=colors['inactive'],

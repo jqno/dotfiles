@@ -7,7 +7,6 @@ picom -b -f
 $SCRIPTS/display.sh
 $SCRIPTS/background.sh
 
-nm-applet &
 blueman-applet &
 dropbox start &
 xautolock -time 2 -locker "$SCRIPTS/lock.sh" &
