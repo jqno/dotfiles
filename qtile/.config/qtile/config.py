@@ -317,14 +317,29 @@ layouts = [
 
 ### CUSTOM WIDGETS ###
 
+def subprocess_run(command):
+    output = subprocess.run(command, shell=True, capture_output=True)
+    return output.stdout.decode('utf-8').split('\n')
+
+class WidgetBluetooth(base.InLoopPollText):
+    def __init__(self, **config):
+        base.InLoopPollText.__init__(self, **config)
+        self.update_interval = 10
+
+    def poll(self):
+        paired = subprocess_run('bluetoothctl paired-devices | cut -f2 -d" "')
+        for device in paired:
+            if len(subprocess_run('bluetoothctl info ' + device + ' | grep "Connected: yes"')) > 1:
+                return ' '
+        return ''
+
 class WidgetNetwork(base.InLoopPollText):
     def __init__(self, **config):
         base.InLoopPollText.__init__(self, **config)
         self.update_interval = 10
 
     def poll(self):
-        output = subprocess.run('ip link show | grep "state UP"', shell=True, capture_output=True)
-        connections = output.stdout.decode('utf-8').split('\n')
+        connections = subprocess_run('ip link show | grep "state UP"')
         result = ''
         for conn in connections:
             c = conn[conn.find(' ') + 1 :]
@@ -431,6 +446,15 @@ def full_bar():
             color_no_updates=colors['inactive'],
             color_have_updates=colors['warning'],
             foreground=colors['success']
+        ),
+        widget.Sep(
+            foreground=colors['inactive'],
+            padding=widegap,
+            linewidth=2,
+            size_percent=100
+        ),
+        WidgetBluetooth(
+            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('blueman-manager') }
         ),
         widget.Sep(
             foreground=colors['inactive'],
