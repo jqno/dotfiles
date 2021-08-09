@@ -339,10 +339,9 @@ class WidgetNetwork(base.InLoopPollText):
         self.update_interval = 10
 
     def poll(self):
-        connections = subprocess_run('ip link show | grep "state UP"')
+        connections = subprocess_run('ip link show | grep "state UP" | cut -f2 -d" " | sort')
         result = ''
-        for conn in connections:
-            c = conn[conn.find(' ') + 1 :]
+        for c in connections:
             if c.startswith('wl'):
                 result += ''
             elif c.startswith('en'):
