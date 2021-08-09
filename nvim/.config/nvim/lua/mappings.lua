@@ -55,6 +55,17 @@ local function define_mappings()
       '<cmd>lua require("util").toggle_movement(";", "0;")<CR>')
   map(This.modes.n, ',',
       '<cmd>lua require("util").toggle_movement(",", "$,")<CR>')
+  -- Breakpoints for undo
+  map(This.modes.i, '.',
+      '.<C-G>u')
+  map(This.modes.i, ',',
+      ',<C-G>u')
+  map(This.modes.i, ';',
+      ';<C-G>u')
+  map(This.modes.i, '!',
+      '!<C-G>u')
+  map(This.modes.i, '?',
+      '?<C-G>u')
 
 
   -- VARIOUS --
