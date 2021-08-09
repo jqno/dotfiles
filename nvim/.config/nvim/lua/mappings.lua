@@ -76,6 +76,15 @@ local function define_mappings()
       '<Plug>CommentaryLine', { noremap = false })
   map(This.modes.v, '\\',
       '<Plug>Commentary', { noremap = false })
+  -- Moving lines and blocks
+  map(This.modes.n, '<M-j>',
+      '<cmd>move .+1<CR>==')
+  map(This.modes.n, '<M-k>',
+      '<cmd>move .-2<CR>==')
+  map(This.modes.v, '<M-j>',
+      [[:move '>+1<CR>gv=gv]])
+  map(This.modes.v, '<M-k>',
+      [[:move '<-2<CR>gv=gv]])
 
 
   -- COMPLETION --
