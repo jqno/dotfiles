@@ -66,13 +66,12 @@ local function define_mappings()
       '!<C-G>u')
   map(This.modes.i, '?',
       '?<C-G>u')
-
-
-  -- VARIOUS --
+  -- Copy to system clipboard
   map(This.modes.n, 'Y',
       '"+y')
   map(This.modes.v, 'Y',
       '"+y')
+  -- Comment lines
   map(This.modes.n, '\\\\',
       '<Plug>CommentaryLine', { noremap = false })
   map(This.modes.v, '\\',
