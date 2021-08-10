@@ -142,7 +142,7 @@ end
 local function setup_vimwiki()
   g.vimwiki_location = '~/Dropbox/notes'
   g.vimwiki_list = {
-    { path = g.vimwiki_location, syntax = 'markdown', ext = '.mkdn', links_space_char = '_', diary_caption_level = -1 }
+    { path = g.vimwiki_location, syntax = 'markdown', ext = '.mkdn', links_space_char = '_', diary_caption_level = 1 }
   }
   g.vimwiki_global_ext = 0
   g.vimwiki_markdown_link_ext = 1
