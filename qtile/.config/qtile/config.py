@@ -382,6 +382,7 @@ def base_bar():
             size_percent=100
         ),
         widget.GroupBox(
+            disable_drag=True,
             highlight_method='line',
             highlight_color=[colors['panel'], colors['secondary']],
             hide_unused=True,
