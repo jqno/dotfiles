@@ -31,6 +31,6 @@ source setjdk.sh 11 > /dev/null
 
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source $HOME/bin/powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 

@@ -2,7 +2,7 @@
 
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
-$PWD/software/install.sh ubuntu
+$PWD/software/install.sh arch
 
 $PWD/clean.sh
 stow abcde
@@ -24,5 +24,5 @@ $PWD/configure/nvim.sh
 $PWD/configure/vim.sh
 $PWD/configure/zsh.sh
 
-sudo cat $PWD/qtile/.config/qtile/add-to-sudoers | sudo EDITOR='tee -a' visudo
+sudo bash -c "cat $PWD/qtile/.config/qtile/add-to-sudoers >> /etc/sudoers"
 
