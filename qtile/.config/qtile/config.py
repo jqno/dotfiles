@@ -163,17 +163,9 @@ keys = [
     Key([mod], 'BackSpace',
         lazy.spawn(script_location + '/lock.sh'),
         desc='Lock screen'),
-    KeyChord([mod, 'shift'], 'BackSpace', [
-        Key([], 'l',
-            lazy.shutdown(),
-            desc='Log out'),
-        Key([], 'r',
-            lazy.spawn('sudo reboot -f'),
-            desc='Reboot'),
-        Key([], 's',
-            lazy.spawn('shutdown now'),
-            desc='Shutdown')
-    ], mode='Exit: Log out | Reboot | Shut down'),
+    Key([mod, 'shift'], 'BackSpace',
+        lazy.spawn('arcolinux-logout'),
+        desc='Logout menu'),
 
     # System keybindings
     Key([mod], 'b',
@@ -361,7 +353,6 @@ def base_bar():
             linewidth=2,
             size_percent=100
         ),
-        widget.Chord(),
         widget.Prompt(),
         widget.Spacer(),
     ]
