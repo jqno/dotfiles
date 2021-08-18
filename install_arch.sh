@@ -4,6 +4,8 @@ PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 $PWD/software/install.sh arch
 
+mv ~/.config/qtile ~/.config/qtile-arco 2> /dev/null
+
 $PWD/clean.sh
 stow abcde
 stow ctags
