@@ -285,7 +285,7 @@ for (name, key, _) in group_descriptions:
 
         # super + shift + letter of group = switch to & move focused window to group
         Key([mod, 'shift'], key,
-            lazy.window.togroup(name, switch_group=True),
+            lazy.window.togroup(name),
             desc='Switch to & move focused window to group {}'.format(name)),
     ])
 
