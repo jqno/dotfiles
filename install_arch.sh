@@ -4,7 +4,11 @@ PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 $PWD/software/install.sh arch
 
-mv ~/.config/qtile ~/.config/qtile-arco 2> /dev/null
+if ! [[ -d ~/.arco ]]; then
+  mkdir ~/.arco
+  mv ~/.config/qtile ~/.arco/qtile 2> /dev/null
+  mv ~/.zshrc ~/.arco/zshrc 2> /dev/null
+fi
 
 $PWD/clean.sh
 stow abcde

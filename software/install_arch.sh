@@ -10,7 +10,7 @@ function install_pacman() {
 }
 
 function install_aur() {
-  sudo yay --noconfirm -S $1
+  yay --noconfirm -S $1
 }
 
 function install_pip() {
@@ -62,7 +62,7 @@ install_pacman zsh-syntax-highlighting
 
 install_aur jabba
 install_aur jekyll
-install_aur rambox
+install_aur rambox-bin
 install_aur zsh-theme-powerlevel10k-git
 
 install_pip pynvim
