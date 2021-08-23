@@ -2,21 +2,31 @@
 
 SCRIPTS="$HOME/.config/qtile/scripts"
 
+function run {
+  if ! pgrep $1; then
+    $@ &
+  fi
+}
+
 numlockx on
 picom -b -f
 $SCRIPTS/display.sh
 $SCRIPTS/background.sh
 
-dropbox start &
-xautolock -time 2 -locker "$SCRIPTS/lock.sh" &
+run dropbox start &
+run nm-applet &
+run blueberry-tray &
+run volumeicon &
+run pamac-tray &
+run xautolock -time 2 -locker "$SCRIPTS/lock.sh" &
 
 # Check that we have network, and if so, start some programs
 ping -c1 google.com > /dev/null 2>&1
 if [[ $? -eq 0 ]]; then
 
-  rambox &
-  teams &
   mailspring &
   firefox &
+  rambox &
+  teams &
 
 fi

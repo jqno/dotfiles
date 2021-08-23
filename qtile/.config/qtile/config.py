@@ -163,17 +163,9 @@ keys = [
     Key([mod], 'BackSpace',
         lazy.spawn(script_location + '/lock.sh'),
         desc='Lock screen'),
-    KeyChord([mod, 'shift'], 'BackSpace', [
-        Key([], 'l',
-            lazy.shutdown(),
-            desc='Log out'),
-        Key([], 'r',
-            lazy.spawn('sudo reboot -f'),
-            desc='Reboot'),
-        Key([], 's',
-            lazy.spawn('shutdown now'),
-            desc='Shutdown')
-    ], mode='Exit: Log out | Reboot | Shut down'),
+    Key([mod, 'shift'], 'BackSpace',
+        lazy.spawn('arcolinux-logout'),
+        desc='Logout menu'),
 
     # System keybindings
     Key([mod], 'b',
@@ -231,7 +223,7 @@ keys = [
 
     # Managing apps
     Key([hyper], 'c',
-        lazy.function(find_or_run_app('Chromium', 'chromium')),
+        lazy.function(find_or_run_app('Google-chrome', 'google-chrome-stable')),
         desc='focus Chromium'),
     Key([hyper], 'f',
         lazy.function(find_or_run_app('Org.gnome.Nautilus', 'nautilus')),
@@ -249,7 +241,7 @@ keys = [
         lazy.function(find_or_run_app('Microsoft Teams - Preview')),
         desc='focus Microsoft Teams'),
     Key([hyper], 'w',
-        lazy.function(find_or_run_app('Firefox', 'firefox')),
+        lazy.function(find_or_run_app('firefox', 'firefox')),
         desc='focus Firefox'),
     Key([hyper], 'backslash',
         lazy.function(find_or_run_app('KeePassXC', 'keepassxc')),
@@ -264,7 +256,7 @@ group_descriptions = [
     ('DEV₂',  '2', {'layout': 'columns'}),
     ('DEV₃',  '3', {'layout': 'columns'}),
     ('COMM₄', '4', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
-    ('WWW₅',  '5', {'layout': 'columns', 'matches': [Match(wm_class='Firefox')]}),
+    ('WWW₅',  '5', {'layout': 'columns', 'matches': [Match(wm_class='firefox')]}),
     ('MUS₆',  '6', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
     ('ETC₇',  '7', {'layout': 'columns'}),
     ('ETC₈',  '8', {'layout': 'columns'}),
@@ -315,45 +307,6 @@ layouts = [
 ]
 
 
-### CUSTOM WIDGETS ###
-
-def subprocess_run(command):
-    output = subprocess.run(command, shell=True, capture_output=True)
-    return output.stdout.decode('utf-8').split('\n')
-
-class WidgetBluetooth(base.InLoopPollText):
-    def __init__(self, **config):
-        base.InLoopPollText.__init__(self, **config)
-        self.update_interval = 10
-
-    def poll(self):
-        paired = subprocess_run('bluetoothctl paired-devices | cut -f2 -d" "')
-        for device in paired:
-            if len(subprocess_run('bluetoothctl info ' + device + ' | grep "Connected: yes"')) > 1:
-                return ' '
-        return ''
-
-class WidgetNetwork(base.InLoopPollText):
-    def __init__(self, **config):
-        base.InLoopPollText.__init__(self, **config)
-        self.update_interval = 10
-
-    def poll(self):
-        connections = subprocess_run('ip link show | grep "state UP" | cut -f2 -d" " | sort')
-        result = ''
-        for c in connections:
-            if c.startswith('wl'):
-                result += ''
-            elif c.startswith('en'):
-                result += ''
-            else:
-                result += ''
-        if result == '':
-            result = ''
-
-        return result
-
-
 ### BAR ###
 
 widget_defaults = dict(
@@ -367,6 +320,7 @@ def base_bar():
     return [
         widget.Spacer(gap),
         widget.CurrentScreen(
+            font='FontAwesome',
             active_text='',
             active_color=colors['primary'],
             inactive_text='',
@@ -399,7 +353,6 @@ def base_bar():
             linewidth=2,
             size_percent=100
         ),
-        widget.Chord(),
         widget.Prompt(),
         widget.Spacer(),
     ]
@@ -429,52 +382,6 @@ def full_bar():
         widget.Systray(
             icon_size=16
         ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        widget.TextBox(
-            text=''
-        ),
-        widget.CheckUpdates(
-            distro='Ubuntu',
-            display_format='{updates}',
-            restart_indicator=' ',
-            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('update-manager') },
-            color_no_updates=colors['inactive'],
-            color_have_updates=colors['warning'],
-            foreground=colors['success']
-        ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        WidgetBluetooth(
-            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn('blueman-manager') }
-        ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        WidgetNetwork(
-            mouse_callbacks = { 'Button1': lambda: qtile.cmd_spawn(terminal + ' nmtui-connect') }
-        ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        widget.TextBox(
-            text=''
-        ),
-        widget.Volume(),
         widget.Sep(
             foreground=colors['inactive'],
             padding=widegap,
