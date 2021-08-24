@@ -480,7 +480,7 @@ floating_layout = layout.Floating(float_rules=[
 
 follow_mouse_focus = True
 bring_front_click = True
-cursor_warp = True
+cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = 'smart'
 reconfigure_screens = True
