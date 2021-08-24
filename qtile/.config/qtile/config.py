@@ -255,13 +255,13 @@ group_descriptions = [
     ('DEV₁',  '1', {'layout': 'columns'}),
     ('DEV₂',  '2', {'layout': 'columns'}),
     ('DEV₃',  '3', {'layout': 'columns'}),
-    ('COMM₄', '4', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
-    ('WWW₅',  '5', {'layout': 'columns', 'matches': [Match(wm_class='firefox')]}),
-    ('MUS₆',  '6', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
+    ('DEV₄',  '4', {'layout': 'columns'}),
+    ('ETC₅',  '5', {'layout': 'columns'}),
+    ('ETC₆',  '6', {'layout': 'columns'}),
     ('ETC₇',  '7', {'layout': 'columns'}),
-    ('ETC₈',  '8', {'layout': 'columns'}),
-    ('ETC₉',  '9', {'layout': 'columns'}),
-    ('ETC₀',  '0', {'layout': 'columns'}),
+    ('MUS₈',  '8', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
+    ('WWW₉',  '9', {'layout': 'columns', 'matches': [Match(wm_class='firefox')]}),
+    ('COMM₀', '0', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
