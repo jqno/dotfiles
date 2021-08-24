@@ -15,7 +15,7 @@ terminal = 'kitty'
 
 gap = 4
 widegap = gap * 3
-bar_height = 24
+bar_height = 32
 
 home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
@@ -318,12 +318,12 @@ widget_defaults = dict(
 
 def base_bar():
     return [
-        widget.Spacer(gap),
+        widget.Spacer(gap * 2),
         widget.CurrentScreen(
-            font='FontAwesome',
-            active_text='',
+            fontsize=16,
+            active_text='●',
             active_color=colors['primary'],
-            inactive_text='',
+            inactive_text='○',
             inactive_color=colors['inactive']
         ),
         widget.CurrentLayoutIcon(
@@ -368,7 +368,7 @@ def short_bar():
         widget.Clock(
             format='%d %b %Y %H:%M'
         ),
-        widget.Spacer(gap),
+        widget.Spacer(gap * 2),
     ]
 
 def full_bar():
@@ -409,7 +409,7 @@ def full_bar():
         widget.Clock(
             format='%d %b %Y %H:%M'
         ),
-        widget.Spacer(gap),
+        widget.Spacer(gap * 2),
     ]
 
 def create_bar(widgets):
