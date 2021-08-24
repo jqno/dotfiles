@@ -62,6 +62,7 @@ install_pacman zsh-syntax-highlighting
 
 install_aur jabba
 install_aur jekyll
+install_aur picom-jonaburg-git
 install_aur rambox-bin
 install_aur zsh-theme-powerlevel10k-git
 

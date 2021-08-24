@@ -17,6 +17,7 @@ stow git
 stow ideavim
 stow kitty
 stow nvim
+stow picom
 stow python
 stow qtile
 stow scripts

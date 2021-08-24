@@ -9,7 +9,7 @@ function run {
 }
 
 numlockx on
-picom -b -f
+picom -b --experimental-backend --conf $HOME/.config/picom.conf
 $SCRIPTS/display.sh
 $SCRIPTS/background.sh
 
