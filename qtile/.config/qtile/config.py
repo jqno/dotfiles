@@ -111,19 +111,13 @@ keys = [
         desc='Move window to other screen'),
 
     # Resize windows
-    Key([mod, 'control'], 'h',
-        lazy.layout.grow_left(),
-        desc='Grow window to the left'),
-    Key([mod, 'control'], 'l',
-        lazy.layout.grow_right(),
-        desc='Grow window to the right'),
-    Key([mod, 'control'], 'j',
-        lazy.layout.grow_down(),
-        desc='Grow window down'),
-    Key([mod, 'control'], 'k',
-        lazy.layout.grow_up(),
-        desc='Grow window up'),
-    Key([mod], 'n',
+    Key([mod], 'minus',
+        lazy.layout.shrink(),
+        desc='Shrink current window'),
+    Key([mod], 'equal',
+        lazy.layout.grow(),
+        desc='Grow current window'),
+    Key([mod, 'control'], 'n',
         lazy.layout.normalize(),
         desc='Reset all window sizes'),
     Key([mod], 'f',
@@ -253,15 +247,15 @@ keys = [
 ### GROUPS ###
 
 group_descriptions = [
-    ('DEV₁',  '1', {'layout': 'columns'}),
-    ('DEV₂',  '2', {'layout': 'columns'}),
-    ('DEV₃',  '3', {'layout': 'columns'}),
-    ('DEV₄',  '4', {'layout': 'columns'}),
-    ('ETC₅',  '5', {'layout': 'columns'}),
-    ('ETC₆',  '6', {'layout': 'columns'}),
-    ('ETC₇',  '7', {'layout': 'columns'}),
+    ('DEV₁',  '1', {'layout': 'monadtall'}),
+    ('DEV₂',  '2', {'layout': 'monadtall'}),
+    ('DEV₃',  '3', {'layout': 'monadtall'}),
+    ('DEV₄',  '4', {'layout': 'monadtall'}),
+    ('ETC₅',  '5', {'layout': 'monadtall'}),
+    ('ETC₆',  '6', {'layout': 'monadtall'}),
+    ('ETC₇',  '7', {'layout': 'monadtall'}),
     ('MUS₈',  '8', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
-    ('WWW₉',  '9', {'layout': 'columns', 'matches': [Match(wm_class='firefox')]}),
+    ('WWW₉',  '9', {'layout': 'monadtall', 'matches': [Match(wm_class='firefox')]}),
     ('COMM₀', '0', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
@@ -293,7 +287,7 @@ layout_theme = {
 }
 
 layouts = [
-    layout.Columns(
+    layout.MonadTall(
         grow_amount = 5,
         border_on_single = True,
         **layout_theme
