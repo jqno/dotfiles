@@ -5,6 +5,7 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.widget import base
 from Xlib import display as xdisplay
+import arcobattery
 
 
 ### CONSTANTS ###
@@ -382,23 +383,12 @@ def full_bar():
         widget.Systray(
             icon_size=16
         ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        widget.TextBox(
-            text=''
-        ),
-        widget.Battery(
-            charge_char='↑',
-            discharge_char='↓',
-            empty_char='ø',
-            full_char='',
-            notify_below=0.15,
-            show_short_text = False,
-            format='{char} {percent:2.0%}'
+        arcobattery.BatteryIcon(
+            padding=0,
+            scale=0.65,
+            y_poss=1,
+            theme_path=home + '/.config/qtile/icons/resized_arco_battery_icons',
+            update_interval=5
         ),
         widget.Sep(
             foreground=colors['inactive'],
