@@ -1,9 +1,8 @@
 import os
 import subprocess
-from libqtile import bar, hook, layout, qtile, widget
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile import bar, hook, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.widget import base
 from Xlib import display as xdisplay
 import arcobattery
 
