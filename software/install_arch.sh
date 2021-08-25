@@ -30,6 +30,7 @@ install_pacman eyed3
 install_pacman fd
 install_pacman feh
 install_pacman fzf
+install_pacman github-cli
 install_pacman gnupg
 install_pacman google-chrome
 install_pacman intellij-idea-community-edition

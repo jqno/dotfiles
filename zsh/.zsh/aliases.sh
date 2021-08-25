@@ -3,13 +3,15 @@ alias cd..='cd ..'
 
 # Vim
 alias vim=nvim
-alias vanilla-vim="vim -u NONE -U NONE -N"
+alias vanilla-vim='vim -u NONE -U NONE -N'
 
 # Git
 alias gitk-old='/usr/local/bin/gitk'
 alias gitk='echo "Use tig!"'
 alias gst='git status'
-alias git="noglob git"   # So we can type `git add *Test*` instead of `git add "*Test*"`
+alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "*Test*"`
+alias pr='gh pr create'
+alias github='gh browse'
 
 # Java
 alias setjdk='. setjdk.sh'
@@ -18,13 +20,13 @@ alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
 # setEnv
-alias session="source ~/.setEnv/session.sh"
+alias session='source ~/.setEnv/session.sh'
 alias work='. setEnv.sh work'
 alias home='. setEnv.sh home'
 
 # mcd
 function mcd() {
-  mkdir -p -- "$1" && cd -P -- "$1"
+  mkdir -p -- '$1' && cd -P -- '$1'
 }
 
 # title: set terminal title
