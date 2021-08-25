@@ -23,9 +23,13 @@ install_pacman python-pip
 install_aur coursier
 
 install_pacman abcde
+install_pacman bat
 install_pacman brightnessctl
 install_pacman docker
 install_pacman docker-compose
+install_pacman dust
+install_pacman duf-bin
+install_pacman exa
 install_pacman eyed3
 install_pacman fd
 install_pacman feh
@@ -48,6 +52,7 @@ install_pacman spotify
 install_pacman stow
 install_pacman the_silver_searcher
 install_pacman tig
+install_pacman tldr
 install_pacman tlp
 install_pacman tlp-rdw
 install_pacman ttf-fira-code

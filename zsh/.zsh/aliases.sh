@@ -1,6 +1,15 @@
 # General
 alias cd..='cd ..'
 
+# Modern alternatives to standard tools
+alias cat='bat -pp'
+alias df=duf
+alias du=dust
+alias ls='exa --icons'
+alias man=tldr
+alias man-orig=/sbin/man
+alias tree='exa --icons --tree'
+
 # Vim
 alias vim=nvim
 alias vanilla-vim='vim -u NONE -U NONE -N'
