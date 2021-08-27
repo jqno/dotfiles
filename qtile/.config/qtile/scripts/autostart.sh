@@ -13,6 +13,7 @@ picom -b --experimental-backend --conf $HOME/.config/picom.conf
 $SCRIPTS/display.sh
 $SCRIPTS/background.sh
 
+run redshift-gtk &
 run dropbox start &
 run nm-applet &
 run blueberry-tray &

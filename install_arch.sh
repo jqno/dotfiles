@@ -20,6 +20,7 @@ stow nvim
 stow picom
 stow python
 stow qtile
+stow redshift
 stow scripts
 stow tig
 stow vim
