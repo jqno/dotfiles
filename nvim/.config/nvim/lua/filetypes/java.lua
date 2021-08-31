@@ -27,7 +27,7 @@ function This.jdtls_config()
 
   return {
     cmd = {
-      require('lspinstall/util').install_path('java') .. '/jdtls.sh',
+      'jdtls.sh',
       vim.env.HOME .. '/.jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
     },
     init_options = {

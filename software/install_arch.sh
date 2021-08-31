@@ -94,11 +94,20 @@ install_pacman zsh-syntax-highlighting
 install_pip pynvim
 
 
-
 # Manual tools
 BIN="$HOME/bin"
 rm -rf $BIN
 mkdir $BIN
+
+# JDT.LS
+echo "** Installing jdt.ls"
+mkdir $BIN/jdtls
+pushd $BIN/jdtls > /dev/null
+curl -L -o jdtls.tar.gz http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz
+tar xf jdtls.tar.gz
+rm jdtls.tar.gz
+curl -L -o lombok.jar https://projectlombok.org/downloads/lombok.jar
+popd > /dev/null
 
 # Java-debug
 echo "** Installing java-debug"
