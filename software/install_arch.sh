@@ -103,6 +103,8 @@ BIN="$HOME/bin"
 rm -rf $BIN
 mkdir $BIN
 
+ln -s /sbin/coursier $BIN/cs
+
 # JDT.LS
 echo "** Installing jdt.ls"
 mkdir $BIN/jdtls
