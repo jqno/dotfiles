@@ -17,14 +17,37 @@ function install_pip() {
   pip install --user --upgrade $1
 }
 
+function install_npm() {
+  npm install --global $1
+}
 
+
+# Package managers
+install_aur coursier
+install_aur jabba
 install_pacman npm
 install_pacman python-pip
-install_aur coursier
 
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+
+# Window manager components
+install_pacman brightnessctl
+install_pacman feh
+install_aur picom-jonaburg-git
+install_pacman rofimoji
+install_pacman scrot
+install_pacman tlp
+install_pacman tlp-rdw
+install_pacman wmctrl
+install_pacman xautolock
+install_pacman xclip
+
+# Tools
 install_pacman abcde
 install_pacman bat
-install_pacman brightnessctl
+install_npm chokidar
+install_npm chokidar-cli
 install_pacman docker
 install_pacman docker-compose
 install_pacman dust
@@ -32,55 +55,47 @@ install_pacman duf-bin
 install_pacman exa
 install_pacman eyed3
 install_pacman fd
-install_pacman feh
 install_pacman fzf
 install_pacman github-cli
 install_pacman gnupg
-install_pacman google-chrome
-install_pacman intellij-idea-community-edition
+install_aur jekyll
 install_pacman jq
-install_pacman keepassxc
-install_pacman kitty
 install_pacman lame
 install_pacman maven
 install_pacman neovim
 install_pacman pandoc
+install_npm prettier
+install_npm prettier-plugin-java
 install_pacman ripgrep
-install_pacman rofimoji
-install_pacman scrot
-install_pacman spotify
 install_pacman stow
 install_pacman the_silver_searcher
 install_pacman tig
 install_pacman tldr
-install_pacman tlp
-install_pacman tlp-rdw
+install_pacman universal-ctags
+install_pacman vim
+install_aur zsh-theme-powerlevel10k-git
+
+# Applications
+install_pacman google-chrome
+install_pacman intellij-idea-community-edition
+install_pacman keepassxc
+install_pacman kitty
+install_aur rambox-bin
+install_pacman spotify
+
+# Fonts
 install_pacman ttf-fira-code
 install_pacman ttf-font-awesome
 install_pacman ttf-opensans
-install_pacman universal-ctags
-install_pacman vim
-install_pacman wmctrl
-install_pacman xautolock
-install_pacman xclip
+
+# Dependencies
 install_pacman zsh-autosuggestions
 install_pacman zsh-syntax-highlighting
-
-install_aur jabba
-install_aur jekyll
-install_aur picom-jonaburg-git
-install_aur rambox-bin
-install_aur zsh-theme-powerlevel10k-git
-
 install_pip pynvim
 
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
-npm install --global chokidar chokidar-cli
-npm install --global prettier prettier-plugin-java
 
 
-
+# Manual tools
 BIN="$HOME/bin"
 rm -rf $BIN
 mkdir $BIN
@@ -92,7 +107,6 @@ git clone https://github.com/microsoft/java-debug.git
 cd java-debug
 ./mvnw clean install -DskipTests
 popd > /dev/null
-
 
 # VSCode-java-test
 echo "** Installing vscode-java-test"
