@@ -88,6 +88,9 @@ install_pacman ttf-fira-code
 install_pacman ttf-font-awesome
 install_pacman ttf-opensans
 
+# Language Servers
+install_pacman lua-language-server
+
 # Dependencies
 install_pacman zsh-autosuggestions
 install_pacman zsh-syntax-highlighting

@@ -28,13 +28,12 @@ function This.on_attach(client, bufnr)
   end
 end
 
-local function make_config()
-  return {
-    on_attach = This.on_attach
-  }
-end
-
 local function setup_lsp()
+  lsp.sumneko_lua.setup {
+    cmd = { 'lua-language-server' },
+    on_attach = This.on_attach,
+    settings = require('filetypes.lua').lsp_config
+  }
 
   vim_util.augroup('lsp_define', [[
     autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
