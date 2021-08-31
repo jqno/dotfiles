@@ -90,6 +90,7 @@ install_pacman ttf-opensans
 
 # Language Servers
 install_pacman lua-language-server
+install_pacman python-lsp-server
 
 # Dependencies
 install_pacman zsh-autosuggestions

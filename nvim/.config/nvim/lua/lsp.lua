@@ -29,6 +29,10 @@ function This.on_attach(client, bufnr)
 end
 
 local function setup_lsp()
+  lsp.pylsp.setup {
+    on_attach = This.on_attach
+  }
+
   lsp.sumneko_lua.setup {
     cmd = { 'lua-language-server' },
     on_attach = This.on_attach,
