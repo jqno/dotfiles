@@ -14,6 +14,7 @@ source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/fzf.zsh
 source ~/.zsh/vim-terminal-mode.sh
+source ~/.zsh/ssh.sh
 source ~/.setEnv/session.sh
 
 # Zsh plugins
