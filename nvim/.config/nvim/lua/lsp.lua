@@ -50,14 +50,15 @@ local function setup_lsp()
   }
 
   lsp.efm.setup {
-    filetypes = { 'java', 'markdown' },
+    filetypes = { 'java', 'lua', 'markdown' },
     on_attach = on_attach_efm,
     init_options = { documentFormatting = true },
     settings = {
       rootMarkers = { '.git/' },
       languages = {
-        java = { efm.prettier },
-        markdown = { efm.markdownlint }
+        java = { efm.format.prettier },
+        lua = { efm.format.luaformat },
+        markdown = { efm.lint.markdownlint }
       }
     }
   }

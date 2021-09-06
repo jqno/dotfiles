@@ -90,6 +90,7 @@ install_pacman ttf-opensans
 
 # Language Servers
 install_pacman efm-langserver
+install_aur lua-format
 install_pacman lua-language-server
 install_npm markdownlint
 install_npm markdownlint-cli
