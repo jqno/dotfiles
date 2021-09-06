@@ -43,6 +43,8 @@ function This.jdtls_config()
 
       local modes = require('mappings').modes
 
+      client.resolved_capabilities.document_formatting = false
+
       wk({
         ['<leader>d'] = {
           r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
@@ -56,7 +58,6 @@ function This.jdtls_config()
           v = { '<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable' }
         },
         ['<leader>m'] = {
-          f = { '<cmd>PrettierAsync<CR>', 'format' },
           r = { '<cmd>lua require("jdtls").update_project_config()<CR>', 'reload' }
         }
       }, { buffer = bufnr })

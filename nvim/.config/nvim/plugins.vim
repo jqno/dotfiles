@@ -28,7 +28,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['java'] }
 Plug 'romainl/vim-cool'
 Plug 'scalameta/nvim-metals'
 Plug 'SirVer/ultisnips'

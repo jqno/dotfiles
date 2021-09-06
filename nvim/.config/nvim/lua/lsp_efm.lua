@@ -6,4 +6,9 @@ This.markdownlint = {
   lintFormats = { '%f:%l %m', '%f:%l:%c %m', '%f: %l: %m' }
 }
 
+This.prettier = {
+  formatCommand = 'prettier --stdin-filepath ${INPUT}',
+  formatStdin = true
+}
+
 return This
