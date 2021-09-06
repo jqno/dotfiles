@@ -221,17 +221,7 @@ end
 
 
 -- LSP MAPPINGS --
-function This.setup_lsp(client, bufnr)
-  local function buf_map(mode, lhs, rhs, opts)
-    require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
-  end
-
-  -- VARIOUS --
-  buf_map(This.modes.n, 'K',
-      '<cmd>lua vim.lsp.buf.hover()<CR>')
-  buf_map(This.modes.i, '<C-Space>',
-      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-
+function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
   wk({
     -- UNIMPAIRED --
     ['['] = {
@@ -240,6 +230,46 @@ function This.setup_lsp(client, bufnr)
     [']'] = {
       d = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'diagnostic' }
     },
+    -- MAKE-ING --
+    ['<leader>m'] = {
+      d = { '<cmd>Telescope lsp_document_diagnostics<CR>', 'show diagnostics' },
+      D = { '<cmd>Telescope lsp_workspace_diagnostics<CR>', 'show ALL diagnostics' },
+    },
+    -- SHOWING THINGS --
+    ['<leader>s'] = {
+      d = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'diagnostics' }
+    }
+  }, { buffer = bufnr })
+
+  if client.resolved_capabilities.document_formatting then
+    wk({
+      ['<leader>m'] = {
+        f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'format' }
+      }
+    }, { buffer = bufnr })
+  elseif client.resolved_capabilities.document_range_formatting then
+    wk({
+      ['<leader>m'] = {
+        f = { '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format' }
+      }
+    }, { buffer = bufnr })
+  end
+end
+
+function This.setup_lsp(client, bufnr)
+  local function buf_map(mode, lhs, rhs, opts)
+    require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
+  end
+
+  This.setup_lsp_diagnostics_and_formatting(client, bufnr)
+
+  -- VARIOUS --
+  buf_map(This.modes.n, 'K',
+      '<cmd>lua vim.lsp.buf.hover()<CR>')
+  buf_map(This.modes.i, '<C-Space>',
+      '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+
+  wk({
     -- FINDING --
     ['<leader>f'] = {
       s = { '<cmd>Telescope lsp_document_symbols<CR>', 'document symbols' },
@@ -253,11 +283,6 @@ function This.setup_lsp(client, bufnr)
       i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
       t = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'type definition' }
     },
-    -- MAKE-ING --
-    ['<leader>m'] = {
-      d = { '<cmd>Telescope lsp_document_diagnostics<CR>', 'show diagnostics' },
-      D = { '<cmd>Telescope lsp_workspace_diagnostics<CR>', 'show ALL diagnostics' },
-    },
     -- REFACTORING --
     ['<leader>r'] = {
       ['<CR>'] = { '<cmd>Telescope lsp_code_actions<CR>', 'code actions' },
@@ -266,28 +291,8 @@ function This.setup_lsp(client, bufnr)
     -- SHOWING THINGS --
     ['<leader>s'] = {
       s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help' },
-      d = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'diagnostics' }
     }
   }, { buffer = bufnr })
-
-
-  local ft = vim.fn.getbufvar(bufnr, '&filetype')
-  if ft ~= 'java' then
-    -- Java is going to override the formating mapping later
-    if client.resolved_capabilities.document_formatting then
-      wk({
-        ['<leader>m'] = {
-          f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'format' }
-        }
-      }, { buffer = bufnr })
-    elseif client.resolved_capabilities.document_range_formatting then
-      wk({
-        ['<leader>m'] = {
-          f = { '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format' }
-        }
-      }, { buffer = bufnr })
-    end
-  end
 
   -- VISUAL MODE --
   wk({
