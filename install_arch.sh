@@ -16,9 +16,9 @@ stow ctags
 stow git
 stow ideavim
 stow kitty
+stow linters
 stow nvim
 stow picom
-stow python
 stow qtile
 stow redshift
 stow scripts
