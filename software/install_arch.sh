@@ -95,6 +95,7 @@ install_pacman lua-language-server
 install_npm markdownlint
 install_npm markdownlint-cli
 install_pacman python-lsp-server
+install_aur vale-bin
 
 # Dependencies
 install_pacman zsh-autosuggestions
@@ -136,3 +137,16 @@ npm install
 npm run build-plugin
 popd > /dev/null
 
+# Vale Alex styles
+echo "** Installing some styles for Vale linter"
+rm -rf ~/.vale
+mkdir -p ~/.vale/sources
+pushd ~/.vale > /dev/null
+
+git clone https://github.com/errata-ai/alex sources/alex
+ln -s sources/alex/alex alex
+git clone https://github.com/errata-ai/proselint sources/proselint
+ln -s sources/proselint/proselint proselint
+rm proselint/Annotations.yml # Let's allow words like NOTE, TODO and FIXME
+
+popd > /dev/null
