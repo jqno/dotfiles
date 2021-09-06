@@ -2,10 +2,10 @@ local This = {}
 
 This.lint = {
   markdownlint = {
-    lintCommand = 'markdownlint -s',
+    lintCommand = 'markdownlint --stdin',
     lintStdin = true,
-    lintFormats = { '%f:%l %m', '%f:%l:%c %m', '%f: %l: %m' }
-  }
+    lintFormats = { '%f:%l:%c %m', '%f:%l %m', '%f: %l: %m' }
+  },
 }
 
 This.format = {

@@ -58,7 +58,7 @@ local function setup_lsp()
       languages = {
         java = { efm.format.prettier },
         lua = { efm.format.luaformat },
-        markdown = { efm.lint.markdownlint }
+        markdown = { efm.lint.markdownlint, efm.format.prettier }
       }
     }
   }
