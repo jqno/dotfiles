@@ -252,7 +252,7 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
       ['<leader>m'] = {
         f = { '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format' }
       }
-    }, { buffer = bufnr })
+    }, { buffer = bufnr, mode = This.modes.v })
   end
 end
 
