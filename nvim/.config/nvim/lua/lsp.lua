@@ -50,7 +50,7 @@ local function setup_lsp()
   }
 
   lsp.efm.setup {
-    filetypes = { 'java', 'lua', 'markdown' },
+    filetypes = { 'java', 'lua', 'markdown', 'sh' },
     on_attach = on_attach_efm,
     init_options = { documentFormatting = true },
     settings = {
@@ -58,7 +58,8 @@ local function setup_lsp()
       languages = {
         java = { efm.format.prettier },
         lua = { efm.format.luaformat },
-        markdown = { efm.lint.markdownlint, efm.lint.vale, efm.format.prettier }
+        markdown = { efm.lint.markdownlint, efm.lint.vale, efm.format.prettier },
+        sh = { efm.lint.shellcheck }
       }
     }
   }

@@ -96,6 +96,7 @@ install_pacman lua-language-server
 install_npm markdownlint
 install_npm markdownlint-cli
 install_pacman python-lsp-server
+install_pacman shellcheck
 install_aur vale-bin
 
 # Dependencies
