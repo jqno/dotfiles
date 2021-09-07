@@ -85,6 +85,7 @@ install_aur rambox-bin
 install_pacman spotify
 
 # Fonts
+install_pacman noto-fonts-emoji
 install_pacman ttf-fira-code
 install_pacman ttf-font-awesome
 install_pacman ttf-opensans
