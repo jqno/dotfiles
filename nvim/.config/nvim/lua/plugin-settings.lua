@@ -68,6 +68,16 @@ local function setup_telescope()
 
   telescope.setup({
     defaults = {
+      vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--hidden'
+      },
       mappings = {
         i = {
           ['<Space>'] = actions.select_horizontal,
