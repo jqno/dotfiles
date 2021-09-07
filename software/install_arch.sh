@@ -60,6 +60,7 @@ install_pacman github-cli
 install_pacman gnupg
 install_aur jekyll
 install_pacman jq
+install_pacman keychain
 install_pacman lame
 install_pacman maven
 install_pacman neovim
