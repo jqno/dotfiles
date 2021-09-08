@@ -7,7 +7,7 @@ from Xlib import display as xdisplay
 import arcobattery
 
 
-### CONSTANTS ###
+# CONSTANTS #
 
 mod = 'mod4'
 hyper = 'mod3'
@@ -32,20 +32,21 @@ colors = {
 }
 
 
-### HELPER FUNCTIONS ###
+# HELPER FUNCTIONS #
 
 def find_or_run_app(wmclass, app=None):
     def __inner(qtile):
         for w in qtile.windows_map.values():
-            if w.group and w.match(Match(wm_class = wmclass)):
+            if w.group and w.match(Match(wm_class=wmclass)):
                 qtile.current_screen.set_group(w.group)
                 w.group.focus(w)
                 return
 
         if app is not None:
             qtile.cmd_spawn(app)
-        
+
     return __inner
+
 
 def move_window_to_other_screen():
     def __inner(qtile):
@@ -56,12 +57,14 @@ def move_window_to_other_screen():
 
     return __inner
 
+
 def focus_other_screen():
     def __inner(qtile):
         scr = qtile.screens.index(qtile.current_screen)
         qtile.focus_screen(1 - scr)
 
     return __inner
+
 
 def switch_screens():
     def __inner(qtile):
@@ -72,7 +75,7 @@ def switch_screens():
     return __inner
 
 
-### KEYS ###
+# KEYS #
 
 keys = [
     # Switch between windows
@@ -181,7 +184,8 @@ keys = [
         lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -5%'),
         desc='Lower volume'),
     Key([], 'XF86AudioMute',
-        lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle'), desc='Mute audio'),
+        lazy.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle'),
+        desc='Mute audio'),
     Key([], 'XF86AudioPlay',
         lazy.spawn('playerctl play-pause'),
         desc='Play audio'),
@@ -243,19 +247,22 @@ keys = [
 ]
 
 
-### GROUPS ###
+# GROUPS #
 
 group_descriptions = [
-    ('DEV₁',  '1', {'layout': 'monadtall'}),
-    ('DEV₂',  '2', {'layout': 'monadtall'}),
-    ('DEV₃',  '3', {'layout': 'monadtall'}),
-    ('DEV₄',  '4', {'layout': 'monadtall'}),
-    ('ETC₅',  '5', {'layout': 'monadtall'}),
-    ('ETC₆',  '6', {'layout': 'monadtall'}),
-    ('ETC₇',  '7', {'layout': 'monadtall'}),
-    ('MUS₈',  '8', {'layout': 'stack', 'matches': [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
-    ('WWW₉',  '9', {'layout': 'monadtall', 'matches': [Match(wm_class='firefox')]}),
-    ('COMM₀', '0', {'layout': 'stack', 'matches': [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
+    ('DEV₁', '1', {'layout': 'monadtall'}),
+    ('DEV₂', '2', {'layout': 'monadtall'}),
+    ('DEV₃', '3', {'layout': 'monadtall'}),
+    ('DEV₄', '4', {'layout': 'monadtall'}),
+    ('ETC₅', '5', {'layout': 'monadtall'}),
+    ('ETC₆', '6', {'layout': 'monadtall'}),
+    ('ETC₇', '7', {'layout': 'monadtall'}),
+    ('MUS₈', '8', {'layout': 'stack', 'matches':
+        [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
+    ('WWW₉', '9', {'layout': 'monadtall', 'matches':
+        [Match(wm_class='firefox')]}),
+    ('COMM₀', '0', {'layout': 'stack', 'matches':
+        [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
@@ -276,7 +283,7 @@ for (name, key, _) in group_descriptions:
     ])
 
 
-### LAYOUTS ###
+# LAYOUTS #
 
 layout_theme = {
     'margin': gap,
@@ -287,12 +294,12 @@ layout_theme = {
 
 layouts = [
     layout.MonadTall(
-        grow_amount = 5,
-        border_on_single = True,
+        grow_amount=5,
+        border_on_single=True,
         **layout_theme
     ),
     layout.Stack(
-        num_stacks = 1,
+        num_stacks=1,
         **layout_theme
     ),
     layout.Floating(
@@ -301,7 +308,7 @@ layouts = [
 ]
 
 
-### BAR ###
+# BAR #
 
 widget_defaults = dict(
     font='sans',
@@ -309,6 +316,7 @@ widget_defaults = dict(
     padding=3,
     foreground=colors['text']
 )
+
 
 def base_bar():
     return [
@@ -351,7 +359,8 @@ def base_bar():
         widget.Spacer(),
     ]
 
-def short_bar(): 
+
+def short_bar():
     return base_bar() + [
         widget.Sep(
             foreground=colors['inactive'],
@@ -364,6 +373,7 @@ def short_bar():
         ),
         widget.Spacer(gap * 2),
     ]
+
 
 def full_bar():
     return base_bar() + [
@@ -395,11 +405,12 @@ def full_bar():
         widget.Spacer(gap * 2),
     ]
 
+
 def create_bar(widgets):
-    return bar.Bar(widgets, bar_height, margin = gap, background = colors['panel'])
+    return bar.Bar(widgets, bar_height, margin=gap, background=colors['panel'])
 
 
-### SCREENS ###
+# SCREENS #
 
 def get_number_of_monitors():
     num_monitors = 0
@@ -417,15 +428,17 @@ def get_number_of_monitors():
                 preferred = monitor.num_preferred
             if preferred:
                 num_monitors += 1
-    except:  
+    except Exception:
         return 1
     else:
         return num_monitors
+
 
 def create_screen(widgets):
     return Screen(
         top=create_bar(widgets)
     )
+
 
 screens = [create_screen(full_bar())]
 number_of_monitors = get_number_of_monitors()
@@ -434,7 +447,7 @@ if number_of_monitors > 1:
         screens.append(create_screen(short_bar()))
 
 
-### FLOATING LAYOUT ###
+# FLOATING LAYOUT #
 
 mouse = [
     Drag([mod], 'Button1',
@@ -454,12 +467,12 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Blueman-manager'),
     Match(wm_class='Org.gnome.Characters'),
     Match(wm_class='ssh-askpass'),  # ssh-askpass
-    Match(title='Event Tester'), # xev
+    Match(title='Event Tester'),  # xev
     Match(title='pinentry'),  # GPG key password entry
 ])
 
 
-### OPTIONS ###
+# OPTIONS #
 
 follow_mouse_focus = True
 bring_front_click = True
@@ -471,7 +484,7 @@ auto_minimize = True
 wmname = 'LG3D'
 
 
-### HOOKS ###
+# HOOKS #
 
 @hook.subscribe.startup_once
 def autostart():
