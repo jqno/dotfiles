@@ -51,18 +51,10 @@ local function setup_lsp()
   }
 
   lsp.efm.setup {
-    filetypes = { 'java', 'lua', 'markdown', 'sh' },
+    filetypes = efm.filetypes,
     on_attach = on_attach_efm,
     init_options = { documentFormatting = true },
-    settings = {
-      rootMarkers = { '.git/' },
-      languages = {
-        java = { efm.format.prettier },
-        lua = { efm.format.luaformat },
-        markdown = { efm.lint.markdownlint, efm.lint.vale, efm.format.prettier },
-        sh = { efm.lint.shellcheck }
-      }
-    }
+    settings = efm.settings
   }
 
   vim_util.augroup('lsp_define', [[
