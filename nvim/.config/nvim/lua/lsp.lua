@@ -40,7 +40,8 @@ end
 
 local function setup_lsp()
   lsp.pylsp.setup {
-    on_attach = This.on_attach
+    on_attach = This.on_attach,
+    settings = require('filetypes.python').lsp_config
   }
 
   lsp.sumneko_lua.setup {
