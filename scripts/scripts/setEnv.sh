@@ -45,11 +45,9 @@
 # Configuring SSH
 # ===============
 #
-# Place a folder called ssh in the profile directory to have its contents symlinked to ~/.ssh on profile activation.
-# Before copying the profile version, this script removes the entire ~/.ssh directory. This means if you do not
-# have an ssh folder in the profile directory, you will lose all of your ssh configuration.
-#
-# The directory is symlinked so that any edits you make will be persisted across sessions.
+# Place a file called ssh-config in the profile directory to have its contents symlinked to ~/.ssh/config on profile
+# activation. Before copying the profile version, this script deletes the file at ~/.ssh/config. This means if you
+# do not have an ssh-config file in the profile directory, you will end up with a default ssh configuration.
 #
 #
 # Configuring a banner
@@ -142,9 +140,9 @@ if [[ -e $ENVDIR/settings.xml ]]; then
   cp $ENVDIR/settings.xml ~/.m2/settings.xml
 fi
 
-if [[ -e $ENVDIR/ssh ]]; then
-  rm -rf ~/.ssh
-  ln -s $ENVDIR/ssh ~/.ssh
+if [[ -e $ENVDIR/ssh-config ]]; then
+  rm  ~/.ssh/config
+  ln -s $ENVDIR/ssh-config ~/.ssh/config
 fi
 
 if [[ -e $SETENVDIR/session.sh ]]; then
