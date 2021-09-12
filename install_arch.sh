@@ -24,7 +24,7 @@ stow redshift
 stow scripts
 stow tig
 stow vim
-stow Xmodmap
+stow xkb
 stow zsh
 
 $PWD/configure/git.sh

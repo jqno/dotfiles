@@ -1,0 +1,12 @@
+partial modifier_keys
+xkb_symbols "caps_mod3" {
+  replace key <CAPS> {
+    [ VoidSymbol, VoidSymbol ]
+  };
+  modifier_map Mod3 { <CAPS> };
+};
+
+partial alphanumeric_keys
+xkb_symbols "compose" {
+    key <RALT> { [ Multi_key ] };
+};
