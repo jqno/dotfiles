@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-setxkbmap -symbols "pc+us+inet(evdev)+mods(caps_mod3)+mods(compose)" -print | xkbcomp -I$HOME/.config/xkb - $DISPLAY
+mods="+mods(caps_mod3)+mods(compose)"
+
+setxkbmap -print | sed "s/\(xkb_symbols.*\".*\)\(\".*\)/\1$mods\2/" | xkbcomp -I$HOME/.config/xkb - $DISPLAY
