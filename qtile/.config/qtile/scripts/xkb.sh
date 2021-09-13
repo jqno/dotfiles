@@ -24,7 +24,7 @@ mods="+mods(caps_mod3)+mods(compose)"
 setkeymap $mods
 
 # Set modifications for Apple keyboards
-mods="+apple(swap_alt_super)+apple(compose)+mods(caps_mod3)"
+mods="+apple(swap_alt_super)+apple(tilde)+apple(compose)+mods(caps_mod3)"
 apple_id=$(kbd_id "Apple Inc.")
 [ "$apple_id" ] || apple_id=$(kbd_id "Jan Ouwens’s Keyboard")
 [ "$apple_id" ] && setkeymap "$mods" "$apple_id"

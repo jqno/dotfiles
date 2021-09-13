@@ -8,5 +8,10 @@ xkb_symbols "swap_alt_super" {
 
 partial alphanumeric_keys
 xkb_symbols "compose" {
-    key <RWIN> { [ Multi_key ] };
+    replace key <RWIN> { [ Multi_key ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "tilde" {
+    replace key <LSGT> { [ grave, tilde ] };
 };
