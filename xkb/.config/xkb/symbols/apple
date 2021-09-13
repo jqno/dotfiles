@@ -5,3 +5,8 @@ xkb_symbols "swap_alt_super" {
     replace key <RWIN> { [ Alt_R, Alt_R ] };
     replace key <RALT> { [ Super_R, Super_R ] };
 };
+
+partial alphanumeric_keys
+xkb_symbols "compose" {
+    key <RWIN> { [ Multi_key ] };
+};
