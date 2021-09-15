@@ -10,6 +10,8 @@ function run {
 
 numlockx on
 picom -b --experimental-backend --conf $HOME/.config/picom.conf
+xplugd
+$HOME/scripts/manage_keyboard.sh initialize
 $SCRIPTS/display.sh
 $SCRIPTS/background.sh
 
