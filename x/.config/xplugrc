@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+TYPE="$1"
+DEVICE="$2"
+STATUS="$3"
+DESCRIPTION="$4"
+
+
+case "$TYPE,$STATUS" in
+  keyboard,connected)
+    "$HOME/scripts/manage_keyboard.sh" plug "$DEVICE" "$DESCRIPTION"
+    ;;
+esac
