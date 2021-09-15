@@ -29,7 +29,6 @@ function This.setup()
   vim.opt.updatetime = 300
   vim.opt.wrap = false
 
-  vim.cmd('colorscheme nord')
   vim.cmd('hi Normal guibg=NONE')
 
   augroup('HighlightOnYank', [[

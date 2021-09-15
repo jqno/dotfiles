@@ -38,6 +38,14 @@ local function setup_gitsigns()
 end
 
 
+local function setup_nord()
+  vim.g.nord_borders = true
+  vim.g.nord_disable_background = true
+
+  require('nord').set()
+end
+
+
 local function setup_nvim_tree()
   g.nvim_tree_auto_close = 1
   g.nvim_tree_follow = 1
@@ -190,6 +198,7 @@ function This.setup()
   setup_closetag()
   setup_colorizer()
   setup_gitsigns()
+  setup_nord()
   setup_nvim_tree()
   setup_sandwich()
   setup_telescope()

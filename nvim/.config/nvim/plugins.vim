@@ -5,7 +5,7 @@ let g:metals_server_version = '0.10.2'
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'alvan/vim-closetag'
-Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'folke/which-key.nvim'
 Plug 'folke/zen-mode.nvim'
