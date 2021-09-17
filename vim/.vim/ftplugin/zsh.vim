@@ -1,2 +1,0 @@
-call SetTabstop(2)
-

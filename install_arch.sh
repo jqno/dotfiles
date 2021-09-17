@@ -23,7 +23,6 @@ stow qtile
 stow redshift
 stow scripts
 stow tig
-stow vim
 stow x
 stow zsh
 
