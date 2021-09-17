@@ -14,7 +14,7 @@ if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
 fi
 
 # Default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Required for GPG
 export GPG_TTY=$(tty)
