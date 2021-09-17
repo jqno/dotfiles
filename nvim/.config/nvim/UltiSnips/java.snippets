@@ -20,8 +20,15 @@ endsnippet
 
 snippet test "JUnit test case"
 @Test
-public void $1() {
+void $1() {
     $0
 }
 endsnippet
 
+snippet package "Start a new file"
+package $1
+
+public class `!p snip.rv = snip.basename` {
+		$0
+}
+endsnippet
