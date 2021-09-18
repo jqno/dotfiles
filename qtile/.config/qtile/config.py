@@ -295,6 +295,7 @@ layout_theme = {
 layouts = [
     layout.MonadTall(
         grow_amount=5,
+        ratio=0.65,
         border_on_single=True,
         **layout_theme
     ),
