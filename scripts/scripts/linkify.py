@@ -2,6 +2,7 @@
 
 """Fetches a page's <title> and turns it into a markdown link"""
 
+import re
 import sys
 from html.parser import HTMLParser
 import requests
@@ -52,7 +53,7 @@ def extract_title(text):
 
     parser = Parser()
     parser.feed(text)
-    return parser.title
+    return re.sub("\s{2,}", " ", parser.title).strip()
 
 
 if __name__ == "__main__":
