@@ -29,7 +29,8 @@ function This.setup()
   vim.opt.updatetime = 300
   vim.opt.wrap = false
 
-  vim.cmd('hi Normal guibg=NONE')
+  vim.g.everforest_transparent_background=1
+  vim.cmd('colorscheme everforest')
 
   augroup('HighlightOnYank', [[
     autocmd TextYankPost * lua vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150, on_visual = true }

@@ -5,7 +5,6 @@ let g:metals_server_version = '0.10.2'
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'alvan/vim-closetag'
-Plug 'shaunsingh/nord.nvim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'folke/which-key.nvim'
 Plug 'folke/zen-mode.nvim'
@@ -29,6 +28,7 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': '0.5-compat', 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'romainl/vim-cool'
+Plug 'sainnhe/everforest'
 Plug 'scalameta/nvim-metals'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'

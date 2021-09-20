@@ -18,24 +18,24 @@ local symbols = {
 }
 
 local colors = {
-  black = '#4c566a',
-  gray = '#d8dee9',
-  green = '#88c0d0',
-  purple = '#b48ead',
-  red = '#bf616a',
-  white = '#eceff4',
-  yellow = '#ebcb8b',
-  error = '#bf616a',
-  warning = '#d08770',
-  hint = '#d8dee9',
-  information = '#8fbcbb'
+  black = '#4a555b',
+  gray = '#525c62',
+  green = '#a7c080',
+  purple = '#d699b6',
+  red = '#e68183',
+  white = '#d8caac',
+  yellow = '#dbbc7f',
+  error = '#e68183',
+  warning = '#d699b6',
+  hint = '#dbbc7f',
+  information = '#dbbc7f'
 }
 
 local schemes = {
   regular = { colors.black, colors.green },
   regular_i = { colors.green, colors.black },
-  faded = { colors.black, colors.gray },
-  faded_i = { colors.gray, colors.black },
+  faded = { colors.black, colors.white },
+  faded_i = { colors.white, colors.black },
   diag_ok = { colors.black, colors.green, 'bold' },
   diag_error = { colors.black, colors.error, 'bold' },
   diag_warning = { colors.black, colors.warning, 'bold' },
