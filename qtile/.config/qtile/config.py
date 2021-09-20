@@ -1,7 +1,7 @@
 import os
 import subprocess
 from libqtile import bar, hook, layout, widget
-from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from Xlib import display as xdisplay
 import arcobattery
@@ -165,6 +165,17 @@ keys = [
         desc='Logout menu'),
 
     # System keybindings
+    KeyChord([mod], 'd', [
+        Key([], 'm',
+            lazy.spawn(script_location + '/display.sh mirror'),
+            desc='Mirror displays'),
+        Key([], 'l',
+            lazy.spawn(script_location + '/display.sh left'),
+            desc='Put external display to the left'),
+        Key([], 'r',
+            lazy.spawn(script_location + '/display.sh right'),
+            desc='Put external display to the right')
+    ], mode='Configure displays: [m]irror, [l]eft, [r]ight'),
     Key([mod], 'b',
         lazy.spawn(script_location + '/background.sh'),
         desc='Set a random background'),
@@ -357,6 +368,7 @@ def base_bar():
             size_percent=100
         ),
         widget.Prompt(),
+        widget.Chord(),
         widget.Spacer(),
     ]
 
