@@ -28,7 +28,7 @@ fi
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 [ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
-source setjdk.sh 11 > /dev/null
+source setjdk.sh 17 > /dev/null
 
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
