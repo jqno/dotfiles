@@ -32,6 +32,7 @@ mkdir ~/.npm-global
 npm config set prefix '~/.npm-global'
 
 # Window manager components
+install_pacman betterlockscreen
 install_pacman brightnessctl
 install_pacman feh
 install_aur picom-jonaburg-git
