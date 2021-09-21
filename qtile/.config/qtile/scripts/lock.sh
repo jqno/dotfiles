@@ -13,4 +13,4 @@ playerctl pause
 betterlockscreen --lock --show-layout 9
 
 # Generate images for next time
-betterlockscreen --update $HOME/Dropbox/wallpaper
+betterlockscreen --update $HOME/Dropbox/wallpapers
