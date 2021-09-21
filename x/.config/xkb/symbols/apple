@@ -13,5 +13,5 @@ xkb_symbols "compose" {
 
 partial alphanumeric_keys
 xkb_symbols "tilde" {
-    replace key <LSGT> { [ grave, tilde ] };
+    replace key <LSGT> { [ grave, asciitilde ] };
 };
