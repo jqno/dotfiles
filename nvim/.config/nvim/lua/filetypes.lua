@@ -16,10 +16,6 @@ function This.setup()
     autocmd BufRead,BufNewFile pom.xml        set filetype=xml.pom
     autocmd BufRead,BufNewFile *.worksheet.sc set filetype=scala
   ]])
-
-  vim_util.augroup('format_on_save', [[
-    autocmd BufWritePre *.java lua vim.lsp.buf.formatting_sync()
-  ]])
 end
 
 
