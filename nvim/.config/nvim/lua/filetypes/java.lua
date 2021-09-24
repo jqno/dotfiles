@@ -33,6 +33,7 @@ function This.jdtls_config()
     init_options = {
       bundles = jdtls_bundles
     },
+    root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'gradle.build' }),
     on_attach = function(client, bufnr)
       require('lsp').on_attach(client, bufnr)
 
