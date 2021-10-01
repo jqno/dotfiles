@@ -1,54 +1,70 @@
 local This = {}
 
+local cmp = require('cmp')
+
+
+local function feedkey(key, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
+local function has_words_before()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    return false
+  end
+  local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+local function tab_complete(fallback)
+  if vim.fn.pumvisible() == 1 then
+    feedkey('<C-n>', "n")
+  elseif has_words_before() then
+    cmp.complete()
+  else
+    fallback()
+  end
+end
+
+local function s_tab_complete(fallback)
+  if vim.fn.pumvisible() == 1 then
+    feedkey('<C-p>', "n")
+  else
+    fallback()
+  end
+end
+
 function This.setup()
-  require'compe'.setup {
-    autocomplete = false;
-    preselect = 'always';
-
-    source = {
-      path = { priority = 100 };
-      buffer = { priority = 50 };
-      tags = { priority = 60 };
-      nvim_lsp = { priority = 70 };
-      nvim_lua = { priority = 80 };
-      ultisnips = { priority = 90 };
-    }
-  }
-end
-
-local function t(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local function check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s')
-end
-
-function This.tab_complete()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-n>'
-  elseif check_back_space() then
-    return t '<Tab>'
-  else
-    return vim.fn['compe#complete']()
-  end
-end
-
-function This.s_tab_complete()
-  if vim.fn.pumvisible() == 1 then
-    return t '<C-p>'
-  else
-    return t '<S-Tab>'
-  end
-end
-
-function This.cr_complete()
-  if vim.fn.pumvisible() == 1 then
-    return vim.fn['compe#confirm']('<CR>')
-  else
-    return vim.fn['JqnoAutocloseSmartReturn']()
-  end
+  cmp.setup({
+    completion = {
+      autocomplete = false
+    },
+    snippet = {
+      expand = function(args)
+        vim.fn["UltiSnips#Anon"](args.body)
+      end,
+    },
+    mapping = {
+      ['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
+      ['<Esc>'] = cmp.mapping.close(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true })
+    },
+    sources = {
+      { name = 'ultisnips' },
+      { name = 'nvim_lsp' },
+      { name = 'buffer' }
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        vim_item.menu = ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          ultisnips = "[UltiSnips]"
+        })[entry.source.name]
+        return vim_item
+      end,
+    },
+  })
 end
 
 return This

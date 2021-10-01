@@ -38,21 +38,27 @@ local function on_attach_efm(client, bufnr)
   clean_diagnostics()
 end
 
+This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local function setup_lsp()
+
   lsp.pylsp.setup {
     on_attach = This.on_attach,
+    capabilities = This.cmp_capabilities,
     settings = require('filetypes.python').lsp_config
   }
 
   lsp.sumneko_lua.setup {
     cmd = { 'lua-language-server' },
     on_attach = This.on_attach,
+    capabilities = This.cmp_capabilities,
     settings = require('filetypes.lua').lsp_config
   }
 
   lsp.efm.setup {
     filetypes = efm.filetypes,
     on_attach = on_attach_efm,
+    capabilities = This.cmp_capabilities,
     init_options = { documentFormatting = true },
     settings = efm.settings
   }

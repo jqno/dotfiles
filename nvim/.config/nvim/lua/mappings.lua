@@ -87,16 +87,6 @@ local function define_mappings()
       [[:move '<-2<CR>gv=gv]])
 
 
-  -- COMPLETION --
-  _G.compe = require('completion')
-  map(This.modes.i, '<Tab>',
-      'v:lua.compe.tab_complete()', { expr = true })
-  map(This.modes.i, '<S-Tab>',
-      'v:lua.compe.s_tab_complete()', { expr = true })
-  map(This.modes.i, '<CR>',
-      'v:lua.compe.cr_complete()', { expr = true })
-
-
   -- IN SPECIFIC MODES --
   map(This.modes.n, '<F12>',
       '<cmd>VimwikiMakeDiaryNote<CR>')

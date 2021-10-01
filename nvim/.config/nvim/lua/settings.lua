@@ -5,7 +5,7 @@ local augroup = require('vim-util').augroup
 local default_indent = 2
 
 function This.setup()
-  vim.opt.completeopt = 'menuone,noselect,preview'
+  vim.opt.completeopt = 'menu,menuone,noselect,preview'
   vim.opt.expandtab = true
   vim.opt.ignorecase = true
   vim.opt.joinspaces = false
