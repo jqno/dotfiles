@@ -24,7 +24,7 @@ colors = {
     'panel': '#4a555b',
     'inactive': '#525c62',
     'text': '#d8caac',
-    'primary': '#a7c080',
+    'primary': '#83c092',
     'secondary': '#a7c080',
     'error': '#e68183',
     'warning': '#d699b6',
@@ -261,18 +261,18 @@ keys = [
 # GROUPS #
 
 group_descriptions = [
-    ('DEV₁', '1', {'layout': 'monadtall'}),
-    ('DEV₂', '2', {'layout': 'monadtall'}),
-    ('DEV₃', '3', {'layout': 'monadtall'}),
-    ('DEV₄', '4', {'layout': 'monadtall'}),
-    ('ETC₅', '5', {'layout': 'monadtall'}),
-    ('ETC₆', '6', {'layout': 'monadtall'}),
-    ('ETC₇', '7', {'layout': 'monadtall'}),
-    ('MUS₈', '8', {'layout': 'stack', 'matches':
+    ('', '1', {'layout': 'monadtall'}),
+    ('', '2', {'layout': 'monadtall'}),
+    ('', '3', {'layout': 'monadtall'}),
+    ('', '4', {'layout': 'monadtall'}),
+    ('', '5', {'layout': 'monadtall'}),
+    ('', '6', {'layout': 'monadtall'}),
+    ('', '7', {'layout': 'monadtall'}),
+    ('', '8', {'layout': 'stack', 'matches':
         [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
-    ('WWW₉', '9', {'layout': 'monadtall', 'matches':
+    ('', '9', {'layout': 'monadtall', 'matches':
         [Match(wm_class='firefox')]}),
-    ('COMM₀', '0', {'layout': 'stack', 'matches':
+    ('', '0', {'layout': 'stack', 'matches':
         [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
@@ -350,6 +350,8 @@ def base_bar():
             size_percent=100
         ),
         widget.GroupBox(
+            font='FontAwesome',
+            fontsize=15,
             disable_drag=True,
             highlight_method='line',
             highlight_color=[colors['panel'], colors['secondary']],
