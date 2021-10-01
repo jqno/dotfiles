@@ -314,6 +314,12 @@ layouts = [
         num_stacks=1,
         **layout_theme
     ),
+    layout.MonadWide(
+        grow_amount=5,
+        ratio=0.65,
+        border_on_single=True,
+        **layout_theme
+    ),
     layout.Floating(
         **layout_theme
     )
