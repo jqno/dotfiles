@@ -36,7 +36,7 @@ function This.jdtls_config()
     root_dir = require('jdtls.setup').find_root({ 'pom.xml', 'gradle.build' }),
     capabilities = require('lsp').cmp_capabilities,
     on_attach = function(client, bufnr)
-      require('lsp').on_attach(client, bufnr)
+      require('lsp').on_attach(client, bufnr, true)
 
       require('jdtls.setup').add_commands()
       require('jdtls').setup_dap({ hotcodereplace = 'auto' })
@@ -54,7 +54,7 @@ function This.jdtls_config()
           n = { '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>', 'test nearest' }
         },
         ['<leader>r'] = {
-          j = { '<cmd>lua require("jdtls").code_action()<CR>', 'Java code actions' },
+          ['<CR>'] = { '<cmd>lua require("jdtls").code_action()<CR>', 'Java code actions' },
           R = { '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>', 'menu' },
           o = { '<cmd>lua require("jdtls").organize_imports()<CR>', 'organize imports' },
           v = { '<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable' }

@@ -246,7 +246,7 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
   end
 end
 
-function This.setup_lsp(client, bufnr)
+function This.setup_lsp(client, bufnr, skip_code_actions)
   local function buf_map(mode, lhs, rhs, opts)
     require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
   end
@@ -275,7 +275,6 @@ function This.setup_lsp(client, bufnr)
     },
     -- REFACTORING --
     ['<leader>r'] = {
-      ['<CR>'] = { '<cmd>Telescope lsp_code_actions<CR>', 'code actions' },
       r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename' },
     },
     -- SHOWING THINGS --
@@ -283,6 +282,15 @@ function This.setup_lsp(client, bufnr)
       s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help' },
     }
   }, { buffer = bufnr })
+
+  if not skip_code_actions then
+    wk({
+      -- REFACTORING --
+      ['<leader>r'] = {
+        ['<CR>'] = { '<cmd>Telescope lsp_code_actions<CR>', 'code actions' }
+      }
+    }, { buffer = bufnr })
+  end
 
   -- VISUAL MODE --
   wk({
