@@ -192,21 +192,22 @@ local function define_mappings()
       f = 'peek function'
     },
     -- WIKI --
-    ['<leader>w'] = {
+    ['<leader>q'] = {
       name = 'wiki',
       d = { '<cmd>VimwikiDiaryIndex<CR>', 'diary index' },
       g = { '<cmd>VimwikiDiaryGenerateLinks<CR>', 'generate diary' },
       n = { '<cmd>VimwikiMakeDiaryNote<CR>', 'today' },
-      w = { '<cmd>VimwikiIndex<CR>', 'index' },
+      q = { '<cmd>VimwikiIndex<CR>', 'index' },
       x = 'additional'
     },
     -- WINDOW --
-    ['<leader>W'] = {
+    ['<leader>w'] = {
       name = 'window',
+      ['_'] = { '<cmd>wincmd _<CR>', 'enlarge window' },
       ['='] = { '<cmd>wincmd =<CR>', 'equalize' },
       ['0'] = { '<cmd>wincmd r<CR>', 'rotate' },
       z = { '<cmd>ZenMode<CR>', 'zoom' },
-      K = { '<C-w>w', 'move into floating window' }
+      k = { '<C-w>w', 'move into floating window' }
     }
   })
 end
