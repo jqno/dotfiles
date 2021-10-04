@@ -157,6 +157,7 @@ local function define_mappings()
       n = { '<cmd>NvimTreeToggle<CR>', 'tree' },
       N = { '<cmd>NvimTreeFindFile<CR>', 'tree (follow)' },
       g = { '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>', 'grep' },
+      q = { '<cmd>Telescope vimwiki live_grep<CR>', 'vimwiki' },
       w = { '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>', 'wiki' },
       ['*'] = { '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', 'grep current' },
       [':'] = { '<cmd>Telescope commands<CR>', 'commands' }

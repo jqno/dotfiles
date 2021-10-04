@@ -97,6 +97,7 @@ local function setup_telescope()
       end
     }
   })
+  telescope.load_extension('vimwiki')
   telescope.load_extension('fzy_native')
 end
 
