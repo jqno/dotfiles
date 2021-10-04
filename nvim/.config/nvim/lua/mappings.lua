@@ -152,12 +152,14 @@ local function define_mappings()
       name = 'file',
       b = { '<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers' },
       f = { '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', 'files' },
+      h = { '<cmd>Telescope help_tags<CR>', 'help' },
       i = { '<cmd>Telescope treesitter<CR>', 'identifiers' },
       n = { '<cmd>NvimTreeToggle<CR>', 'tree' },
       N = { '<cmd>NvimTreeFindFile<CR>', 'tree (follow)' },
       g = { '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>', 'grep' },
       w = { '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>', 'wiki' },
-      ['*'] = { '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', 'grep current' }
+      ['*'] = { '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>', 'grep current' },
+      [':'] = { '<cmd>Telescope commands<CR>', 'commands' }
     },
     -- GOING PLACES  --
     ['<leader>g'] = {
