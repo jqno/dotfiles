@@ -252,6 +252,9 @@ keys = [
     Key([hyper], 'w',
         lazy.function(find_or_run_app('firefox', 'firefox')),
         desc='focus Firefox'),
+    Key([hyper], 'z',
+        lazy.function(find_or_run_app('zoom')),
+        desc='focus Zoom'),
     Key([hyper], 'backslash',
         lazy.function(find_or_run_app('KeePassXC', 'keepassxc')),
         desc='focus KeePassXC'),
@@ -267,7 +270,8 @@ group_descriptions = [
     ('', '4', {'layout': 'monadtall'}),
     ('', '5', {'layout': 'monadtall'}),
     ('', '6', {'layout': 'monadtall'}),
-    ('', '7', {'layout': 'monadtall'}),
+    ('', '7', {'layout': 'monadtall', 'matches':
+        [Match(wm_class='zoom'), Match(wm_class='obs')]}),
     ('', '8', {'layout': 'stack', 'matches':
         [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
     ('', '9', {'layout': 'monadtall', 'matches':
