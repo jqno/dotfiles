@@ -49,16 +49,6 @@ local function setup_nvim_tree()
   g.nvim_tree_gitignore = 0
   g.nvim_tree_show_icons = { git = 0, folders = 1 }
   g.nvim_tree_quit_on_open = 1
-  g.nvim_tree_icons = {
-    folder = {
-      default = '>',
-      open = '∨',
-      empty = '>',
-      empty_open = '∨',
-      symlink = '>',
-      symlink_open = '∨'
-    }
-  }
 end
 
 
