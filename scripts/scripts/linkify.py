@@ -44,7 +44,7 @@ def extract_title(text):
                 self.active = False
 
         def handle_data(self, data):
-            if self.active:
+            if self.active and self.title == "":
                 self.title = data
 
         def error(self, message):
