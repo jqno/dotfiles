@@ -12,7 +12,7 @@ numlockx on
 picom -b --experimental-backend --conf $HOME/.config/picom.conf
 xplugd
 $HOME/scripts/manage_keyboard.sh initialize
-$SCRIPTS/display.sh
+$HOME/scripts/manage_displays.sh
 $SCRIPTS/background.sh
 
 run redshift-gtk &

@@ -10,4 +10,10 @@ case "$TYPE,$STATUS" in
   keyboard,connected)
     "$HOME/scripts/manage_keyboard.sh" plug "$DEVICE" "$DESCRIPTION"
     ;;
+  display,disconnected)
+    xrandr --output "$DEVICE" --off
+    ;;
+  display,connected)
+    "$HOME/scripts/manage_displays.sh"
+    ;;
 esac
