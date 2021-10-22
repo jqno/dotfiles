@@ -24,8 +24,7 @@ def main(url):
 
 
 def fetch(url):
-    headers = {'User-Agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)'}
-    return requests.get(url, headers=headers)
+    return requests.get(url, headers={})
 
 
 def extract_title(text):
