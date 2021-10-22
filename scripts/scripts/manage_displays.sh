@@ -6,25 +6,25 @@ NUM_DISPLAYS="$(xrandr --query | grep -v disconnected | grep -c connected)"
 
 LAPTOP_DISPLAY="eDP1"
 LAPTOP_RESOLUTION="1920x1200"
-OTHER_DISPLAY="DP3"
+OTHER_DISPLAY="$(xrandr --query | grep -v disconnected | grep connected | awk '{ print $1 }' | grep -v $LAPTOP_DISPLAY | head -n 1)"
 
 if [[ "NUM_DISPLAYS" -eq 1 ]]; then
   echo "Single display"
   xrandr \
-    --output eDP1 --primary --mode 3840x2400 --pos 0x0 --scale 0.5x0.5 --rotate normal
+    --output $LAPTOP_DISPLAY --primary --mode 3840x2400 --pos 0x0 --scale 0.5x0.5 --rotate normal
 else
   echo "Multi-monitor"
   if [[ -z "$PARAM" || "$PARAM" = "right" ]]; then
 
     xrandr \
       --output $LAPTOP_DISPLAY --primary --mode $LAPTOP_RESOLUTION --scale 1x1 --rotate normal \
-      --output $OTHER_DISPLAY --auto --right-of eDP1 --rotate normal
+      --output "$OTHER_DISPLAY" --auto --right-of eDP1 --rotate normal
 
   elif [[ "$PARAM" = "left" ]]; then
 
     xrandr \
       --output $LAPTOP_DISPLAY --primary --mode $LAPTOP_RESOLUTION --scale 1x1 --rotate normal \
-      --output $OTHER_DISPLAY --auto --left-of eDP1 --rotate normal
+      --output "$OTHER_DISPLAY" --auto --left-of eDP1 --rotate normal
 
   elif [[ "$PARAM" = "mirror" ]]; then
 
