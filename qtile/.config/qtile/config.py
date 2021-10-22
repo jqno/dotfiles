@@ -167,13 +167,13 @@ keys = [
     # System keybindings
     KeyChord([mod], 'd', [
         Key([], 'm',
-            lazy.spawn(script_location + '/display.sh mirror'),
+            lazy.spawn(home + '/scripts/manage_displays.sh mirror'),
             desc='Mirror displays'),
         Key([], 'l',
-            lazy.spawn(script_location + '/display.sh left'),
+            lazy.spawn(home + '/scripts/manage_displays.sh left'),
             desc='Put external display to the left'),
         Key([], 'r',
-            lazy.spawn(script_location + '/display.sh right'),
+            lazy.spawn(home + '/scripts/manage_displays.sh right'),
             desc='Put external display to the right')
     ], mode='Configure displays: [m]irror, [l]eft, [r]ight'),
     Key([mod], 'b',
