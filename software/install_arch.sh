@@ -54,7 +54,6 @@ install_pacman docker-compose
 install_pacman dust
 install_pacman duf-bin
 install_pacman exa
-install_pacman eyed3
 install_pacman fd
 install_pacman fzf
 install_pacman github-cli
@@ -68,6 +67,7 @@ install_pacman neovim
 install_pacman pandoc
 install_npm prettier
 install_npm prettier-plugin-java
+install_pacman python-eyed3
 install_pacman ripgrep
 install_pacman stow
 install_pacman the_silver_searcher
