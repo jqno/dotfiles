@@ -125,6 +125,9 @@ keys = [
     Key([mod], 'f',
         lazy.window.toggle_fullscreen(),
         desc='Makes current window fullscreen'),
+    Key([mod], 't',
+        lazy.window.toggle_floating(),
+        desc='Toggle floating'),
 
     # Switch between groups
     Key([mod], 'Left',
