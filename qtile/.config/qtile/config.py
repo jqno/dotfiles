@@ -5,6 +5,7 @@ from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from Xlib import display as xdisplay
 import arcobattery
+import analogclock
 
 
 # CONSTANTS #
@@ -396,9 +397,7 @@ def short_bar():
             linewidth=2,
             size_percent=100
         ),
-        widget.Clock(
-            format='%d %b %Y %H:%M'
-        ),
+        analogclock.AnalogClock(),
         widget.Spacer(gap * 2),
     ]
 
@@ -421,15 +420,7 @@ def full_bar():
             theme_path=home + '/.config/qtile/icons/resized_arco_battery_icons',
             update_interval=5
         ),
-        widget.Sep(
-            foreground=colors['inactive'],
-            padding=widegap,
-            linewidth=2,
-            size_percent=100
-        ),
-        widget.Clock(
-            format='%d %b %Y %H:%M'
-        ),
+        analogclock.AnalogClock(),
         widget.Spacer(gap * 2),
     ]
 
