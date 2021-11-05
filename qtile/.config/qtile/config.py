@@ -397,7 +397,9 @@ def short_bar():
             linewidth=2,
             size_percent=100
         ),
-        analogclock.AnalogClock(),
+        analogclock.AnalogClock(
+            fontsize=22,
+        ),
         widget.Spacer(gap * 2),
     ]
 
@@ -420,7 +422,9 @@ def full_bar():
             theme_path=home + '/.config/qtile/icons/resized_arco_battery_icons',
             update_interval=5
         ),
-        analogclock.AnalogClock(),
+        analogclock.AnalogClock(
+            fontsize=22,
+        ),
         widget.Spacer(gap * 2),
     ]
 
