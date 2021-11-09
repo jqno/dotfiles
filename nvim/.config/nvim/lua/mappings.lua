@@ -51,6 +51,8 @@ local function define_mappings()
   map(This.modes.n, 'N',
       'Nzz')
   -- Toggle movements
+  map(This.modes.n, '0',
+      '<cmd>lua require("util").toggle_movement("^", "0")<CR>')
   map(This.modes.n, ';',
       '<cmd>lua require("util").toggle_movement(";", "0;")<CR>')
   map(This.modes.n, ',',
