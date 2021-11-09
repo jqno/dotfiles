@@ -156,7 +156,7 @@ local function setup_vimwiki()
   }
   g.vimwiki_global_ext = 0
   g.vimwiki_markdown_link_ext = 1
-  g.vimwiki_map_prefix = '<leader>wx'
+  g.vimwiki_map_prefix = '<leader>qx'
   g.vimwiki_key_mappings = { table_mappings = 0}
   g.vimwiki_diary_months =
     { ['1'] = 'Januari', ['2'] = 'Februari', ['3'] = 'Maart', ['4'] = 'April',
