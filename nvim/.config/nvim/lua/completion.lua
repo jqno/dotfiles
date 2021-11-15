@@ -19,9 +19,6 @@ end
 local function tab_complete(fallback)
     if vim.fn.pumvisible() == 1 then
         feedkey('<C-n>', 'n')
-    elseif vim.g.did_plugin_ultisnips and vim.fn['UltiSnips#CanJumpForwards']() ==
-        1 then
-        feedkey('<C-R>=UltiSnips#JumpForwards()<CR>', 'n')
     elseif has_words_before() then
         cmp.complete()
     else
@@ -32,9 +29,6 @@ end
 local function s_tab_complete(fallback)
     if vim.fn.pumvisible() == 1 then
         feedkey('<C-p>', 'n')
-    elseif vim.g.did_plugin_ultisnips and vim.fn['UltiSnips#CanJumpBackwards']() ==
-        1 then
-        feedkey('<C-R>=UltiSnips#JumpBackwards()<CR>', 'n')
     else
         fallback()
     end
