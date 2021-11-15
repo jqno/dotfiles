@@ -20,6 +20,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " Improve looks
 Plug 'glepnir/galaxyline.nvim'
