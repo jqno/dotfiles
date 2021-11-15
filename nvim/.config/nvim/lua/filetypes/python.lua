@@ -1,13 +1,9 @@
 local This = {}
 
-This.lsp_config = {
-  pylsp = {
-    configurationSources = {'flake8'}
-  }
-}
+This.lsp_config = {pylsp = {configurationSources = {'flake8'}}}
 
 function This.setup()
-  -- empty
+    -- empty
 end
 
 return This

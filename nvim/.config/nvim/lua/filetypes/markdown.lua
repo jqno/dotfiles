@@ -1,7 +1,7 @@
 local This = {}
 
 function This.setup()
-  vim.wo.wrap = true
+    vim.wo.wrap = true
 end
 
 return This
