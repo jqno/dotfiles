@@ -9,7 +9,7 @@ This.lsp_config = {
 }
 
 function This.setup()
-  -- empty
+    require('util').set_buf_indent(4)
 end
 
 return This

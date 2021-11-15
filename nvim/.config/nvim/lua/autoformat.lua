@@ -8,7 +8,7 @@ This.do_autoformat = true
 
 function This.setup()
   vim_util.augroup('format_on_save', [[
-    autocmd BufWritePre *.java lua require('autoformat').format()
+    autocmd BufWritePre *.java,*.lua lua require('autoformat').format()
   ]])
   vim.api.nvim_exec([[
     command! EnableAutoformat lua require('autoformat').do_autoformat = true
