@@ -106,7 +106,7 @@ local function define_mappings()
             ['<C-U>'] = 'scroll up'
         },
         -- TOGGLES --
-        ['<leader><leader>'] = {
+        ['<leader>t'] = {
             name = 'toggles',
             ['2'] = {
                 '<cmd>lua require("util").set_buf_indent(2, true)<CR>',
