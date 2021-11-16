@@ -22,14 +22,14 @@ home = os.path.expanduser('~')
 script_location = home + '/.config/qtile/scripts'
 
 colors = {
-    'panel': '#4a555b',
-    'inactive': '#525c62',
-    'text': '#d8caac',
-    'primary': '#83c092',
-    'secondary': '#a7c080',
-    'error': '#e68183',
-    'warning': '#d699b6',
-    'success': '#dbbc7f'
+    'panel': '#3b3b3b',
+    'inactive': '#777777',
+    'text': '#dedede',
+    'primary': '#83c746',
+    'secondary': '#4f9cfe',
+    'error': '#ff5e56',
+    'warning': '#ff81ca',
+    'success': '#efc541'
 }
 
 

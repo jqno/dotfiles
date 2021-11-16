@@ -18,10 +18,6 @@ function This.on_attach(client, bufnr, skip_code_actions)
     clean_diagnostics()
 
     if client.resolved_capabilities.document_highlight then
-        vim_util.highlight_link('LspReferenceRead', 'DiffAdd')
-        vim_util.highlight_link('LspReferenceWrite', 'DiffDelete')
-        vim_util.highlight('LspReferenceText', nil, nil, 'italic')
-
         vim_util.augroup('lsp_attach', [[
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()

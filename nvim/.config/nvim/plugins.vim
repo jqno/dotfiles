@@ -24,8 +24,8 @@ Plug 'ThePrimeagen/harpoon'
 
 " Improve looks
 Plug 'glepnir/galaxyline.nvim'
+Plug 'jqno/tranquility.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'sainnhe/everforest'
 
 " Improve UX
 Plug 'folke/which-key.nvim'

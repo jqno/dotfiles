@@ -2,6 +2,7 @@ local This = {}
 
 local fn = vim.fn
 local highlight = require('vim-util').highlight
+local theme = require('tranquility').colors()
 
 -- HELPERS --
 local symbols = {
@@ -17,17 +18,17 @@ local symbols = {
 }
 
 local colors = {
-    black = '#4a555b',
-    gray = '#525c62',
-    green = '#a7c080',
-    purple = '#d699b6',
-    red = '#e68183',
-    white = '#d8caac',
-    yellow = '#dbbc7f',
-    error = '#e68183',
-    warning = '#d699b6',
-    hint = '#dbbc7f',
-    information = '#dbbc7f'
+    black = theme.black.light[1],
+    green = theme.green.light[1],
+    purple = theme.magenta.dark[1],
+    red = theme.red.light[1],
+    white = theme.white.light[1],
+    yellow = theme.yellow.light[1],
+    visual = theme.ui.light[1],
+    error = theme.error.light[1],
+    warning = theme.warning.light[1],
+    hint = theme.hint.light[1],
+    information = theme.hint.light[1]
 }
 
 local schemes = {
@@ -64,8 +65,8 @@ local function vimode_color()
     local mode_colors = {
         N = colors.green,
         I = colors.white,
-        V = colors.gray,
-        [''] = colors.gray,
+        V = colors.visual,
+        [''] = colors.visual,
         T = colors.yellow,
         C = colors.purple
     }
