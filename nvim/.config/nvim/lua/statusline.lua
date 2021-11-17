@@ -324,7 +324,12 @@ local function position_max()
 end
 
 -- STATUSLINE --
-function This.setup()
+local function configure_highlights()
+    highlight('StatusLine', schemes.faded_i[1], schemes.faded_i[2])
+    highlight('StatusLineNC', schemes.faded_i[1], schemes.faded_i[2])
+end
+
+local function setup_statusline()
     local gl = require('galaxyline')
     local gls = gl.section
 
@@ -479,6 +484,11 @@ function This.setup()
         },
         {InactiveFileName = {provider = filename, highlight = schemes.faded_i}}
     }
+end
+
+function This.setup()
+    configure_highlights()
+    setup_statusline()
 end
 
 return This
