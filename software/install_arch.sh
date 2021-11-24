@@ -58,6 +58,7 @@ install_pacman fd
 install_pacman fzf
 install_pacman github-cli
 install_pacman gnupg
+install_pacman gvfs-smb
 install_aur jekyll
 install_pacman jq
 install_pacman keychain
