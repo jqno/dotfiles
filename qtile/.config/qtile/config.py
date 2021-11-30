@@ -150,7 +150,7 @@ keys = [
         desc='Swap screens'),
 
     # Toggle between different layouts
-    Key([mod], 'backslash',
+    Key([mod], 'Tab',
         lazy.next_layout(),
         desc='Toggle between layouts'),
 
