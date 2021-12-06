@@ -34,7 +34,6 @@ local format = {
 }
 
 This.settings = {
-    rootMarkers = {'.git/'},
     languages = {
         java = {format.prettier},
         lua = {format.luaformat},

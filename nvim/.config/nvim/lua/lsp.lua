@@ -1,6 +1,7 @@
 local This = {}
 
 local lsp = require('lspconfig')
+local lsputil = require('lspconfig.util')
 local efm = require('lsp_efm')
 local vim_util = require('vim-util')
 
@@ -51,6 +52,10 @@ local function setup_lsp()
 
     lsp.efm.setup {
         filetypes = efm.filetypes,
+        root_dir = function(fname)
+            return lsputil.find_git_ancestor(fname) or
+                       lsputil.root_pattern('.')(fname)
+        end,
         on_attach = on_attach_efm,
         capabilities = This.cmp_capabilities,
         init_options = {documentFormatting = true},
