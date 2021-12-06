@@ -242,10 +242,16 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     wk({
         -- UNIMPAIRED --
         ['['] = {
-            d = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'diagnostic'}
+            d = {
+                '<cmd>lua vim.diagnostic.goto_prev({source="always"})<CR>',
+                'diagnostic'
+            }
         },
         [']'] = {
-            d = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'diagnostic'}
+            d = {
+                '<cmd>lua vim.diagnostic.goto_next({source="always"})<CR>',
+                'diagnostic'
+            }
         },
         -- MAKE-ING --
         ['<leader>m'] = {
@@ -261,7 +267,7 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
         -- SHOWING THINGS --
         ['<leader>s'] = {
             d = {
-                '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+                '<cmd>lua vim.diagnostic.open_float(nil, {source="always"})<CR>',
                 'diagnostics'
             }
         }

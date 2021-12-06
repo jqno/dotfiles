@@ -168,10 +168,18 @@ end
 -- DIAGNOSTICS --
 local function diags()
     return {
-        error = vim.lsp.diagnostic.get_count(0, 'Error'),
-        warning = vim.lsp.diagnostic.get_count(0, 'Warning'),
-        hint = vim.lsp.diagnostic.get_count(0, 'Hint'),
-        information = vim.lsp.diagnostic.get_count(0, 'Information')
+        error = vim.tbl_count(vim.diagnostic.get(0, {
+            severity = vim.diagnostic.severity.ERROR
+        })),
+        warning = vim.tbl_count(vim.diagnostic.get(0, {
+            severity = vim.diagnostic.severity.WARN
+        })),
+        hint = vim.tbl_count(vim.diagnostic.get(0, {
+            severity = vim.diagnostic.severity.HINT
+        })),
+        information = vim.tbl_count(vim.diagnostic.get(0, {
+            severity = vim.diagnostic.severity.INFO
+        }))
     }
 end
 
