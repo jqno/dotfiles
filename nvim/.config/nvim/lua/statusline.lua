@@ -13,8 +13,8 @@ local symbols = {
     ok = '✔',
     error = '✗',
     warning = '◆',
-    hint = 'H',
-    information = 'i'
+    information = 'i',
+    hint = 'H'
 }
 
 local colors = {
@@ -27,8 +27,8 @@ local colors = {
     visual = theme.ui.light[1],
     error = theme.error.light[1],
     warning = theme.warning.light[1],
-    hint = theme.hint.light[1],
-    information = theme.hint.light[1]
+    information = theme.hint.light[1],
+    hint = theme.hint.light[1]
 }
 
 local schemes = {
@@ -39,8 +39,8 @@ local schemes = {
     diag_ok = {colors.black, colors.green, 'bold'},
     diag_error = {colors.black, colors.error, 'bold'},
     diag_warning = {colors.black, colors.warning, 'bold'},
-    diag_hint = {colors.black, colors.hint},
-    diag_information = {colors.black, colors.information}
+    diag_information = {colors.black, colors.information},
+    diag_hint = {colors.black, colors.hint}
 }
 
 local separators = {
@@ -174,11 +174,11 @@ local function diags()
         warning = vim.tbl_count(vim.diagnostic.get(0, {
             severity = vim.diagnostic.severity.WARN
         })),
-        hint = vim.tbl_count(vim.diagnostic.get(0, {
-            severity = vim.diagnostic.severity.HINT
-        })),
         information = vim.tbl_count(vim.diagnostic.get(0, {
             severity = vim.diagnostic.severity.INFO
+        })),
+        hint = vim.tbl_count(vim.diagnostic.get(0, {
+            severity = vim.diagnostic.severity.HINT
         }))
     }
 end
@@ -190,10 +190,10 @@ local function diag_print_open()
         scheme = schemes.diag_error
     elseif d.warning > 0 then
         scheme = schemes.diag_warning
-    elseif d.hint > 0 then
-        scheme = schemes.diag_hint
     elseif d.information > 0 then
         scheme = schemes.diag_information
+    elseif d.hint > 0 then
+        scheme = schemes.diag_hint
     end
     highlight('GalaxyDiagnosticOpen', scheme[2], scheme[1])
     return symbols.open
@@ -202,10 +202,10 @@ end
 local function diag_print_close()
     local d = diags()
     local scheme = schemes.diag_ok
-    if d.information > 0 then
-        scheme = schemes.diag_information
-    elseif d.hint > 0 then
+    if d.hint > 0 then
         scheme = schemes.diag_hint
+    elseif d.information > 0 then
+        scheme = schemes.diag_information
     elseif d.warning > 0 then
         scheme = schemes.diag_warning
     elseif d.error > 0 then
@@ -217,7 +217,7 @@ end
 
 local function diag_print_ok()
     local d = diags()
-    if d.error == 0 and d.warning == 0 and d.hint == 0 and d.information == 0 then
+    if d.error == 0 and d.warning == 0 and d.information == 0 and d.hint == 0 then
         return symbols.ok
     end
     return ''
@@ -229,7 +229,7 @@ local function diag_print_error()
         return ''
     end
     local suffix = ''
-    if d.warning > 0 or d.hint > 0 or d.information > 0 then
+    if d.warning > 0 or d.information > 0 or d.hint > 0 then
         suffix = ' '
     end
     return symbols.error .. d.error .. suffix
@@ -245,10 +245,22 @@ local function diag_print_warning()
         prefix = '  '
     end
     local suffix = ''
-    if d.hint > 0 or d.information > 0 then
+    if d.information > 0 or d.hint > 0 then
         suffix = ' '
     end
     return prefix .. symbols.warning .. d.warning .. suffix
+end
+
+local function diag_print_information()
+    local d = diags()
+    if d.information == 0 then
+        return ''
+    end
+    local prefix = ''
+    if d.error > 0 or d.warning > 0 or d.hint > 0 then
+        prefix = '  '
+    end
+    return prefix .. symbols.information .. d.information
 end
 
 local function diag_print_hint()
@@ -265,18 +277,6 @@ local function diag_print_hint()
         suffix = ' '
     end
     return prefix .. symbols.hint .. d.hint .. suffix
-end
-
-local function diag_print_information()
-    local d = diags()
-    if d.information == 0 then
-        return ''
-    end
-    local prefix = ''
-    if d.error > 0 or d.warning > 0 or d.hint > 0 then
-        prefix = '  '
-    end
-    return prefix .. symbols.information .. d.information
 end
 
 -- FILE INFO --
@@ -402,16 +402,16 @@ local function setup_statusline()
                 provider = diag_print_warning,
                 highlight = schemes.diag_warning
             }
+        }, {
+            DiagnosticInformation = {
+                provider = diag_print_information,
+                highlight = schemes.diag_information
+            }
         },
         {
             DiagnosticHint = {
                 provider = diag_print_hint,
                 highlight = schemes.diag_hint
-            }
-        }, {
-            DiagnosticInformation = {
-                provider = diag_print_information,
-                highlight = schemes.diag_information
             }
         }, {DiagnosticClose = {provider = diag_print_close}},
         {DiagnosticSpace = {provider = space, highlight = schemes.faded_i}},
