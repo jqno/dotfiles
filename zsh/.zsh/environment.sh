@@ -34,6 +34,9 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
   export JABBA_HOME="/home/jqno/.jabba"
 fi
 
+# Don't use cowsay when using ansible
+export ANSIBLE_NOCOWS=1
+
 # Add all private keys to keychain
 eval `find ~/.ssh/id_* -type f ! -name "*.*" | xargs -I {} keychain --eval {} 2> /dev/null`
 
