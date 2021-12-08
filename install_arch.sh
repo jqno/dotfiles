@@ -23,6 +23,7 @@ stow qtile
 stow redshift
 stow scripts
 stow tig
+stow ulauncher
 stow x
 stow zsh
 

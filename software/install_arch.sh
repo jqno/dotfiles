@@ -74,6 +74,7 @@ install_pacman stow
 install_pacman the_silver_searcher
 install_pacman tig
 install_pacman tldr
+install_pacman ulauncher
 install_pacman universal-ctags
 install_aur xplugd-git
 install_aur zsh-theme-powerlevel10k-git
