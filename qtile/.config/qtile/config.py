@@ -224,15 +224,7 @@ keys = [
     Key([mod], 'Return',
         lazy.spawn(terminal),
         desc='Launch terminal'),
-    Key([mod], 'space',
-        lazy.spawn('rofi -modi drun -show drun'),
-        desc='Spawn an app using rofi'),
-    Key([hyper], 'space',
-        lazy.spawn('rofi -show window'),
-        desc='Switch to a window using rofi'),
-    Key(['mod1'], 'space',
-        lazy.spawn('rofimoji'),
-        desc='Emoji picker'),
+    # [mod], 'Space' launches Ulauncher
 
     # Managing apps
     Key([hyper], 'c',

@@ -36,7 +36,6 @@ install_pacman betterlockscreen
 install_pacman brightnessctl
 install_pacman feh
 install_aur picom-jonaburg-git
-install_pacman rofimoji
 install_pacman scrot
 install_pacman tlp
 install_pacman tlp-rdw
