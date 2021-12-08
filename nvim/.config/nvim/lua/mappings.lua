@@ -153,6 +153,10 @@ local function define_mappings()
                 'indent tab'
             },
             l = {'<cmd>set list! list?<CR>', 'list'},
+            t = {
+                '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
+                'typewriter mode'
+            },
             w = {'<cmd>set wrap! wrap?<CR>', 'wrap'}
         },
         -- BUFFER --

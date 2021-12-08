@@ -18,7 +18,7 @@ function This.setup()
     }
     vim.opt.number = true
     vim.opt.relativenumber = true
-    vim.opt.scrolloff = 1
+    vim.opt.scrolloff = 3
     vim.opt.shiftround = true
     vim.opt.shiftwidth = default_indent
     vim.opt.shortmess = vim.opt.shortmess - 'F' + 'c'
