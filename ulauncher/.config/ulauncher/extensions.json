@@ -5,5 +5,12 @@
         "updated_at": "2021-12-08T11:06:15.180243",
         "last_commit": "4c6af50d1c9a24d5aad2c597634ff0c634972a5c",
         "last_commit_time": "2021-08-08T19:19:59"
+    },
+    "com.github.dflock.ulauncher-window-switcher": {
+        "id": "com.github.dflock.ulauncher-window-switcher",
+        "url": "https://github.com/dflock/ulauncher-window-switcher",
+        "updated_at": "2021-12-08T11:10:35.531904",
+        "last_commit": "11d23dfa64a916e2a4d9cdbb3b79795bd48422b3",
+        "last_commit_time": "2021-11-30T06:21:19"
     }
 }
