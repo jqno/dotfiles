@@ -15,7 +15,7 @@
         "keyword": "so",
         "cmd": "https://stackoverflow.com/search?q=%s",
         "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
-        "is_default_search": true,
+        "is_default_search": false,
         "run_without_argument": false,
         "added": 1638953792.4869866
     },
@@ -25,7 +25,7 @@
         "keyword": "wiki",
         "cmd": "https://en.wikipedia.org/wiki/%s",
         "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
-        "is_default_search": true,
+        "is_default_search": false,
         "run_without_argument": false,
         "added": 1638953792.4870093
     },
