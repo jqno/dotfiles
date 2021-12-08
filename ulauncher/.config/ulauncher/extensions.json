@@ -26,5 +26,12 @@
         "updated_at": "2021-12-08T11:14:17.164549",
         "last_commit": "375e3c08812ea962a6faa64ee9e09d2452584f47",
         "last_commit_time": "2021-11-27T09:53:18"
+    },
+    "com.github.mikebarkmin.ulauncher-snippets": {
+        "id": "com.github.mikebarkmin.ulauncher-snippets",
+        "url": "https://github.com/mikebarkmin/ulauncher-snippets",
+        "updated_at": "2021-12-08T11:25:46.540649",
+        "last_commit": "a640ae066ae856c756e0891a51019b5a784b6d35",
+        "last_commit_time": "2021-08-11T09:29:21"
     }
 }

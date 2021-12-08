@@ -106,9 +106,18 @@ install_pacman shellcheck
 install_aur vale-bin
 
 # Dependencies
+## For ZSH
 install_pacman zsh-autosuggestions
 install_pacman zsh-syntax-highlighting
+
+## For Neovim Python bindings
 install_pip pynvim
+
+## For ulauncher snippets
+install_pip dateparser
+install_pip jinja2
+install_pip markdown
+install_pip python-frontmatter
 
 
 # Manual tools
