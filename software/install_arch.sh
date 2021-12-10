@@ -112,11 +112,15 @@ install_pacman zsh-syntax-highlighting
 ## For Neovim Python bindings
 install_pip pynvim
 
-## For ulauncher snippets
+## For ulauncher plugins
 install_pip dateparser
 install_pip jinja2
 install_pip markdown
+install_pip parsedatetime
+install_pip pint
 install_pip python-frontmatter
+install_pip requests
+install_pip simpleeval
 
 
 # Manual tools

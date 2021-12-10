@@ -2,43 +2,50 @@
     "com.github.ulauncher.ulauncher-emoji": {
         "id": "com.github.ulauncher.ulauncher-emoji",
         "url": "https://github.com/Ulauncher/ulauncher-emoji",
-        "updated_at": "2021-12-08T11:06:15.180243",
+        "updated_at": "2021-12-10T09:22:51.480593",
         "last_commit": "4c6af50d1c9a24d5aad2c597634ff0c634972a5c",
         "last_commit_time": "2021-08-08T19:19:59"
     },
     "com.github.dflock.ulauncher-window-switcher": {
         "id": "com.github.dflock.ulauncher-window-switcher",
         "url": "https://github.com/dflock/ulauncher-window-switcher",
-        "updated_at": "2021-12-08T11:10:35.531904",
+        "updated_at": "2021-12-10T09:22:52.537999",
         "last_commit": "11d23dfa64a916e2a4d9cdbb3b79795bd48422b3",
         "last_commit_time": "2021-11-30T06:21:19"
     },
     "com.github.kuenzelit.ulauncher-firefox-bookmarks": {
         "id": "com.github.kuenzelit.ulauncher-firefox-bookmarks",
         "url": "https://github.com/KuenzelIT/ulauncher-firefox-bookmarks",
-        "updated_at": "2021-12-08T11:13:26.858967",
+        "updated_at": "2021-12-10T09:22:53.905033",
         "last_commit": "77f1de0adfc2e79ce767f645ae8ad0a0dda2783e",
         "last_commit_time": "2019-12-07T17:27:46"
     },
     "com.github.rmassidda.ulauncher-firefox-history": {
         "id": "com.github.rmassidda.ulauncher-firefox-history",
         "url": "https://github.com/rmassidda/ulauncher-firefox-history",
-        "updated_at": "2021-12-08T11:14:17.164549",
+        "updated_at": "2021-12-10T09:22:55.194256",
         "last_commit": "375e3c08812ea962a6faa64ee9e09d2452584f47",
         "last_commit_time": "2021-11-27T09:53:18"
     },
     "com.github.mikebarkmin.ulauncher-snippets": {
         "id": "com.github.mikebarkmin.ulauncher-snippets",
         "url": "https://github.com/mikebarkmin/ulauncher-snippets",
-        "updated_at": "2021-12-08T11:25:46.540649",
+        "updated_at": "2021-12-10T09:22:56.452808",
         "last_commit": "a640ae066ae856c756e0891a51019b5a784b6d35",
         "last_commit_time": "2021-08-11T09:29:21"
     },
     "com.github.fisadev.ulauncher-better-file-browser": {
         "id": "com.github.fisadev.ulauncher-better-file-browser",
         "url": "https://github.com/fisadev/ulauncher-better-file-browser",
-        "updated_at": "2021-12-10T09:06:09.867432",
+        "updated_at": "2021-12-10T09:22:57.337972",
         "last_commit": "8ec8a0dda09e172de62051cd1f251816ce4af368",
         "last_commit_time": "2019-09-06T19:20:09"
+    },
+    "com.github.tchar.ulauncher-albert-calculate-anything": {
+        "id": "com.github.tchar.ulauncher-albert-calculate-anything",
+        "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
+        "updated_at": "2021-12-10T09:44:06.982969",
+        "last_commit": "ee0903174c8b87cd1f7c3b6c1acef10702547507",
+        "last_commit_time": "2021-08-12T06:39:56"
     }
 }
