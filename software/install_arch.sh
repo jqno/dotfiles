@@ -36,7 +36,6 @@ install_pacman betterlockscreen
 install_pacman brightnessctl
 install_pacman feh
 install_aur picom-jonaburg-git
-install_pacman rofimoji
 install_pacman scrot
 install_pacman tlp
 install_pacman tlp-rdw
@@ -74,6 +73,7 @@ install_pacman stow
 install_pacman the_silver_searcher
 install_pacman tig
 install_pacman tldr
+install_pacman ulauncher
 install_pacman universal-ctags
 install_aur xplugd-git
 install_aur zsh-theme-powerlevel10k-git
@@ -105,9 +105,22 @@ install_pacman shellcheck
 install_aur vale-bin
 
 # Dependencies
+## For ZSH
 install_pacman zsh-autosuggestions
 install_pacman zsh-syntax-highlighting
+
+## For Neovim Python bindings
 install_pip pynvim
+
+## For ulauncher plugins
+install_pip dateparser
+install_pip jinja2
+install_pip markdown
+install_pip parsedatetime
+install_pip pint
+install_pip python-frontmatter
+install_pip requests
+install_pip simpleeval
 
 
 # Manual tools
