@@ -21,7 +21,7 @@ run nm-applet &
 run blueberry-tray &
 run volumeicon &
 run pamac-tray &
-run ulauncher &
+run ulauncher --hide-window &
 run xautolock -time 2 -locker "$SCRIPTS/lock.sh" &
 
 # Check that we have network, and if so, start some programs
