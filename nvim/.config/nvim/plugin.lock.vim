@@ -3,9 +3,11 @@
 " :source this file in vim to restore the snapshot
 " or execute: vim -S snapshot.vim
 
+silent! let g:plugs['LuaSnip'].commit = '8f2bf6b0e35c9cc6a27b9b5122fbf3ea964b34f4'
 silent! let g:plugs['cmp-buffer'].commit = '5dde5430757696be4169ad409210cf5088554ed6'
 silent! let g:plugs['cmp-nvim-lsp'].commit = 'f93a6cf9761b096ff2c28a4f0defe941a6ffffb5'
 silent! let g:plugs['cmp-path'].commit = '0016221b6143fd6bf308667c249e9dbdee835ae2'
+silent! let g:plugs['cmp_luasnip'].commit = '7bd2612533db6863381193df83f9934b373b21e1'
 silent! let g:plugs['galaxyline.nvim'].commit = 'd544cb9d0b56f6ef271db3b4c3cf19ef665940d5'
 silent! let g:plugs['gitsigns.nvim'].commit = 'daa233aabb4dbc7c870ea7300bcfeef96d49c2a3'
 silent! let g:plugs['harpoon'].commit = '57819752e62251f9488a95fea1690bb62547bd2a'
