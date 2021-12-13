@@ -155,7 +155,7 @@ local function setup_vimwiki()
     }
 
     vim_util.augroup('vimwiki', [[
-    autocmd BufRead,BufNewFile diary.mkdn VimwikiDiaryGenerateLinks
+    autocmd BufReadPre,BufEnter,BufNewFile diary.mkdn VimwikiDiaryGenerateLinks
   ]])
 end
 
