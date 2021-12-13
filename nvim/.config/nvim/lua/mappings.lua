@@ -69,8 +69,6 @@ local function define_mappings()
 
     -- IN SPECIFIC MODES --
     map(This.modes.n, '<F12>', '<cmd>VimwikiMakeDiaryNote<CR>')
-    map(This.modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>',
-        {nowait = true, silent = true})
     -- Expand %% to the directory of the currently open file
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 

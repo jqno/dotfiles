@@ -40,28 +40,19 @@ function This.setup()
             completeopt = 'menu,menuone,noinsert,preview',
             autocomplete = false
         },
-        snippet = {
-            expand = function(args)
-                vim.fn['UltiSnips#Anon'](args.body)
-            end
-        },
         mapping = {
             ['<Tab>'] = cmp.mapping(tab_complete, {'i', 's'}),
             ['<S-Tab>'] = cmp.mapping(s_tab_complete, {'i', 's'}),
             ['<Esc>'] = cmp.mapping.close(),
             ['<CR>'] = cmp.mapping.confirm({select = true})
         },
-        sources = {
-            {name = 'ultisnips'}, {name = 'nvim_lsp'}, {name = 'path'},
-            {name = 'buffer'}
-        },
+        sources = {{name = 'nvim_lsp'}, {name = 'path'}, {name = 'buffer'}},
         formatting = {
             format = function(entry, vim_item)
                 vim_item.menu = ({
                     buffer = '[Buffer]',
                     nvim_lsp = '[LSP]',
-                    path = 'Path',
-                    ultisnips = '[UltiSnips]'
+                    path = 'Path'
                 })[entry.source.name]
                 return vim_item
             end

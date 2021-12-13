@@ -11,7 +11,6 @@ Plug 'gcmt/wildfire.vim'
 Plug 'jqno/jqno-autoclose.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
@@ -46,7 +45,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'neovim/nvim-lspconfig'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'scalameta/nvim-metals'
 
 " Configure Vimwiki
