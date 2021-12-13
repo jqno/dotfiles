@@ -109,7 +109,7 @@ keys = [
     Key([mod, 'shift'], 'k',
         lazy.layout.shuffle_up(),
         desc='Move window up'),
-    Key([mod, 'shift'], 'o',
+    Key([mod], 'o',
         lazy.function(move_window_to_other_screen()),
         desc='Move window to other screen'),
 
@@ -142,7 +142,7 @@ keys = [
         desc='Move to last visited group'),
 
     # Switch between screens
-    Key([mod], 'o',
+    Key([hyper], 'space',
         lazy.function(focus_other_screen()),
         desc='Move focus to other screen'),
     Key([mod], 'grave',
