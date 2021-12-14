@@ -1,0 +1,158 @@
+{
+  "project": {
+    "prefix": "project",
+    "body": [
+      "<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd\">",
+      "\t<modelVersion>4.0.0</modelVersion>",
+      "\t<groupId>$1</groupId>",
+      "\t<artifactId>$2</artifactId>",
+      "\t<packaging>${3:jar/pom}</packaging>",
+      "",
+      "\t<name>$4</name>",
+      "\t<version>${5:0.1-SNAPSHOT}</version>",
+      "\t<description>$6</description>",
+      "",
+      "\t<properties>",
+      "\t\t$7",
+      "\t</properties>",
+      "",
+      "\t<dependencies>",
+      "\t\t$8",
+      "\t</dependencies>",
+      "",
+      "\t<build>",
+      "\t\t<plugins>",
+      "\t\t\t$9",
+      "\t\t</plugins>",
+      "\t</build>",
+      "",
+      "\t<reporting>",
+      "\t\t<plugins>",
+      "\t\t\t$10",
+      "\t\t</plugins>",
+      "\t</reporting>",
+      "</project>"
+    ],
+    "description": "<project>"
+  },
+  "parent": {
+    "prefix": "parent",
+    "body": [
+      "<parent>",
+      "\t<groupId>$1</groupId>",
+      "\t<artifactId>$2</artifactId>",
+      "\t<version>$3</version>",
+      "</parent>"
+    ],
+    "description": "<parent>"
+  },
+  "properties": {
+    "prefix": "properties",
+    "body": [
+      "<properties>",
+      "\t$1",
+      "</properties>"
+    ],
+    "description": "<properties>"
+  },
+  "repository": {
+    "prefix": "repository",
+    "body": [
+      "<repository>",
+      "\t<id>$1</id>",
+      "\t<url>$1</url>",
+      "</repository>"
+    ],
+    "description": "<repository>"
+  },
+  "dependency": {
+    "prefix": "dependency",
+    "body": [
+      "<dependency>",
+      "\t<groupId>$1</groupId>",
+      "\t<artifactId>$2</artifactId>",
+      "\t<version>$3</version>",
+      "${4|\t<scope>test</scope>,|}",
+      "</dependency>"
+    ],
+    "description": "<dependency>"
+  },
+  "plugin": {
+    "prefix": "plugin",
+    "body": [
+      "<plugin>",
+      "\t<groupId>$1</groupId>",
+      "\t<artifactId>$2</artifactId>",
+      "\t<version>$3</version>",
+      "</plugin>"
+    ],
+    "description": "<plugin>"
+  },
+  "configuration": {
+    "prefix": "configuration",
+    "body": [
+      "<configuration>",
+      "\t$1",
+      "</configuration>"
+    ],
+    "description": "<configuration>"
+  },
+  "executions": {
+    "prefix": "executions",
+    "body": [
+      "<executions>",
+      "\t<execution>",
+      "\t\t<id>$1</id>",
+      "\t\t<phase>$2</phase>",
+      "\t\t<goals>",
+      "\t\t\t<goal>$3</goal>",
+      "\t\t</goals>",
+      "\t</execution>",
+      "\t$4",
+      "</executions>"
+    ],
+    "description": "<executions>"
+  },
+  "execution": {
+    "prefix": "execution",
+    "body": [
+      "<execution>",
+      "\t<id>$1</id>",
+      "\t<phase>$2</phase>",
+      "\t<goals>",
+      "\t\t<goal>$3</goal>",
+      "\t</goals>",
+      "</execution>"
+    ],
+    "description": "<execution>"
+  },
+  "profiles": {
+    "prefix": "profiles",
+    "body": [
+      "<profiles>",
+      "\t<profile>",
+      "\t\t<id>$1</id>",
+      "\t\t<activation>",
+      "\t\t\t$2",
+      "\t\t</activation>",
+      "\t\t$3",
+      "\t</profile>",
+      "\t$4",
+      "</profiles>"
+    ],
+    "description": "<profiles>"
+  },
+  "profile": {
+    "prefix": "profile",
+    "body": [
+      "<profile>",
+      "\t<id>$1</id>",
+      "\t<activation>",
+      "\t\t$2",
+      "\t</activation>",
+      "\t$3",
+      "</profile>"
+    ],
+    "description": "<profile>"
+  }
+}

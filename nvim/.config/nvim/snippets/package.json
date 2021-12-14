@@ -18,6 +18,10 @@
         "path": "./markdown.json"
       },
       {
+        "language": "pom",
+        "path": "./pom.json"
+      },
+      {
         "language": "python",
         "path": "./python.json"
       },
