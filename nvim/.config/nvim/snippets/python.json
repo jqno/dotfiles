@@ -1,0 +1,12 @@
+{
+  "shebang": {
+    "prefix": "#!",
+    "body": ["#!/usr/bin/env python", "", ""],
+    "description": "Shebang"
+  },
+  "main": {
+    "prefix": "main",
+    "body": ["if __name__ == \"main\":", "\t$0"],
+    "description": "Main clause"
+  }
+}

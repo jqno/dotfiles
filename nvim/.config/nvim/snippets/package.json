@@ -10,6 +10,10 @@
         "path": "./markdown.json"
       },
       {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
         "language": "xml",
         "path": "./xml.json"
       }
