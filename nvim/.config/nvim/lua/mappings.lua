@@ -67,10 +67,27 @@ local function define_mappings()
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
-    -- IN SPECIFIC MODES --
+    -- Create Vimwiki diary entry --
     map(This.modes.n, '<F12>', '<cmd>VimwikiMakeDiaryNote<CR>')
-    map(This.modes.s, '<C-L>', '<Esc>:call UltiSnips#JumpForwards()<CR>',
-        {nowait = true, silent = true})
+    -- Snippets and jumps --
+    map(This.modes.i, '<C-L>',
+        [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
+        {expr = true})
+    map(This.modes.s, '<C-L>',
+        [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
+        {expr = true})
+    map(This.modes.i, '<C-J>',
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
+        {expr = true})
+    map(This.modes.s, '<C-J>',
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
+        {expr = true})
+    map(This.modes.i, '<C-K>',
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
+        {expr = true})
+    map(This.modes.s, '<C-K>',
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
+        {expr = true})
     -- Expand %% to the directory of the currently open file
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 

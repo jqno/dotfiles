@@ -1,0 +1,42 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "all",
+        "path": "./all.json"
+      },
+      {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
+        "language": "java",
+        "path": "./java.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "pom",
+        "path": "./pom.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "scala",
+        "path": "./scala.json"
+      },
+      {
+        "language": "sh",
+        "path": "./sh.json"
+      },
+      {
+        "language": ["xml", "html"],
+        "path": "./xml.json"
+      }
+    ]
+  }
+}

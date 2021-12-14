@@ -1,0 +1,22 @@
+{
+  "comment": {
+    "prefix": "comment",
+    "body": ["/*", " * $1", " */", "$0"],
+    "description": "Comment"
+  },
+  "scaladoc": {
+    "prefix": "scaladoc",
+    "body": ["/**", "  * $1", "  */", "$0"],
+    "description": "Scaladoc comment"
+  },
+  "wartremover": {
+    "prefix": "wartremover",
+    "body": "@SuppressWarnings(Array(\"org.wartremover.warts.$0\"))",
+    "description": "Wartremover suppression"
+  },
+  "ignore": {
+    "prefix": "ignore",
+    "body": "// scalastyle:ignore",
+    "description": "Scalastyle suppression"
+  }
+}

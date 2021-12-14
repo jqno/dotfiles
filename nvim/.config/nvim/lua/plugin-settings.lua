@@ -40,6 +40,12 @@ local function setup_gitsigns()
     }
 end
 
+local function setup_luasnip()
+    require('luasnip/loaders/from_vscode').load({
+        paths = {vim.fn.stdpath('config') .. '/snippets'}
+    })
+end
+
 local function setup_nvim_tree()
     require('nvim-tree').setup {
         auto_close = true,
@@ -117,13 +123,6 @@ local function setup_treesitter()
     })
 end
 
-local function setup_ultisnips()
-    -- Mapping F19 instead of NOP because the latter isn't recognised properly
-    vim.g.UltiSnipsExpandTrigger = '<F19>'
-    vim.g.UltiSnipsJumpForwardTrigger = '<F19>'
-    vim.g.UltiSnipsJumpBackwardTrigger = '<F19>'
-end
-
 local function setup_vimwiki()
     g.vimwiki_location = '~/Dropbox/notes'
     g.vimwiki_list = {
@@ -174,11 +173,11 @@ function This.setup()
     setup_closetag()
     setup_colorizer()
     setup_gitsigns()
+    setup_luasnip()
     setup_nvim_tree()
     setup_sandwich()
     setup_telescope()
     setup_treesitter()
-    setup_ultisnips()
     setup_vimwiki()
     setup_whichkey()
     setup_wildfire()

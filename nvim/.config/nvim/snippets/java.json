@@ -1,0 +1,32 @@
+{
+  "comment": {
+    "prefix": "comment",
+    "body": ["/*", " * $1", " */", "$0"],
+    "description": "Comment"
+  },
+  "javadoc": {
+    "prefix": "javadoc",
+    "body": ["/**", " * $1", " */", "$0"],
+    "description": "Javadoc comment"
+  },
+  "systemout": {
+    "prefix": "sout",
+    "body": "System.out.println($1);$0",
+    "description": "Print to System.out"
+  },
+  "systemerr": {
+    "prefix": "serr",
+    "body": "System.err.println($1);$0",
+    "description": "Print to System.err"
+  },
+  "test": {
+    "prefix": "test",
+    "body": ["@Test", "${1|,public |}void $2() {", "\t$0", "}"],
+    "description": "JUnit test case"
+  },
+  "package": {
+    "prefix": "package",
+    "body": ["package $1", "", "public class $TM_FILENAME_BASE {", "\t$0", "}"],
+    "description": "Start a new file"
+  }
+}
