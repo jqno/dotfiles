@@ -22,6 +22,10 @@
         "path": "./scala.json"
       },
       {
+        "language": "sh",
+        "path": "./sh.json"
+      },
+      {
         "language": "xml",
         "path": "./xml.json"
       }
