@@ -159,7 +159,11 @@ local function setup_vimwiki()
 end
 
 local function setup_whichkey()
-    require('which-key').setup({})
+    require('which-key').setup({
+        triggers_blacklist = {
+            n = {'c', 'v'} -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
+        }
+    })
 end
 
 local function setup_wildfire()
