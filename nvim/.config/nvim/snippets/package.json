@@ -6,6 +6,10 @@
         "path": "./all.json"
       },
       {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
         "language": "xml",
         "path": "./xml.json"
       }

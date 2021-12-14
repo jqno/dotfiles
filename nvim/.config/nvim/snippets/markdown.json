@@ -1,0 +1,7 @@
+{
+  "issue": {
+    "prefix": "issue",
+    "body": "([Issue $1](https://github.com/jqno/equalsverifier/issues/$1)$2)$0",
+    "description": "EqualsVerifier issue reference"
+  }
+}
