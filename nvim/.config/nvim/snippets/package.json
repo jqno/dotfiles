@@ -2,6 +2,10 @@
   "contributes": {
     "snippets": [
       {
+        "language": "all",
+        "path": "./all.json"
+      },
+      {
         "language": "xml",
         "path": "./xml.json"
       }
