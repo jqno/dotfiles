@@ -40,6 +40,12 @@ local function setup_gitsigns()
     }
 end
 
+local function setup_luasnip()
+    require('luasnip/loaders/from_vscode').load({
+        paths = {vim.fn.stdpath('config') .. '/snippets'}
+    })
+end
+
 local function setup_nvim_tree()
     require('nvim-tree').setup {
         auto_close = true,
@@ -167,6 +173,7 @@ function This.setup()
     setup_closetag()
     setup_colorizer()
     setup_gitsigns()
+    setup_luasnip()
     setup_nvim_tree()
     setup_sandwich()
     setup_telescope()

@@ -1,0 +1,10 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "xml",
+        "path": "./xml.json"
+      }
+    ]
+  }
+}
