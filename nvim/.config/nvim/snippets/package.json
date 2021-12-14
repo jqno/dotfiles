@@ -6,6 +6,10 @@
         "path": "./all.json"
       },
       {
+        "language": "html",
+        "path": "./html.json"
+      },
+      {
         "language": "java",
         "path": "./java.json"
       },
@@ -26,7 +30,7 @@
         "path": "./sh.json"
       },
       {
-        "language": "xml",
+        "language": ["xml", "html"],
         "path": "./xml.json"
       }
     ]
