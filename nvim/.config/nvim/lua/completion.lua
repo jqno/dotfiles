@@ -40,6 +40,11 @@ function This.setup()
             completeopt = 'menu,menuone,noinsert,preview',
             autocomplete = false
         },
+        snippet = {
+            expand = function(args)
+                require('luasnip').lsp_expand(args.body)
+            end
+        },
         mapping = {
             ['<Tab>'] = cmp.mapping(tab_complete, {'i', 's'}),
             ['<S-Tab>'] = cmp.mapping(s_tab_complete, {'i', 's'}),
