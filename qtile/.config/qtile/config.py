@@ -266,14 +266,14 @@ group_descriptions = [
     ('', '4', {'layout': 'monadtall'}),
     ('', '5', {'layout': 'monadtall'}),
     ('', '6', {'layout': 'monadtall'}),
-    ('', '7', {'layout': 'monadtall', 'matches':
-        [Match(wm_class='zoom'), Match(wm_class='obs')]}),
-    ('', '8', {'layout': 'stack', 'matches':
+    ('', '7', {'layout': 'stack', 'matches':
         [Match(wm_class='Spotify'), Match(wm_class='Chromium')]}),
-    ('', '9', {'layout': 'monadtall', 'matches':
+    ('', '8', {'layout': 'monadtall', 'matches':
         [Match(wm_class='firefox')]}),
+    ('', '9', {'layout': 'monadtall', 'matches':
+        [Match(wm_class='Microsoft Teams - Preview'), Match(wm_class='zoom'), Match(wm_class='obs')]}),
     ('', '0', {'layout': 'stack', 'matches':
-        [Match(wm_class='Rambox'), Match(wm_class='Mailspring'), Match(wm_class='Microsoft Teams - Preview')]}),
+        [Match(wm_class='Rambox'), Match(wm_class='Mailspring')]}),
 ]
 groups = [Group(name, **kwargs) for name, _, kwargs in group_descriptions]
 
