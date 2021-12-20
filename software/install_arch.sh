@@ -119,6 +119,7 @@ install_pip markdown
 install_pip parsedatetime
 install_pip pint
 install_pip python-frontmatter
+install_pip pytz
 install_pip requests
 install_pip simpleeval
 
