@@ -24,7 +24,8 @@ alias github='gh browse'
 
 # Java
 alias setjdk='. setjdk.sh'
-alias mvn='mvn -C'
+alias mvn='mvnd -C'
+alias mvn-orig=/sbin/mvn
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 

@@ -63,6 +63,7 @@ install_pacman jq
 install_pacman keychain
 install_pacman lame
 install_pacman maven
+install_pacman mvnd
 install_pacman neovim
 install_pacman pandoc
 install_npm prettier
