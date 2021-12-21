@@ -237,7 +237,11 @@ local function define_mappings()
             u = 'undo stage hunk'
         },
         -- MAKE-ING --
-        ['<leader>m'] = {name = 'make'},
+        ['<leader>m'] = {
+            name = 'make',
+            ['<CR>'] = {'<cmd>TestNearest<CR>', 'test nearest'},
+            t = {'<cmd>TestFile<CR>', 'test file'}
+        },
         -- REFACTORING --
         ['<leader>r'] = {
             name = 'refactor',

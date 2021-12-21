@@ -128,6 +128,11 @@ local function setup_treesitter()
     })
 end
 
+local function setup_vimtest()
+    g['test#strategy'] = 'floaterm'
+    g['test#java#maventest#executable'] = 'mvnd'
+end
+
 local function setup_vimwiki()
     g.vimwiki_location = '~/Dropbox/notes'
     g.vimwiki_list = {
@@ -188,6 +193,7 @@ function This.setup()
     setup_sandwich()
     setup_telescope()
     setup_treesitter()
+    setup_vimtest()
     setup_vimwiki()
     setup_whichkey()
     setup_wildfire()
