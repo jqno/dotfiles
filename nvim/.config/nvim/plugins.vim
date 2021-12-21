@@ -36,6 +36,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'romainl/vim-cool'
 Plug 'tpope/vim-eunuch'
+Plug 'voldikss/vim-floaterm'
 Plug 'wincent/terminus'
 
 " Configure LSP and completion

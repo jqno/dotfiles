@@ -11,6 +11,11 @@ local function setup_colorizer()
     require('colorizer').setup {'css', 'html'}
 end
 
+local function setup_floaterm()
+    g.floaterm_title = 'Terminal'
+    g.floaterm_borderchars = '─│─│╭╮╯╰'
+end
+
 local function setup_gitsigns()
     require('gitsigns').setup {
         keymaps = {
@@ -176,6 +181,7 @@ end
 function This.setup()
     setup_closetag()
     setup_colorizer()
+    setup_floaterm()
     setup_gitsigns()
     setup_luasnip()
     setup_nvim_tree()

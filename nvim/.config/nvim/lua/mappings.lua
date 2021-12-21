@@ -3,7 +3,7 @@ local This = {}
 local map = require('vim-util').map
 local wk = require('which-key').register
 
-This.modes = {i = 'i', n = 'n', v = 'v', c = 'c', s = 's'}
+This.modes = {i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't'}
 
 function This.whichkey_checkduplicates()
     local dups = require('which-key.keys').duplicates
@@ -66,6 +66,8 @@ local function define_mappings()
     map(This.modes.n, '<M-k>', '<cmd>move .-2<CR>==')
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
+    -- Terminal
+    map(This.modes.t, '<leader><esc>', '<C-\\><C-N>')
 
     -- Create Vimwiki diary entry --
     map(This.modes.n, '<F12>', '<cmd>VimwikiMakeDiaryNote<CR>')
@@ -170,9 +172,10 @@ local function define_mappings()
                 'indent tab'
             },
             l = {'<cmd>set list! list?<CR>', 'list'},
-            t = {
+            t = {'<cmd>FloatermToggle<CR>', 'terminal'},
+            s = {
                 '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
-                'typewriter mode'
+                'typewriter scroll mode'
             },
             w = {'<cmd>set wrap! wrap?<CR>', 'wrap'}
         },
@@ -261,6 +264,10 @@ local function define_mappings()
             k = {'<C-w>w', 'move into floating window'}
         }
     })
+    wk({
+        -- TOGGLES --
+        ['<leader>t'] = {t = {'<cmd>FloatermToggle<CR>', 'terminal'}}
+    }, {mode = This.modes.t})
 end
 
 -- LSP MAPPINGS --
