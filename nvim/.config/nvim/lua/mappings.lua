@@ -177,7 +177,12 @@ local function define_mappings()
             w = {'<cmd>set wrap! wrap?<CR>', 'wrap'}
         },
         -- BUFFER --
-        ['<leader>b'] = {name = 'buffer', d = {'<cmd>bd<CR>', 'delete'}},
+        ['<leader>b'] = {
+            name = 'buffer',
+            b = {'<cmd>b#<CR>', 'previous'},
+            d = {'<cmd>bd<CR>', 'delete'},
+            ['<Backspace>'] = {'<cmd>bufdo bdelete<CR>', 'close all'}
+        },
         ['<leader>d'] = {name = 'debug'},
         -- EXECUTING THINGS --
         ['<leader>x'] = {
