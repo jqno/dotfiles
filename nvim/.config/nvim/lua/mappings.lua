@@ -177,7 +177,8 @@ local function define_mappings()
                 '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
                 'typewriter scroll mode'
             },
-            w = {'<cmd>set wrap! wrap?<CR>', 'wrap'}
+            w = {'<cmd>set wrap! wrap?<CR>', 'wrap'},
+            z = {'<cmd>ZenMode<CR>', 'zen mode'}
         },
         -- BUFFER --
         ['<leader>b'] = {
@@ -260,7 +261,6 @@ local function define_mappings()
             ['_'] = {'<cmd>wincmd _<CR>', 'enlarge window'},
             ['='] = {'<cmd>wincmd =<CR>', 'equalize'},
             ['0'] = {'<cmd>wincmd r<CR>', 'rotate'},
-            z = {'<cmd>ZenMode<CR>', 'zoom'},
             k = {'<C-w>w', 'move into floating window'}
         }
     })
