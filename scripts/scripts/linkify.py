@@ -52,7 +52,7 @@ def extract_title(text):
 
     parser = Parser()
     parser.feed(text)
-    return re.sub("\s{2,}", " ", parser.title).strip()
+    return re.sub("\\n", " ", re.sub("\\s{2,}", " ", parser.title)).strip()
 
 
 if __name__ == "__main__":

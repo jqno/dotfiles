@@ -11,15 +11,16 @@ function This.close_everything()
 end
 
 function This.linkify()
-    local url = fn.shellescape(fn.expand('<cWORD>'))
-    local link = fn.system('linkify.py ' .. url)
-    local chomped = fn.substitute(link, '\n+$', '', '')
-    local prevchar = fn.strpart(fn.getline('.'), fn.col('.') - 2, 1)
-    if prevchar == ' ' or prevchar == '' then
-        exec('norm cW' .. chomped, false)
-    else
-        exec('norm BcW' .. chomped, false)
-    end
+    local url = fn.expand('<cWORD>')
+    local shell_esc_url = fn.shellescape(url)
+    local regex_esc_url = fn.escape(url, '/')
+
+    local link = fn.system('linkify.py ' .. shell_esc_url)
+
+    local chomped = fn.substitute(link, '\\n\\+$', '', '')
+    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, chomped, '')
+
+    fn.setline('.', replaced)
 end
 
 function This.set_buf_indent(indent, show)
