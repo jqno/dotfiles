@@ -66,8 +66,6 @@ local function define_mappings()
     map(This.modes.n, '<M-k>', '<cmd>move .-2<CR>==')
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
-    -- Terminal
-    map(This.modes.t, '<leader><esc>', '<C-\\><C-N>')
 
     -- Create Vimwiki diary entry --
     map(This.modes.n, '<F12>', '<cmd>VimwikiMakeDiaryNote<CR>')
@@ -268,9 +266,15 @@ local function define_mappings()
             k = {'<C-w>w', 'move into floating window'}
         }
     })
+
+    map(This.modes.t, '<C-\\><Esc>', '<C-\\><C-N>')
     wk({
-        -- TOGGLES --
-        ['<leader>t'] = {t = {'<cmd>FloatermToggle<CR>', 'terminal'}}
+        -- TERMINAL --
+        ['<c-\\>'] = {
+            name = 'terminal',
+            t = {'<cmd>FloatermToggle<CR>', 'toggle'}
+        }
+
     }, {mode = This.modes.t})
 end
 
