@@ -2,6 +2,7 @@ local This = {}
 
 local fn = vim.fn
 local highlight = require('vim-util').highlight
+local icons = require('nvim-web-devicons')
 local theme = require('tranquility').colors()
 
 -- HELPERS --
@@ -315,6 +316,11 @@ local function fileinfo_type()
     local ft = vim.bo.filetype
     if ft == '' then
         ft = symbols.bottom
+    else
+        local icon = icons.get_icon(fn.expand('%:t'), fn.expand('%:e'))
+        if icon then
+            ft = icon .. ' ' .. ft
+        end
     end
     if fileinfo_extra() ~= '' then
         return ft .. ' '
