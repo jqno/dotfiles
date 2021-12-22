@@ -4,17 +4,26 @@ local lsp = require('lspconfig')
 local lsputil = require('lspconfig.util')
 local efm = require('lsp_efm')
 local vim_util = require('vim-util')
+local rounded_border = require('settings').rounded_border
+
+local function enhance_handler(name, original, enhancement)
+    vim.lsp.handlers[name] = vim.lsp.with(original, enhancement)
+end
 
 local function clean_diagnostics()
-    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                     {virtual_text = false, underline = true, signs = true})
+    enhance_handler('textDocument/publishDiagnostics',
+                    vim.lsp.diagnostic.on_publish_diagnostics,
+                    {virtual_text = false, underline = true, signs = true})
 end
 
 function This.on_attach(client, bufnr, skip_code_actions)
     require('mappings').setup_lsp(client, bufnr, skip_code_actions)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    enhance_handler('textDocument/hover', vim.lsp.handlers.hover, rounded_border)
+    enhance_handler('textDocument/signatureHelp',
+                    vim.lsp.handlers.signature_help, rounded_border)
 
     clean_diagnostics()
 
