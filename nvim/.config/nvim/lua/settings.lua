@@ -36,7 +36,6 @@ function This.setup()
     vim.opt.updatetime = 300
     vim.opt.wrap = false
 
-    vim.g.everforest_transparent_background = 1
     vim.cmd('colorscheme tranquility')
 
     augroup('HighlightOnYank', [[
