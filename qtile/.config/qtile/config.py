@@ -1,5 +1,6 @@
 import os
 import subprocess
+import string
 from libqtile import bar, hook, layout, widget
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
@@ -76,9 +77,23 @@ def switch_screens():
     return __inner
 
 
+def __pass():
+    def __inner(qtile):
+        pass
+
+    return __inner
+
+
 # KEYS #
 
-keys = [
+# Don't propagate keys that aren't mapped to anything
+keys = []
+for letter in string.ascii_lowercase:
+    keys.extend([
+        Key([hyper], letter, lazy.function(__pass()))
+    ])
+
+keys.extend([
     # Switch between windows
     Key([mod], 'h',
         lazy.layout.left(),
@@ -254,7 +269,7 @@ keys = [
     Key([hyper], 'backslash',
         lazy.function(find_or_run_app('KeePassXC', 'keepassxc')),
         desc='focus KeePassXC'),
-]
+])
 
 
 # GROUPS #
