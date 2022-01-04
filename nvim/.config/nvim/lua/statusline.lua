@@ -149,7 +149,7 @@ local function lsp_status()
     local connected = not vim.tbl_isempty(clients)
     if connected then
         local status = ''
-        for _, client in ipairs(clients) do
+        for _, client in pairs(clients) do
             status = status .. ' ' .. client.name
         end
         status = status .. lsp_metals_status()
