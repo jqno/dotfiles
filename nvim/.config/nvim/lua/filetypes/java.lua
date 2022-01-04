@@ -34,7 +34,7 @@ function This.jdtls_config()
                 vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
         init_options = {bundles = jdtls_bundles},
-        root_dir = require('jdtls.setup').find_root({'pom.xml', 'gradle.build'}),
+        root_dir = require('jdtls.setup').find_root({'.git'}), -- always assume a git project; this works better with multimodule projects
         capabilities = require('lsp').cmp_capabilities,
         on_attach = function(client, bufnr)
             require('lsp').on_attach(client, bufnr, true)
