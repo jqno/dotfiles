@@ -1679,7 +1679,7 @@
   }
   #################################[ env-var: SETENV_MARKER ]##################################
   function prompt_setenv_marker() {
-    SETENV_FILE_MARKER="$(cat ~/.setEnv/marker)"
+    SETENV_FILE_MARKER="$(cat ~/.env/marker)"
     if [ -z "$SETENV_FILE_MARKER" ]; then
       SETENV_FILE_MARKER="⊥"
     fi

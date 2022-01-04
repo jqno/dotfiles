@@ -30,7 +30,7 @@ alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
 # setEnv
-alias session='source ~/.setEnv/session.sh'
+alias session='source ~/.env/session.sh'
 alias work='. setEnv.sh work'
 alias home='. setEnv.sh home'
 
