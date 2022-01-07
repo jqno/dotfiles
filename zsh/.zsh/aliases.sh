@@ -36,7 +36,7 @@ alias home='. setEnv.sh home'
 
 # mcd
 function mcd() {
-  mkdir -p -- '$1' && cd -P -- '$1'
+  mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 # title: set terminal title
