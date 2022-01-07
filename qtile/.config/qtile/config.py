@@ -108,8 +108,11 @@ keys.extend([
         lazy.layout.up(),
         desc='Move focus up'),
     Key([mod], 'Tab',
-        lazy.layout.next(),
-        desc='Move window focus to other window'),
+        lazy.group.next_window(),
+        desc='Focus next window within group'),
+    Key([mod, 'shift'], 'Tab',
+        lazy.group.next_window(),
+        desc='Focus previous window within group'),
 
     # Move windows between within layout.
     Key([mod, 'shift'], 'h',
@@ -152,20 +155,17 @@ keys.extend([
     Key([mod], 'Right',
         lazy.screen.next_group(),
         desc='Move to next group'),
-    Key([mod, 'shift'], 'Tab',
-        lazy.screen.toggle_group(),
-        desc='Move to last visited group'),
 
     # Switch between screens
     Key([hyper], 'space',
         lazy.function(focus_other_screen()),
         desc='Move focus to other screen'),
-    Key([mod], 'grave',
+    Key([mod, 'shift'], 'grave',
         lazy.function(switch_screens()),
         desc='Swap screens'),
 
     # Toggle between different layouts
-    Key([mod], 'Tab',
+    Key([mod], 'grave',
         lazy.next_layout(),
         desc='Toggle between layouts'),
 
