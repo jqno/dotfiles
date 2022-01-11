@@ -119,8 +119,8 @@ if [[ -e $ENVDIR/init.sh ]]; then
   . "$ENVDIR/init.sh"
 fi
 
-if [[ -e $NEWENVDIR/banner ]]; then
-  cat "$NEWENVDIR/banner"
+if [[ -e $ENVDIR/banner ]]; then
+  cat "$ENVDIR/banner"
 fi
 
 . "$ENVDIR/session.sh"
