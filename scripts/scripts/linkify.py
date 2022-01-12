@@ -19,12 +19,13 @@ def main(url):
         title = extract_title(resp.text)
         print(f"[{title}]({url})")
     else:
-        print(f"Failed: {resp.status_code}")
+        print(f"Failed: {resp.status_code} {resp.reason}")
         sys.exit(1)
 
 
 def fetch(url):
-    return requests.get(url, headers={})
+    # Note: without User-Agent, sites like Baeldung and Medium will return HTTP 403
+    return requests.get(url, headers={'User-Agent': 'Title tag scraper'})
 
 
 def extract_title(text):
