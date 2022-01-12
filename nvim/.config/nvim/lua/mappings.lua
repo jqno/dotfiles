@@ -227,6 +227,9 @@ local function define_mappings()
         -- GIT --
         ['<leader>G'] = {
             name = 'Git',
+            B = {'<cmd>Git blame<CR>', 'blame file'},
+            h = {'<cmd>0Gclog<CR>', 'show file history'},
+            -- following bindings come from GitSigns plugin
             b = 'blame line',
             p = 'preview hunk',
             R = 'reset buffer',

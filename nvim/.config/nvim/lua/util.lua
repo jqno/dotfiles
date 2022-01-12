@@ -7,6 +7,8 @@ function This.close_everything()
     vim.api.nvim_command('pclose')
     vim.api.nvim_command('cclose')
     vim.api.nvim_command('NvimTreeClose')
+    vim.api.nvim_command(
+        'windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
     require('dap').repl.close()
 end
 
