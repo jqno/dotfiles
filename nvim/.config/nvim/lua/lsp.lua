@@ -16,8 +16,8 @@ local function clean_diagnostics()
                     {virtual_text = false, underline = true, signs = true})
 end
 
-function This.on_attach(client, bufnr, skip_code_actions)
-    require('mappings').setup_lsp(client, bufnr, skip_code_actions)
+function This.on_attach(client, bufnr)
+    require('mappings').setup_lsp(client, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

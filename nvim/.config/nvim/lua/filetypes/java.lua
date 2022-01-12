@@ -37,7 +37,7 @@ function This.jdtls_config()
         root_dir = require('jdtls.setup').find_root({'.git'}), -- always assume a git project; this works better with multimodule projects
         capabilities = require('lsp').cmp_capabilities,
         on_attach = function(client, bufnr)
-            require('lsp').on_attach(client, bufnr, true)
+            require('lsp').on_attach(client, bufnr)
 
             require('jdtls.setup').add_commands()
             require('jdtls').setup_dap({hotcodereplace = 'auto'})
@@ -61,10 +61,6 @@ function This.jdtls_config()
                     }
                 },
                 ['<leader>r'] = {
-                    ['<CR>'] = {
-                        '<cmd>lua require("jdtls").code_action()<CR>',
-                        'Java code actions'
-                    },
                     R = {
                         '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>',
                         'menu'
@@ -88,10 +84,6 @@ function This.jdtls_config()
 
             wk({
                 ['<leader>r'] = {
-                    j = {
-                        '<cmd>lua require("jdtls").code_action(true)<CR>',
-                        'Java code actions'
-                    },
                     m = {
                         '<cmd>lua require("jdtls").extract_method(true)<CR>',
                         'extract method'
