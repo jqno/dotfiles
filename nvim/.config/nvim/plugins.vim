@@ -28,6 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'glepnir/galaxyline.nvim'
 Plug 'jqno/tranquility.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/playground', { 'on': 'TSHighlightCapturesUnderCursor' }
 
 " Improve UX
 Plug 'folke/which-key.nvim'
