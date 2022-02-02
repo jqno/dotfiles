@@ -82,6 +82,7 @@ local function setup_telescope()
                     ['<Esc>'] = actions.close
                 }
             },
+            layout_strategy = 'vertical',
             prompt_prefix = '❯ ',
             selection_caret = '❯ ',
             path_display = function(_, path)
