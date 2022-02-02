@@ -21,7 +21,6 @@ stow zsh
 
 $PWD/configure/git.sh
 $PWD/configure/nvim.sh
-$PWD/configure/vim.sh
 $PWD/configure/zsh.sh
 
 $PWD/macos/macos.sh
