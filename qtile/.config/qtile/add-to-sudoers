@@ -1,2 +1,0 @@
-jqno ALL = (root) NOPASSWD: /sbin/reboot
-jqno ALL = (root) NOPASSWD: /sbin/brightnessctl
