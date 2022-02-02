@@ -6,7 +6,7 @@
   },
   "directory": {
     "prefix": "directory",
-    "body": "SCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"",
+    "body": "SCRIPT_DIR=\"$( cd \"$( dirname \"\\${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"",
     "description": "Get the script's source directory"
   },
   "safe": {
