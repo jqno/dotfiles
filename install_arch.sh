@@ -30,6 +30,7 @@ stow zsh
 $PWD/configure/git.sh
 $PWD/configure/nvim.sh
 $PWD/configure/zsh.sh
+$PWD/gnome/configure.sh
 
 sudo bash -c "cat $PWD/qtile/.config/qtile/add-to-sudoers >> /etc/sudoers"
 
