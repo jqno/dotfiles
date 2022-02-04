@@ -87,9 +87,10 @@ install_pacman ttf-fira-code
 install_pacman ttf-font-awesome
 install_pacman ttf-opensans
 
-# Language Servers
+# Language Servers and linters
 install_pacman efm-langserver
 install_pacman flake8
+install_aur lemminx
 install_aur lua-format
 install_pacman lua-language-server
 install_npm markdownlint

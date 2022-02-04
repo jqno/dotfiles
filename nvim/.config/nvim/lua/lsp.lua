@@ -52,6 +52,12 @@ local function setup_lsp()
         settings = require('filetypes.python').lsp_config
     }
 
+    lsp.lemminx.setup {
+        on_attach = This.on_attach,
+        capabilities = This.cmp_capabilities,
+        settings = require('filetypes.xml').lsp_config
+    }
+
     lsp.sumneko_lua.setup {
         cmd = {'lua-language-server'},
         on_attach = This.on_attach,
