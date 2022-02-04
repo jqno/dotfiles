@@ -73,9 +73,9 @@ install_aur xplugd-git
 install_aur zsh-theme-powerlevel10k-git
 
 # Applications
+install_pacman bitwarden
 install_pacman google-chrome
 install_pacman intellij-idea-community-edition
-install_pacman keepassxc
 install_pacman kitty
 install_aur rambox-bin
 install_pacman spotify
