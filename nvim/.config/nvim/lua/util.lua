@@ -20,7 +20,8 @@ function This.linkify()
     local link = fn.system('linkify.py ' .. shell_esc_url)
 
     local chomped = fn.substitute(link, '\\n\\+$', '', '')
-    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, chomped, '')
+    local escaped = fn.substitute(chomped, '&', '\\\\&', '')
+    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, escaped, '')
 
     fn.setline('.', replaced)
 end
