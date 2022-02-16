@@ -13,6 +13,12 @@ git config --global diff.algorithm patience
 git config --global diff.compactionHeuristic true
 git config --global init.defaultBranch main
 
+git config --global core.pager delta
+git config --global interactive.diffFilter "delta --color-only"
+git config --global delta.navigate true
+git config --global merge.conflictstyle diff3
+git config --global diff.colorMoved default
+
 git config --global alias.amend "commit --amend"
 git config --global alias.ci "commit -v"
 git config --global alias.co checkout
@@ -53,20 +59,10 @@ git config --global alias.unassume "update-index --no-assume-unchanged"
 git config --global alias.assumed "!git ls-files -v | grep ^h | cut -c 3-"
 
 
-git config --global merge.tool vimdiffconflicts
-git config --global mergetool.vimdiffconflicts.cmd 'vim -c DiffConflicts "$MERGED" "$BASE" "$LOCAL" "$REMOTE"'
-git config --global mergetool.vimdiffconflicts.trustExitCode true
-git config --global mergetool.keepBackup false
-git config --global merge.conflictstyle diff3
-git config --global diff.tool vimdiff
-git config --global difftool.prompt false
-git config --global alias.review "!f() { git difftool --tool=kdiff3 --dir-diff \$1..; }; f"
-
-
-if [[ `uname -s` == MINGW* ]]; then
+if [[ $(uname -s) == MINGW* ]]; then
   # Windows
   git config --global core.autocrlf true
-elif [[ `uname -s` == "Darwin" ]]; then
+elif [[ $(uname -s) == "Darwin" ]]; then
   git config --global credential.helper osxkeychain
 else
   # Unix

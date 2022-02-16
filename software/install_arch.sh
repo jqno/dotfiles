@@ -48,6 +48,7 @@ install_pacman duf-bin
 install_pacman exa
 install_pacman fd
 install_pacman fzf
+install_pacman git-delta
 install_pacman github-cli
 install_pacman gnupg
 install_pacman gvfs-smb
