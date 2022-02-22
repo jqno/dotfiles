@@ -67,8 +67,8 @@ local function define_mappings()
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
-    -- Create Vimwiki diary entry --
-    map(This.modes.n, '<F12>', '<cmd>VimwikiMakeDiaryNote<CR>')
+    -- Open Vimwiki --
+    map(This.modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
@@ -99,8 +99,7 @@ local function define_mappings()
             b = {'<cmd>bprevious<CR>', 'buffer'},
             g = 'git hunk',
             q = {'<cmd>cprevious<CR>', 'quickfix'},
-            Q = {'<cmd>qfirst<CR>', 'quickfix first'},
-            w = {'<cmd>VimwikiDiaryPrevDay<CR>', 'diary'}
+            Q = {'<cmd>qfirst<CR>', 'quickfix first'}
         },
         [']'] = {
             name = 'next',
@@ -108,8 +107,7 @@ local function define_mappings()
             b = {'<cmd>bnext<CR>', 'buffer'},
             g = 'git hunk',
             Q = {'<cmd>clast<CR>', 'quickfix last'},
-            q = {'<cmd>cnext<CR>', 'quickfix'},
-            w = {'<cmd>VimwikiDiaryNextDay<CR>', 'diary'}
+            q = {'<cmd>cnext<CR>', 'quickfix'}
         },
         -- RAW LEADER --
         ['<leader>'] = {
@@ -254,9 +252,6 @@ local function define_mappings()
         -- WIKI --
         ['<leader>q'] = {
             name = 'wiki',
-            d = {'<cmd>VimwikiDiaryIndex<CR>', 'diary index'},
-            g = {'<cmd>VimwikiDiaryGenerateLinks<CR>', 'generate diary'},
-            n = {'<cmd>VimwikiMakeDiaryNote<CR>', 'today'},
             q = {'<cmd>VimwikiIndex<CR>', 'index'},
             x = 'additional'
         },

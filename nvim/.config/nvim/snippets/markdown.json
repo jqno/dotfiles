@@ -3,5 +3,10 @@
     "prefix": "issue",
     "body": "([Issue $1](https://github.com/jqno/equalsverifier/issues/$1)$2)$0",
     "description": "EqualsVerifier issue reference"
+  },
+  "nowrap": {
+    "prefix": "nowrap",
+    "body": "%% vim:nowrap",
+    "descirption": "Vim modeline to disable wrapping in this file"
   }
 }
