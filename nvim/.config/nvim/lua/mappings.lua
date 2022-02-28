@@ -67,8 +67,8 @@ local function define_mappings()
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
-    -- Open Vimwiki --
-    map(This.modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
+    -- Open Wiki --
+    map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
@@ -214,9 +214,8 @@ local function define_mappings()
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
                 'grep'
             },
-            q = {'<cmd>Telescope vimwiki live_grep<CR>', 'vimwiki'},
-            w = {
-                '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>',
+            q = {
+                '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Wiki ❯ ") })<CR>',
                 'wiki'
             },
             ['*'] = {
@@ -255,11 +254,7 @@ local function define_mappings()
         -- SHOWING THINGS --
         ['<leader>s'] = {name = 'show', c = 'peek class', f = 'peek function'},
         -- WIKI --
-        ['<leader>q'] = {
-            name = 'wiki',
-            q = {'<cmd>VimwikiIndex<CR>', 'index'},
-            x = 'additional'
-        },
+        ['<leader>q'] = {name = 'wiki', q = {'<cmd>WikiIndex<CR>', 'index'}},
         -- WINDOW --
         ['<leader>w'] = {
             name = 'window',
@@ -421,6 +416,13 @@ function This.setup_dap(bufnr)
             }
         }
     }, {buffer = bufnr, mode = This.modes.v})
+end
+
+function This.setup_wikivim()
+    map(This.modes.n, '<CR>', '<Plug>(wiki-link-follow)', {noremap = false})
+    map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', {noremap = false})
+    map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', {noremap = false})
+    map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', {noremap = false})
 end
 
 -- COMMANDS --
