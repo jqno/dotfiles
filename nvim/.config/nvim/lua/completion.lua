@@ -2,11 +2,6 @@ local This = {}
 
 local cmp = require('cmp')
 
-local function feedkey(key, mode)
-    local keys = vim.api.nvim_replace_termcodes(key, true, true, true)
-    vim.api.nvim_feedkeys(keys, mode, true)
-end
-
 local function has_words_before()
     if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
         return false
@@ -17,8 +12,8 @@ local function has_words_before()
 end
 
 local function tab_complete(fallback)
-    if vim.fn.pumvisible() == 1 then
-        feedkey('<C-n>', 'n')
+    if cmp.visible() then
+        cmp.select_next_item()
     elseif has_words_before() then
         cmp.complete()
     else
@@ -27,8 +22,8 @@ local function tab_complete(fallback)
 end
 
 local function s_tab_complete(fallback)
-    if vim.fn.pumvisible() == 1 then
-        feedkey('<C-p>', 'n')
+    if cmp.visible() then
+        cmp.select_prev_item()
     else
         fallback()
     end
