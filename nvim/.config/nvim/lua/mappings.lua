@@ -122,31 +122,32 @@ local function define_mappings()
         },
         -- HARPOON --
         ['<leader><leader>'] = {
-            name = 'harpoon',
+            name = 'quick actions',
             ['<CR>'] = {
                 '<cmd>echo "Added to mark list"<CR><bar><cmd>lua require("harpoon.mark").add_file()<CR>',
-                'add file to list'
+                'add file to harpoon list'
             },
             ['<leader>'] = {
                 '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
-                'open quick menu'
+                'open harpoon quick menu'
             },
             ['1'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
-                'navigate to file 1'
+                'navigate to harpoon file 1'
             },
             ['2'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
-                'navigate to file 2'
+                'navigate to harpoon file 2'
             },
             ['3'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
-                'navigate to file 3'
+                'navigate to harpoon file 3'
             },
             ['4'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
-                'navigate to file 4'
-            }
+                'navigate to harpoon file 4'
+            },
+            ['x'] = {'<cmd>ToggleCheckbox<CR>', 'toggle checkbox'}
         },
         -- TOGGLES --
         ['<leader>t'] = {
