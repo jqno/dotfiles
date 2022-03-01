@@ -3,6 +3,10 @@ local This = {}
 local g = vim.g
 local vim_util = require('vim-util')
 
+local function setup_bullets()
+    g.bullets_outline_levels = {'std-'}
+end
+
 local function setup_closetag()
     g.closetag_filetypes = 'html,xml'
 end
@@ -163,6 +167,7 @@ local function setup_wildfire()
 end
 
 function This.setup()
+    setup_bullets()
     setup_closetag()
     setup_colorizer()
     setup_floaterm()
