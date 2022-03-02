@@ -191,6 +191,11 @@ local function define_mappings()
                 '<cmd>lua require("util").linkify()<CR>',
                 'linkify',
                 silent = true
+            },
+            n = {
+                '<cmd>lua require("util").show_full_path()<CR>',
+                'show full path',
+                silent = true
             }
         },
         -- FINDING --

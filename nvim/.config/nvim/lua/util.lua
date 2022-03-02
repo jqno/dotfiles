@@ -57,4 +57,8 @@ function This.toggle_movement(firstOp, thenOp)
     end
 end
 
+function This.show_full_path()
+    exec('echo "Full path: [" .. expand("%") .. "]"', false)
+end
+
 return This
