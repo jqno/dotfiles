@@ -46,7 +46,7 @@ local function setup_gitsigns()
 end
 
 local function setup_luasnip()
-    require('luasnip/loaders/from_vscode').load({
+    require('luasnip/loaders/from_vscode').lazy_load({
         paths = {vim.fn.stdpath('config') .. '/snippets'}
     })
 end
