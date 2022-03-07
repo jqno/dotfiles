@@ -216,6 +216,10 @@ local function define_mappings()
                 'grep'
             },
             q = {
+                '<cmd>lua require("telescope.builtin").find_files({ search_dirs = {"~/Dropbox/notes"} })<CR>',
+                'wiki'
+            },
+            Q = {
                 '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Wiki ❯ ") })<CR>',
                 'wiki'
             },
@@ -420,7 +424,7 @@ function This.setup_dap(bufnr)
 end
 
 function This.setup_wikivim()
-    map(This.modes.n, '<CR>', '<Plug>(wiki-link-follow)', {noremap = false})
+    map(This.modes.n, '<C-]>', '<Plug>(wiki-link-follow)', {noremap = false})
     map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', {noremap = false})
     map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', {noremap = false})
     map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', {noremap = false})
