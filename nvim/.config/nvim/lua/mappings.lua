@@ -405,8 +405,7 @@ function This.setup_dap(bufnr)
         -- SHOWING THINGS --
         ['<leader>s'] = {
             v = {
-                '<cmd>lua require("dap.ui.variables").hover()<CR>',
-                'debug value'
+                '<cmd>lua require("dap.ui.widgets").hover()<CR>', 'debug value'
             }
         }
     }, {buffer = bufnr})
