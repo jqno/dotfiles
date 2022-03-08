@@ -161,7 +161,8 @@ end
 
 local function setup_wildfire()
     g.wildfire_objects = {
-        ['scala'] = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip'},
+        markdown = {'iw', 'i`', "i'", "a'", 'i"', 'a"', 'is', 'ip'},
+        scala = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip'},
         ['xml,xml.pom'] = {'i}', 'a}', 'i"', 'a"', "i'", "a'", 'it', 'at'}
     }
 end
