@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # General
 alias cd..='cd ..'
 
@@ -48,5 +50,11 @@ function title() {
 if [[ "$(uname -s)" == "Darwin" ]]
 then
   alias ctags="`brew --prefix`/bin/ctags"
+fi
+
+# Linux-specific aliases
+if [[ "$(uname -s)" == "Linux" ]]
+then
+  alias open=xdg-open
 fi
 
