@@ -6,6 +6,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Improve editing
 Plug 'alvan/vim-closetag'
+Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'dkarter/bullets.vim'
 Plug 'gcmt/wildfire.vim'

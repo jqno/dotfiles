@@ -112,11 +112,6 @@ local function setup_treesitter()
         },
         textobjects = {
             select = {enable = true, keymaps = {['if'] = '@call.outer'}},
-            swap = {
-                enable = true,
-                swap_next = {['<leader>r>'] = '@parameter.inner'},
-                swap_previous = {['<leader>r<'] = '@parameter.inner'}
-            },
             move = {
                 enable = true,
                 goto_next_start = {[']]'] = '@function.outer'},

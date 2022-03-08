@@ -253,8 +253,8 @@ local function define_mappings()
         -- REFACTORING --
         ['<leader>r'] = {
             name = 'refactor',
-            ['>'] = 'swap next',
-            ['<'] = 'swap prev'
+            ['>'] = {'<cmd>SidewaysRight<CR>', 'swap next'},
+            ['<'] = {'<cmd>SidewaysLeft<CR>', 'swap prev'}
         },
         -- SHOWING THINGS --
         ['<leader>s'] = {name = 'show', c = 'peek class', f = 'peek function'},
