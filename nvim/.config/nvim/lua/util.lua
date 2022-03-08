@@ -12,20 +12,6 @@ function This.close_everything()
     require('dap').repl.close()
 end
 
-function This.linkify()
-    local url = fn.expand('<cWORD>')
-    local shell_esc_url = fn.shellescape(url)
-    local regex_esc_url = fn.escape(url, '/')
-
-    local link = fn.system('linkify.py ' .. shell_esc_url)
-
-    local chomped = fn.substitute(link, '\\n\\+$', '', '')
-    local escaped = fn.substitute(chomped, '&', '\\\\&', '')
-    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, escaped, '')
-
-    fn.setline('.', replaced)
-end
-
 function This.set_buf_indent(indent, show)
     if indent == nil then
         -- tab
@@ -59,6 +45,32 @@ end
 
 function This.show_full_path()
     exec('echo "Full path: [" .. expand("%") .. "]"', false)
+end
+
+function This.toggle_nvimtree()
+    local tree = require('nvim-tree')
+    local view = require('nvim-tree.view')
+    if view.is_visible() then
+        view.close()
+    elseif string.find(fn.expand('%:p'), 'Dropbox/notes') then
+        tree.open(vim.env.HOME .. '/Dropbox/notes')
+    else
+        tree.open('.')
+    end
+end
+
+function This.linkify()
+    local url = fn.expand('<cWORD>')
+    local shell_esc_url = fn.shellescape(url)
+    local regex_esc_url = fn.escape(url, '/')
+
+    local link = fn.system('linkify.py ' .. shell_esc_url)
+
+    local chomped = fn.substitute(link, '\\n\\+$', '', '')
+    local escaped = fn.substitute(chomped, '&', '\\\\&', '')
+    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, escaped, '')
+
+    fn.setline('.', replaced)
 end
 
 return This

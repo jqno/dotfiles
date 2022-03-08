@@ -209,7 +209,7 @@ local function define_mappings()
             },
             h = {'<cmd>Telescope help_tags<CR>', 'help'},
             i = {'<cmd>Telescope treesitter<CR>', 'identifiers'},
-            n = {'<cmd>NvimTreeToggle<CR>', 'tree'},
+            n = {'<cmd>lua require("util").toggle_nvimtree()<CR>', 'tree'},
             N = {'<cmd>NvimTreeFindFile<CR>', 'tree (follow)'},
             g = {
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
