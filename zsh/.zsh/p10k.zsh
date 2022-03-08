@@ -49,6 +49,7 @@
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     nordvpn                 # nordvpn connection status, linux only (https://nordvpn.com/)
     vpn_ip                  # virtual private network indicator
+    vim_shell               # vim shell indicator (:sh)
     command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
@@ -742,8 +743,8 @@
 
   ###########################[ vim_shell: vim shell indicator (:sh) ]###########################
   # Vim shell indicator color.
-  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=$HIGHLIGHT_FOREGROUND
-  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=$HIGHLIGHT_BACKGROUND
+  typeset -g POWERLEVEL9K_VIM_SHELL_FOREGROUND=$SECONDARY_FOREGROUND
+  typeset -g POWERLEVEL9K_VIM_SHELL_BACKGROUND=$SECONDARY_BACKGROUND
   # Custom icon.
   # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
