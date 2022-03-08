@@ -47,14 +47,15 @@ function This.setup()
             ['<CR>'] = cmp.mapping.confirm({select = true})
         },
         sources = {
-            {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'path'},
-            {name = 'buffer'}
+            {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'omni'},
+            {name = 'path'}, {name = 'buffer'}
         },
         formatting = {
             format = function(entry, vim_item)
                 vim_item.menu = ({
                     buffer = '[Buffer]',
                     nvim_lsp = '[LSP]',
+                    omni = '[Omni]',
                     path = '[Path]',
                     luasnip = '[Snip]'
                 })[entry.source.name]

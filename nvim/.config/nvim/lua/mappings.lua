@@ -67,8 +67,8 @@ local function define_mappings()
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
-    -- Open Vimwiki --
-    map(This.modes.n, '<F12>', '<cmd>VimwikiIndex<CR>')
+    -- Open Wiki --
+    map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
@@ -122,31 +122,32 @@ local function define_mappings()
         },
         -- HARPOON --
         ['<leader><leader>'] = {
-            name = 'harpoon',
+            name = 'quick actions',
             ['<CR>'] = {
                 '<cmd>echo "Added to mark list"<CR><bar><cmd>lua require("harpoon.mark").add_file()<CR>',
-                'add file to list'
+                'add file to harpoon list'
             },
             ['<leader>'] = {
                 '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
-                'open quick menu'
+                'open harpoon quick menu'
             },
             ['1'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
-                'navigate to file 1'
+                'navigate to harpoon file 1'
             },
             ['2'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
-                'navigate to file 2'
+                'navigate to harpoon file 2'
             },
             ['3'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
-                'navigate to file 3'
+                'navigate to harpoon file 3'
             },
             ['4'] = {
                 '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
-                'navigate to file 4'
-            }
+                'navigate to harpoon file 4'
+            },
+            ['x'] = {'<cmd>ToggleCheckbox<CR>', 'toggle checkbox'}
         },
         -- TOGGLES --
         ['<leader>t'] = {
@@ -208,15 +209,18 @@ local function define_mappings()
             },
             h = {'<cmd>Telescope help_tags<CR>', 'help'},
             i = {'<cmd>Telescope treesitter<CR>', 'identifiers'},
-            n = {'<cmd>NvimTreeToggle<CR>', 'tree'},
+            n = {'<cmd>lua require("util").toggle_nvimtree()<CR>', 'tree'},
             N = {'<cmd>NvimTreeFindFile<CR>', 'tree (follow)'},
             g = {
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
                 'grep'
             },
-            q = {'<cmd>Telescope vimwiki live_grep<CR>', 'vimwiki'},
-            w = {
-                '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Vimwiki ❯ ") })<CR>',
+            q = {
+                '<cmd>lua require("telescope.builtin").find_files({ search_dirs = {"~/Dropbox/notes"} })<CR>',
+                'wiki'
+            },
+            Q = {
+                '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Wiki ❯ ") })<CR>',
                 'wiki'
             },
             ['*'] = {
@@ -255,11 +259,7 @@ local function define_mappings()
         -- SHOWING THINGS --
         ['<leader>s'] = {name = 'show', c = 'peek class', f = 'peek function'},
         -- WIKI --
-        ['<leader>q'] = {
-            name = 'wiki',
-            q = {'<cmd>VimwikiIndex<CR>', 'index'},
-            x = 'additional'
-        },
+        ['<leader>q'] = {name = 'wiki', q = {'<cmd>WikiIndex<CR>', 'index'}},
         -- WINDOW --
         ['<leader>w'] = {
             name = 'window',
@@ -421,6 +421,13 @@ function This.setup_dap(bufnr)
             }
         }
     }, {buffer = bufnr, mode = This.modes.v})
+end
+
+function This.setup_wikivim()
+    map(This.modes.n, '<C-]>', '<Plug>(wiki-link-follow)', {noremap = false})
+    map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', {noremap = false})
+    map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', {noremap = false})
+    map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', {noremap = false})
 end
 
 -- COMMANDS --

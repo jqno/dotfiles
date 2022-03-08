@@ -3,6 +3,10 @@ local This = {}
 local g = vim.g
 local vim_util = require('vim-util')
 
+local function setup_bullets()
+    g.bullets_outline_levels = {'std-'}
+end
+
 local function setup_closetag()
     g.closetag_filetypes = 'html,xml'
 end
@@ -92,7 +96,6 @@ local function setup_telescope()
             end
         }
     })
-    telescope.load_extension('vimwiki')
     telescope.load_extension('fzy_native')
 end
 
@@ -135,28 +138,25 @@ local function setup_vimtest()
     g['test#java#maventest#executable'] = 'mvnd'
 end
 
-local function setup_vimwiki()
-    g.vimwiki_location = '~/Dropbox/notes'
-    g.vimwiki_list = {
-        {
-            path = g.vimwiki_location,
-            syntax = 'markdown',
-            ext = '.mkdn',
-            links_space_char = '_'
-        }
-    }
-    g.vimwiki_global_ext = 0
-    g.vimwiki_markdown_link_ext = 1
-    g.vimwiki_map_prefix = '<leader>qx'
-    g.vimwiki_key_mappings = {table_mappings = 0}
-end
-
 local function setup_whichkey()
     require('which-key').setup({
         triggers_blacklist = {
             n = {'c', 'v'} -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
         }
     })
+end
+
+local function setup_wikivim()
+    g.wiki_root = '~/Dropbox/notes'
+    g.wiki_filetypes = {'mkdn'}
+    g.wiki_link_extension = '.mkdn'
+    g.wiki_link_target_type = 'md'
+    g.wiki_mappings_use_defaults = 'none'
+
+    -- Enable mappings manually to avoid conflict with Wildfire (which also uses <CR>)
+    vim_util.augroup('enable_wikivim_mappings', [[
+        autocmd BufRead,BufNewFile $HOME/Dropbox/notes/** lua require('mappings').setup_wikivim()
+    ]])
 end
 
 local function setup_wildfire()
@@ -167,6 +167,7 @@ local function setup_wildfire()
 end
 
 function This.setup()
+    setup_bullets()
     setup_closetag()
     setup_colorizer()
     setup_floaterm()
@@ -177,8 +178,8 @@ function This.setup()
     setup_telescope()
     setup_treesitter()
     setup_vimtest()
-    setup_vimwiki()
     setup_whichkey()
+    setup_wikivim()
     setup_wildfire()
 end
 

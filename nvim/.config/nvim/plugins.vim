@@ -7,6 +7,7 @@ call plug#begin(stdpath('data') . '/plugged')
 " Improve editing
 Plug 'alvan/vim-closetag'
 Plug 'AndrewRadev/tagalong.vim'
+Plug 'dkarter/bullets.vim'
 Plug 'gcmt/wildfire.vim'
 Plug 'jqno/jqno-autoclose.vim'
 Plug 'L3MON4D3/LuaSnip'
@@ -45,6 +46,7 @@ Plug 'wincent/terminus'
 " Configure LSP and completion
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-omni'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'mfussenegger/nvim-dap'
@@ -53,13 +55,11 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'scalameta/nvim-metals'
 
-" Configure Vimwiki
-Plug 'ElPiloto/telescope-vimwiki.nvim'
-Plug 'vimwiki/vimwiki'
-
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+
+Plug 'lervag/wiki.vim'
 
 call plug#end()
