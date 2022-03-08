@@ -56,11 +56,12 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'scalameta/nvim-metals'
 
+" Configure wiki
+Plug 'lervag/wiki.vim'
+
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-
-Plug 'lervag/wiki.vim'
 
 call plug#end()
