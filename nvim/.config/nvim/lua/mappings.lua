@@ -71,10 +71,10 @@ local function define_mappings()
     map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
-        [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
         {expr = true})
     map(This.modes.s, '<C-L>',
-        [[luasnip#expand_or_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
         {expr = true})
     map(This.modes.i, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],

@@ -53,6 +53,18 @@ local function setup_luasnip()
     require('luasnip/loaders/from_vscode').lazy_load({
         paths = {vim.fn.stdpath('config') .. '/snippets'}
     })
+    local types = require('luasnip.util.types')
+    require('luasnip').config.setup({
+        region_check_events = 'CursorHold',
+        ext_opts = {
+            [types.choiceNode] = {
+                active = {virt_text = {{'●', 'GitSignsChange'}}}
+            },
+            [types.insertNode] = {
+                active = {virt_text = {{'●', 'GitSignsAdd'}}}
+            }
+        }
+    })
 end
 
 local function setup_nvim_tree()
