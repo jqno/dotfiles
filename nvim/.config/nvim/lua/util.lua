@@ -9,6 +9,8 @@ function This.close_everything()
     vim.api.nvim_command('NvimTreeClose')
     vim.api.nvim_command(
         'windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
+    vim.api
+        .nvim_command('windo if expand("%:t")=="java" && &ft=="" | q | endif')
     require('dap').repl.close()
 end
 
