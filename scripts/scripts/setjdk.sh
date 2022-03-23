@@ -5,23 +5,25 @@
 # alias setjdk=". setjdk.sh"
 
 function print_usage() {
+    VERSIONS=$(exa "$SDKMAN_DIR"/candidates/java | grep -v current | awk -F'.' '{print $1}' | sort -nr | uniq)
+    CURRENT=$(basename "$(readlink "$JAVA_HOME" || echo "$JAVA_HOME")" | awk -F'.' '{print $1}')
     echo "Available JDK versions: "
-    jabba ls
+    echo "$VERSIONS"
     echo
     echo "Current:"
-    jabba current
+    echo "$CURRENT"
     echo
     echo "Usage: setjdk <java_version>"
 }
 
 if [[ $# -eq 1 ]]; then
   VERSION_NUMBER=$1
-  IDENTIFIER=$(jabba ls | grep "@1.$VERSION_NUMBER" | sort -r | head -n 1)
+  IDENTIFIER=$(exa "$SDKMAN_DIR"/candidates/java | grep -v current | grep "^$VERSION_NUMBER." | sort -r | head -n 1)
   if [[ -z $IDENTIFIER ]]; then
     echo "No valid JDK found for version [$VERSION_NUMBER]"
   else
     echo "Switching JDK to $IDENTIFIER"
-    jabba use $IDENTIFIER
+    sdk use java "$IDENTIFIER"
   fi
 else
   print_usage

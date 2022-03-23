@@ -27,11 +27,12 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 fi
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
-[ -s "$JABBA_HOME/jabba.sh" ] && source "$JABBA_HOME/jabba.sh"
-source setjdk.sh 17 > /dev/null
-
 # Enable Powerlevel10k
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.zsh/p10k.zsh ]] || source ~/.zsh/p10k.zsh
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

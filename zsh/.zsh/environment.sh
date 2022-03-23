@@ -27,13 +27,6 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 
-# Initialize JAVA_HOME for use in `.zprofile` where `setjdk` is not available
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  export JABBA_HOME="/Users/jqno/.jabba"
-elif [[ "$(uname -s)" == "Linux" ]]; then
-  export JABBA_HOME="/home/jqno/.jabba"
-fi
-
 # Don't use cowsay when using ansible
 export ANSIBLE_NOCOWS=1
 

@@ -24,7 +24,6 @@ function install_npm() {
 
 # Package managers
 install_aur coursier
-install_aur jabba
 install_pacman npm
 install_pacman python-pip
 
@@ -126,6 +125,10 @@ rm -rf $BIN
 mkdir $BIN
 
 ln -s /sbin/coursier $BIN/cs
+
+# SDKMAN
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # JDT.LS
 echo "** Installing jdt.ls"
