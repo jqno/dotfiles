@@ -62,6 +62,6 @@ Plug 'lervag/wiki.vim'
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate \| :TSInstall markdown' }
 
 call plug#end()
