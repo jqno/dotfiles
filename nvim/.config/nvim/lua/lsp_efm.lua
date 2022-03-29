@@ -1,6 +1,6 @@
 local This = {}
 
-This.filetypes = {'java', 'lua', 'markdown', 'sh'}
+This.filetypes = {'asciidoc', 'java', 'lua', 'markdown', 'sh'}
 
 local lint = {
     markdownlint = {
@@ -18,7 +18,7 @@ local lint = {
         }
     },
     vale = {
-        lintCommand = 'vale --relative --output line ${INPUT}',
+        lintCommand = 'vale --output line ${INPUT}',
         lintStdin = false,
         lintIgnoreExitCode = true,
         lintFormats = {'%f:%l:%c:%*[^:]:%m'}
@@ -35,6 +35,7 @@ local format = {
 
 This.settings = {
     languages = {
+        asciidoc = {lint.vale},
         java = {format.prettier},
         lua = {format.luaformat},
         markdown = {lint.markdownlint, lint.vale, format.prettier},
