@@ -18,6 +18,7 @@ stow kitty
 stow linters
 stow nvim
 stow scripts
+stow sdkman
 stow tig
 stow ulauncher
 stow zsh

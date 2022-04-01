@@ -14,6 +14,7 @@ stow kitty
 stow nvim
 stow python
 stow scripts
+stow sdkman
 stow tig
 stow vim
 stow yabai
