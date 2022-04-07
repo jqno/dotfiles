@@ -5,6 +5,7 @@ local vim_util = require('vim-util')
 
 local function setup_bullets()
     g.bullets_outline_levels = {'std-'}
+    g.bullets_enabled_file_types = {'markdown', 'text', 'gitcommit', 'asciidoc'}
 end
 
 local function setup_closetag()
@@ -50,6 +51,7 @@ local function setup_gitsigns()
 end
 
 local function setup_luasnip()
+    -- Adding snippets for a new filetype? Don't forget to update `snippets/package.json`!
     require('luasnip/loaders/from_vscode').lazy_load({
         paths = {vim.fn.stdpath('config') .. '/snippets'}
     })

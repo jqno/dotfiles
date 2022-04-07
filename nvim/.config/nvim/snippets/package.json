@@ -6,6 +6,10 @@
         "path": "./all.json"
       },
       {
+        "language": "asciidoc",
+        "path": "./asciidoc.json"
+      },
+      {
         "language": "html",
         "path": "./html.json"
       },
