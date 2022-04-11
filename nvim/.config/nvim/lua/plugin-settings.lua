@@ -16,6 +16,10 @@ local function setup_colorizer()
     require('colorizer').setup {'css', 'html'}
 end
 
+local function setup_eunuch()
+    g.eunuch_no_maps = true
+end
+
 local function setup_floaterm()
     g.floaterm_title = 'Terminal'
     g.floaterm_borderchars = '─│─│╭╮╯╰'
@@ -179,6 +183,7 @@ function This.setup()
     setup_bullets()
     setup_closetag()
     setup_colorizer()
+    setup_eunuch()
     setup_floaterm()
     setup_gitsigns()
     setup_luasnip()
