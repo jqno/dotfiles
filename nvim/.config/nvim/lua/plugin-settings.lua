@@ -74,15 +74,16 @@ local function setup_luasnip()
 end
 
 local function setup_nvim_tree()
-    require('nvim-tree').setup {
-        auto_close = true,
-        update_focused_file = {enable = true}
-    }
+    require('nvim-tree').setup {update_focused_file = {enable = true}}
 
     g.nvim_tree_gitignore = 0
     g.nvim_tree_group_empty = 1
     g.nvim_tree_show_icons = {git = 0, folders = 1}
     g.nvim_tree_quit_on_open = 1
+
+    vim_util.augroup('enable_wikivim_mappings', [[
+        autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+    ]])
 end
 
 local function setup_sandwich()
@@ -119,7 +120,11 @@ end
 
 local function setup_treesitter()
     require('nvim-treesitter.configs').setup({
-        ensure_installed = 'maintained',
+        ensure_installed = {
+            'bash', 'css', 'html', 'http', 'java', 'javascript', 'json',
+            'kotlin', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
+            'ruby', 'rust', 'scala', 'scss', 'typescript', 'vim', 'yaml'
+        },
         highlight = {
             enable = true,
             disable = {'lua'} -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
