@@ -498,19 +498,6 @@ local function setup_statusline()
         }, --- END ---
         { EndSpace = { provider = space, highlight = schemes.regular_i } }
     }
-
-    --- INACTIVE --
-    gls.short_line_left = {
-        {
-            InactiveSpaces = {
-                provider = function()
-                    return '       '
-                end,
-                highlight = schemes.faded_i
-            }
-        },
-        { InactiveFileName = { provider = filename, highlight = schemes.faded_i } }
-    }
 end
 
 function This.setup()

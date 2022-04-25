@@ -9,6 +9,7 @@ function This.setup()
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
     vim.opt.linebreak = true
+    vim.opt.laststatus = 3
     vim.opt.listchars = {
         tab = '჻ ',
         trail = '·',
