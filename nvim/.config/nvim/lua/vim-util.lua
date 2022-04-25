@@ -25,23 +25,4 @@ function This.augroup(group, events, pattern, fun)
     })
 end
 
-function This.highlight(group, fg, bg, gui)
-    local cmd = 'highlight ' .. group
-    if fg ~= nil then
-        cmd = cmd .. ' guifg=' .. fg
-    end
-    if bg ~= nil then
-        cmd = cmd .. ' guibg=' .. bg
-    end
-    if gui ~= nil then
-        cmd = cmd .. ' gui=' .. gui
-    end
-    vim.cmd(cmd)
-end
-
-function This.highlight_link(group, link)
-    local cmd = string.format('highlight link %s %s', group, link)
-    vim.cmd(cmd)
-end
-
 return This
