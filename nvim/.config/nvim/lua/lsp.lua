@@ -69,8 +69,7 @@ local function setup_lsp()
     lsp.efm.setup {
         filetypes = efm.filetypes,
         root_dir = function(fname)
-            return lsputil.find_git_ancestor(fname) or
-                lsputil.root_pattern('.')(fname)
+            return lsputil.find_git_ancestor(fname) or lsputil.root_pattern('.')(fname)
         end,
         on_attach = on_attach_efm,
         capabilities = This.cmp_capabilities,
@@ -78,10 +77,12 @@ local function setup_lsp()
         settings = efm.settings
     }
 
-    vim_util.augroup('lsp_define_java', 'FileType', 'java',
-        function() require('jdtls').start_or_attach(require('filetypes.java').jdtls_config()) end)
-    vim_util.augroup('lsp_define_scala', 'FileType', 'scala,sbt,sc',
-        function() require('metals').initialize_or_attach(require('filetypes.scala').metals_config()) end)
+    vim_util.augroup('lsp_define_java', 'FileType', 'java', function()
+        require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
+    end)
+    vim_util.augroup('lsp_define_scala', 'FileType', 'scala,sbt,sc', function()
+        require('metals').initialize_or_attach(require('filetypes.scala').metals_config())
+    end)
 end
 
 function This.setup()
