@@ -14,6 +14,7 @@ silent! let g:plugs['galaxyline.nvim'].commit = 'd544cb9d0b56f6ef271db3b4c3cf19e
 silent! let g:plugs['gitsigns.nvim'].commit = 'daa233aabb4dbc7c870ea7300bcfeef96d49c2a3'
 silent! let g:plugs['harpoon'].commit = '57819752e62251f9488a95fea1690bb62547bd2a'
 silent! let g:plugs['jqno-autoclose.vim'].commit = '35640c0c6e1363a7fb3acbfcb1a818ff918c51ab'
+silent! let g:plugs['lsp-format.nvim'].commit = '204e6995c20bcc022d05539e00a0484c81ce09e4'
 silent! let g:plugs['nvim-cmp'].commit = '3192a0c57837c1ec5bf298e4f3ec984c7d2d60c0'
 silent! let g:plugs['nvim-colorizer.lua'].commit = '36c610a9717cc9ec426a07c8e6bf3b3abcb139d6'
 silent! let g:plugs['nvim-dap'].commit = 'c367b7204a88644515d667b9ebb27b5e32890017'

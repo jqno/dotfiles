@@ -54,6 +54,12 @@ local function setup_gitsigns()
     }
 end
 
+local function setup_lsp_format()
+    require('lsp-format').setup({
+        java = { exclude = { 'jdt.ls' } }
+    })
+end
+
 local function setup_luasnip()
     -- Adding snippets for a new filetype? Don't forget to update `snippets/package.json`!
     require('luasnip/loaders/from_vscode').lazy_load({
@@ -197,6 +203,7 @@ function This.setup()
     setup_eunuch()
     setup_floaterm()
     setup_gitsigns()
+    setup_lsp_format()
     setup_luasnip()
     setup_nvim_tree()
     setup_sandwich()

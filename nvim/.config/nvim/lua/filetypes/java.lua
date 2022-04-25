@@ -46,8 +46,6 @@ function This.jdtls_config()
 
             local modes = require('mappings').modes
 
-            client.resolved_capabilities.document_formatting = false
-
             wk({
                 ['<leader>d'] = {
                     r = { '<cmd>lua require("dap").continue()<CR>', 'run' },

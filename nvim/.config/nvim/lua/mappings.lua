@@ -320,15 +320,9 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     if client.resolved_capabilities.document_formatting then
         wk({
             ['<leader>m'] = {
-                f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'format' }
+                f = { '<cmd>Format<CR>', 'format' }
             }
         }, { buffer = bufnr })
-    elseif client.resolved_capabilities.document_range_formatting then
-        wk({
-            ['<leader>m'] = {
-                f = { '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format' }
-            }
-        }, { buffer = bufnr, mode = This.modes.v })
     end
 end
 
