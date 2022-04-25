@@ -91,7 +91,6 @@ install_pacman ttf-opensans
 install_pacman efm-langserver
 install_pacman flake8
 install_aur lemminx
-install_aur lua-format
 install_pacman lua-language-server
 install_npm markdownlint
 install_npm markdownlint-cli

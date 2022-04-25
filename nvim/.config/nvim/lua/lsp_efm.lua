@@ -1,6 +1,6 @@
 local This = {}
 
-This.filetypes = {'asciidoc', 'java', 'lua', 'markdown', 'sh'}
+This.filetypes = {'asciidoc', 'java', 'markdown', 'sh'}
 
 local lint = {
     markdownlint = {
@@ -26,7 +26,6 @@ local lint = {
 }
 
 local format = {
-    luaformat = {formatCommand = 'lua-format -i', formatStdin = true},
     prettier = {
         formatCommand = 'prettier --stdin-filepath ${INPUT}',
         formatStdin = true
@@ -37,7 +36,6 @@ This.settings = {
     languages = {
         asciidoc = {lint.vale},
         java = {format.prettier},
-        lua = {format.luaformat},
         markdown = {lint.markdownlint, lint.vale, format.prettier},
         sh = {lint.shellcheck}
     }
