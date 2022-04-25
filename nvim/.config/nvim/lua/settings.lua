@@ -2,8 +2,6 @@ local This = {}
 
 This.rounded_border = { border = 'rounded' }
 
-local augroup = require('vim-util').augroup
-
 local default_indent = 2
 
 function This.setup()
@@ -38,9 +36,14 @@ function This.setup()
 
     vim.cmd('colorscheme tranquility')
 
-    augroup('HighlightOnYank', [[
-    autocmd TextYankPost * lua vim.highlight.on_yank { higroup = 'IncSearch', timeout = 150, on_visual = true }
-  ]] )
+    require('vim-util').augroup('HighlightOnYank', 'TextYankPost', '*',
+        function()
+            vim.highlight.on_yank {
+                higroup = 'IncSearch',
+                timeout = 150,
+                on_visual = true
+            }
+        end)
 
     vim.diagnostic.config({ float = This.rounded_border })
 end

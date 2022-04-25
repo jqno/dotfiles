@@ -81,9 +81,13 @@ local function setup_nvim_tree()
     g.nvim_tree_show_icons = { git = 0, folders = 1 }
     g.nvim_tree_quit_on_open = 1
 
-    vim_util.augroup('enable_wikivim_mappings', [[
-        autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
-    ]])
+    vim.api.nvim_create_augroup('close_tree_if_last_window', { clear = true })
+    vim.api.nvim_create_autocmd('BufEnter', {
+        group = 'close_tree_if_last_window',
+        pattern = '*',
+        nested = true,
+        callback = function() vim.cmd("if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif") end
+    })
 end
 
 local function setup_sandwich()
@@ -172,9 +176,11 @@ local function setup_wikivim()
     g.wiki_mappings_use_defaults = 'none'
 
     -- Enable mappings manually to avoid conflict with Wildfire (which also uses <CR>)
-    vim_util.augroup('enable_wikivim_mappings', [[
-        autocmd BufRead,BufNewFile $HOME/Dropbox/notes/** lua require('mappings').setup_wikivim()
-    ]])
+    vim_util.augroup(
+        'enable_wikivim_mappings',
+        { 'BufRead', 'BufNewFile' },
+        vim.env.HOME .. "/Dropbox/notes/**",
+        require('mappings').setup_wikivim)
 end
 
 local function setup_wildfire()

@@ -16,13 +16,13 @@ function This.buf_map(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, options)
 end
 
-function This.augroup(group, cmd)
-    vim.api.nvim_exec([[
-    augroup ]] .. group .. [[
-      autocmd!
-      ]] .. cmd .. [[
-    augroup END
-  ]] , false)
+function This.augroup(group, events, pattern, fun)
+    vim.api.nvim_create_augroup(group, { clear = true })
+    vim.api.nvim_create_autocmd(events, {
+        group = group,
+        pattern = pattern,
+        callback = fun
+    })
 end
 
 function This.highlight(group, fg, bg, gui)

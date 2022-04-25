@@ -455,9 +455,7 @@ function This.setup()
     define_mappings()
     define_commands()
 
-    require('vim-util').augroup('whichkey-duplicates', [[
-    autocmd BufNew * lua require('mappings').whichkey_checkduplicates()
-  ]] )
+    require('vim-util').augroup('whichkey-duplicates', 'BufNew', '*', require('mappings').whichkey_checkduplicates)
 end
 
 return This

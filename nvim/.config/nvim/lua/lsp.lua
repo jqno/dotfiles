@@ -28,10 +28,11 @@ function This.on_attach(client, bufnr)
     clean_diagnostics()
 
     if client.resolved_capabilities.document_highlight then
-        vim_util.augroup('lsp_attach', [[
-      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    ]]   )
+        vim.api.nvim_create_augroup('lsp_attach', { clear = true })
+        vim.api.nvim_create_autocmd('CursorHold',
+            { group = 'lsp_attach', pattern = '<buffer>', callback = vim.lsp.buf.document_highlight })
+        vim.api.nvim_create_autocmd('CursorMoved',
+            { group = 'lsp_attach', pattern = '<buffer>', callback = vim.lsp.buf.clear_references })
     end
 end
 
@@ -75,10 +76,10 @@ local function setup_lsp()
         settings = efm.settings
     }
 
-    vim_util.augroup('lsp_define', [[
-    autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
-    autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(require('filetypes.scala').metals_config())
-  ]] )
+    vim_util.augroup('lsp_define_java', 'FileType', 'java',
+        function() require('jdtls').start_or_attach(require('filetypes.java').jdtls_config()) end)
+    vim_util.augroup('lsp_define_scala', 'FileType', 'scala,sbt,sc',
+        function() require('metals').initialize_or_attach(require('filetypes.scala').metals_config()) end)
 end
 
 function This.setup()
