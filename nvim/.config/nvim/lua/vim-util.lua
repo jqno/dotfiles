@@ -1,7 +1,7 @@
 local This = {}
 
 function This.map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
+    local options = { noremap = true }
     if opts then
         options = vim.tbl_extend('force', options, opts)
     end
@@ -9,7 +9,7 @@ function This.map(mode, lhs, rhs, opts)
 end
 
 function This.buf_map(bufnr, mode, lhs, rhs, opts)
-    local options = {noremap = true, silent = true}
+    local options = { noremap = true, silent = true }
     if opts then
         options = vim.tbl_extend('force', options, opts)
     end
@@ -22,7 +22,7 @@ function This.augroup(group, cmd)
       autocmd!
       ]] .. cmd .. [[
     augroup END
-  ]], false)
+  ]] , false)
 end
 
 function This.highlight(group, fg, bg, gui)

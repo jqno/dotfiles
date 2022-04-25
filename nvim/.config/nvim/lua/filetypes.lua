@@ -11,12 +11,12 @@ function This.setup()
     autocmd FileType markdown lua require('filetypes.markdown').setup()
     autocmd FileType python   lua require('filetypes.python').setup()
     autocmd FileType fugitiveblame lua require('filetypes.fugitiveblame').setup()
-  ]])
+  ]] )
 
     vim_util.augroup('recognise_filetypes', [[
     autocmd BufRead,BufNewFile pom.xml        set filetype=xml.pom
     autocmd BufRead,BufNewFile *.worksheet.sc set filetype=scala
-  ]])
+  ]] )
 end
 
 return This

@@ -12,8 +12,8 @@ end
 
 local function clean_diagnostics()
     enhance_handler('textDocument/publishDiagnostics',
-                    vim.lsp.diagnostic.on_publish_diagnostics,
-                    {virtual_text = false, underline = true, signs = true})
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        { virtual_text = false, underline = true, signs = true })
 end
 
 function This.on_attach(client, bufnr)
@@ -23,7 +23,7 @@ function This.on_attach(client, bufnr)
 
     enhance_handler('textDocument/hover', vim.lsp.handlers.hover, rounded_border)
     enhance_handler('textDocument/signatureHelp',
-                    vim.lsp.handlers.signature_help, rounded_border)
+        vim.lsp.handlers.signature_help, rounded_border)
 
     clean_diagnostics()
 
@@ -31,7 +31,7 @@ function This.on_attach(client, bufnr)
         vim_util.augroup('lsp_attach', [[
       autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    ]])
+    ]]   )
     end
 end
 
@@ -40,9 +40,7 @@ local function on_attach_efm(client, bufnr)
     clean_diagnostics()
 end
 
-This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-                                                                        .protocol
-                                                                        .make_client_capabilities())
+This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function setup_lsp()
 
@@ -59,7 +57,7 @@ local function setup_lsp()
     }
 
     lsp.sumneko_lua.setup {
-        cmd = {'lua-language-server'},
+        cmd = { 'lua-language-server' },
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
         settings = require('filetypes.lua').lsp_config
@@ -69,18 +67,18 @@ local function setup_lsp()
         filetypes = efm.filetypes,
         root_dir = function(fname)
             return lsputil.find_git_ancestor(fname) or
-                       lsputil.root_pattern('.')(fname)
+                lsputil.root_pattern('.')(fname)
         end,
         on_attach = on_attach_efm,
         capabilities = This.cmp_capabilities,
-        init_options = {documentFormatting = true},
+        init_options = { documentFormatting = true },
         settings = efm.settings
     }
 
     vim_util.augroup('lsp_define', [[
     autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
     autocmd FileType scala,sbt,sc lua require('metals').initialize_or_attach(require('filetypes.scala').metals_config())
-  ]])
+  ]] )
 end
 
 function This.setup()

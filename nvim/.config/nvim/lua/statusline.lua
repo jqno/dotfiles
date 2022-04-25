@@ -33,15 +33,15 @@ local colors = {
 }
 
 local schemes = {
-    regular = {colors.black, colors.green},
-    regular_i = {colors.green, colors.black},
-    faded = {colors.black, colors.white},
-    faded_i = {colors.white, colors.black},
-    diag_ok = {colors.black, colors.green, 'bold'},
-    diag_error = {colors.black, colors.error, 'bold'},
-    diag_warning = {colors.black, colors.warning, 'bold'},
-    diag_information = {colors.black, colors.information},
-    diag_hint = {colors.black, colors.hint}
+    regular = { colors.black, colors.green },
+    regular_i = { colors.green, colors.black },
+    faded = { colors.black, colors.white },
+    faded_i = { colors.white, colors.black },
+    diag_ok = { colors.black, colors.green, 'bold' },
+    diag_error = { colors.black, colors.error, 'bold' },
+    diag_warning = { colors.black, colors.warning, 'bold' },
+    diag_information = { colors.black, colors.information },
+    diag_hint = { colors.black, colors.hint }
 }
 
 local separators = {
@@ -113,7 +113,7 @@ local function filename_modification()
 
     if status == '' then
         highlight('GalaxyFileNameClose', schemes.regular_i[1],
-                  schemes.regular_i[2])
+            schemes.regular_i[2])
     else
         highlight('GalaxyFileNameClose', schemes.faded_i[1], schemes.faded_i[2])
     end
@@ -301,7 +301,7 @@ local function fileinfo_extra()
 
     if ff == '' and fe == '' then
         highlight('GalaxyFileInfoClose', schemes.regular_i[1],
-                  schemes.regular_i[2])
+            schemes.regular_i[2])
         return ''
     elseif ff ~= '' and fe ~= '' then
         highlight('GalaxyFileInfoClose', schemes.faded_i[1], schemes.faded_i[2])
@@ -347,16 +347,16 @@ local function setup_statusline()
     local gl = require('galaxyline')
     local gls = gl.section
 
-    gl.short_line_list = {'NvimTree', 'dap-repl'}
+    gl.short_line_list = { 'NvimTree', 'dap-repl' }
 
     --- LEFT ---
     gls.left = {
         --- START ---
-        {StartSpace = {provider = space, highlight = schemes.regular_i}},
+        { StartSpace = { provider = space, highlight = schemes.regular_i } },
 
         --- MODE ---
-        {ViModeOpen = {provider = separators.open}},
-        {ViMode = {provider = vimode}}, {
+        { ViModeOpen = { provider = separators.open } },
+        { ViMode = { provider = vimode } }, {
             ViModeClose = {
                 provider = separators.close,
                 separator = ' ',
@@ -368,12 +368,12 @@ local function setup_statusline()
                 provider = separators.open,
                 highlight = schemes.regular_i
             }
-        }, {FileName = {provider = filename, highlight = schemes.regular}}, {
+        }, { FileName = { provider = filename, highlight = schemes.regular } }, {
             FileNameModification = {
                 provider = filename_modification,
                 highlight = schemes.faded
             }
-        }, {FileNameClose = {provider = separators.close}}
+        }, { FileNameClose = { provider = separators.close } }
     }
 
     --- RIGHT ---
@@ -387,7 +387,7 @@ local function setup_statusline()
                 highlight = schemes.faded_i,
                 separator = '%<'
             }
-        }, {LspShowClient = {provider = lsp_status, highlight = schemes.faded}},
+        }, { LspShowClient = { provider = lsp_status, highlight = schemes.faded } },
         {
             LspClose = {
                 provider = function()
@@ -396,8 +396,8 @@ local function setup_statusline()
                 highlight = schemes.faded_i
             }
         }, --- DIAGNOSTICS ---
-        {DiagnosticOpen = {provider = diag_print_open}},
-        {DiagnosticOk = {provider = diag_print_ok, highlight = schemes.diag_ok}},
+        { DiagnosticOpen = { provider = diag_print_open } },
+        { DiagnosticOk = { provider = diag_print_ok, highlight = schemes.diag_ok } },
         {
             DiagnosticError = {
                 provider = diag_print_error,
@@ -419,8 +419,8 @@ local function setup_statusline()
                 provider = diag_print_hint,
                 highlight = schemes.diag_hint
             }
-        }, {DiagnosticClose = {provider = diag_print_close}},
-        {DiagnosticSpace = {provider = space, highlight = schemes.faded_i}},
+        }, { DiagnosticClose = { provider = diag_print_close } },
+        { DiagnosticSpace = { provider = space, highlight = schemes.faded_i } },
 
         --- WORD COUNT ---
         {
@@ -439,7 +439,7 @@ local function setup_statusline()
             }
         }, {
             WordCountClose = {
-                provider = {separators.close, space},
+                provider = { separators.close, space },
                 condition = is_prose,
                 highlight = schemes.faded_i
             }
@@ -450,11 +450,11 @@ local function setup_statusline()
                 highlight = schemes.regular_i
             }
         },
-        {FileInfoType = {provider = fileinfo_type, highlight = schemes.regular}},
-        {FileInfoExtra = {provider = fileinfo_extra, highlight = schemes.faded}},
+        { FileInfoType = { provider = fileinfo_type, highlight = schemes.regular } },
+        { FileInfoExtra = { provider = fileinfo_extra, highlight = schemes.faded } },
         {
             FileInfoClose = {
-                provider = {separators.close, space},
+                provider = { separators.close, space },
                 highlight = schemes.regular_i
             }
         }, --- POSITION ---
@@ -483,7 +483,7 @@ local function setup_statusline()
                 highlight = schemes.faded_i
             }
         }, --- END ---
-        {EndSpace = {provider = space, highlight = schemes.regular_i}}
+        { EndSpace = { provider = space, highlight = schemes.regular_i } }
     }
 
     --- INACTIVE --
@@ -496,7 +496,7 @@ local function setup_statusline()
                 highlight = schemes.faded_i
             }
         },
-        {InactiveFileName = {provider = filename, highlight = schemes.faded_i}}
+        { InactiveFileName = { provider = filename, highlight = schemes.faded_i } }
     }
 end
 

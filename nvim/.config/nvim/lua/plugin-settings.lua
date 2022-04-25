@@ -4,8 +4,8 @@ local g = vim.g
 local vim_util = require('vim-util')
 
 local function setup_bullets()
-    g.bullets_outline_levels = {'std-'}
-    g.bullets_enabled_file_types = {'markdown', 'text', 'gitcommit', 'asciidoc'}
+    g.bullets_outline_levels = { 'std-' }
+    g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'asciidoc' }
 end
 
 local function setup_closetag()
@@ -13,7 +13,7 @@ local function setup_closetag()
 end
 
 local function setup_colorizer()
-    require('colorizer').setup {'css', 'html'}
+    require('colorizer').setup { 'css', 'html' }
 end
 
 local function setup_eunuch()
@@ -57,28 +57,28 @@ end
 local function setup_luasnip()
     -- Adding snippets for a new filetype? Don't forget to update `snippets/package.json`!
     require('luasnip/loaders/from_vscode').lazy_load({
-        paths = {vim.fn.stdpath('config') .. '/snippets'}
+        paths = { vim.fn.stdpath('config') .. '/snippets' }
     })
     local types = require('luasnip.util.types')
     require('luasnip').config.setup({
         region_check_events = 'CursorHold',
         ext_opts = {
             [types.choiceNode] = {
-                active = {virt_text = {{'●', 'GitSignsChange'}}}
+                active = { virt_text = { { '●', 'GitSignsChange' } } }
             },
             [types.insertNode] = {
-                active = {virt_text = {{'●', 'GitSignsAdd'}}}
+                active = { virt_text = { { '●', 'GitSignsAdd' } } }
             }
         }
     })
 end
 
 local function setup_nvim_tree()
-    require('nvim-tree').setup {update_focused_file = {enable = true}}
+    require('nvim-tree').setup { update_focused_file = { enable = true } }
 
     g.nvim_tree_gitignore = 0
     g.nvim_tree_group_empty = 1
-    g.nvim_tree_show_icons = {git = 0, folders = 1}
+    g.nvim_tree_show_icons = { git = 0, folders = 1 }
     g.nvim_tree_quit_on_open = 1
 
     vim_util.augroup('enable_wikivim_mappings', [[
@@ -127,18 +127,18 @@ local function setup_treesitter()
         },
         highlight = {
             enable = true,
-            disable = {'lua'} -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
+            disable = { 'lua' } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
         },
         incremental_selection = {
             enable = true,
-            keymaps = {init_selection = '<CR>', node_incremental = '<CR>'}
+            keymaps = { init_selection = '<CR>', node_incremental = '<CR>' }
         },
         textobjects = {
-            select = {enable = true, keymaps = {['if'] = '@call.outer'}},
+            select = { enable = true, keymaps = { ['if'] = '@call.outer' } },
             move = {
                 enable = true,
-                goto_next_start = {[']]'] = '@function.outer'},
-                goto_previous_start = {['[['] = '@function.outer'}
+                goto_next_start = { [']]'] = '@function.outer' },
+                goto_previous_start = { ['[['] = '@function.outer' }
             },
             lsp_interop = {
                 enable = true,
@@ -159,14 +159,14 @@ end
 local function setup_whichkey()
     require('which-key').setup({
         triggers_blacklist = {
-            n = {'c', 'v'} -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
+            n = { 'c', 'v' } -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
         }
     })
 end
 
 local function setup_wikivim()
     g.wiki_root = '~/Dropbox/notes'
-    g.wiki_filetypes = {'mkdn'}
+    g.wiki_filetypes = { 'mkdn' }
     g.wiki_link_extension = '.mkdn'
     g.wiki_link_target_type = 'md'
     g.wiki_mappings_use_defaults = 'none'
@@ -179,8 +179,8 @@ end
 
 local function setup_wildfire()
     g.wildfire_objects = {
-        scala = {'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip'},
-        ['xml,xml.pom'] = {'i}', 'a}', 'i"', 'a"', "i'", "a'", 'it', 'at'}
+        scala = { 'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip' },
+        ['xml,xml.pom'] = { 'i}', 'a}', 'i"', 'a"', "i'", "a'", 'it', 'at' }
     }
 end
 

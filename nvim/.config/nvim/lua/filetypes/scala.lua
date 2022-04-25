@@ -13,7 +13,7 @@ function This.dap_run()
         type = 'scala',
         request = 'launch',
         name = 'Run',
-        metals = {runType = "run"}
+        metals = { runType = "run" }
     })
 end
 
@@ -22,7 +22,7 @@ function This.dap_run_test()
         type = 'scala',
         request = 'launch',
         name = 'Test File',
-        metals = {runType = "run"}
+        metals = { runType = "run" }
     })
 end
 
@@ -46,9 +46,9 @@ function This.metals_config()
                     }
                 },
                 ['<leader>r'] = {
-                    o = {'<cmd>MetalsOrganizeImports<CR>', 'organize imports'}
+                    o = { '<cmd>MetalsOrganizeImports<CR>', 'organize imports' }
                 },
-                ['<leader>m'] = {r = {'<cmd>MetalsCompileClean<CR>', 'rebuild'}}
+                ['<leader>m'] = { r = { '<cmd>MetalsCompileClean<CR>', 'rebuild' } }
             })
         end,
         init_options = {
@@ -68,4 +68,3 @@ function This.metals_config()
 end
 
 return This
-

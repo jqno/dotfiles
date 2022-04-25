@@ -41,14 +41,14 @@ function This.setup()
             end
         },
         mapping = {
-            ['<Tab>'] = cmp.mapping(tab_complete, {'i', 's'}),
-            ['<S-Tab>'] = cmp.mapping(s_tab_complete, {'i', 's'}),
+            ['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
+            ['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
             ['<Esc>'] = cmp.mapping.close(),
-            ['<CR>'] = cmp.mapping.confirm({select = true})
+            ['<CR>'] = cmp.mapping.confirm({ select = true })
         },
         sources = {
-            {name = 'luasnip'}, {name = 'nvim_lsp'}, {name = 'omni'},
-            {name = 'path'}, {name = 'buffer'}
+            { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = 'omni' },
+            { name = 'path' }, { name = 'buffer' }
         },
         formatting = {
             format = function(entry, vim_item)

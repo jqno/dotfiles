@@ -25,7 +25,7 @@ function This.jdtls_config()
             "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
     }
     vim.list_extend(jdtls_bundles, vim.split(
-                        vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
+        vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
 
     return {
         cmd = {
@@ -33,14 +33,14 @@ function This.jdtls_config()
             vim.env.HOME .. '/.jdtls/' ..
                 vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
-        init_options = {bundles = jdtls_bundles},
-        root_dir = require('jdtls.setup').find_root({'.git'}), -- always assume a git project; this works better with multimodule projects
+        init_options = { bundles = jdtls_bundles },
+        root_dir = require('jdtls.setup').find_root({ '.git' }), -- always assume a git project; this works better with multimodule projects
         capabilities = require('lsp').cmp_capabilities,
         on_attach = function(client, bufnr)
             require('lsp').on_attach(client, bufnr)
 
             require('jdtls.setup').add_commands()
-            require('jdtls').setup_dap({hotcodereplace = 'auto'})
+            require('jdtls').setup_dap({ hotcodereplace = 'auto' })
             require('jdtls.dap').setup_dap_main_class_configs()
             require('mappings').setup_dap(bufnr)
 
@@ -50,7 +50,7 @@ function This.jdtls_config()
 
             wk({
                 ['<leader>d'] = {
-                    r = {'<cmd>lua require("dap").continue()<CR>', 'run'},
+                    r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
                     t = {
                         '<cmd>lua require("filetypes.java").dap_run_test()<CR>',
                         'test file'
@@ -80,7 +80,7 @@ function This.jdtls_config()
                         'reload'
                     }
                 }
-            }, {buffer = bufnr})
+            }, { buffer = bufnr })
 
             wk({
                 ['<leader>r'] = {
@@ -93,7 +93,7 @@ function This.jdtls_config()
                         'extract variable'
                     }
                 }
-            }, {buffer = bufnr, mode = modes.v})
+            }, { buffer = bufnr, mode = modes.v })
         end
     }
 end

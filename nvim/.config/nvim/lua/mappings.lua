@@ -3,7 +3,7 @@ local This = {}
 local map = require('vim-util').map
 local wk = require('which-key').register
 
-This.modes = {i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't'}
+This.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't' }
 
 function This.whichkey_checkduplicates()
     local dups = require('which-key.keys').duplicates
@@ -21,16 +21,16 @@ local function define_mappings()
     -- Navigate the screen, not the lines, and update the jump list when the count > 5
     map(This.modes.n, 'j',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']],
-        {expr = true})
+        { expr = true })
     map(This.modes.n, 'k',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']],
-        {expr = true})
+        { expr = true })
     map(This.modes.v, 'j',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']],
-        {expr = true})
+        { expr = true })
     map(This.modes.v, 'k',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']],
-        {expr = true})
+        { expr = true })
     -- Easy window switching
     map(This.modes.n, '<C-h>', '<C-w>h')
     map(This.modes.n, '<C-j>', '<C-w>j')
@@ -59,8 +59,8 @@ local function define_mappings()
     map(This.modes.n, 'Y', '"+y')
     map(This.modes.v, 'Y', '"+y')
     -- Comment lines
-    map(This.modes.n, '\\\\', '<Plug>CommentaryLine', {noremap = false})
-    map(This.modes.v, '\\', '<Plug>Commentary', {noremap = false})
+    map(This.modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
+    map(This.modes.v, '\\', '<Plug>Commentary', { noremap = false })
     -- Moving lines and blocks
     map(This.modes.n, '<M-j>', '<cmd>move .+1<CR>==')
     map(This.modes.n, '<M-k>', '<cmd>move .-2<CR>==')
@@ -72,22 +72,22 @@ local function define_mappings()
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
-        {expr = true})
+        { expr = true })
     map(This.modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
-        {expr = true})
+        { expr = true })
     map(This.modes.i, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        {expr = true})
+        { expr = true })
     map(This.modes.s, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        {expr = true})
+        { expr = true })
     map(This.modes.i, '<C-K>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
-        {expr = true})
+        { expr = true })
     map(This.modes.s, '<C-K>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
-        {expr = true})
+        { expr = true })
     -- Expand %% to the directory of the currently open file
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
@@ -96,18 +96,18 @@ local function define_mappings()
         ['['] = {
             name = 'previous',
             ['['] = 'function',
-            b = {'<cmd>bprevious<CR>', 'buffer'},
+            b = { '<cmd>bprevious<CR>', 'buffer' },
             g = 'git hunk',
-            q = {'<cmd>cprevious<CR>', 'quickfix'},
-            Q = {'<cmd>qfirst<CR>', 'quickfix first'}
+            q = { '<cmd>cprevious<CR>', 'quickfix' },
+            Q = { '<cmd>qfirst<CR>', 'quickfix first' }
         },
         [']'] = {
             name = 'next',
             [']'] = 'function',
-            b = {'<cmd>bnext<CR>', 'buffer'},
+            b = { '<cmd>bnext<CR>', 'buffer' },
             g = 'git hunk',
-            Q = {'<cmd>clast<CR>', 'quickfix last'},
-            q = {'<cmd>cnext<CR>', 'quickfix'}
+            Q = { '<cmd>clast<CR>', 'quickfix last' },
+            q = { '<cmd>cnext<CR>', 'quickfix' }
         },
         -- RAW LEADER --
         ['<leader>'] = {
@@ -147,7 +147,7 @@ local function define_mappings()
                 '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
                 'navigate to harpoon file 4'
             },
-            ['x'] = {'<cmd>ToggleCheckbox<CR>', 'toggle checkbox'}
+            ['x'] = { '<cmd>ToggleCheckbox<CR>', 'toggle checkbox' }
         },
         -- TOGGLES --
         ['<leader>t'] = {
@@ -168,23 +168,23 @@ local function define_mappings()
                 '<cmd>lua require("util").set_buf_indent(nil, true)<CR>',
                 'indent tab'
             },
-            l = {'<cmd>set list! list?<CR>', 'list'},
-            t = {'<cmd>FloatermToggle<CR>', 'terminal'},
+            l = { '<cmd>set list! list?<CR>', 'list' },
+            t = { '<cmd>FloatermToggle<CR>', 'terminal' },
             s = {
                 '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
                 'typewriter scroll mode'
             },
-            w = {'<cmd>set wrap! wrap?<CR>', 'wrap'},
-            z = {'<cmd>ZenMode<CR>', 'zen mode'}
+            w = { '<cmd>set wrap! wrap?<CR>', 'wrap' },
+            z = { '<cmd>ZenMode<CR>', 'zen mode' }
         },
         -- BUFFER --
         ['<leader>b'] = {
             name = 'buffer',
-            b = {'<cmd>b#<CR>', 'previous'},
-            d = {'<cmd>bd<CR>', 'delete'},
-            ['<Backspace>'] = {'<cmd>bufdo bdelete<CR>', 'close all'}
+            b = { '<cmd>b#<CR>', 'previous' },
+            d = { '<cmd>bd<CR>', 'delete' },
+            ['<Backspace>'] = { '<cmd>bufdo bdelete<CR>', 'close all' }
         },
-        ['<leader>d'] = {name = 'debug'},
+        ['<leader>d'] = { name = 'debug' },
         -- EXECUTING THINGS --
         ['<leader>x'] = {
             name = 'execute',
@@ -202,15 +202,15 @@ local function define_mappings()
         -- FINDING --
         ['<leader>f'] = {
             name = 'file',
-            b = {'<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers'},
+            b = { '<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers' },
             f = {
                 '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>',
                 'files'
             },
-            h = {'<cmd>Telescope help_tags<CR>', 'help'},
-            i = {'<cmd>Telescope treesitter<CR>', 'identifiers'},
-            n = {'<cmd>lua require("util").toggle_nvimtree()<CR>', 'tree'},
-            N = {'<cmd>NvimTreeFindFile<CR>', 'tree (follow)'},
+            h = { '<cmd>Telescope help_tags<CR>', 'help' },
+            i = { '<cmd>Telescope treesitter<CR>', 'identifiers' },
+            n = { '<cmd>lua require("util").toggle_nvimtree()<CR>', 'tree' },
+            N = { '<cmd>NvimTreeFindFile<CR>', 'tree (follow)' },
             g = {
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
                 'grep'
@@ -227,15 +227,15 @@ local function define_mappings()
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>',
                 'grep current'
             },
-            [':'] = {'<cmd>Telescope commands<CR>', 'commands'}
+            [':'] = { '<cmd>Telescope commands<CR>', 'commands' }
         },
         -- GOING PLACES  --
-        ['<leader>g'] = {name = 'go'},
+        ['<leader>g'] = { name = 'go' },
         -- GIT --
         ['<leader>G'] = {
             name = 'Git',
-            B = {'<cmd>Git blame<CR>', 'blame file'},
-            h = {'<cmd>0Gclog<CR>', 'show file history'},
+            B = { '<cmd>Git blame<CR>', 'blame file' },
+            h = { '<cmd>0Gclog<CR>', 'show file history' },
             -- following bindings come from GitSigns plugin
             b = 'blame line',
             p = 'preview hunk',
@@ -247,26 +247,26 @@ local function define_mappings()
         -- MAKE-ING --
         ['<leader>m'] = {
             name = 'make',
-            ['<CR>'] = {'<cmd>TestNearest<CR>', 'test nearest'},
-            t = {'<cmd>TestFile<CR>', 'test file'}
+            ['<CR>'] = { '<cmd>TestNearest<CR>', 'test nearest' },
+            t = { '<cmd>TestFile<CR>', 'test file' }
         },
         -- REFACTORING --
         ['<leader>r'] = {
             name = 'refactor',
-            ['>'] = {'<cmd>SidewaysRight<CR>', 'swap next'},
-            ['<'] = {'<cmd>SidewaysLeft<CR>', 'swap prev'}
+            ['>'] = { '<cmd>SidewaysRight<CR>', 'swap next' },
+            ['<'] = { '<cmd>SidewaysLeft<CR>', 'swap prev' }
         },
         -- SHOWING THINGS --
-        ['<leader>s'] = {name = 'show', c = 'peek class', f = 'peek function'},
+        ['<leader>s'] = { name = 'show', c = 'peek class', f = 'peek function' },
         -- WIKI --
-        ['<leader>q'] = {name = 'wiki', q = {'<cmd>WikiIndex<CR>', 'index'}},
+        ['<leader>q'] = { name = 'wiki', q = { '<cmd>WikiIndex<CR>', 'index' } },
         -- WINDOW --
         ['<leader>w'] = {
             name = 'window',
-            ['_'] = {'<cmd>wincmd _<CR>', 'enlarge window'},
-            ['='] = {'<cmd>wincmd =<CR>', 'equalize'},
-            ['0'] = {'<cmd>wincmd r<CR>', 'rotate'},
-            k = {'<C-w>w', 'move into floating window'}
+            ['_'] = { '<cmd>wincmd _<CR>', 'enlarge window' },
+            ['='] = { '<cmd>wincmd =<CR>', 'equalize' },
+            ['0'] = { '<cmd>wincmd r<CR>', 'rotate' },
+            k = { '<C-w>w', 'move into floating window' }
         }
     })
 
@@ -275,10 +275,10 @@ local function define_mappings()
         -- TERMINAL --
         ['<c-\\>'] = {
             name = 'terminal',
-            t = {'<cmd>FloatermToggle<CR>', 'toggle'}
+            t = { '<cmd>FloatermToggle<CR>', 'toggle' }
         }
 
-    }, {mode = This.modes.t})
+    }, { mode = This.modes.t })
 end
 
 -- LSP MAPPINGS --
@@ -315,20 +315,20 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
                 'diagnostics'
             }
         }
-    }, {buffer = bufnr})
+    }, { buffer = bufnr })
 
     if client.resolved_capabilities.document_formatting then
         wk({
             ['<leader>m'] = {
-                f = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'format'}
+                f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'format' }
             }
-        }, {buffer = bufnr})
+        }, { buffer = bufnr })
     elseif client.resolved_capabilities.document_range_formatting then
         wk({
             ['<leader>m'] = {
-                f = {'<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format'}
+                f = { '<cmd>lua vim.lsp.buf.range_formatting()<CR>', 'format' }
             }
-        }, {buffer = bufnr, mode = This.modes.v})
+        }, { buffer = bufnr, mode = This.modes.v })
     end
 end
 
@@ -342,36 +342,36 @@ function This.setup_lsp(client, bufnr)
     -- VARIOUS --
     buf_map(This.modes.n, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
     buf_map(This.modes.i, '<C-Space>',
-            '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+        '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
     wk({
         -- FINDING --
         ['<leader>f'] = {
-            s = {'<cmd>Telescope lsp_document_symbols<CR>', 'document symbols'},
+            s = { '<cmd>Telescope lsp_document_symbols<CR>', 'document symbols' },
             S = {
                 '<cmd>Telescope lsp_workspace_symbols<CR>', 'workspace symbols'
             },
-            r = {'<cmd>Telescope lsp_references<CR>', 'references'}
+            r = { '<cmd>Telescope lsp_references<CR>', 'references' }
         },
         -- GOING PLACES  --
         ['<leader>g'] = {
-            [']'] = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'definition'},
-            d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration'},
-            i = {'<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation'},
+            [']'] = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'definition' },
+            d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration' },
+            i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
             t = {
                 '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'type definition'
             }
         },
         -- REFACTORING --
         ['<leader>r'] = {
-            ['<CR>'] = {'<cmd>Telescope lsp_code_actions<CR>', 'code actions'},
-            r = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'rename'}
+            ['<CR>'] = { '<cmd>Telescope lsp_code_actions<CR>', 'code actions' },
+            r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename' }
         },
         -- SHOWING THINGS --
         ['<leader>s'] = {
-            s = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help'}
+            s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help' }
         }
-    }, {buffer = bufnr})
+    }, { buffer = bufnr })
 
     -- VISUAL MODE --
     wk({
@@ -382,7 +382,7 @@ function This.setup_lsp(client, bufnr)
                 '<cmd>Telescope lsp_range_code_actions<CR>', 'code actions'
             }
         }
-    }, {buffer = bufnr, mode = This.modes.v})
+    }, { buffer = bufnr, mode = This.modes.v })
 end
 
 -- DAP MAPPINGS --
@@ -396,11 +396,11 @@ function This.setup_dap(bufnr)
             b = {
                 '<cmd>lua require("dap").toggle_breakpoint()<CR>', 'breakpoint'
             },
-            c = {'<cmd>lua require("dap").continue()<CR>', 'continue'},
-            i = {'<cmd>lua require("dap").step_into()<CR>', 'step into'},
-            l = {'<cmd>lua require("dap").run_last()<CR>', 'run last'},
-            o = {'<cmd>lua require("dap").step_over()<CR>', 'step over'},
-            x = {'<cmd>lua require("dap").step_out()<CR>', 'step out'}
+            c = { '<cmd>lua require("dap").continue()<CR>', 'continue' },
+            i = { '<cmd>lua require("dap").step_into()<CR>', 'step into' },
+            l = { '<cmd>lua require("dap").run_last()<CR>', 'run last' },
+            o = { '<cmd>lua require("dap").step_over()<CR>', 'step over' },
+            x = { '<cmd>lua require("dap").step_out()<CR>', 'step out' }
         },
         -- SHOWING THINGS --
         ['<leader>s'] = {
@@ -408,7 +408,7 @@ function This.setup_dap(bufnr)
                 '<cmd>lua require("dap.ui.widgets").hover()<CR>', 'debug value'
             }
         }
-    }, {buffer = bufnr})
+    }, { buffer = bufnr })
 
     -- VISUAL --
     wk({
@@ -419,14 +419,14 @@ function This.setup_dap(bufnr)
                 'debug value'
             }
         }
-    }, {buffer = bufnr, mode = This.modes.v})
+    }, { buffer = bufnr, mode = This.modes.v })
 end
 
 function This.setup_wikivim()
-    map(This.modes.n, '<C-]>', '<Plug>(wiki-link-follow)', {noremap = false})
-    map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', {noremap = false})
-    map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', {noremap = false})
-    map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', {noremap = false})
+    map(This.modes.n, '<C-]>', '<Plug>(wiki-link-follow)', { noremap = false })
+    map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', { noremap = false })
+    map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', { noremap = false })
+    map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', { noremap = false })
 end
 
 -- COMMANDS --
@@ -442,13 +442,13 @@ local function define_commands()
     command! -bang Q q<bang>
     command! -bang QA qa<bang>
     command! -bang Qa qa<bang>
-  ]], false)
+  ]] , false)
 
     -- plugin management
     vim.api.nvim_exec([[
     command! PlugLock execute 'PlugSnapshot! ' . g:plugin_lockfile
     command! PlugRevert execute 'source ' . g:plugin_lockfile
-  ]], false)
+  ]] , false)
 end
 
 function This.setup()
@@ -457,7 +457,7 @@ function This.setup()
 
     require('vim-util').augroup('whichkey-duplicates', [[
     autocmd BufNew * lua require('mappings').whichkey_checkduplicates()
-  ]])
+  ]] )
 end
 
 return This

@@ -1,13 +1,13 @@
 local This = {}
 
-This.filetypes = {'asciidoc', 'java', 'markdown', 'sh'}
+This.filetypes = { 'asciidoc', 'java', 'markdown', 'sh' }
 
 local lint = {
     markdownlint = {
         lintCommand = 'markdownlint --stdin',
         lintStdin = true,
         lintIgnoreExitCode = true,
-        lintFormats = {'%f:%l:%c %m', '%f:%l %m', '%f: %l: %m'}
+        lintFormats = { '%f:%l:%c %m', '%f:%l %m', '%f: %l: %m' }
     },
     shellcheck = {
         lintCommand = 'shellcheck -f gcc -x',
@@ -21,7 +21,7 @@ local lint = {
         lintCommand = 'vale --output line ${INPUT}',
         lintStdin = false,
         lintIgnoreExitCode = true,
-        lintFormats = {'%f:%l:%c:%*[^:]:%m'}
+        lintFormats = { '%f:%l:%c:%*[^:]:%m' }
     }
 }
 
@@ -34,10 +34,10 @@ local format = {
 
 This.settings = {
     languages = {
-        asciidoc = {lint.vale},
-        java = {format.prettier},
-        markdown = {lint.markdownlint, lint.vale, format.prettier},
-        sh = {lint.shellcheck}
+        asciidoc = { lint.vale },
+        java = { format.prettier },
+        markdown = { lint.markdownlint, lint.vale, format.prettier },
+        sh = { lint.shellcheck }
     }
 }
 
