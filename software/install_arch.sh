@@ -77,7 +77,6 @@ install_pacman bitwarden
 install_pacman google-chrome
 install_pacman intellij-idea-community-edition
 install_pacman kitty
-install_aur rambox-bin
 install_pacman spotify
 
 # Fonts
