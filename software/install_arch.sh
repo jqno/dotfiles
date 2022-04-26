@@ -156,7 +156,7 @@ npm install
 npm run build-plugin
 popd > /dev/null
 
-# Vale Alex styles
+# Vale Alex and Proselint styles
 echo "** Installing some styles for Vale linter"
 rm -rf ~/.vale
 mkdir -p ~/.vale/sources

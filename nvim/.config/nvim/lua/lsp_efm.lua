@@ -21,7 +21,11 @@ local lint = {
         lintCommand = 'vale --output line ${INPUT}',
         lintStdin = false,
         lintIgnoreExitCode = true,
-        lintFormats = { '%f:%l:%c:%*[^:]:%m' }
+        lintFormats = { '%f:%l:%c:%t%*[^:]:%m' },
+        lintCategoryMap = {
+            a = 'I', -- alex
+            p = 'W' -- proselint
+        }
     }
 }
 
