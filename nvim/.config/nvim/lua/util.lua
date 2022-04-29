@@ -4,13 +4,12 @@ local fn = vim.fn
 local exec = vim.api.nvim_exec
 
 function This.close_everything()
-    vim.api.nvim_command('pclose')
-    vim.api.nvim_command('cclose')
-    vim.api.nvim_command('NvimTreeClose')
-    vim.api.nvim_command(
-        'windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
-    vim.api
-        .nvim_command('windo if expand("%:t")=="java" && &ft=="" | q | endif')
+    vim.cmd('pclose')
+    vim.cmd('cclose')
+    vim.cmd('lclose')
+    vim.cmd('NvimTreeClose')
+    vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
+    vim.cmd('windo if expand("%:t")=="java" && &ft=="" | q | endif')
     require('dap').repl.close()
 end
 
