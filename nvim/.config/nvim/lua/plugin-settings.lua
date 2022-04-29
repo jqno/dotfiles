@@ -123,8 +123,12 @@ local function setup_telescope()
                 local tail = require('telescope.utils').path_tail(path)
                 return string.format(' %s · %s', tail, path)
             end
+        },
+        extensions = {
+            ['ui-select'] = { require('telescope.themes').get_dropdown() }
         }
     })
+    telescope.load_extension('ui-select')
     telescope.load_extension('fzy_native')
 end
 
