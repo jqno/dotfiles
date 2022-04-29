@@ -4,6 +4,9 @@ let g:metals_server_version = '0.10.2'
 
 call plug#begin(stdpath('data') . '/plugged')
 
+" Filetypes
+Plug 'hashivim/vim-terraform'
+
 " Improve editing
 Plug 'alvan/vim-closetag'
 Plug 'AndrewRadev/sideways.vim'
