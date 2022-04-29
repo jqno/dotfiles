@@ -1,160 +1,25 @@
 local This = {}
 
 local fn = vim.fn
-local icons = require('nvim-web-devicons')
-local theme = require('tranquility').colors()
+local tranquility = require('tranquility').colors()
 
--- HELPERS --
-local symbols = {
-    open = '',
-    close = '',
-    splitter = '│',
-    bottom = '⊥',
-    ok = '✔',
-    error = '✗',
-    warning = '◆',
-    information = 'i',
-    hint = 'H'
-}
-
-local colors = {
-    black = theme.black.light[1],
-    green = theme.green.light[1],
-    purple = theme.magenta.dark[1],
-    red = theme.red.light[1],
-    white = theme.white.light[1],
-    yellow = theme.yellow.light[1],
-    visual = theme.ui.light[1],
-    error = theme.error.light[1],
-    warning = theme.warning.light[1],
-    information = theme.hint.light[1],
-    hint = theme.hint.light[1]
-}
-
-local schemes = {
-    regular = { colors.black, colors.green },
-    regular_i = { colors.green, colors.black },
-    faded = { colors.black, colors.white },
-    faded_i = { colors.white, colors.black },
-    diag_ok = { colors.black, colors.green, 'bold' },
-    diag_error = { colors.black, colors.error, 'bold' },
-    diag_warning = { colors.black, colors.warning, 'bold' },
-    diag_information = { colors.black, colors.information },
-    diag_hint = { colors.black, colors.hint }
-}
-
-local separators = {
-    open = function()
-        return symbols.open
-    end,
-    close = function()
-        return symbols.close
-    end
-}
-
-local function space()
-    return ' '
+local function invert_colors()
+    local statusline_fg = tranquility.ui.light[1]
+    local statusline_bg = tranquility.white.light[1]
+    local statuslinenc_fg = tranquility.white.dark[1]
+    local statuslinenc_bg = tranquility.black.light[1]
+    vim.cmd('highlight StatusLine guifg=' .. statuslinenc_fg .. ' guibg=' .. statuslinenc_bg)
+    vim.cmd('highlight StatusLineNC guifg=' .. statusline_fg .. ' guibg=' .. statusline_bg)
 end
 
-local function is_prose()
-    return vim.bo.filetype == 'markdown'
-end
-
-local function highlight(group, fg, bg, gui)
-    local cmd = 'highlight ' .. group
-    if fg ~= nil then
-        cmd = cmd .. ' guifg=' .. fg
-    end
-    if bg ~= nil then
-        cmd = cmd .. ' guibg=' .. bg
-    end
-    if gui ~= nil then
-        cmd = cmd .. ' gui=' .. gui
-    end
-    vim.cmd(cmd)
-end
-
--- VIMODE --
-local function vimode_color()
-    local mode_colors = {
-        N = colors.green,
-        I = colors.white,
-        V = colors.visual,
-        [''] = colors.visual,
-        T = colors.yellow,
-        C = colors.purple
-    }
-    local c = mode_colors[fn.mode():upper():sub(1, 1)]
-    if c then
-        return c
-    end
-    return colors.red
-end
-
-local function vimode()
-    local c = vimode_color()
-    highlight('GalaxyViMode', schemes.regular[1], c)
-    highlight('GalaxyViModeOpen', c, schemes.regular_i[2])
-    highlight('GalaxyViModeClose', c, schemes.regular_i[2])
-
-    local mode = fn.mode():upper()
-    if mode == '' then
-        return 'V'
-    elseif mode == '' then
-        return '^S'
-    elseif mode == 'no' then
-        return 'no^V'
-    else
-        return mode
-    end
-end
-
--- FILENAME --
-local function filename_modification_raw()
-    local status = ''
+local function filestatus()
     if vim.bo.modifiable and vim.bo.modified then
-        status = status .. '+'
-    end
-    if not vim.bo.modifiable or vim.bo.readonly then
-        status = status .. '-'
-    end
-    return status
-end
-
-local function filename_modification()
-    local status = filename_modification_raw()
-
-    if status == '' then
-        highlight('GalaxyFileNameClose', schemes.regular_i[1],
-            schemes.regular_i[2])
+        return '+'
+    elseif not vim.bo.modifiable or vim.bo.readonly then
+        return '-'
     else
-        highlight('GalaxyFileNameClose', schemes.faded_i[1], schemes.faded_i[2])
-    end
-
-    if status == '' then
         return ''
     end
-    return '  ' .. status
-end
-
-local function filename()
-    local name = fn.expand('%:t')
-    if name == '' then
-        name = symbols.bottom
-    end
-    if filename_modification_raw() == '' then
-        return name
-    end
-    return name .. ' '
-end
-
--- LSP --
-local function lsp_metals_status()
-    local status = vim.g.metals_status
-    if vim.bo.filetype == 'scala' and status and status ~= '' then
-        return ' - ' .. status
-    end
-    return ''
 end
 
 local function lsp_status()
@@ -163,346 +28,176 @@ local function lsp_status()
     if connected then
         local status = ''
         for _, client in pairs(clients) do
-            status = status .. ' ' .. client.name
+            if status == '' then
+                status = status .. client.name
+            else
+                status = status .. ' ' .. client.name
+            end
         end
-        status = status .. lsp_metals_status()
+
+        local metals_status = vim.g.metals_status
+        if vim.bo.filetype == 'scala' and status and status ~= '' then
+            status = status .. ' - ' .. metals_status
+        end
+
         return status
     else
         return ''
     end
 end
 
-local function lsp_separator(sep)
-    if lsp_status() == '' then
-        return ''
-    end
-    return sep
+local function word_count()
+    return fn.wordcount().words .. ' words'
 end
 
--- DIAGNOSTICS --
-local function diags()
-    return {
-        error = vim.tbl_count(vim.diagnostic.get(0, {
-            severity = vim.diagnostic.severity.ERROR
-        })),
-        warning = vim.tbl_count(vim.diagnostic.get(0, {
-            severity = vim.diagnostic.severity.WARN
-        })),
-        information = vim.tbl_count(vim.diagnostic.get(0, {
-            severity = vim.diagnostic.severity.INFO
-        })),
-        hint = vim.tbl_count(vim.diagnostic.get(0, {
-            severity = vim.diagnostic.severity.HINT
-        }))
-    }
+local function is_prose()
+    return vim.bo.filetype == 'markdown'
 end
 
-local function diag_print_open()
-    local d = diags()
-    local scheme = schemes.diag_ok
-    if d.error > 0 then
-        scheme = schemes.diag_error
-    elseif d.warning > 0 then
-        scheme = schemes.diag_warning
-    elseif d.information > 0 then
-        scheme = schemes.diag_information
-    elseif d.hint > 0 then
-        scheme = schemes.diag_hint
-    end
-    highlight('GalaxyDiagnosticOpen', scheme[2], scheme[1])
-    return symbols.open
-end
-
-local function diag_print_close()
-    local d = diags()
-    local scheme = schemes.diag_ok
-    if d.hint > 0 then
-        scheme = schemes.diag_hint
-    elseif d.information > 0 then
-        scheme = schemes.diag_information
-    elseif d.warning > 0 then
-        scheme = schemes.diag_warning
-    elseif d.error > 0 then
-        scheme = schemes.diag_error
-    end
-    highlight('GalaxyDiagnosticClose', scheme[2], scheme[1])
-    return symbols.close
-end
-
-local function diag_print_ok()
-    local d = diags()
-    if d.error == 0 and d.warning == 0 and d.information == 0 and d.hint == 0 then
-        return symbols.ok
-    end
-    return ''
-end
-
-local function diag_print_error()
-    local d = diags()
-    if d.error == 0 then
-        return ''
-    end
-    local suffix = ''
-    if d.warning > 0 or d.information > 0 or d.hint > 0 then
-        suffix = ' '
-    end
-    return symbols.error .. d.error .. suffix
-end
-
-local function diag_print_warning()
-    local d = diags()
-    if d.warning == 0 then
-        return ''
-    end
-    local prefix = ''
-    if d.error > 0 then
-        prefix = '  '
-    end
-    local suffix = ''
-    if d.information > 0 or d.hint > 0 then
-        suffix = ' '
-    end
-    return prefix .. symbols.warning .. d.warning .. suffix
-end
-
-local function diag_print_information()
-    local d = diags()
-    if d.information == 0 then
-        return ''
-    end
-    local prefix = ''
-    if d.error > 0 or d.warning > 0 or d.hint > 0 then
-        prefix = '  '
-    end
-    return prefix .. symbols.information .. d.information
-end
-
-local function diag_print_hint()
-    local d = diags()
-    if d.hint == 0 then
-        return ''
-    end
-    local prefix = ''
-    if d.error > 0 or d.warning > 0 then
-        prefix = '  '
-    end
-    local suffix = ''
-    if d.information > 0 then
-        suffix = ' '
-    end
-    return prefix .. symbols.hint .. d.hint .. suffix
-end
-
--- FILE INFO --
-local function fileinfo_extra()
-    local ff = vim.bo.fileformat
-    if ff == '' then
-        ff = 'unknown'
-    elseif ff == 'unix' then
-        ff = ''
-    end
-
+local function file_encoding()
     local fe = vim.bo.fileencoding
     if fe == '' then
         fe = vim.o.encoding
     end
     if fe == '' then
-        fe = 'unknown'
+        return 'unknown'
     elseif fe == 'utf-8' then
-        fe = ''
-    end
-
-    if ff == '' and fe == '' then
-        highlight('GalaxyFileInfoClose', schemes.regular_i[1],
-            schemes.regular_i[2])
         return ''
-    elseif ff ~= '' and fe ~= '' then
-        highlight('GalaxyFileInfoClose', schemes.faded_i[1], schemes.faded_i[2])
-        return '  ' .. ff .. ' ' .. symbols.splitter .. ' ' .. fe
     else
-        highlight('GalaxyFileInfoClose', schemes.faded_i[1], schemes.faded_i[2])
-        return '  ' .. ff .. fe
+        return fe
     end
 end
 
-local function fileinfo_type()
-    local ft = vim.bo.filetype
-    if ft == '' then
-        ft = symbols.bottom
+local function search_result()
+    if vim.v.hlsearch == 0 then
+        return ''
+    end
+    local last_search = vim.fn.getreg('/')
+    if not last_search or last_search == '' then
+        return ''
+    end
+    local searchcount = vim.fn.searchcount { maxcount = 9999 }
+    return last_search .. '(' .. searchcount.current .. '/' .. searchcount.total .. ')'
+end
+
+local function position()
+    return fn.line('.') .. ':' .. fn.col('.')
+end
+
+local function qf_is_loclist()
+    return fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0
+end
+
+local function qf_label()
+    if qf_is_loclist() then
+        return 'Location List'
     else
-        local icon = icons.get_icon(fn.expand('%:t'), fn.expand('%:e'))
-        if icon then
-            ft = icon .. ' ' .. ft
-        end
+        return 'Quickfix List'
     end
-    if fileinfo_extra() ~= '' then
-        return ft .. ' '
+end
+
+local function qf_title()
+    if qf_is_loclist then
+        return vim.fn.getloclist(0, { title = 0 }).title
+    else
+        return vim.fn.getqflist({ title = 0 }).title
     end
-    return ft
 end
 
--- POSITION --
-local function position_current()
-    return fn.line('.') .. ':' .. (fn.col('.')) .. ' '
-end
-
-local function position_max()
-    return fn.line('$') .. ':' .. (fn.col('$') - 1)
-end
-
--- STATUSLINE --
-local function configure_highlights()
-    highlight('StatusLine', schemes.faded_i[1], schemes.faded_i[2])
-    highlight('StatusLineNC', schemes.faded_i[1], schemes.faded_i[2])
-end
-
-local function setup_statusline()
-    local gl = require('galaxyline')
-    local gls = gl.section
-
-    gl.short_line_list = { 'NvimTree', 'dap-repl' }
-
-    --- LEFT ---
-    gls.left = {
-        --- START ---
-        { StartSpace = { provider = space, highlight = schemes.regular_i } },
-
-        --- MODE ---
-        { ViModeOpen = { provider = separators.open } },
-        { ViMode = { provider = vimode } }, {
-            ViModeClose = {
-                provider = separators.close,
-                separator = ' ',
-                separator_highlight = schemes.faded_i
-            }
-        }, --- FILENAME ---
-        {
-            FileNameOpen = {
-                provider = separators.open,
-                highlight = schemes.regular_i
-            }
-        }, { FileName = { provider = filename, highlight = schemes.regular } }, {
-            FileNameModification = {
-                provider = filename_modification,
-                highlight = schemes.faded
-            }
-        }, { FileNameClose = { provider = separators.close } }
-    }
-
-    --- RIGHT ---
-    gls.right = {
-        --- LSP ---
-        {
-            LspOpen = {
-                provider = function()
-                    return lsp_separator(symbols.open)
-                end,
-                highlight = schemes.faded_i,
-                separator = '%<'
-            }
-        }, { LspShowClient = { provider = lsp_status, highlight = schemes.faded } },
-        {
-            LspClose = {
-                provider = function()
-                    return lsp_separator(symbols.close .. ' ')
-                end,
-                highlight = schemes.faded_i
-            }
-        }, --- DIAGNOSTICS ---
-        { DiagnosticOpen = { provider = diag_print_open } },
-        { DiagnosticOk = { provider = diag_print_ok, highlight = schemes.diag_ok } },
-        {
-            DiagnosticError = {
-                provider = diag_print_error,
-                highlight = schemes.diag_error
-            }
-        }, {
-            DiagnosticWarning = {
-                provider = diag_print_warning,
-                highlight = schemes.diag_warning
-            }
-        }, {
-            DiagnosticInformation = {
-                provider = diag_print_information,
-                highlight = schemes.diag_information
+local function build_statusline()
+    require('lualine').setup({
+        options = {
+            component_separators = '│',
+            section_separators = { left = '', right = '' },
+            globalstatus = true
+        },
+        sections = {
+            lualine_a = {
+                { 'mode',
+                    fmt = function(str) return str:sub(1, 1) end,
+                    padding = { left = 1, right = 1 },
+                    separator = { left = ' ' }
+                }
+            },
+            lualine_b = {
+                { 'filename',
+                    path = 1,
+                    file_status = false,
+                    shorting_target = 50,
+                    symbols = { unnamed = '⊥' },
+                    separator = ''
+                },
+                filestatus
+            },
+            lualine_c = {},
+            lualine_x = {
+                { 'diagnostics',
+                    sources = { 'nvim_diagnostic' },
+                    sections = { 'error', 'warn', 'hint' },
+                    separator = ''
+                },
+                lsp_status
+            },
+            lualine_y = {
+                { word_count,
+                    cond = is_prose
+                },
+                'filetype',
+                { '"⊥"',
+                    cond = function() return vim.bo.filetype == '' end
+                },
+                { 'fileformat',
+                    symbols = {
+                        unix = '', -- 
+                        dos = '',
+                        mac = ''
+                    }
+                },
+                file_encoding
+            },
+            lualine_z = {
+                search_result,
+                { position,
+                    separator = { right = ' ' }
+                }
             }
         },
-        {
-            DiagnosticHint = {
-                provider = diag_print_hint,
-                highlight = schemes.diag_hint
+        inactive_sections = {},
+        extensions = {
+            {
+                sections = {
+                    lualine_b = {
+                        function() return fn.fnamemodify(fn.getcwd(), ':~') end
+                    }
+                },
+                filetypes = { 'NvimTree' }
+            },
+            {
+                sections = {
+                    lualine_a = {
+                        { qf_label,
+                            separator = { left = ' ', right = '' }
+                        }
+                    },
+                    lualine_c = {
+                        qf_title
+                    },
+                    lualine_z = {
+                        { position,
+                            separator = { left = '', right = ' ' },
+                        }
+                    }
+                },
+                filetypes = { 'qf' }
             }
-        }, { DiagnosticClose = { provider = diag_print_close } },
-        { DiagnosticSpace = { provider = space, highlight = schemes.faded_i } },
-
-        --- WORD COUNT ---
-        {
-            WordCountOpen = {
-                provider = separators.open,
-                condition = is_prose,
-                highlight = schemes.faded_i
-            }
-        }, {
-            WordCount = {
-                provider = function()
-                    return fn.wordcount().words .. ' words'
-                end,
-                condition = is_prose,
-                highlight = schemes.faded
-            }
-        }, {
-            WordCountClose = {
-                provider = { separators.close, space },
-                condition = is_prose,
-                highlight = schemes.faded_i
-            }
-        }, --- FILE INFO ---
-        {
-            FileInfoOpen = {
-                provider = separators.open,
-                highlight = schemes.regular_i
-            }
-        },
-        { FileInfoType = { provider = fileinfo_type, highlight = schemes.regular } },
-        { FileInfoExtra = { provider = fileinfo_extra, highlight = schemes.faded } },
-        {
-            FileInfoClose = {
-                provider = { separators.close, space },
-                highlight = schemes.regular_i
-            }
-        }, --- POSITION ---
-        {
-            PositionOpen = {
-                provider = separators.open,
-                highlight = schemes.regular_i
-            }
-        },
-        {
-            PositionCurrent = {
-                provider = position_current,
-                highlight = schemes.regular
-            }
-        }, {
-            PositionMax = {
-                provider = position_max,
-                highlight = schemes.faded,
-                separator = ' ',
-                separator_highlight = schemes.faded
-            }
-        },
-        {
-            PositionClose = {
-                provider = separators.close,
-                highlight = schemes.faded_i
-            }
-        }, --- END ---
-        { EndSpace = { provider = space, highlight = schemes.regular_i } }
-    }
+        }
+    })
 end
 
 function This.setup()
-    configure_highlights()
-    setup_statusline()
+    vim.g.qf_disable_statusline = true
+    invert_colors()
+    build_statusline()
 end
 
 return This

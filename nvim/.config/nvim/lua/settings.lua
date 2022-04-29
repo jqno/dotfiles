@@ -9,7 +9,6 @@ function This.setup()
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
     vim.opt.linebreak = true
-    vim.opt.laststatus = 3
     vim.opt.listchars = {
         tab = '჻ ',
         trail = '·',
@@ -39,12 +38,12 @@ function This.setup()
 
     require('vim-util').augroup('HighlightOnYank', 'TextYankPost', '*',
         function()
-            vim.highlight.on_yank {
-                higroup = 'IncSearch',
-                timeout = 150,
-                on_visual = true
-            }
-        end)
+        vim.highlight.on_yank {
+            higroup = 'IncSearch',
+            timeout = 150,
+            on_visual = true
+        }
+    end)
 
     vim.diagnostic.config({ float = This.rounded_border })
 end
