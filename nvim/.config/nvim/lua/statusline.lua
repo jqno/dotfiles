@@ -1,16 +1,6 @@
 local This = {}
 
 local fn = vim.fn
-local tranquility = require('tranquility').colors()
-
-local function invert_colors()
-    local statusline_fg = tranquility.ui.light[1]
-    local statusline_bg = tranquility.white.light[1]
-    local statuslinenc_fg = tranquility.white.dark[1]
-    local statuslinenc_bg = tranquility.black.light[1]
-    vim.cmd('highlight StatusLine guifg=' .. statuslinenc_fg .. ' guibg=' .. statuslinenc_bg)
-    vim.cmd('highlight StatusLineNC guifg=' .. statusline_fg .. ' guibg=' .. statusline_bg)
-end
 
 local function filestatus()
     if vim.bo.modifiable and vim.bo.modified then
@@ -196,7 +186,6 @@ end
 
 function This.setup()
     vim.g.qf_disable_statusline = true
-    invert_colors()
     build_statusline()
 end
 
