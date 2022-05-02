@@ -27,6 +27,9 @@ end
 
 local function setup_gitsigns()
     require('gitsigns').setup {
+        preview_config = {
+            border = 'rounded'
+        },
         keymaps = {
             noremap = true,
             buffer = true,
