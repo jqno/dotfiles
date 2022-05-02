@@ -19,10 +19,68 @@ function This.dap_run_test_nearest()
     jdtls.test_nearest_method()
 end
 
+local function on_attach(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+
+    require('jdtls.setup').add_commands()
+    require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+    require('jdtls.dap').setup_dap_main_class_configs()
+    require('mappings').setup_dap(bufnr)
+
+    local modes = require('mappings').modes
+
+    wk({
+        ['<leader>d'] = {
+            r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
+            t = {
+                '<cmd>lua require("filetypes.java").dap_run_test()<CR>',
+                'test file'
+            },
+            n = {
+                '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>',
+                'test nearest'
+            }
+        },
+        ['<leader>r'] = {
+            R = {
+                '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>',
+                'menu'
+            },
+            o = {
+                '<cmd>lua require("jdtls").organize_imports()<CR>',
+                'organize imports'
+            },
+            v = {
+                '<cmd>lua require("jdtls").extract_variable()<CR>',
+                'extract variable'
+            }
+        },
+        ['<leader>m'] = {
+            r = {
+                '<cmd>lua require("jdtls").update_project_config()<CR>',
+                'reload'
+            }
+        }
+    }, { buffer = bufnr })
+
+    wk({
+        ['<leader>r'] = {
+            m = {
+                '<cmd>lua require("jdtls").extract_method(true)<CR>',
+                'extract method'
+            },
+            v = {
+                '<cmd>lua require("jdtls").extract_variable(true)<CR>',
+                'extract variable'
+            }
+        }
+    }, { buffer = bufnr, mode = modes.v })
+end
+
 function This.jdtls_config()
     local jdtls_bundles = {
         vim.fn.glob(
-            "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+        "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
     }
     vim.list_extend(jdtls_bundles, vim.split(
         vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
@@ -36,63 +94,22 @@ function This.jdtls_config()
         init_options = { bundles = jdtls_bundles },
         root_dir = require('jdtls.setup').find_root({ '.git' }), -- always assume a git project; this works better with multimodule projects
         capabilities = require('lsp').cmp_capabilities,
-        on_attach = function(client, bufnr)
-            require('lsp').on_attach(client, bufnr)
-
-            require('jdtls.setup').add_commands()
-            require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-            require('jdtls.dap').setup_dap_main_class_configs()
-            require('mappings').setup_dap(bufnr)
-
-            local modes = require('mappings').modes
-
-            wk({
-                ['<leader>d'] = {
-                    r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
-                    t = {
-                        '<cmd>lua require("filetypes.java").dap_run_test()<CR>',
-                        'test file'
-                    },
-                    n = {
-                        '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>',
-                        'test nearest'
-                    }
-                },
-                ['<leader>r'] = {
-                    R = {
-                        '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>',
-                        'menu'
-                    },
-                    o = {
-                        '<cmd>lua require("jdtls").organize_imports()<CR>',
-                        'organize imports'
-                    },
-                    v = {
-                        '<cmd>lua require("jdtls").extract_variable()<CR>',
-                        'extract variable'
-                    }
-                },
-                ['<leader>m'] = {
-                    r = {
-                        '<cmd>lua require("jdtls").update_project_config()<CR>',
-                        'reload'
+        settings = {
+            java = {
+                format = { enabled = false },
+                signatureHelp = { enabled = true },
+                completion = {
+                    favoriteStaticMembers = {
+                        "org.junit.jupiter.api.Assertions.*",
+                        "java.util.Objects.requireNonNull",
+                        "java.util.Objects.requireNonNullElse",
+                        "org.mockito.Mockito.*",
+                        "io.restassured.RestAssured.*"
                     }
                 }
-            }, { buffer = bufnr })
-
-            wk({
-                ['<leader>r'] = {
-                    m = {
-                        '<cmd>lua require("jdtls").extract_method(true)<CR>',
-                        'extract method'
-                    },
-                    v = {
-                        '<cmd>lua require("jdtls").extract_variable(true)<CR>',
-                        'extract variable'
-                    }
-                }
-            }, { buffer = bufnr, mode = modes.v })
-        end
+            }
+        },
+        on_attach = on_attach
     }
 end
 

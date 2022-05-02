@@ -55,9 +55,7 @@ local function setup_gitsigns()
 end
 
 local function setup_lsp_format()
-    require('lsp-format').setup({
-        java = { exclude = { 'jdt.ls' } }
-    })
+    require('lsp-format').setup()
 end
 
 local function setup_luasnip()
