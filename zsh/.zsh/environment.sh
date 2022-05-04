@@ -21,6 +21,8 @@ export GPG_TTY=$(tty)
 
 # Make sure UTF-8 is used in Vim
 export LC_ALL="en_US.UTF-8"
+# Help Nix find the locale info
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
 # FZF configuration
 export FZF_DEFAULT_COMMAND='ag -g ""'

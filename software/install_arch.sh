@@ -22,6 +22,11 @@ function install_npm() {
 }
 
 
+# Nix
+curl -L https://nixos.org/nix/install | sh
+. ~/.nix-profile/etc/profile.d/nix.sh
+
+
 # Package managers
 install_aur coursier
 install_pacman npm

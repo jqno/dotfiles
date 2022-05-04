@@ -24,6 +24,9 @@ alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "
 alias pr='gh pr create'
 alias github='gh browse'
 
+# Nix
+alias ns=nix-shell
+
 # Java
 alias setjdk='. setjdk.sh'
 alias mvn='mvnd -C'
