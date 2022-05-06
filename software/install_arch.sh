@@ -76,7 +76,6 @@ install_pacman tldr
 install_pacman ulauncher
 install_pacman universal-ctags
 install_aur xplugd-git
-install_aur zsh-theme-powerlevel10k-git
 
 # Applications
 install_pacman bitwarden
