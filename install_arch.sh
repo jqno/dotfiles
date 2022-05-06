@@ -11,6 +11,7 @@ fi
 
 $PWD/clean.sh
 stow abcde
+stow bash
 stow ctags
 stow git
 stow ideavim

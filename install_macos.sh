@@ -5,6 +5,7 @@ PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 $PWD/software/install.sh macos
 
 $PWD/clean.sh
+stow bash
 stow ctags
 stow git
 stow hammerspoon
