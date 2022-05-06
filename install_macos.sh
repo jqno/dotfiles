@@ -15,6 +15,7 @@ stow nvim
 stow python
 stow scripts
 stow sdkman
+stow starship
 stow tig
 stow vim
 stow yabai

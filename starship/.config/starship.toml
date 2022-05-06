@@ -1,0 +1,98 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[╭─](fg:#dedede)\
+$directory${custom.setenv}\
+[](fg:#dedede bg:#70b433)\
+$git_branch$git_state$git_status$git_commit\
+[](fg:#70b433 bg:#368aeb)\
+$java$nix_shell\
+[](fg:#368aeb bg:#3b3b3b)\
+$cmd_duration$status$jobs\
+[](fg:#3b3b3b)\
+${custom.git_mail}
+[╰─](fg:#dedede)\
+$character
+"""
+
+# ---
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+style = 'fg:#252525 bg:#dedede'
+truncate_to_repo = false
+
+[custom.setenv]
+format = '[ $output]($style)'
+style = 'fg:#252525 bg:#dedede'
+command = """X=$(cat ~/.env/marker) && ([[ "$X" == "$SETENV_MARKER" ]] && echo $X || echo $X$SETENV_MARKER)"""
+when = true
+description = 'setEnv marker'
+
+# ---
+
+[git_branch]
+format = '[ $branch(:$remote_branch)]($style)'
+style = 'fg:#252525 bg:#70b433'
+
+[git_status]
+format = '[ $all_status$ahead_behind]($style)'
+style = 'fg:#dedede bg:#70b433 bold'
+ahead = '↑$count'
+behind = '↓$count'
+conflicted = '!!$count'
+deleted = 'X$count'
+diverged = '↓${behind_count}↑${ahead_count}'
+modified = '🞉$count'
+renamed = '»$count'
+stashed = 'Σ$count'
+staged = '+$count'
+untracked = '?$count'
+
+[git_state]
+format = '[ $state($progress_current/$progress_total)]($style)'
+style = 'fg:#dedede bg:#70b433'
+
+[git_commit]
+format = '[\($hash$tag\)]($style)'
+style = 'fg:#252525 bg:#70b433'
+
+[custom.git_mail]
+format = '[ !!! NO EMAIL SET !!! ]($style)'
+style = 'fg:#ed4a46'
+command = ''
+when = """[[ -n "$(git status -sb 2> /dev/null)" ]] && [[ -z "$(git config user.email 2> /dev/null)" ]]"""
+description = 'Whether the current Git repo has an email address set'
+
+# ---
+
+[java]
+format = '[ ${symbol}$version]($style)'
+style = 'fg:#252525 bg:#368aeb'
+
+[nix_shell]
+format = '[ $symbol$name]($style)'
+style = 'fg:#252525 bg:#368aeb'
+
+# ---
+
+[cmd_duration]
+format = '[ $duration]($style)'
+style = 'fg:#dedede bg:#3b3b3b'
+
+[status]
+format = '[ $symbol$status]($style)'
+style = 'fg:#ed4a46 bg:#3b3b3b'
+disabled = false
+
+[jobs]
+format = '[ $symbol$number]($style)'
+symbol = 'λ'
+style = 'fg:#dedede bg:#3b3b3b'
+
+# ---
+
+[character]
+success_symbol = '[\)](fg:#dedede bold)'
+error_symbol = '[\)](fg:#dedede bold)'
+vicmd_symbol = '[V](fg:#dedede bold)'
