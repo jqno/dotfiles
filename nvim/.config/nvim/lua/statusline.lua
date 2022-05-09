@@ -2,6 +2,19 @@ local This = {}
 
 local fn = vim.fn
 
+local function custom_theme()
+    local theme = require('lualine.themes.auto')
+    local black = '#252525'
+    theme.normal.a.fg = black
+    theme.normal.a.gui = nil
+    theme.normal.b.fg = black
+    theme.insert.b.fg = black
+    theme.replace.b.fg = black
+    theme.command.b.fg = black
+    theme.visual.b.fg = black
+    return theme
+end
+
 local function filestatus()
     if vim.bo.modifiable and vim.bo.modified then
         return '+'
@@ -97,6 +110,7 @@ end
 local function build_statusline()
     require('lualine').setup({
         options = {
+            theme = custom_theme(),
             component_separators = '│',
             section_separators = { left = '', right = '' },
             globalstatus = true
