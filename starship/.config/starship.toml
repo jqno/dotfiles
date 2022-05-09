@@ -1,8 +1,10 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭─](fg:#dedede)\
-$directory${custom.setenv}\
+[╭─](fg:#777777)\
+${custom.setenv}\
+[](fg:#dedede bg:#777777)\
+$directory\
 [](fg:#dedede bg:#70b433)\
 $git_branch$git_state$git_status$git_commit\
 [](fg:#70b433 bg:#368aeb)\
@@ -11,23 +13,23 @@ $java$nix_shell\
 $cmd_duration$status$jobs\
 [](fg:#3b3b3b)\
 ${custom.git_mail}
-[╰─](fg:#dedede)\
+[╰─](fg:#777777)\
 $character
 """
 
 # ---
 
+[custom.setenv]
+format = '[$output]($style)'
+style = 'fg:#252525 bg:#777777'
+command = """X=$(cat ~/.env/marker) && ([[ "$X" == "$SETENV_MARKER" ]] && echo $X || echo $X$SETENV_MARKER)"""
+when = true
+description = 'setEnv marker'
+
 [directory]
 format = '[$path]($style)[$read_only]($read_only_style)'
 style = 'fg:#252525 bg:#dedede'
 truncate_to_repo = false
-
-[custom.setenv]
-format = '[ $output]($style)'
-style = 'fg:#252525 bg:#dedede'
-command = """X=$(cat ~/.env/marker) && ([[ "$X" == "$SETENV_MARKER" ]] && echo $X || echo $X$SETENV_MARKER)"""
-when = true
-description = 'setEnv marker'
 
 # ---
 
