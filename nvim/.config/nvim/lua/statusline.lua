@@ -108,6 +108,9 @@ local function qf_title()
 end
 
 local function build_statusline()
+    local leftpad = { left = 1, right = 0 }
+    local rightpad = { left = 0, right = 1 }
+    local nopad = { left = 0, right = 0 }
     require('lualine').setup({
         options = {
             theme = custom_theme(),
@@ -119,7 +122,7 @@ local function build_statusline()
             lualine_a = {
                 { 'mode',
                     fmt = function(str) return str:sub(1, 1) end,
-                    padding = { left = 1, right = 1 },
+                    padding = rightpad,
                     separator = { left = ' ' }
                 }
             },
@@ -129,9 +132,12 @@ local function build_statusline()
                     file_status = false,
                     shorting_target = 50,
                     symbols = { unnamed = '⊥' },
+                    padding = leftpad,
                     separator = ''
                 },
-                filestatus
+                { filestatus,
+                    padding = leftpad,
+                }
             },
             lualine_c = {},
             lualine_x = {
@@ -140,15 +146,18 @@ local function build_statusline()
                     sections = { 'error', 'warn', 'hint' },
                     separator = ''
                 },
-                lsp_status
-            },
-            lualine_y = {
+                lsp_status,
                 { word_count,
                     cond = is_prose
+                }
+            },
+            lualine_y = {
+                { 'filetype',
+                    padding = rightpad
                 },
-                'filetype',
                 { '"⊥"',
-                    cond = function() return vim.bo.filetype == '' end
+                    cond = function() return vim.bo.filetype == '' end,
+                    padding = rightpad
                 },
                 { 'fileformat',
                     symbols = {
@@ -162,6 +171,7 @@ local function build_statusline()
             lualine_z = {
                 search_result,
                 { position,
+                    padding = leftpad,
                     separator = { right = ' ' }
                 }
             }
@@ -171,7 +181,9 @@ local function build_statusline()
             {
                 sections = {
                     lualine_b = {
-                        function() return fn.fnamemodify(fn.getcwd(), ':~') end
+                        { function() return fn.fnamemodify(fn.getcwd(), ':~') end,
+                            padding = leftpad
+                        }
                     }
                 },
                 filetypes = { 'NvimTree' }
@@ -180,6 +192,7 @@ local function build_statusline()
                 sections = {
                     lualine_a = {
                         { qf_label,
+                            padding = nopad,
                             separator = { left = ' ', right = '' }
                         }
                     },
@@ -188,6 +201,7 @@ local function build_statusline()
                     },
                     lualine_z = {
                         { position,
+                            padding = nopad,
                             separator = { left = '', right = ' ' },
                         }
                     }
