@@ -25,6 +25,12 @@ local function setup_floaterm()
     g.floaterm_borderchars = '─│─│╭╮╯╰'
 end
 
+local function setup_gitconflict()
+    require('git-conflict').setup({
+        default_mappings = false
+    })
+end
+
 local function setup_gitsigns()
     require('gitsigns').setup {
         preview_config = {
@@ -207,6 +213,7 @@ function This.setup()
     setup_colorizer()
     setup_eunuch()
     setup_floaterm()
+    setup_gitconflict()
     setup_gitsigns()
     setup_lsp_format()
     setup_luasnip()

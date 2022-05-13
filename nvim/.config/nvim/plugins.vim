@@ -8,6 +8,7 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'hashivim/vim-terraform'
 
 " Improve editing
+Plug 'akinsho/git-conflict.nvim'
 Plug 'alvan/vim-closetag'
 Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/tagalong.vim'
