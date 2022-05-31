@@ -1,0 +1,21 @@
+# Install software here
+cask_args appdir: '/Applications'
+
+# Taps
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+
+# GUI apps
+cask "alfred"
+cask "firefox"
+cask "google-chrome"
+cask "hammerspoon"
+cask "karabiner-elements"
+cask "kitty"
+cask "macpass"
+
+# Fonts
+cask "font-comic-neue"
+cask "font-fira-code-nerd-font"
+cask "font-fontawesome"
+cask "font-open-sans"

@@ -5,15 +5,7 @@ PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 ln -s $PWD/zsh/.zsh/environment.sh ~/.zprofile
 
 # Make zsh the default shell
-LOCATION=""
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  LOCATION="/usr/local/bin/zsh"
-elif [[ "$(uname -s)" == "Linux" ]]; then
-  LOCATION="/usr/bin/zsh"
-else
-  echo "Don't know the location of zsh on this system: $(uname -s)"
-  exit 1
-fi
+LOCATION="$(which zsh)"
 
 echo "** Changing shell to:"
 echo $LOCATION | sudo tee -a /etc/shells

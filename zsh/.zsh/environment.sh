@@ -3,14 +3,7 @@
 # PATH
 if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   ZSH_ENV_LOADED=1
-  
-  if [[ "$(uname -s)" == "Darwin" ]]; then
-    GEMDIR=`gem env gemdir`/bin
-    export PATH=~/Library/Application\ Support/Coursier/bin:~/Library/Python/3.7/bin:/usr/local/opt/ruby/bin:$GEMDIR:$PATH
-  elif [[ "$(uname -s)" == "Linux" ]]; then
-    export PATH=~/.local/bin:~/.npm-global/bin:~/.local/share/coursier/bin:~/.local/share/gem/ruby/3.0.0/bin:$PATH
-  fi
-  export PATH=/usr/local/sbin:/sbin:~/bin:~/scripts:~/.env/scripts:~/.npm-global:~/.cargo/bin:$PATH
+  export PATH=~/bin:~/scripts:~/.env/scripts:$PATH
 fi
 
 # Default editor
@@ -33,5 +26,7 @@ export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 export ANSIBLE_NOCOWS=1
 
 # Add all private keys to keychain
-eval `find ~/.ssh/id_* -type f ! -name "*.*" | xargs -I {} keychain --eval {} 2> /dev/null`
+if [[ -d "$HOME/.ssh" ]]; then
+  eval "$(find ~/.ssh/id_* -type f ! -name "*.*" | xargs -I {} keychain --eval {} 2> /dev/null)"
+fi
 

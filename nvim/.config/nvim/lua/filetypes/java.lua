@@ -80,7 +80,7 @@ end
 function This.jdtls_config()
     local jdtls_bundles = {
         vim.fn.glob(
-        "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+            "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
     }
     vim.list_extend(jdtls_bundles, vim.split(
         vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
