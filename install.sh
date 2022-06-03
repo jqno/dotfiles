@@ -40,7 +40,6 @@ stow scripts
 stow sdkman
 stow starship
 stow tig
-stow ulauncher
 stow zsh
 
 
