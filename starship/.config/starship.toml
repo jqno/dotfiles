@@ -27,7 +27,7 @@ when = true
 description = 'setEnv marker'
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style)'
+format = '[$path]($style)[$read_only]($style)'
 style = 'fg:#252525 bg:#dedede'
 truncate_to_repo = false
 
