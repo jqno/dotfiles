@@ -28,3 +28,13 @@ sudo dnf --assumeyes install unifont-fonts
 sudo dnf --assumeyes copr enable capucho/bismuth 
 sudo dnf --assumeyes install bismuth
 sudo dnf --assumeyes install kvantum
+
+
+# krunner-symbols
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+pushd "$SCRIPT_DIR" > /dev/null
+
+curl https://raw.githubusercontent.com/domschrei/krunner-symbols/master/install.sh | bash
+stow --target "$HOME" krunner-symbols
+
+popd > /dev/null
