@@ -34,11 +34,6 @@ alias mvn-orig=/sbin/mvn
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
-# setEnv
-alias session='source ~/.env/session.sh'
-alias work='. setEnv.sh work'
-alias home='. setEnv.sh home'
-
 # mcd
 function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"

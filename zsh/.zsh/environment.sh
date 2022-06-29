@@ -3,7 +3,7 @@
 # PATH
 if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   ZSH_ENV_LOADED=1
-  export PATH=~/bin:~/scripts:~/.env/scripts:$PATH
+  export PATH=~/bin:~/scripts:$PATH
 fi
 
 # Default editor

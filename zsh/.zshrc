@@ -14,9 +14,6 @@ source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/vim-terminal-mode.sh
 source ~/.zsh/ssh.sh
-if [[ -f "$HOME/.env/session.sh" ]]; then
-  source ~/.env/session.sh
-fi
 
 # Zsh plugins
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh

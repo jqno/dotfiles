@@ -1,9 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭─](fg:#777777)\
-${custom.setenv}\
-[](fg:#dedede bg:#777777)\
+[╭─](fg:#777777)\
+[](fg:#dedede)\
 $directory\
 [](fg:#dedede bg:#70b433)\
 $git_branch$git_state$git_status$git_commit\
@@ -18,13 +17,6 @@ $character
 """
 
 # ---
-
-[custom.setenv]
-format = '[$output]($style)'
-style = 'fg:#252525 bg:#777777'
-command = """X=$(cat ~/.env/marker) && ([[ "$X" == "$SETENV_MARKER" ]] && echo $X || echo $X$SETENV_MARKER)"""
-when = true
-description = 'setEnv marker'
 
 [directory]
 format = '[$path]($style)[$read_only]($style)'
