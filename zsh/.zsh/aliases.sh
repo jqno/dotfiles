@@ -8,8 +8,8 @@ alias cat='bat -pp'
 alias df=duf
 alias du=dust
 alias ls='exa --icons'
+alias man-orig="$(which man)"
 alias man=tldr
-alias man-orig=/sbin/man
 alias tree='exa --icons --tree'
 
 # Vim
@@ -29,8 +29,8 @@ alias ns=nix-shell
 
 # Java
 alias setjdk='. setjdk.sh'
+alias mvn-orig="$(which mvn)"
 alias mvn='mvnd -C'
-alias mvn-orig=/sbin/mvn
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 

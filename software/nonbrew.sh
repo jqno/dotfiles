@@ -2,4 +2,5 @@
 
 npm install -g prettier prettier-plugin-java
 
+pip3 install requests
 pip3 install python-lsp-server
