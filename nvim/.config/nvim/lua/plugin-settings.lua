@@ -93,14 +93,6 @@ local function setup_nvim_tree()
     g.nvim_tree_group_empty = 1
     g.nvim_tree_show_icons = { git = 0, folders = 1 }
     g.nvim_tree_quit_on_open = 1
-
-    vim.api.nvim_create_augroup('close_tree_if_last_window', { clear = true })
-    vim.api.nvim_create_autocmd('BufEnter', {
-        group = 'close_tree_if_last_window',
-        pattern = '*',
-        nested = true,
-        callback = function() vim.cmd("if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif") end
-    })
 end
 
 local function setup_sandwich()
