@@ -1,3 +1,6 @@
+# OS-specific
+[[ -e /etc/zshrc ]] && source /etc/zshrc
+
 # Homebrew
 if [ -x "$(command -v brew)" ]; then
   eval "$(brew shellenv)"

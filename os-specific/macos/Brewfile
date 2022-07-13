@@ -19,3 +19,6 @@ cask "font-comic-neue"
 cask "font-fira-code-nerd-font"
 cask "font-fontawesome"
 cask "font-open-sans"
+
+# Stuff that needs to be installed natively on Linux
+brew "zsh"

@@ -20,6 +20,7 @@ install_pacman libxcrypt-compat
 install_pacman tlp
 install_pacman tlp-rdw
 install_pacman wmctrl
+install_pacman zsh
 
 install_pacman noto-fonts-emoji
 install_aur ttf-code2000
