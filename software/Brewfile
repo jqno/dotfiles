@@ -9,8 +9,6 @@ brew "svn"
 # Software to install
 brew "abcde"
 brew "bat"
-brew "docker"
-brew "docker-compose"
 brew "dust"
 brew "duf"
 brew "exa"

@@ -15,6 +15,8 @@ function install_aur() {
 
 install_pacman kitty
 
+install_pacman docker
+install_pacman docker-compose
 install_pacman gvfs-smb
 install_pacman libxcrypt-compat
 install_pacman tlp
