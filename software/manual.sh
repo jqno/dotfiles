@@ -28,14 +28,9 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
 # JDT.LS
-echo "*** Installing jdt.ls"
+echo "*** Installing Lombok for jdt.ls"
 mkdir "$BIN/jdtls"
-pushd "$BIN/jdtls" > /dev/null
-curl -L -o jdtls.tar.gz http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz
-tar xf jdtls.tar.gz
-rm jdtls.tar.gz
-curl -L -o lombok.jar https://projectlombok.org/downloads/lombok.jar
-popd > /dev/null
+curl -L -o "$BIN/jdtls/lombok.jar" https://projectlombok.org/downloads/lombok.jar
 
 
 # Java-debug
