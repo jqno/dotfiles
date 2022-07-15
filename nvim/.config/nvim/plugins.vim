@@ -39,6 +39,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/playground', { 'on': 'TSHighlightCapturesUnderCursor' }
 
 " Improve UX
+Plug 'embear/vim-localvimrc'
 Plug 'folke/which-key.nvim'
 Plug 'folke/zen-mode.nvim'
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
