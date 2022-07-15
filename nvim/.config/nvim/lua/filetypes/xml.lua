@@ -14,7 +14,7 @@ This.lsp_config = {
 }
 
 function This.setup()
-    util.set_buf_indent(4)
+    util.set_buf_indent(4, false)
 end
 
 return This

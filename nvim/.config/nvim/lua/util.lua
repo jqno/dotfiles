@@ -13,25 +13,13 @@ function This.close_everything()
     require('dap').repl.close()
 end
 
-function This.set_buf_indent(indent, show)
-    if indent == nil then
-        -- tab
-        vim.bo.expandtab = false
-        vim.bo.shiftwidth = 8
-        vim.bo.softtabstop = 8
-        vim.bo.tabstop = 8
-        if show then
-            print('Indentation level: tab')
-        end
-    else
-        -- spaces
-        vim.bo.expandtab = true
-        vim.bo.shiftwidth = indent
-        vim.bo.softtabstop = indent
-        vim.bo.tabstop = indent
-        if show then
-            print('Indentation level: ' .. indent)
-        end
+function This.set_buf_indent(indent, tab, show)
+    vim.bo.expandtab = not tab
+    vim.bo.shiftwidth = indent
+    vim.bo.softtabstop = indent
+    vim.bo.tabstop = indent
+    if show then
+        print('Indentation level: ' .. indent .. '; with tabs: ' .. tostring(tab))
     end
 end
 

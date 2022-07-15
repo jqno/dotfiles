@@ -153,19 +153,19 @@ local function define_mappings()
         ['<leader>t'] = {
             name = 'toggles',
             ['2'] = {
-                '<cmd>lua require("util").set_buf_indent(2, true)<CR>',
+                '<cmd>lua require("util").set_buf_indent(2, false, true)<CR>',
                 'indent 2'
             },
             ['4'] = {
-                '<cmd>lua require("util").set_buf_indent(4, true)<CR>',
+                '<cmd>lua require("util").set_buf_indent(4, false, true)<CR>',
                 'indent 4'
             },
             ['8'] = {
-                '<cmd>lua require("util").set_buf_indent(8, true)<CR>',
+                '<cmd>lua require("util").set_buf_indent(8, false, true)<CR>',
                 'indent 8'
             },
             ['<tab>'] = {
-                '<cmd>lua require("util").set_buf_indent(nil, true)<CR>',
+                '<cmd>lua require("util").set_buf_indent(4, true, true)<CR>',
                 'indent tab'
             },
             l = { '<cmd>set list! list?<CR>', 'list' },

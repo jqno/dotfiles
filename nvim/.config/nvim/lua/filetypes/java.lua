@@ -6,7 +6,7 @@ local jdtls = require('jdtls')
 local util = require('util')
 
 function This.setup()
-    util.set_buf_indent(4)
+    util.set_buf_indent(4, false)
 end
 
 function This.dap_run_test()
