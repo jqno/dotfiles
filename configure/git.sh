@@ -5,7 +5,7 @@
 
 git config --global user.name "Jan Ouwens"
 git config --global color.ui true
-git config --global push.default simple
+git config --global push.autoSetupRemote true
 git config --global pull.rebase true
 git config --global remote.origin.prune true
 git config --global commit.verbose true
