@@ -12,6 +12,7 @@ local function custom_theme()
     theme.replace.b.fg = black
     theme.command.b.fg = black
     theme.visual.b.fg = black
+    theme.inactive = { b = { bg = '#777777' } }
     return theme
 end
 
@@ -107,76 +108,82 @@ local function qf_title()
     end
 end
 
+local leftpad = { left = 1, right = 0 }
+local rightpad = { left = 0, right = 1 }
+local nopad = { left = 0, right = 0 }
+
+local sections = {
+    mode = { 'mode',
+        fmt = function(str) return str:sub(1, 1) end,
+        padding = rightpad,
+        separator = { left = ' ' }
+    },
+    filename = { 'filename',
+        path = 1,
+        file_status = false,
+        shorting_target = 50,
+        symbols = { unnamed = '⊥' },
+        padding = leftpad,
+        separator = ''
+    },
+    filestatus = { filestatus,
+        padding = leftpad,
+    },
+    diagnostics = { 'diagnostics',
+        sources = { 'nvim_diagnostic' },
+        sections = { 'error', 'warn', 'hint' },
+        separator = ''
+    },
+    lsp_status = lsp_status,
+    word_count = { word_count,
+        cond = is_prose
+    },
+    filetype = { 'filetype',
+        padding = rightpad
+    },
+    no_filetype = { '"⊥"',
+        cond = function() return vim.bo.filetype == '' end,
+        padding = rightpad
+    },
+    fileformat = { 'fileformat',
+        symbols = {
+            unix = '', -- 
+            dos = '',
+            mac = ''
+        }
+    },
+    file_encoding = { file_encoding },
+    search_result = { search_result },
+    position = { position,
+        padding = leftpad,
+        separator = { right = ' ' }
+    }
+}
+
 local function build_statusline()
-    local leftpad = { left = 1, right = 0 }
-    local rightpad = { left = 0, right = 1 }
-    local nopad = { left = 0, right = 0 }
     require('lualine').setup({
         options = {
             theme = custom_theme(),
             component_separators = '│',
             section_separators = { left = '', right = '' },
-            globalstatus = true
+            globalstatus = false
         },
         sections = {
-            lualine_a = {
-                { 'mode',
-                    fmt = function(str) return str:sub(1, 1) end,
-                    padding = rightpad,
-                    separator = { left = ' ' }
-                }
-            },
-            lualine_b = {
-                { 'filename',
-                    path = 1,
-                    file_status = false,
-                    shorting_target = 50,
-                    symbols = { unnamed = '⊥' },
-                    padding = leftpad,
-                    separator = ''
-                },
-                { filestatus,
-                    padding = leftpad,
-                }
-            },
+            lualine_a = { sections.mode },
+            lualine_b = { sections.filename, sections.filestatus },
             lualine_c = {},
-            lualine_x = {
-                { 'diagnostics',
-                    sources = { 'nvim_diagnostic' },
-                    sections = { 'error', 'warn', 'hint' },
-                    separator = ''
-                },
-                lsp_status,
-                { word_count,
-                    cond = is_prose
-                }
-            },
-            lualine_y = {
-                { 'filetype',
-                    padding = rightpad
-                },
-                { '"⊥"',
-                    cond = function() return vim.bo.filetype == '' end,
-                    padding = rightpad
-                },
-                { 'fileformat',
-                    symbols = {
-                        unix = '', -- 
-                        dos = '',
-                        mac = ''
-                    }
-                },
-                file_encoding
-            },
-            lualine_z = {
-                search_result,
-                { position,
-                    padding = leftpad,
-                    separator = { right = ' ' }
-                }
-            }
+            lualine_x = { sections.diagnostics, sections.lsp_status, sections.word_count },
+            lualine_y = { sections.filetype, sections.no_filetype, sections.fileformat, sections.file_encoding },
+            lualine_z = { sections.search_result, sections.position }
         },
-        inactive_sections = {},
+        inactive_sections = {
+            lualine_a = { sections.mode },
+            lualine_b = { sections.filename, sections.filestatus },
+            lualine_c = {},
+            lualine_x = {},
+            lualine_y = {},
+            lualine_z = {}
+        },
         extensions = {
             {
                 sections = {
@@ -212,9 +219,15 @@ local function build_statusline()
     })
 end
 
+local function tweak_highlights()
+    local hl_statusline = vim.api.nvim_get_hl_by_name("StatusLine", true)
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = hl_statusline.background })
+end
+
 function This.setup()
     vim.g.qf_disable_statusline = true
     build_statusline()
+    tweak_highlights()
 end
 
 return This
