@@ -188,8 +188,9 @@ local function build_statusline()
             {
                 sections = {
                     lualine_b = {
-                        { function() return fn.fnamemodify(fn.getcwd(), ':~') end,
-                            padding = leftpad
+                        { '"files"',
+                            padding = nopad,
+                            separator = { left = ' ', right = '' }
                         }
                     }
                 },
@@ -197,7 +198,7 @@ local function build_statusline()
             },
             {
                 sections = {
-                    lualine_a = {
+                    lualine_b = {
                         { qf_label,
                             padding = nopad,
                             separator = { left = ' ', right = '' }
