@@ -133,7 +133,6 @@ local function setup_telescope()
         }
     })
     telescope.load_extension('ui-select')
-    telescope.load_extension('fzy_native')
 end
 
 local function setup_treesitter()
