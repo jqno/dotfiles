@@ -9,7 +9,7 @@ function This.close_everything()
     vim.cmd('lclose')
     vim.cmd('NvimTreeClose')
     vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
-    vim.cmd('windo if expand("%:t")=="java" && &ft=="" | q | endif')
+    vim.cmd('windo if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
     require('dap').repl.close()
 end
 
