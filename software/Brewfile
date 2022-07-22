@@ -7,7 +7,6 @@ brew "python@3.10"
 brew "svn"
 
 # Software to install
-brew "abcde"
 brew "bat"
 brew "dust"
 brew "duf"
@@ -51,3 +50,8 @@ brew "lua-language-server"
 brew "markdownlint-cli"
 brew "shellcheck"
 brew "vale"
+
+# CD ripper
+brew "abcde"
+brew "cdparanoia"
+brew "cd-discid"
