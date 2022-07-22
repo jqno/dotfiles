@@ -71,7 +71,8 @@ local function define_mappings()
     map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]]
+        ,
         { expr = true })
     map(This.modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
@@ -119,35 +120,6 @@ local function define_mappings()
             -- defined elsewhere
             ['<C-D>'] = 'scroll down',
             ['<C-U>'] = 'scroll up'
-        },
-        -- HARPOON --
-        ['<leader><leader>'] = {
-            name = 'quick actions',
-            ['<CR>'] = {
-                '<cmd>echo "Added to mark list"<CR><bar><cmd>lua require("harpoon.mark").add_file()<CR>',
-                'add file to harpoon list'
-            },
-            ['<leader>'] = {
-                '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
-                'open harpoon quick menu'
-            },
-            ['1'] = {
-                '<cmd>lua require("harpoon.ui").nav_file(1)<CR>',
-                'navigate to harpoon file 1'
-            },
-            ['2'] = {
-                '<cmd>lua require("harpoon.ui").nav_file(2)<CR>',
-                'navigate to harpoon file 2'
-            },
-            ['3'] = {
-                '<cmd>lua require("harpoon.ui").nav_file(3)<CR>',
-                'navigate to harpoon file 3'
-            },
-            ['4'] = {
-                '<cmd>lua require("harpoon.ui").nav_file(4)<CR>',
-                'navigate to harpoon file 4'
-            },
-            ['x'] = { '<cmd>ToggleCheckbox<CR>', 'toggle checkbox' }
         },
         -- TOGGLES --
         ['<leader>t'] = {
@@ -197,7 +169,8 @@ local function define_mappings()
                 '<cmd>lua require("util").show_full_path()<CR>',
                 'show full path',
                 silent = true
-            }
+            },
+            x = { '<cmd>ToggleCheckbox<CR>', 'toggle checkbox', silent = true }
         },
         -- FINDING --
         ['<leader>f'] = {
