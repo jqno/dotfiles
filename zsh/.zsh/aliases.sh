@@ -29,8 +29,6 @@ alias ns=nix-shell
 
 # Java
 alias setjdk='. setjdk.sh'
-alias mvn-orig="$(which mvn)"
-alias mvn='mvnd -C'
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
