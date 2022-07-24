@@ -1,16 +1,24 @@
 #!/usr/bin/env sh
 
 apt upgrade
-pkg install clang \
+pkg install bat \
+    clang \
+    ctags \
     exa \
     fd \
     fzf \
+    keychain \
     lua-language-server \
     man \
+    maven \
     neovim \
+    nodejs \
+    openjdk-17 \
+    restic \
     ripgrep \
     starship \
     stow \
+    tig \
     vale \
     zsh \
     zsh-completions
