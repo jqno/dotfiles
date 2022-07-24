@@ -52,31 +52,6 @@ npm run build-plugin
 popd > /dev/null
 
 
-# Lemminx XML lanugage server
-echo "*** Installing Lemminx"
-pushd "$BIN" > /dev/null
-LEMMINX_VERSION="0.19.2-677"
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  LEMMINX_FILE="lemminx-osx-x86_64"
-  LEMMINX_FROM="$LEMMINX_FILE"
-  LEMMINX_TO="lemminx"
-elif [[ "$(uname -s)" == "Linux" ]]; then
-  LEMMINX_FILE="lemminx-linux"
-  LEMMINX_FROM="$LEMMINX_FILE"
-  LEMMINX_TO="lemminx"
-else
-  LEMMINX_FILE="lemminx-win32"
-  LEMMINX_FROM="${LEMMINX_FILE}.exe"
-  LEMMINX_TO="lemminx.exe"
-fi
-LEMMINX_LOCATION="https://download.jboss.org/jbosstools/vscode/snapshots/lemminx-binary/${LEMMINX_VERSION}/${LEMMINX_FILE}.zip"
-curl -L -o lemminx.zip "$LEMMINX_LOCATION"
-unzip lemminx.zip
-mv "$LEMMINX_FROM" "$LEMMINX_TO"
-rm "${LEMMINX_FILE}.zip"
-popd > /dev/null
-
-
 # Vale Alex and Proselint styles
 echo "*** Installing some styles for Vale linter"
 rm -rf ~/.vale

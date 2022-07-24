@@ -60,6 +60,7 @@ Plug 'mfussenegger/nvim-jdtls'
 Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'scalameta/nvim-metals'
+Plug 'williamboman/nvim-lsp-installer'
 
 " Configure wiki
 Plug 'lervag/wiki.vim'

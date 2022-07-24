@@ -6,6 +6,14 @@ local efm = require('lsp_efm')
 local vim_util = require('vim-util')
 local rounded_border = require('settings').rounded_border
 
+local function setup_lsp_installer()
+    require('nvim-lsp-installer').setup({
+        ui = {
+            border = "rounded"
+        }
+    })
+end
+
 local function enhance_handler(name, original, enhancement)
     vim.lsp.handlers[name] = vim.lsp.with(original, enhancement)
 end
@@ -60,7 +68,6 @@ local function setup_lsp()
     }
 
     lsp.sumneko_lua.setup {
-        cmd = { 'lua-language-server' },
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
         settings = require('filetypes.lua').lsp_config
@@ -86,6 +93,7 @@ local function setup_lsp()
 end
 
 function This.setup()
+    setup_lsp_installer()
     setup_lsp()
 end
 

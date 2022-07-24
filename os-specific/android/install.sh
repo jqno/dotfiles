@@ -8,7 +8,6 @@ pkg install bat \
     fd \
     fzf \
     keychain \
-    lua-language-server \
     man \
     maven \
     neovim \

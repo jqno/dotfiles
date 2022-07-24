@@ -1,7 +1,7 @@
 #!/bin/bash
 
-WORKSPACE=$1
-BIN=$HOME/bin/jdtls
-LOMBOK=$BIN/lombok.jar
+BIN_LOCATION=$1
+LOMBOK_LOCATION="$2/lombok.jar"
+WORKSPACE=$3
 
-jdtls --jvm-arg=-javaagent:"$LOMBOK" --jvm-arg=-Xbootclasspath/a:"$LOMBOK" -data "$WORKSPACE"
+"$BIN_LOCATION/jdtls" --jvm-arg=-javaagent:"$LOMBOK_LOCATION" --jvm-arg=-Xbootclasspath/a:"$LOMBOK_LOCATION" -data "$WORKSPACE"

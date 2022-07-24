@@ -19,7 +19,6 @@ brew "gh"
 brew "git-delta"
 brew "gnupg"
 brew "hexyl"
-brew "jdtls"
 brew "jq"
 brew "keychain"
 brew "lame"
@@ -41,10 +40,8 @@ brew "zsh-syntax-highlighting"
 tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"]
 
-# LSP and linters
-brew "efm-langserver"
+# Linters
 brew "flake8"
-brew "lua-language-server"
 brew "markdownlint-cli"
 brew "shellcheck"
 brew "vale"

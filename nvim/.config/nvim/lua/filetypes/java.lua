@@ -78,6 +78,7 @@ local function on_attach(client, bufnr)
 end
 
 function This.jdtls_config()
+    local location = vim.fn.stdpath('data') .. '/lsp_servers/jdtls'
     local jdtls_bundles = {
         vim.fn.glob(
             "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
@@ -88,6 +89,8 @@ function This.jdtls_config()
     return {
         cmd = {
             'jdtls.sh',
+            location .. '/bin',
+            location,
             vim.env.HOME .. '/.jdtls/' ..
                 vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
@@ -96,6 +99,7 @@ function This.jdtls_config()
         capabilities = require('lsp').cmp_capabilities,
         settings = {
             java = {
+                use_lombok_agent = true,
                 format = { enabled = false },
                 signatureHelp = { enabled = true },
                 completion = {
