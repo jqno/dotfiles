@@ -8,7 +8,7 @@ alias cat='bat -pp'
 alias df=duf
 alias du=dust
 alias ls='exa --icons'
-alias man-orig="$(which man)"
+alias MAN="$(which man)"
 alias man=tldr
 alias tree='exa --icons --tree'
 
