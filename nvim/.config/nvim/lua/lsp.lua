@@ -37,11 +37,12 @@ function This.on_attach(client, bufnr)
     clean_diagnostics()
 
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_create_augroup('lsp_attach', { clear = true })
+        vim.api.nvim_create_augroup('lsp_attach', { clear = false })
+        vim.api.nvim_clear_autocmds({ buffer = bufnr, group = 'lsp_attach' })
         vim.api.nvim_create_autocmd('CursorHold',
-            { group = 'lsp_attach', pattern = '<buffer>', callback = vim.lsp.buf.document_highlight })
+            { group = 'lsp_attach', buffer = bufnr, callback = vim.lsp.buf.document_highlight })
         vim.api.nvim_create_autocmd('CursorMoved',
-            { group = 'lsp_attach', pattern = '<buffer>', callback = vim.lsp.buf.clear_references })
+            { group = 'lsp_attach', buffer = bufnr, callback = vim.lsp.buf.clear_references })
     end
 end
 
