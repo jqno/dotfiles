@@ -77,6 +77,15 @@ local function on_attach(client, bufnr)
     }, { buffer = bufnr, mode = modes.v })
 end
 
+local function find_project_root()
+    if vim.g.jdtls_project_root ~= nil then
+        return vim.g.jdtls_project_root
+    end
+
+    -- always assume a git project; this works better with multimodule projects
+    return require('jdtls.setup').find_root({ '.git' })
+end
+
 function This.jdtls_config()
     local location = vim.fn.stdpath('data') .. '/lsp_servers/jdtls'
     local jdtls_bundles = {
@@ -95,7 +104,7 @@ function This.jdtls_config()
                 vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
         init_options = { bundles = jdtls_bundles },
-        root_dir = require('jdtls.setup').find_root({ '.git' }), -- always assume a git project; this works better with multimodule projects
+        root_dir = find_project_root(),
         capabilities = require('lsp').cmp_capabilities,
         settings = {
             java = {
