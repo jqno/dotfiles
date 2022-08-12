@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-apt upgrade
-pkg install bat \
+yes | pkg upgrade
+yes | pkg install bat \
     clang \
     ctags \
     exa \
