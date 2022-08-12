@@ -1,4 +1,9 @@
 {
+  "checkstyle": {
+    "prefix": "checkstyle",
+    "body": ["// CHECKSTYLE OFF: $0", ""],
+    "description": "Checkstyle suppression"
+  },
   "comment": {
     "prefix": "comment",
     "body": ["/*", " * $1", " */", "$0"],
