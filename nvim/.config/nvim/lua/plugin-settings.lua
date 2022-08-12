@@ -65,11 +65,12 @@ end
 
 local function setup_lsp_format()
     require('lsp-format').setup()
+    vim.api.nvim_command('FormatDisable')
 end
 
 local function setup_localvimrc()
     g.localvimrc_sandbox = 0
-    g.localvimrc_whitelist = { vim.env.HOME .. '/w/omnimap' }
+    g.localvimrc_whitelist = { vim.env.HOME .. '/w' }
 end
 
 local function setup_luasnip()

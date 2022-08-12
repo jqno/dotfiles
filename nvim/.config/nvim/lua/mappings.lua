@@ -293,7 +293,7 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     if client.resolved_capabilities.document_formatting then
         wk({
             ['<leader>m'] = {
-                f = { '<cmd>Format<CR>', 'format' }
+                f = { '<cmd>lua require("util").force_format()<CR>', 'format' }
             }
         }, { buffer = bufnr })
     end

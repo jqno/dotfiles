@@ -4,6 +4,7 @@
 node_modules
 
 # Vim
+.lvimrc
 tags
 tags.lock
 tags.temp
