@@ -3,6 +3,15 @@ local This = {}
 local g = vim.g
 local vim_util = require('vim-util')
 
+local function setup_autosave()
+    require('auto-save').setup({
+        execution_message = {
+            dim = 0.4,
+            cleaning_interval = 1000
+        }
+    })
+end
+
 local function setup_bullets()
     g.bullets_outline_levels = { 'std-' }
     g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'asciidoc' }
@@ -205,6 +214,7 @@ local function setup_wildfire()
 end
 
 function This.setup()
+    setup_autosave()
     setup_bullets()
     setup_closetag()
     setup_colorizer()
