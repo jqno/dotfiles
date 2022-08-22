@@ -3,6 +3,12 @@ local This = {}
 local g = vim.g
 local vim_util = require('vim-util')
 
+local function setup_autolist()
+    require('autolist').setup({
+        invert_mapping = ''
+    })
+end
+
 local function setup_autosave()
     require('auto-save').setup({
         execution_message = {
@@ -214,6 +220,7 @@ local function setup_wildfire()
 end
 
 function This.setup()
+    setup_autolist()
     setup_autosave()
     setup_bullets()
     setup_closetag()
