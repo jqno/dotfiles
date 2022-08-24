@@ -99,9 +99,6 @@ local function setup_luasnip()
         ext_opts = {
             [types.choiceNode] = {
                 active = { virt_text = { { '●', 'GitSignsChange' } } }
-            },
-            [types.insertNode] = {
-                active = { virt_text = { { '●', 'GitSignsAdd' } } }
             }
         }
     })
