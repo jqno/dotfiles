@@ -85,7 +85,12 @@ local function search_result()
 end
 
 local function position()
-    return fn.line('.') .. ':' .. fn.col('.')
+    local progress = { '🡡', '🡥', '🡢', '🡦', '🡣', '_' }
+    local line = fn.line('.')
+    local col = fn.col('.')
+    local total = fn.line('$')
+    local idx = math.floor(line / total * (#progress - 1))
+    return line .. ':' .. col .. ' ' .. progress[idx + 1]
 end
 
 local function qf_is_loclist()
