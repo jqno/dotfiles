@@ -25,7 +25,6 @@ local function clean_diagnostics()
 end
 
 function This.on_attach(client, bufnr)
-    require('lsp-format').on_attach(client, bufnr)
     require('mappings').setup_lsp(client, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -47,7 +46,6 @@ function This.on_attach(client, bufnr)
 end
 
 local function on_attach_efm(client, bufnr)
-    require('lsp-format').on_attach(client, bufnr)
     require('mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
     clean_diagnostics()
 end

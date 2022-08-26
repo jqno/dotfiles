@@ -78,11 +78,6 @@ local function setup_gitsigns()
     }
 end
 
-local function setup_lsp_format()
-    require('lsp-format').setup()
-    vim.api.nvim_command('FormatDisable')
-end
-
 local function setup_localvimrc()
     g.localvimrc_sandbox = 0
     g.localvimrc_whitelist = { vim.env.HOME .. '/w' }
@@ -226,7 +221,6 @@ function This.setup()
     setup_floaterm()
     setup_gitconflict()
     setup_gitsigns()
-    setup_lsp_format()
     setup_localvimrc()
     setup_luasnip()
     setup_nvim_tree()

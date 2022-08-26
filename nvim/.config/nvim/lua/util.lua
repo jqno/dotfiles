@@ -36,14 +36,6 @@ function This.show_full_path()
     exec('echo "Full path: [" .. expand("%") .. "]"', false)
 end
 
-function This.force_format()
-    local f = require('lsp-format')
-    local tmp = f.disabled
-    f.disabled = false
-    exec('Format', false)
-    f.disabled = tmp
-end
-
 function This.toggle_nvimtree()
     local tree = require('nvim-tree')
     local view = require('nvim-tree.view')
