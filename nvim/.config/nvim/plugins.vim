@@ -25,7 +25,7 @@ Plug 'tpope/vim-endwise'
 Plug 'farmergreg/vim-lastplace'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'tpope/vim-fugitive'
 
