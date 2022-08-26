@@ -27,6 +27,8 @@ local function on_attach(client, bufnr)
     require('jdtls.dap').setup_dap_main_class_configs()
     require('mappings').setup_dap(bufnr)
 
+    client.resolved_capabilities.document_formatting = false
+
     local modes = require('mappings').modes
 
     wk({
