@@ -99,6 +99,16 @@ local function setup_luasnip()
     })
 end
 
+local function setup_marks()
+    require('marks').setup({
+        -- See mappings.lua
+        default_mappings = false,
+        bookmark_0 = {
+            sign = '●'
+        }
+    })
+end
+
 local function setup_nvim_tree()
     require('nvim-tree').setup { update_focused_file = { enable = true } }
 
@@ -223,6 +233,7 @@ function This.setup()
     setup_gitsigns()
     setup_localvimrc()
     setup_luasnip()
+    setup_marks()
     setup_nvim_tree()
     setup_sandwich()
     setup_telescope()

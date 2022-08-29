@@ -22,6 +22,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 
 " Improve navigation
+Plug 'chentoast/marks.nvim'
 Plug 'farmergreg/vim-lastplace'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ludovicchabant/vim-gutentags'

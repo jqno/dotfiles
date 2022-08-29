@@ -97,6 +97,7 @@ local function define_mappings()
         ['['] = {
             name = 'previous',
             ['['] = 'function',
+            ['<leader>'] = { '<Plug>(Marks-prev-bookmark0)', 'bookmark', noremap = false },
             b = { '<cmd>bprevious<CR>', 'buffer' },
             g = 'git hunk',
             q = { '<cmd>cprevious<CR>', 'quickfix' },
@@ -105,6 +106,7 @@ local function define_mappings()
         [']'] = {
             name = 'next',
             [']'] = 'function',
+            ['<leader>'] = { '<Plug>(Marks-next-bookmark0)', 'bookmark', noremap = false },
             b = { '<cmd>bnext<CR>', 'buffer' },
             g = 'git hunk',
             Q = { '<cmd>clast<CR>', 'quickfix last' },
@@ -120,6 +122,15 @@ local function define_mappings()
             -- defined elsewhere
             ['<C-D>'] = 'scroll down',
             ['<C-U>'] = 'scroll up'
+        },
+        -- BOOKMARKS --
+        ['<leader><leader>'] = {
+            name = 'bookmarks',
+            ['<leader>'] = { '<Plug>(Marks-set-bookmark0)', 'set bookmark', noremap = false },
+            ['<cr>'] = { '<cmd>BookmarksQFList 0<CR>', 'show all', noremap = false },
+            a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate', noremap = false },
+            x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
+            X = { '<Plug>(Marks-delete-bookmark0)', 'delete all bookmarks', noremap = false }
         },
         -- TOGGLES --
         ['<leader>t'] = {
