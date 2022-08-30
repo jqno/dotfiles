@@ -6,10 +6,18 @@ local efm = require('lsp_efm')
 local vim_util = require('vim-util')
 local rounded_border = require('settings').rounded_border
 
-local function setup_lsp_installer()
-    require('nvim-lsp-installer').setup({
+local function setup_mason()
+    require('mason').setup({
         ui = {
             border = "rounded"
+        }
+    })
+end
+
+local function setup_mason_lspconfig()
+    require('mason-lspconfig').setup({
+        ensure_installed = {
+            "efm", "jdtls", "lemminx", "pylsp", "sumneko_lua"
         }
     })
 end
@@ -92,7 +100,8 @@ local function setup_lsp()
 end
 
 function This.setup()
-    setup_lsp_installer()
+    setup_mason()
+    setup_mason_lspconfig()
     setup_lsp()
 end
 

@@ -89,7 +89,7 @@ local function find_project_root()
 end
 
 function This.jdtls_config()
-    local location = vim.fn.stdpath('data') .. '/lsp_servers/jdtls'
+    local location = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
     local jdtls_bundles = {
         vim.fn.glob(
             "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
