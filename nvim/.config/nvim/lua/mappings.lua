@@ -294,7 +294,7 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
         -- SHOWING THINGS --
         ['<leader>s'] = {
             d = {
-                '<cmd>lua vim.diagnostic.open_float(nil, {source="always"})<CR>',
+                '<cmd>lua vim.diagnostic.open_float()<CR>',
                 'diagnostics'
             }
         }

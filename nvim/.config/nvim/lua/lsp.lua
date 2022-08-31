@@ -4,13 +4,10 @@ local lsp = require('lspconfig')
 local lsputil = require('lspconfig.util')
 local efm = require('lsp_efm')
 local vim_util = require('vim-util')
-local rounded_border = require('settings').rounded_border
 
 local function setup_mason()
     require('mason').setup({
-        ui = {
-            border = "rounded"
-        }
+        ui = { border = 'rounded' }
     })
     require('mason-lspconfig').setup()
 end
@@ -19,22 +16,14 @@ local function enhance_handler(name, original, enhancement)
     vim.lsp.handlers[name] = vim.lsp.with(original, enhancement)
 end
 
-local function clean_diagnostics()
-    enhance_handler('textDocument/publishDiagnostics',
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        { virtual_text = false, underline = true, signs = true })
-end
-
 function This.on_attach(client, bufnr)
     require('mappings').setup_lsp(client, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    enhance_handler('textDocument/hover', vim.lsp.handlers.hover, rounded_border)
+    enhance_handler('textDocument/hover', vim.lsp.handlers.hover, { border = 'rounded' })
     enhance_handler('textDocument/signatureHelp',
-        vim.lsp.handlers.signature_help, rounded_border)
-
-    clean_diagnostics()
+        vim.lsp.handlers.signature_help, { border = 'rounded' })
 
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_create_augroup('lsp_attach', { clear = false })
@@ -48,7 +37,6 @@ end
 
 local function on_attach_efm(client, bufnr)
     require('mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
-    clean_diagnostics()
 end
 
 This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

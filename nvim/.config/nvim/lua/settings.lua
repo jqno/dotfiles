@@ -1,7 +1,5 @@
 local This = {}
 
-This.rounded_border = { border = 'rounded' }
-
 local default_indent = 2
 
 function This.setup()
@@ -47,7 +45,15 @@ function This.setup()
             }
         end)
 
-    vim.diagnostic.config({ float = This.rounded_border })
+    vim.diagnostic.config({
+        virtual_text = false,
+        underline = true,
+        signs = true,
+        float = {
+            border = 'rounded',
+            source = true
+        }
+    })
 end
 
 return This
