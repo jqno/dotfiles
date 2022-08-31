@@ -115,11 +115,19 @@ function This.jdtls_config()
                 signatureHelp = { enabled = true },
                 completion = {
                     favoriteStaticMembers = {
-                        "org.junit.jupiter.api.Assertions.*",
+                        "io.restassured.RestAssured.*",
                         "java.util.Objects.requireNonNull",
                         "java.util.Objects.requireNonNullElse",
-                        "org.mockito.Mockito.*",
-                        "io.restassured.RestAssured.*"
+                        "org.hamcrest.CoreMatchers.*",
+                        "org.hamcrest.Matchers.*",
+                        "org.junit.jupiter.api.Assertions.*",
+                        "org.mockito.Mockito.*"
+                    },
+                    filteredTypes = {
+                        "com.sun.*",
+                        "java.awt.*",
+                        "jdk.*",
+                        "sun.*"
                     }
                 }
             }
