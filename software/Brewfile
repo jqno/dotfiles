@@ -40,12 +40,6 @@ brew "zsh-syntax-highlighting"
 tap "universal-ctags/universal-ctags"
 brew "universal-ctags", args: ["HEAD"]
 
-# Linters
-brew "flake8"
-brew "markdownlint-cli"
-brew "shellcheck"
-brew "vale"
-
 # CD ripper
 brew "abcde"
 brew "cdparanoia"

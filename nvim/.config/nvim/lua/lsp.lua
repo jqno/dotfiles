@@ -12,14 +12,7 @@ local function setup_mason()
             border = "rounded"
         }
     })
-end
-
-local function setup_mason_lspconfig()
-    require('mason-lspconfig').setup({
-        ensure_installed = {
-            "efm", "jdtls", "lemminx", "pylsp", "sumneko_lua"
-        }
-    })
+    require('mason-lspconfig').setup()
 end
 
 local function enhance_handler(name, original, enhancement)
@@ -62,16 +55,16 @@ This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.prot
 
 local function setup_lsp()
 
-    lsp.pylsp.setup {
-        on_attach = This.on_attach,
-        capabilities = This.cmp_capabilities,
-        settings = require('filetypes.python').lsp_config
-    }
-
     lsp.lemminx.setup {
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
         settings = require('filetypes.xml').lsp_config
+    }
+
+    lsp.pylsp.setup {
+        on_attach = This.on_attach,
+        capabilities = This.cmp_capabilities,
+        settings = require('filetypes.python').lsp_config
     }
 
     lsp.sumneko_lua.setup {
@@ -101,7 +94,6 @@ end
 
 function This.setup()
     setup_mason()
-    setup_mason_lspconfig()
     setup_lsp()
 end
 
