@@ -4,6 +4,7 @@ function This.setup()
     require('mason-tool-installer').setup({
         ensure_installed = {
             -- LSP
+            'bash-language-server',
             'efm',
             'jdtls',
             'lemminx',

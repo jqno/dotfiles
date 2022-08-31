@@ -1,6 +1,6 @@
 local This = {}
 
-This.filetypes = { 'asciidoc', 'java', 'markdown', 'sh' }
+This.filetypes = { 'asciidoc', 'java', 'markdown' }
 
 local lint = {
     markdownlint = {
@@ -8,14 +8,6 @@ local lint = {
         lintStdin = true,
         lintIgnoreExitCode = true,
         lintFormats = { '%f:%l:%c %m', '%f:%l %m', '%f: %l: %m' }
-    },
-    shellcheck = {
-        lintCommand = 'shellcheck -f gcc -x',
-        lintSource = 'shellcheck',
-        lintFormats = {
-            '%f:%l:%c: %trror: %m', '%f:%l:%c: %tarning: %m',
-            '%f:%l:%c: %tote: %m'
-        }
     },
     vale = {
         lintCommand = 'vale --output line ${INPUT}',
@@ -40,8 +32,7 @@ This.settings = {
     languages = {
         asciidoc = { lint.vale },
         java = { format.prettier },
-        markdown = { lint.markdownlint, lint.vale, format.prettier },
-        sh = { lint.shellcheck }
+        markdown = { lint.markdownlint, lint.vale, format.prettier }
     }
 }
 

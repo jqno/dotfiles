@@ -55,6 +55,11 @@ This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.prot
 
 local function setup_lsp()
 
+    lsp.bashls.setup {
+        on_attach = This.on_attach,
+        capabilities = This.cmp_capabilities
+    }
+
     lsp.lemminx.setup {
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
