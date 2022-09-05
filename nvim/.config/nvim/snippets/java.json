@@ -26,7 +26,7 @@
   },
   "test": {
     "prefix": "test",
-    "body": ["@Test", "${1|,public |}void $2() {", "\t$0", "}"],
+    "body": ["@Test", "${1|void,public void|} $2() {", "\t$0", "}"],
     "description": "JUnit test case"
   },
   "package": {
