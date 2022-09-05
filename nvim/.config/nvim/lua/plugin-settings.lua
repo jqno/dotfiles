@@ -162,7 +162,10 @@ local function setup_treesitter()
         },
         highlight = {
             enable = true,
-            disable = { 'lua' } -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
+            disable = {
+                'lua', -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
+                'markdown' -- because the syntax highlighting isn't very good
+            }
         },
         incremental_selection = {
             enable = true,
