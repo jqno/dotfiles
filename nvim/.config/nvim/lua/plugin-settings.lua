@@ -110,12 +110,27 @@ local function setup_marks()
 end
 
 local function setup_nvim_tree()
-    require('nvim-tree').setup { update_focused_file = { enable = true } }
-
-    g.nvim_tree_gitignore = 0
-    g.nvim_tree_group_empty = 1
-    g.nvim_tree_show_icons = { git = 0, folders = 1 }
-    g.nvim_tree_quit_on_open = 1
+    require('nvim-tree').setup { 
+        update_focused_file = {
+            enable = true
+        },
+        renderer = {
+            group_empty = true,
+            icons = {
+                show = {
+                    git = false
+                }
+            }
+        },
+        actions = {
+            open_file = {
+                quit_on_open = true
+            }
+        },
+        git = {
+            ignore = false
+        }
+    }
 end
 
 local function setup_sandwich()
