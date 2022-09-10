@@ -34,7 +34,7 @@ function This.toggle_movement(firstOp, thenOp)
 end
 
 function This.show_full_path()
-    exec('echo "Full path: [" .. expand("%") .. "]"', false)
+    print('Full path: [' .. fn.expand('%') .. ']')
 end
 
 function This.toggle_nvimtree()
