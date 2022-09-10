@@ -252,7 +252,11 @@ local function define_mappings()
         }
     })
 
-    map(This.modes.t, '<C-\\><Esc>', '<C-\\><C-N>')
+    map(This.modes.t, '<S-Esc>', '<C-\\><C-N>')
+    map(This.modes.t, '<C-H>', '<C-\\><C-N><C-W>h')
+    map(This.modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
+    map(This.modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
+    map(This.modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
     wk({
         -- TERMINAL --
         ['<c-\\>'] = {

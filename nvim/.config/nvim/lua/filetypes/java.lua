@@ -61,7 +61,23 @@ local function on_attach(client, bufnr)
             r = {
                 '<cmd>lua require("jdtls").update_project_config()<CR>',
                 'reload'
-            }
+            },
+            cc = {
+                '<cmd>lua require("util").floatermsend("mvn clean test-compile")<CR>',
+                'mvn clean compile'
+            },
+            cv = {
+                '<cmd>lua require("util").floatermsend("mvn clean verify")<CR>',
+                'mvn clean verify'
+            },
+            p = {
+                '<cmd>lua require("util").floatermsend("mvn clean package -DskipTests=true")<CR>',
+                'mvn package (no tests)'
+            },
+            v = {
+                '<cmd>lua require("util").floatermsend("mvn verify")<CR>',
+                'mvn verify'
+            },
         }
     }, { buffer = bufnr })
 

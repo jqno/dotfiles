@@ -37,6 +37,8 @@ end
 
 local function setup_floaterm()
     g.floaterm_title = 'Terminal'
+    g.floaterm_wintype = 'vsplit'
+    g.floaterm_width = 0.4
     g.floaterm_borderchars = '─│─│╭╮╯╰'
 end
 
@@ -110,7 +112,7 @@ local function setup_marks()
 end
 
 local function setup_nvim_tree()
-    require('nvim-tree').setup { 
+    require('nvim-tree').setup {
         update_focused_file = {
             enable = true
         },
@@ -206,7 +208,6 @@ end
 
 local function setup_vimtest()
     g['test#strategy'] = 'floaterm'
-    g['test#java#maventest#executable'] = 'mvnd'
 end
 
 local function setup_whichkey()

@@ -10,6 +10,7 @@ function This.close_everything()
     vim.cmd('NvimTreeClose')
     vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
     vim.cmd('windo if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
+    vim.cmd('FloatermHide')
     require('dap').repl.close()
 end
 
@@ -46,6 +47,14 @@ function This.toggle_nvimtree()
     else
         tree.open('.')
     end
+end
+
+function This.floatermsend(cmd)
+    if fn['floaterm#buflist#curr']() == -1 then
+        vim.cmd('FloatermNew --silent')
+    end
+    vim.cmd('FloatermShow')
+    vim.cmd('FloatermSend ' .. cmd)
 end
 
 function This.linkify()
