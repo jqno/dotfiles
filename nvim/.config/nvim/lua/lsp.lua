@@ -1,8 +1,6 @@
 local This = {}
 
 local lsp = require('lspconfig')
-local lsputil = require('lspconfig.util')
-local efm = require('lsp_efm')
 local vim_util = require('vim-util')
 
 local function setup_mason()
@@ -35,10 +33,6 @@ function This.on_attach(client, bufnr)
     end
 end
 
-local function on_attach_efm(client, bufnr)
-    require('mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
-end
-
 This.cmp_capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local function setup_lsp()
@@ -64,17 +58,6 @@ local function setup_lsp()
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
         settings = require('filetypes.lua').lsp_config
-    }
-
-    lsp.efm.setup {
-        filetypes = efm.filetypes,
-        root_dir = function(fname)
-            return lsputil.find_git_ancestor(fname) or lsputil.root_pattern('.')(fname)
-        end,
-        on_attach = on_attach_efm,
-        capabilities = This.cmp_capabilities,
-        init_options = { documentFormatting = true },
-        settings = efm.settings
     }
 
     vim_util.augroup('lsp_define_java', 'FileType', 'java', function()

@@ -5,7 +5,6 @@ function This.setup()
         ensure_installed = {
             -- LSP
             'bash-language-server',
-            'efm',
             'jdtls',
             'lemminx',
             'lua-language-server',
