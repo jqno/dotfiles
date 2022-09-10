@@ -68,9 +68,34 @@ local function setup_lsp()
     end)
 end
 
+local function setup_nullls()
+    local nullls = require('null-ls')
+    nullls.setup({
+        sources = {
+            nullls.builtins.formatting.prettier.with({
+                filetypes = { 'java', 'markdown' }
+            }),
+            nullls.builtins.diagnostics.markdownlint.with({
+                diagnostics_postprocess = function(diagnostic)
+                    diagnostic.severity = vim.diagnostic.severity["INFO"]
+                end
+            }),
+            nullls.builtins.diagnostics.vale.with({
+                diagnostics_postprocess = function(diagnostic)
+                    diagnostic.severity = vim.diagnostic.severity["HINT"]
+                end
+            })
+        },
+        on_attach = function(client, bufnr)
+            require('mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
+        end
+    })
+end
+
 function This.setup()
     setup_mason()
     setup_lsp()
+    setup_nullls()
 end
 
 return This

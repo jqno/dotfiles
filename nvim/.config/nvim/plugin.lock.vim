@@ -20,6 +20,7 @@ silent! let g:plugs['marks.nvim'].commit = 'b27cbb78e9082229590b396d3ae4fe07f1ae
 silent! let g:plugs['mason-lspconfig.nvim'].commit = '99a942105978054fd5c1fee6267e746dde18a21a'
 silent! let g:plugs['mason-tool-installer.nvim'].commit = 'a4cbe375c6398a4c8d746d08014459224f946c7d'
 silent! let g:plugs['mason.nvim'].commit = '7f6468dd08f797c1d707efc33c164c8db09ff9e3'
+silent! let g:plugs['null-ls.nvim'].commit = 'bf027826eeb83606ef7153f312ef66750ef14961'
 silent! let g:plugs['nvim-cmp'].commit = 'b5885696b1f2cbdc9f523cc09c2a786919de07d5'
 silent! let g:plugs['nvim-colorizer.lua'].commit = '36c610a9717cc9ec426a07c8e6bf3b3abcb139d6'
 silent! let g:plugs['nvim-dap'].commit = 'ea25d6d7877558132e11ee9bcf099bf911cb25ac'
