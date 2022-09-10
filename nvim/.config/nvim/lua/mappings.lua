@@ -130,7 +130,7 @@ local function define_mappings()
             ['<cr>'] = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
             a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
             x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
-            X = { '<Plug>(Marks-delete-bookmark0)', 'delete all bookmarks', noremap = false },
+            X = { '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)', 'delete all marks and bookmarks', noremap = false },
             h = { '<cmd>vsplit<CR><C-W>h', 'open split left' },
             j = { '<cmd>split<CR>', 'open split below' },
             k = { '<cmd>split<CR><C-W>k', 'open split above' },
