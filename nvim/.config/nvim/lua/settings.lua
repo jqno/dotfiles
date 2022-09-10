@@ -26,6 +26,8 @@ function This.setup()
     vim.opt.signcolumn = 'yes'
     vim.opt.smartcase = true
     vim.opt.softtabstop = default_indent
+    vim.opt.splitbelow = true
+    vim.opt.splitright = true
     vim.opt.tabstop = default_indent
     vim.opt.termguicolors = true
     vim.opt.titlestring = '%t - nvim'

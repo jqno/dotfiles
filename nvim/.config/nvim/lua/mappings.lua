@@ -123,14 +123,18 @@ local function define_mappings()
             ['<C-D>'] = 'scroll down',
             ['<C-U>'] = 'scroll up'
         },
-        -- BOOKMARKS --
+        -- NAVIGATION --
         ['<leader><leader>'] = {
-            name = 'bookmarks',
+            name = 'navigation',
             ['<leader>'] = { '<Plug>(Marks-set-bookmark0)', 'set bookmark', noremap = false },
-            ['<cr>'] = { '<cmd>BookmarksQFList 0<CR>', 'show all', noremap = false },
-            a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate', noremap = false },
+            ['<cr>'] = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
+            a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
             x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
-            X = { '<Plug>(Marks-delete-bookmark0)', 'delete all bookmarks', noremap = false }
+            X = { '<Plug>(Marks-delete-bookmark0)', 'delete all bookmarks', noremap = false },
+            h = { '<cmd>vsplit<CR><C-W>h', 'open split left' },
+            j = { '<cmd>split<CR>', 'open split below' },
+            k = { '<cmd>split<CR><C-W>k', 'open split above' },
+            l = { '<cmd>vsplit<CR>', 'open split right' }
         },
         -- TOGGLES --
         ['<leader>t'] = {
