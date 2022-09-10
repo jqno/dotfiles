@@ -5,13 +5,6 @@ local wk = require('which-key').register
 
 This.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't' }
 
-function This.whichkey_checkduplicates()
-    local dups = require('which-key.keys').duplicates
-    if vim.tbl_count(dups) > 0 then
-        vim.cmd('echoerr "Duplicate mapping detected - do :checkhealth"')
-    end
-end
-
 -- MAPPINGS --
 local function define_mappings()
     -- LEADER --
@@ -439,8 +432,6 @@ end
 function This.setup()
     define_mappings()
     define_commands()
-
-    require('vim-util').augroup('whichkey-duplicates', 'BufNew', '*', require('mappings').whichkey_checkduplicates)
 end
 
 return This
