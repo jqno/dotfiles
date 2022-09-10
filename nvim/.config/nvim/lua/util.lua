@@ -57,6 +57,25 @@ function This.floatermsend(cmd)
     vim.cmd('FloatermSend ' .. cmd)
 end
 
+local function find_alternate()
+    local curr = vim.fn.expand('%')
+    if vim.bo.filetype == 'java' then
+        if curr:find('src/main/java') then
+            return curr:gsub('src/main/java', 'src/test/java'):gsub('%.java', 'Test.java')
+        elseif curr:find('src/test/java') then
+            return curr:gsub('src/test/java', 'src/main/java'):gsub('Test%.java', '.java')
+        end
+    end
+    return nil
+end
+
+function This.open_alternate()
+    local alternate = find_alternate()
+    if alternate ~= nil then
+        vim.cmd('vsplit ' .. alternate)
+    end
+end
+
 function This.linkify()
     local url = fn.expand('<cWORD>')
     local shell_esc_url = fn.shellescape(url)

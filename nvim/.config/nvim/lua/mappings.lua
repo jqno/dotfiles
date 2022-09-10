@@ -127,7 +127,8 @@ local function define_mappings()
         ['<leader><leader>'] = {
             name = 'navigation',
             ['<leader>'] = { '<Plug>(Marks-set-bookmark0)', 'set bookmark', noremap = false },
-            ['<cr>'] = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
+            ['<CR>'] = { '<cmd>lua require("util").open_alternate()<CR>', 'open dual' },
+            s = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
             a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
             x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
             X = { '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)', 'delete all marks and bookmarks', noremap = false },
