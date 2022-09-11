@@ -12,9 +12,13 @@ function This.setup()
 
             -- Linters
             'flake8',
+            'hadolint',
             'markdownlint',
             'shellcheck',
-            'vale'
+            'vale',
+
+            -- Formatters
+            'shellharden'
         }
     })
 end

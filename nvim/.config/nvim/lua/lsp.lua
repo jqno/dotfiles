@@ -75,11 +75,13 @@ local function setup_nullls()
             nullls.builtins.formatting.prettier.with({
                 filetypes = { 'java', 'markdown' }
             }),
+            nullls.builtins.formatting.shellharden,
             nullls.builtins.diagnostics.markdownlint.with({
                 diagnostics_postprocess = function(diagnostic)
                     diagnostic.severity = vim.diagnostic.severity["INFO"]
                 end
             }),
+            nullls.builtins.diagnostics.hadolint,
             nullls.builtins.diagnostics.vale.with({
                 diagnostics_postprocess = function(diagnostic)
                     diagnostic.severity = vim.diagnostic.severity["HINT"]
