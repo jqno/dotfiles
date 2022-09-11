@@ -37,18 +37,6 @@ function This.show_full_path()
     print('Full path: [' .. fn.expand('%') .. ']')
 end
 
-function This.toggle_nvimtree()
-    local tree = require('nvim-tree')
-    local view = require('nvim-tree.view')
-    if view.is_visible() then
-        view.close()
-    elseif string.find(fn.expand('%:p'), 'Dropbox/notes') then
-        tree.open(vim.env.HOME .. '/Dropbox/notes')
-    else
-        tree.open('.')
-    end
-end
-
 function This.floatermsend(cmd)
     if fn['floaterm#buflist#curr']() == -1 then
         vim.cmd('FloatermNew --silent')
