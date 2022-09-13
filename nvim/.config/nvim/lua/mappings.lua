@@ -178,6 +178,10 @@ local function define_mappings()
                 '<cmd>lua require("util").show_full_path()<CR>',
                 'show full path',
                 silent = true
+            },
+            x = {
+                '<cmd>lua require("autolist").invert()<CR>',
+                'toggle checkbox'
             }
         },
         -- FINDING --

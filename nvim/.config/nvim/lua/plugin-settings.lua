@@ -4,9 +4,7 @@ local g = vim.g
 local vim_util = require('vim-util')
 
 local function setup_autolist()
-    require('autolist').setup({
-        invert_mapping = ''
-    })
+    require('autolist').setup()
 end
 
 local function setup_autosave()
@@ -16,11 +14,6 @@ local function setup_autosave()
             cleaning_interval = 1000
         }
     })
-end
-
-local function setup_bullets()
-    g.bullets_outline_levels = { 'std-' }
-    g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'asciidoc' }
 end
 
 local function setup_closetag()
@@ -243,7 +236,6 @@ end
 function This.setup()
     setup_autolist()
     setup_autosave()
-    setup_bullets()
     setup_closetag()
     setup_colorizer()
     setup_eunuch()

@@ -4,6 +4,11 @@
     "body": "([Issue $1](https://github.com/jqno/equalsverifier/issues/$1)$2)$0",
     "description": "EqualsVerifier issue reference"
   },
+  "checkbox": {
+    "prefix": "checkbox",
+    "body": "- [ ] ",
+    "description": "Inserts a checkbox"
+  },
   "nowrap": {
     "prefix": "nowrap",
     "body": "%% vim:nowrap",
