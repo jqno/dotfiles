@@ -107,8 +107,8 @@ local function define_mappings()
         },
         -- RAW LEADER --
         ['<leader>'] = {
-            ['<esc>'] = {
-                '<cmd>lua require("util").close_everything()<CR>',
+            ['<Esc>'] = {
+                '<cmd>lua require("util").close_everything()<CR><Esc>',
                 'close everything',
                 silent = true
             },
