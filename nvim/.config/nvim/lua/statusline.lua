@@ -138,6 +138,9 @@ local sections = {
     filestatus = { filestatus,
         padding = leftpad,
     },
+    lsp_progress = { 'lsp_progress',
+        spinner_symbols = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' }
+    },
     diagnostics = { 'diagnostics',
         sources = { 'nvim_diagnostic' },
         sections = { 'error', 'warn', 'hint' },
@@ -180,7 +183,7 @@ local function build_statusline()
         sections = {
             lualine_a = { sections.mode },
             lualine_b = { sections.filename, sections.filestatus },
-            lualine_c = {},
+            lualine_c = { sections.lsp_progress },
             lualine_x = { sections.diagnostics, sections.lsp_status, sections.word_count },
             lualine_y = { sections.filetype, sections.no_filetype, sections.fileformat, sections.file_encoding },
             lualine_z = { sections.search_result, sections.position }

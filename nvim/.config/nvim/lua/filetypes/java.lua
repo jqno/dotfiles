@@ -124,6 +124,10 @@ function This.jdtls_config()
         init_options = { bundles = jdtls_bundles },
         root_dir = find_project_root(),
         capabilities = require('lsp').cmp_capabilities,
+        handlers = {
+            -- To avoid annoying "Press Enter to continue" messages while downloading dependencies
+            ['language/status'] = function() end
+        },
         settings = {
             java = {
                 use_lombok_agent = true,
