@@ -58,6 +58,10 @@ local function on_attach(client, bufnr)
             }
         },
         ['<leader>m'] = {
+            ['<space>'] = {
+                '<cmd>lua require("util").floatermsend("jbang ' .. vim.fn.expand('%:p') .. '")<CR>',
+                'run with JBang'
+            },
             r = {
                 '<cmd>lua require("jdtls").update_project_config()<CR>',
                 'reload'

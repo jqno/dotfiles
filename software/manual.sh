@@ -27,6 +27,10 @@ curl -s "https://get.sdkman.io?rcupdate=false" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
+# JBang
+sdk install jbang
+
+
 # JDT.LS
 echo "*** Installing Lombok for jdt.ls"
 mkdir "$BIN/jdtls"
