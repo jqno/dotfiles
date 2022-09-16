@@ -60,7 +60,7 @@ end
 function This.open_alternate()
     local alternate = find_alternate()
     if alternate ~= nil then
-        vim.cmd('vsplit ' .. alternate)
+        vim.cmd('e ' .. alternate)
     end
 end
 
