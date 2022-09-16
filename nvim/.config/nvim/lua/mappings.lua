@@ -162,7 +162,7 @@ local function define_mappings()
         ['<leader>b'] = {
             name = 'buffer',
             b = { '<cmd>b#<CR>', 'previous' },
-            d = { '<cmd>b#<bar>bd#<CR>', 'delete' },
+            d = { '<cmd>BufDel<CR>', 'delete' },
             x = { '<cmd>bufdo bdelete<CR>', 'close all' }
         },
         ['<leader>d'] = { name = 'debug' },

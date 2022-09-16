@@ -16,6 +16,12 @@ local function setup_autosave()
     })
 end
 
+local function setup_bufdel()
+    require('bufdel').setup({
+        quit = false
+    })
+end
+
 local function setup_closetag()
     g.closetag_filetypes = 'html,xml'
 end
@@ -236,6 +242,7 @@ end
 function This.setup()
     setup_autolist()
     setup_autosave()
+    setup_bufdel()
     setup_closetag()
     setup_colorizer()
     setup_eunuch()
