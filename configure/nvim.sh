@@ -10,5 +10,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 nvim --headless +PlugInstall +qall
 nvim --headless +PlugRevert +qall
-nvim --headless +MetalsInstall +qall
 

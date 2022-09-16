@@ -39,11 +39,6 @@ local function lsp_status()
             end
         end
 
-        local metals_status = vim.g.metals_status
-        if vim.bo.filetype == 'scala' and status and status ~= '' then
-            status = status .. ' - ' .. metals_status
-        end
-
         return status
     else
         return ''

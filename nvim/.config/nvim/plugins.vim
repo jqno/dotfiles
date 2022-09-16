@@ -64,7 +64,6 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'scalameta/nvim-metals'
 Plug 'WhoIsSethDaniel/lualine-lsp-progress.nvim'
 
 " Configure wiki
