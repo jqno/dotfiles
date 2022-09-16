@@ -27,8 +27,11 @@ curl -s "https://get.sdkman.io?rcupdate=false" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-# JBang
+# JBang/Scala/Kotlin/Kscript
 sdk install jbang
+sdk install scala
+sdk install kotlin
+sdk install kscript
 
 
 # JDT.LS

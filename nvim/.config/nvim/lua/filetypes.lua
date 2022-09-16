@@ -1,6 +1,6 @@
 local This = {}
 
-local filetypes = { 'asciidoc', 'xml', 'lua', 'java', 'markdown', 'python', 'fugitiveblame' }
+local filetypes = { 'asciidoc', 'xml', 'lua', 'java', 'kotlin', 'markdown', 'python', 'scala', 'fugitiveblame' }
 
 local function configure_filetypes()
     vim.api.nvim_create_augroup('configure_filetypes', { clear = true })
