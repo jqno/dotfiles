@@ -62,6 +62,10 @@ local function define_mappings()
 
     -- Open Wiki --
     map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
+    -- Close everything --
+    map(This.modes.n, '<C-Esc>', '<cmd>lua require("util").close_everything()<CR><Esc>')
+    map(This.modes.t, '<C-Esc>', '<cmd>FloatermHide<CR>')
+
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]]
@@ -107,11 +111,6 @@ local function define_mappings()
         },
         -- RAW LEADER --
         ['<leader>'] = {
-            ['<Esc>'] = {
-                '<cmd>lua require("util").close_everything()<CR><Esc>',
-                'close everything',
-                silent = true
-            },
             -- defined elsewhere
             ['<C-D>'] = 'scroll down',
             ['<C-U>'] = 'scroll up'
@@ -254,14 +253,13 @@ local function define_mappings()
         }
     })
 
+    -- TERMINAL --
     map(This.modes.t, '<S-Esc>', '<C-\\><C-N>')
-    map(This.modes.t, '<C-Esc>', '<cmd>FloatermHide<CR>')
     map(This.modes.t, '<C-H>', '<C-\\><C-N><C-W>h')
     map(This.modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
     map(This.modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
     map(This.modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
     wk({
-        -- TERMINAL --
         ['<c-\\>'] = {
             name = 'terminal',
             t = { '<cmd>FloatermToggle<CR>', 'toggle' }
