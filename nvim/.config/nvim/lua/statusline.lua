@@ -194,6 +194,18 @@ local function build_statusline()
         extensions = {
             {
                 sections = {
+                    lualine_a = { sections.mode },
+                    lualine_b = {
+                        { '"terminal"',
+                            padding = leftpad,
+                            separator = { right = '' }
+                        }
+                    }
+                },
+                filetypes = { 'floaterm' }
+            },
+            {
+                sections = {
                     lualine_b = {
                         { '"files"',
                             padding = nopad,
