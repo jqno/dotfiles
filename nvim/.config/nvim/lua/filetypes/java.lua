@@ -130,7 +130,14 @@ function This.jdtls_config()
         capabilities = require('lsp').cmp_capabilities,
         handlers = {
             -- To avoid annoying "Press Enter to continue" messages while downloading dependencies
-            ['language/status'] = function() end
+            ['language/status'] = function(_, result)
+                local msg = result.message
+                local c = vim.o.columns
+                if #msg > c then
+                    msg = msg:sub(1, c - 1) .. '…'
+                end
+                vim.cmd(string.format('echo "%s"', msg))
+            end
         },
         settings = {
             java = {
