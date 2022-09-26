@@ -18,12 +18,6 @@ local function define_mappings()
     map(This.modes.n, 'k',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']],
         { expr = true })
-    map(This.modes.v, 'j',
-        [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj']],
-        { expr = true })
-    map(This.modes.v, 'k',
-        [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']],
-        { expr = true })
     -- Easy window switching
     map(This.modes.n, '<C-h>', '<C-w>h')
     map(This.modes.n, '<C-j>', '<C-w>j')
