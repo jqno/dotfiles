@@ -15,7 +15,7 @@ local function tab_complete(fallback)
     if cmp.visible() then
         cmp.select_next_item()
     elseif has_words_before() then
-        cmp.complete()
+        cmp.complete({ reason = cmp.ContextReason.Auto })
     else
         fallback()
     end
