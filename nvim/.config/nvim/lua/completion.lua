@@ -61,6 +61,11 @@ function This.setup()
                 })[entry.source.name]
                 return vim_item
             end
+        },
+        experimental = {
+            ghost_text = {
+                hl_group = 'NonText'
+            }
         }
     })
 end
