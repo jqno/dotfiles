@@ -60,8 +60,8 @@ Plug 'hrsh7th/cmp-omni'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'mfussenegger/nvim-dap'
-Plug 'mfussenegger/nvim-jdtls'
+Plug 'mfussenegger/nvim-dap', { 'tag': '0.3.0' }
+Plug 'mfussenegger/nvim-jdtls', { 'tag': '0.1.0' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
 
