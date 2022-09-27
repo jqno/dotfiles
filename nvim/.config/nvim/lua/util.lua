@@ -8,10 +8,12 @@ function This.close_everything()
     vim.cmd('cclose')
     vim.cmd('lclose')
     vim.cmd('NvimTreeClose')
+    vim.cmd('FloatermHide')
+    vim.cmd('TroubleClose')
+    require('dap').repl.close()
+
     vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
     vim.cmd('windo if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
-    vim.cmd('FloatermHide')
-    require('dap').repl.close()
 end
 
 function This.set_buf_indent(indent, tab, show)

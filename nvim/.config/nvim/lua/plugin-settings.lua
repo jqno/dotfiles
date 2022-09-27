@@ -151,7 +151,8 @@ local function setup_telescope()
             mappings = {
                 i = {
                     ['<Space>'] = actions.select_horizontal,
-                    ['<Esc>'] = actions.close
+                    ['<Esc>'] = actions.close,
+                    ['<C-T>'] = require('trouble.providers.telescope').open_with_trouble
                 }
             },
             layout_strategy = 'vertical',
@@ -205,6 +206,10 @@ local function setup_treesitter()
     })
 end
 
+local function setup_trouble()
+    require('trouble').setup()
+end
+
 local function setup_vimtest()
     g['test#strategy'] = 'floaterm'
 end
@@ -256,6 +261,7 @@ function This.setup()
     setup_sandwich()
     setup_telescope()
     setup_treesitter()
+    setup_trouble()
     setup_vimtest()
     setup_whichkey()
     setup_wikivim()

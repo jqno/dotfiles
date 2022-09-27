@@ -54,6 +54,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'wincent/terminus'
 
 " Configure LSP and completion
+Plug 'folke/trouble.nvim'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-omni'

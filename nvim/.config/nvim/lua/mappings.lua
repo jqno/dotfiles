@@ -234,7 +234,13 @@ local function define_mappings()
             ['<'] = { '<cmd>SidewaysLeft<CR>', 'swap prev' }
         },
         -- SHOWING THINGS --
-        ['<leader>s'] = { name = 'show', c = 'peek class', f = 'peek function' },
+        ['<leader>s'] = {
+            name = 'show',
+            ['<CR>'] = { '<cmd>Trouble document_diagnostics<CR>', 'trouble' },
+            a = { '<cmd>Trouble workspace_diagnostics<CR>', 'trouble' },
+            c = 'peek class',
+            f = 'peek function'
+        },
         -- WIKI --
         ['<leader>q'] = { name = 'wiki', q = { '<cmd>WikiIndex<CR>', 'index' } },
         -- WINDOW --
@@ -326,7 +332,7 @@ function This.setup_lsp(client, bufnr)
             S = {
                 '<cmd>Telescope lsp_workspace_symbols<CR>', 'workspace symbols'
             },
-            r = { '<cmd>Telescope lsp_references<CR>', 'references' }
+            r = { '<cmd>Trouble lsp_references<CR>', 'references' }
         },
         -- GOING PLACES  --
         ['<leader>g'] = {

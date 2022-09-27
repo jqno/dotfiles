@@ -191,6 +191,17 @@ local function build_statusline()
         extensions = {
             {
                 sections = {
+                    lualine_b = {
+                        { function() return vim.o.filetype end,
+                            padding = nopad,
+                            separator = { left = ' ', right = '' }
+                        }
+                    }
+                },
+                filetypes = { 'NvimTree', 'Trouble' }
+            },
+            {
+                sections = {
                     lualine_a = { sections.mode },
                     lualine_b = {
                         { '"terminal"',
@@ -200,17 +211,6 @@ local function build_statusline()
                     }
                 },
                 filetypes = { 'floaterm' }
-            },
-            {
-                sections = {
-                    lualine_b = {
-                        { '"files"',
-                            padding = nopad,
-                            separator = { left = ' ', right = '' }
-                        }
-                    }
-                },
-                filetypes = { 'NvimTree' }
             },
             {
                 sections = {
