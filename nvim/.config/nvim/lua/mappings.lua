@@ -143,11 +143,12 @@ local function define_mappings()
                 'indent tab'
             },
             l = { '<cmd>set list! list?<CR>', 'list' },
-            t = { '<cmd>FloatermToggle<CR>', 'terminal' },
             s = {
                 '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
                 'typewriter scroll mode'
             },
+            t = { '<cmd>Trouble document_diagnostics<CR>', 'trouble' },
+            T = { '<cmd>Trouble workspace_diagnostics<CR>', 'trouble' },
             w = { '<cmd>set wrap! wrap?<CR>', 'wrap' },
             z = { '<cmd>ZenMode<CR>', 'zen mode' }
         },
@@ -236,8 +237,6 @@ local function define_mappings()
         -- SHOWING THINGS --
         ['<leader>s'] = {
             name = 'show',
-            ['<CR>'] = { '<cmd>Trouble document_diagnostics<CR>', 'trouble' },
-            a = { '<cmd>Trouble workspace_diagnostics<CR>', 'trouble' },
             c = 'peek class',
             f = 'peek function'
         },
@@ -254,6 +253,8 @@ local function define_mappings()
     })
 
     -- TERMINAL --
+    map(This.modes.n, '<C-CR>', '<cmd>FloatermToggle<CR>')
+    map(This.modes.t, '<C-CR>', '<cmd>FloatermHide<CR>')
     map(This.modes.t, '<S-Esc>', '<C-\\><C-N>')
     map(This.modes.t, '<C-H>', '<C-\\><C-N><C-W>h')
     map(This.modes.t, '<C-J>', '<C-\\><C-N><C-W>j')

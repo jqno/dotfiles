@@ -36,8 +36,9 @@ end
 
 local function setup_floaterm()
     g.floaterm_title = 'Terminal'
-    g.floaterm_wintype = 'vsplit'
-    g.floaterm_width = 0.4
+    g.floaterm_wintype = 'float'
+    g.floaterm_height = 0.95
+    g.floaterm_width = 0.95
     g.floaterm_borderchars = '─│─│╭╮╯╰'
 end
 
