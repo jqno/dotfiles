@@ -11,7 +11,7 @@ sudo dnf --assumeyes install kitty
 
 
 # System tools
-sudo yum --assumeyes groupinstall 'Development Tools'
+sudo dnf --assumeyes install @development-tools
 sudo dnf --assymeyes install docker
 sudo dnf --assymeyes install docker-compose
 sudo dnf --assumeyes install gcc-g++
