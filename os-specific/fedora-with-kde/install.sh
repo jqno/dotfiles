@@ -21,6 +21,7 @@ sudo dnf --assumeyes install tlp
 sudo dnf --assumeyes install tlp-rdw
 sudo dnf --assumeyes install wl-clipboard
 sudo dnf --assumeyes install xclip
+sudo dnf --assumeyes install xsel
 sudo dnf --assumeyes install zsh
 
 
