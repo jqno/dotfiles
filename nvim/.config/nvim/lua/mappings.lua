@@ -305,10 +305,10 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
         }
     }, { buffer = bufnr })
 
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.documentFormattingProvider then
         wk({
             ['<leader>m'] = {
-                f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'format' }
+                f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'format' }
             }
         }, { buffer = bufnr })
     end

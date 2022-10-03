@@ -23,7 +23,7 @@ function This.on_attach(client, bufnr)
     enhance_handler('textDocument/signatureHelp',
         vim.lsp.handlers.signature_help, { border = 'rounded' })
 
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.documentHighlightProvider then
         vim.api.nvim_create_augroup('lsp_attach', { clear = false })
         vim.api.nvim_clear_autocmds({ buffer = bufnr, group = 'lsp_attach' })
         vim.api.nvim_create_autocmd('CursorHold',
