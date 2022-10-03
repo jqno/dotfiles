@@ -337,7 +337,6 @@ function This.setup_lsp(client, bufnr)
         },
         -- GOING PLACES  --
         ['<leader>g'] = {
-            [']'] = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'definition' },
             d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration' },
             i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
             t = {
