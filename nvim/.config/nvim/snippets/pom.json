@@ -6,7 +6,7 @@
       "\t<modelVersion>4.0.0</modelVersion>",
       "\t<groupId>$1</groupId>",
       "\t<artifactId>$2</artifactId>",
-      "\t<packaging>${3:jar/pom}</packaging>",
+      "\t<packaging>${3|jar,pom|}</packaging>",
       "",
       "\t<name>$4</name>",
       "\t<version>${5:0.1-SNAPSHOT}</version>",
@@ -72,7 +72,7 @@
       "\t<groupId>$1</groupId>",
       "\t<artifactId>$2</artifactId>",
       "\t<version>$3</version>",
-      "${4:\t<scope>test</scope>:}",
+      "${4:\t<scope>test</scope>}",
       "</dependency>"
     ],
     "description": "<dependency>"
