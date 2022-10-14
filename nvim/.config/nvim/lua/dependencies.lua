@@ -18,7 +18,8 @@ function This.setup()
             'vale',
 
             -- Formatters
-            'shellharden'
+            'shellharden',
+            'sql-formatter'
         }
     })
 end

@@ -68,17 +68,21 @@ end
 local function setup_nullls()
     local nullls = require('null-ls')
     nullls.setup({
+        debug = true,
         sources = {
             nullls.builtins.formatting.prettier.with({
                 filetypes = { 'java', 'markdown' }
             }),
             nullls.builtins.formatting.shellharden,
+            nullls.builtins.formatting.sql_formatter.with({
+                args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' }
+            }),
+            nullls.builtins.diagnostics.hadolint,
             nullls.builtins.diagnostics.markdownlint.with({
                 diagnostics_postprocess = function(diagnostic)
                     diagnostic.severity = vim.diagnostic.severity["INFO"]
                 end
             }),
-            nullls.builtins.diagnostics.hadolint,
             nullls.builtins.diagnostics.vale.with({
                 diagnostics_postprocess = function(diagnostic)
                     diagnostic.severity = vim.diagnostic.severity["HINT"]
