@@ -213,6 +213,7 @@ end
 
 local function setup_vimtest()
     g['test#strategy'] = 'floaterm'
+    g['test#java#maventest#executable'] = 'mvnd'
 end
 
 local function setup_whichkey()

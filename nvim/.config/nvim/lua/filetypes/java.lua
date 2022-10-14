@@ -67,19 +67,19 @@ local function on_attach(client, bufnr)
                 'reload'
             },
             cc = {
-                '<cmd>lua require("util").floatermsend("mvn clean test-compile")<CR>',
+                '<cmd>lua require("util").floatermsend("mvnd clean test-compile")<CR>',
                 'mvn clean compile'
             },
             cv = {
-                '<cmd>lua require("util").floatermsend("mvn clean verify")<CR>',
+                '<cmd>lua require("util").floatermsend("mvnd clean verify")<CR>',
                 'mvn clean verify'
             },
             p = {
-                '<cmd>lua require("util").floatermsend("mvn clean package -DskipTests=true")<CR>',
+                '<cmd>lua require("util").floatermsend("mvnd clean package -DskipTests=true")<CR>',
                 'mvn package (no tests)'
             },
             v = {
-                '<cmd>lua require("util").floatermsend("mvn verify")<CR>',
+                '<cmd>lua require("util").floatermsend("mvnd verify")<CR>',
                 'mvn verify'
             },
         }
