@@ -133,15 +133,16 @@ local sections = {
     filestatus = { filestatus,
         padding = leftpad,
     },
+    word_count = { word_count,
+        cond = is_prose,
+        separator = ''
+    },
     diagnostics = { 'diagnostics',
         sources = { 'nvim_diagnostic' },
         sections = { 'error', 'warn', 'hint' },
         separator = ''
     },
     lsp_status = lsp_status,
-    word_count = { word_count,
-        cond = is_prose
-    },
     filetype = { 'filetype',
         padding = rightpad
     },
@@ -176,7 +177,7 @@ local function build_statusline()
             lualine_a = { sections.mode },
             lualine_b = { sections.filename, sections.filestatus },
             lualine_c = {},
-            lualine_x = { sections.diagnostics, sections.lsp_status, sections.word_count },
+            lualine_x = { sections.word_count, sections.diagnostics, sections.lsp_status },
             lualine_y = { sections.filetype, sections.no_filetype, sections.fileformat, sections.file_encoding },
             lualine_z = { sections.search_result, sections.position }
         },
