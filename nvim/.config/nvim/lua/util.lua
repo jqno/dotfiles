@@ -48,6 +48,13 @@ function This.floatermsend(cmd)
     vim.cmd('FloatermSend ' .. cmd)
 end
 
+local split_direction = {
+    left  = {'wincmd h', 'vsplit | wincmd h'},
+    down  = {'wincmd j', 'split'},
+    up    = {'wincmd k', 'split | wincmd k'},
+    right = {'wincmd l', 'vsplit'}
+}
+
 local function find_alternate()
     local curr = vim.fn.expand('%')
     if vim.bo.filetype == 'java' then
@@ -60,8 +67,17 @@ local function find_alternate()
     return nil
 end
 
-function This.open_alternate()
+function This.open_alternate(direction)
     local alternate = find_alternate()
+    if direction ~= nil then
+        local win_before = vim.api.nvim_get_current_win()
+        print(split_direction[direction][1])
+        vim.cmd(split_direction[direction][1])
+        local win_after = vim.api.nvim_get_current_win()
+        if win_before == win_after then
+            vim.cmd(split_direction[direction][2])
+        end
+    end
     if alternate ~= nil then
         vim.cmd('e ' .. alternate)
     end

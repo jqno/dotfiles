@@ -113,7 +113,7 @@ local function define_mappings()
         ['<leader><leader>'] = {
             name = 'navigation',
             ['<leader>'] = { '<Plug>(Marks-set-bookmark0)', 'set bookmark', noremap = false },
-            ['<CR>'] = { '<cmd>lua require("util").open_alternate()<CR>', 'open dual' },
+            ['<CR>'] = { '<cmd>lua require("util").open_alternate()<CR>', 'open alternate here' },
             s = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
             a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
             x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
@@ -121,7 +121,11 @@ local function define_mappings()
             h = { '<cmd>vsplit<CR><C-W>h', 'open split left' },
             j = { '<cmd>split<CR>', 'open split below' },
             k = { '<cmd>split<CR><C-W>k', 'open split above' },
-            l = { '<cmd>vsplit<CR>', 'open split right' }
+            l = { '<cmd>vsplit<CR>', 'open split right' },
+            H = { '<cmd>lua require("util").open_alternate("left")<CR>', 'open alternate left' },
+            J = { '<cmd>lua require("util").open_alternate("down")<CR>', 'open alternate down' },
+            K = { '<cmd>lua require("util").open_alternate("up")<CR>', 'open alternate up' },
+            L = { '<cmd>lua require("util").open_alternate("right")<CR>', 'open alternate right' },
         },
         -- TOGGLES --
         ['<leader>t'] = {
