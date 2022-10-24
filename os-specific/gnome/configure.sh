@@ -7,6 +7,7 @@ dconf load / < "$SETTINGS_FILE"
 
 echo "<><><><><>"
 echo "Don't forget to install these extensions:"
+echo " * https://extensions.gnome.org/extension/307/dash-to-dock/"
 echo " * https://extensions.gnome.org/extension/2890/tray-icons-reloaded/"
 echo " * https://extensions.gnome.org/extension/517/caffeine/"
 echo " * https://extensions.gnome.org/extension/906/sound-output-device-chooser/"
