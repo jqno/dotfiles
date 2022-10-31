@@ -151,8 +151,6 @@ local function define_mappings()
                 '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
                 'typewriter scroll mode'
             },
-            t = { '<cmd>Trouble document_diagnostics<CR>', 'trouble' },
-            T = { '<cmd>Trouble workspace_diagnostics<CR>', 'trouble' },
             w = { '<cmd>set wrap! wrap?<CR>', 'wrap' },
             z = { '<cmd>ZenMode<CR>', 'zen mode' }
         },
@@ -186,6 +184,8 @@ local function define_mappings()
         ['<leader>f'] = {
             name = 'file',
             b = { '<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers' },
+            d = { '<cmd>Telescope diagnostics bufnr=0<CR>', 'diagnostics' },
+            D = { '<cmd>Telescope diagnostics<CR>', 'workspace diagnostics' },
             f = {
                 '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>',
                 'files'
@@ -337,7 +337,7 @@ function This.setup_lsp(client, bufnr)
             S = {
                 '<cmd>Telescope lsp_workspace_symbols<CR>', 'workspace symbols'
             },
-            r = { '<cmd>Trouble lsp_references<CR>', 'references' }
+            r = { '<cmd>Telescope lsp_references<CR>', 'references' }
         },
         -- GOING PLACES  --
         ['<leader>g'] = {

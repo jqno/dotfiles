@@ -9,7 +9,6 @@ function This.close_everything()
     vim.cmd('lclose')
     vim.cmd('NvimTreeClose')
     vim.cmd('FloatermHide')
-    vim.cmd('TroubleClose')
     require('dap').repl.close()
 
     vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')

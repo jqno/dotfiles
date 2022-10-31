@@ -199,7 +199,7 @@ local function build_statusline()
                         }
                     }
                 },
-                filetypes = { 'NvimTree', 'Trouble' }
+                filetypes = { 'NvimTree' }
             },
             {
                 sections = {

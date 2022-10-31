@@ -40,7 +40,6 @@ silent! let g:plugs['telescope-ui-select.nvim'].commit = '62ea5e58c7bbe191297b98
 silent! let g:plugs['telescope.nvim'].commit = 'b79cd6c88b3d96b0f49cb7d240807cd59b610cd8'
 silent! let g:plugs['terminus'].commit = '12b07e390ea6346c91cd82edb0fa9b967164c38d'
 silent! let g:plugs['tranquility.nvim'].commit = 'd0b60e35a67b7a4c19f854cc506be6cfdb4e25c2'
-silent! let g:plugs['trouble.nvim'].commit = '929315ea5f146f1ce0e784c76c943ece6f36d786'
 silent! let g:plugs['vim-closetag'].commit = 'd0a562f8bdb107a50595aefe53b1a690460c3822'
 silent! let g:plugs['vim-commentary'].commit = '3654775824337f466109f00eaf6759760f65be34'
 silent! let g:plugs['vim-cool'].commit = '0ad6a212a910cef0aac7af244ee008ddd39a75c2'

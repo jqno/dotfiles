@@ -152,8 +152,7 @@ local function setup_telescope()
             mappings = {
                 i = {
                     ['<Space>'] = actions.select_horizontal,
-                    ['<Esc>'] = actions.close,
-                    ['<C-T>'] = require('trouble.providers.telescope').open_with_trouble
+                    ['<Esc>'] = actions.close
                 }
             },
             layout_strategy = 'vertical',
@@ -205,10 +204,6 @@ local function setup_treesitter()
             }
         }
     })
-end
-
-local function setup_trouble()
-    require('trouble').setup()
 end
 
 local function setup_vimtest()
@@ -263,7 +258,6 @@ function This.setup()
     setup_sandwich()
     setup_telescope()
     setup_treesitter()
-    setup_trouble()
     setup_vimtest()
     setup_whichkey()
     setup_wikivim()
