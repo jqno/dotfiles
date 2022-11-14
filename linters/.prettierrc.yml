@@ -6,6 +6,5 @@ trailingComma: "none"
 overrides:
   - files:
       - "*.md"
-      - "*.mkdn"
     options:
       tabWidth: 2

@@ -221,8 +221,8 @@ end
 
 local function setup_wikivim()
     g.wiki_root = '~/Dropbox/notes'
-    g.wiki_filetypes = { 'mkdn' }
-    g.wiki_link_extension = '.mkdn'
+    g.wiki_filetypes = { 'md' }
+    g.wiki_link_extension = '.md'
     g.wiki_link_target_type = 'md'
     g.wiki_mappings_use_defaults = 'none'
 
