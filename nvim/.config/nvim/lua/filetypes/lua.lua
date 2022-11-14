@@ -1,7 +1,7 @@
 local This = {}
 
 This.lsp_config = {
-    Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim' } } }
+    Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim', 'require' } } }
 }
 
 function This.setup()
