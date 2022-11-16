@@ -58,9 +58,14 @@ local function find_alternate()
     local curr = vim.fn.expand('%')
     if vim.bo.filetype == 'java' then
         if curr:find('src/main/java') then
-            return curr:gsub('src/main/java', 'src/test/java'):gsub('%.java', 'Test.java')
+            local prefixed = curr:gsub('src/main/java', 'src/test/java')
+            local it = prefixed:gsub('%.java', 'IT.java')
+            if vim.fn.filereadable(it) == 1 then
+                return it
+            end
+            return prefixed:gsub('%.java', 'Test.java')
         elseif curr:find('src/test/java') then
-            return curr:gsub('src/test/java', 'src/main/java'):gsub('Test%.java', '.java')
+            return curr:gsub('src/test/java', 'src/main/java'):gsub('Test%.java', '.java'):gsub('IT%.java', '.java')
         end
     end
     return nil
