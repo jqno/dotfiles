@@ -31,7 +31,8 @@ function This.setup()
     vim.opt.tabstop = default_indent
     vim.opt.termguicolors = true
     vim.opt.titlestring = '%t - nvim'
-    vim.opt.title = true
+    -- Disabled to avoid weird bug that causes garbled text to appear
+    -- vim.opt.title = true
     vim.opt.updatetime = 300
     vim.opt.wrap = false
 
