@@ -207,7 +207,11 @@ local function setup_treesitter()
 end
 
 local function setup_vimtest()
-    g['test#strategy'] = 'floaterm'
+    local function shell_in_floaterm(cmd)
+        require('util').floatermsend(cmd)
+    end
+    g['test#custom_strategies'] = { shell_in_floaterm = shell_in_floaterm }
+    g['test#strategy'] = 'shell_in_floaterm'
     g['test#java#maventest#executable'] = 'mvnd'
 end
 
