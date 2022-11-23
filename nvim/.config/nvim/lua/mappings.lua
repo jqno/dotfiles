@@ -252,7 +252,8 @@ local function define_mappings()
             ['_'] = { '<cmd>wincmd _<CR>', 'enlarge window' },
             ['='] = { '<cmd>wincmd =<CR>', 'equalize' },
             ['0'] = { '<cmd>wincmd r<CR>', 'rotate' },
-            k = { '<C-w>w', 'move into floating window' }
+            k = { '<C-w>w', 'move into floating window' },
+            w = { '<cmd>SwapSplit<CR>', 'swap windows' }
         }
     })
 

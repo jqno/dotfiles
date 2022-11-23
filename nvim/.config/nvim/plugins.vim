@@ -52,6 +52,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'vim-test/vim-test'
 Plug 'voldikss/vim-floaterm'
 Plug 'wincent/terminus'
+Plug 'xorid/swap-split.nvim'
 
 " Configure LSP and completion
 Plug 'hrsh7th/cmp-buffer'

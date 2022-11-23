@@ -139,6 +139,12 @@ local function setup_sandwich()
     vim.api.nvim_exec('runtime macros/sandwich/keymap/surround.vim', false)
 end
 
+local function setup_swapsplit()
+    require('swap-split').setup({
+        ignore_filetypes = { 'NvimTree', 'qf' }
+    })
+end
+
 local function setup_telescope()
     local telescope = require('telescope')
     local actions = require('telescope.actions')
@@ -210,6 +216,7 @@ local function setup_vimtest()
     local function shell_in_floaterm(cmd)
         require('util').floatermsend(cmd)
     end
+
     g['test#custom_strategies'] = { shell_in_floaterm = shell_in_floaterm }
     g['test#strategy'] = 'shell_in_floaterm'
     g['test#java#maventest#executable'] = 'mvnd'
@@ -260,6 +267,7 @@ function This.setup()
     setup_marks()
     setup_nvim_tree()
     setup_sandwich()
+    setup_swapsplit()
     setup_telescope()
     setup_treesitter()
     setup_vimtest()
