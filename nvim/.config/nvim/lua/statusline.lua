@@ -16,11 +16,37 @@ local function custom_theme()
     return theme
 end
 
+local function custom_filename()
+    -- Needed because of https://github.com/nvim-lualine/lualine.nvim/issues/820
+    local max_length = 45
+    local filename = fn.expand('%')
+    local prefix = ''
+    local pos = nil
+
+    if filename == '' then
+        return '⊥'
+    end
+
+    pos = filename:find('%?')
+    if pos ~= nil then
+        filename = filename:sub(1, filename:find('%?') - 1):gsub('/contents', '')
+    end
+
+    pos = filename:find('/')
+    while #filename > max_length and pos ~= nil do
+        prefix = '../'
+        filename = filename:sub(pos + 1)
+        pos = filename:find('/')
+    end
+
+    return prefix .. filename
+end
+
 local function filestatus()
     if vim.bo.modifiable and vim.bo.modified then
         return '+'
     elseif not vim.bo.modifiable or vim.bo.readonly then
-        return '-'
+        return '🔒'
     else
         return ''
     end
@@ -122,11 +148,7 @@ local sections = {
         padding = rightpad,
         separator = { left = ' ' }
     },
-    filename = { 'filename',
-        path = 1,
-        file_status = false,
-        shorting_target = 50,
-        symbols = { unnamed = '⊥' },
+    filename = { custom_filename,
         padding = leftpad,
         separator = ''
     },
