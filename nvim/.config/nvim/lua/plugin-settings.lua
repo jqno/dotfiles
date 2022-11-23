@@ -158,6 +158,7 @@ local function setup_telescope()
             mappings = {
                 i = {
                     ['<Space>'] = actions.select_horizontal,
+                    ['<C-L>'] = actions.select_vertical,
                     ['<Esc>'] = actions.close
                 }
             },

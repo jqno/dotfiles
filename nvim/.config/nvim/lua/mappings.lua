@@ -118,14 +118,21 @@ local function define_mappings()
             a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
             x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
             X = { '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)', 'delete all marks and bookmarks', noremap = false },
-            h = { '<cmd>vsplit<CR><C-W>h', 'open split left' },
-            j = { '<cmd>split<CR>', 'open split below' },
-            k = { '<cmd>split<CR><C-W>k', 'open split above' },
-            l = { '<cmd>vsplit<CR>', 'open split right' },
+            h = { '<cmd>lua require("util").open_split("left")<CR>', 'open split left' },
+            j = { '<cmd>lua require("util").open_split("down")<CR>', 'open split below' },
+            k = { '<cmd>lua require("util").open_split("up")<CR>', 'open split above' },
+            l = { '<cmd>lua require("util").open_split("right")<CR>', 'open split right' },
             H = { '<cmd>lua require("util").open_alternate("left")<CR>', 'open alternate left' },
             J = { '<cmd>lua require("util").open_alternate("down")<CR>', 'open alternate down' },
             K = { '<cmd>lua require("util").open_alternate("up")<CR>', 'open alternate up' },
             L = { '<cmd>lua require("util").open_alternate("right")<CR>', 'open alternate right' },
+        },
+        ['<leader>]'] = {
+            name = 'follow references',
+            h = { '<cmd>lua require("util").open_definition("left")<CR>', 'follow reference left' },
+            j = { '<cmd>lua require("util").open_definition("down")<CR>', 'follow reference down' },
+            k = { '<cmd>lua require("util").open_definition("up")<CR>', 'follow reference up' },
+            l = { '<cmd>lua require("util").open_definition("right")<CR>', 'follow reference right' }
         },
         -- TOGGLES --
         ['<leader>t'] = {

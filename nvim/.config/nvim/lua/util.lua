@@ -54,6 +54,18 @@ local split_direction = {
     right = {'wincmd l', 'vsplit'}
 }
 
+function This.open_split(direction)
+    if direction ~= nil then
+        local win_before = vim.api.nvim_get_current_win()
+        print(split_direction[direction][1])
+        vim.cmd(split_direction[direction][1])
+        local win_after = vim.api.nvim_get_current_win()
+        if win_before == win_after then
+            vim.cmd(split_direction[direction][2])
+        end
+    end
+end
+
 local function find_alternate()
     local curr = vim.fn.expand('%')
     if vim.bo.filetype == 'java' then
@@ -71,17 +83,26 @@ local function find_alternate()
     return nil
 end
 
+function This.open_definition(direction)
+    local current = vim.fn.expand('%')
+    local current_line = vim.fn.line('.')
+    local current_col = vim.fn.col('.')
+
+    -- open same file in desired split
+    This.open_split(direction)
+    vim.cmd('e ' .. current)
+
+    -- make sure we're on the same cursor position
+    vim.cmd('norm ' .. current_line .. 'G')
+    vim.cmd('norm |' .. current_col .. 'lh')
+
+    -- go to definition
+    vim.lsp.buf.definition({ reuse_win = true })
+end
+
 function This.open_alternate(direction)
     local alternate = find_alternate()
-    if direction ~= nil then
-        local win_before = vim.api.nvim_get_current_win()
-        print(split_direction[direction][1])
-        vim.cmd(split_direction[direction][1])
-        local win_after = vim.api.nvim_get_current_win()
-        if win_before == win_after then
-            vim.cmd(split_direction[direction][2])
-        end
-    end
+    This.open_split(direction)
     if alternate ~= nil then
         vim.cmd('e ' .. alternate)
     end
