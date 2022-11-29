@@ -236,8 +236,9 @@ local function define_mappings()
         -- MAKE-ING --
         ['<leader>m'] = {
             name = 'make',
-            ['<CR>'] = { '<cmd>TestNearest<CR>', 'test nearest' },
-            t = { '<cmd>TestFile<CR>', 'test file' }
+            ['<CR>'] = { '<cmd>TestLast<CR>', 'test last' },
+            t = { '<cmd>TestNearest<CR>', 'test nearest' },
+            T = { '<cmd>TestFile<CR>', 'test file' }
         },
         -- REFACTORING --
         ['<leader>r'] = {
