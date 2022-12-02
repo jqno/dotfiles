@@ -42,6 +42,11 @@ local function setup_lsp()
         capabilities = This.cmp_capabilities
     }
 
+    lsp.kotlin_language_server.setup {
+        on_attach = This.on_attach,
+        capabilities = This.cmp_capabilities
+    }
+
     lsp.lemminx.setup {
         on_attach = This.on_attach,
         capabilities = This.cmp_capabilities,
