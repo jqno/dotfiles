@@ -17,6 +17,7 @@ sudo dnf --assymeyes install docker-compose
 sudo dnf --assumeyes install gcc-g++
 sudo dnf --assumeyes install libxcrypt-compat
 sudo dnf --assumeyes install procps-ng
+sudo dnf --assumeyes install python3-pip
 sudo dnf --assumeyes install stow
 sudo dnf --assumeyes install tlp
 sudo dnf --assumeyes install tlp-rdw
