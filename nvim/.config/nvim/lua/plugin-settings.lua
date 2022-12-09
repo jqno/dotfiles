@@ -113,6 +113,9 @@ end
 
 local function setup_nvim_tree()
     require('nvim-tree').setup {
+        view = {
+            adaptive_size = true
+        },
         update_focused_file = {
             enable = true
         },
