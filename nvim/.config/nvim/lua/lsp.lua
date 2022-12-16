@@ -80,7 +80,8 @@ local function setup_nullls()
             }),
             nullls.builtins.formatting.shellharden,
             nullls.builtins.formatting.sql_formatter.with({
-                args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' }
+                args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' },
+                filetypes = { 'sql' }
             }),
             nullls.builtins.diagnostics.hadolint,
             nullls.builtins.diagnostics.markdownlint.with({
