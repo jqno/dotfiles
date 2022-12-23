@@ -43,10 +43,20 @@ local function on_attach(client, bufnr)
                 'test nearest'
             }
         },
+        ['<leader>g'] = {
+            s = {
+                '<cmd>lua require("jdtls").super_implementation()<CR>',
+                'super implementation'
+            }
+        },
         ['<leader>r'] = {
             R = {
                 '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>',
                 'menu'
+            },
+            m = {
+                '<cmd>lua require("jdtls").extract_method()<CR>',
+                'extract method'
             },
             o = {
                 '<cmd>lua require("jdtls").organize_imports()<CR>',
@@ -55,6 +65,10 @@ local function on_attach(client, bufnr)
             v = {
                 '<cmd>lua require("jdtls").extract_variable()<CR>',
                 'extract variable'
+            },
+            V = {
+                '<cmd>lua require("jdtls").extract_variable_all()<CR>',
+                'extract variable (all occurrences)'
             }
         },
         ['<leader>m'] = {
