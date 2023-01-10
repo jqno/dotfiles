@@ -6,8 +6,10 @@ sudo -v
 echo "*** Installing dependencies..."
 
 
-# Terminal
+# Replacements for default apps
 sudo dnf --assumeyes install kitty
+sudo dnf --assumeyes install thunar
+sudo dnf --assumeyes install thunar-archive-plugin
 
 
 # System tools
