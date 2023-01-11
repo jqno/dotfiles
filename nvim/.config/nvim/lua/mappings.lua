@@ -373,7 +373,7 @@ function This.setup_lsp(client, bufnr)
         ['<leader>r'] = {
             name = 'refactor',
             ['<CR>'] = {
-                '<cmd>lua vim.lsp.buf.range_code_action()<CR>', 'code actions'
+                '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code actions'
             }
         }
     }, { buffer = bufnr, mode = This.modes.v })
