@@ -12,7 +12,6 @@ Plug 'hashivim/vim-terraform'
 " Improve editing
 Plug 'akinsho/git-conflict.nvim'
 Plug 'alvan/vim-closetag'
-Plug 'AndrewRadev/sideways.vim'
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'gaoDean/autolist.nvim'
 Plug 'gcmt/wildfire.vim'
@@ -22,6 +21,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'Wansmer/sibling-swap.nvim'
 
 " Improve navigation
 Plug 'chentoast/marks.nvim'

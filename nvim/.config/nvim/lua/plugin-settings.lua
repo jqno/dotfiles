@@ -142,6 +142,15 @@ local function setup_sandwich()
     vim.api.nvim_exec('runtime macros/sandwich/keymap/surround.vim', false)
 end
 
+local function setup_siblingswap()
+    require('sibling-swap').setup({
+        keymaps = {
+            ['<leader>r<'] = 'swap_with_left',
+            ['<leader>r>'] = 'swap_with_right'
+        }
+    })
+end
+
 local function setup_swapsplit()
     require('swap-split').setup({
         ignore_filetypes = { 'NvimTree', 'qf' }
@@ -271,6 +280,7 @@ function This.setup()
     setup_marks()
     setup_nvim_tree()
     setup_sandwich()
+    setup_siblingswap()
     setup_swapsplit()
     setup_telescope()
     setup_treesitter()

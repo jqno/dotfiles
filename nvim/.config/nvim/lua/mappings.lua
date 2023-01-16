@@ -243,8 +243,8 @@ local function define_mappings()
         -- REFACTORING --
         ['<leader>r'] = {
             name = 'refactor',
-            ['>'] = { '<cmd>SidewaysRight<CR>', 'swap next' },
-            ['<'] = { '<cmd>SidewaysLeft<CR>', 'swap prev' }
+            ['>'] = 'swap right',
+            ['<'] = 'swap left'
         },
         -- SHOWING THINGS --
         ['<leader>s'] = {
