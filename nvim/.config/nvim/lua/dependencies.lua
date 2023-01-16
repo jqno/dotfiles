@@ -10,6 +10,7 @@ function This.setup()
             'lemminx',
             'lua-language-server',
             'python-lsp-server',
+            'typescript-language-server',
 
             -- Linters
             'flake8',

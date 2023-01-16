@@ -65,6 +65,11 @@ local function setup_lsp()
         settings = require('filetypes.lua').lsp_config
     }
 
+    lsp.tsserver.setup {
+        on_attach = This.on_attach,
+        capabilities = This.cmp_capabilities
+    }
+
     vim_util.augroup('lsp_define_java', 'FileType', 'java', function()
         require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
     end)
