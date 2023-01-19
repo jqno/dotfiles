@@ -1,7 +1,6 @@
 local This = {}
 
-local map = require('vim-util').map
-local wk = require('which-key').register
+local map = vim.keymap.set
 
 This.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't' }
 
@@ -31,11 +30,11 @@ local function define_mappings()
     map(This.modes.n, 'N', 'Nzz')
     -- Toggle movements
     map(This.modes.n, '0',
-        '<cmd>lua require("util").toggle_movement("^", "0")<CR>')
+        function() require("util").toggle_movement("^", "0") end, { desc = 'Toggle movement 0' })
     map(This.modes.n, ';',
-        '<cmd>lua require("util").toggle_movement(";", "0;")<CR>')
+        function() require("util").toggle_movement(";", "0;") end, { desc = 'Toggle movement ;' })
     map(This.modes.n, ',',
-        '<cmd>lua require("util").toggle_movement(",", "$,")<CR>')
+        function() require("util").toggle_movement(",", "$,") end, { desc = 'Toggle movement ,' })
     -- Breakpoints for undo
     map(This.modes.i, '.', '.<C-G>u')
     map(This.modes.i, ',', ',<C-G>u')
@@ -46,8 +45,8 @@ local function define_mappings()
     map(This.modes.n, 'Y', '"+y')
     map(This.modes.v, 'Y', '"+y')
     -- Comment lines
-    map(This.modes.n, '\\\\', '<Plug>CommentaryLine', { noremap = false })
-    map(This.modes.v, '\\', '<Plug>Commentary', { noremap = false })
+    map(This.modes.n, '\\\\', '<Plug>CommentaryLine')
+    map(This.modes.v, '\\', '<Plug>Commentary')
     -- Moving lines and blocks
     map(This.modes.n, '<M-j>', '<cmd>move .+1<CR>==')
     map(This.modes.n, '<M-k>', '<cmd>move .-2<CR>==')
@@ -55,203 +54,138 @@ local function define_mappings()
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
     -- Close everything --
-    map(This.modes.n, '<C-Esc>', '<cmd>lua require("util").close_everything()<CR><Esc>')
-    map(This.modes.t, '<C-Esc>', '<cmd>FloatermHide<CR>')
+    map(This.modes.n, '<C-Esc>', function() require("util").close_everything() end,
+        { desc = 'Close everything' })
+    map(This.modes.t, '<C-Esc>', '<cmd>FloatermHide<CR>', { desc = 'Close everything' })
 
     -- Snippets and jumps --
     map(This.modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]]
         ,
-        { expr = true })
+        { expr = true, replace_keycodes = false })
     map(This.modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
-        { expr = true })
+        { expr = true, replace_keycodes = false })
     map(This.modes.i, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        { expr = true })
+        { expr = true, replace_keycodes = false })
     map(This.modes.s, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        { expr = true })
+        { expr = true, replace_keycodes = false })
     map(This.modes.i, '<C-K>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
-        { expr = true })
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
+        { expr = true, replace_keycodes = false })
     map(This.modes.s, '<C-K>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-J>']],
-        { expr = true })
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
+        { expr = true, replace_keycodes = false })
     -- Expand %% to the directory of the currently open file
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
-    wk({
-        -- UNIMPAIRED --
-        ['['] = {
-            name = 'previous',
-            ['['] = 'function',
-            ['<leader>'] = { '<Plug>(Marks-prev-bookmark0)', 'bookmark', noremap = false },
-            b = { '<cmd>bprevious<CR>', 'buffer' },
-            g = 'git hunk',
-            q = { '<cmd>cprevious<CR>', 'quickfix' },
-            Q = { '<cmd>qfirst<CR>', 'quickfix first' }
-        },
-        [']'] = {
-            name = 'next',
-            [']'] = 'function',
-            ['<leader>'] = { '<Plug>(Marks-next-bookmark0)', 'bookmark', noremap = false },
-            b = { '<cmd>bnext<CR>', 'buffer' },
-            g = 'git hunk',
-            Q = { '<cmd>clast<CR>', 'quickfix last' },
-            q = { '<cmd>cnext<CR>', 'quickfix' }
-        },
-        -- RAW LEADER --
-        ['<leader>'] = {
-            -- defined elsewhere
-            ['<C-D>'] = 'scroll down',
-            ['<C-U>'] = 'scroll up'
-        },
-        -- NAVIGATION --
-        ['<leader><leader>'] = {
-            name = 'navigation',
-            ['<leader>'] = { '<Plug>(Marks-set-bookmark0)', 'set bookmark', noremap = false },
-            ['<CR>'] = { '<cmd>lua require("util").open_alternate()<CR>', 'open alternate here' },
-            s = { '<cmd>BookmarksQFList 0<CR>', 'show all' },
-            a = { '<cmd>lua require("marks").annotate()<CR>', 'annotate' },
-            x = { '<Plug>(Marks-delete-bookmark)', 'delete bookmark', noremap = false },
-            X = { '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)', 'delete all marks and bookmarks', noremap = false },
-            h = { '<cmd>lua require("util").open_split("left")<CR>', 'open split left' },
-            j = { '<cmd>lua require("util").open_split("down")<CR>', 'open split below' },
-            k = { '<cmd>lua require("util").open_split("up")<CR>', 'open split above' },
-            l = { '<cmd>lua require("util").open_split("right")<CR>', 'open split right' },
-            H = { '<cmd>lua require("util").open_alternate("left")<CR>', 'open alternate left' },
-            J = { '<cmd>lua require("util").open_alternate("down")<CR>', 'open alternate down' },
-            K = { '<cmd>lua require("util").open_alternate("up")<CR>', 'open alternate up' },
-            L = { '<cmd>lua require("util").open_alternate("right")<CR>', 'open alternate right' },
-        },
-        ['<leader>]'] = {
-            name = 'follow references',
-            h = { '<cmd>lua require("util").open_definition("left")<CR>', 'follow reference left' },
-            j = { '<cmd>lua require("util").open_definition("down")<CR>', 'follow reference down' },
-            k = { '<cmd>lua require("util").open_definition("up")<CR>', 'follow reference up' },
-            l = { '<cmd>lua require("util").open_definition("right")<CR>', 'follow reference right' }
-        },
-        -- TOGGLES --
-        ['<leader>t'] = {
-            name = 'toggles',
-            ['2'] = {
-                '<cmd>lua require("util").set_buf_indent(2, false, true)<CR>',
-                'indent 2'
-            },
-            ['4'] = {
-                '<cmd>lua require("util").set_buf_indent(4, false, true)<CR>',
-                'indent 4'
-            },
-            ['8'] = {
-                '<cmd>lua require("util").set_buf_indent(8, false, true)<CR>',
-                'indent 8'
-            },
-            ['<tab>'] = {
-                '<cmd>lua require("util").set_buf_indent(4, true, true)<CR>',
-                'indent tab'
-            },
-            l = { '<cmd>set list! list?<CR>', 'list' },
-            s = {
-                '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
-                'typewriter scroll mode'
-            },
-            w = { '<cmd>set wrap! wrap?<CR>', 'wrap' },
-            z = { '<cmd>ZenMode<CR>', 'zen mode' }
-        },
-        -- BUFFER --
-        ['<leader>b'] = {
-            name = 'buffer',
-            b = { '<cmd>b#<CR>', 'previous' },
-            d = { '<cmd>BufDel<CR>', 'delete' },
-            x = { '<cmd>bufdo bdelete<CR>', 'close all' }
-        },
-        ['<leader>d'] = { name = 'debug' },
-        -- EXECUTING THINGS --
-        ['<leader>x'] = {
-            name = 'execute',
-            l = {
-                '<cmd>lua require("util").linkify()<CR>',
-                'linkify',
-                silent = true
-            },
-            n = {
-                '<cmd>lua require("util").show_full_path()<CR>',
-                'show full path',
-                silent = true
-            },
-            x = {
-                '<cmd>lua require("autolist").invert()<CR>',
-                'toggle checkbox'
-            }
-        },
-        -- FINDING --
-        ['<leader>f'] = {
-            name = 'file',
-            b = { '<cmd>Telescope buffers show_all_buffers=true<CR>', 'buffers' },
-            d = { '<cmd>Telescope diagnostics bufnr=0<CR>', 'diagnostics' },
-            D = { '<cmd>Telescope diagnostics<CR>', 'workspace diagnostics' },
-            f = {
-                '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>',
-                'files'
-            },
-            h = { '<cmd>Telescope help_tags<CR>', 'help' },
-            i = { '<cmd>Telescope treesitter<CR>', 'identifiers' },
-            n = { '<cmd>NvimTreeFindFileToggle<CR>', 'tree' },
-            g = {
-                '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
-                'grep'
-            },
-            ['*'] = {
-                '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>',
-                'grep current'
-            },
-            [':'] = { '<cmd>Telescope commands<CR>', 'commands' }
-        },
-        -- GOING PLACES  --
-        ['<leader>g'] = { name = 'go' },
-        -- GIT --
-        ['<leader>G'] = {
-            name = 'Git',
-            B = { '<cmd>Git blame<CR>', 'blame file' },
-            h = { '<cmd>0Gclog<CR>', 'show file history' },
-            -- following bindings come from GitSigns plugin
-            b = 'blame line',
-            p = 'preview hunk',
-            R = 'reset buffer',
-            r = 'reset hunk',
-            s = 'stage hunk',
-            u = 'undo stage hunk'
-        },
-        -- MAKE-ING --
-        ['<leader>m'] = {
-            name = 'make',
-            ['<CR>'] = { '<cmd>TestLast<CR>', 'test last' },
-            t = { '<cmd>TestNearest<CR>', 'test nearest' },
-            T = { '<cmd>TestFile<CR>', 'test file' }
-        },
-        -- REFACTORING --
-        ['<leader>r'] = {
-            name = 'refactor',
-            ['>'] = 'swap right',
-            ['<'] = 'swap left'
-        },
-        -- SHOWING THINGS --
-        ['<leader>s'] = {
-            name = 'show',
-            c = 'peek class',
-            f = 'peek function'
-        },
-        -- WINDOW --
-        ['<leader>w'] = {
-            name = 'window',
-            ['_'] = { '<cmd>wincmd _<CR>', 'enlarge window' },
-            ['='] = { '<cmd>wincmd =<CR>', 'equalize' },
-            ['0'] = { '<cmd>wincmd r<CR>', 'rotate' },
-            k = { '<C-w>w', 'move into floating window' },
-            w = { '<cmd>SwapSplit<CR>', 'swap windows' }
-        }
-    })
+    -- UNIMPAIRED --
+    map(This.modes.n, '[<leader>', '<Plug>(Marks-prev-bookmark0)', { desc = 'previous bookmark' })
+    map(This.modes.n, '[b', '<cmd>bprevious<CR>', { desc = 'previous buffer' })
+    map(This.modes.n, '[q', '<cmd>cprevious<CR>', { desc = 'previous quickfix' })
+    map(This.modes.n, '[Q', '<cmd>qfirst<CR>', { desc = 'first quickfix' })
+    map(This.modes.n, ']<leader>', '<Plug>(Marks-next-bookmark0)', { desc = 'next bookmark' })
+    map(This.modes.n, ']b', '<cmd>bprevious<CR>', { desc = 'next buffer' })
+    map(This.modes.n, ']q', '<cmd>cprevious<CR>', { desc = 'next quickfix' })
+    map(This.modes.n, ']Q', '<cmd>qfirst<CR>', { desc = 'last quickfix' })
+
+    -- NAVIGATION --
+    map(This.modes.n, '<leader><leader><leader>', '<Plug>(Marks-set-bookmark0)', { desc = 'set bookmark' })
+    map(This.modes.n, '<leader><leader><CR>', function() require("util").open_alternate() end,
+        { desc = 'open alternate here' })
+    map(This.modes.n, '<leader><leader>s', '<cmd>BookmarksQFList 0<CR>', { desc = 'show all' })
+    map(This.modes.n, '<leader><leader>a', function() require("marks").annotate() end, { desc = 'annotate' })
+    map(This.modes.n, '<leader><leader>x', '<Plug>(Marks-delete-bookmark)', { desc = 'delete bookmark' })
+    map(This.modes.n, '<leader><leader>X', '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)',
+        { desc = 'delete all marks and bookmarks' })
+    map(This.modes.n, '<leader><leader>h', function() require("util").open_split("left") end,
+        { desc = 'open split left' })
+    map(This.modes.n, '<leader><leader>j', function() require("util").open_split("down") end,
+        { desc = 'open split below' })
+    map(This.modes.n, '<leader><leader>k', function() require("util").open_split("up") end,
+        { desc = 'open split above' })
+    map(This.modes.n, '<leader><leader>l', function() require("util").open_split("right") end,
+        { desc = 'open split right' })
+    map(This.modes.n, '<leader><leader>H', function() require("util").open_alternate("left") end,
+        { desc = 'open alternate left' })
+    map(This.modes.n, '<leader><leader>J', function() require("util").open_alternate("down") end,
+        { desc = 'open alternate down' })
+    map(This.modes.n, '<leader><leader>K', function() require("util").open_alternate("up") end,
+        { desc = 'open alternate up' })
+    map(This.modes.n, '<leader><leader>L', function() require("util").open_alternate("right") end,
+        { desc = 'open alternate right' })
+
+    -- FOLLOW REFERENCES --
+    map(This.modes.n, '<leader>]h', function() require("util").open_definition("left") end,
+        { desc = 'follow reference left' })
+    map(This.modes.n, '<leader>]j', function() require("util").open_definition("down") end,
+        { desc = 'follow reference down' })
+    map(This.modes.n, '<leader>]k', function() require("util").open_definition("up") end,
+        { desc = 'follow reference up' })
+    map(This.modes.n, '<leader>]l', function() require("util").open_definition("right") end,
+        { desc = 'follow reference right' })
+
+    -- TOGGLES --
+    map(This.modes.n, '<leader>t2', function() require("util").set_buf_indent(2, false, true) end,
+        { desc = 'indent 2' })
+    map(This.modes.n, '<leader>t4', function() require("util").set_buf_indent(4, false, true) end,
+        { desc = 'indent 4' })
+    map(This.modes.n, '<leader>t8', function() require("util").set_buf_indent(8, false, true) end,
+        { desc = 'indent 8' })
+    map(This.modes.n, '<leader>t<tab>', function() require("util").set_buf_indent(4, true, true) end,
+        { desc = 'indent tab' })
+    map(This.modes.n, '<leader>tl', '<cmd>set list! list?<CR>', { desc = 'list' })
+    map(This.modes.n, '<leader>ts', '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
+        { desc = 'typewriter scroll mode' })
+    map(This.modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'wrap' })
+    map(This.modes.n, '<leader>tz', '<cmd>ZenMode<CR>', { desc = 'zen mode' })
+
+    -- BUFFER --
+    map(This.modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'previous' })
+    map(This.modes.n, '<leader>bd', '<cmd>BufDel<CR>', { desc = 'delete' })
+    map(This.modes.n, '<leader>bx', '<cmd>bufdo bdelete<CR>', { desc = 'close all' })
+
+    -- EXECUTING THINGS --
+    map(This.modes.n, '<leader>xl', function() require("util").linkify() end,
+        { desc = 'linkify', silent = true })
+    map(This.modes.n, '<leader>xn', function() require("util").show_full_path() end,
+        { desc = 'show full path', silent = true })
+    map(This.modes.n, '<leader>xx', function() require("autolist").invert() end, { desc = 'toggle checkbox' })
+
+    -- FINDING --
+    map(This.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>', { desc = 'buffers' })
+    map(This.modes.n, '<leader>fd', '<cmd>Telescope diagnostics bufnr=0<CR>', { desc = 'diagnostics' })
+    map(This.modes.n, '<leader>fD', '<cmd>Telescope diagnostics<CR>', { desc = 'workspace diagnostics' })
+    map(This.modes.n, '<leader>ff',
+        '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', { desc = 'files' })
+    map(This.modes.n, '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'help' })
+    map(This.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>', { desc = 'identifiers' })
+    map(This.modes.n, '<leader>fn', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'tree' })
+    map(This.modes.n, '<leader>fg',
+        function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") }) end,
+        { desc = 'grep' })
+    map(This.modes.n, '<leader>f*',
+        function() require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") }) end,
+        { desc = 'grep current' })
+    map(This.modes.n, '<leader>f:', '<cmd>Telescope commands<CR>', { desc = 'commands' })
+
+    -- GIT --
+    map(This.modes.n, '<leader>GB', '<cmd>Git blame<CR>', { desc = 'blame file' })
+    map(This.modes.n, '<leader>Gh', '<cmd>0Gclog<CR>', { desc = 'show file history' })
+
+    -- MAKE-ING --
+    map(This.modes.n, '<leader>m<CR>', '<cmd>TestLast<CR>', { desc = 'test last' })
+    map(This.modes.n, '<leader>mt', '<cmd>TestNearest<CR>', { desc = 'test nearest' })
+    map(This.modes.n, '<leader>mT', '<cmd>TestFile<CR>', { desc = 'test file' })
+
+    -- WINDOW --
+    map(This.modes.n, '<leader>w_', '<cmd>wincmd _<CR>', { desc = 'enlarge window' })
+    map(This.modes.n, '<leader>w=', '<cmd>wincmd =<CR>', { desc = 'equalize' })
+    map(This.modes.n, '<leader>w0', '<cmd>wincmd r<CR>', { desc = 'rotate' })
+    map(This.modes.n, '<leader>wk', '<C-w>w', { desc = 'move into floating window' })
+    map(This.modes.n, '<leader>ww', '<cmd>SwapSplit<CR>', { desc = 'swap windows' })
 
     -- TERMINAL --
     map(This.modes.n, '<C-CR>', '<cmd>FloatermToggle<CR>')
@@ -261,147 +195,82 @@ local function define_mappings()
     map(This.modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
     map(This.modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
     map(This.modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
-    wk({
-        ['<c-\\>'] = {
-            name = 'terminal',
-            t = { '<cmd>FloatermToggle<CR>', 'toggle' }
-        }
-
-    }, { mode = This.modes.t })
+    map(This.modes.t, '<C-\\>t', '<cmd>FloatermToggle<CR>', { desc = 'toggle' })
 end
 
 -- LSP MAPPINGS --
 function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
-    wk({
-        -- UNIMPAIRED --
-        ['['] = {
-            d = {
-                '<cmd>lua vim.diagnostic.goto_prev({source="always"})<CR>',
-                'diagnostic'
-            }
-        },
-        [']'] = {
-            d = {
-                '<cmd>lua vim.diagnostic.goto_next({source="always"})<CR>',
-                'diagnostic'
-            }
-        },
-        -- MAKE-ING --
-        ['<leader>m'] = {
-            d = {
-                '<cmd>Telescope lsp_document_diagnostics<CR>',
-                'show diagnostics'
-            },
-            D = {
-                '<cmd>Telescope lsp_workspace_diagnostics<CR>',
-                'show ALL diagnostics'
-            }
-        },
-        -- SHOWING THINGS --
-        ['<leader>s'] = {
-            d = {
-                '<cmd>lua vim.diagnostic.open_float()<CR>',
-                'diagnostics'
-            }
-        }
-    }, { buffer = bufnr })
+    -- UNIMPAIRED --
+    map(This.modes.n, '[d', function() vim.diagnostic.goto_prev({ source = 'always' }) end,
+        { buffer = bufnr, desc = 'previous diagnostic' })
+    map(This.modes.n, ']d', function() vim.diagnostic.goto_next({ source = 'always' }) end,
+        { buffer = bufnr, desc = 'next diagnostic' })
+
+    -- MAKE-ING --
+    map(This.modes.n, '<leader>md', '<cmd>Telescope lsp_document_diagnostics<CR>',
+        { buffer = bufnr, desc = 'show diagnostics' })
+    map(This.modes.n, '<leader>mD', '<cmd>Telescope lsp_workspace_diagnostics<CR>',
+        { buffer = bufnr, desc = 'show ALL diagnostics' })
+
+    -- SHOWING THINGS --
+    map(This.modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { buffer = bufnr, desc = 'diagnostics' })
 
     if client.server_capabilities.documentFormattingProvider then
-        wk({
-            ['<leader>m'] = {
-                f = { '<cmd>lua vim.lsp.buf.format()<CR>', 'format' }
-            }
-        }, { buffer = bufnr })
+        map(This.modes.n, '<leader>mf', function() vim.lsp.buf.format() end, { buffer = bufnr, desc = 'format' })
     end
 end
 
 function This.setup_lsp(client, bufnr)
-    local function buf_map(mode, lhs, rhs, opts)
-        require('vim-util').buf_map(bufnr, mode, lhs, rhs, opts)
-    end
-
     This.setup_lsp_diagnostics_and_formatting(client, bufnr)
 
     -- VARIOUS --
-    buf_map(This.modes.n, 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    buf_map(This.modes.i, '<C-Space>',
-        '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+    map(This.modes.n, 'K', function() vim.lsp.buf.hover() end, { buffer = bufnr, silent = true })
+    map(This.modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
 
-    wk({
-        -- FINDING --
-        ['<leader>f'] = {
-            s = { '<cmd>Telescope lsp_document_symbols<CR>', 'document symbols' },
-            S = {
-                '<cmd>Telescope lsp_workspace_symbols<CR>', 'workspace symbols'
-            },
-            r = { '<cmd>Telescope lsp_references<CR>', 'references' }
-        },
-        -- GOING PLACES  --
-        ['<leader>g'] = {
-            d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration' },
-            i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
-            t = {
-                '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'type definition'
-            }
-        },
-        -- REFACTORING --
-        ['<leader>r'] = {
-            ['<CR>'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code actions' },
-            r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename' }
-        },
-        -- SHOWING THINGS --
-        ['<leader>s'] = {
-            s = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature help' }
-        }
-    }, { buffer = bufnr })
+    -- FINDING --
+    map(This.modes.n, '<leader>fs', '<cmd>Telescope lsp_document_symbols<CR>',
+        { buffer = bufnr, desc = 'document symbols' })
+    map(This.modes.n, '<leader>fS', '<cmd>Telescope lsp_workspace_symbols<CR>',
+        { buffer = bufnr, desc = 'workspace symbols' })
+    map(This.modes.n, '<leader>fr', '<cmd>Telescope lsp_references<CR>', { buffer = bufnr, desc = 'references' })
 
-    -- VISUAL MODE --
-    wk({
-        -- REFACTORING --
-        ['<leader>r'] = {
-            name = 'refactor',
-            ['<CR>'] = {
-                '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code actions'
-            }
-        }
-    }, { buffer = bufnr, mode = This.modes.v })
+    -- GOING PLACES  --
+    map(This.modes.n, '<leader>gd', function() vim.lsp.buf.declaration() end, { buffer = bufnr, desc = 'declaration' })
+    map(This.modes.n, '<leader>gi', function() vim.lsp.buf.implementation() end,
+        { buffer = bufnr, desc = 'implementation' })
+    map(This.modes.n, '<leader>gt', function() vim.lsp.buf.type_definition() end,
+        { buffer = bufnr, desc = 'type definition' })
+
+    -- REFACTORING --
+    map(This.modes.n, '<leader>r<CR>', function() vim.lsp.buf.code_action() end,
+        { buffer = bufnr, desc = 'code actions' })
+    map(This.modes.v, '<leader>r<CR>', function() vim.lsp.buf.code_action() end,
+        { buffer = bufnr, desc = 'code actions' })
+    map(This.modes.n, '<leader>rr', function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = 'rename' })
+
+    -- SHOWING THINGS --
+    map(This.modes.n, '<leader>ss', function() vim.lsp.buf.signature_help() end,
+        { buffer = bufnr, desc = 'signature help' })
 end
 
 -- DAP MAPPINGS --
 function This.setup_dap(bufnr)
-    wk({
-        -- DEBUGGING --
-        ['<leader>d'] = {
-            ['<space>'] = {
-                '<cmd>lua require("dap").repl.toggle()<CR>', 'toggle repl'
-            },
-            b = {
-                '<cmd>lua require("dap").toggle_breakpoint()<CR>', 'breakpoint'
-            },
-            c = { '<cmd>lua require("dap").continue()<CR>', 'continue' },
-            i = { '<cmd>lua require("dap").step_into()<CR>', 'step into' },
-            l = { '<cmd>lua require("dap").run_last()<CR>', 'run last' },
-            o = { '<cmd>lua require("dap").step_over()<CR>', 'step over' },
-            x = { '<cmd>lua require("dap").step_out()<CR>', 'step out' }
-        },
-        -- SHOWING THINGS --
-        ['<leader>s'] = {
-            v = {
-                '<cmd>lua require("dap.ui.widgets").hover()<CR>', 'debug value'
-            }
-        }
-    }, { buffer = bufnr })
+    -- DEBUGGING --
+    map(This.modes.n, '<leader>d<space>', function() require("dap").repl.toggle() end,
+        { buffer = bufnr, desc = 'toggle repl' })
+    map(This.modes.n, '<leader>db', function() require("dap").toggle_breakpoint() end,
+        { buffer = bufnr, desc = 'breakpoint' })
+    map(This.modes.n, '<leader>dc', function() require("dap").continue() end, { buffer = bufnr, desc = 'continue' })
+    map(This.modes.n, '<leader>di', function() require("dap").step_into() end, { buffer = bufnr, desc = 'step into' })
+    map(This.modes.n, '<leader>dl', function() require("dap").run_last() end, { buffer = bufnr, desc = 'run last' })
+    map(This.modes.n, '<leader>do', function() require("dap").step_over() end, { buffer = bufnr, desc = 'step over' })
+    map(This.modes.n, '<leader>dx', function() require("dap").step_out() end, { buffer = bufnr, desc = 'step out' })
 
-    -- VISUAL --
-    wk({
-        ['<leader>s'] = {
-            name = 'show',
-            v = {
-                '<cmd>lua require("dap.ui.variables").visual_hover()<CR>',
-                'debug value'
-            }
-        }
-    }, { buffer = bufnr, mode = This.modes.v })
+    -- SHOWING THINGS --
+    map(This.modes.n, '<leader>sv', function() require("dap.ui.widgets").hover() end,
+        { buffer = bufnr, desc = 'debug value' })
+    map(This.modes.v, '<leader>sv', function() require("dap.ui.variables").visual_hover() end,
+        { buffer = bufnr, desc = 'debug value' })
 end
 
 -- COMMANDS --

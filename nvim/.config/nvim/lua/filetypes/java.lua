@@ -1,6 +1,5 @@
 local This = {}
 
-local wk = require('which-key').register
 local dap = require('dap')
 local jdtls = require('jdtls')
 local util = require('util')
@@ -29,88 +28,45 @@ local function on_attach(client, bufnr)
 
     client.server_capabilities.documentFormattingProvider = false
 
+    local map = vim.keymap.set
     local modes = require('mappings').modes
 
-    wk({
-        ['<leader>d'] = {
-            r = { '<cmd>lua require("dap").continue()<CR>', 'run' },
-            t = {
-                '<cmd>lua require("filetypes.java").dap_run_test()<CR>',
-                'test file'
-            },
-            n = {
-                '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>',
-                'test nearest'
-            }
-        },
-        ['<leader>g'] = {
-            s = {
-                '<cmd>lua require("jdtls").super_implementation()<CR>',
-                'super implementation'
-            }
-        },
-        ['<leader>r'] = {
-            R = {
-                '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>',
-                'menu'
-            },
-            m = {
-                '<cmd>lua require("jdtls").extract_method()<CR>',
-                'extract method'
-            },
-            o = {
-                '<cmd>lua require("jdtls").organize_imports()<CR>',
-                'organize imports'
-            },
-            v = {
-                '<cmd>lua require("jdtls").extract_variable()<CR>',
-                'extract variable'
-            },
-            V = {
-                '<cmd>lua require("jdtls").extract_variable_all()<CR>',
-                'extract variable (all occurrences)'
-            }
-        },
-        ['<leader>m'] = {
-            ['<space>'] = {
-                '<cmd>lua require("util").floatermsend("jbang ' .. vim.fn.expand('%:p') .. '")<CR>',
-                'run with JBang'
-            },
-            r = {
-                '<cmd>lua require("jdtls").update_project_config()<CR>',
-                'reload'
-            },
-            cc = {
-                '<cmd>lua require("util").floatermsend("mvnd clean test-compile")<CR>',
-                'mvn clean compile'
-            },
-            cv = {
-                '<cmd>lua require("util").floatermsend("mvnd clean verify")<CR>',
-                'mvn clean verify'
-            },
-            p = {
-                '<cmd>lua require("util").floatermsend("mvnd clean package -DskipTests=true")<CR>',
-                'mvn package (no tests)'
-            },
-            v = {
-                '<cmd>lua require("util").floatermsend("mvnd verify")<CR>',
-                'mvn verify'
-            },
-        }
-    }, { buffer = bufnr })
+    map(modes.n, '<leader>dr', function() require("dap").continue() end, { buffer = bufnr, desc = 'run' })
+    map(modes.n, '<leader>dt', function() require("filetypes.java").dap_run_test() end,
+        { buffer = bufnr, desc = 'test file' })
+    map(modes.n, '<leader>dn', function() require("filetypes.java").dap_run_test_nearest() end,
+        { buffer = bufnr, desc = 'test nearest' })
 
-    wk({
-        ['<leader>r'] = {
-            m = {
-                '<cmd>lua require("jdtls").extract_method(true)<CR>',
-                'extract method'
-            },
-            v = {
-                '<cmd>lua require("jdtls").extract_variable(true)<CR>',
-                'extract variable'
-            }
-        }
-    }, { buffer = bufnr, mode = modes.v })
+    map(modes.n, '<leader>gs', function() require("jdtls").super_implementation() end,
+        { buffer = bufnr, desc = 'super implementation' })
+
+    map(modes.n, '<leader>rR', function() require("jdtls").code_action(false, "refactor") end,
+        { buffer = bufnr, desc = 'menu' })
+    map(modes.n, '<leader>rm', function() require("jdtls").extract_method() end,
+        { buffer = bufnr, desc = 'extract method' })
+    map(modes.v, '<leader>rm', function() require("jdtls").extract_method(true) end,
+        { buffer = bufnr, desc = 'extract method' })
+    map(modes.n, '<leader>ro', function() require("jdtls").organize_imports() end,
+        { buffer = bufnr, desc = 'organize imports' })
+    map(modes.n, '<leader>rv', function() require("jdtls").extract_variable() end,
+        { buffer = bufnr, desc = 'extract variable' })
+    map(modes.v, '<leader>rv', function() require("jdtls").extract_variable(true) end,
+        { buffer = bufnr, desc = 'extract variable' })
+    map(modes.n, '<leader>rV', function() require("jdtls").extract_variable_all() end,
+        { buffer = bufnr, desc = 'extract variable (all occurrences)' })
+
+    map(modes.n, '<leader>m<space>', function() require("util").floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
+        , { buffer = bufnr, desc = 'run with JBang' })
+    map(modes.n, '<leader>mr', function() require("jdtls").update_project_config() end,
+        { buffer = bufnr, desc = 'reload' })
+    map(modes.n, '<leader>mcc', function() require("util").floatermsend("mvnd clean test-compile") end,
+        { buffer = bufnr, desc = 'mvn clean compile' })
+    map(modes.n, '<leader>mcv', function() require("util").floatermsend("mvnd clean verify") end,
+        { buffer = bufnr, desc = 'mvn clean verify' })
+    map(modes.n, '<leader>mp', function() require("util").floatermsend("mvnd clean package -DskipTests=true") end,
+        { buffer = bufnr, desc = 'mvn package (no tests)' })
+    map(modes.n, '<leader>mv', function() require("util").floatermsend("mvnd verify") end,
+        { buffer = bufnr, desc = 'mvn verify' })
 end
 
 local function find_project_root()
