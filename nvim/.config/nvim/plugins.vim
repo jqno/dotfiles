@@ -66,9 +66,6 @@ Plug 'mfussenegger/nvim-jdtls', { 'tag': '0.2.0' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'saadparwaiz1/cmp_luasnip'
 
-" Configure wiki
-Plug 'lervag/wiki.vim'
-
 " Dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'

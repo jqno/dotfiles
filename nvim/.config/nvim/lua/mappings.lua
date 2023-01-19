@@ -54,8 +54,6 @@ local function define_mappings()
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
 
-    -- Open Wiki --
-    map(This.modes.n, '<F12>', '<cmd>WikiIndex<CR>')
     -- Close everything --
     map(This.modes.n, '<C-Esc>', '<cmd>lua require("util").close_everything()<CR><Esc>')
     map(This.modes.t, '<C-Esc>', '<cmd>FloatermHide<CR>')
@@ -204,14 +202,6 @@ local function define_mappings()
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") })<CR>',
                 'grep'
             },
-            q = {
-                '<cmd>lua require("telescope.builtin").find_files({ search_dirs = {"~/Dropbox/notes"} })<CR>',
-                'wiki'
-            },
-            Q = {
-                '<cmd>lua require("telescope.builtin").grep_string({ cwd = "~/Dropbox/notes", search = vim.fn.input("Wiki ❯ ") })<CR>',
-                'wiki'
-            },
             ['*'] = {
                 '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") })<CR>',
                 'grep current'
@@ -252,8 +242,6 @@ local function define_mappings()
             c = 'peek class',
             f = 'peek function'
         },
-        -- WIKI --
-        ['<leader>q'] = { name = 'wiki', q = { '<cmd>WikiIndex<CR>', 'index' } },
         -- WINDOW --
         ['<leader>w'] = {
             name = 'window',
@@ -414,13 +402,6 @@ function This.setup_dap(bufnr)
             }
         }
     }, { buffer = bufnr, mode = This.modes.v })
-end
-
-function This.setup_wikivim()
-    map(This.modes.n, '<C-]>', '<Plug>(wiki-link-follow)', { noremap = false })
-    map(This.modes.n, '<Tab>', '<Plug>(wiki-link-next)', { noremap = false })
-    map(This.modes.n, '<S-Tab>', '<Plug>(wiki-link-prev)', { noremap = false })
-    map(This.modes.n, '<BS>', '<Plug>(wiki-link-return)', { noremap = false })
 end
 
 -- COMMANDS --

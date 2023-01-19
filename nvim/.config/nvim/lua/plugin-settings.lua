@@ -243,21 +243,6 @@ local function setup_whichkey()
     })
 end
 
-local function setup_wikivim()
-    g.wiki_root = '~/Dropbox/notes'
-    g.wiki_filetypes = { 'md' }
-    g.wiki_link_extension = '.md'
-    g.wiki_link_target_type = 'md'
-    g.wiki_mappings_use_defaults = 'none'
-
-    -- Enable mappings manually to avoid conflict with Wildfire (which also uses <CR>)
-    vim_util.augroup(
-        'enable_wikivim_mappings',
-        { 'BufRead', 'BufNewFile' },
-        vim.env.HOME .. "/Dropbox/notes/**",
-        require('mappings').setup_wikivim)
-end
-
 local function setup_wildfire()
     g.wildfire_objects = {
         scala = { 'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip' },
@@ -286,7 +271,6 @@ function This.setup()
     setup_treesitter()
     setup_vimtest()
     setup_whichkey()
-    setup_wikivim()
     setup_wildfire()
 end
 
