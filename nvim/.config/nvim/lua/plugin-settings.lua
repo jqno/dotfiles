@@ -235,14 +235,6 @@ local function setup_vimtest()
     g['test#java#maventest#executable'] = 'mvnd'
 end
 
-local function setup_whichkey()
-    require('which-key').setup({
-        triggers_blacklist = {
-            n = { 'c', 'v' } -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
-        }
-    })
-end
-
 local function setup_wildfire()
     g.wildfire_objects = {
         scala = { 'iw', "i'", "a'", 'i"', 'a"', 'i)', 'i]', 'i}', 'ip' },
@@ -270,7 +262,6 @@ function This.setup()
     setup_telescope()
     setup_treesitter()
     setup_vimtest()
-    setup_whichkey()
     setup_wildfire()
 end
 
