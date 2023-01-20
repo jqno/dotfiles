@@ -31,34 +31,34 @@ local function on_attach(client, bufnr)
     local map = vim.keymap.set
     local modes = require('mappings').modes
 
-    map(modes.n, '<leader>dr', function() require("dap").continue() end, { buffer = bufnr, desc = 'run' })
+    map(modes.n, '<leader>dr', function() require("dap").continue() end, { buffer = bufnr, desc = 'debug: run' })
     map(modes.n, '<leader>dt', function() require("filetypes.java").dap_run_test() end,
-        { buffer = bufnr, desc = 'test file' })
+        { buffer = bufnr, desc = 'debug: test file' })
     map(modes.n, '<leader>dn', function() require("filetypes.java").dap_run_test_nearest() end,
-        { buffer = bufnr, desc = 'test nearest' })
+        { buffer = bufnr, desc = 'debug: run nearest test' })
 
     map(modes.n, '<leader>gs', function() require("jdtls").super_implementation() end,
-        { buffer = bufnr, desc = 'super implementation' })
+        { buffer = bufnr, desc = 'go to super implementation' })
 
     map(modes.n, '<leader>rR', function() require("jdtls").code_action(false, "refactor") end,
-        { buffer = bufnr, desc = 'menu' })
+        { buffer = bufnr, desc = 'refactor: menu' })
     map(modes.n, '<leader>rm', function() require("jdtls").extract_method() end,
-        { buffer = bufnr, desc = 'extract method' })
+        { buffer = bufnr, desc = 'refactor: extract method' })
     map(modes.v, '<leader>rm', function() require("jdtls").extract_method(true) end,
-        { buffer = bufnr, desc = 'extract method' })
+        { buffer = bufnr, desc = 'refactor: extract method' })
     map(modes.n, '<leader>ro', function() require("jdtls").organize_imports() end,
-        { buffer = bufnr, desc = 'organize imports' })
+        { buffer = bufnr, desc = 'refactor: organize imports' })
     map(modes.n, '<leader>rv', function() require("jdtls").extract_variable() end,
-        { buffer = bufnr, desc = 'extract variable' })
+        { buffer = bufnr, desc = 'refactor: extract variable' })
     map(modes.v, '<leader>rv', function() require("jdtls").extract_variable(true) end,
-        { buffer = bufnr, desc = 'extract variable' })
+        { buffer = bufnr, desc = 'refactor: extract variable' })
     map(modes.n, '<leader>rV', function() require("jdtls").extract_variable_all() end,
-        { buffer = bufnr, desc = 'extract variable (all occurrences)' })
+        { buffer = bufnr, desc = 'refactor: extract variable (all occurrences)' })
 
     map(modes.n, '<leader>m<space>', function() require("util").floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
         , { buffer = bufnr, desc = 'run with JBang' })
     map(modes.n, '<leader>mr', function() require("jdtls").update_project_config() end,
-        { buffer = bufnr, desc = 'reload' })
+        { buffer = bufnr, desc = 'reload build configuration' })
     map(modes.n, '<leader>mcc', function() require("util").floatermsend("mvnd clean test-compile") end,
         { buffer = bufnr, desc = 'mvn clean compile' })
     map(modes.n, '<leader>mcv', function() require("util").floatermsend("mvnd clean verify") end,

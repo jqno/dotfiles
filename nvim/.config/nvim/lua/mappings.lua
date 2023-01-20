@@ -30,11 +30,11 @@ local function define_mappings()
     map(This.modes.n, 'N', 'Nzz')
     -- Toggle movements
     map(This.modes.n, '0',
-        function() require("util").toggle_movement("^", "0") end, { desc = 'Toggle movement 0' })
+        function() require("util").toggle_movement("^", "0") end, { desc = 'toggle movement 0' })
     map(This.modes.n, ';',
-        function() require("util").toggle_movement(";", "0;") end, { desc = 'Toggle movement ;' })
+        function() require("util").toggle_movement(";", "0;") end, { desc = 'toggle movement ;' })
     map(This.modes.n, ',',
-        function() require("util").toggle_movement(",", "$,") end, { desc = 'Toggle movement ,' })
+        function() require("util").toggle_movement(",", "$,") end, { desc = 'toggle movement ,' })
     -- Breakpoints for undo
     map(This.modes.i, '.', '.<C-G>u')
     map(This.modes.i, ',', ',<C-G>u')
@@ -82,21 +82,21 @@ local function define_mappings()
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
     -- UNIMPAIRED --
-    map(This.modes.n, '[<leader>', '<Plug>(Marks-prev-bookmark0)', { desc = 'previous bookmark' })
-    map(This.modes.n, '[b', '<cmd>bprevious<CR>', { desc = 'previous buffer' })
-    map(This.modes.n, '[q', '<cmd>cprevious<CR>', { desc = 'previous quickfix' })
-    map(This.modes.n, '[Q', '<cmd>qfirst<CR>', { desc = 'first quickfix' })
-    map(This.modes.n, ']<leader>', '<Plug>(Marks-next-bookmark0)', { desc = 'next bookmark' })
-    map(This.modes.n, ']b', '<cmd>bprevious<CR>', { desc = 'next buffer' })
-    map(This.modes.n, ']q', '<cmd>cprevious<CR>', { desc = 'next quickfix' })
-    map(This.modes.n, ']Q', '<cmd>qfirst<CR>', { desc = 'last quickfix' })
+    map(This.modes.n, '[<leader>', '<Plug>(Marks-prev-bookmark0)', { desc = 'go to previous bookmark' })
+    map(This.modes.n, '[b', '<cmd>bprevious<CR>', { desc = 'go to previous buffer' })
+    map(This.modes.n, '[q', '<cmd>cprevious<CR>', { desc = 'go to previous quickfix' })
+    map(This.modes.n, '[Q', '<cmd>qfirst<CR>', { desc = 'go to first quickfix' })
+    map(This.modes.n, ']<leader>', '<Plug>(Marks-next-bookmark0)', { desc = 'go to next bookmark' })
+    map(This.modes.n, ']b', '<cmd>bprevious<CR>', { desc = 'go to next buffer' })
+    map(This.modes.n, ']q', '<cmd>cprevious<CR>', { desc = 'go to next quickfix' })
+    map(This.modes.n, ']Q', '<cmd>qfirst<CR>', { desc = 'go to last quickfix' })
 
     -- NAVIGATION --
     map(This.modes.n, '<leader><leader><leader>', '<Plug>(Marks-set-bookmark0)', { desc = 'set bookmark' })
     map(This.modes.n, '<leader><leader><CR>', function() require("util").open_alternate() end,
         { desc = 'open alternate here' })
-    map(This.modes.n, '<leader><leader>s', '<cmd>BookmarksQFList 0<CR>', { desc = 'show all' })
-    map(This.modes.n, '<leader><leader>a', function() require("marks").annotate() end, { desc = 'annotate' })
+    map(This.modes.n, '<leader><leader>s', '<cmd>BookmarksQFList 0<CR>', { desc = 'show all bookmarks' })
+    map(This.modes.n, '<leader><leader>a', function() require("marks").annotate() end, { desc = 'annotate bookmark' })
     map(This.modes.n, '<leader><leader>x', '<Plug>(Marks-delete-bookmark)', { desc = 'delete bookmark' })
     map(This.modes.n, '<leader><leader>X', '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)',
         { desc = 'delete all marks and bookmarks' })
@@ -109,13 +109,13 @@ local function define_mappings()
     map(This.modes.n, '<leader><leader>l', function() require("util").open_split("right") end,
         { desc = 'open split right' })
     map(This.modes.n, '<leader><leader>H', function() require("util").open_alternate("left") end,
-        { desc = 'open alternate left' })
+        { desc = 'open alternate file left' })
     map(This.modes.n, '<leader><leader>J', function() require("util").open_alternate("down") end,
-        { desc = 'open alternate down' })
+        { desc = 'open alternate file down' })
     map(This.modes.n, '<leader><leader>K', function() require("util").open_alternate("up") end,
-        { desc = 'open alternate up' })
+        { desc = 'open alternate file up' })
     map(This.modes.n, '<leader><leader>L', function() require("util").open_alternate("right") end,
-        { desc = 'open alternate right' })
+        { desc = 'open alternate file right' })
 
     -- FOLLOW REFERENCES --
     map(This.modes.n, '<leader>]h', function() require("util").open_definition("left") end,
@@ -129,23 +129,23 @@ local function define_mappings()
 
     -- TOGGLES --
     map(This.modes.n, '<leader>t2', function() require("util").set_buf_indent(2, false, true) end,
-        { desc = 'indent 2' })
+        { desc = 'toggle indent: 2 spaces' })
     map(This.modes.n, '<leader>t4', function() require("util").set_buf_indent(4, false, true) end,
-        { desc = 'indent 4' })
+        { desc = 'toggle indent: 4 spaces' })
     map(This.modes.n, '<leader>t8', function() require("util").set_buf_indent(8, false, true) end,
-        { desc = 'indent 8' })
+        { desc = 'toggle indent: 8 spaces' })
     map(This.modes.n, '<leader>t<tab>', function() require("util").set_buf_indent(4, true, true) end,
-        { desc = 'indent tab' })
-    map(This.modes.n, '<leader>tl', '<cmd>set list! list?<CR>', { desc = 'list' })
+        { desc = 'toggle indent: tabs' })
+    map(This.modes.n, '<leader>tl', '<cmd>set list! list?<CR>', { desc = 'toggle visible spaces' })
     map(This.modes.n, '<leader>ts', '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
-        { desc = 'typewriter scroll mode' })
-    map(This.modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'wrap' })
-    map(This.modes.n, '<leader>tz', '<cmd>ZenMode<CR>', { desc = 'zen mode' })
+        { desc = 'toggle typewriter scroll mode' })
+    map(This.modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'toggle wrap' })
+    map(This.modes.n, '<leader>tz', '<cmd>ZenMode<CR>', { desc = 'toggle zen mode' })
 
     -- BUFFER --
-    map(This.modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'previous' })
-    map(This.modes.n, '<leader>bd', '<cmd>BufDel<CR>', { desc = 'delete' })
-    map(This.modes.n, '<leader>bx', '<cmd>bufdo bdelete<CR>', { desc = 'close all' })
+    map(This.modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
+    map(This.modes.n, '<leader>bd', '<cmd>BufDel<CR>', { desc = 'delete current buffer' })
+    map(This.modes.n, '<leader>bx', '<cmd>bufdo bdelete<CR>', { desc = 'close all buffers' })
 
     -- EXECUTING THINGS --
     map(This.modes.n, '<leader>xl', function() require("util").linkify() end,
@@ -155,35 +155,36 @@ local function define_mappings()
     map(This.modes.n, '<leader>xx', function() require("autolist").invert() end, { desc = 'toggle checkbox' })
 
     -- FINDING --
-    map(This.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>', { desc = 'buffers' })
-    map(This.modes.n, '<leader>fd', '<cmd>Telescope diagnostics bufnr=0<CR>', { desc = 'diagnostics' })
-    map(This.modes.n, '<leader>fD', '<cmd>Telescope diagnostics<CR>', { desc = 'workspace diagnostics' })
+    map(This.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>', { desc = 'find buffers' })
+    map(This.modes.n, '<leader>fd', '<cmd>Telescope diagnostics bufnr=0<CR>', { desc = 'find diagnostics' })
+    map(This.modes.n, '<leader>fD', '<cmd>Telescope diagnostics<CR>', { desc = 'find workspace diagnostics' })
     map(This.modes.n, '<leader>ff',
-        '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', { desc = 'files' })
-    map(This.modes.n, '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'help' })
-    map(This.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>', { desc = 'identifiers' })
-    map(This.modes.n, '<leader>fn', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'tree' })
+        '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', { desc = 'find files' })
+    map(This.modes.n, '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'find help item' })
+    map(This.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>', { desc = 'find treesitter identifiers' })
+    map(This.modes.n, '<leader>fn', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'open file tree' })
     map(This.modes.n, '<leader>fg',
         function() require("telescope.builtin").grep_string({ search = vim.fn.input("Grep ❯ ") }) end,
-        { desc = 'grep' })
+        { desc = 'grep in workspace' })
     map(This.modes.n, '<leader>f*',
         function() require("telescope.builtin").grep_string({ search = vim.fn.expand("<cword>") }) end,
-        { desc = 'grep current' })
-    map(This.modes.n, '<leader>f:', '<cmd>Telescope commands<CR>', { desc = 'commands' })
+        { desc = 'grep current wordt in workspace' })
+    map(This.modes.n, '<leader>f:', '<cmd>Telescope commands<CR>', { desc = 'find Vim command' })
+    map(This.modes.n, '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = 'find Vim mapping' })
 
     -- GIT --
-    map(This.modes.n, '<leader>GB', '<cmd>Git blame<CR>', { desc = 'blame file' })
-    map(This.modes.n, '<leader>Gh', '<cmd>0Gclog<CR>', { desc = 'show file history' })
+    map(This.modes.n, '<leader>GB', '<cmd>Git blame<CR>', { desc = 'Git blame file' })
+    map(This.modes.n, '<leader>Gh', '<cmd>0Gclog<CR>', { desc = 'show Git file history' })
 
     -- MAKE-ING --
-    map(This.modes.n, '<leader>m<CR>', '<cmd>TestLast<CR>', { desc = 'test last' })
-    map(This.modes.n, '<leader>mt', '<cmd>TestNearest<CR>', { desc = 'test nearest' })
-    map(This.modes.n, '<leader>mT', '<cmd>TestFile<CR>', { desc = 'test file' })
+    map(This.modes.n, '<leader>m<CR>', '<cmd>TestLast<CR>', { desc = 'run last test' })
+    map(This.modes.n, '<leader>mt', '<cmd>TestNearest<CR>', { desc = 'run nearest test' })
+    map(This.modes.n, '<leader>mT', '<cmd>TestFile<CR>', { desc = 'test current file' })
 
     -- WINDOW --
     map(This.modes.n, '<leader>w_', '<cmd>wincmd _<CR>', { desc = 'enlarge window' })
-    map(This.modes.n, '<leader>w=', '<cmd>wincmd =<CR>', { desc = 'equalize' })
-    map(This.modes.n, '<leader>w0', '<cmd>wincmd r<CR>', { desc = 'rotate' })
+    map(This.modes.n, '<leader>w=', '<cmd>wincmd =<CR>', { desc = 'equalize windows' })
+    map(This.modes.n, '<leader>w0', '<cmd>wincmd r<CR>', { desc = 'rotate windows' })
     map(This.modes.n, '<leader>wk', '<C-w>w', { desc = 'move into floating window' })
     map(This.modes.n, '<leader>ww', '<cmd>SwapSplit<CR>', { desc = 'swap windows' })
 
@@ -195,28 +196,28 @@ local function define_mappings()
     map(This.modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
     map(This.modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
     map(This.modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
-    map(This.modes.t, '<C-\\>t', '<cmd>FloatermToggle<CR>', { desc = 'toggle' })
+    map(This.modes.t, '<C-\\>t', '<cmd>FloatermToggle<CR>', { desc = 'toggle terminal' })
 end
 
 -- LSP MAPPINGS --
 function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     -- UNIMPAIRED --
     map(This.modes.n, '[d', function() vim.diagnostic.goto_prev({ source = 'always' }) end,
-        { buffer = bufnr, desc = 'previous diagnostic' })
+        { buffer = bufnr, desc = 'go to previous diagnostic' })
     map(This.modes.n, ']d', function() vim.diagnostic.goto_next({ source = 'always' }) end,
-        { buffer = bufnr, desc = 'next diagnostic' })
+        { buffer = bufnr, desc = 'go to next diagnostic' })
 
     -- MAKE-ING --
     map(This.modes.n, '<leader>md', '<cmd>Telescope lsp_document_diagnostics<CR>',
-        { buffer = bufnr, desc = 'show diagnostics' })
+        { buffer = bufnr, desc = 'show file diagnostics' })
     map(This.modes.n, '<leader>mD', '<cmd>Telescope lsp_workspace_diagnostics<CR>',
-        { buffer = bufnr, desc = 'show ALL diagnostics' })
+        { buffer = bufnr, desc = 'show workspace diagnostics' })
 
     -- SHOWING THINGS --
-    map(This.modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { buffer = bufnr, desc = 'diagnostics' })
+    map(This.modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { buffer = bufnr, desc = 'show diagnostic under cursor' })
 
     if client.server_capabilities.documentFormattingProvider then
-        map(This.modes.n, '<leader>mf', function() vim.lsp.buf.format() end, { buffer = bufnr, desc = 'format' })
+        map(This.modes.n, '<leader>mf', function() vim.lsp.buf.format() end, { buffer = bufnr, desc = 'format current file' })
     end
 end
 
@@ -229,48 +230,48 @@ function This.setup_lsp(client, bufnr)
 
     -- FINDING --
     map(This.modes.n, '<leader>fs', '<cmd>Telescope lsp_document_symbols<CR>',
-        { buffer = bufnr, desc = 'document symbols' })
+        { buffer = bufnr, desc = 'find current file symbols' })
     map(This.modes.n, '<leader>fS', '<cmd>Telescope lsp_workspace_symbols<CR>',
-        { buffer = bufnr, desc = 'workspace symbols' })
+        { buffer = bufnr, desc = 'find workspace symbols' })
     map(This.modes.n, '<leader>fr', '<cmd>Telescope lsp_references<CR>', { buffer = bufnr, desc = 'references' })
 
     -- GOING PLACES  --
-    map(This.modes.n, '<leader>gd', function() vim.lsp.buf.declaration() end, { buffer = bufnr, desc = 'declaration' })
+    map(This.modes.n, '<leader>gd', function() vim.lsp.buf.declaration() end, { buffer = bufnr, desc = 'go to declaration' })
     map(This.modes.n, '<leader>gi', function() vim.lsp.buf.implementation() end,
-        { buffer = bufnr, desc = 'implementation' })
+        { buffer = bufnr, desc = 'go to implementation' })
     map(This.modes.n, '<leader>gt', function() vim.lsp.buf.type_definition() end,
-        { buffer = bufnr, desc = 'type definition' })
+        { buffer = bufnr, desc = 'go to type definition' })
 
     -- REFACTORING --
     map(This.modes.n, '<leader>r<CR>', function() vim.lsp.buf.code_action() end,
-        { buffer = bufnr, desc = 'code actions' })
+        { buffer = bufnr, desc = 'show code actions' })
     map(This.modes.v, '<leader>r<CR>', function() vim.lsp.buf.code_action() end,
-        { buffer = bufnr, desc = 'code actions' })
-    map(This.modes.n, '<leader>rr', function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = 'rename' })
+        { buffer = bufnr, desc = 'show code actions' })
+    map(This.modes.n, '<leader>rr', function() vim.lsp.buf.rename() end, { buffer = bufnr, desc = 'refactor: rename' })
 
     -- SHOWING THINGS --
     map(This.modes.n, '<leader>ss', function() vim.lsp.buf.signature_help() end,
-        { buffer = bufnr, desc = 'signature help' })
+        { buffer = bufnr, desc = 'show signature help' })
 end
 
 -- DAP MAPPINGS --
 function This.setup_dap(bufnr)
     -- DEBUGGING --
     map(This.modes.n, '<leader>d<space>', function() require("dap").repl.toggle() end,
-        { buffer = bufnr, desc = 'toggle repl' })
+        { buffer = bufnr, desc = 'debug: toggle repl' })
     map(This.modes.n, '<leader>db', function() require("dap").toggle_breakpoint() end,
-        { buffer = bufnr, desc = 'breakpoint' })
-    map(This.modes.n, '<leader>dc', function() require("dap").continue() end, { buffer = bufnr, desc = 'continue' })
-    map(This.modes.n, '<leader>di', function() require("dap").step_into() end, { buffer = bufnr, desc = 'step into' })
-    map(This.modes.n, '<leader>dl', function() require("dap").run_last() end, { buffer = bufnr, desc = 'run last' })
-    map(This.modes.n, '<leader>do', function() require("dap").step_over() end, { buffer = bufnr, desc = 'step over' })
-    map(This.modes.n, '<leader>dx', function() require("dap").step_out() end, { buffer = bufnr, desc = 'step out' })
+        { buffer = bufnr, desc = 'debug: toggle breakpoint' })
+    map(This.modes.n, '<leader>dc', function() require("dap").continue() end, { buffer = bufnr, desc = 'debug: continue' })
+    map(This.modes.n, '<leader>di', function() require("dap").step_into() end, { buffer = bufnr, desc = 'debug: step into' })
+    map(This.modes.n, '<leader>dl', function() require("dap").run_last() end, { buffer = bufnr, desc = 'debug: run last' })
+    map(This.modes.n, '<leader>do', function() require("dap").step_over() end, { buffer = bufnr, desc = 'debug: step over' })
+    map(This.modes.n, '<leader>dx', function() require("dap").step_out() end, { buffer = bufnr, desc = 'debug: step out' })
 
     -- SHOWING THINGS --
     map(This.modes.n, '<leader>sv', function() require("dap.ui.widgets").hover() end,
-        { buffer = bufnr, desc = 'debug value' })
+        { buffer = bufnr, desc = 'debug: show value' })
     map(This.modes.v, '<leader>sv', function() require("dap.ui.variables").visual_hover() end,
-        { buffer = bufnr, desc = 'debug value' })
+        { buffer = bufnr, desc = 'debug: show value' })
 end
 
 -- COMMANDS --
