@@ -1,7 +1,6 @@
 local This = {}
 
 local g = vim.g
-local vim_util = require('vim-util')
 
 local function setup_autolist()
     require('autolist').setup()
