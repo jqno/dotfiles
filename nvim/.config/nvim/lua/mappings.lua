@@ -152,7 +152,6 @@ local function define_mappings()
         { desc = 'linkify', silent = true })
     map(This.modes.n, '<leader>xn', function() require("util").show_full_path() end,
         { desc = 'show full path', silent = true })
-    map(This.modes.n, '<leader>xx', function() require("autolist").invert() end, { desc = 'toggle checkbox' })
 
     -- FINDING --
     map(This.modes.n, '<leader>fb', '<cmd>Telescope buffers show_all_buffers=true<CR>', { desc = 'find buffers' })
