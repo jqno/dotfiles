@@ -8,11 +8,15 @@ end
 
 local function setup_autosave()
     require('auto-save').setup({
+        enabled = false,
         execution_message = {
             dim = 0.4,
             cleaning_interval = 1000
         }
     })
+
+    -- disable and manually enable after a timeout to make sure the splash screen doesn't disappear
+    vim.defer_fn(function() require('auto-save').toggle() end, 100)
 end
 
 local function setup_bufdel()
