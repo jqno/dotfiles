@@ -1,48 +1,93 @@
 local This = {}
 
-local fn = vim.fn
+local diag = require('util').diag_strings
 
-local function custom_theme()
-    local theme = require('lualine.themes.auto')
-    local black = '#252525'
-    theme.normal.a.fg = black
-    theme.normal.a.gui = nil
-    theme.normal.b.fg = black
-    theme.insert.b.fg = black
-    theme.replace.b.fg = black
-    theme.command.b.fg = black
-    theme.visual.b.fg = black
-    theme.inactive = { b = { bg = '#777777' } }
-    return theme
+local left_sep = ''
+local right_sep = ''
+
+local _vimode_text = {
+    n = 'N',
+    no = 'N',
+    i = 'I',
+    v = 'V',
+    V = 'V',
+    [''] = 'V',
+    c = 'C',
+    cv = 'C',
+    ce = 'C',
+    R = 'R',
+    Rv = 'R',
+    s = 'S',
+    S = 'S',
+    [''] = 'S',
+    t = 'T',
+}
+
+local colors = {
+    black = '#252525',
+    green = '#70b433',
+    white = '#dedede',
+}
+
+local highlights = {
+    main = {
+        bg = colors.white,
+        fg = colors.black
+    },
+    secondary = 'StatusLineNC'
+}
+
+local vimode_highlights = {
+    N = 'DiffAdd',
+    I = 'DiffChange',
+    V = 'Visual',
+    C = 'TermCursor',
+    R = 'DiffChange',
+    S = 'DiffChange',
+    T = 'IncSearch'
+}
+
+local function vimode_text()
+    return _vimode_text[vim.fn.mode()]
 end
 
-local function custom_filename()
-    -- Needed because of https://github.com/nvim-lualine/lualine.nvim/issues/820
+local function vimode_highlight()
+    return vimode_highlights[_vimode_text[vim.fn.mode()]]
+end
+
+local function file_name()
     local max_length = 45
-    local filename = fn.expand('%')
+    local name = vim.fn.expand('%')
     local prefix = ''
     local pos = nil
 
-    if filename == '' then
+    if name == '' then
         return '⊥'
     end
 
-    pos = filename:find('%?')
+    pos = name:find('%?')
     if pos ~= nil then
-        filename = filename:sub(1, filename:find('%?') - 1):gsub('/contents', '')
+        name = name:sub(1, name:find('%?') - 1):gsub('/contents', '')
     end
 
-    pos = filename:find('/')
-    while #filename > max_length and pos ~= nil do
+    pos = name:find('/')
+    while #name > max_length and pos ~= nil do
         prefix = '../'
-        filename = filename:sub(pos + 1)
-        pos = filename:find('/')
+        name = name:sub(pos + 1)
+        pos = name:find('/')
     end
 
-    return prefix .. filename
+    return prefix .. name
 end
 
-local function filestatus()
+local function word_count()
+    if vim.bo.filetype == 'markdown' then
+        return vim.fn.wordcount().words .. ' words'
+    end
+    return ''
+end
+
+local function file_status()
     if vim.bo.modifiable and vim.bo.modified then
         return '+'
     elseif not vim.bo.modifiable or vim.bo.readonly then
@@ -50,6 +95,20 @@ local function filestatus()
     else
         return ''
     end
+end
+
+local function get_diag(prefix, severity)
+    local count = #vim.diagnostic.get(0, { severity = severity })
+    if count == 0 then
+        return ''
+    end
+    return prefix .. count
+end
+
+local function diagnostics()
+    return get_diag(diag.error, vim.diagnostic.severity.ERROR) ..
+        get_diag(diag.warn, vim.diagnostic.severity.WARN) ..
+        get_diag(diag.hint, vim.diagnostic.severity.HINT)
 end
 
 local function lsp_status()
@@ -71,12 +130,24 @@ local function lsp_status()
     end
 end
 
-local function word_count()
-    return fn.wordcount().words .. ' words'
+local function file_type()
+    local ft = vim.bo.filetype
+    if ft == '' then
+        return '⊥'
+    end
+    local icon_str, _ = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), nil, { default = true })
+    return icon_str .. ' ' .. ft
 end
 
-local function is_prose()
-    return vim.bo.filetype == 'markdown'
+local function file_format()
+    local ff = vim.bo.fileformat
+    if ff == 'dos' then
+        return ''
+    elseif ff == 'mac' then
+        return ''
+    else -- Linux: 
+        return ''
+    end
 end
 
 local function file_encoding()
@@ -93,23 +164,11 @@ local function file_encoding()
     end
 end
 
-local function search_result()
-    if vim.v.hlsearch == 0 then
-        return ''
-    end
-    local last_search = vim.fn.getreg('/')
-    if not last_search or last_search == '' then
-        return ''
-    end
-    local searchcount = vim.fn.searchcount { maxcount = 9999 }
-    return last_search .. '(' .. searchcount.current .. '/' .. searchcount.total .. ')'
-end
-
 local function position()
     local indicators = { ' ', '▔', '🮂', '🮃', '▀', '🮄', '🮅', '🮆', '█' }
-    local line = fn.line('.')
-    local col = fn.col('.')
-    local total = fn.line('$')
+    local line = vim.fn.line('.')
+    local col = vim.fn.col('.')
+    local total = vim.fn.line('$')
     local progress = ' '
     if total > 1 and line > 1 then
         local idx = math.floor(line / total * (#indicators - 1))
@@ -118,143 +177,100 @@ local function position()
     return line .. ':' .. col .. ' ' .. progress
 end
 
-local function qf_is_loclist()
-    return fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0
-end
+local pad = {
+    back = {
+        provider = ' ',
+        hl = 'StatusLineNC'
+    },
+    vimode = {
+        provider = ' ',
+        hl = vimode_highlight
+    },
+    main = {
+        provider = ' ',
+        hl = highlights.main
+    }
+}
 
-local function qf_label()
-    if qf_is_loclist() then
-        return 'Location List'
-    else
-        return 'Quickfix List'
+local function compose(fns)
+    return function()
+        local result = ''
+        for i = 1, #fns do
+            local s = fns[i]()
+            if result ~= '' and s ~= '' then
+                result = result .. ' '
+            end
+            if s ~= '' then
+                result = result .. s
+            end
+        end
+        return result
     end
 end
 
-local function qf_title()
-    if qf_is_loclist then
-        return vim.fn.getloclist(0, { title = 0 }).title
-    else
-        return vim.fn.getqflist({ title = 0 }).title
-    end
-end
-
-local leftpad = { left = 1, right = 0 }
-local rightpad = { left = 0, right = 1 }
-local nopad = { left = 0, right = 0 }
-
-local sections = {
-    mode = { 'mode',
-        fmt = function(str) return str:sub(1, 1) end,
-        padding = rightpad,
-        separator = { left = ' ' }
-    },
-    filename = { custom_filename,
-        padding = leftpad,
-        separator = ''
-    },
-    filestatus = { filestatus,
-        padding = leftpad,
-    },
-    word_count = { word_count,
-        cond = is_prose,
-        separator = ''
-    },
-    diagnostics = { 'diagnostics',
-        sources = { 'nvim_diagnostic' },
-        sections = { 'error', 'warn', 'hint' },
-        separator = ''
-    },
-    lsp_status = lsp_status,
-    filetype = { 'filetype',
-        padding = rightpad
-    },
-    no_filetype = { '"⊥"',
-        cond = function() return vim.bo.filetype == '' end,
-        padding = rightpad
-    },
-    fileformat = { 'fileformat',
-        symbols = {
-            unix = '', -- 
-            dos = '',
-            mac = ''
+local statusline_active = {
+    { --left
+        pad.back,
+        {
+            provider = vimode_text,
+            hl = vimode_highlight,
+            left_sep = left_sep,
+        },
+        pad.vimode,
+        pad.main,
+        {
+            provider = compose({ file_name, file_status }),
+            hl = highlights.main,
+            right_sep = right_sep
         }
     },
-    file_encoding = { file_encoding },
-    search_result = { search_result },
-    position = { position,
-        padding = leftpad,
-        separator = { right = ' ' }
+    { -- right
+        {
+            provider = compose({ word_count, diagnostics, lsp_status }),
+            hl = highlights.secondary
+        },
+        pad.back,
+        {
+            provider = compose({ file_type, file_format, file_encoding }),
+            hl = highlights.main,
+            left_sep = left_sep
+        },
+        pad.main,
+        pad.vimode,
+        {
+            provider = position,
+            hl = vimode_highlight,
+            right_sep = right_sep
+        },
+        pad.back
+    }
+}
+local statusline_inactive = {
+    { --left
+        pad.back,
+        pad.back,
+        pad.back,
+        pad.back,
+        {
+            provider = file_name,
+            hl = highlights.main,
+            left_sep = left_sep,
+            right_sep = right_sep
+        }
+    },
+    { -- right
     }
 }
 
 local function build_statusline()
-    require('lualine').setup({
-        options = {
-            theme = custom_theme(),
-            component_separators = '│',
-            section_separators = { left = '', right = '' },
-            globalstatus = false
+    require('feline').setup({
+        components = {
+            active = statusline_active,
+            inactive = statusline_inactive
         },
-        sections = {
-            lualine_a = { sections.mode },
-            lualine_b = { sections.filename, sections.filestatus },
-            lualine_c = {},
-            lualine_x = { sections.word_count, sections.diagnostics, sections.lsp_status },
-            lualine_y = { sections.filetype, sections.no_filetype, sections.fileformat, sections.file_encoding },
-            lualine_z = { sections.search_result, sections.position }
-        },
-        inactive_sections = {
-            lualine_a = { sections.mode },
-            lualine_b = { sections.filename, sections.filestatus },
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {},
-            lualine_z = {}
-        },
-        extensions = {
-            {
-                sections = {
-                    lualine_b = {
-                        { function() return vim.o.filetype end,
-                            padding = nopad,
-                            separator = { left = ' ', right = '' }
-                        }
-                    }
-                },
-                filetypes = { 'NvimTree' }
-            },
-            {
-                sections = {
-                    lualine_a = { sections.mode },
-                    lualine_b = {
-                        { '"terminal"',
-                            padding = leftpad,
-                            separator = { right = '' }
-                        }
-                    }
-                },
-                filetypes = { 'floaterm' }
-            },
-            {
-                sections = {
-                    lualine_b = {
-                        { qf_label,
-                            padding = nopad,
-                            separator = { left = ' ', right = '' }
-                        }
-                    },
-                    lualine_c = {
-                        qf_title
-                    },
-                    lualine_z = {
-                        { position,
-                            padding = nopad,
-                            separator = { left = '', right = ' ' },
-                        }
-                    }
-                },
-                filetypes = { 'qf' }
-            }
+        force_inactive = {
+            filetypes = { 'NvimTree', 'qf' },
+            buftypes = { 'terminal' }
         }
     })
 end

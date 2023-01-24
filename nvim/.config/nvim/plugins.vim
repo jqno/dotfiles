@@ -33,9 +33,9 @@ Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'tpope/vim-fugitive'
 
 " Improve looks
+Plug 'feline-nvim/feline.nvim'
 Plug 'jqno/tranquility.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-treesitter/playground', { 'on': 'TSHighlightCapturesUnderCursor' }
 
 " Improve UX

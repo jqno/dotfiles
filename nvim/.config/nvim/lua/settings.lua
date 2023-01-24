@@ -57,10 +57,11 @@ function This.setup()
             source = true
         }
     })
-    vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-    vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-    vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-    vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
+    local diag = require('util').diag_strings
+    vim.fn.sign_define('DiagnosticSignError', { text = diag.error, texthl = 'DiagnosticSignError' })
+    vim.fn.sign_define('DiagnosticSignWarn', { text = diag.warn, texthl = 'DiagnosticSignWarn' })
+    vim.fn.sign_define('DiagnosticSignInfo', { text = diag.info, texthl = 'DiagnosticSignInfo' })
+    vim.fn.sign_define('DiagnosticSignHint', { text = diag.hint, texthl = 'DiagnosticSignHint' })
 end
 
 return This

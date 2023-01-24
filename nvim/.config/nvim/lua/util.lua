@@ -3,6 +3,13 @@ This = {}
 local fn = vim.fn
 local exec = vim.api.nvim_exec
 
+This.diag_strings = {
+    error = '',
+    warn = '',
+    info = '',
+    hint = ''
+}
+
 function This.close_everything()
     vim.cmd('pclose')
     vim.cmd('cclose')
