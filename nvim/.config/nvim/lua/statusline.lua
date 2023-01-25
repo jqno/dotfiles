@@ -24,27 +24,70 @@ local _vimode_text = {
 }
 
 local colors = {
+    background = '#3b3b3b',
     black = '#252525',
+    red = '#ed4a46',
     green = '#70b433',
+    yellow = '#dbb32d',
+    blue = '#368aeb',
+    magenta = '#eb6eb7',
+    cyan = '#56d8c9',
     white = '#dedede',
 }
 
 local highlights = {
     main = {
-        bg = colors.white,
-        fg = colors.black
+        fg = colors.black,
+        bg = colors.white
     },
-    secondary = 'StatusLineNC'
-}
-
-local vimode_highlights = {
-    N = 'DiffAdd',
-    I = 'DiffChange',
-    V = 'Visual',
-    C = 'TermCursor',
-    R = 'DiffChange',
-    S = 'DiffChange',
-    T = 'IncSearch'
+    secondary = {
+        fg = colors.white,
+        bg = colors.background
+    },
+    N = {
+        fg = colors.black,
+        bg = colors.green,
+    },
+    I = {
+        fg = colors.black,
+        bg = colors.yellow,
+    },
+    V = {
+        fg = colors.black,
+        bg = colors.blue,
+    },
+    C = {
+        fg = colors.black,
+        bg = colors.magenta,
+    },
+    R = {
+        fg = colors.black,
+        bg = colors.yellow,
+    },
+    S = {
+        fg = colors.black,
+        bg = colors.red,
+    },
+    T = {
+        fg = colors.black,
+        bg = colors.cyan,
+    },
+    error = {
+        fg = colors.red,
+        bg = colors.background
+    },
+    warn = {
+        fg = colors.yellow,
+        bg = colors.background
+    },
+    info = {
+        fg = colors.cyan,
+        bg = colors.background
+    },
+    hint = {
+        fg = colors.white,
+        bg = colors.background
+    }
 }
 
 local function vimode_text()
@@ -52,7 +95,7 @@ local function vimode_text()
 end
 
 local function vimode_highlight()
-    return vimode_highlights[_vimode_text[vim.fn.mode()]]
+    return highlights[_vimode_text[vim.fn.mode()]]
 end
 
 local function file_name()
@@ -97,18 +140,14 @@ local function file_status()
     end
 end
 
-local function get_diag(prefix, severity)
-    local count = #vim.diagnostic.get(0, { severity = severity })
-    if count == 0 then
-        return ''
+local function diagnostic(prefix, severity)
+    return function()
+        local count = #vim.diagnostic.get(0, { severity = severity })
+        if count == 0 then
+            return ''
+        end
+        return prefix .. count
     end
-    return prefix .. count
-end
-
-local function diagnostics()
-    return get_diag(diag.error, vim.diagnostic.severity.ERROR) ..
-        get_diag(diag.warn, vim.diagnostic.severity.WARN) ..
-        get_diag(diag.hint, vim.diagnostic.severity.HINT)
 end
 
 local function lsp_status()
@@ -130,13 +169,22 @@ local function lsp_status()
     end
 end
 
+local function file_type_icon()
+    local icon_str, _ = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), nil, { default = true })
+    return icon_str
+end
+
+local function file_type_icon_hl()
+    local _, color = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), nil, { default = true })
+    return { fg = color, bg = colors.white }
+end
+
 local function file_type()
     local ft = vim.bo.filetype
     if ft == '' then
         return '⊥'
     end
-    local icon_str, _ = require('nvim-web-devicons').get_icon_color(vim.fn.expand('%:t'), nil, { default = true })
-    return icon_str .. ' ' .. ft
+    return ft
 end
 
 local function file_format()
@@ -180,7 +228,7 @@ end
 local pad = {
     back = {
         provider = ' ',
-        hl = 'StatusLineNC'
+        hl = highlights.secondary
     },
     vimode = {
         provider = ' ',
@@ -226,14 +274,36 @@ local statusline_active = {
     },
     { -- right
         {
-            provider = compose({ word_count, diagnostics, lsp_status }),
+            provider = diagnostic(diag.error, vim.diagnostic.severity.ERROR),
+            hl = highlights.error
+        },
+        {
+            provider = diagnostic(diag.warn, vim.diagnostic.severity.WARN),
+            hl = highlights.warn
+        },
+        {
+            provider = diagnostic(diag.info, vim.diagnostic.severity.INFO),
+            hl = highlights.info
+        },
+        {
+            provider = diagnostic(diag.hint, vim.diagnostic.severity.HINT),
+            hl = highlights.hint
+        },
+        pad.back,
+        {
+            provider = compose({ word_count, lsp_status }),
             hl = highlights.secondary
         },
         pad.back,
         {
+            provider = file_type_icon,
+            hl = file_type_icon_hl,
+            left_sep = left_sep
+        },
+        pad.main,
+        {
             provider = compose({ file_type, file_format, file_encoding }),
             hl = highlights.main,
-            left_sep = left_sep
         },
         pad.main,
         pad.vimode,
@@ -271,19 +341,16 @@ local function build_statusline()
         force_inactive = {
             filetypes = { 'NvimTree', 'qf' },
             buftypes = { 'terminal' }
+        },
+        theme = {
+            bg = colors.background
         }
     })
-end
-
-local function tweak_highlights()
-    local hl_statusline = vim.api.nvim_get_hl_by_name("StatusLine", true)
-    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = hl_statusline.background })
 end
 
 function This.setup()
     vim.g.qf_disable_statusline = true
     build_statusline()
-    tweak_highlights()
 end
 
 return This
