@@ -99,10 +99,18 @@ local function vimode_highlight()
 end
 
 local function file_name()
+    local buftype = vim.bo.buftype
     local max_length = 45
     local name = vim.fn.expand('%')
     local prefix = ''
     local pos = nil
+
+    if buftype == 'nofile' then
+        return vim.bo.filetype
+    end
+    if buftype ~= '' then
+        return buftype
+    end
 
     if name == '' then
         return '⊥'
