@@ -82,24 +82,16 @@ local function define_mappings()
     map(This.modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
     -- UNIMPAIRED --
-    map(This.modes.n, '[<leader>', '<Plug>(Marks-prev-bookmark0)', { desc = 'go to previous bookmark' })
     map(This.modes.n, '[b', '<cmd>bprevious<CR>', { desc = 'go to previous buffer' })
     map(This.modes.n, '[q', '<cmd>cprevious<CR>', { desc = 'go to previous quickfix' })
     map(This.modes.n, '[Q', '<cmd>qfirst<CR>', { desc = 'go to first quickfix' })
-    map(This.modes.n, ']<leader>', '<Plug>(Marks-next-bookmark0)', { desc = 'go to next bookmark' })
     map(This.modes.n, ']b', '<cmd>bprevious<CR>', { desc = 'go to next buffer' })
     map(This.modes.n, ']q', '<cmd>cprevious<CR>', { desc = 'go to next quickfix' })
     map(This.modes.n, ']Q', '<cmd>qfirst<CR>', { desc = 'go to last quickfix' })
 
     -- NAVIGATION --
-    map(This.modes.n, '<leader><leader><leader>', '<Plug>(Marks-set-bookmark0)', { desc = 'set bookmark' })
     map(This.modes.n, '<leader><leader><CR>', function() require("util").open_alternate() end,
         { desc = 'open alternate here' })
-    map(This.modes.n, '<leader><leader>s', '<cmd>BookmarksQFList 0<CR>', { desc = 'show all bookmarks' })
-    map(This.modes.n, '<leader><leader>a', function() require("marks").annotate() end, { desc = 'annotate bookmark' })
-    map(This.modes.n, '<leader><leader>x', '<Plug>(Marks-delete-bookmark)', { desc = 'delete bookmark' })
-    map(This.modes.n, '<leader><leader>X', '<Plug>(Marks-delete-bookmark0)<bar><Plug>(Marks-deletebuf)',
-        { desc = 'delete all marks and bookmarks' })
     map(This.modes.n, '<leader><leader>h', function() require("util").open_split("left") end,
         { desc = 'open split left' })
     map(This.modes.n, '<leader><leader>j', function() require("util").open_split("down") end,
