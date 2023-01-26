@@ -29,6 +29,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-telescope/telescope-ui-select.nvim'
+Plug 'ThePrimeagen/harpoon'
 Plug 'tpope/vim-fugitive'
 
 " Improve looks

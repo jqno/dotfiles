@@ -90,8 +90,20 @@ local function define_mappings()
     map(This.modes.n, ']Q', '<cmd>qfirst<CR>', { desc = 'go to last quickfix' })
 
     -- NAVIGATION --
+    map(This.modes.n, '<leader><leader><leader>', function() require('harpoon.ui').toggle_quick_menu() end,
+        { desc = 'open Harpoon quick list' })
     map(This.modes.n, '<leader><leader><CR>', function() require("util").open_alternate() end,
         { desc = 'open alternate here' })
+    map(This.modes.n, '<leader><leader>1', function() require('harpoon.ui').nav_file(1) end,
+        { desc = 'navigate to Harpoon file #1' })
+    map(This.modes.n, '<leader><leader>2', function() require('harpoon.ui').nav_file(2) end,
+        { desc = 'navigate to Harpoon file #2' })
+    map(This.modes.n, '<leader><leader>3', function() require('harpoon.ui').nav_file(3) end,
+        { desc = 'navigate to Harpoon file #3' })
+    map(This.modes.n, '<leader><leader>4', function() require('harpoon.ui').nav_file(4) end,
+        { desc = 'navigate to Harpoon file #4' })
+    map(This.modes.n, '<leader><leader>5', function() require('harpoon.ui').nav_file(5) end,
+        { desc = 'navigate to Harpoon file #5' })
     map(This.modes.n, '<leader><leader>h', function() require("util").open_split("left") end,
         { desc = 'open split left' })
     map(This.modes.n, '<leader><leader>j', function() require("util").open_split("down") end,
@@ -100,6 +112,8 @@ local function define_mappings()
         { desc = 'open split above' })
     map(This.modes.n, '<leader><leader>l', function() require("util").open_split("right") end,
         { desc = 'open split right' })
+    map(This.modes.n, '<leader><leader>m', function() require('harpoon.mark').add_file() end,
+        { desc = 'add file to Harpoon list' })
     map(This.modes.n, '<leader><leader>H', function() require("util").open_alternate("left") end,
         { desc = 'open alternate file left' })
     map(This.modes.n, '<leader><leader>J', function() require("util").open_alternate("down") end,
@@ -205,10 +219,12 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
         { buffer = bufnr, desc = 'show workspace diagnostics' })
 
     -- SHOWING THINGS --
-    map(This.modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { buffer = bufnr, desc = 'show diagnostic under cursor' })
+    map(This.modes.n, '<leader>sd', function() vim.diagnostic.open_float() end,
+        { buffer = bufnr, desc = 'show diagnostic under cursor' })
 
     if client.server_capabilities.documentFormattingProvider then
-        map(This.modes.n, '<leader>mf', function() vim.lsp.buf.format() end, { buffer = bufnr, desc = 'format current file' })
+        map(This.modes.n, '<leader>mf', function() vim.lsp.buf.format() end,
+            { buffer = bufnr, desc = 'format current file' })
     end
 end
 
@@ -227,7 +243,8 @@ function This.setup_lsp(client, bufnr)
     map(This.modes.n, '<leader>fr', '<cmd>Telescope lsp_references<CR>', { buffer = bufnr, desc = 'references' })
 
     -- GOING PLACES  --
-    map(This.modes.n, '<leader>gd', function() vim.lsp.buf.declaration() end, { buffer = bufnr, desc = 'go to declaration' })
+    map(This.modes.n, '<leader>gd', function() vim.lsp.buf.declaration() end,
+        { buffer = bufnr, desc = 'go to declaration' })
     map(This.modes.n, '<leader>gi', function() vim.lsp.buf.implementation() end,
         { buffer = bufnr, desc = 'go to implementation' })
     map(This.modes.n, '<leader>gt', function() vim.lsp.buf.type_definition() end,
@@ -252,11 +269,16 @@ function This.setup_dap(bufnr)
         { buffer = bufnr, desc = 'debug: toggle repl' })
     map(This.modes.n, '<leader>db', function() require("dap").toggle_breakpoint() end,
         { buffer = bufnr, desc = 'debug: toggle breakpoint' })
-    map(This.modes.n, '<leader>dc', function() require("dap").continue() end, { buffer = bufnr, desc = 'debug: continue' })
-    map(This.modes.n, '<leader>di', function() require("dap").step_into() end, { buffer = bufnr, desc = 'debug: step into' })
-    map(This.modes.n, '<leader>dl', function() require("dap").run_last() end, { buffer = bufnr, desc = 'debug: run last' })
-    map(This.modes.n, '<leader>do', function() require("dap").step_over() end, { buffer = bufnr, desc = 'debug: step over' })
-    map(This.modes.n, '<leader>dx', function() require("dap").step_out() end, { buffer = bufnr, desc = 'debug: step out' })
+    map(This.modes.n, '<leader>dc', function() require("dap").continue() end,
+        { buffer = bufnr, desc = 'debug: continue' })
+    map(This.modes.n, '<leader>di', function() require("dap").step_into() end,
+        { buffer = bufnr, desc = 'debug: step into' })
+    map(This.modes.n, '<leader>dl', function() require("dap").run_last() end,
+        { buffer = bufnr, desc = 'debug: run last' })
+    map(This.modes.n, '<leader>do', function() require("dap").step_over() end,
+        { buffer = bufnr, desc = 'debug: step over' })
+    map(This.modes.n, '<leader>dx', function() require("dap").step_out() end,
+        { buffer = bufnr, desc = 'debug: step out' })
 
     -- SHOWING THINGS --
     map(This.modes.n, '<leader>sv', function() require("dap.ui.widgets").hover() end,

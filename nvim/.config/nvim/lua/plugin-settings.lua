@@ -83,6 +83,14 @@ local function setup_gitsigns()
     }
 end
 
+local function setup_harpoon()
+    require("harpoon").setup({
+        menu = {
+            width = vim.api.nvim_win_get_width(0) - 10,
+        }
+    })
+end
+
 local function setup_localvimrc()
     g.localvimrc_sandbox = 0
     g.localvimrc_whitelist = { vim.env.HOME .. '/w' }
@@ -245,6 +253,7 @@ function This.setup()
     setup_floaterm()
     setup_gitconflict()
     setup_gitsigns()
+    setup_harpoon()
     setup_localvimrc()
     setup_luasnip()
     setup_nvim_tree()
