@@ -19,8 +19,13 @@
     "body": "System.out.println($1);$0",
     "description": "Print to System.out"
   },
+  "systemoutlong": {
+    "prefix": "sysout",
+    "body": "System.out.println($1);$0",
+    "description": "Print to System.out"
+  },
   "systemerr": {
-    "prefix": "serr",
+    "prefix": "syserr",
     "body": "System.err.println($1);$0",
     "description": "Print to System.err"
   },
