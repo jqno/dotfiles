@@ -356,9 +356,15 @@ local function build_statusline()
     })
 end
 
+local function tweak_highlight_in_the_corner_between_splits()
+    local hl_statusline = vim.api.nvim_get_hl_by_name("StatusLine", true)
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = hl_statusline.background })
+end
+
 function This.setup()
     vim.g.qf_disable_statusline = true
     build_statusline()
+    tweak_highlight_in_the_corner_between_splits()
 end
 
 return This
