@@ -106,7 +106,7 @@ function This.jdtls_config()
                 if #msg > c then
                     msg = msg:sub(1, c - 1) .. '…'
                 end
-                vim.cmd(string.format('echo "%s"', msg))
+                vim.cmd.echo('"' .. msg .. '"')
             end
         },
         settings = {

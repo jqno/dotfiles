@@ -39,7 +39,7 @@ function This.setup()
     vim.opt.wrap = false
 
     vim.g.tranquility_overrides = { invert_statusline = true }
-    vim.cmd('colorscheme green-tranquility')
+    vim.cmd.colorscheme('green-tranquility')
 
     require('vim-util').augroup('HighlightOnYank', 'TextYankPost', '*',
         function()

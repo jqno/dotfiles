@@ -11,16 +11,16 @@ This.diag_strings = {
 }
 
 function This.close_everything()
-    vim.cmd('pclose')
-    vim.cmd('cclose')
-    vim.cmd('lclose')
-    vim.cmd('NvimTreeClose')
-    vim.cmd('FloatermHide')
-    vim.cmd('UndotreeHide')
+    vim.cmd.pclose()
+    vim.cmd.cclose()
+    vim.cmd.lclose()
+    vim.cmd.NvimTreeClose()
+    vim.cmd.FloatermHide()
+    vim.cmd.UndotreeHide()
     require('dap').repl.close()
 
-    vim.cmd('windo if &ft=="git" || &ft=="fugitiveblame" | q | endif')
-    vim.cmd('windo if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
+    vim.cmd.windo('if &ft=="git" || &ft=="fugitiveblame" | q | endif')
+    vim.cmd.windo('if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
 end
 
 function This.set_buf_indent(indent, tab, show)
@@ -48,11 +48,11 @@ end
 
 function This.floatermsend(cmd)
     if fn['floaterm#buflist#curr']() == -1 then
-        vim.cmd('FloatermNew --silent')
+        vim.cmd.FloatermNew('--silent')
     end
-    vim.cmd('FloatermShow')
-    vim.cmd('FloatermSend clear')
-    vim.cmd('FloatermSend ' .. cmd)
+    vim.cmd.FloatermShow()
+    vim.cmd.FloatermSend('clear')
+    vim.cmd.FloatermSend(cmd)
 end
 
 local split_direction = {
@@ -98,11 +98,11 @@ function This.open_definition(direction)
 
     -- open same file in desired split
     This.open_split(direction)
-    vim.cmd('e ' .. current)
+    vim.cmd.e(current)
 
     -- make sure we're on the same cursor position
-    vim.cmd('norm ' .. current_line .. 'G')
-    vim.cmd('norm |' .. current_col .. 'lh')
+    vim.cmd.norm(current_line .. 'G')
+    vim.cmd.norm('|' .. current_col .. 'lh')
 
     -- go to definition
     vim.lsp.buf.definition({ reuse_win = true })
@@ -112,7 +112,7 @@ function This.open_alternate(direction)
     local alternate = find_alternate()
     This.open_split(direction)
     if alternate ~= nil then
-        vim.cmd('e ' .. alternate)
+        vim.cmd.e(alternate)
     end
 end
 
