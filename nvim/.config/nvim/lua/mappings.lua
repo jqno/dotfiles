@@ -167,15 +167,16 @@ local function define_mappings()
         '<cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>', { desc = 'find files' })
     map(This.modes.n, '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'find help item' })
     map(This.modes.n, '<leader>fi', '<cmd>Telescope treesitter<CR>', { desc = 'find treesitter identifiers' })
+    map(This.modes.n, '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = 'find Vim mapping' })
     map(This.modes.n, '<leader>fn', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'open file tree' })
     map(This.modes.n, '<leader>fg',
         function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep ❯ ') }) end,
         { desc = 'grep in workspace' })
+    map(This.modes.n, '<leader>fu', '<cmd>UndotreeToggle<CR>', { desc = 'open undo tree' })
     map(This.modes.n, '<leader>f*',
         function() require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') }) end,
         { desc = 'grep current wordt in workspace' })
     map(This.modes.n, '<leader>f:', '<cmd>Telescope commands<CR>', { desc = 'find Vim command' })
-    map(This.modes.n, '<leader>fm', '<cmd>Telescope keymaps<CR>', { desc = 'find Vim mapping' })
 
     -- GIT --
     map(This.modes.n, '<leader>GB', '<cmd>Git blame<CR>', { desc = 'Git blame file' })

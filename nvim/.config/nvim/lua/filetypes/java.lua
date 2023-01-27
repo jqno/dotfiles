@@ -92,7 +92,7 @@ function This.jdtls_config()
             'jdtls.sh',
             location .. '/bin',
             location,
-            vim.env.HOME .. '/.jdtls/' ..
+            vim.env.HOME .. '/.vim/jdtls/' ..
                 vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
         init_options = { bundles = jdtls_bundles },
