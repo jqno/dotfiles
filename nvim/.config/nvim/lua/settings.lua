@@ -3,6 +3,8 @@ local This = {}
 local default_indent = 2
 
 function This.setup()
+    vim.g.mapleader = ' '
+
     vim.opt.expandtab = true
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
@@ -37,9 +39,6 @@ function This.setup()
     vim.opt.undofile = true
     vim.opt.updatetime = 300
     vim.opt.wrap = false
-
-    vim.g.tranquility_overrides = { invert_statusline = true }
-    vim.cmd.colorscheme('green-tranquility')
 
     require('vim-util').augroup('HighlightOnYank', 'TextYankPost', '*',
         function()

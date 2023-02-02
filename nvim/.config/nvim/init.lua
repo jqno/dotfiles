@@ -1,6 +1,5 @@
-vim.cmd('source $HOME/.config/nvim/plugins.vim')
-
 require('settings').setup()
+require('plugin-manager').setup()
 require('completion').setup()
 require('lsp').setup()
 require('statusline').setup()

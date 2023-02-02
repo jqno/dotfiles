@@ -6,9 +6,6 @@ This.modes = { i = 'i', n = 'n', v = 'v', c = 'c', s = 's', t = 't' }
 
 -- MAPPINGS --
 local function define_mappings()
-    -- LEADER --
-    vim.g.mapleader = ' '
-
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
     -- Navigate the screen, not the lines, and update the jump list when the count > 5
     map(This.modes.n, 'j',
