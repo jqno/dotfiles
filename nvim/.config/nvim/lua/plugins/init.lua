@@ -1,9 +1,4 @@
 return {
-    'antoinemadec/FixCursorHold.nvim',
-
-    -- Filetypes
-    'hashivim/vim-terraform',
-
     -- Improve editing
     'akinsho/git-conflict.nvim',
     'alvan/vim-closetag',
@@ -14,31 +9,48 @@ return {
     'L3MON4D3/LuaSnip',
     'machakann/vim-sandwich',
     'mbbill/undotree',
-    'nvim-treesitter/nvim-treesitter-textobjects',
     'tpope/vim-commentary',
     'tpope/vim-endwise',
-    'Wansmer/sibling-swap.nvim',
 
     -- Improve navigation
     'farmergreg/vim-lastplace',
-    'kyazdani42/nvim-tree.lua',
     'ludovicchabant/vim-gutentags',
-    { 'nvim-telescope/telescope.nvim', tag = '0.1.1' },
-    'nvim-telescope/telescope-ui-select.nvim',
-    'ThePrimeagen/harpoon',
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.1',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope-ui-select.nvim',
+        }
+    },
+    {
+        'nvim-tree/nvim-tree.lua',
+        dependencies = {
+            'kyazdani42/nvim-web-devicons'
+        }
+    },
+    {
+        'ThePrimeagen/harpoon',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
+    },
     'tpope/vim-fugitive',
 
     -- Improve looks
-    'feline-nvim/feline.nvim',
     {
-      'jqno/tranquility.nvim',
-      config = function()
-        vim.g.tranquility_overrides = { invert_statusline = true }
-        vim.cmd.colorscheme('green-tranquility')
-      end
+        'feline-nvim/feline.nvim',
+        dependencies = {
+            'kyazdani42/nvim-web-devicons'
+        }
     },
-    'kyazdani42/nvim-web-devicons',
-    'nvim-treesitter/playground', -- { 'on': 'TSHighlightCapturesUnderCursor' }
+    {
+        'jqno/tranquility.nvim',
+        config = function()
+            vim.g.tranquility_overrides = { invert_statusline = true }
+            vim.cmd.colorscheme('green-tranquility')
+        end
+    },
 
     -- Improve UX
     'embear/vim-localvimrc',
@@ -53,24 +65,57 @@ return {
     'vim-test/vim-test',
     'voldikss/vim-floaterm',
     'wincent/terminus',
-    'xorid/swap-split.nvim',
+    'cloudysake/swap-split.nvim',
 
     -- Configure LSP and completion
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-path',
-    'hrsh7th/nvim-cmp',
-    'jose-elias-alvarez/null-ls.nvim',
+    {
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'saadparwaiz1/cmp_luasnip'
+        }
+    },
+    {
+        'jose-elias-alvarez/null-ls.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
+    },
     { 'mfussenegger/nvim-dap', tag = '0.4.0' },
     { 'mfussenegger/nvim-jdtls', tag = '0.2.0' },
     'neovim/nvim-lspconfig',
-    'saadparwaiz1/cmp_luasnip',
 
     -- Dependencies
-    'nvim-lua/plenary.nvim',
-    'nvim-lua/popup.nvim',
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = ':TSUpdate',
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        }
+    },
+    {
+        'nvim-treesitter/playground',
+        cmd = 'TSHighlightCapturesUnderCursor',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        }
+    },
+    {
+        'Wansmer/sibling-swap.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        }
+    },
+    {
+        'williamboman/mason.nvim',
+        dependencies = {
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+            'williamboman/mason-lspconfig.nvim',
+        }
+    },
 }
