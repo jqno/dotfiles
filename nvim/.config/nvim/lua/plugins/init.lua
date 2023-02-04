@@ -3,7 +3,6 @@ return {
     'akinsho/git-conflict.nvim',
     'alvan/vim-closetag',
     'AndrewRadev/tagalong.vim',
-    'gaoDean/autolist.nvim',
     'gcmt/wildfire.vim',
     'jqno/jqno-autoclose.vim',
     'L3MON4D3/LuaSnip',

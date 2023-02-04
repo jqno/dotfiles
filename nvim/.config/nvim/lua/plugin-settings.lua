@@ -2,10 +2,6 @@ local This = {}
 
 local g = vim.g
 
-local function setup_autolist()
-    require('autolist').setup()
-end
-
 local function setup_autosave()
     require('auto-save').setup({
         enabled = false,
@@ -244,7 +240,6 @@ local function setup_wildfire()
 end
 
 function This.setup()
-    setup_autolist()
     setup_autosave()
     setup_bufdel()
     setup_closetag()
