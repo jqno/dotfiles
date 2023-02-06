@@ -14,7 +14,14 @@ function This.setup()
     end
     vim.opt.rtp:prepend(lazypath)
 
-    require('lazy').setup('plugins')
+    require('lazy').setup('plugins', {
+        dev = {
+            path = '~/w/neovim'
+        },
+        ui = {
+            border = 'rounded'
+        }
+    })
 end
 
 return This

@@ -1,3 +1,4 @@
 return {
-    'jqno/jqno-autoclose.vim'
+    'jqno/jqno-autoclose.vim',
+    dev = true
 }
