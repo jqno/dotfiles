@@ -1,6 +1,5 @@
 return {
     'jqno/tranquility.nvim',
-    lazy = false,
     dev = true,
 
     config = function()

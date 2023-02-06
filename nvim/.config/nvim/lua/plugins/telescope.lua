@@ -5,6 +5,7 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope-ui-select.nvim',
     },
+    cmd = 'Telescope',
 
     config = function()
         local telescope = require('telescope')

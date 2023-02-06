@@ -1,5 +1,6 @@
 return {
     'vim-test/vim-test',
+    cmd = { 'TestLast', 'TestFile', 'TestNearest' },
 
     init = function()
         vim.g['test#custom_strategies'] = { shell_in_floaterm = require('util').floatermsend }
