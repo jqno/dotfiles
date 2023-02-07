@@ -31,41 +31,37 @@ local function on_attach(client, bufnr)
     local map = vim.keymap.set
     local modes = require('mappings').modes
 
-    map(modes.n, '<leader>dr', function() require("dap").continue() end, { buffer = bufnr, desc = 'debug: run' })
-    map(modes.n, '<leader>dt', function() require("filetypes.java").dap_run_test() end,
-        { buffer = bufnr, desc = 'debug: test file' })
-    map(modes.n, '<leader>dn', function() require("filetypes.java").dap_run_test_nearest() end,
+    map(modes.n, '<leader>dr', require('dap').continue, { buffer = bufnr, desc = 'debug: run' })
+    map(modes.n, '<leader>dt', require('filetypes.java').dap_run_test, { buffer = bufnr, desc = 'debug: test file' })
+    map(modes.n, '<leader>dn', require('filetypes.java').dap_run_test_nearest,
         { buffer = bufnr, desc = 'debug: run nearest test' })
 
-    map(modes.n, '<leader>gs', function() require("jdtls").super_implementation() end,
+    map(modes.n, '<leader>gs', require('jdtls').super_implementation,
         { buffer = bufnr, desc = 'go to super implementation' })
 
-    map(modes.n, '<leader>rR', function() require("jdtls").code_action(false, "refactor") end,
+    map(modes.n, '<leader>rR', function() require('jdtls').code_action(false, 'refactor') end,
         { buffer = bufnr, desc = 'refactor: menu' })
-    map(modes.n, '<leader>rm', function() require("jdtls").extract_method() end,
+    map(modes.n, '<leader>rm', require('jdtls').extract_method, { buffer = bufnr, desc = 'refactor: extract method' })
+    map(modes.v, '<leader>rm', function() require('jdtls').extract_method(true) end,
         { buffer = bufnr, desc = 'refactor: extract method' })
-    map(modes.v, '<leader>rm', function() require("jdtls").extract_method(true) end,
-        { buffer = bufnr, desc = 'refactor: extract method' })
-    map(modes.n, '<leader>ro', function() require("jdtls").organize_imports() end,
-        { buffer = bufnr, desc = 'refactor: organize imports' })
-    map(modes.n, '<leader>rv', function() require("jdtls").extract_variable() end,
+    map(modes.n, '<leader>ro', require('jdtls').organize_imports, { buffer = bufnr, desc = 'refactor: organize imports' })
+    map(modes.n, '<leader>rv', require('jdtls').extract_variable, { buffer = bufnr, desc = 'refactor: extract variable' })
+    map(modes.v, '<leader>rv', function() require('jdtls').extract_variable(true) end,
         { buffer = bufnr, desc = 'refactor: extract variable' })
-    map(modes.v, '<leader>rv', function() require("jdtls").extract_variable(true) end,
-        { buffer = bufnr, desc = 'refactor: extract variable' })
-    map(modes.n, '<leader>rV', function() require("jdtls").extract_variable_all() end,
+    map(modes.n, '<leader>rV', require('jdtls').extract_variable_all,
         { buffer = bufnr, desc = 'refactor: extract variable (all occurrences)' })
 
-    map(modes.n, '<leader>m<space>', function() require("util").floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
+    map(modes.n, '<leader>m<space>', function() require('util').floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
         , { buffer = bufnr, desc = 'run with JBang' })
-    map(modes.n, '<leader>mr', function() require("jdtls").update_project_config() end,
+    map(modes.n, '<leader>mr', require('jdtls').update_project_config,
         { buffer = bufnr, desc = 'reload build configuration' })
-    map(modes.n, '<leader>mcc', function() require("util").floatermsend("mvnd clean test-compile") end,
+    map(modes.n, '<leader>mcc', function() require('util').floatermsend('mvnd clean test-compile') end,
         { buffer = bufnr, desc = 'mvn clean compile' })
-    map(modes.n, '<leader>mcv', function() require("util").floatermsend("mvnd clean verify") end,
+    map(modes.n, '<leader>mcv', function() require('util').floatermsend('mvnd clean verify') end,
         { buffer = bufnr, desc = 'mvn clean verify' })
-    map(modes.n, '<leader>mp', function() require("util").floatermsend("mvnd clean package -DskipTests=true") end,
+    map(modes.n, '<leader>mp', function() require('util').floatermsend('mvnd clean package -DskipTests=true') end,
         { buffer = bufnr, desc = 'mvn package (no tests)' })
-    map(modes.n, '<leader>mv', function() require("util").floatermsend("mvnd verify") end,
+    map(modes.n, '<leader>mv', function() require('util').floatermsend('mvnd verify') end,
         { buffer = bufnr, desc = 'mvn verify' })
 end
 
@@ -82,24 +78,23 @@ function This.jdtls_config()
     local location = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
     local jdtls_bundles = {
         vim.fn.glob(
-            "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
+            '~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar')
     }
     vim.list_extend(jdtls_bundles, vim.split(
-        vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
+        vim.fn.glob('~/bin/vscode-java-test/server/*.jar'), '\n'))
 
     return {
         cmd = {
             'jdtls.sh',
             location .. '/bin',
             location,
-            vim.env.HOME .. '/.vim/jdtls/' ..
-                vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+            vim.env.HOME .. '/.vim/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
         init_options = { bundles = jdtls_bundles },
         root_dir = find_project_root(),
         capabilities = require('lsp').cmp_capabilities,
         handlers = {
-            -- To avoid annoying "Press Enter to continue" messages while downloading dependencies
+            -- To avoid annoying 'Press Enter to continue' messages while downloading dependencies
             ['language/status'] = function(_, result)
                 local msg = result.message
                 local c = vim.o.columns
@@ -116,19 +111,19 @@ function This.jdtls_config()
                 signatureHelp = { enabled = true },
                 completion = {
                     favoriteStaticMembers = {
-                        "io.restassured.RestAssured.*",
-                        "java.util.Objects.requireNonNull",
-                        "java.util.Objects.requireNonNullElse",
-                        "org.hamcrest.CoreMatchers.*",
-                        "org.hamcrest.Matchers.*",
-                        "org.junit.jupiter.api.Assertions.*",
-                        "org.mockito.Mockito.*"
+                        'io.restassured.RestAssured.*',
+                        'java.util.Objects.requireNonNull',
+                        'java.util.Objects.requireNonNullElse',
+                        'org.hamcrest.CoreMatchers.*',
+                        'org.hamcrest.Matchers.*',
+                        'org.junit.jupiter.api.Assertions.*',
+                        'org.mockito.Mockito.*'
                     },
                     filteredTypes = {
-                        "com.sun.*",
-                        "java.awt.*",
-                        "jdk.*",
-                        "sun.*"
+                        'com.sun.*',
+                        'java.awt.*',
+                        'jdk.*',
+                        'sun.*'
                     }
                 }
             }
