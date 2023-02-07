@@ -187,6 +187,12 @@ local function define_mappings()
     map(modes.n, '<leader>mt', vim.cmd.TestNearest, { desc = 'run nearest test' })
     map(modes.n, '<leader>mT', vim.cmd.TestFile, { desc = 'test current file' })
 
+    -- REFACTORING --
+    map(modes.n, '<leader>ri', function() require('refactoring').refactor('Inline Variable') end, { desc = 'refactor: inline variable' })
+    map(modes.v, '<leader>rm', function() require('refactoring').refactor('Extract Function') end, { desc = 'refactor: extract method' })
+    map(modes.v, '<leader>rv', function() require('refactoring').refactor('Extract Variable') end, { desc = 'refactor: extract variable' })
+    map(modes.n, '<leader>rp', function() require('refactoring').debug.print_var({ normal = true }) end, { desc = 'refactor: extract variable' })
+
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
     map(modes.n, '<leader>w=', function() vim.cmd.wincmd('=') end, { desc = 'equalize windows' })
