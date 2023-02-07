@@ -49,6 +49,8 @@ local function define_mappings()
     map(This.modes.n, '<M-k>', '<cmd>move .-2<CR>==')
     map(This.modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(This.modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
+    -- Avoid
+    map(This.modes.n, 'q:', '<nop>')
 
     -- Close everything --
     map(This.modes.n, '<C-Esc>', require('util').close_everything, { desc = 'Close everything' })
