@@ -27,8 +27,8 @@ local function on_attach(client, bufnr)
     local modes = require('util.modes')
 
     map(modes.n, '<leader>dr', require('dap').continue, { buffer = bufnr, desc = 'debug: run' })
-    map(modes.n, '<leader>dt', require('filetypes.java').dap_run_test, { buffer = bufnr, desc = 'debug: test file' })
-    map(modes.n, '<leader>dn', require('filetypes.java').dap_run_test_nearest,
+    map(modes.n, '<leader>dt', require('util.jdtls').dap_run_test, { buffer = bufnr, desc = 'debug: test file' })
+    map(modes.n, '<leader>dn', require('util.jdtls').dap_run_test_nearest,
         { buffer = bufnr, desc = 'debug: run nearest test' })
 
     map(modes.n, '<leader>gs', require('jdtls').super_implementation,

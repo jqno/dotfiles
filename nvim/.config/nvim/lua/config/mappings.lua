@@ -272,8 +272,7 @@ function This.setup_dap(bufnr)
 
     -- SHOWING THINGS --
     map(modes.n, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
-    map(modes.v, '<leader>sv', require('dap.ui.variables').visual_hover,
-        { buffer = bufnr, desc = 'debug: show value' })
+    map(modes.v, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
 end
 
 -- COMMANDS --
