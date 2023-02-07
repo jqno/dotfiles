@@ -16,7 +16,7 @@ return {
 
     config = function()
         local lspconfig = require('lspconfig')
-        local lsp = require('lsp')
+        local lsp = require('util.lsp')
 
         lspconfig.bashls.setup {
             on_attach = lsp.on_attach,
@@ -31,19 +31,29 @@ return {
         lspconfig.lemminx.setup {
             on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
-            settings = require('filetypes.xml').lsp_config
+            settings = {
+                xml = {
+                    fileAssociations = {
+                        {
+                            systemId = 'http://maven.apache.org/xsd/maven-4.0.0.xsd',
+                            pattern = 'pom.xml'
+                        }
+                    }
+                }
+            }
+
         }
 
         lspconfig.pylsp.setup {
             on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
-            settings = require('filetypes.python').lsp_config
+            settings = { pylsp = { configurationSources = { 'flake8' } } }
         }
 
         lspconfig.sumneko_lua.setup {
             on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
-            settings = require('filetypes.lua').lsp_config
+            settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim', 'require' } } } }
         }
 
         lspconfig.tsserver.setup {
@@ -51,8 +61,8 @@ return {
             capabilities = lsp.cmp_capabilities
         }
 
-        require('vim-util').augroup('lsp_define_java', 'FileType', 'java', function()
-            require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
+        require('util.autocmd').create('lsp_define_java', 'FileType', 'java', function()
+            require('jdtls').start_or_attach(require('util.jdtls').jdtls_config())
         end)
     end
 }

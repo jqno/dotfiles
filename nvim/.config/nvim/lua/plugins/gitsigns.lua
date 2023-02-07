@@ -7,7 +7,7 @@ return {
         },
         on_attach = function(bufnr)
             local map = vim.keymap.set
-            local modes = require('mappings').modes
+            local modes = require('util.modes')
 
             map(modes.n, ']g', function()
                 if vim.wo.diff then return ']c' end

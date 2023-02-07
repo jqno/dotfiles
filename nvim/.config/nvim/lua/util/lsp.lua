@@ -5,7 +5,7 @@ local function enhance_handler(name, original, enhancement)
 end
 
 function This.on_attach(client, bufnr)
-    require('mappings').setup_lsp(client, bufnr)
+    require('config.mappings').setup_lsp(client, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

@@ -5,7 +5,7 @@ return {
     },
 
     config = function()
-        local diag = require('util').diag_strings
+        local diag = require('util.diagnostic-strings')
 
         local left_sep = ''
         local right_sep = ''

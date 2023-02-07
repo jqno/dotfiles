@@ -40,14 +40,13 @@ function This.setup()
     vim.opt.updatetime = 300
     vim.opt.wrap = false
 
-    require('vim-util').augroup('HighlightOnYank', 'TextYankPost', '*',
-        function()
-            vim.highlight.on_yank {
-                higroup = 'IncSearch',
-                timeout = 150,
-                on_visual = true
-            }
-        end)
+    require('util.autocmd').create('highlight_on_yank', 'TextYankPost', '*', function()
+        vim.highlight.on_yank {
+            higroup = 'IncSearch',
+            timeout = 150,
+            on_visual = true
+        }
+    end)
 
     vim.diagnostic.config({
         virtual_text = false,
@@ -58,7 +57,7 @@ function This.setup()
             source = true
         }
     })
-    local diag = require('util').diag_strings
+    local diag = require('util.diagnostic-strings')
     vim.fn.sign_define('DiagnosticSignError', { text = diag.error, texthl = 'DiagnosticSignError' })
     vim.fn.sign_define('DiagnosticSignWarn', { text = diag.warn, texthl = 'DiagnosticSignWarn' })
     vim.fn.sign_define('DiagnosticSignInfo', { text = diag.info, texthl = 'DiagnosticSignInfo' })

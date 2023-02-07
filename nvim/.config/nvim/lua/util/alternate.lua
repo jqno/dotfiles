@@ -1,59 +1,4 @@
-This = {}
-
-local fn = vim.fn
-local exec = vim.api.nvim_exec
-
-This.diag_strings = {
-    error = '',
-    warn = '',
-    info = '',
-    hint = ''
-}
-
-function This.close_everything()
-    vim.cmd.pclose()
-    vim.cmd.cclose()
-    vim.cmd.lclose()
-    vim.cmd.NvimTreeClose()
-    vim.cmd.FloatermHide()
-    vim.cmd.UndotreeHide()
-    require('dap').repl.close()
-
-    vim.cmd.windo('if &ft=="git" || &ft=="fugitiveblame" | q | endif')
-    vim.cmd.windo('if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
-end
-
-function This.set_buf_indent(indent, tab, show)
-    vim.bo.expandtab = not tab
-    vim.bo.shiftwidth = indent
-    vim.bo.softtabstop = indent
-    vim.bo.tabstop = indent
-    if show then
-        print('Indentation level: ' .. indent .. '; with tabs: ' .. tostring(tab))
-    end
-end
-
-function This.toggle_movement(firstOp, thenOp)
-    -- Inspired by http://ddrscott.github.io/blog/2016/vim-toggle-movement/
-    local pos1 = fn.getpos('.')
-    exec('normal! ' .. firstOp, false)
-    if vim.deep_equal(pos1, fn.getpos('.')) then
-        exec('normal! ' .. thenOp, false)
-    end
-end
-
-function This.show_full_path()
-    print('Full path: [' .. fn.expand('%') .. ']')
-end
-
-function This.floatermsend(cmd)
-    if fn['floaterm#buflist#curr']() == -1 then
-        vim.cmd.FloatermNew('--silent')
-    end
-    vim.cmd.FloatermShow()
-    vim.cmd.FloatermSend('clear')
-    vim.cmd.FloatermSend(cmd)
-end
+local This = {}
 
 local split_direction = {
     left  = {'wincmd h', 'vsplit | wincmd h'},
@@ -114,20 +59,6 @@ function This.open_alternate(direction)
     if alternate ~= nil then
         vim.cmd.e(alternate)
     end
-end
-
-function This.linkify()
-    local url = fn.expand('<cWORD>')
-    local shell_esc_url = fn.shellescape(url)
-    local regex_esc_url = fn.escape(url, '/')
-
-    local link = fn.system('linkify.py ' .. shell_esc_url)
-
-    local chomped = fn.substitute(link, '\\n\\+$', '', '')
-    local escaped = fn.substitute(chomped, '&', '\\\\&', '')
-    local replaced = fn.substitute(fn.getline('.'), regex_esc_url, escaped, '')
-
-    fn.setline('.', replaced)
 end
 
 return This

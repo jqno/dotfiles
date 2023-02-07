@@ -1,4 +1,4 @@
-require('settings').setup()
-require('plugin-manager').setup()
-require('mappings').setup()
-require('filetypes').setup()
+require('config.settings').setup()
+require('config.lazy').setup()
+require('config.mappings').setup()
+require('config.commands').setup()

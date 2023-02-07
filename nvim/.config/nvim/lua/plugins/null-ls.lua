@@ -31,7 +31,7 @@ return {
                 })
             },
             on_attach = function(client, bufnr)
-                require('mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
+                require('config.mappings').setup_lsp_diagnostics_and_formatting(client, bufnr)
             end
         }
     end

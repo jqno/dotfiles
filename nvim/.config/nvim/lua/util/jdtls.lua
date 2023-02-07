@@ -2,11 +2,6 @@ local This = {}
 
 local dap = require('dap')
 local jdtls = require('jdtls')
-local util = require('util')
-
-function This.setup()
-    util.set_buf_indent(4, false)
-end
 
 function This.dap_run_test()
     dap.repl.open()
@@ -19,17 +14,17 @@ function This.dap_run_test_nearest()
 end
 
 local function on_attach(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
+    require('util.lsp').on_attach(client, bufnr)
 
     require('jdtls.setup').add_commands()
     require('jdtls').setup_dap({ hotcodereplace = 'auto' })
     require('jdtls.dap').setup_dap_main_class_configs()
-    require('mappings').setup_dap(bufnr)
+    require('config.mappings').setup_dap(bufnr)
 
     client.server_capabilities.documentFormattingProvider = false
 
     local map = vim.keymap.set
-    local modes = require('mappings').modes
+    local modes = require('util.modes')
 
     map(modes.n, '<leader>dr', require('dap').continue, { buffer = bufnr, desc = 'debug: run' })
     map(modes.n, '<leader>dt', require('filetypes.java').dap_run_test, { buffer = bufnr, desc = 'debug: test file' })
@@ -51,17 +46,18 @@ local function on_attach(client, bufnr)
     map(modes.n, '<leader>rV', require('jdtls').extract_variable_all,
         { buffer = bufnr, desc = 'refactor: extract variable (all occurrences)' })
 
-    map(modes.n, '<leader>m<space>', function() require('util').floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
+    local floaterm = require('util.floaterm')
+    map(modes.n, '<leader>m<space>', function() floaterm.floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end
         , { buffer = bufnr, desc = 'run with JBang' })
     map(modes.n, '<leader>mr', require('jdtls').update_project_config,
         { buffer = bufnr, desc = 'reload build configuration' })
-    map(modes.n, '<leader>mcc', function() require('util').floatermsend('mvnd clean test-compile') end,
+    map(modes.n, '<leader>mcc', function() floaterm.floatermsend('mvnd clean test-compile') end,
         { buffer = bufnr, desc = 'mvn clean compile' })
-    map(modes.n, '<leader>mcv', function() require('util').floatermsend('mvnd clean verify') end,
+    map(modes.n, '<leader>mcv', function() floaterm.floatermsend('mvnd clean verify') end,
         { buffer = bufnr, desc = 'mvn clean verify' })
-    map(modes.n, '<leader>mp', function() require('util').floatermsend('mvnd clean package -DskipTests=true') end,
+    map(modes.n, '<leader>mp', function() floaterm.floatermsend('mvnd clean package -DskipTests=true') end,
         { buffer = bufnr, desc = 'mvn package (no tests)' })
-    map(modes.n, '<leader>mv', function() require('util').floatermsend('mvnd verify') end,
+    map(modes.n, '<leader>mv', function() floaterm.floatermsend('mvnd verify') end,
         { buffer = bufnr, desc = 'mvn verify' })
 end
 
@@ -92,7 +88,7 @@ function This.jdtls_config()
         },
         init_options = { bundles = jdtls_bundles },
         root_dir = find_project_root(),
-        capabilities = require('lsp').cmp_capabilities,
+        capabilities = require('util.lsp').cmp_capabilities,
         handlers = {
             -- To avoid annoying 'Press Enter to continue' messages while downloading dependencies
             ['language/status'] = function(_, result)
