@@ -346,11 +346,6 @@ return {
             }
         }
 
-        local function fix_square_in_corner_between_vertical_splits()
-            local hl_statusline = vim.api.nvim_get_hl_by_name("StatusLine", true)
-            vim.api.nvim_set_hl(0, "StatusLineNC", { bg = hl_statusline.background })
-        end
-
         require('feline').setup({
             components = {
                 active = statusline_active,
@@ -364,7 +359,5 @@ return {
                 bg = colors.background
             }
         })
-
-        vim.schedule(fix_square_in_corner_between_vertical_splits)
     end
 }
