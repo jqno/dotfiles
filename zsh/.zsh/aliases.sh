@@ -37,6 +37,10 @@ function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"
 }
 
+function repeatUntilFail() {
+  while "$@"; do :; done
+}
+
 # title: set terminal title
 function title() {
   echo -en "\033]0;$1\a"
