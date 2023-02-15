@@ -199,6 +199,7 @@ local function define_mappings()
     map(modes.n, '<leader>ww', vim.cmd.SwapSplit, { desc = 'swap windows' })
 
     -- TERMINAL --
+    map(modes.i, '<C-CR>', '<Esc><cmd>FloatermToggle<CR>')
     map(modes.n, '<C-CR>', vim.cmd.FloatermToggle)
     map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')
