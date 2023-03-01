@@ -54,5 +54,12 @@
         "updated_at": "2022-11-25T14:42:41.610076",
         "last_commit": "6ed92b0e0914aae9cbb3c8601d7d77683872351d",
         "last_commit_time": "2022-11-20T14:22:30"
+    },
+    "com.github.mikebarkmin.ulauncher-obsidian": {
+        "id": "com.github.mikebarkmin.ulauncher-obsidian",
+        "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
+        "updated_at": "2023-03-01T15:34:29.649386",
+        "last_commit": "d1c282fb1ba57438e61e036def134917ec921f90",
+        "last_commit_time": "2023-01-22T06:30:15"
     }
 }
