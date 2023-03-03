@@ -20,6 +20,9 @@ function This.setup()
         },
         ui = {
             border = 'rounded'
+        },
+        change_detection = {
+            enabled = false,
         }
     })
 end
