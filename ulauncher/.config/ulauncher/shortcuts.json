@@ -33,7 +33,7 @@
         "id": "91e70ec7-f348-42b2-adaa-60173984abf6",
         "name": "Maven Central",
         "keyword": "mvn",
-        "cmd": "https://search.maven.org/search?q=%s",
+        "cmd": "https://central.sonatype.com/search?q=%s",
         "icon": null,
         "is_default_search": false,
         "run_without_argument": false,
