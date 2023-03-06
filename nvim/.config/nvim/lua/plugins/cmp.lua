@@ -51,7 +51,9 @@ return {
                 ['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
                 ['<Esc>'] = cmp.mapping.close(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true })
+                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-D>'] = cmp.mapping.scroll_docs(4),
+                ['<C-U>'] = cmp.mapping.scroll_docs(-4)
             },
             sources = {
                 { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = 'path' }, { name = 'buffer' }
