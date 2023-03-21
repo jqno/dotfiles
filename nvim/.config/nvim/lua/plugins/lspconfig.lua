@@ -2,6 +2,7 @@ return {
     'neovim/nvim-lspconfig',
     ft = {
         'dockerfile',
+        'go',
         'java',
         'javascript',
         'kotlin',
@@ -19,6 +20,11 @@ return {
         local lsp = require('util.lsp')
 
         lspconfig.bashls.setup {
+            on_attach = lsp.on_attach,
+            capabilities = lsp.cmp_capabilities
+        }
+
+        lspconfig.gopls.setup {
             on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities
         }

@@ -14,6 +14,7 @@ return {
             ensure_installed = {
                 -- LSP
                 'bash-language-server',
+                'gopls',
                 'kotlin-language-server',
                 'jdtls',
                 'lemminx',
