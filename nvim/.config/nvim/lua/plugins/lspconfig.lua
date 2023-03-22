@@ -13,6 +13,7 @@ return {
         'sql',
         'typescript',
         'xml',
+        'yaml'
     },
 
     config = function()

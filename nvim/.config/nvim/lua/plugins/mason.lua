@@ -23,6 +23,7 @@ return {
                 'typescript-language-server',
 
                 -- Linters
+                'actionlint',
                 'flake8',
                 'hadolint',
                 'markdownlint',

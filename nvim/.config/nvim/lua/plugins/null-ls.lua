@@ -18,6 +18,7 @@ return {
                     args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' },
                     filetypes = { 'sql' }
                 }),
+                source.diagnostics.actionlint,
                 source.diagnostics.hadolint,
                 source.diagnostics.markdownlint.with({
                     diagnostics_postprocess = function(diagnostic)
