@@ -32,6 +32,20 @@ alias setjdk='. setjdk.sh'
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 
+# Docker
+dockerstop() {
+  local matches
+  matches=$(docker ps --format '{{.ID}} {{.Image}}' | grep -F "$1")
+
+  if [ "$(echo "$matches" | wc -l)" -gt 1 ]; then
+    echo "Multiple containers match the query:"
+    echo "$matches" | awk '{print "- " $0}'
+    return 1
+  fi
+
+  docker stop $(echo "$matches" | awk '{print $1}')
+}
+
 # mcd
 function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"
