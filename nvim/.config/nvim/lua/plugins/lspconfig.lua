@@ -57,7 +57,7 @@ return {
             settings = { pylsp = { configurationSources = { 'flake8' } } }
         }
 
-        lspconfig.sumneko_lua.setup {
+        lspconfig.lua_ls.setup {
             on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
             settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim', 'require' } } } }
