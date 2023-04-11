@@ -21,22 +21,18 @@ return {
         local lsp = require('util.lsp')
 
         lspconfig.bashls.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities
         }
 
         lspconfig.gopls.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities
         }
 
         lspconfig.kotlin_language_server.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities
         }
 
         lspconfig.lemminx.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
             settings = {
                 xml = {
@@ -52,19 +48,16 @@ return {
         }
 
         lspconfig.pylsp.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
             settings = { pylsp = { configurationSources = { 'flake8' } } }
         }
 
         lspconfig.lua_ls.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities,
             settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim', 'require' } } } }
         }
 
         lspconfig.tsserver.setup {
-            on_attach = lsp.on_attach,
             capabilities = lsp.cmp_capabilities
         }
 

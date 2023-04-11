@@ -123,8 +123,7 @@ function This.jdtls_config()
                     }
                 }
             }
-        },
-        on_attach = on_attach
+        }
     }
 end
 
