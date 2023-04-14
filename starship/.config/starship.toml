@@ -5,7 +5,7 @@ format = """
 [](fg:#dedede)\
 $directory\
 [](fg:#dedede bg:#70b433)\
-$git_branch$git_state$git_status$git_commit\
+$git_branch${custom.git_assumed}$git_state$git_status$git_commit\
 [](fg:#70b433 bg:#368aeb)\
 $java$nix_shell\
 [](fg:#368aeb bg:#3b3b3b)\
@@ -51,11 +51,20 @@ style = 'fg:#dedede bg:#70b433'
 format = '[\($hash$tag\)]($style)'
 style = 'fg:#252525 bg:#70b433'
 
+[custom.git_assumed]
+format = '[ A]($style)'
+style = 'fg:#dedede bg:#70b433 bold'
+command = ''
+when = """[[ -n "$(git ls-files -v | grep '^S')" ]]"""
+require_repo = true
+description = 'Whether files in the current repo were ignored using skip-worktree'
+
 [custom.git_mail]
 format = '[ !!! NO EMAIL SET !!! ]($style)'
 style = 'fg:#ed4a46'
 command = ''
 when = """[[ -n "$(git status -sb 2> /dev/null)" ]] && [[ -z "$(git config user.email 2> /dev/null)" ]]"""
+require_repo = true
 description = 'Whether the current Git repo has an email address set'
 
 # ---

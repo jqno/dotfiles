@@ -54,9 +54,9 @@ git config --global alias.next "!sh -c 'git log --reverse --pretty=%H master | a
 
 
 # Assume
-git config --global alias.assume "update-index --assume-unchanged"
-git config --global alias.unassume "update-index --no-assume-unchanged"
-git config --global alias.assumed "!git ls-files -v | grep ^h | cut -c 3-"
+git config --global alias.assume "update-index --skip-worktree"
+git config --global alias.unassume "update-index --no-skip-worktree"
+git config --global alias.assumed "!git ls-files -v | grep ^S | sed 's/^S //'"
 
 
 if [[ $(uname -s) == MINGW* ]]; then
