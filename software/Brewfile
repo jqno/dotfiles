@@ -38,9 +38,6 @@ brew "zsh-syntax-highlighting"
 tap "mvndaemon/homebrew-mvnd"
 brew "mvnd"
 
-tap "universal-ctags/universal-ctags"
-brew "universal-ctags", args: ["HEAD"]
-
 # CD ripper
 brew "abcde"
 brew "cdparanoia"

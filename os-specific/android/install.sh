@@ -3,7 +3,6 @@
 yes | pkg upgrade
 yes | pkg install bat \
     clang \
-    ctags \
     exa \
     fd \
     fzf \

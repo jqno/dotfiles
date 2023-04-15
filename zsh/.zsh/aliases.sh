@@ -60,12 +60,6 @@ function title() {
   echo -en "\033]0;$1\a"
 }
 
-# MacOS pre-installs a bad version of ctags so we substitute our own.
-if [[ "$(uname -s)" == "Darwin" ]]
-then
-  alias ctags="`brew --prefix`/bin/ctags"
-fi
-
 # Linux-specific aliases
 if [[ "$(uname -s)" == "Linux" ]]
 then
