@@ -30,7 +30,6 @@ echo "*** Stowing dotfiles..."
 "$PWD/clean.sh"
 stow abcde
 stow bash
-stow ctags
 stow git
 stow ideavim
 stow kitty

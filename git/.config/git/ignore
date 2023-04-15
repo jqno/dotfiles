@@ -5,9 +5,6 @@ node_modules
 
 # Vim
 .lvimrc
-tags
-tags.lock
-tags.temp
 Session.vim
 
 # Eclipse JDT, the Java language server
