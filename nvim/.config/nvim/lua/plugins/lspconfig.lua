@@ -18,22 +18,22 @@ return {
 
     config = function()
         local lspconfig = require('lspconfig')
-        local lsp = require('util.lsp')
+        local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         lspconfig.bashls.setup {
-            capabilities = lsp.cmp_capabilities
+            capabilities = cmp_capabilities
         }
 
         lspconfig.gopls.setup {
-            capabilities = lsp.cmp_capabilities
+            capabilities = cmp_capabilities
         }
 
         lspconfig.kotlin_language_server.setup {
-            capabilities = lsp.cmp_capabilities
+            capabilities = cmp_capabilities
         }
 
         lspconfig.lemminx.setup {
-            capabilities = lsp.cmp_capabilities,
+            capabilities = cmp_capabilities,
             settings = {
                 xml = {
                     fileAssociations = {
@@ -44,25 +44,29 @@ return {
                     }
                 }
             }
-
         }
 
         lspconfig.pylsp.setup {
-            capabilities = lsp.cmp_capabilities,
+            capabilities = cmp_capabilities,
             settings = { pylsp = { configurationSources = { 'flake8' } } }
         }
 
         lspconfig.lua_ls.setup {
-            capabilities = lsp.cmp_capabilities,
-            settings = { Lua = { runtime = { version = 'LuaJIT' }, diagnostics = { globals = { 'vim', 'require' } } } }
+            capabilities = cmp_capabilities,
+            settings = {
+                Lua = {
+                    runtime = { version = 'LuaJIT' },
+                    diagnostics = { globals = { 'vim', 'require' } }
+                }
+            }
         }
 
         lspconfig.tsserver.setup {
-            capabilities = lsp.cmp_capabilities
+            capabilities = cmp_capabilities
         }
 
         require('util.autocmd').create('lsp_define_java', 'FileType', 'java', function()
-            require('jdtls').start_or_attach(require('util.jdtls').jdtls_config())
+            require('jdtls').start_or_attach(require('util.jdtls').jdtls_config(cmp_capabilities))
         end)
     end
 }

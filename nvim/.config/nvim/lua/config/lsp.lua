@@ -5,7 +5,9 @@ local function enhance_handler(name, original, enhancement)
 end
 
 function This.setup()
-    vim.api.nvim_create_autocmd("LspAttach", {
+    vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })
+    vim.api.nvim_create_autocmd('LspAttach', {
+        group = 'LspAttachGroup',
         callback = function(args)
             local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
