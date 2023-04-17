@@ -16,8 +16,8 @@ local function dap_run_test_nearest()
 end
 
 map(modes.n, '<leader>dr', require('dap').continue, { buffer = true, desc = 'debug: run' })
-map(modes.n, '<leader>dt', dap_run_test, { buffer = true, desc = 'debug: test file' })
-map(modes.n, '<leader>dn', dap_run_test_nearest, { buffer = true, desc = 'debug: run nearest test' })
+map(modes.n, '<leader>dt', dap_run_test_nearest, { buffer = true, desc = 'debug: run nearest test' })
+map(modes.n, '<leader>dT', dap_run_test, { buffer = true, desc = 'debug: test file' })
 
 map(modes.n, '<leader>gs', require('jdtls').super_implementation, { buffer = true, desc = 'go to super implementation' })
 
