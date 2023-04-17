@@ -1,5 +1,8 @@
 return {
     'neovim/nvim-lspconfig',
+    dependencies = {
+        { 'folke/neodev.nvim', config = true }
+    },
     ft = {
         'dockerfile',
         'go',
@@ -56,7 +59,8 @@ return {
             settings = {
                 Lua = {
                     runtime = { version = 'LuaJIT' },
-                    diagnostics = { globals = { 'vim', 'require' } }
+                    diagnostics = { globals = { 'vim', 'require' } },
+                    telemetry = { enable = false }
                 }
             }
         }
