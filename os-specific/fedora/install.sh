@@ -33,5 +33,6 @@ sudo dnf --assumeyes install zsh
 
 
 # Fonts
+sudo dnf --assumeyes install fira-code-fonts
 sudo dnf --assumeyes install fontawesome5-fonts-all
 sudo dnf --assumeyes install unifont-fonts
