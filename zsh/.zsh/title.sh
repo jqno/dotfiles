@@ -1,4 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+# title: set terminal title
+function title() {
+  echo -en "\033]0;$1\a"
+}
 
 precmd () {
   home_dir=$(eval echo ~)

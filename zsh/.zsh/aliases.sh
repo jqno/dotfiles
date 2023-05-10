@@ -24,9 +24,6 @@ alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "
 alias pr='gh pr create'
 alias github='gh browse'
 
-# Nix
-alias ns=nix-shell
-
 # Java
 alias setjdk='. setjdk.sh'
 alias runjava=runjava.py
@@ -53,11 +50,6 @@ function mcd() {
 
 function repeatUntilFail() {
   while "$@"; do :; done
-}
-
-# title: set terminal title
-function title() {
-  echo -en "\033]0;$1\a"
 }
 
 # Linux-specific aliases
