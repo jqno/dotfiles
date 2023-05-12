@@ -44,6 +44,13 @@ function This.jdtls_config(capabilities)
                 use_lombok_agent = true,
                 format = { enabled = false },
                 signatureHelp = { enabled = true },
+                codeGeneration = {
+                    hashCodeEquals = {
+                        useInstanceof = true,
+                        useJava7Objects = true
+                    },
+                    useBlocks = true
+                },
                 completion = {
                     favoriteStaticMembers = {
                         'io.restassured.RestAssured.*',
@@ -58,8 +65,11 @@ function This.jdtls_config(capabilities)
                         'com.sun.*',
                         'java.awt.*',
                         'jdk.*',
-                        'sun.*'
-                    }
+                        'sun.*',
+                        'antlr.collections.List',
+                        'org.hibernate.mapping.List'
+                    },
+                    importOrder = { 'com', 'info', 'io', 'jakarta', 'net', 'nl', 'org', 'javax', 'java' }
                 }
             }
         }
