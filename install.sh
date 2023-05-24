@@ -34,6 +34,7 @@ stow git
 stow ideavim
 stow kitty
 stow linters
+stow maven
 stow nvim
 stow scripts
 stow sdkman
