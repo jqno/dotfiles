@@ -172,7 +172,7 @@ return {
         end
 
         local function lsp_status()
-            local clients = vim.lsp.buf_get_clients(0)
+            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
             local connected = not vim.tbl_isempty(clients)
             if connected then
                 local status = ''
