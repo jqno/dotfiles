@@ -14,8 +14,8 @@ return {
             end
 
             vim.keymap.set('n', '<CR>',  api.node.open.edit,       opts('Open'))
-            vim.keymap.set('n', '<C-J>', api.node.open.horizontal, opts('Open in horitzontal split'))
-            vim.keymap.set('n', '<C-L>', api.node.open.vertical,   opts('Open in vertical split'))
+            vim.keymap.set('n', 'J',     api.node.open.horizontal, opts('Open in horitzontal split'))
+            vim.keymap.set('n', 'L',     api.node.open.vertical,   opts('Open in vertical split'))
             vim.keymap.set('n', 'K',     api.node.show_info_popup, opts('Info'))
             vim.keymap.set('n', 'R',     api.tree.reload,          opts('Refresh'))
             vim.keymap.set('n', 'a',     api.fs.create,            opts('Create'))
