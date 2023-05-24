@@ -25,11 +25,14 @@ local function define_mappings()
     map(modes.n, 'N', 'Nzz')
     -- Toggle movements
     map(modes.n, '0',
-        function() require('util.toggle-movement').toggle_movement('^', '0') end, { desc = 'toggle movement 0' })
+        function() require('util.toggle-movement').toggle_movement('^', '0') end,
+        { desc = 'toggle movement 0' })
     map(modes.n, ';',
-        function() require('util.toggle-movement').toggle_movement(';', '0;') end, { desc = 'toggle movement ;' })
+        function() require('util.toggle-movement').toggle_movement(';', '0;') end,
+        { desc = 'toggle movement ;' })
     map(modes.n, ',',
-        function() require('util.toggle-movement').toggle_movement(',', '$,') end, { desc = 'toggle movement ,' })
+        function() require('util.toggle-movement').toggle_movement(',', '$,') end,
+        { desc = 'toggle movement ,' })
     -- Breakpoints for undo
     map(modes.i, '.', '.<C-G>u')
     map(modes.i, ',', ',<C-G>u')
@@ -198,6 +201,8 @@ local function define_mappings()
     map(modes.n, '<leader>w0', function() vim.cmd.wincmd('r') end, { desc = 'rotate windows' })
     map(modes.n, '<leader>wk', function() vim.cmd.wincmd('w') end, { desc = 'move into floating window' })
     map(modes.n, '<leader>ww', vim.cmd.SwapSplit, { desc = 'swap windows' })
+    map(modes.n, '<leader>wz', require('util.toggle-zoom').toggle_zoom, { desc = 'toggle zoom mode' })
+    map(modes.n, '<leader>wZ', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- TERMINAL --
     map(modes.i, '<C-CR>', '<Esc><cmd>FloatermToggle<CR>')

@@ -153,6 +153,14 @@ return {
             end
         end
 
+        local function window_status()
+            if require('util.toggle-zoom').is_zoomed() then
+                return ''
+            else
+                return ''
+            end
+        end
+
         local function diagnostic(prefix, severity)
             return function()
                 local count = #vim.diagnostic.get(0, { severity = severity })
@@ -280,7 +288,7 @@ return {
                 pad.vimode,
                 pad.main,
                 {
-                    provider = compose({ file_name, file_status }),
+                    provider = compose({ file_name, file_status, window_status }),
                     hl = highlights.main,
                     right_sep = right_sep
                 }
