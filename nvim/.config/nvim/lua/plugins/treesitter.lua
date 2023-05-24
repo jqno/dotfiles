@@ -13,15 +13,14 @@ return {
                 'ruby', 'rust', 'scala', 'scss', 'typescript', 'vim', 'yaml'
             },
             highlight = {
-                enable = true,
-                disable = {
-                    'lua', -- because it breaks Endwise: see https://github.com/nvim-treesitter/nvim-treesitter/issues/703
-                    'markdown' -- because the syntax highlighting isn't very good
-                }
+                enable = true
             },
             incremental_selection = {
                 enable = true,
-                keymaps = { init_selection = '<CR>', node_incremental = '<CR>' }
+                keymaps = {
+                    init_selection = '<CR>',
+                    node_incremental = '<CR>'
+                }
             },
             textobjects = {
                 select = { enable = true, keymaps = { ['if'] = '@call.outer' } },
