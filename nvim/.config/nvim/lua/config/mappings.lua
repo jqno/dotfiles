@@ -12,17 +12,14 @@ local function define_mappings()
     map(modes.n, 'k',
         [[v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk']],
         { expr = true })
-    -- Easy window switching
-    map(modes.n, '<C-h>', '<C-w>h')
-    map(modes.n, '<C-j>', '<C-w>j')
-    map(modes.n, '<C-k>', '<C-w>k')
-    map(modes.n, '<C-l>', '<C-w>l')
+    -- Center after moving around
+    map(modes.n, 'n', 'nzz')
+    map(modes.n, 'N', 'Nzz')
+    map(modes.n, '<C-U>', '<C-U>zz')
+    map(modes.n, '<C-D>', '<C-D>zz')
     -- Keep the selection after re-indenting
     map(modes.v, '<', '<gv')
     map(modes.v, '>', '>gv')
-    -- Center search matches
-    map(modes.n, 'n', 'nzz')
-    map(modes.n, 'N', 'Nzz')
     -- Toggle movements
     map(modes.n, '0',
         function() require('util.toggle-movement').toggle_movement('^', '0') end,
@@ -39,17 +36,28 @@ local function define_mappings()
     map(modes.i, ';', ';<C-G>u')
     map(modes.i, '!', '!<C-G>u')
     map(modes.i, '?', '?<C-G>u')
+    -- Delete entire words
+    map(modes.i, '<C-BS>', '<Esc>cvb')
     -- Copy to system clipboard
     map(modes.n, 'Y', '"+y')
     map(modes.v, 'Y', '"+y')
+
+    -- VARIOUS MAPPINGS --
     -- Comment lines
     map(modes.n, '\\\\', '<Plug>CommentaryLine')
     map(modes.v, '\\', '<Plug>Commentary')
+
     -- Moving lines and blocks
     map(modes.n, '<M-j>', '<cmd>move .+1<CR>==')
     map(modes.n, '<M-k>', '<cmd>move .-2<CR>==')
     map(modes.v, '<M-j>', [[:move '>+1<CR>gv=gv]])
     map(modes.v, '<M-k>', [[:move '<-2<CR>gv=gv]])
+
+    -- Easy window switching
+    map(modes.n, '<C-h>', '<C-w>h')
+    map(modes.n, '<C-j>', '<C-w>j')
+    map(modes.n, '<C-k>', '<C-w>k')
+    map(modes.n, '<C-l>', '<C-w>l')
 
     -- Close everything --
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
@@ -179,6 +187,7 @@ local function define_mappings()
         function() require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') }) end,
         { desc = 'grep current wordt in workspace' })
     map(modes.n, '<leader>f:', function() vim.cmd.Telescope('commands') end, { desc = 'find Vim command' })
+    map(modes.n, '<leader>f<space>', function() vim.cmd.Telescope('resume') end, { desc = 'resume previous search' })
 
     -- GIT --
     map(modes.n, '<leader>GB', function() vim.cmd.Git('blame') end, { desc = 'Git blame file' })
