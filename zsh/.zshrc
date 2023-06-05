@@ -40,3 +40,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Starship prompt
 eval "$(starship init zsh)"
+
+load ~/work-scripts/aliases.sh
+load ~/dots-private/aliases.sh
