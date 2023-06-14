@@ -34,6 +34,11 @@
     "body": ["@Test", "${1|void,public void|} $2() {", "\t$0", "}"],
     "description": "JUnit test case"
   },
+  "assertEquals": {
+    "prefix": "assertEquals",
+    "body": "assertEquals($1, $2);$0",
+    "description": "assert that two values are equal"
+  },
   "package": {
     "prefix": "package",
     "body": ["package $1", "$2", "public ${3|class,interface,record,enum|} $TM_FILENAME_BASE$4 {", "\t$0", "}"],
