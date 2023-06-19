@@ -31,6 +31,13 @@ alias github='gh browse'
 alias setjdk='. setjdk.sh'
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
+mvnd-kill() {
+  pid=$(jps | grep MavenDaemon | awk '{print $1}')
+  if [[ -n "$pid" ]]; then 
+    kill -9 "$pid"
+    echo "Killed MavenDaemon"
+  fi
+}
 
 # Docker
 dockerstop() {
@@ -43,7 +50,7 @@ dockerstop() {
     return 1
   fi
 
-  docker stop $(echo "$matches" | awk '{print $1}')
+  docker stop "$(echo "$matches" | awk '{print $1}')"
 }
 
 # mcd
@@ -60,4 +67,3 @@ if [[ "$(uname -s)" == "Linux" ]]
 then
   alias open=xdg-open
 fi
-
