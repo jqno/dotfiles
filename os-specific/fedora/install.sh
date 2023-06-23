@@ -8,8 +8,6 @@ echo "*** Installing dependencies..."
 
 # Replacements for default apps
 sudo dnf --assumeyes install kitty
-sudo dnf --assumeyes install thunar
-sudo dnf --assumeyes install thunar-archive-plugin
 
 
 # System tools
@@ -25,10 +23,6 @@ sudo dnf --assumeyes install tlp
 sudo dnf --assumeyes install tlp-rdw
 sudo dnf --assumeyes install ulauncher
 sudo dnf --assumeyes install util-linux
-sudo dnf --assumeyes install wl-clipboard
-sudo dnf --assumeyes install xclip
-sudo dnf --assumeyes install xsel
-sudo dnf --assumeyes install xprop
 sudo dnf --assumeyes install zsh
 
 
