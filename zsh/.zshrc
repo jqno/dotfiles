@@ -16,7 +16,7 @@ source ~/.zsh/aliases.sh
 source ~/.zsh/hotkeys.sh
 source ~/.zsh/completion.zsh
 source ~/.zsh/vim-terminal-mode.sh
-source ~/.zsh/ssh.sh
+# source ~/.zsh/ssh.sh
 source ~/.zsh/title.sh
 
 function load {
