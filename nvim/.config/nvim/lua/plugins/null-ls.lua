@@ -10,7 +10,7 @@ return {
         return {
             debug = true,
             sources = {
-                source.formatting.prettier.with({
+                source.formatting.prettierd.with({
                     filetypes = { 'java', 'markdown' }
                 }),
                 source.formatting.shellharden,
