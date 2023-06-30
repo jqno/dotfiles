@@ -6,6 +6,7 @@ function This.setup()
     vim.g.mapleader = ' '
 
     vim.opt.expandtab = true
+    vim.opt.exrc = true
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
     vim.opt.linebreak = true
