@@ -147,6 +147,15 @@ local function define_mappings()
         { desc = 'toggle indent: 8 spaces' })
     map(modes.n, '<leader>t<tab>', function() require('util.indent').set_buf_indent(4, true, true) end,
         { desc = 'toggle indent: tabs' })
+    map(modes.n, '<leader>tf', function()
+            vim.g.do_not_autoformat = not vim.g.do_not_autoformat
+            if vim.g.do_not_autoformat then
+                print('Autoformat off')
+            else
+                print('Autoformat on')
+            end
+        end,
+        { desc = 'toggle autoformat (globally)' })
     map(modes.n, '<leader>tl', '<cmd>set list! list?<CR>', { desc = 'toggle visible spaces' })
     map(modes.n, '<leader>ts', '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
         { desc = 'toggle typewriter scroll mode' })
