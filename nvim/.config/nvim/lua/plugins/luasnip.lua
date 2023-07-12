@@ -1,5 +1,6 @@
 return {
     'L3MON4D3/LuaSnip',
+    lazy = true,
 
     config = function()
         -- Adding snippets for a new filetype? Don't forget to update `snippets/package.json`!

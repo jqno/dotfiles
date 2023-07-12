@@ -6,10 +6,13 @@ return {
         'kyazdani42/nvim-web-devicons'
     },
     cmd = 'Telescope',
+
     config = function()
         local telescope = require('telescope')
         local actions = require('telescope.actions')
-        local letters = { a = '🇦', b = '🇧', c = '🇨', d = '🇩', e = '🇪', f = '🇫', g = '🇬', h = '🇭', i = '🇮', j = '🇯', k = '🇰', l = '🇱', m = '🇲', n = '🇳', o = '🇴', p = '🇵', q = '🇶', r = '🇷', s = '🇸', t = '🇹', u = '🇺', v = '🇻', w = '🇼', x = '🇽', y = '🇾', z = '🇿' }
+        local letters = { a = '🇦', b = '🇧', c = '🇨', d = '🇩', e = '🇪', f = '🇫', g = '🇬', h = '🇭',
+            i = '🇮', j = '🇯', k = '🇰', l = '🇱', m = '🇲', n = '🇳', o = '🇴', p = '🇵', q = '🇶',
+            r = '🇷', s = '🇸', t = '🇹', u = '🇺', v = '🇻', w = '🇼', x = '🇽', y = '🇾', z = '🇿' }
         local space = '/'
 
         local function path_subster(path)
