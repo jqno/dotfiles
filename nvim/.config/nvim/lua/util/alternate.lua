@@ -1,10 +1,10 @@
 local This = {}
 
 local split_direction = {
-    left  = {'wincmd h', 'vsplit | wincmd h'},
-    down  = {'wincmd j', 'split'},
-    up    = {'wincmd k', 'split | wincmd k'},
-    right = {'wincmd l', 'vsplit'}
+    left  = { 'wincmd h', 'vsplit | wincmd h' },
+    down  = { 'wincmd j', 'split' },
+    up    = { 'wincmd k', 'split | wincmd k' },
+    right = { 'wincmd l', 'vsplit' }
 }
 
 function This.open_split(direction)
@@ -31,6 +31,12 @@ local function find_alternate()
             return prefixed:gsub('%.java', 'Test.java')
         elseif curr:find('src/test/java') then
             return curr:gsub('src/test/java', 'src/main/java'):gsub('Test%.java', '.java'):gsub('IT%.java', '.java')
+        end
+    elseif vim.bo.filetype == 'go' then
+        if curr:find('_test.go') then
+            return curr:gsub('_test.go$', '.go')
+        else
+            return curr:gsub('.go$', '_test.go')
         end
     end
     return nil
