@@ -11,9 +11,11 @@ alias cat='bat -pp'
 alias df=duf
 alias du=dust
 alias ls='exa --icons'
-alias MAN="$(which man)"
-alias man=tldr
 alias tree='exa --icons --tree'
+alias MAN="$(which man)"
+man() {
+  tldr "$1" || "$(which man)" "$1"
+}
 
 # Vim
 alias vim=nvim
