@@ -187,8 +187,6 @@ local function define_mappings()
         { desc = 'grep in workspace' })
     map(modes.n, '<leader>fG', function() vim.cmd.Telescope('git_status') end, { desc = 'find modified files' })
     map(modes.n, '<leader>fh', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
-    map(modes.n, '<leader>fi', function() vim.cmd.Telescope('treesitter') end,
-        { desc = 'find treesitter identifiers' })
     map(modes.n, '<leader>fm', function() vim.cmd.Telescope('keymaps') end, { desc = 'find Vim mapping' })
     map(modes.n, '<leader>fn', vim.cmd.NvimTreeFindFileToggle, { desc = 'open file tree' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
@@ -270,12 +268,14 @@ function This.setup_lsp(client, bufnr)
     map(modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
 
     -- FINDING --
+    map(modes.n, '<leader>fi', function() vim.cmd.Telescope('lsp_implementations') end,
+        { buffer = bufnr, desc = 'implementations' })
+    map(modes.n, '<leader>fr', function() vim.cmd.Telescope('lsp_references') end,
+        { buffer = bufnr, desc = 'references' })
     map(modes.n, '<leader>fs', function() vim.cmd.Telescope('lsp_document_symbols') end,
         { buffer = bufnr, desc = 'find current file symbols' })
     map(modes.n, '<leader>fS', function() vim.cmd.Telescope('lsp_workspace_symbols') end,
         { buffer = bufnr, desc = 'find workspace symbols' })
-    map(modes.n, '<leader>fr', function() vim.cmd.Telescope('lsp_references') end,
-        { buffer = bufnr, desc = 'references' })
 
     -- GOING PLACES  --
     map(modes.n, '<leader>gd', vim.lsp.buf.declaration, { buffer = bufnr, desc = 'go to declaration' })
