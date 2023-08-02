@@ -5,6 +5,7 @@ return {
     },
 
     opts = {
+        use_default_keymaps = false,
         keymaps = {
             ['<leader>r<'] = 'swap_with_left',
             ['<leader>r>'] = 'swap_with_right'
