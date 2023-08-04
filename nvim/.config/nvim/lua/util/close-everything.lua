@@ -9,7 +9,6 @@ function This.close_everything()
     vim.cmd.UndotreeHide()
     require('dap').repl.close()
 
-    vim.cmd.windo('if &ft=="git" || &ft=="fugitiveblame" | q | endif')
     vim.cmd.windo('if expand("%:t")=~#"dap-terminal" && &ft=="" | q | endif')
 end
 

@@ -40,7 +40,6 @@
   "vim-endwise": { "branch": "master", "commit": "e714ac3bcfd5a90038de49c3254eded7c70ae3c3" },
   "vim-eunuch": { "branch": "master", "commit": "67f3dd32b4dcd1c427085f42ff5f29c7adc645c6" },
   "vim-floaterm": { "branch": "master", "commit": "bcaeabf89a92a924031d471395054d84bd88ce2f" },
-  "vim-fugitive": { "branch": "master", "commit": "43f18ab9155c853a84ded560c6104e6300ad41da" },
   "vim-lastplace": { "branch": "master", "commit": "cef9d62165cd26c3c2b881528a5290a84347059e" },
   "vim-numbertoggle": { "branch": "main", "commit": "075b7478777e694fbac330ee34a74590dad0fee1" },
   "vim-sandwich": { "branch": "master", "commit": "c5a2cc438ce6ea2005c556dc833732aa53cae21a" },

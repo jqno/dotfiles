@@ -2,6 +2,7 @@ local This = {}
 
 local map = vim.keymap.set
 local modes = require('util.modes')
+local floaterm = require('util.floaterm')
 
 local function define_mappings()
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
@@ -185,8 +186,8 @@ local function define_mappings()
     map(modes.n, '<leader>fg',
         function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep ❯ ') }) end,
         { desc = 'grep in workspace' })
-    map(modes.n, '<leader>fG', function() vim.cmd.Telescope('git_status') end, { desc = 'find modified files' })
-    map(modes.n, '<leader>fh', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
+    map(modes.n, '<leader>fh', function() vim.cmd.Telescope('git_status') end, { desc = 'find modified files' })
+    map(modes.n, '<leader>f?', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
     map(modes.n, '<leader>fm', function() vim.cmd.Telescope('keymaps') end, { desc = 'find Vim mapping' })
     map(modes.n, '<leader>fn', vim.cmd.NvimTreeFindFileToggle, { desc = 'open file tree' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
@@ -197,8 +198,12 @@ local function define_mappings()
     map(modes.n, '<leader>f<space>', function() vim.cmd.Telescope('resume') end, { desc = 'resume previous search' })
 
     -- GIT --
-    map(modes.n, '<leader>GB', function() vim.cmd.Git('blame') end, { desc = 'Git blame file' })
-    map(modes.n, '<leader>Gh', '<cmd>0Gclog<CR>', { desc = 'show Git file history' })
+    map(modes.n, '<leader>hB',
+        function() floaterm.floatermsend('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
+        { desc = 'git blame file' })
+    map(modes.n, '<leader>hh',
+        function() floaterm.floatermsend('tig ' .. vim.fn.expand('%')) end,
+        { desc = 'show git file history' })
 
     -- MAKE-ING --
     map(modes.n, '<leader>m<CR>', vim.cmd.TestLast, { desc = 'run last test' })
