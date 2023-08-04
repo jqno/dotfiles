@@ -3,6 +3,7 @@ return {
     dependencies = {
         'kyazdani42/nvim-web-devicons'
     },
+    event = 'UIEnter',
 
     config = function()
         local diag = require('util.diagnostic-strings')
