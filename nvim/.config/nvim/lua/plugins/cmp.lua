@@ -47,6 +47,10 @@ return {
                     require('luasnip').lsp_expand(args.body)
                 end
             },
+            window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered()
+            },
             mapping = {
                 ['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
