@@ -9,14 +9,34 @@ bindkey -M vicmd "\C-v" edit-command-line
 
 
 ###
+# FZF projects
+###
+function select_project() {
+  local project=$(find ~/w -maxdepth 2 -type d | sort --reverse | fzf)
+
+  if [[ -n "$project" ]];
+  then
+    cd "$project"
+  fi
+
+  echo "\n"
+
+  zle reset-prompt
+}
+
+zle -N select_project
+bindkey "\C-p" select_project
+
+
+###
 # FZF Git branches
 ###
 function select_branch() {
   local branch=$(git branch -a --list --format "%(refname:lstrip=2)" | fzf)
 
-  if [[ ! -z "$branch" ]];
+  if [[ -n "$branch" ]];
   then
-    git checkout ${branch/origin\//}
+    git checkout "${branch/origin\//}"
   fi
 
   echo "\n"
