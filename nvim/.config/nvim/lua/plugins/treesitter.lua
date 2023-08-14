@@ -15,13 +15,6 @@ return {
             highlight = {
                 enable = true
             },
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = '<CR>',
-                    node_incremental = '<CR>'
-                }
-            },
             textobjects = {
                 select = { enable = true, keymaps = { ['if'] = '@call.outer' } },
                 move = {
