@@ -1,7 +1,0 @@
-{
-  "source": {
-    "prefix": "source",
-    "body": ["[source,$1]", "----", "$2", "----"],
-    "description": "Source code snippet"
-  }
-}
