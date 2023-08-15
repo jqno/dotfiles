@@ -72,6 +72,12 @@ local function define_mappings()
     map(modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
         { expr = true, replace_keycodes = false })
+    map(modes.i, '<C-H>',
+        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
+        { expr = true, replace_keycodes = false })
+    map(modes.s, '<C-H>',
+        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
+        { expr = true, replace_keycodes = false })
     map(modes.i, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
         { expr = true, replace_keycodes = false })
@@ -172,6 +178,7 @@ local function define_mappings()
     map(modes.n, '<leader>xl', require('util.linkify').linkify, { desc = 'linkify', silent = true })
     map(modes.n, '<leader>xn', require('util.show-full-path').show_full_path,
         { desc = 'show full path', silent = true })
+    map(modes.n, '<leader>xs', require('util.snippets').reload, { desc = 'reload snippets', silent = true })
 
     -- FINDING --
     map(modes.n, '<leader>fb', function() vim.cmd.Telescope('buffers', 'show_all_buffers=true') end,
