@@ -14,10 +14,6 @@
         "path": "./html.json"
       },
       {
-        "language": "java",
-        "path": "./java.json"
-      },
-      {
         "language": "markdown",
         "path": "./markdown.json"
       },
