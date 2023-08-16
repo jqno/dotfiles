@@ -4,18 +4,6 @@
       {
         "language": "all",
         "path": "./all.json"
-      },
-      {
-        "language": "html",
-        "path": "./html.json"
-      },
-      {
-        "language": "pom",
-        "path": "./pom.json"
-      },
-      {
-        "language": ["xml", "html"],
-        "path": "./xml.json"
       }
     ]
   }
