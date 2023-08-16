@@ -251,9 +251,13 @@ end
 -- LSP MAPPINGS --
 function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     -- UNIMPAIRED --
-    map(modes.n, '[d', function() vim.diagnostic.goto_prev({ source = 'always' }) end,
+    map(modes.n, '[D', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end,
+        { buffer = bufnr, desc = 'go to previous error' })
+    map(modes.n, ']D', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end,
+        { buffer = bufnr, desc = 'go to next error' })
+    map(modes.n, '[d', function() vim.diagnostic.goto_prev() end,
         { buffer = bufnr, desc = 'go to previous diagnostic' })
-    map(modes.n, ']d', function() vim.diagnostic.goto_next({ source = 'always' }) end,
+    map(modes.n, ']d', function() vim.diagnostic.goto_next() end,
         { buffer = bufnr, desc = 'go to next diagnostic' })
 
     -- MAKE-ING --
