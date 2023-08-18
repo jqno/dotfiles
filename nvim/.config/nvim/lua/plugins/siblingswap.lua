@@ -5,10 +5,7 @@ return {
     },
 
     opts = {
-        use_default_keymaps = false,
-        keymaps = {
-            ['<leader>r<'] = 'swap_with_left',
-            ['<leader>r>'] = 'swap_with_right'
-        }
+        use_default_keymaps = true,
+        highlight_node_at_cursor = true,
     }
 }

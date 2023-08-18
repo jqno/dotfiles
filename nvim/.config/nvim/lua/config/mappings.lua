@@ -226,6 +226,8 @@ local function define_mappings()
         { desc = 'refactor: extract variable' })
     map(modes.n, '<leader>rp', function() require('refactoring').debug.print_var({ normal = true }) end,
         { desc = 'refactor: extract variable' })
+    map(modes.n, '<leader>r<', require('sibling-swap').swap_with_left, { desc = 'Swap sibling left' })
+    map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
 
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
