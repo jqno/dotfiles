@@ -54,7 +54,7 @@ return {
          */$0
         ]]),
 
-    parse({ trig = 'javadoc', dscr = 'Javadoc comment' },
+    parse({ trig = 'doccomment', dscr = 'Javadoc comment' },
         [[
         /**
          * $1

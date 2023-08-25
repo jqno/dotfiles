@@ -8,7 +8,7 @@ return {
          * $1
          */$0
         ]]),
-    parse({ trig = 'scaladoc', dscr = 'Scaladoc comment' },
+    parse({ trig = 'doccomment', dscr = 'Scaladoc comment' },
         [[
         /**
             * $1
