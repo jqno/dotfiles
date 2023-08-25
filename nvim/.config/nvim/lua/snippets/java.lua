@@ -25,6 +25,13 @@ return {
                 i(0, '')
             })),
 
+    parse({ trig = 'main', dscr = 'main method' },
+        [[
+        public static void main(String...args) {
+            $1
+        }
+        ]]),
+
     parse({ trig = 'sout', dscr = 'Print to System.out' },
         [[System.out.println($1);$0]]),
 
