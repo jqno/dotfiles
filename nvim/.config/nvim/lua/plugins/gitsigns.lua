@@ -11,13 +11,13 @@ return {
 
             map(modes.n, ']h', function()
                 if vim.wo.diff then return ']c' end
-                vim.schedule(require('gitsigns').next_hunk)
+                vim.schedule(require('util.centered').centered(require('gitsigns').next_hunk))
                 return '<Ignore>'
             end, { buffer = bufnr, expr = true, desc = 'go to next git hunk' })
 
             map(modes.n, '[h', function()
                 if vim.wo.diff then return '[c' end
-                vim.schedule(require('gitsigns').prev_hunk)
+                vim.schedule(require('util.centered').centered(require('gitsigns').prev_hunk))
                 return '<Ignore>'
             end, { buffer = bufnr, expr = true, desc = 'go to previous git hunk' })
 

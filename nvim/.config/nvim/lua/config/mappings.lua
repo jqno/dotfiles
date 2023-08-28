@@ -2,6 +2,7 @@ local This = {}
 
 local map = vim.keymap.set
 local modes = require('util.modes')
+local centered = require('util.centered').centered
 local floaterm = require('util.floaterm')
 
 local function define_mappings()
@@ -95,11 +96,11 @@ local function define_mappings()
 
     -- UNIMPAIRED --
     map(modes.n, '[b', vim.cmd.bprevious, { desc = 'go to previous buffer' })
-    map(modes.n, '[q', vim.cmd.cprevious, { desc = 'go to previous quickfix' })
-    map(modes.n, '[Q', vim.cmd.qfirst, { desc = 'go to first quickfix' })
+    map(modes.n, '[q', centered(vim.cmd.cprevious), { desc = 'go to previous quickfix' })
+    map(modes.n, '[Q', centered(vim.cmd.qfirst), { desc = 'go to first quickfix' })
     map(modes.n, ']b', vim.cmd.bprevious, { desc = 'go to next buffer' })
-    map(modes.n, ']q', vim.cmd.cnext, { desc = 'go to next quickfix' })
-    map(modes.n, ']Q', vim.cmd.qlast, { desc = 'go to last quickfix' })
+    map(modes.n, ']q', centered(vim.cmd.cnext), { desc = 'go to next quickfix' })
+    map(modes.n, ']Q', centered(vim.cmd.qlast), { desc = 'go to last quickfix' })
 
     -- NAVIGATION --
     map(modes.n, '<leader><leader><leader>', function() require('harpoon.ui').toggle_quick_menu() end,
@@ -253,13 +254,13 @@ end
 -- LSP MAPPINGS --
 function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     -- UNIMPAIRED --
-    map(modes.n, '[D', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end,
+    map(modes.n, '[D', centered(function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end),
         { buffer = bufnr, desc = 'go to previous error' })
-    map(modes.n, ']D', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end,
+    map(modes.n, ']D', centered(function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end),
         { buffer = bufnr, desc = 'go to next error' })
-    map(modes.n, '[d', function() vim.diagnostic.goto_prev() end,
+    map(modes.n, '[d', centered(function() vim.diagnostic.goto_prev() end),
         { buffer = bufnr, desc = 'go to previous diagnostic' })
-    map(modes.n, ']d', function() vim.diagnostic.goto_next() end,
+    map(modes.n, ']d', centered(function() vim.diagnostic.goto_next() end),
         { buffer = bufnr, desc = 'go to next diagnostic' })
 
     -- MAKE-ING --
