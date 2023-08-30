@@ -1,5 +1,8 @@
 bindkey '^[[Z' autosuggest-accept  # Shift-tab
 
+bindkey '^[[127;2u' backward-delete-char # Prevent clearing the entire line when pressing Shift+Backspace in the Neovim terminal
+bindkey '^[[127;5u' backward-delete-char # Prevent clearing the entire line when pressing Ctrl+Backspace in the Neovim terminal
+
 ###
 # Open VIM with current command line
 ###
@@ -59,15 +62,14 @@ function inject_text_into_buffer() {
 }
 
 function inject_current_branch() {
-  inject_text_into_buffer $(git_current_branch)
+  inject_text_into_buffer "$(git_current_branch)"
 }
 
 function inject_current_ticket_number() {
-  inject_text_into_buffer $(git_current_branch | sed -e 's/[-_].*//' | sed -e 's/^[^/]*\///')
+  inject_text_into_buffer "$(git_current_branch | sed -e 's/[-_].*//' | sed -e 's/^[^/]*\///')"
 }
 
 zle -N inject_current_branch
 zle -N inject_current_ticket_number
 bindkey "\C-b" inject_current_branch
 bindkey "\C-n" inject_current_ticket_number
-
