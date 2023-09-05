@@ -10,7 +10,7 @@ return {
             ensure_installed = {
                 'bash', 'css', 'html', 'http', 'java', 'javascript', 'json',
                 'kotlin', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
-                'ruby', 'rust', 'scala', 'scss', 'typescript', 'vim', 'yaml'
+                'ruby', 'rust', 'scala', 'scss', 'sql', 'typescript', 'vim', 'yaml'
             },
             highlight = {
                 enable = true
