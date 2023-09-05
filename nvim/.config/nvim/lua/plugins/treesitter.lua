@@ -3,6 +3,7 @@ return {
     build = ':TSUpdate',
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'RRethy/nvim-treesitter-endwise'
     },
 
     config = function()
@@ -29,6 +30,9 @@ return {
                         ['<leader>sf'] = '@function.outer'
                     }
                 }
+            },
+            endwise = {
+                enable = true
             }
         })
     end
