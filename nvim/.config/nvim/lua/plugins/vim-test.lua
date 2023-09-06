@@ -5,6 +5,6 @@ return {
     init = function()
         vim.g['test#custom_strategies'] = { shell_in_floaterm = require('util.floaterm').floatermsend }
         vim.g['test#strategy'] = 'shell_in_floaterm'
-        vim.g['test#java#maventest#executable'] = 'mvnd'
+        vim.g['test#java#maventest#executable'] = 'mvnd -q'
     end
 }
