@@ -2,56 +2,56 @@
     "com.github.ulauncher.ulauncher-emoji": {
         "id": "com.github.ulauncher.ulauncher-emoji",
         "url": "https://github.com/Ulauncher/ulauncher-emoji",
-        "updated_at": "2022-11-25T14:42:00.821583",
+        "updated_at": "2023-09-08T13:26:22.523717",
         "last_commit": "4c6af50d1c9a24d5aad2c597634ff0c634972a5c",
         "last_commit_time": "2021-08-08T19:19:59"
     },
     "com.github.kuenzelit.ulauncher-firefox-bookmarks": {
         "id": "com.github.kuenzelit.ulauncher-firefox-bookmarks",
         "url": "https://github.com/KuenzelIT/ulauncher-firefox-bookmarks",
-        "updated_at": "2022-11-25T14:42:05.777470",
+        "updated_at": "2023-09-08T13:26:27.924532",
         "last_commit": "77f1de0adfc2e79ce767f645ae8ad0a0dda2783e",
         "last_commit_time": "2019-12-07T17:27:46"
     },
     "com.github.rmassidda.ulauncher-firefox-history": {
         "id": "com.github.rmassidda.ulauncher-firefox-history",
         "url": "https://github.com/rmassidda/ulauncher-firefox-history",
-        "updated_at": "2022-11-25T14:42:08.645323",
+        "updated_at": "2023-09-08T13:26:32.242637",
         "last_commit": "3d0e706412512805efda2bf0957b999df5594f19",
         "last_commit_time": "2022-02-02T09:04:03"
     },
     "com.github.fisadev.ulauncher-better-file-browser": {
         "id": "com.github.fisadev.ulauncher-better-file-browser",
         "url": "https://github.com/fisadev/ulauncher-better-file-browser",
-        "updated_at": "2022-11-25T14:42:09.960545",
+        "updated_at": "2023-09-08T13:26:33.906332",
         "last_commit": "8ec8a0dda09e172de62051cd1f251816ce4af368",
         "last_commit_time": "2019-09-06T19:20:09"
     },
     "com.github.tchar.ulauncher-albert-calculate-anything": {
         "id": "com.github.tchar.ulauncher-albert-calculate-anything",
         "url": "https://github.com/tchar/ulauncher-albert-calculate-anything",
-        "updated_at": "2022-11-25T14:42:35.041194",
+        "updated_at": "2023-09-08T13:26:52.688631",
         "last_commit": "ee0903174c8b87cd1f7c3b6c1acef10702547507",
         "last_commit_time": "2021-08-12T06:39:56"
     },
     "com.github.zensoup.ulauncher-unicode": {
         "id": "com.github.zensoup.ulauncher-unicode",
         "url": "https://github.com/zensoup/ulauncher-unicode",
-        "updated_at": "2022-11-25T14:42:37.906944",
+        "updated_at": "2023-09-08T13:26:56.315162",
         "last_commit": "0ad36c00a888e687b4bfbf76f266f1000040b337",
         "last_commit_time": "2019-07-11T06:53:31"
     },
     "com.github.mikebarkmin.ulauncher-snippets": {
         "id": "com.github.mikebarkmin.ulauncher-snippets",
         "url": "https://github.com/mikebarkmin/ulauncher-snippets",
-        "updated_at": "2022-11-25T14:42:41.610076",
+        "updated_at": "2023-09-08T13:27:00.800735",
         "last_commit": "6ed92b0e0914aae9cbb3c8601d7d77683872351d",
         "last_commit_time": "2022-11-20T14:22:30"
     },
     "com.github.mikebarkmin.ulauncher-obsidian": {
         "id": "com.github.mikebarkmin.ulauncher-obsidian",
         "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
-        "updated_at": "2023-03-01T15:34:29.649386",
+        "updated_at": "2023-09-08T13:27:03.465369",
         "last_commit": "d1c282fb1ba57438e61e036def134917ec921f90",
         "last_commit_time": "2023-01-22T06:30:15"
     }
