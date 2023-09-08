@@ -12,8 +12,8 @@ sudo dnf --assumeyes install kitty
 
 # System tools
 sudo dnf --assumeyes install @development-tools
-sudo dnf --assymeyes install docker
-sudo dnf --assymeyes install docker-compose
+sudo dnf --assumeyes install docker
+sudo dnf --assumeyes install docker-compose
 sudo dnf --assumeyes install gcc-g++
 sudo dnf --assumeyes install libxcrypt-compat
 sudo dnf --assumeyes install procps-ng
@@ -23,6 +23,7 @@ sudo dnf --assumeyes install tlp
 sudo dnf --assumeyes install tlp-rdw
 sudo dnf --assumeyes install ulauncher
 sudo dnf --assumeyes install util-linux
+sudo dnf --assumeyes install util-linux-user
 sudo dnf --assumeyes install zsh
 
 

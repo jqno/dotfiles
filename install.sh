@@ -10,7 +10,7 @@ if [[ $REPLY =~ ^[!]$ ]]; then
   echo "*** DEVELOPER TOOLS"
   echo "Make sure you have installed the developer tools!"
   echo "* On macOS: type \`git\` and follow the instructions."
-  echo "* On Linux: run \`os-specific/.../install.sh\`"
+  echo "* On Linux: run \`software/fedora.sh\`"
   read -r -p "*** Ready? Press ! to continue or anything else to abort. " -n 1;
   echo ""
 
