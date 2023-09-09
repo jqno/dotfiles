@@ -83,7 +83,7 @@ return {
                 bg = colors.background
             },
             warn = {
-                fg = colors.yellow,
+                fg = colors.magenta,
                 bg = colors.background
             },
             info = {
