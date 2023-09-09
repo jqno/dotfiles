@@ -24,6 +24,7 @@ sudo dnf --assumeyes install tlp-rdw
 sudo dnf --assumeyes install ulauncher
 sudo dnf --assumeyes install util-linux
 sudo dnf --assumeyes install util-linux-user
+sudo dnf --assumeyes install wl-clipboard
 sudo dnf --assumeyes install zsh
 
 
