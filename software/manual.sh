@@ -14,6 +14,9 @@ mkdir "$BIN"
 echo "*** Installing fonts"
 mkdir "$HOME/.fonts"
 pushd "$HOME/.fonts" > /dev/null
+curl -L -o firacode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
+unzip -j firacode.zip "*.ttf"
+rm firacode.zip
 curl -L -o cascadiacode.zip https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip
 unzip -j cascadiacode.zip "ttf/CascadiaCodePL*"
 rm cascadiacode.zip
