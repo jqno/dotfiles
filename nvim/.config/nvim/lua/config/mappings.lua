@@ -155,6 +155,7 @@ local function define_mappings()
         { desc = 'toggle indent: 8 spaces' })
     map(modes.n, '<leader>t<tab>', function() require('util.indent').set_buf_indent(4, true, true) end,
         { desc = 'toggle indent: tabs' })
+    map(modes.n, '<leader>tc', vim.cmd.ColorizerToggle, { desc = 'toggle colorization' })
     map(modes.n, '<leader>tf', function()
             vim.g.do_not_autoformat = not vim.g.do_not_autoformat
             if vim.g.do_not_autoformat then
