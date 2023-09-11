@@ -1,3 +1,4 @@
 return {
-    'farmergreg/vim-lastplace'
+    'farmergreg/vim-lastplace',
+    event = 'BufReadPre'
 }

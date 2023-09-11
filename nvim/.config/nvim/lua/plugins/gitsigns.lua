@@ -1,5 +1,6 @@
 return {
     'lewis6991/gitsigns.nvim',
+    event = 'UIEnter',
 
     opts = {
         preview_config = {

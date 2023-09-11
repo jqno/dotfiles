@@ -1,5 +1,6 @@
 return {
     'Wansmer/sibling-swap.nvim',
+    lazy = true,
     dependencies = {
         'nvim-treesitter/nvim-treesitter',
     },

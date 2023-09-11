@@ -1,3 +1,4 @@
 return {
-    'wincent/terminus'
+    'wincent/terminus',
+    event = 'UIEnter'
 }
