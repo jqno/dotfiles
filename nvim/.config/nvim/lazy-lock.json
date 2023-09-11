@@ -34,7 +34,7 @@
   "sibling-swap.nvim": { "branch": "main", "commit": "5b1ea919939dae0d202115a4d7e638fc60992562" },
   "swap-split.nvim": { "branch": "main", "commit": "d2c705d279b384a6b47a67f85a6dc8569c4d775d" },
   "tagalong.vim": { "branch": "main", "commit": "d12622b866c9eea5204a792517d11586c51715a2" },
-  "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
+  "telescope.nvim": { "branch": "master", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" },
   "terminus": { "branch": "main", "commit": "12b07e390ea6346c91cd82edb0fa9b967164c38d" },
   "undotree": { "branch": "master", "commit": "0e11ba7325efbbb3f3bebe06213afa3e7ec75131" },
   "vim-closetag": { "branch": "master", "commit": "d0a562f8bdb107a50595aefe53b1a690460c3822" },
