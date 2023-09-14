@@ -11,12 +11,6 @@ end
 
 function This.jdtls_config(capabilities)
     local location = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
-    local jdtls_bundles = {
-        vim.fn.glob(
-            '~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar')
-    }
-    vim.list_extend(jdtls_bundles, vim.split(
-        vim.fn.glob('~/bin/vscode-java-test/server/*.jar'), '\n'))
 
     return {
         cmd = {
@@ -25,7 +19,6 @@ function This.jdtls_config(capabilities)
             location,
             vim.env.HOME .. '/.vim/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
-        init_options = { bundles = jdtls_bundles },
         root_dir = find_project_root(),
         capabilities = capabilities,
         handlers = {

@@ -42,25 +42,6 @@ mkdir "$BIN/jdtls"
 curl -L -o "$BIN/jdtls/lombok.jar" https://projectlombok.org/downloads/lombok.jar
 
 
-# Java-debug
-echo "*** Installing java-debug"
-pushd "$BIN" > /dev/null
-git clone https://github.com/microsoft/java-debug.git
-cd java-debug
-./mvnw clean install -DskipTests
-popd > /dev/null
-
-
-# VSCode-java-test
-echo "*** Installing vscode-java-test"
-pushd "$BIN" > /dev/null
-git clone https://github.com/microsoft/vscode-java-test.git
-cd vscode-java-test
-npm install
-npm run build-plugin
-popd > /dev/null
-
-
 # Vale Alex and Proselint styles
 echo "*** Installing some styles for Vale linter"
 rm -rf ~/.vale

@@ -311,25 +311,6 @@ function This.setup_lsp(client, bufnr)
     map(modes.n, '<leader>ss', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'show signature help' })
 end
 
--- DAP MAPPINGS --
-function This.setup_dap(bufnr)
-    -- DEBUGGING --
-    map(modes.n, '<leader>d<space>', require('dap').repl.toggle, { buffer = bufnr, desc = 'debug: toggle repl' })
-    map(modes.n, '<leader>db', require('dap').toggle_breakpoint,
-        { buffer = bufnr, desc = 'debug: toggle breakpoint' })
-    map(modes.n, '<leader>dc', require('dap').continue, { buffer = bufnr, desc = 'debug: continue' })
-    map(modes.n, '<leader>di', require('dap').step_into, { buffer = bufnr, desc = 'debug: step into' })
-    map(modes.n, '<leader>dl', require('dap').run_last, { buffer = bufnr, desc = 'debug: run last' })
-    map(modes.n, '<leader>do', require('dap').step_over, { buffer = bufnr, desc = 'debug: step over' })
-    map(modes.n, '<leader>dx', require('dap').step_out, { buffer = bufnr, desc = 'debug: step out' })
-
-    -- SHOWING THINGS --
-    map(modes.n, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
-    map(modes.v, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
-end
-
--- COMMANDS --
-
 function This.setup()
     define_mappings()
 end

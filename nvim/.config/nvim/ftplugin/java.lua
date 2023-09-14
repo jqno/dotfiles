@@ -2,22 +2,7 @@ require('util.indent').set_buf_indent(4, false)
 
 local map = vim.keymap.set
 local modes = require('util.modes')
-local dap = require('dap')
 local jdtls = require('jdtls')
-
-local function dap_run_test()
-    dap.repl.open()
-    jdtls.test_class()
-end
-
-local function dap_run_test_nearest()
-    dap.repl.open()
-    jdtls.test_nearest_method()
-end
-
-map(modes.n, '<leader>dr', require('dap').continue, { buffer = true, desc = 'debug: run' })
-map(modes.n, '<leader>dt', dap_run_test_nearest, { buffer = true, desc = 'debug: run nearest test' })
-map(modes.n, '<leader>dT', dap_run_test, { buffer = true, desc = 'debug: test file' })
 
 map(modes.n, '<leader>gs', require('jdtls').super_implementation, { buffer = true, desc = 'go to super implementation' })
 
@@ -50,15 +35,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = 'LspAttachJava',
     buffer = 0,
     callback = function(args)
-        local bufnr = args.buf
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
         if client.name == 'jdtls' then
             require('jdtls.setup').add_commands()
-            require('jdtls').setup_dap({ hotcodereplace = 'auto' })
-            require('jdtls.dap').setup_dap_main_class_configs()
-            require('config.mappings').setup_dap(bufnr)
-
             client.server_capabilities.documentFormattingProvider = false
         end
     end
