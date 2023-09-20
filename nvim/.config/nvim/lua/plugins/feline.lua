@@ -185,7 +185,11 @@ return {
                     end
                 end
 
-                return status
+                if not vim.g.metals_status then
+                    return status
+                else
+                    return vim.g.metals_status .. ' ' .. status
+                end
             else
                 return ''
             end

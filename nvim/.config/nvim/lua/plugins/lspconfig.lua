@@ -72,5 +72,9 @@ return {
         require('util.autocmd').create('lsp_define_java', 'FileType', 'java', function()
             require('jdtls').start_or_attach(require('util.jdtls').jdtls_config(cmp_capabilities))
         end)
+
+        require('util.autocmd').create('lsp_define_scala', 'FileType', 'scala', function()
+            require('metals').initialize_or_attach(require('util.metals').metals_config(cmp_capabilities))
+        end)
     end
 }
