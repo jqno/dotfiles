@@ -4,24 +4,24 @@ local map = vim.keymap.set
 local modes = require('util.modes')
 local jdtls = require('jdtls')
 
-map(modes.n, '<leader>gs', require('jdtls').super_implementation, { buffer = true, desc = 'go to super implementation' })
+map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = 'go to super implementation' })
 
-map(modes.n, '<leader>rR', function() require('jdtls').code_action(false, 'refactor') end,
+map(modes.n, '<leader>rR', function() jdtls.code_action(false, 'refactor') end,
     { buffer = true, desc = 'refactor: menu' })
-map(modes.n, '<leader>rm', require('jdtls').extract_method, { buffer = true, desc = 'refactor: extract method' })
-map(modes.v, '<leader>rm', function() require('jdtls').extract_method(true) end,
+map(modes.n, '<leader>rm', jdtls.extract_method, { buffer = true, desc = 'refactor: extract method' })
+map(modes.v, '<leader>rm', function() jdtls.extract_method(true) end,
     { buffer = true, desc = 'refactor: extract method' })
-map(modes.n, '<leader>ro', require('jdtls').organize_imports, { buffer = true, desc = 'refactor: organize imports' })
-map(modes.n, '<leader>rv', require('jdtls').extract_variable, { buffer = true, desc = 'refactor: extract variable' })
-map(modes.v, '<leader>rv', function() require('jdtls').extract_variable(true) end,
+map(modes.n, '<leader>ro', jdtls.organize_imports, { buffer = true, desc = 'refactor: organize imports' })
+map(modes.n, '<leader>rv', jdtls.extract_variable, { buffer = true, desc = 'refactor: extract variable' })
+map(modes.v, '<leader>rv', function() jdtls.extract_variable(true) end,
     { buffer = true, desc = 'refactor: extract variable' })
-map(modes.n, '<leader>rV', require('jdtls').extract_variable_all,
+map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
 local floaterm = require('util.floaterm')
 map(modes.n, '<leader>m<space>', function() floaterm.floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run with JBang' })
-map(modes.n, '<leader>mr', require('jdtls').update_project_config, { buffer = true, desc = 'reload build configuration' })
+map(modes.n, '<leader>mr', jdtls.update_project_config, { buffer = true, desc = 'reload build configuration' })
 map(modes.n, '<leader>mcc', function() floaterm.floatermsend('mvnd clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
 map(modes.n, '<leader>mcv', function() floaterm.floatermsend('mvnd clean verify') end,
