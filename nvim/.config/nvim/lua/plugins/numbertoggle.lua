@@ -1,4 +1,4 @@
 return {
     'jeffkreeftmeijer/vim-numbertoggle',
-    event = 'VeryLazy'
+    event = 'UIEnter',
 }

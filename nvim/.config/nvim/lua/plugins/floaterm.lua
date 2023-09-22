@@ -1,6 +1,6 @@
 return {
     'voldikss/vim-floaterm',
-    event = 'VeryLazy',
+    event = 'UIEnter',
 
     init = function()
         vim.g.floaterm_title = 'Terminal'
