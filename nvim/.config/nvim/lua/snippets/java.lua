@@ -17,7 +17,7 @@ return {
             }
             ]],
             {
-                f(function() return vim.fn.expand('%:h'):match('src/.-/java/(.*)'):gsub('/', '.') end),
+                f(require('util.java').get_package),
                 i(1, ''),
                 c(2, { t('class'), t('interface'), t('record'), t('enum') }),
                 f(function() return vim.fn.expand('%:t:r') end),

@@ -21,6 +21,12 @@ map(modes.n, '<leader>rV', jdtls.extract_variable_all,
 local floaterm = require('util.floaterm')
 map(modes.n, '<leader>m<space>', function() floaterm.floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run with JBang' })
+map(modes.n, '<leader>me',
+    function()
+        floaterm.floatermsend(
+            'mvn compile exec:java -Dexec.mainClass="' ..
+            require('util.java').get_class() .. '"')
+    end, { buffer = true, desc = 'mvn exec:java' })
 map(modes.n, '<leader>mr', jdtls.update_project_config, { buffer = true, desc = 'reload build configuration' })
 map(modes.n, '<leader>mcc', function() floaterm.floatermsend('mvnd clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
