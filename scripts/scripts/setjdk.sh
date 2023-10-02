@@ -5,7 +5,7 @@
 # alias setjdk=". setjdk.sh"
 
 function print_usage() {
-    VERSIONS=$(exa "$SDKMAN_DIR"/candidates/java | grep -v current | awk -F'.' '{print $1}' | sort -nr | uniq)
+    VERSIONS=$(eza "$SDKMAN_DIR"/candidates/java | grep -v current | awk -F'.' '{print $1}' | sort -nr | uniq)
     CURRENT=$(basename "$(readlink "$JAVA_HOME" || echo "$JAVA_HOME")" | awk -F'.' '{print $1}')
     echo "Available JDK versions: "
     echo "$VERSIONS"
@@ -18,7 +18,7 @@ function print_usage() {
 
 if [[ $# -eq 1 ]]; then
   VERSION_NUMBER=$1
-  IDENTIFIER=$(exa "$SDKMAN_DIR"/candidates/java | grep -v current | grep "^$VERSION_NUMBER." | sort -r | head -n 1)
+  IDENTIFIER=$(eza "$SDKMAN_DIR"/candidates/java | grep -v current | grep "^$VERSION_NUMBER." | sort -r | head -n 1)
   if [[ -z $IDENTIFIER ]]; then
     echo "No valid JDK found for version [$VERSION_NUMBER]"
   else

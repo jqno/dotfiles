@@ -10,8 +10,8 @@ alias ssh='kitty +kitten ssh'
 alias cat='bat -pp'
 alias df=duf
 alias du=dust
-alias ls='exa --icons'
-alias tree='exa --icons --tree'
+alias ls='eza --icons'
+alias tree='eza --icons --tree'
 alias MAN="$(which man)"
 man() {
   tldr "$1" || "$(which man)" "$1"

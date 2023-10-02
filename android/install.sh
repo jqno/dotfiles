@@ -3,7 +3,7 @@
 yes | pkg upgrade
 yes | pkg install bat \
     clang \
-    exa \
+    eza \
     fd \
     fzf \
     keychain \
