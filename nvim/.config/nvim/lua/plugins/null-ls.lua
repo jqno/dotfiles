@@ -10,14 +10,6 @@ return {
         return {
             debug = true,
             sources = {
-                source.formatting.prettier.with({
-                    filetypes = { 'java', 'markdown' }
-                }),
-                source.formatting.shellharden,
-                source.formatting.sql_formatter.with({
-                    args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' },
-                    filetypes = { 'sql' }
-                }),
                 source.diagnostics.actionlint,
                 source.diagnostics.hadolint,
                 source.diagnostics.markdownlint.with({

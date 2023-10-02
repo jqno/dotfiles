@@ -218,6 +218,8 @@ local function define_mappings()
     map(modes.n, '<leader>m<CR>', vim.cmd.TestLast, { desc = 'run last test' })
     map(modes.n, '<leader>mt', vim.cmd.TestNearest, { desc = 'run nearest test' })
     map(modes.n, '<leader>mT', vim.cmd.TestFile, { desc = 'test current file' })
+    map(modes.n, '<leader>mf', function() require('conform').format({ lsp_fallback = true }) end,
+        { desc = 'format current file' })
 
     -- REFACTORING --
     map(modes.n, '<leader>ri', function() require('refactoring').refactor('Inline Variable') end,
@@ -273,11 +275,6 @@ function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
     -- SHOWING THINGS --
     map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end,
         { buffer = bufnr, desc = 'show diagnostic under cursor' })
-
-    if client.server_capabilities.documentFormattingProvider then
-        map(modes.n, '<leader>mf', function() vim.lsp.buf.format() end,
-            { buffer = bufnr, desc = 'format current file' })
-    end
 end
 
 function This.setup_lsp(client, bufnr)
