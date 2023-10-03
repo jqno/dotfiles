@@ -101,6 +101,14 @@ local function define_mappings()
     map(modes.n, ']b', vim.cmd.bprevious, { desc = 'go to next buffer' })
     map(modes.n, ']q', centered(vim.cmd.cnext), { desc = 'go to next quickfix' })
     map(modes.n, ']Q', centered(vim.cmd.qlast), { desc = 'go to last quickfix' })
+    map(modes.n, '[D', centered(function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end),
+        { buffer = bufnr, desc = 'go to previous error' })
+    map(modes.n, ']D', centered(function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end),
+        { buffer = bufnr, desc = 'go to next error' })
+    map(modes.n, '[d', centered(function() vim.diagnostic.goto_prev() end),
+        { buffer = bufnr, desc = 'go to previous diagnostic' })
+    map(modes.n, ']d', centered(function() vim.diagnostic.goto_next() end),
+        { buffer = bufnr, desc = 'go to next diagnostic' })
 
     -- NAVIGATION --
     map(modes.n, '<leader><leader><leader>', function() require('harpoon.ui').toggle_quick_menu() end,
@@ -216,8 +224,14 @@ local function define_mappings()
 
     -- MAKE-ING --
     map(modes.n, '<leader>m<CR>', vim.cmd.TestLast, { desc = 'run last test' })
+    map(modes.n, '<leader>md', function() vim.cmd.Telescope('lsp_document_diagnostics') end,
+        { desc = 'show file diagnostics' })
+    map(modes.n, '<leader>mD', function() vim.cmd.Telescope('lsp_workspace_diagnostics') end,
+        { desc = 'show workspace diagnostics' })
     map(modes.n, '<leader>mt', vim.cmd.TestNearest, { desc = 'run nearest test' })
     map(modes.n, '<leader>mT', vim.cmd.TestFile, { desc = 'test current file' })
+    map(modes.n, '<leader>mf', function() require('conform').format({ lsp_fallback = true }) end,
+        { desc = 'format current file' })
 
     -- REFACTORING --
     map(modes.n, '<leader>ri', function() require('refactoring').refactor('Inline Variable') end,
@@ -230,6 +244,10 @@ local function define_mappings()
         { desc = 'refactor: extract variable' })
     map(modes.n, '<leader>r<', require('sibling-swap').swap_with_left, { desc = 'Swap sibling left' })
     map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
+
+    -- SHOWING THINGS --
+    map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end,
+        { buffer = bufnr, desc = 'show diagnostic under cursor' })
 
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
@@ -252,37 +270,7 @@ local function define_mappings()
     map(modes.t, '<C-\\>t', vim.cmd.FloatermToggle, { desc = 'toggle terminal' })
 end
 
--- LSP MAPPINGS --
-function This.setup_lsp_diagnostics_and_formatting(client, bufnr)
-    -- UNIMPAIRED --
-    map(modes.n, '[D', centered(function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end),
-        { buffer = bufnr, desc = 'go to previous error' })
-    map(modes.n, ']D', centered(function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end),
-        { buffer = bufnr, desc = 'go to next error' })
-    map(modes.n, '[d', centered(function() vim.diagnostic.goto_prev() end),
-        { buffer = bufnr, desc = 'go to previous diagnostic' })
-    map(modes.n, ']d', centered(function() vim.diagnostic.goto_next() end),
-        { buffer = bufnr, desc = 'go to next diagnostic' })
-
-    -- MAKE-ING --
-    map(modes.n, '<leader>md', function() vim.cmd.Telescope('lsp_document_diagnostics') end,
-        { buffer = bufnr, desc = 'show file diagnostics' })
-    map(modes.n, '<leader>mD', function() vim.cmd.Telescope('lsp_workspace_diagnostics') end,
-        { buffer = bufnr, desc = 'show workspace diagnostics' })
-
-    -- SHOWING THINGS --
-    map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end,
-        { buffer = bufnr, desc = 'show diagnostic under cursor' })
-
-    if client.server_capabilities.documentFormattingProvider then
-        map(modes.n, '<leader>mf', function() vim.lsp.buf.format() end,
-            { buffer = bufnr, desc = 'format current file' })
-    end
-end
-
 function This.setup_lsp(client, bufnr)
-    This.setup_lsp_diagnostics_and_formatting(client, bufnr)
-
     -- VARIOUS --
     map(modes.n, 'K', function() vim.lsp.buf.hover() end, { buffer = bufnr, silent = true })
     map(modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
