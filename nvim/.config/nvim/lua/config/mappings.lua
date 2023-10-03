@@ -271,8 +271,6 @@ local function define_mappings()
 end
 
 function This.setup_lsp(client, bufnr)
-    This.setup_lsp_diagnostics_and_formatting(client, bufnr)
-
     -- VARIOUS --
     map(modes.n, 'K', function() vim.lsp.buf.hover() end, { buffer = bufnr, silent = true })
     map(modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
