@@ -24,6 +24,7 @@ return {
 
                 -- Linters
                 'actionlint',
+                'codespell',
                 'flake8',
                 'hadolint',
                 'markdownlint',
