@@ -165,11 +165,21 @@ local function define_mappings()
         { desc = 'toggle indent: tabs' })
     map(modes.n, '<leader>tc', vim.cmd.ColorizerToggle, { desc = 'toggle colorization' })
     map(modes.n, '<leader>tf', function()
-            vim.g.do_not_autoformat = not vim.g.do_not_autoformat
-            if vim.g.do_not_autoformat then
-                print('Autoformat off')
+            local bufnr = vim.fn.bufnr()
+            vim.b[bufnr].do_autoformat = not vim.b[bufnr].do_autoformat
+            if vim.b[bufnr].do_autoformat then
+                print('Autoformat (buffer) on')
             else
-                print('Autoformat on')
+                print('Autoformat (buffer) off')
+            end
+        end,
+        { desc = 'toggle autoformat (buffer)' })
+    map(modes.n, '<leader>tF', function()
+            vim.g.do_autoformat = not vim.g.do_autoformat
+            if vim.g.do_autoformat then
+                print('Autoformat (global) on')
+            else
+                print('Autoformat (global) off')
             end
         end,
         { desc = 'toggle autoformat (globally)' })

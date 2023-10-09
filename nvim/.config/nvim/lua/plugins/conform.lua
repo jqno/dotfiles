@@ -1,6 +1,6 @@
 return {
     'stevearc/conform.nvim',
-    lazy = true,
+    event = 'UIEnter',
 
     opts = {
         formatters_by_ft = {

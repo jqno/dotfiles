@@ -137,13 +137,6 @@ return {
             return prefix .. name
         end
 
-        local function word_count()
-            if vim.bo.filetype == 'markdown' then
-                return vim.fn.wordcount().words .. ' words'
-            end
-            return ''
-        end
-
         local function file_status()
             if vim.bo.modifiable and vim.bo.modified then
                 return '+'
@@ -169,6 +162,22 @@ return {
                     return ''
                 end
                 return prefix .. count
+            end
+        end
+
+        local function word_count()
+            if vim.bo.filetype == 'markdown' then
+                return vim.fn.wordcount().words .. ' words'
+            end
+            return ''
+        end
+
+        local function autoformat()
+            local bufnr = vim.fn.bufnr()
+            if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
+                return '󰁨'
+            else
+                return ''
             end
         end
 
@@ -296,6 +305,11 @@ return {
                     provider = compose({ file_name, file_status, window_status }),
                     hl = highlights.main,
                     right_sep = right_sep
+                },
+                pad.back,
+                {
+                    provider = autoformat,
+                    hl = highlights.secondary
                 }
             },
             { -- right
