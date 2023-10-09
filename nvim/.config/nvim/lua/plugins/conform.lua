@@ -7,7 +7,8 @@ return {
             java = { 'prettier' },
             markdown = { 'prettier' },
             sh = { 'shellharden' },
-            sql = { 'configured_sql_formatter' }
+            sql = { 'configured_sql_formatter' },
+            ['_'] = { 'trim_whitespace' }
         },
         formatters = {
             configured_sql_formatter = {
