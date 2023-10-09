@@ -4,19 +4,16 @@ return {
         { 'folke/neodev.nvim', config = true }
     },
     ft = {
-        'dockerfile',
         'go',
         'java',
         'javascript',
         'kotlin',
         'lua',
-        'markdown',
         'python',
+        'scala',
         'sh',
-        'sql',
         'typescript',
         'xml',
-        'yaml'
     },
 
     config = function()
