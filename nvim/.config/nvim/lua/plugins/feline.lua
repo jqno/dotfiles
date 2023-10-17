@@ -137,13 +137,6 @@ return {
             return prefix .. name
         end
 
-        local function word_count()
-            if vim.bo.filetype == 'markdown' then
-                return vim.fn.wordcount().words .. ' words'
-            end
-            return ''
-        end
-
         local function file_status()
             if vim.bo.modifiable and vim.bo.modified then
                 return '+'
@@ -172,27 +165,57 @@ return {
             end
         end
 
-        local function lsp_status()
-            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
-            local connected = not vim.tbl_isempty(clients)
-            if connected then
-                local status = ''
-                for _, client in pairs(clients) do
-                    if status == '' then
-                        status = status .. client.name
-                    else
-                        status = status .. ' ' .. client.name
-                    end
-                end
+        local function word_count()
+            if vim.bo.filetype == 'markdown' then
+                return vim.fn.wordcount().words .. ' words'
+            end
+            return ''
+        end
 
-                if not vim.g.metals_status then
-                    return status
-                else
-                    return vim.g.metals_status .. ' ' .. status
-                end
+        local function autoformat()
+            local bufnr = vim.fn.bufnr()
+            if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
+                return '󰁨'
             else
                 return ''
             end
+        end
+
+        local function metals_status()
+            if vim.g.metals_status then
+                return ' ' .. vim.g.metals_status .. ' '
+            else
+                return ''
+            end
+        end
+
+        local function intelligence_status()
+            local result = ''
+            local ft = vim.bo.filetype
+
+            -- LSP
+            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+            if not vim.tbl_isempty(clients) then
+                result = 'LSP'
+            end
+
+            -- Lint
+            if require('lint').linters_by_ft[ft] ~= nil then
+                if result ~= '' then
+                    result = result .. ' '
+                end
+                result = result .. 'lint'
+            end
+
+            -- Formatter
+            if require('conform').formatters_by_ft[ft] ~= nil then
+                if result ~= '' then
+                    result = result .. ' '
+                end
+                result = result .. 'fmt'
+            end
+
+            return result
         end
 
         local function file_type_icon()
@@ -296,6 +319,11 @@ return {
                     provider = compose({ file_name, file_status, window_status }),
                     hl = highlights.main,
                     right_sep = right_sep
+                },
+                pad.back,
+                {
+                    provider = autoformat,
+                    hl = highlights.secondary
                 }
             },
             { -- right
@@ -317,7 +345,7 @@ return {
                 },
                 pad.back,
                 {
-                    provider = compose({ word_count, lsp_status }),
+                    provider = compose({ word_count, metals_status, intelligence_status }),
                     hl = highlights.secondary
                 },
                 pad.back,
