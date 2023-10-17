@@ -269,8 +269,8 @@ local function define_mappings()
     map(modes.n, '<leader>wZ', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- TERMINAL --
-    map(modes.i, '<C-CR>', '<Esc><cmd>FloatermToggle<CR>')
-    map(modes.n, '<C-CR>', vim.cmd.FloatermToggle)
+    map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('util.floaterm').floatermtoggle()<CR>]])
+    map(modes.n, '<C-CR>', floaterm.floatermtoggle)
     map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')
     map(modes.t, '<C-H>', '<C-\\><C-N><C-W>h')

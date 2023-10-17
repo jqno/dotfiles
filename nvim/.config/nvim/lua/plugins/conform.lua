@@ -25,13 +25,11 @@ return {
             }
         })
 
-        vim.api.nvim_create_autocmd({ 'FocusLost', 'WinLeave' }, {
+        vim.api.nvim_create_autocmd({ 'FocusLost' }, {
             group = vim.api.nvim_create_augroup('AutoFormat', { clear = true }),
             pattern = '*',
             callback = function(args)
-                if args.buf ~= nil and (vim.g.do_autoformat or vim.b[args.buf].do_autoformat) then
-                    require('conform').format({ bufnr = args.buf, async = true, lsp_fallback = true })
-                end
+                require('util.format').format({ bufnr = args.buf, async = true })
             end
         })
     end
