@@ -10,7 +10,6 @@ local split_direction = {
 function This.open_split(direction)
     if direction ~= nil then
         local win_before = vim.api.nvim_get_current_win()
-        print(split_direction[direction][1])
         vim.cmd(split_direction[direction][1])
         local win_after = vim.api.nvim_get_current_win()
         if win_before == win_after then
