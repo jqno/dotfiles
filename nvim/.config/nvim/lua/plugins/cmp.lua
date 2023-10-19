@@ -58,7 +58,8 @@ return {
                 ['<Esc>'] = cmp.mapping.close(),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-D>'] = cmp.mapping.scroll_docs(4),
-                ['<C-U>'] = cmp.mapping.scroll_docs(-4)
+                ['<C-U>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-Tab>'] = cmp.mapping.complete({ config = { sources = { { name = 'cody' } } } })
             },
             sources = {
                 { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = 'path' }, { name = 'buffer' }
@@ -67,6 +68,7 @@ return {
                 format = function(entry, vim_item)
                     vim_item.menu = ({
                         buffer = '[Buffer]',
+                        cody = '[Cody]',
                         nvim_lsp = '[LSP]',
                         path = '[Path]',
                         luasnip = '[Snip]'
