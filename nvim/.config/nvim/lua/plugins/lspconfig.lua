@@ -66,12 +66,20 @@ return {
             capabilities = cmp_capabilities
         }
 
-        require('util.autocmd').create('lsp_define_java', 'FileType', 'java', function()
-            require('jdtls').start_or_attach(require('util.jdtls').jdtls_config(cmp_capabilities))
-        end)
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('lsp_define_java', { clear = true }),
+            pattern = 'java',
+            callback = function()
+                require('jdtls').start_or_attach(require('util.jdtls').jdtls_config(cmp_capabilities))
+            end
+        })
 
-        require('util.autocmd').create('lsp_define_scala', 'FileType', 'scala', function()
-            require('metals').initialize_or_attach(require('util.metals').metals_config(cmp_capabilities))
-        end)
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('lsp_define_scala', { clear = true }),
+            pattern = 'scala',
+            callback = function()
+                require('metals').initialize_or_attach(require('util.metals').metals_config(cmp_capabilities))
+            end
+        })
     end
 }
