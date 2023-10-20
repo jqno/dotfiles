@@ -196,23 +196,17 @@ return {
             -- LSP
             local clients = vim.lsp.get_active_clients({ bufnr = 0 })
             if not vim.tbl_isempty(clients) then
-                result = 'LSP'
+                result = '󰌵 '
             end
 
             -- Lint
             if require('lint').linters_by_ft[ft] ~= nil then
-                if result ~= '' then
-                    result = result .. ' '
-                end
-                result = result .. 'lint'
+                result = result .. ' '
             end
 
             -- Formatter
             if require('conform').formatters_by_ft[ft] ~= nil then
-                if result ~= '' then
-                    result = result .. ' '
-                end
-                result = result .. 'fmt'
+                result = result .. '󰃢 '
             end
 
             return result
