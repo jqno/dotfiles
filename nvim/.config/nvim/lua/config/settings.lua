@@ -40,6 +40,18 @@ function This.setup()
     vim.opt.updatetime = 300
     vim.opt.wrap = false
 
+    local leadmultispace = vim.api.nvim_create_augroup('LeadMultiSpace', { clear = true })
+    vim.api.nvim_create_autocmd('OptionSet', {
+        group = leadmultispace,
+        pattern = { 'listchars', 'tabstop', 'filetype' },
+        callback = require('util.indent').set_leadmultispace
+    })
+    vim.api.nvim_create_autocmd('VimEnter', {
+        group = leadmultispace,
+        callback = require('util.indent').set_leadmultispace,
+        once = true
+    })
+
     require('util.autocmd').create('highlight_on_yank', 'TextYankPost', '*', function()
         vim.highlight.on_yank {
             higroup = 'IncSearch',
