@@ -193,10 +193,15 @@ return {
             local result = ''
             local ft = vim.bo.filetype
 
+            -- AI
+            if vim.g.cody_loaded then
+                result = result .. '󰅏 '
+            end
+
             -- LSP
             local clients = vim.lsp.get_active_clients({ bufnr = 0 })
             if not vim.tbl_isempty(clients) then
-                result = '󰌵 '
+                result = result .. '󰌵 '
             end
 
             -- Lint

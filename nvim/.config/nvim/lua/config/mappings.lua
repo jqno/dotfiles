@@ -190,9 +190,7 @@ local function define_mappings()
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- AI --
-    map(modes.n, '<leader>aa', '<cmd>CodyToggle<CR>', { desc = 'toggle Cody Chat' })
-    map(modes.v, '<leader>aa', ':CodyAsk ', { desc = 'ask Cody a question about selection' })
-    map(modes.n, '<leader>an', '<cmd>CodyChat!<CR>', { desc = 'start new Cody Chat conversation' })
+    map(modes.n, '<leader>a<CR>', require('plugins.sourcegraph').load_cody, { desc = 'Activate Cody' })
 
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
