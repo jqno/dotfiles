@@ -133,7 +133,7 @@ local function define_mappings()
         { desc = 'open split above' })
     map(modes.n, '<leader><leader>l', function() require('util.alternate').open_split('right') end,
         { desc = 'open split right' })
-    map(modes.n, '<leader><leader>m', function() require('harpoon.mark').add_file() end,
+    map(modes.n, '<leader><leader>m', function() require('plugins.harpoon').add_file() end,
         { desc = 'add file to Harpoon list' })
     map(modes.n, '<leader><leader>H', function() require('util.alternate').open_alternate('left') end,
         { desc = 'open alternate file left' })
