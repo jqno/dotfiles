@@ -18,23 +18,23 @@ map(modes.v, '<leader>rv', function() jdtls.extract_variable(true) end,
 map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
-local floaterm = require('util.floaterm')
-map(modes.n, '<leader>m<space>', function() floaterm.floatermsend('jbang ' .. vim.fn.expand('%:p') .. '') end,
+local floaterm = require('plugins.floaterm')
+map(modes.n, '<leader>m<space>', function() floaterm.send('jbang ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run with JBang' })
 map(modes.n, '<leader>me',
     function()
-        floaterm.floatermsend(
+        floaterm.send(
             'mvn compile exec:java -Dexec.mainClass="' ..
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
 map(modes.n, '<leader>mr', jdtls.update_project_config, { buffer = true, desc = 'reload build configuration' })
-map(modes.n, '<leader>mcc', function() floaterm.floatermsend('mvnd clean test-compile') end,
+map(modes.n, '<leader>mcc', function() floaterm.send('mvnd clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
-map(modes.n, '<leader>mcv', function() floaterm.floatermsend('mvnd clean verify') end,
+map(modes.n, '<leader>mcv', function() floaterm.send('mvnd clean verify') end,
     { buffer = true, desc = 'mvn clean verify' })
-map(modes.n, '<leader>mp', function() floaterm.floatermsend('mvnd clean package -DskipTests=true') end,
+map(modes.n, '<leader>mp', function() floaterm.send('mvnd clean package -DskipTests=true') end,
     { buffer = true, desc = 'mvn package (no tests)' })
-map(modes.n, '<leader>mv', function() floaterm.floatermsend('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
+map(modes.n, '<leader>mv', function() floaterm.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
 
 vim.api.nvim_create_augroup('LspAttachJava', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {

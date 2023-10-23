@@ -1,10 +1,20 @@
+local function load()
+    require('luasnip.loaders.from_lua').lazy_load({
+        paths = { vim.fn.stdpath('config') .. '/lua/snippets' }
+    })
+end
+
+local function reload()
+    load()
+    print('Snippets reloaded')
+end
+
 return {
     'L3MON4D3/LuaSnip',
     lazy = true,
 
     config = function()
-        -- Adding snippets for a new filetype? Don't forget to update `snippets/package.json`!
-        require('util.snippets').load()
+        load()
         local types = require('luasnip.util.types')
 
         require('luasnip').config.setup({
@@ -16,5 +26,7 @@ return {
                 }
             }
         })
-    end
+    end,
+
+    reload = reload
 }

@@ -3,7 +3,7 @@ local This = {}
 local map = vim.keymap.set
 local modes = require('util.modes')
 local centered = require('util.centered').centered
-local floaterm = require('util.floaterm')
+local floaterm = require('plugins.floaterm')
 
 local function define_mappings()
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
@@ -203,7 +203,7 @@ local function define_mappings()
     map(modes.n, '<leader>xl', require('util.linkify').linkify, { desc = 'linkify', silent = true })
     map(modes.n, '<leader>xn', require('util.show-full-path').show_full_path,
         { desc = 'show full path', silent = true })
-    map(modes.n, '<leader>xs', require('util.snippets').reload, { desc = 'reload snippets', silent = true })
+    map(modes.n, '<leader>xs', require('plugins.luasnip').reload, { desc = 'reload snippets', silent = true })
 
     -- FINDING --
     map(modes.n, '<leader>fb', function() vim.cmd.Telescope('buffers', 'show_all_buffers=true') end,
@@ -231,10 +231,10 @@ local function define_mappings()
 
     -- GIT --
     map(modes.n, '<leader>hB',
-        function() floaterm.floatermsend('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
+        function() floaterm.send('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
         { desc = 'git blame file' })
     map(modes.n, '<leader>hh',
-        function() floaterm.floatermsend('tig ' .. vim.fn.expand('%')) end,
+        function() floaterm.send('tig ' .. vim.fn.expand('%')) end,
         { desc = 'show git file history' })
 
     -- MAKE-ING --
@@ -274,8 +274,8 @@ local function define_mappings()
     map(modes.n, '<leader>wZ', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- TERMINAL --
-    map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('util.floaterm').floatermtoggle()<CR>]])
-    map(modes.n, '<C-CR>', floaterm.floatermtoggle)
+    map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('plugins.floaterm').toggle()<CR>]])
+    map(modes.n, '<C-CR>', floaterm.toggle)
     map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')
     map(modes.t, '<C-H>', '<C-\\><C-N><C-W>h')

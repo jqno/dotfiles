@@ -70,7 +70,7 @@ return {
             group = vim.api.nvim_create_augroup('lsp_define_java', { clear = true }),
             pattern = 'java',
             callback = function()
-                require('jdtls').start_or_attach(require('util.jdtls').jdtls_config(cmp_capabilities))
+                require('jdtls').start_or_attach(require('plugins.jdtls').jdtls_config(cmp_capabilities))
             end
         })
 
@@ -78,7 +78,7 @@ return {
             group = vim.api.nvim_create_augroup('lsp_define_scala', { clear = true }),
             pattern = 'scala',
             callback = function()
-                require('metals').initialize_or_attach(require('util.metals').metals_config(cmp_capabilities))
+                require('metals').initialize_or_attach(require('plugins.metals').metals_config(cmp_capabilities))
             end
         })
     end

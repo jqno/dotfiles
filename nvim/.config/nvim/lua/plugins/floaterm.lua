@@ -1,3 +1,19 @@
+local function send(cmd)
+    require('plugins.conform').autoformat()
+
+    if vim.fn['floaterm#buflist#curr']() == -1 then
+        vim.cmd.FloatermNew('--silent')
+    end
+    vim.cmd.FloatermShow()
+    vim.cmd.FloatermSend('clear')
+    vim.cmd.FloatermSend(cmd)
+end
+
+local function toggle()
+    require('plugins.conform').autoformat()
+    vim.cmd.FloatermToggle()
+end
+
 return {
     'voldikss/vim-floaterm',
     event = 'UIEnter',
@@ -8,5 +24,8 @@ return {
         vim.g.floaterm_height = 0.95
         vim.g.floaterm_width = 0.95
         vim.g.floaterm_borderchars = '─│─│╭╮╯╰'
-    end
+    end,
+
+    send = send,
+    toggle = toggle
 }
