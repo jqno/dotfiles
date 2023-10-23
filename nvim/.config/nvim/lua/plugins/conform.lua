@@ -35,11 +35,22 @@ local This = {
             }
         })
 
+        local group = vim.api.nvim_create_augroup('AutoFormat', { clear = true })
         vim.api.nvim_create_autocmd({ 'FocusLost' }, {
-            group = vim.api.nvim_create_augroup('AutoFormat', { clear = true }),
+            group = group,
             pattern = '*',
             callback = function(args)
                 autoformat({ bufnr = args.buf, async = true })
+            end
+        })
+        vim.api.nvim_create_autocmd({ 'BufLeave' }, {
+            group = group,
+            pattern = '*',
+            callback = function(args)
+                -- For some reason, for Lua files, diagnostics in floating windows clash with the BufLeave event
+                if vim.bo.filetype ~= 'lua' then
+                    autoformat({ bufnr = args.buf, async = true })
+                end
             end
         })
     end,
