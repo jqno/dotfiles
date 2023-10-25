@@ -392,7 +392,7 @@ return {
                 inactive = statusline_inactive
             },
             force_inactive = {
-                filetypes = { 'NvimTree', 'qf' },
+                filetypes = { 'NvimTree', 'qf', 'cody_' },
                 buftypes = { 'terminal' }
             },
             theme = {
