@@ -33,6 +33,12 @@ local function jdtls_config(capabilities)
                 use_lombok_agent = true,
                 format = { enabled = false },
                 signatureHelp = { enabled = true },
+                sources = {
+                    organizeImports = {
+                        starThreshold = 4,
+                        staticStarThreshold = 4
+                    }
+                },
                 codeGeneration = {
                     hashCodeEquals = {
                         useInstanceof = true,
