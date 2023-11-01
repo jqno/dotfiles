@@ -4,6 +4,13 @@ local parse = ls.parser.parse_snippet
 return {
     parse({ trig = 'issue', dscr = 'EqualsVerifier issue reference' },
         [[([Issue $1](https://github.com/jqno/equalsverifier/issues/$1)$2)$0]]),
+    parse({ trig = 'highlight', dscr = 'Jekyll/Liquid code block' },
+        [[
+        {% highlight $1 %}
+        $2
+        {% endhighlight %}
+        $0
+        ]]),
     parse({ trig = 'checkbox', dscr = 'A checkbox' },
         [==[- [ ]]==]),
 
