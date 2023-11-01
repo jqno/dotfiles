@@ -167,7 +167,7 @@ return {
 
         local function word_count()
             if vim.bo.filetype == 'markdown' then
-                return vim.fn.wordcount().words .. ' words'
+                return '󰈭' .. vim.fn.wordcount().words
             end
             return ''
         end
@@ -327,6 +327,11 @@ return {
             },
             { -- right
                 {
+                    provider = compose({ word_count, metals_status }),
+                    hl = highlights.secondary
+                },
+                pad.back,
+                {
                     provider = diagnostic(diag.error, vim.diagnostic.severity.ERROR),
                     hl = highlights.error
                 },
@@ -344,7 +349,7 @@ return {
                 },
                 pad.back,
                 {
-                    provider = compose({ word_count, metals_status, intelligence_status }),
+                    provider = compose({ intelligence_status }),
                     hl = highlights.secondary
                 },
                 pad.back,
