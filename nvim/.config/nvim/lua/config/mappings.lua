@@ -259,8 +259,7 @@ local function define_mappings()
     map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
 
     -- SHOWING THINGS --
-    map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end,
-        { buffer = bufnr, desc = 'show diagnostic under cursor' })
+    map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { desc = 'show diagnostic under cursor' })
 
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
