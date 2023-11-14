@@ -10,9 +10,34 @@ return {
     config = function()
         local telescope = require('telescope')
         local actions = require('telescope.actions')
-        local letters = { a = '🇦', b = '🇧', c = '🇨', d = '🇩', e = '🇪', f = '🇫', g = '🇬', h = '🇭',
-            i = '🇮', j = '🇯', k = '🇰', l = '🇱', m = '🇲', n = '🇳', o = '🇴', p = '🇵', q = '🇶',
-            r = '🇷', s = '🇸', t = '🇹', u = '🇺', v = '🇻', w = '🇼', x = '🇽', y = '🇾', z = '🇿' }
+        local letters = {
+            a = '🇦',
+            b = '🇧',
+            c = '🇨',
+            d = '🇩',
+            e = '🇪',
+            f = '🇫',
+            g = '🇬',
+            h = '🇭',
+            i = '🇮',
+            j = '🇯',
+            k = '🇰',
+            l = '🇱',
+            m = '🇲',
+            n = '🇳',
+            o = '🇴',
+            p = '🇵',
+            q = '🇶',
+            r = '🇷',
+            s = '🇸',
+            t = '🇹',
+            u = '🇺',
+            v = '🇻',
+            w = '🇼',
+            x = '🇽',
+            y = '🇾',
+            z = '🇿'
+        }
         local space = '/'
 
         local function path_subster(path)
@@ -75,6 +100,7 @@ return {
                 mappings = {
                     i = {
                         ['<Space>'] = actions.select_horizontal,
+                        ['<C-CR>'] = actions.select_horizontal,
                         ['<C-L>'] = actions.select_vertical,
                         ['<Esc>'] = actions.close
                     }
