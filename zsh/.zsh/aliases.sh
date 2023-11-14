@@ -10,6 +10,7 @@ alias ssh='kitty +kitten ssh'
 alias cat='bat -pp'
 alias df=duf
 alias du=dust
+alias LS="$(which ls)"
 alias ls='eza --icons'
 alias tree='eza --icons --tree'
 alias MAN="$(which man)"
