@@ -14,7 +14,7 @@ function This.set_buf_indent(indent, tab, show)
 end
 
 function This.set_leadmultispace()
-    local lms = '│'
+    local lms = '·'
     for _ = 2, vim.bo.tabstop do
         lms = lms .. ' '
     end
