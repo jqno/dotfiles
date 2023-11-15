@@ -56,6 +56,11 @@ dockerstop() {
   docker stop "$(echo "$matches" | awk '{print $1}')"
 }
 
+dockerstopall() {
+  docker stop "$(docker ps -aq)"
+  docker rm "$(docker ps -aq)"
+}
+
 # mcd
 function mcd() {
   mkdir -p -- "$1" && cd -P -- "$1"
