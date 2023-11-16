@@ -12,7 +12,7 @@ function This.setup()
             local bufnr = args.buf
             local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-            require('config.mappings').setup_lsp(client, bufnr)
+            require('config.mappings').setup_lsp(bufnr)
 
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

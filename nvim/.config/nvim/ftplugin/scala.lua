@@ -7,3 +7,11 @@ map(modes.n, '<leader>m<space>',
 
 map(modes.n, '<leader>ro', '<cmd>MetalsOrganizeImports<CR>', { buffer = true, desc = 'refactor: organize imports' })
 map(modes.n, '<leader>mr', '<cmd>MetalsCompileClean<CR>', { buffer = true, desc = 'clean compile' })
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+    group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
+    buffer = 0,
+    callback = function()
+        vim.lsp.codelens.refresh()
+    end
+})

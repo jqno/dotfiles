@@ -9,6 +9,10 @@ local function metals_config(capabilities)
         showImplicitConversionsAndClasses = true,
         showInferredType = true,
     }
+    cfg.on_attach = function(client, bufnr)
+        require('metals').setup_dap()
+        require('config.mappings').setup_dap(bufnr)
+    end
     return cfg
 end
 

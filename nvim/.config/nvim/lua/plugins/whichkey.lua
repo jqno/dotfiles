@@ -22,6 +22,7 @@ return {
                 ['<leader>'] = 'Navigation',
                 a = 'AI',
                 b = 'Buffer',
+                d = 'Debug',
                 f = 'Find',
                 g = 'Go',
                 h = 'History',
