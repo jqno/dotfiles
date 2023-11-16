@@ -20,6 +20,7 @@ return {
             ['<leader>'] = {
                 [']'] = 'Follow references',
                 ['<leader>'] = 'Navigation',
+                a = 'AI',
                 b = 'Buffer',
                 f = 'Find',
                 g = 'Go',
