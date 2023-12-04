@@ -31,6 +31,18 @@ local function find_alternate()
         elseif curr:find('src/test/java') then
             return curr:gsub('src/test/java', 'src/main/java'):gsub('Test%.java', '.java'):gsub('IT%.java', '.java')
         end
+    elseif vim.bo.filetype == 'scala' then
+        if curr:find('src/main/scala') then
+            local prefixed = curr:gsub('src/main/scala', 'src/test/scala')
+            local it = prefixed:gsub('%.scala', 'Test.scala')
+            if vim.fn.filereadable(it) == 1 then
+                return it
+            end
+            return prefixed:gsub('%.scala', 'Spec.scala')
+        elseif curr:find('src/test/scala') then
+            return curr:gsub('src/test/scala', 'src/main/scala'):gsub('Spec%.scala', '.scala'):gsub('Test%.scala',
+                '.scala')
+        end
     elseif vim.bo.filetype == 'go' then
         if curr:find('_test.go') then
             return curr:gsub('_test.go$', '.go')
