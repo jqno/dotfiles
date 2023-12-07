@@ -14,12 +14,12 @@ mkdir "$BIN"
 echo "*** Installing fonts"
 mkdir "$HOME/.fonts"
 pushd "$HOME/.fonts" > /dev/null
-curl -L -o firacode.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FiraCode.zip
-unzip -j firacode.zip "*.ttf"
-rm firacode.zip
-curl -L -o cascadiacode.zip https://github.com/microsoft/cascadia-code/releases/download/v2111.01/CascadiaCode-2111.01.zip
-unzip -j cascadiacode.zip "ttf/CascadiaCodePL*"
-rm cascadiacode.zip
+curl -L -o symbolsonly.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
+unzip -j symbolsonly.zip "*.ttf"
+rm symbolsonly.zip
+curl -L -o juliamono.zip https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip
+unzip -j juliamono.zip "*.ttf"
+rm juliamono.zip
 popd > /dev/null
 
 
