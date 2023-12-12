@@ -3,6 +3,7 @@ require('util.indent').set_buf_indent(4, false)
 local map = vim.keymap.set
 local modes = require('util.modes')
 local jdtls = require('jdtls')
+local floaterm = require('plugins.floaterm')
 
 map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = 'go to super implementation' })
 
@@ -18,7 +19,6 @@ map(modes.v, '<leader>rv', function() jdtls.extract_variable(true) end,
 map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
-local floaterm = require('plugins.floaterm')
 map(modes.n, '<leader>m<space>', function() floaterm.send('jbang ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run with JBang' })
 map(modes.n, '<leader>me',
