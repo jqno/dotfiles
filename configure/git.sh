@@ -38,14 +38,9 @@ git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' &
 
 
 # Stash:
-# git stsh      # unstaged
+# git stsh      # unstaged + untracked
 # git stash     # unstaged + staged
-# git staash    # unstaged + staged + untracked
-# git staaash   # unstaged + staged + untracked + ignored
-# From https://www.youtube.com/watch?v=3IIaOj1Lhb0 -- around minute 6
-git config --global alias.stsh "stash --keep-index"
-git config --global alias.staash "stash --include-untracked"
-git config --global alias.staaash "stash --all"
+git config --global alias.stsh "stash --keep-index --include-untracked"
 
 
 # for presentations: see https://coderwall.com/p/ok-iyg/git-prev-next
