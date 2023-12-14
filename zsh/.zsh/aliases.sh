@@ -27,7 +27,7 @@ alias gitk-old='/usr/local/bin/gitk'
 alias gitk='echo "Use tig!"'
 alias gst='git status'
 alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "*Test*"`
-alias pr='gh pr create'
+alias pr='gh pr create --web'
 alias github='gh browse'
 
 # Java
