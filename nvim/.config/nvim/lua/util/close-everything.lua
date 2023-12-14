@@ -7,6 +7,7 @@ function This.close_everything()
     vim.cmd.NvimTreeClose()
     vim.cmd.FloatermHide()
     vim.cmd.UndotreeHide()
+    vim.cmd.OutlineClose()
 
     require('dap').repl.close()
 end

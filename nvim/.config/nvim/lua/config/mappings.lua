@@ -221,6 +221,7 @@ local function define_mappings()
     map(modes.n, '<leader>f?', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
     map(modes.n, '<leader>fm', function() vim.cmd.Telescope('keymaps') end, { desc = 'find Vim mapping' })
     map(modes.n, '<leader>fn', vim.cmd.NvimTreeFindFileToggle, { desc = 'open file tree' })
+    map(modes.n, '<leader>fo', vim.cmd.Outline, { desc = 'open outline' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
     map(modes.n, '<leader>f*',
         function() require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') }) end,
