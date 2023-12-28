@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 LIGATURES="-> === != www"
-NERDSYMBOLS="契           勒 鈴 "
-FONTCONFIG="zero:0 ss02:<= ss03:& ss04:\$ ss07: =~ cv14:3 ss10:fl"
+NERDSYMBOLS="        "
+FONTCONFIG="cv07:0 cv08:f kerning:immi/mmmm"
 SYMBOLS="$NERDSYMBOLS     $LIGATURES     $FONTCONFIG"
 
 kitty +list-fonts --psnames
@@ -10,7 +10,7 @@ kitty +list-fonts --psnames
 echo ""
 echo ""
 echo ""
-echo -e "  Name        Nerd symbols                  Ligatures         Font config (Fira Code)"
+echo -e "  Name        Nerd symbols      Ligatures         Font config (Commit Mono)"
 echo -e "* Regular     $SYMBOLS"
 echo -e "* \033[1mBold        $SYMBOLS\033[0m"
 echo -e "* \033[3mItalic      $SYMBOLS\033[0m"

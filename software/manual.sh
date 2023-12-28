@@ -17,9 +17,9 @@ pushd "$HOME/.fonts" > /dev/null
 curl -L -o symbolsonly.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
 unzip -j symbolsonly.zip "*.ttf"
 rm symbolsonly.zip
-curl -L -o juliamono.zip https://github.com/cormullion/juliamono/releases/latest/download/JuliaMono.zip
-unzip -j juliamono.zip "*.ttf"
-rm juliamono.zip
+curl -L -o commitmono.zip https://github.com/eigilnikolajsen/commit-mono/releases/download/v1.143/CommitMono-1.143.zip
+unzip -j commitmono.zip "*.otf"
+rm commitmono.zip
 popd > /dev/null
 
 
