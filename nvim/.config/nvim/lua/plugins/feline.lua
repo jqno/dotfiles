@@ -6,7 +6,7 @@ return {
     event = 'UIEnter',
 
     config = function()
-        local diag = require('util.diagnostic-strings')
+        local diag = require('util.icons')
 
         local left_sep = ''
         local right_sep = ''
@@ -161,7 +161,7 @@ return {
                 if count == 0 then
                     return ''
                 end
-                return prefix .. count
+                return prefix .. count .. ' '
             end
         end
 

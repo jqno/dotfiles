@@ -73,7 +73,7 @@ function This.setup()
             source = true
         }
     })
-    local diag = require('util.diagnostic-strings')
+    local diag = require('util.icons')
     vim.fn.sign_define('DiagnosticSignError', { text = diag.error, texthl = 'DiagnosticSignError' })
     vim.fn.sign_define('DiagnosticSignWarn', { text = diag.warn, texthl = 'DiagnosticSignWarn' })
     vim.fn.sign_define('DiagnosticSignInfo', { text = diag.info, texthl = 'DiagnosticSignInfo' })
