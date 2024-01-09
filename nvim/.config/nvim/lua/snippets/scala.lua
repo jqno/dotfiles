@@ -10,10 +10,10 @@ local parse = ls.parser.parse_snippet
 return {
     s({ trig = 'start', dscr = 'Start a new file' },
         fmta([[
-            package <>;
+            package <>
 
             <> <><>:
-                <>
+              <>
             ]],
             {
                 f(function() return require('util.java').get_package_for_language('scala') end),
