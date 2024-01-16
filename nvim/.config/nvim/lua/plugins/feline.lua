@@ -175,10 +175,11 @@ return {
         local function autoformat()
             local bufnr = vim.fn.bufnr()
             if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
-                return '󰁨'
-            else
-                return ''
+                if vim.bo.modifiable and not vim.bo.readonly then
+                    return '󰁨'
+                end
             end
+            return ''
         end
 
         local function metals_status()
