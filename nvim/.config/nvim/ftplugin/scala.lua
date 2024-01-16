@@ -12,11 +12,3 @@ map(modes.n, '<leader>mcc', function() floaterm.send('sbt clean Test/compile') e
     { buffer = true, desc = 'sbt clean compile' })
 map(modes.n, '<leader>mcv', function() floaterm.send('sbt clean compile scalafmtCheckAll test') end,
     { buffer = true, desc = 'sbt clean verify' })
-
-vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-    group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
-    buffer = 0,
-    callback = function()
-        vim.lsp.codelens.refresh()
-    end
-})
