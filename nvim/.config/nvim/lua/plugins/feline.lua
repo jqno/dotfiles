@@ -12,12 +12,12 @@ return {
         local right_sep = ''
 
         local _vimode_text = {
-            n = 'N',
-            no = 'N',
+            n = '',
+            no = '',
             i = 'I',
-            v = 'V',
-            V = 'V',
-            [''] = 'V',
+            v = '',
+            V = '',
+            [''] = '',
             c = 'C',
             cv = 'C',
             ce = 'C',
@@ -50,7 +50,7 @@ return {
                 fg = colors.white,
                 bg = colors.background
             },
-            N = {
+            [''] = {
                 fg = colors.black,
                 bg = colors.green,
             },
@@ -58,7 +58,7 @@ return {
                 fg = colors.black,
                 bg = colors.yellow,
             },
-            V = {
+            [''] = {
                 fg = colors.black,
                 bg = colors.blue,
             },
