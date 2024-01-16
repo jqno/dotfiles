@@ -138,9 +138,10 @@ return {
         end
 
         local function file_status()
+            local bufnr = vim.fn.bufnr()
             if vim.bo.modifiable and vim.bo.modified then
                 return '+'
-            elseif not vim.bo.modifiable or vim.bo.readonly then
+            elseif not require('util.is-editable').is_editable(bufnr) then
                 return '🔒'
             else
                 return ''
@@ -175,7 +176,7 @@ return {
         local function autoformat()
             local bufnr = vim.fn.bufnr()
             if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
-                if vim.bo.modifiable and not vim.bo.readonly then
+                if require('util.is-editable').is_editable(bufnr) then
                     return '󰁨'
                 end
             end

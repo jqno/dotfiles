@@ -4,7 +4,7 @@ local function autoformat(params)
     local bufnr = p.bufnr or vim.fn.bufnr()
 
     if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
-        if vim.api.nvim_buf_get_option(bufnr, 'modifiable') and not vim.api.nvim_buf_get_option(bufnr, 'readonly') then
+        if require('util.is-editable').is_editable(bufnr) then
             require('conform').format({ bufnr = bufnr, async = async, lsp_fallback = true })
         end
     end
