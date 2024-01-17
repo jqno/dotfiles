@@ -98,4 +98,4 @@ style = 'fg:#dedede bg:#3b3b3b'
 [character]
 success_symbol = '[\)](fg:#dedede bold)'
 error_symbol = '[\)](fg:#dedede bold)'
-vicmd_symbol = '[V](fg:#dedede bold)'
+vicmd_symbol = '[](fg:#dedede bold)'
