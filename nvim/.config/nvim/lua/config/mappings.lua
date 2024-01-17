@@ -214,7 +214,12 @@ local function define_mappings()
         function() vim.cmd.Telescope('find_files', 'find_command=rg,--ignore,--hidden,--files,--glob,!.git/*') end,
         { desc = 'find files' })
     map(modes.n, '<leader>fg',
-        function() require('telescope.builtin').grep_string({ search = vim.fn.input('Grep ❯ ') }) end,
+        function()
+            local s = vim.fn.input({ prompt = 'Grep ❯ ', cancelreturn = '' })
+            if s ~= '' then
+                require('telescope.builtin').grep_string({ search = s })
+            end
+        end,
         { desc = 'grep in workspace' })
     map(modes.n, '<leader>fh', function() vim.cmd.Telescope('git_status') end, { desc = 'find modified files' })
     map(modes.n, '<leader>f?', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
