@@ -168,7 +168,7 @@ return {
 
         local function word_count()
             if vim.bo.filetype == 'markdown' then
-                return '󰈭' .. vim.fn.wordcount().words
+                return '󰈭 ' .. vim.fn.wordcount().words
             end
             return ''
         end
