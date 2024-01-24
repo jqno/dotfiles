@@ -58,15 +58,5 @@
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1638967305.6534793
-    },
-    "5e1d6b0f-52fe-4ca7-b97c-85c9c3b306f6": {
-        "id": "5e1d6b0f-52fe-4ca7-b97c-85c9c3b306f6",
-        "name": "Arch User Repository",
-        "keyword": "aur",
-        "cmd": "https://aur.archlinux.org/packages/?K=%s",
-        "icon": null,
-        "is_default_search": false,
-        "run_without_argument": false,
-        "added": 1638967341.9768095
     }
 }

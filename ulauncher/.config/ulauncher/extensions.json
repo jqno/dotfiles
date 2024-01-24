@@ -41,13 +41,6 @@
         "last_commit": "0ad36c00a888e687b4bfbf76f266f1000040b337",
         "last_commit_time": "2019-07-11T06:53:31"
     },
-    "com.github.mikebarkmin.ulauncher-snippets": {
-        "id": "com.github.mikebarkmin.ulauncher-snippets",
-        "url": "https://github.com/mikebarkmin/ulauncher-snippets",
-        "updated_at": "2023-09-08T13:27:00.800735",
-        "last_commit": "6ed92b0e0914aae9cbb3c8601d7d77683872351d",
-        "last_commit_time": "2022-11-20T14:22:30"
-    },
     "com.github.mikebarkmin.ulauncher-obsidian": {
         "id": "com.github.mikebarkmin.ulauncher-obsidian",
         "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
