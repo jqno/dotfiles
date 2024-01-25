@@ -10,6 +10,8 @@ return {
 
     config = function()
         local cmp = require('cmp')
+        local ELLIPSIS = '…'
+        local MAX_WIDTH = 60
 
         local function has_words_before()
             if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
@@ -73,6 +75,9 @@ return {
                         path = '[Path]',
                         luasnip = '[Snip]'
                     })[entry.source.name]
+                    if #vim_item.abbr > MAX_WIDTH then
+                        vim_item.abbr = vim.fn.strcharpart(vim_item.abbr, 0, MAX_WIDTH) .. ELLIPSIS
+                    end
                     return vim_item
                 end
             },
