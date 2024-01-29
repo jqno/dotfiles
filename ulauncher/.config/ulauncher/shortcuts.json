@@ -34,7 +34,7 @@
         "name": "Maven Central",
         "keyword": "mvn",
         "cmd": "https://central.sonatype.com/search?q=%s",
-        "icon": null,
+        "icon": "~/.config/ulauncher/icons/maven.png",
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1638967260.1657007
@@ -44,7 +44,7 @@
         "name": "Ecosia",
         "keyword": "eco",
         "cmd": "https://www.ecosia.org/search?q=%s",
-        "icon": null,
+        "icon": "~/.config/ulauncher/icons/ecosia.png",
         "is_default_search": true,
         "run_without_argument": false,
         "added": 1638967287.1238005
@@ -54,7 +54,7 @@
         "name": "GitHub",
         "keyword": "gh",
         "cmd": "https://github.com/search?q=%s",
-        "icon": null,
+        "icon": "~/.config/ulauncher/icons/github.png",
         "is_default_search": false,
         "run_without_argument": false,
         "added": 1638967305.6534793
