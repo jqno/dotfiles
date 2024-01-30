@@ -406,5 +406,8 @@ return {
                 bg = colors.background
             }
         })
+
+        -- Fix square in the corner between vertical splits
+        vim.api.nvim_set_hl(0, "StatusLineNC", { bg = colors.background })
     end
 }
