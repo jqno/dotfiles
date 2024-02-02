@@ -25,7 +25,7 @@ function This.setup()
                 vim.api.nvim_clear_autocmds({ buffer = bufnr, group = 'lsp_attach' })
                 vim.api.nvim_create_autocmd('CursorHold',
                     { group = 'lsp_attach', buffer = bufnr, callback = vim.lsp.buf.document_highlight })
-                vim.api.nvim_create_autocmd('CursorMoved',
+                vim.api.nvim_create_autocmd({ 'CursorMoved', 'ModeChanged' },
                     { group = 'lsp_attach', buffer = bufnr, callback = vim.lsp.buf.clear_references })
             end
         end
