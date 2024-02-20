@@ -23,7 +23,7 @@ return {
         lint.linters_by_ft = {
             dockerfile = { 'hadolint' },
             markdown = { 'markdownlint', 'vale' },
-            yaml = { 'actionlint' }
+            ['yaml.github'] = { 'actionlint' }
         }
 
         -- Codespell

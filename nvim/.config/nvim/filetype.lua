@@ -17,3 +17,6 @@ link('*.avsc', 'json')
 
 -- HOCON
 link('*.conf', 'hocon')
+
+-- GitHub Actions
+link('.github/workflows/*.yml', 'yaml.github')
