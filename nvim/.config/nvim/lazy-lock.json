@@ -35,7 +35,6 @@
   "plenary.nvim": { "branch": "master", "commit": "366b0837486f60ae0e7550c15de8ff66d057c4cd" },
   "refactoring.nvim": { "branch": "master", "commit": "56b747d1be0aa5cecddf85e6f3ca2aed6797edef" },
   "rest.nvim": { "branch": "main", "commit": "b8d6c0a8762fd374e0204768a94241135ca3e311" },
-  "sg.nvim": { "branch": "master", "commit": "6c592e9e78e68cd2bf4385da1b2a633219a22aab" },
   "sibling-swap.nvim": { "branch": "main", "commit": "5b1ea919939dae0d202115a4d7e638fc60992562" },
   "swap-split.nvim": { "branch": "main", "commit": "d2c705d279b384a6b47a67f85a6dc8569c4d775d" },
   "tagalong.vim": { "branch": "main", "commit": "5a2bbf2b1d5b657685a49d48d98a4aa921c1fde3" },
