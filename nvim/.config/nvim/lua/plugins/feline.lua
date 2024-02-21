@@ -111,15 +111,21 @@ return {
             local prefix = ''
             local pos = nil
 
-            if buftype == 'nofile' and name == 'gen.nvim' then
-                return '󰅏'
-            end
-            if buftype ~= '' and buftype ~= 'nofile' then
-                return buftype
+            if buftype == 'nofile' then
+                if name == 'gen.nvim' then
+                    return ' 󰅏 '
+                end
+                if name:match('NvimTree') then
+                    return ' 󱏒 '
+                end
+            else
+                if buftype ~= '' then
+                    return buftype
+                end
             end
 
             if name == '' then
-                return '⊥'
+                return ' ⊥ '
             end
 
             pos = name:find('%?')
