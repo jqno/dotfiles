@@ -111,10 +111,10 @@ return {
             local prefix = ''
             local pos = nil
 
-            if buftype == 'nofile' then
-                return vim.bo.filetype
+            if buftype == 'nofile' and name == 'gen.nvim' then
+                return '󰅏'
             end
-            if buftype ~= '' then
+            if buftype ~= '' and buftype ~= 'nofile' then
                 return buftype
             end
 

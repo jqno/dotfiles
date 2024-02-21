@@ -8,6 +8,7 @@
   "conform.nvim": { "branch": "master", "commit": "38da505fb0339f68734b659460ad49d4a60ecf34" },
   "dressing.nvim": { "branch": "master", "commit": "42d767b04c50a6966c9633e3968bc65c0c2f2bfc" },
   "feline.nvim": { "branch": "main", "commit": "c6eea890c4f81725f4c51eba48d9733a248513a2" },
+  "gen.nvim": { "branch": "main", "commit": "98043162168dcc0eb5c3c31b97439ff686dc8559" },
   "git-conflict.nvim": { "branch": "main", "commit": "3c89812a83ac749b8851a473863958325a1cd57c" },
   "gitsigns.nvim": { "branch": "main", "commit": "48c3ae8ec74cb83f9570ceb0c5ab8217db7a2220" },
   "harpoon": { "branch": "master", "commit": "c1aebbad9e3d13f20bedb8f2ce8b3a94e39e424a" },
