@@ -10,19 +10,19 @@ local parse = ls.parser.parse_snippet
 return {
     s({ trig = 'start', dscr = 'Start a new file' },
         fmta([[
-            package <>;
-            <>
-            public <> <><> {
-                <>
+            package <pkg>;
+            <ann>
+            public <type> <name><impl> {
+                <body>
             }
             ]],
             {
-                f(require('util.java').get_package),
-                i(1, ''),
-                c(2, { t('class'), t('interface'), t('record'), t('enum') }),
-                f(function() return vim.fn.expand('%:t:r') end),
-                i(3, ''),
-                i(0, '')
+                pkg = f(require('util.java').get_package),
+                ann = i(1, ''),
+                type = c(2, { t('class'), t('interface'), t('record'), t('enum') }),
+                name = f(function() return vim.fn.expand('%:t:r') end),
+                impl = i(3, ''),
+                body = i(0, '')
             })),
 
     parse({ trig = 'main', dscr = 'main method' },

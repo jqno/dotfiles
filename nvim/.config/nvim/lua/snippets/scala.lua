@@ -10,17 +10,17 @@ local parse = ls.parser.parse_snippet
 return {
     s({ trig = 'start', dscr = 'Start a new file' },
         fmta([[
-            package <>
+            package <pkg>
 
-            <> <><>:
-              <>
+            <typ> <name><impl>:
+              <body>
             ]],
             {
-                f(function() return require('util.java').get_package_for_language('scala') end),
-                c(1, { t('class'), t('case class'), t('object') }),
-                f(function() return vim.fn.expand('%:t:r') end),
-                i(2, ''),
-                i(0, '')
+                pkg = f(function() return require('util.java').get_package_for_language('scala') end),
+                typ = c(1, { t('class'), t('case class'), t('object') }),
+                name = f(function() return vim.fn.expand('%:t:r') end),
+                impl = i(2, ''),
+                body = i(0, '')
             })),
     parse({ trig = 'comment', dscr = 'Comment' },
         [[
