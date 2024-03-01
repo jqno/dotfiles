@@ -6,17 +6,19 @@
 git config --global user.name "Jan Ouwens"
 git config --global color.ui true
 git config --global push.autoSetupRemote true
+git config --global push.followTags true
 git config --global pull.rebase true
 git config --global remote.origin.prune true
 git config --global commit.verbose true
 git config --global diff.algorithm patience
 git config --global diff.compactionHeuristic true
 git config --global init.defaultBranch main
+git config --global help.autocorrect prompt
 
 git config --global core.pager delta
 git config --global interactive.diffFilter "delta --color-only"
 git config --global delta.navigate true
-git config --global merge.conflictstyle diff3
+git config --global merge.conflictstyle zdiff3
 git config --global diff.colorMoved default
 
 git config --global alias.amend "commit --amend"
