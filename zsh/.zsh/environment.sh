@@ -3,7 +3,7 @@
 # PATH
 if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   ZSH_ENV_LOADED=1
-  export PATH=~/bin:~/scripts:~/work-scripts:$PATH
+  export PATH=~/bin:~/scripts:~/private-scripts:~/work-scripts:$PATH
   export PATH=~/go/bin:$PATH
 fi
 
