@@ -3,8 +3,16 @@
 # PATH
 if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   ZSH_ENV_LOADED=1
-  export PATH=~/bin:~/scripts:~/private-scripts:~/work-scripts:$PATH
-  export PATH=~/go/bin:$PATH
+
+  # Add each subdirectory of ~/scripts to the PATH
+  for dir in "$HOME"/scripts/*; do
+    if [[ -d "$dir" ]]; then
+        PATH=$dir:$PATH
+    fi
+  done
+
+  PATH=~/bin:~/go/bin:$PATH
+  export PATH
 fi
 
 # Default editor

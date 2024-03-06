@@ -36,13 +36,14 @@ stow kitty
 stow linters
 stow maven
 stow nvim
-stow scripts
 stow sdkman
 stow starship
 stow tig
 stow ulauncher
 stow zsh
 
+mkdir -p "$HOME"/scripts
+stow scripts
 
 # Running configuration scripts
 echo "*** Running configuration scripts..."
