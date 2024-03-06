@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-LIGATURES="-> === != www"
+LIGATURES="-> === != <= www"
 NERDSYMBOLS="        "
-FONTCONFIG="cv07:0 cv08:f kerning:immi/mmmm"
+FONTCONFIG="calt:{| ss11:0xF ss14:&"
 SYMBOLS="$NERDSYMBOLS     $LIGATURES     $FONTCONFIG"
 
 kitty +list-fonts --psnames
@@ -10,7 +10,7 @@ kitty +list-fonts --psnames
 echo ""
 echo ""
 echo ""
-echo -e "  Name        Nerd symbols      Ligatures         Font config (Commit Mono)"
+echo -e "  Name        Nerd symbols      Ligatures            Font config (MonoLisa)"
 echo -e "* Regular     $SYMBOLS"
 echo -e "* \033[1mBold        $SYMBOLS\033[0m"
 echo -e "* \033[3mItalic      $SYMBOLS\033[0m"

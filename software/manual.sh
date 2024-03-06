@@ -10,19 +10,6 @@ rm -rf "$BIN"
 mkdir "$BIN"
 
 
-# Fonts
-echo "*** Installing fonts"
-mkdir "$HOME/.fonts"
-pushd "$HOME/.fonts" > /dev/null
-curl -L -o symbolsonly.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip
-unzip -j symbolsonly.zip "*.ttf"
-rm symbolsonly.zip
-curl -L -o commitmono.zip https://github.com/eigilnikolajsen/commit-mono/releases/download/v1.143/CommitMono-1.143.zip
-unzip -j commitmono.zip "*.otf"
-rm commitmono.zip
-popd > /dev/null
-
-
 # SDKMAN
 echo "*** Installing SDKMAN"
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
