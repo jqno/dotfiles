@@ -2,7 +2,7 @@
 brew "gcc"
 brew "git"
 brew "node"
-brew "openjdk@17"
+brew "openjdk@21"
 brew "python@3.10"
 brew "svn"
 
