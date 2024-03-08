@@ -13,7 +13,8 @@ return {
                 'comment', 'diff',
                 'bash', 'css', 'html', 'http', 'java', 'javascript', 'json',
                 'kotlin', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
-                'ruby', 'rust', 'scala', 'scss', 'sql', 'typescript', 'vim', 'yaml'
+                'ruby', 'rust', 'scala', 'scss', 'sql', 'typescript', 'vim',
+                'xml', 'yaml'
             },
             highlight = {
                 enable = true
