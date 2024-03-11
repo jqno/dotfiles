@@ -80,14 +80,14 @@ local function on_lsp_attach(args)
     vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 
     if client.server_capabilities.documentHighlightProvider then
-        local highlight_group = vim.api.nvim_create_augroup('lsp_attach', { clear = true })
-        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+        local highlight_group = vim.api.nvim_create_augroup('LspHighlightReferences', { clear = false })
+        vim.api.nvim_create_autocmd({ 'CursorHold' }, {
             group = highlight_group,
             buffer = args.buf,
             callback = vim.lsp.buf.document_highlight,
         })
 
-        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'ModeChanged' }, {
             group = highlight_group,
             buffer = args.buf,
             callback = vim.lsp.buf.clear_references,
@@ -128,7 +128,9 @@ return {
         lsp_java_config(capabilities)
         lsp_scala_config(capabilities)
 
-        vim.api.nvim_create_augroup('LspAttachGroup', { clear = true })
-        vim.api.nvim_create_autocmd('LspAttach', { group = 'LspAttachGroup', callback = on_lsp_attach })
+        vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('LspAttachGroup', { clear = true }),
+            callback = on_lsp_attach
+        })
     end
 }
