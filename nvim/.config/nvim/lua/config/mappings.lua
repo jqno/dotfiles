@@ -271,9 +271,11 @@ local function define_mappings()
     map(modes.n, '<leader>r<', require('sibling-swap').swap_with_left, { desc = 'Swap sibling left' })
     map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
 
-    -- SHOWING THINGS --
+    -- SHOWING THINGS, SESSIONS --
     map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { desc = 'show diagnostic under cursor' })
     map(modes.n, '<leader>st', '<cmd>TodoQuickFix<CR>', { desc = 'show TODO comments in quickfix' })
+    map(modes.n, '<leader>sw', '<cmd>mksession!<CR><cmd>echo "Session saved"<CR>', { desc = 'save the current session' })
+    map(modes.n, '<leader>se', '<cmd>so Session.vim<CR>', { desc = 'load the saved session' })
 
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
