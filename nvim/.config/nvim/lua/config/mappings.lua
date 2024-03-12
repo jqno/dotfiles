@@ -236,6 +236,7 @@ local function define_mappings()
     map(modes.n, '<leader>fm', function() vim.cmd.Telescope('keymaps') end, { desc = 'find Vim mapping' })
     map(modes.n, '<leader>fn', vim.cmd.NvimTreeFindFileToggle, { desc = 'open file tree' })
     map(modes.n, '<leader>fo', vim.cmd.Outline, { desc = 'open outline' })
+    map(modes.n, '<leader>ft', '<cmd>TodoTelescope<CR>', { desc = 'find TODO comments' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
     map(modes.n, '<leader>f*',
         function() require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') }) end,
@@ -272,6 +273,7 @@ local function define_mappings()
 
     -- SHOWING THINGS --
     map(modes.n, '<leader>sd', function() vim.diagnostic.open_float() end, { desc = 'show diagnostic under cursor' })
+    map(modes.n, '<leader>st', '<cmd>TodoQuickFix<CR>', { desc = 'show TODO comments in quickfix' })
 
     -- WINDOW --
     map(modes.n, '<leader>w_', function() vim.cmd.wincmd('_') end, { desc = 'enlarge window' })
