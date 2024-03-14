@@ -179,6 +179,15 @@ return {
             return ''
         end
 
+        local function grapple()
+            local g = require('grapple')
+            if g.exists() then
+                return '󰛢' .. g.name_or_index()
+            else
+                return ''
+            end
+        end
+
         local function autoformat()
             local bufnr = vim.fn.bufnr()
             if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
@@ -321,6 +330,11 @@ return {
                     provider = compose({ file_name, file_status, window_status }),
                     hl = highlights.main,
                     right_sep = right_sep
+                },
+                pad.back,
+                {
+                    provider = grapple,
+                    hl = highlights.secondary
                 },
                 pad.back,
                 {

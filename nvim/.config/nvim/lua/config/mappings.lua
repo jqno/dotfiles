@@ -107,22 +107,18 @@ local function define_mappings()
         { desc = 'go to next error' })
     map(modes.n, '[d', centered(function() vim.diagnostic.goto_prev() end), { desc = 'go to previous diagnostic' })
     map(modes.n, ']d', centered(function() vim.diagnostic.goto_next() end), { desc = 'go to next diagnostic' })
+    map(modes.n, '[<space>', '<cmd>Grapple cycle_backward<CR>', { desc = 'go to previous Grapple file' })
+    map(modes.n, ']<space>', '<cmd>Grapple cycle_forward<CR>', { desc = 'go to next Grapple file' })
 
     -- NAVIGATION --
-    map(modes.n, '<leader><leader><leader>', function() require('harpoon.ui').toggle_quick_menu() end,
-        { desc = 'open Harpoon quick list' })
+    map(modes.n, '<leader><leader><leader>', '<cmd>Grapple toggle_tags<CR>', { desc = 'open Grapple menu' })
     map(modes.n, '<leader><leader><CR>', function() require('util.alternate').open_alternate() end,
         { desc = 'open alternate here' })
-    map(modes.n, '<leader><leader>1', function() require('harpoon.ui').nav_file(1) end,
-        { desc = 'navigate to Harpoon file #1' })
-    map(modes.n, '<leader><leader>2', function() require('harpoon.ui').nav_file(2) end,
-        { desc = 'navigate to Harpoon file #2' })
-    map(modes.n, '<leader><leader>3', function() require('harpoon.ui').nav_file(3) end,
-        { desc = 'navigate to Harpoon file #3' })
-    map(modes.n, '<leader><leader>4', function() require('harpoon.ui').nav_file(4) end,
-        { desc = 'navigate to Harpoon file #4' })
-    map(modes.n, '<leader><leader>5', function() require('harpoon.ui').nav_file(5) end,
-        { desc = 'navigate to Harpoon file #5' })
+    map(modes.n, '<leader><leader>1', '<cmd>Grapple select index=1<CR>', { desc = 'navigate to Grapple file #1' })
+    map(modes.n, '<leader><leader>2', '<cmd>Grapple select index=2<CR>', { desc = 'navigate to Grapple file #2' })
+    map(modes.n, '<leader><leader>3', '<cmd>Grapple select index=3<CR>', { desc = 'navigate to Grapple file #3' })
+    map(modes.n, '<leader><leader>4', '<cmd>Grapple select index=4<CR>', { desc = 'navigate to Grapple file #4' })
+    map(modes.n, '<leader><leader>5', '<cmd>Grapple select index=5<CR>', { desc = 'navigate to Grapple file #5' })
     map(modes.n, '<leader><leader>h', function() require('util.alternate').open_split('left') end,
         { desc = 'open split left' })
     map(modes.n, '<leader><leader>j', function() require('util.alternate').open_split('down') end,
@@ -131,8 +127,8 @@ local function define_mappings()
         { desc = 'open split above' })
     map(modes.n, '<leader><leader>l', function() require('util.alternate').open_split('right') end,
         { desc = 'open split right' })
-    map(modes.n, '<leader><leader>m', function() require('plugins.harpoon').add_file() end,
-        { desc = 'add file to Harpoon list' })
+    map(modes.n, '<leader><leader>m', '<cmd>Grapple toggle<CR><cmd>echo "Added to Grapple list"<CR>',
+        { desc = 'add file to Grapple list' })
     map(modes.n, '<leader><leader>H', function() require('util.alternate').open_alternate('left') end,
         { desc = 'open alternate file left' })
     map(modes.n, '<leader><leader>J', function() require('util.alternate').open_alternate('down') end,
