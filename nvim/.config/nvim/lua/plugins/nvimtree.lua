@@ -1,7 +1,7 @@
 return {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
-        'kyazdani42/nvim-web-devicons'
+        'nvim-tree/nvim-web-devicons'
     },
     cmd = { 'NvimTreeFindFileToggle', 'NvimTreeClose' },
 
