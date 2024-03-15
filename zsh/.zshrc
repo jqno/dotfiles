@@ -40,5 +40,9 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Starship prompt
 eval "$(starship init zsh)"
 
-load ~/work-scripts/aliases.sh
-load ~/dots-private/aliases.sh
+# Private environment variables and aliases
+for dir in "$HOME"/env/*; do
+  if [[ -d "$dir" ]]; then
+    load "$dir"/env.sh
+  fi
+done
