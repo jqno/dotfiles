@@ -1,2 +1,2 @@
-vim.opt.wrap = true
-vim.opt.commentstring = '// %s'
+vim.opt_local.wrap = true
+vim.opt_local.commentstring = '// %s'
