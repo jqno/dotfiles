@@ -57,8 +57,10 @@ dockerstop() {
 }
 
 dockerstopall() {
-  docker stop "$(docker ps -aq)"
-  docker rm "$(docker ps -aq)"
+  for container in $(docker ps -aq); do
+    docker stop "$container"
+    docker rm "$container"
+  done
 }
 
 # mcd
