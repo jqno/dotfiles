@@ -249,7 +249,8 @@ local function define_mappings()
         { desc = 'show git file history' })
 
     -- MAKE-ING --
-    map(modes.n, '<leader>m<CR>', vim.cmd.TestLast, { desc = 'run last test' })
+    map(modes.n, '<leader>mm', require('util.job-runner').set_job, { desc = 'set current job' })
+    map(modes.n, '<leader>m<CR>', require('util.job-runner').run_job, { desc = 'run last test or current job' })
     map(modes.n, '<leader>mt', vim.cmd.TestNearest, { desc = 'run nearest test' })
     map(modes.n, '<leader>mT', vim.cmd.TestFile, { desc = 'test current file' })
     map(modes.n, '<leader>mf', function() require('conform').format({ lsp_fallback = true }) end,
@@ -262,7 +263,7 @@ local function define_mappings()
         { desc = 'refactor: extract method' })
     map(modes.v, '<leader>rv', function() require('refactoring').refactor('Extract Variable') end,
         { desc = 'refactor: extract variable' })
-    map(modes.n, '<leader>rp', function() require('refactoring').debug.print_var({ normal = true }) end,
+    map(modes.n, '<leader>rp', function() require('refactoring').debug.print_var({ show_success_message = true }) end,
         { desc = 'refactor: extract variable' })
     map(modes.n, '<leader>r<', require('sibling-swap').swap_with_left, { desc = 'Swap sibling left' })
     map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
