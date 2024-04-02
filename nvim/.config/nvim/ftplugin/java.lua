@@ -10,11 +10,11 @@ map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = '
 map(modes.n, '<leader>rR', function() jdtls.code_action(false, 'refactor') end,
     { buffer = true, desc = 'refactor: menu' })
 map(modes.n, '<leader>rm', jdtls.extract_method, { buffer = true, desc = 'refactor: extract method' })
-map(modes.v, '<leader>rm', function() jdtls.extract_method(true) end,
+map(modes.v, '<leader>rm', function() jdtls.extract_method({ visual = true }) end,
     { buffer = true, desc = 'refactor: extract method' })
 map(modes.n, '<leader>ro', jdtls.organize_imports, { buffer = true, desc = 'refactor: organize imports' })
 map(modes.n, '<leader>rv', jdtls.extract_variable, { buffer = true, desc = 'refactor: extract variable' })
-map(modes.v, '<leader>rv', function() jdtls.extract_variable(true) end,
+map(modes.v, '<leader>rv', function() jdtls.extract_variable({ visual = true }) end,
     { buffer = true, desc = 'refactor: extract variable' })
 map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
