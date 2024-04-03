@@ -3,9 +3,9 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 
-# Install Fedora packages
-echo "*** Installing Fedora packages..."
-"$PWD/software/fedora.sh"
+# Install Ubuntu packages
+echo "*** Installing Ubuntu packages..."
+"$PWD/software/ubuntu.sh"
 
 
 # Install Homebrew
