@@ -38,13 +38,3 @@ brew "zsh-syntax-highlighting"
 
 tap "mvndaemon/homebrew-mvnd"
 brew "mvnd"
-
-# CD ripper
-brew "abcde"
-brew "cdparanoia"
-brew "cd-discid"
-brew "eye-d3"
-brew "id3v2"
-brew "glyr"
-brew "imagemagick"
-brew "lame"
