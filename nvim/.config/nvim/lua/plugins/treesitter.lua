@@ -11,9 +11,9 @@ return {
         require('nvim-treesitter.configs').setup({
             ensure_installed = {
                 'comment', 'diff',
-                'bash', 'css', 'html', 'http', 'java', 'javascript', 'json',
+                'bash', 'css', 'hocon', 'html', 'http', 'java', 'javascript', 'json',
                 'kotlin', 'lua', 'make', 'markdown', 'nix', 'python', 'regex',
-                'ruby', 'rust', 'scala', 'scss', 'sql', 'typescript', 'vim',
+                'ruby', 'rust', 'scala', 'scss', 'sql', 'typescript', 'vim', 'vimdoc',
                 'xml', 'yaml'
             },
             highlight = {
