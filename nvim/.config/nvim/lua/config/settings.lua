@@ -7,6 +7,7 @@ function This.setup()
 
     vim.opt.expandtab = true
     vim.opt.exrc = true
+    -- vim.opt.formatoptions:remove('o')
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
     vim.opt.linebreak = true
@@ -62,6 +63,15 @@ function This.setup()
                 on_visual = true
             }
         end
+    })
+
+    vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufReadPost' }, {
+        -- Must do this in an autocmd because Neovim's built-in ftplugins often add it back
+        group = vim.api.nvim_create_augroup('RemoveOFromFormatoptions', { clear = true }),
+        pattern = '*',
+        callback = function()
+            vim.opt_local.formatoptions:remove('o')
+        end,
     })
 
     vim.diagnostic.config({
