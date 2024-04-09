@@ -13,6 +13,7 @@ sudo apt update
 sudo apt-get install -y build-essential
 sudo apt-get install -y dropbox-nautilus
 sudo apt-get install -y openjdk-21-jdk
+sudo apt-get install -y openjdk-21-source
 sudo apt-get install -y stow
 sudo apt-get install -y tlp
 sudo apt-get install -y tlp-rdw
