@@ -8,7 +8,11 @@ map(modes.n, '<leader>m<space>',
 
 map(modes.n, '<leader>ro', '<cmd>MetalsOrganizeImports<CR>', { buffer = true, desc = 'refactor: organize imports' })
 map(modes.n, '<leader>mr', '<cmd>MetalsCompileClean<CR>', { buffer = true, desc = 'Metals clean compile' })
-map(modes.n, '<leader>mcc', function() floaterm.send('sbt clean Test/compile') end,
+map(modes.n, '<leader>mCC', function() floaterm.send('sbt clean Test/compile') end,
     { buffer = true, desc = 'sbt clean compile' })
-map(modes.n, '<leader>mcv', function() floaterm.send('sbt clean compile scalafmtCheckAll test') end,
-    { buffer = true, desc = 'sbt clean verify' })
+map(modes.n, '<leader>mcc', function() floaterm.send('sbt Test/compile') end,
+    { buffer = true, desc = 'sbt compile' })
+map(modes.n, '<leader>mv', function() floaterm.send('sbt compile scalafmtCheckAll testOnlyUnit') end,
+    { buffer = true, desc = 'sbt verify' })
+map(modes.n, '<leader>mCv', function() floaterm.send('sbt clean compile scalafmtCheckAll test') end,
+    { buffer = true, desc = 'sbt verify' })
