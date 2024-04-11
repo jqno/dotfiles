@@ -2,6 +2,8 @@ local map = vim.keymap.set
 local modes = require('util.modes')
 local floaterm = require('plugins.floaterm')
 
+require('util.indent').set_buf_indent(2, false)
+
 map(modes.n, '<leader>m<space>',
     function() require('plugins.floaterm').send('scala ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run with scala' })
