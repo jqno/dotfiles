@@ -1,3 +1,6 @@
+local modes = require('util.modes')
+local map = vim.keymap.set
+
 return {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
@@ -13,17 +16,17 @@ return {
                 return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
             end
 
-            vim.keymap.set('n', '<CR>',  api.node.open.edit,       opts('Open'))
-            vim.keymap.set('n', 'J',     api.node.open.horizontal, opts('Open in horitzontal split'))
-            vim.keymap.set('n', 'L',     api.node.open.vertical,   opts('Open in vertical split'))
-            vim.keymap.set('n', 'K',     api.node.show_info_popup, opts('Info'))
-            vim.keymap.set('n', 'R',     api.tree.reload,          opts('Refresh'))
-            vim.keymap.set('n', 'a',     api.fs.create,            opts('Create'))
-            vim.keymap.set('n', 'd',     api.fs.remove,            opts('Delete'))
-            vim.keymap.set('n', 'g?',    api.tree.toggle_help,     opts('Help'))
-            vim.keymap.set('n', 'p',     api.fs.paste,             opts('Paste'))
-            vim.keymap.set('n', 'r',     api.fs.rename,            opts('Rename'))
-            vim.keymap.set('n', 'x',     api.fs.cut,               opts('Cut'))
+            map(modes.n, '<CR>', api.node.open.edit, opts('Open'))
+            map(modes.n, 'J', api.node.open.horizontal, opts('Open in horitzontal split'))
+            map(modes.n, 'L', api.node.open.vertical, opts('Open in vertical split'))
+            map(modes.n, 'K', api.node.show_info_popup, opts('Info'))
+            map(modes.n, 'R', api.tree.reload, opts('Refresh'))
+            map(modes.n, 'a', api.fs.create, opts('Create'))
+            map(modes.n, 'd', api.fs.remove, opts('Delete'))
+            map(modes.n, 'g?', api.tree.toggle_help, opts('Help'))
+            map(modes.n, 'p', api.fs.paste, opts('Paste'))
+            map(modes.n, 'r', api.fs.rename, opts('Rename'))
+            map(modes.n, 'x', api.fs.cut, opts('Cut'))
         end,
         view = {
             adaptive_size = true,
@@ -34,9 +37,7 @@ return {
         renderer = {
             group_empty = true,
             icons = {
-                show = {
-                    git = false
-                }
+                git_placement = 'after'
             }
         },
         actions = {

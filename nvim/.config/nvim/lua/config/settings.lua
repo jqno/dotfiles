@@ -3,6 +3,10 @@ local This = {}
 local default_indent = 2
 
 function This.setup()
+    -- Disable netrw for a better nvim-tree experience
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
     vim.g.mapleader = ' '
 
     vim.opt.expandtab = true
