@@ -17,5 +17,4 @@ jdt.ls-java-project
 # Metals, the Scala language server
 .metals
 .bloop
-.scalafix.conf
 

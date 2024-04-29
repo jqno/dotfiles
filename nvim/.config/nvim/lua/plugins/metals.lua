@@ -8,8 +8,9 @@ local function metals_config(capabilities)
         showImplicitArguments = true,
         showImplicitConversionsAndClasses = true,
         showInferredType = true,
+        scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf'
     }
-    cfg.on_attach = function(client, bufnr)
+    cfg.on_attach = function(_, bufnr)
         require('metals').setup_dap()
         require('config.mappings').setup_dap(bufnr)
 
