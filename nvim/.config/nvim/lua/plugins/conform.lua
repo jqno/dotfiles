@@ -18,6 +18,7 @@ local This = {
         require('conform').setup({
             formatters_by_ft = {
                 java = { 'prettier_java' },
+                json = { 'jq' },
                 markdown = { 'prettier' },
                 sh = { 'shellharden' },
                 sql = { 'configured_sql_formatter' },
