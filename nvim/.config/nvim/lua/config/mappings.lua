@@ -61,6 +61,12 @@ local function define_mappings()
     map(modes.n, '<C-k>', '<C-w>k')
     map(modes.n, '<C-l>', '<C-w>l')
 
+    -- Easy window resizing
+    map(modes.n, '<C-S-h>', function() require('util.resize-splits').resize_split('h', 1) end)
+    map(modes.n, '<C-S-j>', function() require('util.resize-splits').resize_split('j', 1) end)
+    map(modes.n, '<C-S-k>', function() require('util.resize-splits').resize_split('k', 1) end)
+    map(modes.n, '<C-S-l>', function() require('util.resize-splits').resize_split('l', 1) end)
+
     -- Close everything --
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
     map(modes.t, '<C-Esc>', vim.cmd.FloatermHide, { desc = 'Close everything' })
