@@ -5,6 +5,8 @@ local modes = require('util.modes')
 local jdtls = require('jdtls')
 local floaterm = require('plugins.floaterm')
 
+vim.opt_local.commentstring = '// %s'
+
 map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = 'go to super implementation' })
 
 map(modes.n, '<leader>rR', function() jdtls.code_action(false, 'refactor') end,
@@ -43,8 +45,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-        if client.name == 'jdtls' then
-            require('jdtls.setup').add_commands()
+        if client ~= nil and client.name == 'jdtls' then
             client.server_capabilities.documentFormattingProvider = false
         end
     end

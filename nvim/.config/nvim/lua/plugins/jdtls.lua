@@ -30,6 +30,11 @@ local function jdtls_config(capabilities)
         },
         settings = {
             java = {
+                inlayHints = {
+                    parameterNames = {
+                        enabled = "all"
+                    }
+                },
                 use_lombok_agent = true,
                 format = { enabled = false },
                 signatureHelp = { enabled = true },

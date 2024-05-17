@@ -15,6 +15,7 @@ function This.setup()
     vim.opt.ignorecase = true
     vim.opt.joinspaces = false
     vim.opt.linebreak = true
+    vim.opt.diffopt = vim.opt.diffopt + 'linematch:60'
     vim.opt.list = true
     vim.opt.listchars = {
         tab = '჻ ',
@@ -37,7 +38,6 @@ function This.setup()
     vim.opt.splitbelow = true
     vim.opt.splitright = true
     vim.opt.tabstop = default_indent
-    vim.opt.termguicolors = true
     vim.opt.titlestring = '%t - nvim'
     vim.opt.title = true
     vim.opt.undodir = vim.env.HOME .. '/.vim/undodir'

@@ -46,8 +46,10 @@ local function define_mappings()
 
     -- VARIOUS MAPPINGS --
     -- Comment lines
-    map(modes.n, '\\\\', '<Plug>CommentaryLine')
-    map(modes.v, '\\', '<Plug>Commentary')
+    map(modes.n, '\\\\', 'gcc', { remap = true })
+    map(modes.v, '\\', 'gcgv', { remap = true })
+    map(modes.n, '<C-/>', 'gcc', { remap = true })
+    map(modes.v, '<C-/>', 'gcgv', { remap = true })
 
     -- Moving lines and blocks
     map(modes.n, '<M-j>', '<cmd>move .+1<CR>==')
@@ -165,6 +167,11 @@ local function define_mappings()
         { desc = 'toggle indent: tabs' })
     map(modes.n, '<leader>tc', vim.cmd.ColorizerToggle, { desc = 'toggle colorization' })
     map(modes.n, '<leader>td', require('util.diagnostics').toggle_all, { desc = 'toggle diagnostics' })
+    map(modes.n, '<leader>ti', function()
+            local is_enabled = vim.lsp.inlay_hint.is_enabled({})
+            vim.lsp.inlay_hint.enable(not is_enabled)
+        end,
+        { desc = 'toggle inlay hints' })
     map(modes.n, '<leader>tf', function()
             local bufnr = vim.fn.bufnr()
             vim.b[bufnr].do_autoformat = not vim.b[bufnr].do_autoformat
@@ -303,7 +310,6 @@ end
 
 function This.setup_lsp(bufnr)
     -- VARIOUS --
-    map(modes.n, 'K', function() vim.lsp.buf.hover() end, { buffer = bufnr, silent = true })
     map(modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
 
     -- FINDING --
