@@ -1,7 +1,17 @@
+# Autosuggest
 bindkey '^[[Z' autosuggest-accept  # Shift-tab
 
+# The delete button doesn't work unless we bind it to `delete-char`
+bindkey "^[[3~" delete-char
+bindkey -M vicmd "^[[3~" delete-char
+
+# Delete in Neovim terminal
 bindkey '^[[127;2u' backward-delete-char # Prevent clearing the entire line when pressing Shift+Backspace in the Neovim terminal
 bindkey '^[[127;5u' backward-delete-char # Prevent clearing the entire line when pressing Ctrl+Backspace in the Neovim terminal
+
+# Up/Down keys, take into account what's already been typed
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
 
 ###
 # Open VIM with current command line

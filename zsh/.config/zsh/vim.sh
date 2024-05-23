@@ -1,3 +1,9 @@
+# VIM mode
+bindkey -v
+export KEYTIMEOUT=1
+export EDITOR=nvim
+
+# Aliases for when in Vim terminal
 if [ -n "$VIM_TERMINAL" ]
 then
   export TERM=xterm-256color

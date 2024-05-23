@@ -1,4 +1,5 @@
 Brewfile.lock.json
+.zcompdump
 .luarc.json
 vim/.vim/autoload
 vim/.vim/plugged
