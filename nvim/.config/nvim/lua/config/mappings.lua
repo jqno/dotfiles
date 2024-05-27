@@ -252,6 +252,7 @@ local function define_mappings()
         { desc = 'grep current wordt in workspace' })
     map(modes.n, '<leader>f:', function() vim.cmd.Telescope('commands') end, { desc = 'find Vim command' })
     map(modes.n, '<leader>f<space>', function() vim.cmd.Telescope('resume') end, { desc = 'resume previous search' })
+    map(modes.n, '<leader>f<CR>', require('dropbar.api').pick, { desc = 'access dropbar' })
 
     -- GIT --
     map(modes.n, '<leader>hB',
