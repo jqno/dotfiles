@@ -29,7 +29,13 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Completions
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+## Use cache unless .zcompdump file is older than a day
+if [ -n "$(find ${ZDOTDIR}/.zcompdump -mmin +1440 2> /dev/null)" ]; then
+  compinit
+else
+  compinit -C
+fi
 zinit cdreplay -q
 
 ## Case-insensitive completions, and match within words
