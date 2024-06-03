@@ -63,7 +63,11 @@ return {
                 ['<C-U>'] = cmp.mapping.scroll_docs(-4)
             },
             sources = {
-                { name = 'luasnip' }, { name = 'nvim_lsp' }, { name = 'path' }, { name = 'buffer' }
+                { name = 'luasnip' },
+                { name = 'nvim_lsp' },
+                { name = 'path' },
+                { name = 'buffer' },
+                { name = 'lazydev', group_index = 0 }
             },
             formatting = {
                 format = function(entry, vim_item)
