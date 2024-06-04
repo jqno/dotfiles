@@ -30,5 +30,6 @@ sudo apt-get install -y id3v2
 
 # Applications
 sudo apt-get install -y kitty
+sudo apt-get install -y projecteur
 sudo apt-get install -y ulauncher
 sudo apt-get install -y zsh
