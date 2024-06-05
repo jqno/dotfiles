@@ -87,7 +87,7 @@ config = {
         { key = '[',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
         { key = ']',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
         { key = 'r',          mods = 'ALT',       action = act.QuickSelect },
-        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = '~' } },
+        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = os.getenv('HOME') } },
         { key = 'h',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) },
         { key = 'l',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },
         { key = '{',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) }, -- Alt+Shift+[
