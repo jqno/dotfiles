@@ -3,9 +3,6 @@
 # General
 alias cd..='cd ..'
 
-# SSH in Kitty
-alias ssh='kitty +kitten ssh'
-
 # Modern alternatives to standard tools
 alias cat='bat -pp'
 alias df=duf
