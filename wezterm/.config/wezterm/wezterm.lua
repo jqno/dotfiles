@@ -134,21 +134,24 @@ wezterm.on('format-tab-title', function(tab)
     -- Determine zoom state
     local zoomed = ''
     if tab.active_pane.is_zoomed then
-        zoomed = 'Z'
+        zoomed = nerdfonts.fa_arrow_up
     end
 
     -- Determine icon
     local process_name = tab.active_pane.foreground_process_name:match('([^/\\]+)$')
     local icon = c.apps[process_name] or nerdfonts.seti_checkbox_unchecked
 
-    -- Determine title
+    -- Determine prefix
+    local prefix = zoomed .. icon .. '  '
+
+    -- Determine app name
     local title = tab.active_pane.title
     if tab.tab_title and #tab.tab_title > 0 then
         title = tab.tab_title
     end
 
     -- Make sure it fits
-    local fluff = 5 + #icon + #zoomed
+    local fluff = 3 + #prefix
     if #title > constants.tab_max_width - fluff then
         title = wezterm.truncate_right(title, constants.tab_max_width - fluff - 1) .. '…'
     end
@@ -160,7 +163,7 @@ wezterm.on('format-tab-title', function(tab)
             { Text = ' ' .. c.left_circle },
             { Background = { Color = c.color_active_bg } },
             { Foreground = { Color = c.color_active_fg } },
-            { Text = zoomed .. icon .. '  ' .. title },
+            { Text = prefix .. title },
             { Background = { Color = c.color_bg } },
             { Foreground = { Color = c.color_active_bg } },
             { Text = c.right_circle },
@@ -172,7 +175,7 @@ wezterm.on('format-tab-title', function(tab)
             { Text = ' ' .. c.left_circle },
             { Background = { Color = c.color_inactive_bg } },
             { Foreground = { Color = c.color_inactive_fg } },
-            { Text = zoomed .. icon .. '  ' .. title },
+            { Text = prefix .. title },
             { Background = { Color = c.color_bg } },
             { Foreground = { Color = c.color_inactive_bg } },
             { Text = c.right_circle },
