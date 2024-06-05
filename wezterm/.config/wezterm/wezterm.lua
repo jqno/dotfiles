@@ -1,27 +1,57 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
+local nerdfonts = wezterm.nerdfonts
 
 local config = wezterm.config_builder()
 
-local monolisa = function(bold)
-    local monolisa = {}
-    monolisa.family = 'monolisa'
-    monolisa.harfbuzz_features = { 'calt', '-liga', 'ss10', 'ss11', 'ss14' }
-    if bold then
-        monolisa.weight = 'Bold'
-    end
-    return wezterm.font(monolisa)
-end
+local constants = {
+    tab_max_width = 32,
+    tab_title = {
+        left_circle = nerdfonts.ple_left_half_circle_thick,
+        right_circle = nerdfonts.ple_right_half_circle_thick,
+        color_bg = '#3b3b3b',
+        color_active_bg = '#83c746',
+        color_active_fg = '#dedede',
+        color_inactive_bg = '#777777',
+        color_inactive_fg = '#dedede',
+        apps = {
+            ['apt'] = nerdfonts.dev_ubuntu,
+            ['apt-get'] = nerdfonts.dev_ubuntu,
+            ['bash'] = nerdfonts.cod_terminal,
+            ['cargo'] = nerdfonts.dev_rust,
+            ['curl'] = nerdfonts.mdi_progress_download,
+            ['docker'] = nerdfonts.linux_docker,
+            ['docker-compose'] = nerdfonts.linux_docker,
+            ['gh'] = nerdfonts.dev_github_badge,
+            ['git'] = nerdfonts.dev_git,
+            ['go'] = nerdfonts.seti_go,
+            ['k9s'] = nerdfonts.md_kubernetes,
+            ['lazydocker'] = nerdfonts.linux_docker,
+            ['make'] = nerdfonts.seti_makefile,
+            ['node'] = nerdfonts.dev_nodejs_small,
+            ['nvim'] = nerdfonts.custom_neovim,
+            ['ruby'] = nerdfonts.cod_ruby,
+            ['sudo'] = nerdfonts.fa_hashtag,
+            ['tig'] = nerdfonts.dev_git,
+            ['top'] = nerdfonts.mdi_chart_donut_variant,
+            ['vim'] = nerdfonts.custom_vim,
+            ['zsh'] = nerdfonts.cod_terminal
+        }
+    }
+}
 
 config = {
     -- Appearance
     adjust_window_size_when_changing_font_size = false,
     hide_tab_bar_if_only_one_tab = true,
+    show_new_tab_button_in_tab_bar = false,
+    use_fancy_tab_bar = false,
     window_decorations = 'NONE',
-    window_frame = {
-        font = monolisa(true)
+    tab_max_width = constants.tab_max_width,
+    font = wezterm.font {
+        family = 'monolisa',
+        harfbuzz_features = { 'calt', '-liga', 'ss10', 'ss11', 'ss14' }
     },
-    font = monolisa(),
 
     -- Key bindings
     disable_default_key_bindings = true,
@@ -60,17 +90,6 @@ config = {
         cursor_fg = '#181818',
         selection_bg = '#777777',
         selection_fg = 'none',
-        tab_bar = {
-            background = '#3b3b3b',
-            active_tab = {
-                bg_color = '#83c746',
-                fg_color = '#dedede',
-            },
-            inactive_tab = {
-                bg_color = '#777777',
-                fg_color = '#dedede',
-            },
-        },
         ansi = {
             '#252525', '#ed4a46', '#70b433', '#dbb32d', '#368aeb', '#eb6eb7', '#3fc5b7', '#777777',
         },
@@ -79,5 +98,57 @@ config = {
         }
     }
 }
+
+wezterm.on('format-tab-title', function(tab)
+    local c = constants.tab_title
+
+    -- Determine zoom state
+    local zoomed = ''
+    if tab.active_pane.is_zoomed then
+        zoomed = 'Z'
+    end
+
+    -- Determine icon
+    local process_name = tab.active_pane.foreground_process_name:match('([^/\\]+)$')
+    local icon = c.apps[process_name] or nerdfonts.seti_checkbox_unchecked
+
+    -- Determine title
+    local title = tab.active_pane.title
+    if tab.tab_title and #tab.tab_title > 0 then
+        title = tab.tab_title
+    end
+
+    -- Make sure it fits
+    local fluff = 5 + #icon + #zoomed
+    if #title > constants.tab_max_width - fluff then
+        title = wezterm.truncate_right(title, constants.tab_max_width - fluff - 1) .. '…'
+    end
+
+    if tab.is_active then
+        return {
+            { Background = { Color = c.color_bg } },
+            { Foreground = { Color = c.color_active_bg } },
+            { Text = ' ' .. c.left_circle },
+            { Background = { Color = c.color_active_bg } },
+            { Foreground = { Color = c.color_active_fg } },
+            { Text = zoomed .. icon .. '  ' .. title },
+            { Background = { Color = c.color_bg } },
+            { Foreground = { Color = c.color_active_bg } },
+            { Text = c.right_circle },
+        }
+    else
+        return {
+            { Background = { Color = c.color_bg } },
+            { Foreground = { Color = c.color_inactive_bg } },
+            { Text = ' ' .. c.left_circle },
+            { Background = { Color = c.color_inactive_bg } },
+            { Foreground = { Color = c.color_inactive_fg } },
+            { Text = zoomed .. icon .. '  ' .. title },
+            { Background = { Color = c.color_bg } },
+            { Foreground = { Color = c.color_inactive_bg } },
+            { Text = c.right_circle },
+        }
+    end
+end)
 
 return config
