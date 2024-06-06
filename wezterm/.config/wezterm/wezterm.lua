@@ -145,10 +145,15 @@ wezterm.on('format-tab-title', function(tab)
     -- Determine prefix
     local prefix = zoomed .. icon .. '  '
 
-    -- Determine app name
-    local title = tab.active_pane.title
-    if tab.tab_title and #tab.tab_title > 0 then
-        title = tab.tab_title
+    -- Determine cwd
+    local title = ''
+    local cwd = tab.active_pane.current_working_dir.file_path
+    if cwd == os.getenv('HOME') then
+        title = '~'
+    elseif cwd == '/' then
+        title = '/'
+    else
+        title = cwd:match('([^/]+)$')
     end
 
     -- Make sure it fits
