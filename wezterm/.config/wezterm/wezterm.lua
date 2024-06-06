@@ -146,13 +146,18 @@ wezterm.on('format-tab-title', function(tab)
 
     -- Determine cwd
     local title = ''
-    local cwd = tab.active_pane.current_working_dir.file_path
-    if cwd == wezterm.home_dir then
-        title = '~'
-    elseif cwd == '/' then
-        title = '/'
+    local cwd = tab.active_pane.current_working_dir
+    if cwd == nil then
+        title = '?'
     else
-        title = cwd:match('([^/]+)$')
+        local path = cwd.file_path
+        if path == wezterm.home_dir then
+            title = '~'
+        elseif path == '/' then
+            title = '/'
+        else
+            title = path:match('([^/]+)$')
+        end
     end
 
     -- Make sure it fits
