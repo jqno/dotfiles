@@ -3,6 +3,7 @@ local act = wezterm.action
 local nerdfonts = wezterm.nerdfonts
 
 local plugin_smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
+local plugin_logging = wezterm.plugin.require('https://github.com/sei40kr/wez-logging')
 
 local config = wezterm.config_builder()
 
@@ -102,7 +103,8 @@ config = {
         { key = 'd',          mods = 'ALT',       action = act.ShowDebugOverlay },
         { key = 'UpArrow',    mods = 'ALT',       action = act.ScrollByPage(-1) },
         { key = 'DownArrow',  mods = 'ALT',       action = act.ScrollByPage(1) },
-        { key = 'e',          mods = 'ALT',       action = act.CharSelect }
+        { key = 'e',          mods = 'ALT',       action = act.CharSelect },
+        { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback }
     },
 
     -- Colors
