@@ -29,6 +29,7 @@ local constants = {
             ['gh'] = nerdfonts.dev_github_badge,
             ['git'] = nerdfonts.dev_git,
             ['go'] = nerdfonts.seti_go,
+            ['java'] = nerdfonts.dev_java,
             ['k9s'] = nerdfonts.md_kubernetes,
             ['lazydocker'] = nerdfonts.linux_docker,
             ['make'] = nerdfonts.seti_makefile,
@@ -193,7 +194,6 @@ wezterm.on('update-right-status', function(win)
             window_background_image = random_wallpaper(),
         })
     end
-    -- win:set_right_status(wezterm.format { { Text = tostring(last_hour) } })
 end)
 
 plugin_smart_splits.apply_to_config(config, {
