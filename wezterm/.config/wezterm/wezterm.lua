@@ -121,6 +121,9 @@ config = {
         },
         brights = {
             '#3b3b3b', '#ff5e56', '#83c746', '#efc541', '#4f9cfe', '#ff81ca', '#56d8c9', '#dedede',
+        },
+        tab_bar = {
+            background = constants.tab_title.color_bg
         }
     },
 
