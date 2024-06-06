@@ -210,11 +210,6 @@ wezterm.on('update-right-status', function(win)
     end
 end)
 
-plugin_smart_splits.apply_to_config(config, {
-    modifiers = {
-        move = 'META',
-        resize = 'CTRL'
-    }
-})
+plugin_smart_splits.apply_to_config(config)
 
 return config

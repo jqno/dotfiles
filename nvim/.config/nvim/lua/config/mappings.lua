@@ -58,16 +58,16 @@ local function define_mappings()
     map(modes.v, '<M-S-k>', [[:move '<-2<CR>gv=gv]])
 
     -- Easy window switching
-    map(modes.n, '<M-h>', require('smart-splits').move_cursor_left)
-    map(modes.n, '<M-j>', require('smart-splits').move_cursor_down)
-    map(modes.n, '<M-k>', require('smart-splits').move_cursor_up)
-    map(modes.n, '<M-l>', require('smart-splits').move_cursor_right)
+    map(modes.n, '<C-h>', require('smart-splits').move_cursor_left)
+    map(modes.n, '<C-j>', require('smart-splits').move_cursor_down)
+    map(modes.n, '<C-k>', require('smart-splits').move_cursor_up)
+    map(modes.n, '<C-l>', require('smart-splits').move_cursor_right)
 
     -- Easy window resizing
-    map(modes.n, '<C-h>', require('smart-splits').resize_left)
-    map(modes.n, '<C-j>', require('smart-splits').resize_down)
-    map(modes.n, '<C-k>', require('smart-splits').resize_up)
-    map(modes.n, '<C-l>', require('smart-splits').resize_right)
+    map(modes.n, '<M-h>', require('smart-splits').resize_left)
+    map(modes.n, '<M-j>', require('smart-splits').resize_down)
+    map(modes.n, '<M-k>', require('smart-splits').resize_up)
+    map(modes.n, '<M-l>', require('smart-splits').resize_right)
 
     -- Close everything --
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
