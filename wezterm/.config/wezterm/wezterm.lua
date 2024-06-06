@@ -1,7 +1,6 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
 local nerdfonts = wezterm.nerdfonts
-local os = require('os')
 
 local plugin_smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
 
@@ -9,7 +8,7 @@ local config = wezterm.config_builder()
 
 local constants = {
     tab_max_width = 32,
-    wallpaper_location = os.getenv('HOME') .. '/Dropbox/wallpapers',
+    wallpaper_location = wezterm.home_dir .. '/Dropbox/wallpapers',
     tab_title = {
         left_circle = nerdfonts.ple_left_half_circle_thick,
         right_circle = nerdfonts.ple_right_half_circle_thick,
@@ -88,7 +87,7 @@ config = {
         { key = '[',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
         { key = ']',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
         { key = 'r',          mods = 'ALT',       action = act.QuickSelect },
-        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = os.getenv('HOME') } },
+        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = wezterm.home_dir } },
         { key = 'h',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) },
         { key = 'l',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },
         { key = '{',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) }, -- Alt+Shift+[
@@ -148,7 +147,7 @@ wezterm.on('format-tab-title', function(tab)
     -- Determine cwd
     local title = ''
     local cwd = tab.active_pane.current_working_dir.file_path
-    if cwd == os.getenv('HOME') then
+    if cwd == wezterm.home_dir then
         title = '~'
     elseif cwd == '/' then
         title = '/'
