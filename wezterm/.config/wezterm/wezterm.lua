@@ -3,6 +3,8 @@ local act = wezterm.action
 local nerdfonts = wezterm.nerdfonts
 local os = require('os')
 
+local plugin_smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
+
 local config = wezterm.config_builder()
 
 local constants = {
@@ -82,8 +84,6 @@ config = {
     keys = {
         { key = 'Enter',      mods = 'ALT',       action = act.SplitPane { direction = 'Right' } },
         { key = 'w',          mods = 'ALT',       action = act.CloseCurrentTab { confirm = true } },
-        { key = 'h',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
-        { key = 'l',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
         { key = '[',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
         { key = ']',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
         { key = 'r',          mods = 'ALT',       action = act.QuickSelect },
@@ -195,5 +195,12 @@ wezterm.on('update-right-status', function(win)
     end
     -- win:set_right_status(wezterm.format { { Text = tostring(last_hour) } })
 end)
+
+plugin_smart_splits.apply_to_config(config, {
+    modifiers = {
+        move = 'META',
+        resize = 'CTRL'
+    }
+})
 
 return config
