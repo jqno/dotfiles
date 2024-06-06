@@ -1,4 +1,3 @@
-# Private environment variables and aliases
 function load {
   [[ -f "$1" ]] && source "$1"
 }
