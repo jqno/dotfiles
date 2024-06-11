@@ -15,8 +15,9 @@ if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
   export PATH
 fi
 
-# Default editor
+# Vim all the things
 export EDITOR=nvim
+export MANPAGER="nvim +Man!"
 
 # Required for GPG
 export GPG_TTY=$(tty)
