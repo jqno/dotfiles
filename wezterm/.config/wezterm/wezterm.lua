@@ -9,7 +9,6 @@ local config = wezterm.config_builder()
 
 local constants = {
     tab_max_width = 32,
-    wallpaper_location = wezterm.home_dir .. '/Dropbox/wallpapers',
     tab_title = {
         left_circle = nerdfonts.ple_left_half_circle_thick,
         right_circle = nerdfonts.ple_right_half_circle_thick,
@@ -45,26 +44,9 @@ local constants = {
     }
 }
 
-local function random_wallpaper()
-    local wallpapers = {}
-    local handle = io.popen('/bin/ls -1 ' .. constants.wallpaper_location)
-    if handle then
-        for line in handle:lines() do
-            table.insert(wallpapers, line)
-        end
-        handle:close()
-    end
-
-    if #wallpapers > 0 then
-        local index = math.random(1, #wallpapers)
-        return constants.wallpaper_location .. '/' .. wallpapers[index]
-    end
-    return nil
-end
-
-
 config = {
     -- Appearance
+    window_background_opacity = 0.8,
     adjust_window_size_when_changing_font_size = false,
     hide_tab_bar_if_only_one_tab = true,
     show_new_tab_button_in_tab_bar = false,
@@ -125,12 +107,7 @@ config = {
         tab_bar = {
             background = constants.tab_title.color_bg
         }
-    },
-
-    -- Wallpaper
-    window_background_image_hsb = {
-        brightness = 0.08
-    },
+    }
 }
 
 wezterm.on('format-tab-title', function(tab)
@@ -195,18 +172,6 @@ wezterm.on('format-tab-title', function(tab)
             { Foreground = { Color = c.color_inactive_bg } },
             { Text = c.right_circle },
         }
-    end
-end)
-
-local last_hour = 0
-
-wezterm.on('update-right-status', function(win)
-    local now = tonumber(wezterm.strftime('%s')) or 0
-    if now - last_hour >= 3600 then
-        last_hour = now
-        win:set_config_overrides({
-            window_background_image = random_wallpaper(),
-        })
     end
 end)
 
