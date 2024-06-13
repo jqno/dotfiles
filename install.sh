@@ -40,6 +40,7 @@ stow sdkman
 stow starship
 stow tig
 stow ulauncher
+stow xcompose
 stow zsh
 
 mkdir -p "$HOME"/scripts
