@@ -13,7 +13,7 @@ This repo uses GNU Stow under the hood to manage the dotfiles.
 To install on a clean machine:
 
 * Clone this repo.
-* Run `./install_ubuntu.sh` or `./install_macos.sh`.
+* Run `./install.sh`.
 
 If installing the software fails at some point, you can safely re-try: the operation is idempotent.
 
