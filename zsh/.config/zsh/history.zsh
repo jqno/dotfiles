@@ -10,7 +10,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # Ignore common commands
-HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+HISTORY_IGNORE="(ls|pwd|exit)*"
 
 # Append to histfile, don't overwrite
 setopt append_history
