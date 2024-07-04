@@ -64,36 +64,6 @@ config = {
         active_titlebar_bg = constants.tab_title.color_bg,
     },
 
-    -- Key bindings
-    disable_default_key_bindings = true,
-    keys = {
-        { key = 'Enter',      mods = 'ALT',       action = act.SplitPane { direction = 'Right' } },
-        { key = 'w',          mods = 'ALT',       action = act.CloseCurrentTab { confirm = true } },
-        { key = '[',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
-        { key = ']',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
-        { key = 'r',          mods = 'ALT',       action = act.QuickSelect },
-        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = wezterm.home_dir } },
-        { key = 'h',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) },
-        { key = 'l',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },
-        { key = '{',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) }, -- Alt+Shift+[
-        { key = '}',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },  -- Alt+Shift+]
-        { key = 'LeftArrow',  mods = 'ALT|SHIFT', action = act.MoveTabRelative(-1) },
-        { key = 'RightArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(1) },
-        { key = 'z',          mods = 'ALT',       action = act.TogglePaneZoomState },
-        { key = 'c',          mods = 'ALT',       action = act.CopyTo('Clipboard') },
-        { key = 'v',          mods = 'ALT',       action = act.PasteFrom('Clipboard') },
-        { key = '=',          mods = 'ALT',       action = act.IncreaseFontSize },
-        { key = '-',          mods = 'ALT',       action = act.DecreaseFontSize },
-        { key = 'd',          mods = 'ALT',       action = act.ShowDebugOverlay },
-        { key = 'UpArrow',    mods = 'ALT',       action = act.ScrollByPage(-1) },
-        { key = 'DownArrow',  mods = 'ALT',       action = act.ScrollByPage(1) },
-        { key = 'e',          mods = 'ALT',       action = act.CharSelect },
-        { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback },
-        { key = 'Slash',      mods = 'ALT',       action = act.Search { CaseInSensitiveString = '' } },
-        { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode },
-        { key = 'p',          mods = 'ALT',       action = act.ActivateCommandPalette }
-    },
-
     -- Colors
     colors = {
         foreground = '#b9b9b9',
@@ -124,7 +94,37 @@ config = {
             },
             inactive_tab_edge = constants.tab_title.color_bg
         }
-    }
+    },
+
+    -- Key bindings
+    disable_default_key_bindings = true,
+    keys = {
+        { key = 'Enter',      mods = 'ALT',       action = act.SplitPane { direction = 'Right' } },
+        { key = 'w',          mods = 'ALT',       action = act.CloseCurrentTab { confirm = true } },
+        { key = '[',          mods = 'ALT',       action = act.ActivatePaneDirection('Left') },
+        { key = ']',          mods = 'ALT',       action = act.ActivatePaneDirection('Right') },
+        { key = 'r',          mods = 'ALT',       action = act.QuickSelect },
+        { key = 'Enter',      mods = 'ALT|SHIFT', action = act.SpawnCommandInNewTab { cwd = wezterm.home_dir } },
+        { key = 'h',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) },
+        { key = 'l',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },
+        { key = '{',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(-1) }, -- Alt+Shift+[
+        { key = '}',          mods = 'ALT|SHIFT', action = act.ActivateTabRelative(1) },  -- Alt+Shift+]
+        { key = 'LeftArrow',  mods = 'ALT|SHIFT', action = act.MoveTabRelative(-1) },
+        { key = 'RightArrow', mods = 'ALT|SHIFT', action = act.MoveTabRelative(1) },
+        { key = 'z',          mods = 'ALT',       action = act.TogglePaneZoomState },
+        { key = 'c',          mods = 'ALT',       action = act.CopyTo('Clipboard') },
+        { key = 'v',          mods = 'ALT',       action = act.PasteFrom('Clipboard') },
+        { key = '=',          mods = 'ALT',       action = act.IncreaseFontSize },
+        { key = '-',          mods = 'ALT',       action = act.DecreaseFontSize },
+        { key = 'd',          mods = 'ALT',       action = act.ShowDebugOverlay },
+        { key = 'UpArrow',    mods = 'ALT',       action = act.ScrollByPage(-1) },
+        { key = 'DownArrow',  mods = 'ALT',       action = act.ScrollByPage(1) },
+        { key = 'e',          mods = 'ALT',       action = act.CharSelect },
+        { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback },
+        { key = 'Slash',      mods = 'ALT',       action = act.Search { CaseInSensitiveString = '' } },
+        { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode },
+        { key = 'p',          mods = 'ALT',       action = act.ActivateCommandPalette }
+    },
 }
 
 wezterm.on('format-tab-title', function(tab)
