@@ -49,18 +49,19 @@ config = {
     -- Appearance
     window_background_opacity = 0.8,
     adjust_window_size_when_changing_font_size = false,
-    hide_tab_bar_if_only_one_tab = true,
-    show_new_tab_button_in_tab_bar = false,
-    use_fancy_tab_bar = false,
     window_decorations = 'NONE',
-    tab_max_width = constants.tab_max_width,
-    inactive_pane_hsb = {
-        saturation = 0.8,
-        brightness = 0.5,
-    },
     font = wezterm.font {
         family = 'monolisa',
         harfbuzz_features = { 'calt', '-liga', 'ss10', 'ss11', 'ss14' }
+    },
+
+    -- Tab
+    hide_tab_bar_if_only_one_tab = true,
+    show_new_tab_button_in_tab_bar = false,
+    use_fancy_tab_bar = true,
+    window_frame = {
+        font = wezterm.font { family = 'TilburgsAns', weight = 'Bold' },
+        active_titlebar_bg = constants.tab_title.color_bg,
     },
 
     -- Key bindings
@@ -109,7 +110,19 @@ config = {
             '#3b3b3b', '#ff5e56', '#83c746', '#efc541', '#4f9cfe', '#ff81ca', '#56d8c9', '#dedede',
         },
         tab_bar = {
-            background = constants.tab_title.color_bg
+            active_tab = {
+                bg_color = constants.tab_title.color_active_bg,
+                fg_color = constants.tab_title.color_active_fg
+            },
+            inactive_tab = {
+                bg_color = constants.tab_title.color_inactive_bg,
+                fg_color = constants.tab_title.color_inactive_fg
+            },
+            inactive_tab_hover = {
+                bg_color = constants.tab_title.color_inactive_bg,
+                fg_color = constants.tab_title.color_active_bg,
+            },
+            inactive_tab_edge = constants.tab_title.color_bg
         }
     }
 }
@@ -167,27 +180,12 @@ wezterm.on('format-tab-title', function(tab)
             color = c.color_copy_mode
         end
         return {
-            { Background = { Color = c.color_bg } },
-            { Foreground = { Color = color } },
-            { Text = ' ' .. c.left_circle },
             { Background = { Color = color } },
-            { Foreground = { Color = c.color_active_fg } },
             { Text = prefix .. title },
-            { Background = { Color = c.color_bg } },
-            { Foreground = { Color = color } },
-            { Text = c.right_circle },
         }
     else
         return {
-            { Background = { Color = c.color_bg } },
-            { Foreground = { Color = c.color_inactive_bg } },
-            { Text = ' ' .. c.left_circle },
-            { Background = { Color = c.color_inactive_bg } },
-            { Foreground = { Color = c.color_inactive_fg } },
             { Text = prefix .. title },
-            { Background = { Color = c.color_bg } },
-            { Foreground = { Color = c.color_inactive_bg } },
-            { Text = c.right_circle },
         }
     end
 end)
