@@ -89,7 +89,8 @@ config = {
         { key = 'e',          mods = 'ALT',       action = act.CharSelect },
         { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback },
         { key = 'Slash',      mods = 'ALT',       action = act.Search { CaseInSensitiveString = '' } },
-        { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode }
+        { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode },
+        { key = 'p',          mods = 'ALT',       action = act.ActivateCommandPalette }
     },
 
     -- Colors
