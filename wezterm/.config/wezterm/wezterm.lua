@@ -15,6 +15,7 @@ local constants = {
         color_bg = '#3b3b3b',
         color_active_bg = '#83c746',
         color_active_fg = '#dedede',
+        color_copy_mode = '#368aeb',
         color_inactive_bg = '#777777',
         color_inactive_fg = '#dedede',
         apps = {
@@ -86,7 +87,8 @@ config = {
         { key = 'UpArrow',    mods = 'ALT',       action = act.ScrollByPage(-1) },
         { key = 'DownArrow',  mods = 'ALT',       action = act.ScrollByPage(1) },
         { key = 'e',          mods = 'ALT',       action = act.CharSelect },
-        { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback }
+        { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback },
+        { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode }
     },
 
     -- Colors
@@ -119,12 +121,21 @@ wezterm.on('format-tab-title', function(tab)
         zoomed = nerdfonts.fa_arrow_up
     end
 
+    -- Determine copy mode
+    local copymode = ''
+    if tab.active_pane.title:sub(1, 9) == 'Copy mode' then
+        copymode = nerdfonts.cod_copy
+    end
+
     -- Determine icon
-    local process_name = tab.active_pane.foreground_process_name:match('([^/\\]+)$')
-    local icon = c.apps[process_name] or nerdfonts.seti_checkbox_unchecked
+    local icon = ''
+    if copymode == '' then
+        local process_name = tab.active_pane.foreground_process_name:match('([^/\\]+)$')
+        icon = c.apps[process_name] or nerdfonts.seti_checkbox_unchecked
+    end
 
     -- Determine prefix
-    local prefix = zoomed .. icon .. '  '
+    local prefix = zoomed .. copymode .. icon .. '  '
 
     -- Determine cwd
     local title = ''
@@ -149,15 +160,19 @@ wezterm.on('format-tab-title', function(tab)
     end
 
     if tab.is_active then
+        local color = c.color_active_bg
+        if copymode ~= '' then
+            color = c.color_copy_mode
+        end
         return {
             { Background = { Color = c.color_bg } },
-            { Foreground = { Color = c.color_active_bg } },
+            { Foreground = { Color = color } },
             { Text = ' ' .. c.left_circle },
-            { Background = { Color = c.color_active_bg } },
+            { Background = { Color = color } },
             { Foreground = { Color = c.color_active_fg } },
             { Text = prefix .. title },
             { Background = { Color = c.color_bg } },
-            { Foreground = { Color = c.color_active_bg } },
+            { Foreground = { Color = color } },
             { Text = c.right_circle },
         }
     else
