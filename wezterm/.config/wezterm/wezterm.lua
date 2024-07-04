@@ -45,6 +45,12 @@ local constants = {
     }
 }
 
+local function rename_tab(window, _, title)
+    if title then
+        window:active_tab():set_title(title)
+    end
+end
+
 config = {
     -- Appearance
     window_background_opacity = 0.8,
@@ -123,7 +129,11 @@ config = {
         { key = 'f',          mods = 'ALT',       action = plugin_logging.action.CaptureScrollback },
         { key = 'Slash',      mods = 'ALT',       action = act.Search { CaseInSensitiveString = '' } },
         { key = 'Backspace',  mods = 'ALT',       action = act.ActivateCopyMode },
-        { key = 'p',          mods = 'ALT',       action = act.ActivateCommandPalette }
+        { key = 'p',          mods = 'ALT',       action = act.ActivateCommandPalette },
+        { key = 't',          mods = 'ALT',       action = act.PromptInputLine {
+            description = 'Enter new name for tab',
+            action = wezterm.action_callback(rename_tab)
+        } }
     },
 }
 
@@ -153,18 +163,20 @@ wezterm.on('format-tab-title', function(tab)
     local prefix = zoomed .. copymode .. icon .. '  '
 
     -- Determine cwd
-    local title = ''
-    local cwd = tab.active_pane.current_working_dir
-    if cwd == nil then
-        title = '?'
-    else
-        local path = cwd.file_path
-        if path == wezterm.home_dir then
-            title = '~'
-        elseif path == '/' then
-            title = '/'
+    local title = tab.tab_title
+    if not title or #title == 0 then
+        local cwd = tab.active_pane.current_working_dir
+        if cwd == nil then
+            title = nerdfonts.fa_cog
         else
-            title = path:match('([^/]+)$')
+            local path = cwd.file_path
+            if path == wezterm.home_dir then
+                title = '~'
+            elseif path == '/' then
+                title = '/'
+            else
+                title = path:match('([^/]+)$')
+            end
         end
     end
 
