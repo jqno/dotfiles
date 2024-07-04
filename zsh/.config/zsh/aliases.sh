@@ -4,7 +4,9 @@
 alias cd..='cd ..'
 
 # SSH in Kitty
-alias ssh='kitty +kitten ssh'
+if [[ -n "$KITTY_WINDOW_ID" ]]; then
+  alias ssh='kitty +kitten ssh'
+fi
 
 # Modern alternatives to standard tools
 alias cat='bat -pp'
