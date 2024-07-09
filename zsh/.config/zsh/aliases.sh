@@ -12,12 +12,19 @@ fi
 alias cat='bat -pp'
 alias df=duf
 alias du=dust
-alias LS="$(which ls)"
+alias LS='command ls'
 alias ls='eza --icons'
 alias tree='eza --icons --tree'
-alias MAN="$(which man)"
+alias MAN='command man'
 man() {
   tldr "$1" || "$(which man)" "$1"
+}
+kill() {
+  if [ $# -eq 0 ]; then
+    ps -A | fzf --prompt="Select process to kill: " | awk '{print $1}' | xargs -r -I {} sh -c 'command kill {}'
+  else
+    command kill "$@"
+  fi
 }
 
 # Vim
@@ -36,11 +43,11 @@ alias github='gh browse'
 alias setjdk='. setjdk.sh'
 alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
-mvnd-kill() {
-  pid=$(jps | grep MavenDaemon | awk '{print $1}')
-  if [[ -n "$pid" ]]; then 
+jkill() {
+  local pid
+  pid=$(command jps | fzf --prompt="Select process to kill: " | awk '{print $1}')
+  if [[ -n "$pid" ]]; then
     kill -9 "$pid"
-    echo "Killed MavenDaemon"
   fi
 }
 
