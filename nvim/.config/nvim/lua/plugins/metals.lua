@@ -5,10 +5,12 @@ local function metals_config(capabilities)
         statusBarProvider = 'on'
     }
     cfg.settings = {
-        showImplicitArguments = true,
+        scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf',
+
+        -- These settings are tied to Metals inlay hints
+        showImplicitArguments = false,
         showImplicitConversionsAndClasses = true,
-        showInferredType = true,
-        scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf'
+        showInferredType = false
     }
     cfg.on_attach = function(_, bufnr)
         require('metals').setup_dap()
