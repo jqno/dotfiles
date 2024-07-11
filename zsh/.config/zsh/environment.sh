@@ -11,7 +11,7 @@ if [[ -z ${ZSH_ENV_LOADED+x} ]]; then
     fi
   done
 
-  PATH=~/bin:~/go/bin:$PATH
+  PATH=~/bin:~/.local/share/coursier/bin:~/go/bin:$PATH
   export PATH
 fi
 

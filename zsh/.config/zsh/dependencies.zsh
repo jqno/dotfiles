@@ -6,13 +6,9 @@ fi
 # Prompt
 eval "$(starship init zsh)"
 
-# SDKMan (lazy loaded because it's really slow on zsh; see https://github.com/sdkman/sdkman-cli/issues/977)
+# SDKMan
 export SDKMAN_DIR="$HOME/.sdkman"
-sdk() {
-  unset -f sdk
-  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
-  sdk "$@"
-}
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # FZF
 eval "$(fzf --zsh)"
