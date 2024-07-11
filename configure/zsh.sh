@@ -2,7 +2,7 @@
 
 # Setting up .zprofile
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
-ln -s $PWD/zsh/.zsh/environment.sh ~/.zprofile
+ln -s $PWD/zsh/.config/zsh/environment.sh ~/.zprofile
 
 # Make zsh the default shell
 LOCATION="$(which zsh)"
