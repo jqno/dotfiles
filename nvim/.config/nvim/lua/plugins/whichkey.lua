@@ -2,37 +2,27 @@ return {
     'folke/which-key.nvim',
     event = 'UIEnter',
 
-    init = function()
-        vim.o.timeout = true
-        vim.o.timeoutlen = 1000
-    end,
     config = function()
         local wk = require('which-key')
         wk.setup({
-            window = {
-                border = 'single'
-            },
-            triggers_blacklist = {
-                n = { 'c', 'v' } -- To avoid conflict with tagalong.vim plugin, which remaps these keys in certain file types
-            }
+            preset = 'modern',
+            delay = 1000
         })
-        wk.register({
-            ['<leader>'] = {
-                [']'] = 'Follow references',
-                ['<leader>'] = 'Navigation',
-                a = 'AI',
-                b = 'Buffer',
-                d = 'Debug',
-                f = 'Find',
-                g = 'Go',
-                h = 'History',
-                m = 'Make',
-                r = 'Refactor',
-                s = 'Show',
-                t = 'Toggle',
-                w = 'Window',
-                x = 'Execute'
-            }
+        wk.add({
+            { '<leader><leader>', icon = '󰠳', desc = 'Navigation' },
+            { '<leader>]', icon = '', desc = 'Follow references' },
+            { '<leader>a', icon = '󱙺', desc = 'AI' },
+            { '<leader>b', icon = '', desc = 'Buffer' },
+            { '<leader>d', icon = '', desc = 'Debug' },
+            { '<leader>f', icon = '', desc = 'Find' },
+            { '<leader>g', icon = '', desc = 'Go' },
+            { '<leader>h', icon = '', desc = 'History' },
+            { '<leader>m', icon = '󰡢', desc = 'Make' },
+            { '<leader>r', icon = '󰖷', desc = 'Refactor' },
+            { '<leader>s', icon = '󰊪', desc = 'Show' },
+            { '<leader>t', icon = '', desc = 'Toggle' },
+            { '<leader>w', icon = '', desc = 'Window' },
+            { '<leader>x', icon = '󱐋', desc = 'Execute' }
         })
     end
 }
