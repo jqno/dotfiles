@@ -6,7 +6,7 @@ return {
     },
 
     opts = {
-        use_default_keymaps = true,
+        use_default_keymaps = false,
         highlight_node_at_cursor = true,
     }
 }
