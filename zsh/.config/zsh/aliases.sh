@@ -19,12 +19,8 @@ alias MAN='command man'
 man() {
   tldr "$1" || "$(which man)" "$1"
 }
-kill() {
-  if [ $# -eq 0 ]; then
-    ps -A | fzf --prompt="Select process to kill: " | awk '{print $1}' | xargs -r -I {} sh -c 'command kill {}'
-  else
-    command kill "$@"
-  fi
+die() {
+  kill "$(ps -A | fzf --prompt='Select process to kill: ' | awk '{print $1}')"
 }
 
 # Vim
