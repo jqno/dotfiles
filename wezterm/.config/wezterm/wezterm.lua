@@ -30,6 +30,7 @@ local constants = {
             ['gh'] = nerdfonts.dev_github_badge,
             ['git'] = nerdfonts.dev_git,
             ['go'] = nerdfonts.seti_go,
+            ['HandBrakeCLI'] = nerdfonts.md_glass_cocktail,
             ['java'] = nerdfonts.dev_java,
             ['k9s'] = nerdfonts.md_kubernetes,
             ['lazydocker'] = nerdfonts.linux_docker,
