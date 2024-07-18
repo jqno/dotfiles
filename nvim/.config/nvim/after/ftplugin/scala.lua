@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local modes = require('util.modes')
 local floaterm = require('plugins.floaterm')
 
+vim.opt_local.formatoptions:remove('o')
 require('util.indent').set_buf_indent(2, false)
 
 map(modes.n, '<leader>m<space>',
