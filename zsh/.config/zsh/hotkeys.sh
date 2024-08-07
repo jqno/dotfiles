@@ -5,13 +5,21 @@ bindkey '^[[Z' autosuggest-accept  # Shift-tab
 bindkey "^[[3~" delete-char
 bindkey -M vicmd "^[[3~" delete-char
 
-# Delete in Neovim terminal
-bindkey '^[[127;2u' backward-delete-char # Prevent clearing the entire line when pressing Shift+Backspace in the Neovim terminal
-bindkey '^[[127;5u' backward-delete-char # Prevent clearing the entire line when pressing Ctrl+Backspace in the Neovim terminal
-
 # Up/Down keys, take into account what's already been typed
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
+
+###
+# Prevent clearing the entire line when pressing certain key bindings in the Neovim terminal
+###
+function no_op {
+  true
+}
+zle -N no_op
+
+bindkey '^[[127;2u' backward-delete-char # Shift+Backspace
+bindkey '^[[127;5u' backward-delete-char # Ctrl+Backspace
+bindkey '^[[32;2u' no_op # Shift-Space
 
 ###
 # Open VIM with current command line
