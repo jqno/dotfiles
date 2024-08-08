@@ -33,7 +33,7 @@ bindkey -M vicmd "\C-v" edit-command-line
 # FZF projects
 ###
 function select_project() {
-  local project=$(find ~/w -maxdepth 2 -type d | sort --reverse | fzf)
+  local project=$(find ~/w ~/Dropbox/notes -maxdepth 2 -type d | sort --reverse | fzf)
 
   if [[ -n "$project" ]];
   then
