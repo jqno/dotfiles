@@ -12,14 +12,14 @@ bindkey "^[[B" history-search-forward
 ###
 # Prevent clearing the entire line when pressing certain key bindings in the Neovim terminal
 ###
-function no_op {
-  true
+function insert_space {
+  LBUFFER+=" "
 }
-zle -N no_op
+zle -N insert_space
 
 bindkey '^[[127;2u' backward-delete-char # Shift+Backspace
 bindkey '^[[127;5u' backward-delete-char # Ctrl+Backspace
-bindkey '^[[32;2u' no_op # Shift-Space
+bindkey '^[[32;2u' insert_space # Shift-Space
 
 ###
 # Open VIM with current command line
