@@ -21,7 +21,7 @@ echo "*** Installing software via Homebrew..."
 brew bundle install --no-upgrade --file="$PWD/software/Brewfile"
 
 
-# Install manual software
+# Install non-brew software
 echo "*** Installing software from other package managers..."
 "$PWD/software/nonbrew.sh"
 
@@ -29,3 +29,8 @@ echo "*** Installing software from other package managers..."
 # Install manual software
 echo "*** Installing manual software..."
 "$PWD/software/manual.sh"
+
+
+# Install mise software
+echo "*** Installing mise software..."
+mise install --yes

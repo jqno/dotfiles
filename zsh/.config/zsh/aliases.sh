@@ -36,9 +36,11 @@ alias pr='gh pr view --web || gh pr create --web'
 alias github='gh browse'
 
 # Java
-alias setjdk='. setjdk.sh'
-alias runjava=runjava.py
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
+setjdk() {
+  mise use --env local "java@$1"
+}
+
 jkill() {
   local pid
   pid=$(command jps | fzf --prompt="Select process to kill: " | awk '{print $1}')

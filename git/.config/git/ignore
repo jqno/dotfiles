@@ -18,3 +18,5 @@ jdt.ls-java-project
 .metals
 .bloop
 
+# Mise-en-place
+.mise.local.toml

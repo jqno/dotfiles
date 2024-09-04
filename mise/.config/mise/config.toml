@@ -1,0 +1,16 @@
+[tools]
+java = "21"
+jbang = "latest"
+maven = "latest"
+mvnd = "latest"
+
+scala = "latest"
+sbt = "latest"
+coursier = "latest"
+
+kotlin = "latest"
+kscript = "latest"
+
+python = "3.12"
+
+node = "20"

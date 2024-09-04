@@ -6,9 +6,8 @@ fi
 # Prompt
 eval "$(starship init zsh)"
 
-# SDKMan
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+# Mise-en-place
+eval "$($(brew --prefix)/bin/mise activate zsh)"
 
 # FZF
 eval "$(fzf --zsh)"
