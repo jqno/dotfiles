@@ -15,6 +15,7 @@ local This = {
     event = 'UIEnter',
 
     config = function()
+        local npm_root = vim.fn.system('npm root -g'):gsub('%s+$', '')
         require('conform').setup({
             formatters_by_ft = {
                 java = { 'prettier_java' },
@@ -28,7 +29,7 @@ local This = {
                 prettier_java = {
                     command = 'prettier',
                     args = { '--stdin-filepath',
-                        '--plugin=/home/linuxbrew/.linuxbrew/lib/node_modules/prettier-plugin-java/dist/index.js',
+                        '--plugin=' .. npm_root .. '/prettier-plugin-java/dist/index.js',
                         '$FILENAME' }
                 },
                 configured_sql_formatter = {

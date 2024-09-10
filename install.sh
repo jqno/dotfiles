@@ -23,8 +23,8 @@ stow ideavim
 stow kitty
 stow linters
 stow maven
+stow mise
 stow nvim
-stow sdkman
 stow starship
 stow tig
 stow ulauncher

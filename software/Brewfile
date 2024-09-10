@@ -1,8 +1,7 @@
 # Install dependencies
 brew "gcc"
 brew "git"
-brew "node"
-brew "python@3.10"
+brew "mise"
 brew "svn"
 
 # Software to install
