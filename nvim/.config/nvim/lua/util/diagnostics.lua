@@ -1,16 +1,13 @@
 local This = {}
 
-This.disabled_all = {}
+This.enabled = true
 
 function This.toggle_all()
-    local bufnr = vim.fn.bufnr()
-    if This.disabled_all[bufnr] then
-        This.disabled_all[bufnr] = false
-        vim.diagnostic.show(nil, 0)
-    else
-        This.disabled_all[bufnr] = true
-        vim.diagnostic.hide(nil, 0)
-    end
+    This.enabled = not This.enabled
+    vim.diagnostic.config({
+        signs = This.enabled,
+        underline = This.enabled,
+    })
 end
 
 return This

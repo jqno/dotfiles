@@ -75,7 +75,8 @@ function This.setup()
         float = {
             border = 'rounded',
             source = true
-        }
+        },
+        update_in_insert = false
     })
     local diag = require('util.icons')
     vim.fn.sign_define('DiagnosticSignError', { text = diag.error, texthl = 'DiagnosticSignError' })
