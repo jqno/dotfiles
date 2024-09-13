@@ -156,7 +156,7 @@ return {
 
         local function window_status()
             if require('util.toggle-zoom').is_zoomed() then
-                return ''
+                return ' '
             else
                 return ''
             end
