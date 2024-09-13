@@ -1,5 +1,9 @@
 local This = {}
 
+This.mavenIsQuiet = true
+This.mavenQuietExecutable = 'mvnd -q'
+This.mavenVerboseExecutable = 'mvnd'
+
 function This.get_package()
     return This.get_package_for_language('java')
 end
@@ -10,6 +14,17 @@ end
 
 function This.get_class()
     return vim.fn.expand('%'):match('src/.-/java/(.*).java'):gsub('/', '.')
+end
+
+function This.toggle_maven_quiet()
+    This.mavenIsQuiet = not This.mavenIsQuiet
+    if This.mavenIsQuiet then
+        print('Maven is now quiet')
+        vim.g['test#java#maventest#executable'] = This.mavenQuietExecutable
+    else
+        print('Maven is now verbose')
+        vim.g['test#java#maventest#executable'] = This.mavenVerboseExecutable
+    end
 end
 
 return This

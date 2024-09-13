@@ -38,6 +38,8 @@ map(modes.n, '<leader>mp', function() floaterm.send('mvnd clean package -DskipTe
     { buffer = true, desc = 'mvn package (no tests)' })
 map(modes.n, '<leader>mv', function() floaterm.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
 
+map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
+
 vim.api.nvim_create_augroup('LspAttachJava', { clear = true })
 vim.api.nvim_create_autocmd('LspAttach', {
     group = 'LspAttachJava',
