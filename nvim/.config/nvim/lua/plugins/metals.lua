@@ -7,10 +7,13 @@ local function metals_config(capabilities)
     cfg.settings = {
         scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf',
 
-        -- These settings are tied to Metals inlay hints
-        showImplicitArguments = false,
-        showImplicitConversionsAndClasses = true,
-        showInferredType = false
+        inlayHints = {
+            hintsInPatternMatch = { enable = false },
+            implicitArguments = { enable = true },
+            implicitConversions = { enable = true },
+            inferredTypes = { enable = false },
+            typeParameters = { enable = false }
+        }
     }
     cfg.on_attach = function(_, bufnr)
         require('metals').setup_dap()
