@@ -6,6 +6,7 @@ local function autoformat(params)
     if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
         if require('util.is-editable').is_editable(bufnr) then
             require('conform').format({ bufnr = bufnr, async = async, lsp_fallback = true })
+            vim.cmd('write')
         end
     end
 end
