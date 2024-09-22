@@ -97,7 +97,7 @@ return {
         }
 
         local function vimode_text()
-            return _vimode_text[vim.fn.mode()]
+            return _vimode_text[vim.fn.mode()] .. ' '
         end
 
         local function vimode_highlight()
@@ -206,12 +206,20 @@ return {
             end
         end
 
+        local function git_status()
+            local gsd = vim.b.gitsigns_status_dict
+            if gsd and (gsd.added ~= 0 or gsd.changed ~= 0 or gsd.removed ~= 0) then
+                return ' '
+            end
+            return ''
+        end
+
         local function intelligence_status()
             local result = ''
             local ft = vim.bo.filetype
 
             -- LSP
-            local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
             if not vim.tbl_isempty(clients) then
                 result = result .. '󰌵 '
             end
@@ -366,6 +374,11 @@ return {
                 },
                 pad.back,
                 {
+                    provider = compose({ git_status }),
+                    hl = highlights.info
+                },
+                pad.back,
+                {
                     provider = compose({ intelligence_status }),
                     hl = highlights.secondary
                 },
@@ -393,6 +406,7 @@ return {
 
         local statusline_inactive = {
             { --left
+                pad.back,
                 pad.back,
                 pad.back,
                 pad.back,
