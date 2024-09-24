@@ -10,7 +10,6 @@ local ensure_installed = {
 
     -- Linters
     'actionlint',
-    'codespell',
     'flake8',
     'hadolint',
     'markdownlint',
