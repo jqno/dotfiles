@@ -1,0 +1,4 @@
+JDK
+hashCode
+EqualsVerifier
+EqualsVerifier's

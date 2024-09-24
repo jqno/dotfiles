@@ -1,6 +1,7 @@
 local ensure_installed = {
     -- LSP
     'bash-language-server',
+    'harper-ls',
     'jdtls',
     'lemminx',
     'lua-language-server',
@@ -22,6 +23,9 @@ local ensure_installed = {
 }
 
 local lsp_server_configs = {
+    harper_ls = {
+        filetypes = { 'markdown', 'text' }
+    },
     lemminx = {
         settings = {
             xml = {
