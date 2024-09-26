@@ -3,7 +3,14 @@ return {
     tag = '0.1.8',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons'
+        'nvim-tree/nvim-web-devicons',
+        {
+            'danielfalk/smart-open.nvim',
+            dependencies = {
+                'kkharji/sqlite.lua',
+                'nvim-telescope/telescope-fzy-native.nvim',
+            },
+        }
     },
     cmd = 'Telescope',
 
@@ -91,6 +98,8 @@ return {
             }
         end
 
+        telescope.load_extension('smart_open')
+
         telescope.setup({
             defaults = {
                 vimgrep_arguments = {
@@ -119,7 +128,8 @@ return {
                 }
             },
             extensions = {
-                ['ui-select'] = { require('telescope.themes').get_dropdown() }
+                ['ui-select'] = { require('telescope.themes').get_dropdown() },
+                smart_open = { show_scores = true }
             }
         })
     end

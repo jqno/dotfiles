@@ -229,7 +229,9 @@ local function define_mappings()
         { desc = 'find diagnostics' })
     map(modes.n, '<leader>fD', function() vim.cmd.Telescope('diagnostics') end,
         { desc = 'find workspace diagnostics' })
-    map(modes.n, '<leader>ff',
+    map(modes.n, '<leader>ff', function() vim.cmd.Telescope('smart_open', 'cwd_only=true') end,
+        { desc = 'smart find files' })
+    map(modes.n, '<leader>fF',
         function() vim.cmd.Telescope('find_files', 'find_command=rg,--ignore,--hidden,--files,--glob,!.git/*') end,
         { desc = 'find files' })
     map(modes.n, '<leader>fg',
