@@ -209,7 +209,7 @@ return {
         local function git_status()
             local gsd = vim.b.gitsigns_status_dict
             if gsd and (gsd.added ~= 0 or gsd.changed ~= 0 or gsd.removed ~= 0) then
-                return ' '
+                return '•'
             end
             return ''
         end
@@ -335,7 +335,7 @@ return {
                 pad.vimode,
                 pad.main,
                 {
-                    provider = compose({ file_name, file_status, window_status }),
+                    provider = compose({ file_name, file_status, git_status, window_status }),
                     hl = highlights.main,
                     right_sep = right_sep
                 },
@@ -374,11 +374,6 @@ return {
                 },
                 pad.back,
                 {
-                    provider = compose({ git_status }),
-                    hl = highlights.info
-                },
-                pad.back,
-                {
                     provider = compose({ intelligence_status }),
                     hl = highlights.secondary
                 },
@@ -412,7 +407,7 @@ return {
                 pad.back,
                 pad.back,
                 {
-                    provider = file_name,
+                    provider = compose({ file_name, file_status, git_status }),
                     hl = highlights.main,
                     left_sep = left_sep,
                     right_sep = right_sep
