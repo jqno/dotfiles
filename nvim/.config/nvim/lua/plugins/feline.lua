@@ -164,6 +164,9 @@ return {
 
         local function diagnostic(prefix, severity)
             return function()
+                if not require('util.diagnostics').enabled then
+                    return ''
+                end
                 local count = #vim.diagnostic.get(0, { severity = severity })
                 if count == 0 then
                     return ''
