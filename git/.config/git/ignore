@@ -17,6 +17,7 @@ jdt.ls-java-project
 # Metals, the Scala language server
 .metals
 .bloop
+.scala-build
 
 # Mise-en-place
 .mise.local.toml
