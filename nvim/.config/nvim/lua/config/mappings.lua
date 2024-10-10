@@ -213,7 +213,8 @@ local function define_mappings()
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
     map(modes.n, '<leader>bd', vim.cmd.BufDel, { desc = 'delete current buffer' })
-    map(modes.n, '<leader>bx', function() vim.cmd.bufdo('bdelete') end, { desc = 'close all buffers' })
+    map(modes.n, '<leader>bx', function() vim.cmd('%bd|e#|bd#') end, { desc = 'close all buffers except current' })
+    map(modes.n, '<leader>bX', function() vim.cmd.bufdo('bdelete') end, { desc = 'close all buffers' })
 
     -- EXECUTING THINGS --
     map(modes.n, '<leader>xl', require('util.linkify').linkify, { desc = 'linkify', silent = true })
