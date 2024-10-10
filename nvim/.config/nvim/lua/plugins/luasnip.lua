@@ -9,6 +9,16 @@ local function reload()
     print('Snippets reloaded')
 end
 
+local function leave_snippet()
+    if
+        ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+        and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require('luasnip').session.jump_active
+    then
+        require('luasnip').unlink_current()
+    end
+end
+
 return {
     'L3MON4D3/LuaSnip',
     lazy = true,
@@ -25,6 +35,12 @@ return {
                     active = { virt_text = { { '●', 'GitSignsChange' } } }
                 }
             }
+        })
+
+        vim.api.nvim_create_autocmd('ModeChanged', {
+            group = vim.api.nvim_create_augroup('ExitLuaSnipSnippet', { clear = true }),
+            buffer = 0,
+            callback = leave_snippet
         })
     end,
 
