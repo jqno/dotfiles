@@ -332,8 +332,8 @@ function This.setup_lsp(bufnr)
     map(modes.n, '<leader>gt', vim.lsp.buf.type_definition, { buffer = bufnr, desc = 'go to type definition' })
 
     -- REFACTORING --
-    map(modes.n, '<leader>r<CR>', require('tiny-code-action').code_action, { buffer = bufnr, desc = 'show code actions' })
-    map(modes.v, '<leader>r<CR>', require('tiny-code-action').code_action, { buffer = bufnr, desc = 'show code actions' })
+    map(modes.n, '<leader>r<CR>', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'show code actions' })
+    map(modes.v, '<leader>r<CR>', vim.lsp.buf.code_action, { buffer = bufnr, desc = 'show code actions' })
     map(modes.n, '<leader>rr', vim.lsp.buf.rename, { buffer = bufnr, desc = 'refactor: rename' })
 
     -- SHOWING THINGS --
