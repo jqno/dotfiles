@@ -270,8 +270,7 @@ local function define_mappings()
     map(modes.n, '<leader>m<CR>', require('util.job-runner').run_job, { desc = 'run last test or current job' })
     map(modes.n, '<leader>mt', vim.cmd.TestNearest, { desc = 'run nearest test' })
     map(modes.n, '<leader>mT', vim.cmd.TestFile, { desc = 'test current file' })
-    map(modes.n, '<leader>mf', function() require('conform').format({ lsp_fallback = true }) end,
-        { desc = 'format current file' })
+    map(modes.n, '<leader>mf', require('util.format').save_and_format, { desc = 'format current file' })
 
     -- REFACTORING --
     map(modes.n, '<leader>ri', function() require('refactoring').refactor('Inline Variable') end,
