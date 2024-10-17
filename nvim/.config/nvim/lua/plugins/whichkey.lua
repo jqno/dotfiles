@@ -6,7 +6,11 @@ return {
         local wk = require('which-key')
         wk.setup({
             preset = 'modern',
-            delay = 1000
+            delay = 1000,
+            plugins = {
+                marks = false,
+                registers = false
+            }
         })
         wk.add({
             { '<leader><leader>', icon = '󰠳', desc = 'Navigation' },
