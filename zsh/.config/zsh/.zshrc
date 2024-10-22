@@ -11,7 +11,11 @@ load $h/dependencies.zsh
 load $h/functions.sh
 load $h/environment.sh
 load $h/aliases.sh
-load $h/hotkeys.sh
+
+# Must load hotkeys like this or zsh-vi-mode plugin will override them
+function zvm_after_init() {
+  load $h/hotkeys.sh
+}
 
 # Load config from private/work dotfiles
 for dir in "$HOME"/env/*; do

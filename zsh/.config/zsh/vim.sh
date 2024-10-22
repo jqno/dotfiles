@@ -1,6 +1,3 @@
-# VIM mode
-bindkey -v
-export KEYTIMEOUT=1
 export EDITOR=nvim
 
 # Aliases for when in Vim terminal
