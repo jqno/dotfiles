@@ -28,7 +28,6 @@ stow nvim
 stow starship
 stow tig
 stow ulauncher
-stow wezterm
 stow xcompose
 stow zsh
 
