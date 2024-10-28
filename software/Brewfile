@@ -7,6 +7,7 @@ brew "svn"
 # Software to install
 brew "asciidoctor"
 brew "bat"
+brew "btop"
 brew "dust"
 brew "duf"
 brew "eza"

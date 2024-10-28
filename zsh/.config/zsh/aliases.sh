@@ -15,6 +15,7 @@ alias du=dust
 alias LS='command ls'
 alias ls='eza --icons'
 alias tree='eza --icons --tree'
+alias top='btop -p 1' # Use the first preset as defined in btop.conf
 alias MAN='command man'
 man() {
   tldr "$1" || "$(which man)" "$1"

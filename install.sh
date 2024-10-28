@@ -18,6 +18,7 @@ echo "*** Stowing dotfiles..."
 "$PWD/clean.sh"
 stow abcde
 stow bash
+stow btop
 stow git
 stow ideavim
 stow kitty
