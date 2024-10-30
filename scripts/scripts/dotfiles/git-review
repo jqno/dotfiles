@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    echo "Not in a git repository"
+    exit 1
+fi
+
+if git status --porcelain | grep -q '^'; then
+    echo "There are changes or untracked files in the repository"
+    exit 1
+fi
+
+if [[ -z "$1" ]]; then
+    echo "Please provide a PR number"
+    exit 1
+fi
+
+# Determine name of main/master branch
+main=$(git rev-parse --abbrev-ref origin/HEAD | sed 's|^origin/||')
+
+# Checkout the PR
+gh co "$1"
+currentbranch=$(git branch --show-current)
+
+# Find the point where the PR split off from main
+mergebase=$(git merge-base "$main" "$currentbranch")
+
+# Open a new branch based on the PR's branch name so we don't accidentally mess up the PR
+git checkout -b review/"$currentbranch"
+
+# Reset the changes made in the PR so we can look at them in our editor
+git reset --mixed "$mergebase"
