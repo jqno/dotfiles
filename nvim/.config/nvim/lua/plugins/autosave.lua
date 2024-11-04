@@ -4,10 +4,6 @@ return {
 
     config = function()
         require('auto-save').setup({
-            execution_message = {
-                dim = 0.5,
-                cleaning_interval = 1000
-            },
             trigger_events = {
                 immediate_save = { 'InsertLeave' },
                 defer_save = { 'CursorHold' }
