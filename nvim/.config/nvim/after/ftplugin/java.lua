@@ -21,8 +21,8 @@ map(modes.v, '<leader>rv', function() jdtls.extract_variable({ visual = true }) 
 map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
-map(modes.n, '<leader>m<space>', function() floaterm.send('jbang ' .. vim.fn.expand('%:p') .. '') end,
-    { buffer = true, desc = 'run with JBang' })
+map(modes.n, '<leader>m<space>', function() floaterm.send('runjava ' .. vim.fn.expand('%:p') .. '') end,
+    { buffer = true, desc = 'run Java program' })
 map(modes.n, '<leader>me',
     function()
         floaterm.send(

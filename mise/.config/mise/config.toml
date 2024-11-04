@@ -1,5 +1,5 @@
 [tools]
-java = "21"
+java = "23"
 jbang = "latest"
 maven = "latest"
 mvnd = "latest"

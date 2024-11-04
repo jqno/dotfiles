@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+  echo "Usage:"
+  echo "  $(basename "$0") init"
+  echo "      to prepare a project for running (i.e., downloads the dependencies)"
+  echo "  $(basename "$0") <filename.java>"
+  echo "      runs the main method of <filename.java> in the current project"
+  exit 0
+fi
+
+if [[ "$1" == "init" ]]; then
+  mvn dependency:copy-dependencies -DoutputDirectory=target/lib -DincludeScope=runtime
+else
+  java -cp "target/lib/*" "$1"
+
+  if [[ $? != 0 ]]; then
+    echo
+    echo
+    echo "Try running: $(basename "$0") init"
+  fi
+fi
