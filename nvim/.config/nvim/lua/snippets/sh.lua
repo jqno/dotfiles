@@ -2,9 +2,9 @@ local ls = require('luasnip')
 local parse = ls.parser.parse_snippet
 
 return {
-    parse({ trig = 'shebang', dscr = 'Shebang' },
+    parse({ trig = 'start', dscr = 'Shebang' },
         [[
-        #!/usr/bin/env sh
+        #!/usr/bin/env bash
 
 
         ]]),
@@ -20,6 +20,20 @@ return {
         set -euo pipefail
 
         ]]),
+    
+    parse({ trig = 'ifnoterror', dscr = 'If previous command succeeded' },
+        [==[
+        if [[ $? == 0 ]]; then
+            $0
+        fi
+        ]==]),
+    
+    parse({ trig = 'iferror', dscr = 'If previous command errored' },
+        [==[
+        if [[ $? != 0 ]]; then
+            $0
+        fi
+        ]==]),
 
     parse({ trig = 'ifempty', dscr = 'If string is empty' },
         [==[
