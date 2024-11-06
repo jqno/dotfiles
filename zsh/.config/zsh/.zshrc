@@ -15,6 +15,7 @@ load $h/aliases.sh
 # Must load hotkeys like this or zsh-vi-mode plugin will override them
 function zvm_after_init() {
   load $h/hotkeys.sh
+  eval "$(fzf --zsh)"
 }
 
 # Load config from private/work dotfiles

@@ -9,9 +9,6 @@ eval "$(starship init zsh)"
 # Mise-en-place
 eval "$($(brew --prefix)/bin/mise activate zsh)"
 
-# FZF
-eval "$(fzf --zsh)"
-
 # ZInit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
