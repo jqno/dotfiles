@@ -73,7 +73,7 @@ else
     fi
 
     # Sever the link with the remote branch, so we don't accidentally push something to it
-    git branch --unset-upstream
+    git branch --unset-upstream "review/$pr_branch"
 
     # Find the point where the PR split off from main
     mergebase=$(git merge-base "$main_branch" "review/$pr_branch")
