@@ -22,7 +22,7 @@
   "nvim-cmp": { "branch": "main", "commit": "31a2939e55a89028937a530ba19e444cdbc11f36" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
   "nvim-dap": { "branch": "master", "commit": "9d81c11fd185a131f81841e64941859305f6c42d" },
-  "nvim-jdtls": { "branch": "master", "commit": "99e4b2081de1d9162666cc7b563cbeb01c26b66b" },
+  "nvim-jdtls": { "branch": "master", "commit": "e129398e171e87c0d9e94dd5bea7eb4730473ffc" },
   "nvim-lint": { "branch": "master", "commit": "2cf9ad095130755d7d87f1730bcf33c91ee822e4" },
   "nvim-lspconfig": { "branch": "master", "commit": "dd329912c8d446240584a2dbcd3802af3a19105a" },
   "nvim-metals": { "branch": "main", "commit": "c2aed7519b93f4151b6dbb2378793c00096e1aa1" },
