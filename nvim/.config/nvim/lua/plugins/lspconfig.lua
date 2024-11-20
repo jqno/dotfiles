@@ -42,7 +42,8 @@ local lsp_server_configs = {
             Lua = {
                 runtime = { version = 'LuaJIT' },
                 diagnostics = { globals = { 'vim', 'require' } },
-                telemetry = { enable = false }
+                telemetry = { enable = false },
+                hint = { enable = true }
             }
         }
     },
