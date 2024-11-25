@@ -228,6 +228,7 @@ local function define_mappings()
     map(modes.n, '<leader>xl', require('util.linkify').linkify, { desc = 'linkify', silent = true })
     map(modes.n, '<leader>xn', require('util.show-full-path').show_full_path,
         { desc = 'show full path', silent = true })
+    map(modes.n, '<leader>xo', '<cmd>OutputPanel<CR>', { desc = 'shows logging for LSP server', silent = true })
     map(modes.n, '<leader>xs', require('plugins.luasnip').reload, { desc = 'reload snippets', silent = true })
     map(modes.n, '<leader>xu', 'a<C-R>=v:lua.require("util.uuid").generate()<CR><Esc>', { desc = 'insert a random uuid' })
     map(modes.n, '<leader>x<CR>', vim.lsp.codelens.run, { desc = 'run codelens' })

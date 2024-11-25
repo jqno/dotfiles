@@ -32,6 +32,7 @@ function This.close_everything()
     require('dap').repl.close()
 
     close_windows_matching({ ft = 'help' })
+    close_windows_matching({ ft = 'outputpanel' })
     close_windows_matching({ name = 'gen.nvim' })
 end
 
