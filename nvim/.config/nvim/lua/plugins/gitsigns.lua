@@ -23,6 +23,7 @@ return {
             end, { buffer = bufnr, expr = true, desc = 'go to previous git hunk' })
 
             map(modes.n, '<leader>hs', require('gitsigns').stage_hunk, { buffer = bufnr, desc = 'git stage hunk' })
+            map(modes.n, '<leader>hS', require('gitsigns').stage_buffer, { buffer = bufnr, desc = 'git stage buffer' })
             map(modes.n, '<leader>hu', require('gitsigns').undo_stage_hunk,
                 { buffer = bufnr, desc = 'git undo stage hunk' })
             map(modes.n, '<leader>hr', require('gitsigns').reset_hunk, { buffer = bufnr, desc = 'git reset hunk' })
