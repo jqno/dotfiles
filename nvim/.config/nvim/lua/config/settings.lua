@@ -68,21 +68,24 @@ function This.setup()
         end
     })
 
+    local diag = require('util.icons')
     vim.diagnostic.config({
         virtual_text = false,
         underline = true,
-        signs = true,
+        signs = {
+            text = {
+                [vim.diagnostic.severity.ERROR] = diag.error,
+                [vim.diagnostic.severity.WARN] = diag.warn,
+                [vim.diagnostic.severity.INFO] = diag.info,
+                [vim.diagnostic.severity.HINT] = diag.hint,
+            }
+        },
         float = {
             border = 'rounded',
             source = true
         },
         update_in_insert = false
     })
-    local diag = require('util.icons')
-    vim.fn.sign_define('DiagnosticSignError', { text = diag.error, texthl = 'DiagnosticSignError' })
-    vim.fn.sign_define('DiagnosticSignWarn', { text = diag.warn, texthl = 'DiagnosticSignWarn' })
-    vim.fn.sign_define('DiagnosticSignInfo', { text = diag.info, texthl = 'DiagnosticSignInfo' })
-    vim.fn.sign_define('DiagnosticSignHint', { text = diag.hint, texthl = 'DiagnosticSignHint' })
 end
 
 return This
