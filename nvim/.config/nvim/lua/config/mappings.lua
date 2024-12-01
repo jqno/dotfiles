@@ -19,6 +19,9 @@ local function define_mappings()
     map(modes.n, 'N', 'Nzz')
     map(modes.n, '<C-U>', '<C-U>zz')
     map(modes.n, '<C-D>', '<C-D>zz')
+    -- Switch yanking behaviour when pasting in visual mode
+    map(modes.v, 'p', 'P', { noremap = true })
+    map(modes.v, 'P', 'p', { noremap = true })
     -- Keep the selection after re-indenting
     map(modes.v, '<', '<gv')
     map(modes.v, '>', '>gv')
