@@ -7,7 +7,7 @@ local function close_windows_matching(condition)
 
         local close =
             (condition.ft ~= nil and
-                condition.ft == vim.api.nvim_buf_get_option(buf, 'filetype')
+                condition.ft == vim.api.nvim_get_option_value('filetype', { buf = buf })
             )
             or
             (condition.name ~= nil and
