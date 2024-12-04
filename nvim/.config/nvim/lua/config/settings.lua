@@ -9,6 +9,8 @@ function This.setup()
 
     vim.g.mapleader = ' '
 
+    vim.opt.cursorline = true
+    vim.opt.cursorlineopt = 'number'
     vim.opt.expandtab = true
     vim.opt.exrc = true
     vim.opt.ignorecase = true
@@ -24,7 +26,6 @@ function This.setup()
         nbsp = '·'
     }
     vim.opt.number = true
-    vim.opt.relativenumber = true
     vim.opt.scrolloff = 3
     vim.opt.shiftround = true
     vim.opt.shiftwidth = default_indent
