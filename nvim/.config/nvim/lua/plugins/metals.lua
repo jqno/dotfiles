@@ -15,10 +15,7 @@ local function metals_config(capabilities)
             typeParameters = { enable = false }
         }
     }
-    cfg.on_attach = function(_, bufnr)
-        require('metals').setup_dap()
-        require('config.mappings').setup_dap(bufnr)
-
+    cfg.on_attach = function()
         vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
             group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
             buffer = 0,

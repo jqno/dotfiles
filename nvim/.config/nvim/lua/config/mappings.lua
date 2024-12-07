@@ -200,19 +200,6 @@ local function define_mappings()
     map(modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'toggle wrap' })
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
-    -- AI --
-    map(modes.n, '<leader>a<Space>', ':Gen<CR>', { desc = 'Open Gen menu' })
-    map(modes.v, '<leader>a<Space>', ':Gen<CR>', { desc = 'Open Gen menu' })
-    map(modes.n, '<leader>a<CR>', ':Gen Chat<CR>', { desc = 'Start a chat' })
-    map(modes.v, '<leader>a<CR>', ':Gen Ask<CR>', { desc = 'Ask about the selection' })
-    map(modes.v, '<leader>ao', ':Gen Optimize code<CR>', { desc = 'Optimize the selected code' })
-    map(modes.v, '<leader>ac', ':Gen Generate doc comment<CR>', { desc = 'Generate a doc comment' })
-    map(modes.v, '<leader>at', ':Gen Generate tests<CR>', { desc = 'Generate tests' })
-
-    map(modes.v, '<leader>ae', ':Gen Explain code<CR>', { desc = 'Explain the selected code' })
-    map(modes.v, '<leader>ar', ':Gen Review code<CR>', { desc = 'Review the selected code' })
-    map(modes.v, '<leader>aR', ':Gen Analyse code readability<CR>', { desc = 'Analyse readability of selected code' })
-
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
     map(modes.n, '<leader>bd', vim.cmd.BufDel, { desc = 'delete current buffer' })
@@ -285,14 +272,6 @@ local function define_mappings()
     map(modes.n, '<leader>mf', require('util.format').save_and_format, { desc = 'format current file' })
 
     -- REFACTORING --
-    map(modes.n, '<leader>ri', function() require('refactoring').refactor('Inline Variable') end,
-        { desc = 'refactor: inline variable' })
-    map(modes.v, '<leader>rm', function() require('refactoring').refactor('Extract Function') end,
-        { desc = 'refactor: extract method' })
-    map(modes.v, '<leader>rv', function() require('refactoring').refactor('Extract Variable') end,
-        { desc = 'refactor: extract variable' })
-    map(modes.n, '<leader>rp', function() require('refactoring').debug.print_var({ show_success_message = true }) end,
-        { desc = 'refactor: extract variable' })
     map(modes.n, '<leader>r<', require('sibling-swap').swap_with_left, { desc = 'Swap sibling left' })
     map(modes.n, '<leader>r>', require('sibling-swap').swap_with_right, { desc = 'Swap sibling right' })
 
@@ -349,24 +328,6 @@ function This.setup_lsp(bufnr)
 
     -- SHOWING THINGS --
     map(modes.n, '<leader>ss', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'show signature help' })
-end
-
-function This.setup_dap(bufnr)
-    -- DEBUG --
-    map(modes.n, '<leader>d<space>', require('dap').repl.toggle, { buffer = bufnr, desc = 'debug: toggle repl' })
-    map(modes.n, '<leader>db', require('dap').toggle_breakpoint, { buffer = bufnr, desc = 'debug: toggle breakpoint' })
-    map(modes.n, '<leader>di', require('dap').step_into, { buffer = bufnr, desc = 'debug: step into' })
-    map(modes.n, '<leader>dl', require('dap').run_last, { buffer = bufnr, desc = 'debug: run last' })
-    map(modes.n, '<leader>do', require('dap').step_over, { buffer = bufnr, desc = 'debug: step over' })
-    map(modes.n, '<leader>dr', function()
-        require('dap').repl.toggle()
-        require('dap').continue()
-    end, { buffer = bufnr, desc = 'debug: run/continue' })
-    map(modes.n, '<leader>dx', require('dap').step_out, { buffer = bufnr, desc = 'debug: step out' })
-
-    -- SHOWING THINGS --
-    map(modes.n, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
-    map(modes.v, '<leader>sv', require('dap.ui.widgets').hover, { buffer = bufnr, desc = 'debug: show value' })
 end
 
 function This.setup()

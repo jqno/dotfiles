@@ -29,11 +29,8 @@ function This.close_everything()
     vim.cmd.UndotreeHide()
     vim.cmd.OutlineClose()
 
-    require('dap').repl.close()
-
     close_windows_matching({ ft = 'help' })
     close_windows_matching({ ft = 'outputpanel' })
-    close_windows_matching({ name = 'gen.nvim' })
 end
 
 return This
