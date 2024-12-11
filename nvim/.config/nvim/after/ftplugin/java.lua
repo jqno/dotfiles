@@ -39,16 +39,3 @@ map(modes.n, '<leader>mp', function() floaterm.send('mvnd clean package -DskipTe
 map(modes.n, '<leader>mv', function() floaterm.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
 
 map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
-
-vim.api.nvim_create_augroup('LspAttachJava', { clear = true })
-vim.api.nvim_create_autocmd('LspAttach', {
-    group = 'LspAttachJava',
-    buffer = 0,
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        if client ~= nil and client.name == 'jdtls' then
-            client.server_capabilities.documentFormattingProvider = false
-        end
-    end
-})

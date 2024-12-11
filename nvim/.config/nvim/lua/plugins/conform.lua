@@ -16,10 +16,8 @@ local This = {
     event = 'UIEnter',
 
     config = function()
-        local npm_root = vim.fn.system('npm root -g'):gsub('%s+$', '')
         require('conform').setup({
             formatters_by_ft = {
-                java = { 'prettier_java' },
                 json = { 'jq' },
                 markdown = { 'prettier' },
                 sh = { 'shellharden' },
@@ -27,12 +25,6 @@ local This = {
                 ['_'] = { 'trim_whitespace' }
             },
             formatters = {
-                prettier_java = {
-                    command = 'prettier',
-                    args = { '--stdin-filepath',
-                        '--plugin=' .. npm_root .. '/prettier-plugin-java/dist/index.js',
-                        '$FILENAME' }
-                },
                 configured_sql_formatter = {
                     command = 'sql-formatter',
                     args = { '--config', vim.env.HOME .. '/.sql-formatter.json', '$FILENAME' }

@@ -36,7 +36,6 @@ local function jdtls_config(capabilities)
                     }
                 },
                 use_lombok_agent = true,
-                format = { enabled = false },
                 signatureHelp = { enabled = true },
                 sources = {
                     organizeImports = {
