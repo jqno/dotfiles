@@ -5,7 +5,6 @@ local floaterm = require('plugins.floaterm')
 
 vim.opt_local.formatoptions:remove('o')
 vim.opt_local.commentstring = '// %s'
-require('util.indent').set_buf_indent(4, false)
 
 map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = 'go to super implementation' })
 

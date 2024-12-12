@@ -3,7 +3,6 @@ local modes = require('util.modes')
 local floaterm = require('plugins.floaterm')
 
 vim.opt_local.formatoptions:remove('o')
-require('util.indent').set_buf_indent(2, false)
 
 map(modes.n, '<leader>m<space>',
     function() require('plugins.floaterm').send('scala ' .. vim.fn.expand('%:p') .. '') end,
