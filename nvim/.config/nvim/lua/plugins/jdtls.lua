@@ -30,13 +30,17 @@ local function jdtls_config(capabilities)
         },
         settings = {
             java = {
+                format = {
+                    settings = {
+                        url = vim.env.HOME .. '/.config/eclipse-formatter-config.xml'
+                    }
+                },
                 inlayHints = {
                     parameterNames = {
                         enabled = "all"
                     }
                 },
                 use_lombok_agent = true,
-                format = { enabled = false },
                 signatureHelp = { enabled = true },
                 sources = {
                     organizeImports = {
@@ -69,7 +73,7 @@ local function jdtls_config(capabilities)
                         'antlr.collections.List',
                         'org.hibernate.mapping.List'
                     },
-                    importOrder = { 'com', 'info', 'io', 'jakarta', 'net', 'nl', 'org', 'javax', 'java' }
+                    importOrder = { '\\#', 'java', '' }
                 }
             }
         }
