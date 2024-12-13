@@ -26,6 +26,7 @@ local lsp_server_configs = {
         filetypes = { 'markdown', 'text' }
     },
     lemminx = {
+        filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg', 'xml.pom' },
         settings = {
             xml = {
                 fileAssociations = {
