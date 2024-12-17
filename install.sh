@@ -35,6 +35,9 @@ stow zsh
 mkdir -p "$HOME"/scripts
 stow scripts
 
+sudo mkdir -p /etc/keyd
+sudo ln -s "$PWD"/keyd/default.conf /etc/keyd/default.conf
+
 # Running configuration scripts
 echo "*** Running configuration scripts..."
 "$PWD/configure/git.sh"

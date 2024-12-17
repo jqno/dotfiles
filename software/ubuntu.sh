@@ -7,12 +7,14 @@ echo "*** Installing dependencies..."
 
 sudo add-apt-repository universe -y
 sudo add-apt-repository ppa:agornostal/ulauncher -y
+sudo add-apt-repository ppa:keyd-team/ppa -y
 sudo apt update
 
 # System tools
 sudo apt-get install -y build-essential
 sudo apt-get install -y cifs-utils
 sudo apt-get install -y dropbox-nautilus
+sudo apt-get install -y keyd
 sudo apt-get install -y libfuse2
 sudo apt-get install -y openjdk-21-jdk
 sudo apt-get install -y openjdk-21-source
