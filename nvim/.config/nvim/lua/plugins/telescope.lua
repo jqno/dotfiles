@@ -8,8 +8,8 @@ return {
             'danielfalk/smart-open.nvim',
             dependencies = {
                 'kkharji/sqlite.lua',
-                'nvim-telescope/telescope-fzy-native.nvim',
-            },
+                { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+            }
         }
     },
     cmd = 'Telescope',
@@ -128,9 +128,12 @@ return {
                 }
             },
             extensions = {
+                fzf = {},
                 ['ui-select'] = { require('telescope.themes').get_dropdown() },
                 smart_open = { show_scores = true }
             }
         })
+
+        telescope.load_extension('fzf')
     end
 }
