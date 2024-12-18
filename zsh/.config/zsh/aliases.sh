@@ -39,7 +39,11 @@ alias github='gh browse'
 # Java
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 setjdk() {
-  mise use --env local "java@$1"
+  if [[ "$1" == "8" ]]; then
+    mise use --env local "java@adoptopenjdk-8.0"
+  else
+    mise use --env local "java@$1"
+  fi
 }
 
 jkill() {
