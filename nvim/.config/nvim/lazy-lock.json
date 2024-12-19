@@ -43,7 +43,6 @@
   "smart-splits.nvim": { "branch": "master", "commit": "38ccf53f90274b8a67072c283d61646fdcbb862b" },
   "smear-cursor.nvim": { "branch": "main", "commit": "a5b840881fc132a88facbfbdee0b1b34df61eaed" },
   "sqlite.lua": { "branch": "master", "commit": "d0ffd703b56d090d213b497ed4eb840495f14a11" },
-  "swap-split.nvim": { "branch": "main", "commit": "d2c705d279b384a6b47a67f85a6dc8569c4d775d" },
   "tagalong.vim": { "branch": "main", "commit": "5a2bbf2b1d5b657685a49d48d98a4aa921c1fde3" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
@@ -57,5 +56,6 @@
   "vim-test": { "branch": "master", "commit": "8872ec0f788af934386b2aef0cd28a5c2b923146" },
   "which-key.nvim": { "branch": "main", "commit": "9b365a6428a9633e3eeb34dbef1b791511c54f70" },
   "wildfire.nvim": { "branch": "master", "commit": "1729faca1c6ae34520a6e531983a3737d3654ee1" },
+  "winshift.nvim": { "branch": "main", "commit": "37468ed6f385dfb50402368669766504c0e15583" },
   "zen-mode.nvim": { "branch": "main", "commit": "29b292bdc58b76a6c8f294c961a8bf92c5a6ebd6" }
 }

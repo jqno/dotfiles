@@ -286,7 +286,7 @@ local function define_mappings()
     map(modes.n, '<leader>w=', function() vim.cmd.wincmd('=') end, { desc = 'equalize windows' })
     map(modes.n, '<leader>w0', function() vim.cmd.wincmd('r') end, { desc = 'rotate windows' })
     map(modes.n, '<leader>wk', function() vim.cmd.wincmd('w') end, { desc = 'move into floating window' })
-    map(modes.n, '<leader>ww', vim.cmd.SwapSplit, { desc = 'swap windows' })
+    map(modes.n, '<leader>ww', function() vim.cmd.WinShift('swap') end, { desc = 'swap windows' })
     map(modes.n, '<leader>wz', require('util.toggle-zoom').toggle_zoom, { desc = 'toggle zoom mode' })
     map(modes.n, '<leader>wZ', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
