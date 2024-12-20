@@ -60,8 +60,8 @@ local function jdtls_config(capabilities)
                         'io.restassured.RestAssured.*',
                         'java.util.Objects.requireNonNull',
                         'java.util.Objects.requireNonNullElse',
-                        'org.hamcrest.CoreMatchers.*',
-                        'org.hamcrest.Matchers.*',
+                        'org.assertj.core.api.Assertions.*',
+                        'org.assertj.core.api.SoftAssertions.*',
                         'org.junit.jupiter.api.Assertions.*',
                         'org.mockito.Mockito.*'
                     },
