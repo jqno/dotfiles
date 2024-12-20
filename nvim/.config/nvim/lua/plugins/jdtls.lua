@@ -40,6 +40,7 @@ local function jdtls_config(capabilities)
                         enabled = "all"
                     }
                 },
+                implementationCodeLens = "all",
                 use_lombok_agent = true,
                 signatureHelp = { enabled = true },
                 sources = {

@@ -15,15 +15,6 @@ local function metals_config(capabilities)
             typeParameters = { enable = false }
         }
     }
-    cfg.on_attach = function()
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-            group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
-            buffer = 0,
-            callback = function()
-                vim.lsp.codelens.refresh()
-            end
-        })
-    end
     return cfg
 end
 

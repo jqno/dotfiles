@@ -18,3 +18,11 @@ map(modes.n, '<leader>mv', function() floaterm.send('sbt compile scalafmtCheckAl
     { buffer = true, desc = 'sbt verify' })
 map(modes.n, '<leader>mCv', function() floaterm.send('sbt clean compile scalafmtCheckAll test') end,
     { buffer = true, desc = 'sbt verify' })
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
+    buffer = 0,
+    callback = function()
+        vim.lsp.codelens.refresh()
+    end
+})
