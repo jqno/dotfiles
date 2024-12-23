@@ -2,7 +2,7 @@
 
 # Check if we're in a Git repo
 if ! git rev-parse --is-inside-work-tree &>/dev/null; then
-    echo "Not in a git repository"
+    echo "❌ Not in a git repository"
     exit 1
 fi
 
@@ -13,13 +13,14 @@ if [[ -z "$1" ]]; then
 fi
 
 if [[ "$1" == "done" ]]; then
+    # We were reviewing; now we're done and we want to go back to where we were
 
     # Determine name of current branch
     current_branch=$(git rev-parse --abbrev-ref HEAD)
 
     # Check if we're on a review branch
     if ! [[ $current_branch =~ ^review/ ]]; then
-        echo "This is not a review branch"
+        echo "❌ This is not a review branch"
         exit 1
     fi
 
@@ -33,21 +34,22 @@ if [[ "$1" == "done" ]]; then
     # Remove review branch
     git branch -D "$current_branch" > /dev/null 2>&1
 
-    echo "Done reviewing $current_branch"
+    echo "✅ Done reviewing $current_branch"
 
 else
+    # We want to start a review session
 
     pr_number=$1
 
     # Check if there's changes
     if git status --porcelain | grep -q '^'; then
-        echo "There are changes or untracked files in the repository"
+        echo "❌ There are changes or untracked files in the repository"
         exit 1
     fi
 
     # Check if the GitHub CLI command is available
     if ! command -v gh > /dev/null 2>&1; then
-        echo "GitHub CLI not available"
+        echo "❌ GitHub CLI not available"
         exit 1
     fi
 
@@ -65,7 +67,7 @@ else
 
     # Fail if the branch doesn't exist
     if [[ $? != 0 ]]; then
-        echo "Branch doesn't exist (was the PR already merged?)"
+        echo "❌ Branch doesn't exist (was the PR already merged?)"
         exit 1
     fi
 
@@ -80,12 +82,12 @@ else
 
     # Check if this all worked correctly
     if [[ -z "$mergebase" ]]; then
-        echo "Could not determine a mergebase for branch $pr_branch"
+        echo "❌ Could not determine a mergebase for branch $pr_branch"
         exit 1
     fi
 
     # Reset the changes made in the PR so we can look at them in our editor
     git reset --mixed "$mergebase" > /dev/null
 
-    echo "Ready to review PR $pr_number from branch $pr_branch"
+    echo "🚀 Ready to review PR $pr_number from branch $pr_branch"
 fi
