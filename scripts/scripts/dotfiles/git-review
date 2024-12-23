@@ -12,9 +12,6 @@ if [[ -z "$1" ]]; then
     exit 1
 fi
 
-# Determine name of main/master branch
-main_branch=$(git rev-parse --abbrev-ref origin/HEAD)
-
 if [[ "$1" == "done" ]]; then
 
     # Determine name of current branch
@@ -28,10 +25,10 @@ if [[ "$1" == "done" ]]; then
 
     # Clean up the branch
     git reset --hard > /dev/null 2>&1
-    git clean -fd
+    git clean -fd > /dev/null 2>&1
 
-    # Go back to main (the variable has an 'origin/' prefix; strip that)
-    git checkout "${main_branch#origin/}" > /dev/null 2>&1
+    # Go back to the branch that was active before the review started
+    git checkout - > /dev/null 2>&1
 
     # Remove review branch
     git branch -D "$current_branch" > /dev/null 2>&1
@@ -74,6 +71,9 @@ else
 
     # Sever the link with the remote branch, so we don't accidentally push something to it
     git branch --unset-upstream "review/$pr_branch"
+
+    # Determine name of main/master branch
+    main_branch=$(git rev-parse --abbrev-ref origin/HEAD)
 
     # Find the point where the PR split off from main
     mergebase=$(git merge-base "$main_branch" "review/$pr_branch")
