@@ -28,7 +28,7 @@ git config --global alias.cpick cherry-pick
 git config --global alias.empty "commit --allow-empty -m \"Trigger notification\""
 git config --global alias.flush "clean -fd"
 git config --global alias.flush-all "clean -fdx"
-git config --global alias.l10 "!git --no-pager log -10 --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%an, %cr)%Creset' --abbrev-commit --date=relative && echo"
+git config --global alias.l10 "!git --no-pager log -10 --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%an) %Cblue(%cr)%Creset' --abbrev-commit --date=relative && echo"
 git config --global alias.mail "config user.email"
 git config --global alias.main '!f() { if git show-ref --quiet refs/heads/main; then branch="main"; else branch="master"; fi; git stash && git checkout $branch && git pull && git remote prune origin && git stash pop; }; f'
 git config --global alias.showstash "stash show -p"

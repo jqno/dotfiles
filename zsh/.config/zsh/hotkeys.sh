@@ -47,7 +47,7 @@ bindkey "\C-p" select_project
 # FZF Git branches
 ###
 function select_branch() {
-  local branch=$(git branch -a --list --format "%(refname:lstrip=2)" | fzf)
+  local branch=$(git branch -a --sort=-committerdate --list --format "%(refname:lstrip=2)" | fzf)
 
   if [[ -n "$branch" ]];
   then
