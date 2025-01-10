@@ -19,9 +19,10 @@ function zvm_after_init() {
 }
 
 # Load config from private/work dotfiles
-for dir in "$HOME"/env/*; do
-  if [[ -d "$dir" ]]; then
-    load "$dir"/env.sh
-  fi
-done
-
+if [[ -d "$HOME"/env ]]; then
+  for dir in "$HOME"/env/*; do
+    if [[ -d "$dir" ]]; then
+      load "$dir"/env.sh
+    fi
+  done
+fi
