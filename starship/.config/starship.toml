@@ -2,7 +2,9 @@
 
 format = """
 [╭─](fg:#777777)\
-[](fg:#dedede)\
+[](fg:#777777)\
+$hostname\
+[](fg:#dedede bg:#777777)\
 $directory\
 [](fg:#dedede bg:#70b433)\
 $git_branch${custom.git_assumed}$git_state$git_status$git_commit\
@@ -15,6 +17,14 @@ ${custom.git_mail}
 [╰─](fg:#777777)\
 $character
 """
+
+# ---
+
+[hostname]
+ssh_only = true
+ssh_symbol = '🔑 '
+format = '[$ssh_symbol]($style)'
+style = 'fg:#dedede bg:#777777'
 
 # ---
 
