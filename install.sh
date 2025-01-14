@@ -2,16 +2,23 @@
 
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
-
-read -r -p "*** Do you want to install software? Press ! if you do. " -n 1;
+# Dev software
+read -r -p "*** Do you want to install dev software? Press ! if you do. " -n 1;
 echo ""
-
 if [[ $REPLY =~ ^[!]$ ]]; then
   source "$PWD/software/install.sh"
 else
-  echo "** Skipping installation of third-party software..."
+  echo "** Skipping installation of dev software..."
 fi
 
+# Desktop software
+read -r -p "*** Do you want to install desktop software? Press $ if you do. " -n 1;
+echo ""
+if [[ $REPLY =~ ^[$]$ ]]; then
+  source "$PWD/software/desktop.sh"
+else
+  echo "** Skipping installation of desktop software..."
+fi
 
 # Stowing dotfiles
 echo "*** Stowing dotfiles..."
