@@ -5,7 +5,9 @@ vim/.vim/autoload
 vim/.vim/plugged
 vim/.vim/view
 vim/.vim/.netrwhist
-kitty/pass_keys.py
-kitty/neighboring_window.py
+kitty/**/pass_keys.py
+kitty/**/neighboring_window.py
+kitty/**/relative_resize.py
+kitty/**/split_window.py
 __pycache__
 btop.log
