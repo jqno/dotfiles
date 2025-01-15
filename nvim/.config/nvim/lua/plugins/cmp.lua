@@ -57,6 +57,8 @@ return {
             mapping = {
                 ['<Tab>'] = cmp.mapping(tab_complete, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(s_tab_complete, { 'i', 's' }),
+                ['<Down>'] = cmp.mapping.select_next_item(),
+                ['<Up>'] = cmp.mapping.select_prev_item(),
                 ['<Esc>'] = cmp.mapping.close(),
                 ['<CR>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-D>'] = cmp.mapping.scroll_docs(4),
