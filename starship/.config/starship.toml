@@ -1,8 +1,8 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[╭─](fg:#777777)\
-[](fg:#777777)\
+[╭─](fg:#777777 bg:none)\
+[](fg:#777777 bg:none)\
 $hostname\
 [](fg:#dedede bg:#777777)\
 $directory\
@@ -12,9 +12,9 @@ $git_branch${custom.git_assumed}$git_state$git_status$git_commit\
 $java$nix_shell\
 [](fg:#368aeb bg:#3b3b3b)\
 $cmd_duration$status$jobs\
-[](fg:#3b3b3b)\
+[](fg:#3b3b3b bg:none)\
 ${custom.git_mail}
-[╰─](fg:#777777)\
+[╰─](fg:#777777 bg:none)\
 $character
 """
 
