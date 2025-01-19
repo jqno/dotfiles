@@ -32,6 +32,9 @@ return {
         }
         ]]),
 
+    parse({ trig = 'importassertj', dscr = 'import AssertJ' },
+        [[import static org.assertj.core.api.Assertions.assertThat;]]),
+
     parse({ trig = 'sout', dscr = 'Print to System.out' },
         [[System.out.println($1);$0]]),
 
