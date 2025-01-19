@@ -1,22 +1,25 @@
 local This = {}
 
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 function This.setup()
     -- Lead multi space
-    local leadmultispace = vim.api.nvim_create_augroup('lead_multi_space', { clear = true })
-    vim.api.nvim_create_autocmd('OptionSet', {
+    local leadmultispace = augroup('lead_multi_space', { clear = true })
+    autocmd('OptionSet', {
         group = leadmultispace,
         pattern = { 'listchars', 'tabstop', 'filetype' },
         callback = require('util.indent').set_leadmultispace
     })
-    vim.api.nvim_create_autocmd('VimEnter', {
+    autocmd('VimEnter', {
         group = leadmultispace,
         callback = require('util.indent').set_leadmultispace,
         once = true
     })
 
     -- Highlight on yank
-    vim.api.nvim_create_autocmd('TextYankPost', {
-        group = vim.api.nvim_create_augroup('highlight_on_yank', { clear = true }),
+    autocmd('TextYankPost', {
+        group = augroup('highlight_on_yank', { clear = true }),
         pattern = '*',
         callback = function()
             vim.highlight.on_yank {
@@ -25,6 +28,26 @@ function This.setup()
                 on_visual = true
             }
         end
+    })
+
+    -- Window automations
+    local window_automations = augroup('window_automations', { clear = true })
+    -- Auto-resize splits when terminal window resizes
+    autocmd("VimResized", {
+        group = window_automations,
+        command = "wincmd =",
+    })
+    -- Open help on the right
+    autocmd("FileType", {
+        group = window_automations,
+        pattern = "help",
+        command = "wincmd L",
+    })
+
+    -- Clear search
+    autocmd({ "InsertEnter", "CmdlineEnter" }, {
+        group = augroup('clear_search_when_entering_insert_mode', { clear = true }),
+        callback = vim.schedule_wrap(function() vim.cmd.nohlsearch() end),
     })
 end
 
