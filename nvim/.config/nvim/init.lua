@@ -1,4 +1,5 @@
 require('config.settings').setup()
+require('config.autocmds').setup()
 require('config.lazy').setup()
 require('config.mappings').setup()
 require('config.commands').setup()
