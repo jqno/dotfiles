@@ -122,9 +122,11 @@ local function define_mappings()
     map(modes.n, ']<space>', '<cmd>Grapple cycle_forward<CR>', { desc = 'go to next Grapple file' })
 
     -- NAVIGATION --
-    map(modes.n, '<leader><leader><leader>', '<cmd>Grapple toggle_tags<CR>', { desc = 'open Grapple menu' })
-    map(modes.n, '<leader><leader><CR>', function() require('util.alternate').open_alternate() end,
+    map(modes.n, '<leader><leader><Space>', '<cmd>Grapple toggle_tags<CR>', { desc = 'open Grapple menu' })
+    map(modes.n, '<leader><leader><BS>', function() require('util.alternate').open_alternate() end,
         { desc = 'open alternate here' })
+    map(modes.n, '<leader><leader><CR>', floaterm.toggle, { desc = 'open terminal' })
+    map(modes.n, '<leader><leader><Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
     map(modes.n, '<leader><leader>1', '<cmd>Grapple select index=1<CR>', { desc = 'navigate to Grapple file #1' })
     map(modes.n, '<leader><leader>2', '<cmd>Grapple select index=2<CR>', { desc = 'navigate to Grapple file #2' })
     map(modes.n, '<leader><leader>3', '<cmd>Grapple select index=3<CR>', { desc = 'navigate to Grapple file #3' })
@@ -293,6 +295,7 @@ local function define_mappings()
     map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('plugins.floaterm').toggle()<CR>]])
     map(modes.n, '<C-CR>', floaterm.toggle)
     map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
+    map(modes.t, '<C-]>', vim.cmd.FloatermHide)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')
     map(modes.t, '<C-H>', '<C-\\><C-N><C-W>h')
     map(modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
