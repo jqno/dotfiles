@@ -46,6 +46,8 @@ local function define_mappings()
     -- Copy to system clipboard
     map(modes.n, 'Y', '"+y')
     map(modes.v, 'Y', '"+y')
+    -- Remove search highlights
+    map(modes.n, '<Esc>', function() vim.cmd.nohlsearch() end)
 
     -- VARIOUS MAPPINGS --
     -- Comment lines
