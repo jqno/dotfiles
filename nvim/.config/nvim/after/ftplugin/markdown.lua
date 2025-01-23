@@ -2,6 +2,7 @@ local map = vim.keymap.set
 local modes = require('util.modes')
 
 vim.opt_local.wrap = true
+vim.opt_local.commentstring = '<!-- %s -->'
 
 require('util.autolist').setup()
 
