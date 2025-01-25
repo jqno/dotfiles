@@ -27,7 +27,7 @@ bindkey '^[[32;2u' insert_space # Shift-Space
 # FZF projects
 ###
 function select_project() {
-  local project=$(find ~/w ~/Dropbox/notes -maxdepth 2 -type d | sort --reverse | fzf)
+  local project=$(find ~/w ~/Dropbox/notes -maxdepth 2 -type d 2> /dev/null | sort --reverse | fzf)
 
   if [[ -n "$project" ]];
   then
