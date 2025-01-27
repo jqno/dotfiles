@@ -5,8 +5,8 @@ cmd="python3 -m http.server"
 pid=$(pgrep -f "$cmd")
 if [[ "$1" == "start" ]]; then
   if [[ "$pid" == "" ]]; then
-    eval "$cmd $port" > /dev/null 2>&1 &
-    echo "🚀 HTTP server started on port $port"
+    eval "timeout 1h $cmd $port" > /dev/null 2>&1 &
+    echo "🚀 HTTP server started on port $port; will run for 1 hour"
   else
     echo "❌ HTTP server was already running!"
     exit 1
