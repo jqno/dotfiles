@@ -19,6 +19,7 @@ return {
             { '<leader>f', icon = '', desc = 'Find' },
             { '<leader>g', icon = '', desc = 'Go' },
             { '<leader>h', icon = '', desc = 'History' },
+            { '<leader>l', icon = '', desc = 'Lenses' },
             { '<leader>m', icon = '󰡢', desc = 'Make' },
             { '<leader>r', icon = '󰖷', desc = 'Refactor' },
             { '<leader>s', icon = '󰊪', desc = 'Show' },
