@@ -38,3 +38,10 @@ map(modes.n, '<leader>mp', function() floaterm.send('mvnd clean package -DskipTe
 map(modes.n, '<leader>mv', function() floaterm.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
 
 map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
+
+
+-- var keyword: Treesitter matches correctly as @type.builtin.java,
+-- but LSP matches incorrectly as a regular type. LSP has higher priority
+-- so Treesitter's match is overruled. This attempts to fix that (badly)
+-- by matching a regex and give it an even higher priority.
+vim.fn.matchadd("@keyword", "\\<var\\>", 150)
