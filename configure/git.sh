@@ -19,7 +19,7 @@ git config --global core.pager delta
 git config --global interactive.diffFilter "delta --color-only"
 git config --global delta.navigate true
 git config --global merge.conflictstyle zdiff3
-git config --global diff.colorMoved default
+git config --global diff.colorMoved plain
 
 git config --global alias.amend "commit --amend"
 git config --global alias.ci "commit -v"
