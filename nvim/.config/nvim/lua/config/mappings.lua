@@ -78,6 +78,9 @@ local function define_mappings()
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
     map(modes.t, '<C-Esc>', vim.cmd.FloatermHide, { desc = 'Close everything' })
 
+    -- Expand %% to the directory of the currently open file
+    map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
+
     -- Snippets and jumps --
     map(modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]]
@@ -104,8 +107,6 @@ local function define_mappings()
     map(modes.s, '<C-K>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
         { expr = true, replace_keycodes = false })
-    -- Expand %% to the directory of the currently open file
-    map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
     -- UNIMPAIRED --
     map(modes.n, '[b', vim.cmd.bprevious, { desc = 'go to previous buffer' })
