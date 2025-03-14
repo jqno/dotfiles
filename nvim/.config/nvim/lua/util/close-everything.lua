@@ -31,6 +31,7 @@ function This.close_everything()
 
     close_windows_matching({ ft = 'help' })
     close_windows_matching({ ft = 'outputpanel' })
+    close_windows_matching({ name = 'copilot://' })
 end
 
 return This

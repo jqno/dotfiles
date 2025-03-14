@@ -83,26 +83,26 @@ local function define_mappings()
 
     -- Snippets and jumps --
     map(modes.i, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]]
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : v:lua.require("copilot.suggestion").is_visible() ? '<cmd>lua require("copilot.suggestion").accept_line()<CR>' : JqnoAutocloseSmartJump()]]
         ,
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
         { expr = true, replace_keycodes = false })
     map(modes.i, '<C-H>',
-        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
+        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<cmd>lua require("copilot.suggestion").dismiss()<CR>']],
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-H>',
         [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
         { expr = true, replace_keycodes = false })
     map(modes.i, '<C-J>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<cmd>lua require("copilot.suggestion").next()<CR>']],
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-J>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
         { expr = true, replace_keycodes = false })
     map(modes.i, '<C-K>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
+        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<cmd>lua require("copilot.suggestion").prev()<CR>']],
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-K>',
         [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
