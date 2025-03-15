@@ -81,7 +81,7 @@ local function define_mappings()
     -- Expand %% to the directory of the currently open file
     map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
-    -- Snippets and jumps --
+    -- Snippets, jumps and AI suggestions --
     map(modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : v:lua.require("copilot.suggestion").is_visible() ? '<cmd>lua require("copilot.suggestion").accept_line()<CR>' : JqnoAutocloseSmartJump()]]
         ,
@@ -204,6 +204,11 @@ local function define_mappings()
         { desc = 'toggle typewriter scroll mode' })
     map(modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'toggle wrap' })
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
+
+    -- AI --
+    map({ modes.n, modes.v }, '<leader>aa', '<cmd>CopilotChatOpen<CR>', { desc = 'open Copilot Chat window' })
+    map({ modes.n, modes.v }, '<leader>a<space>', '<cmd>CopilotChatPrompts<CR>',
+        { desc = 'select a built-in Copilot prompt' })
 
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })

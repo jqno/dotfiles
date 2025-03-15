@@ -28,6 +28,7 @@ function This.close_everything()
     vim.cmd.FloatermHide()
     vim.cmd.UndotreeHide()
     vim.cmd.OutlineClose()
+    vim.cmd.CopilotChatClose()
 
     close_windows_matching({ ft = 'help' })
     close_windows_matching({ ft = 'outputpanel' })
