@@ -8,9 +8,17 @@ return {
 
     opts = {
         mappings = {
+            submit_prompt = {
+                normal = '<CR>',
+                insert = '<C-CR>'
+            },
             accept_diff = {
                 normal = '<C-L>',
                 insert = '<C-L>'
+            },
+            reset = {
+                normal = '<C-Q>',
+                insert = '<C-Q>'
             }
         }
     }
