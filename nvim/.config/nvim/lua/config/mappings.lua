@@ -270,7 +270,7 @@ local function define_mappings()
         function() floaterm.send('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
         { desc = 'git blame file' })
     map(modes.n, '<leader>hh',
-        function() floaterm.send('tig ' .. vim.fn.expand('%')) end,
+        function() floaterm.send('tig --follow ' .. vim.fn.expand('%')) end,
         { desc = 'show git file history' })
 
     -- MAKE-ING --
