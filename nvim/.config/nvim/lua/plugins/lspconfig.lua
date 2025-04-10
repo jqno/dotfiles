@@ -23,7 +23,15 @@ local ensure_installed = {
 
 local lsp_server_configs = {
     harper_ls = {
-        filetypes = { 'markdown', 'text' }
+        filetypes = { 'markdown', 'text' },
+        settings = {
+            ['harper-ls'] = {
+                dialect = 'British',
+                linters = {
+                    BoringWords = true
+                }
+            }
+        }
     },
     lemminx = {
         filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg', 'xml.pom' },
