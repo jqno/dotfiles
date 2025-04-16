@@ -23,6 +23,7 @@ return {
         lint.linters_by_ft = {
             dockerfile = { 'hadolint' },
             markdown = { 'markdownlint', 'vale' },
+            python = { 'mypy' },
             ['yaml.github'] = { 'actionlint' }
         }
 

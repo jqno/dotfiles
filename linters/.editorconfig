@@ -9,7 +9,7 @@ tab_width=8
 indent_style=space
 indent_size=2
 
-[*.{html,java,lua,xml}]
+[*.{html,java,lua,py,xml}]
 indent_size=4
 
 [*.go]

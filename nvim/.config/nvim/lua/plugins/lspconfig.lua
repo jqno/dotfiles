@@ -13,6 +13,7 @@ local ensure_installed = {
     'flake8',
     'hadolint',
     'markdownlint',
+    'mypy',
     'shellcheck',
     'vale',
 
