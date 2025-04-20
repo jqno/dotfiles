@@ -7,6 +7,9 @@ return {
     event = 'UIEnter',
 
     opts = {
+        window = {
+            layout = require('util.screen-orientation').get_layout()
+        },
         mappings = {
             submit_prompt = {
                 normal = '<CR>',

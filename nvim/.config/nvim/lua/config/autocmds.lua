@@ -37,12 +37,15 @@ function This.setup()
         group = window_automations,
         command = "wincmd =",
     })
-    -- Open help on the right
-    autocmd("FileType", {
-        group = window_automations,
-        pattern = "help",
-        command = "wincmd L",
-    })
+    -- Open help on the right if in vertical mode
+    local orientation = require('util.screen-orientation')
+    if orientation.get_orientation() == orientation.LANDSCAPE then
+        autocmd("FileType", {
+            group = window_automations,
+            pattern = "help",
+            command = "wincmd L",
+        })
+    end
 
     -- Clear search
     autocmd({ "InsertEnter", "CmdlineEnter" }, {
