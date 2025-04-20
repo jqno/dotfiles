@@ -102,6 +102,7 @@ return {
 
         telescope.setup({
             defaults = {
+                border = false,
                 vimgrep_arguments = {
                     'rg', '--color=never', '--no-heading', '--with-filename',
                     '--line-number', '--column', '--smart-case', '--hidden'

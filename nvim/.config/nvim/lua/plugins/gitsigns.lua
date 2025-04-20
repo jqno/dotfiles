@@ -3,9 +3,6 @@ return {
     event = 'UIEnter',
 
     opts = {
-        preview_config = {
-            border = 'rounded'
-        },
         on_attach = function(bufnr)
             local map = vim.keymap.set
             local modes = require('util.modes')

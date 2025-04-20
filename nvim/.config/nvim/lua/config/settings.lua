@@ -43,6 +43,7 @@ function This.setup()
     vim.opt.undodir = vim.env.HOME .. '/.vim/undodir'
     vim.opt.undofile = true
     vim.opt.updatetime = 300
+    vim.opt.winborder = 'rounded'
     vim.opt.wrap = false
 
     local diag = require('util.icons')
@@ -58,7 +59,6 @@ function This.setup()
             }
         },
         float = {
-            border = 'rounded',
             source = true
         },
         update_in_insert = false
