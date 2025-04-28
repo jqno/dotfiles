@@ -53,6 +53,10 @@ include "%L"
 <Multi_key> <o> <plus> : "♀"
 <Multi_key> <o> <greater> : "♂"
 <Multi_key> <c> <c> <c> <p> : "☭"
+<Multi_key> <minus> <n> : "–"
+<Multi_key> <n> <minus> : "–"
+<Multi_key> <minus> <m> : "—"
+<Multi_key> <m> <minus> : "—"
 
 # Greek
 <Multi_key> <g> <A> : "Α"
