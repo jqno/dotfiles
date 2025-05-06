@@ -34,6 +34,7 @@ git config --global alias.main '!f() { if git show-ref --quiet refs/heads/main; 
 git config --global alias.showstash "stash show -p"
 git config --global alias.sts "status -s"
 git config --global alias.prune-local "!git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -d"
+git config --global alias.prune-local-force "!git branch -vv | awk '/: gone]/{print \$1}' | xargs git branch -D"
 git config --global alias.uncommit "reset HEAD^"
 git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard"
 
