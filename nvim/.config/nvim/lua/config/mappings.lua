@@ -3,7 +3,7 @@ local This = {}
 local map = vim.keymap.set
 local modes = require('util.modes')
 local centered = require('util.centered').centered
-local floaterm = require('plugins.floaterm')
+local terminal = require('util.terminal')
 
 local function define_mappings()
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
@@ -267,10 +267,10 @@ local function define_mappings()
 
     -- GIT --
     map(modes.n, '<leader>hB',
-        function() floaterm.send('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
+        function() terminal.send('tig blame +' .. vim.fn.line('.') .. ' ' .. vim.fn.expand('%')) end,
         { desc = 'git blame file' })
     map(modes.n, '<leader>hh',
-        function() floaterm.send('tig --follow ' .. vim.fn.expand('%')) end,
+        function() terminal.send('tig --follow ' .. vim.fn.expand('%')) end,
         { desc = 'show git file history' })
 
     -- MAKE-ING --
@@ -300,8 +300,8 @@ local function define_mappings()
     map(modes.n, '<leader>wZ', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- TERMINAL --
-    map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('plugins.floaterm').toggle()<CR>]])
-    map(modes.n, '<C-CR>', floaterm.toggle)
+    map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('util.terminal').toggle()<CR>]])
+    map(modes.n, '<C-CR>', terminal.toggle)
     map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
     map(modes.t, '<C-]>', vim.cmd.FloatermHide)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')

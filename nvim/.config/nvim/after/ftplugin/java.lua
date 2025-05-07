@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local modes = require('util.modes')
 local jdtls = require('jdtls')
-local floaterm = require('plugins.floaterm')
+local terminal = require('util.terminal')
 
 vim.opt_local.formatoptions:remove('o')
 vim.opt_local.commentstring = '// %s'
@@ -20,22 +20,22 @@ map(modes.v, '<leader>rv', function() jdtls.extract_variable({ visual = true }) 
 map(modes.n, '<leader>rV', jdtls.extract_variable_all,
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
-map(modes.n, '<leader>m<space>', function() floaterm.send('runjava ' .. vim.fn.expand('%:p') .. '') end,
+map(modes.n, '<leader>m<space>', function() terminal.send('runjava ' .. vim.fn.expand('%:p') .. '') end,
     { buffer = true, desc = 'run Java program' })
 map(modes.n, '<leader>me',
     function()
-        floaterm.send(
+        terminal.send(
             'mvn compile exec:java -Dexec.mainClass="' ..
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
 map(modes.n, '<leader>mr', jdtls.update_project_config, { buffer = true, desc = 'reload build configuration' })
-map(modes.n, '<leader>mcc', function() floaterm.send('mvnd clean test-compile') end,
+map(modes.n, '<leader>mcc', function() terminal.send('mvnd clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
-map(modes.n, '<leader>mcv', function() floaterm.send('mvnd clean verify') end,
+map(modes.n, '<leader>mcv', function() terminal.send('mvnd clean verify') end,
     { buffer = true, desc = 'mvn clean verify' })
-map(modes.n, '<leader>mp', function() floaterm.send('mvnd clean package -DskipTests=true') end,
+map(modes.n, '<leader>mp', function() terminal.send('mvnd clean package -DskipTests=true') end,
     { buffer = true, desc = 'mvn package (no tests)' })
-map(modes.n, '<leader>mv', function() floaterm.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
+map(modes.n, '<leader>mv', function() terminal.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
 
 map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
 

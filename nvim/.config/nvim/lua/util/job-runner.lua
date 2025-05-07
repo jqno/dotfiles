@@ -1,6 +1,6 @@
 local This = {}
 
-local floaterm = require('plugins.floaterm')
+local terminal = require('util.terminal')
 local current_job = nil
 
 function This.set_job()
@@ -18,7 +18,7 @@ function This.run_job()
     if current_job == nil then
         vim.cmd.TestLast()
     else
-        floaterm.send(current_job)
+        terminal.send(current_job)
     end
 end
 
