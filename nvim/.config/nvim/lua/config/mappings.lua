@@ -76,7 +76,7 @@ local function define_mappings()
 
     -- Close everything --
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
-    map(modes.t, '<C-Esc>', vim.cmd.FloatermHide, { desc = 'Close everything' })
+    map(modes.t, '<C-Esc>', vim.cmd.ToggleTerm, { desc = 'Close everything' })
 
     -- Expand %% to the directory of the currently open file
     map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
@@ -302,14 +302,14 @@ local function define_mappings()
     -- TERMINAL --
     map(modes.i, '<C-CR>', [[<Esc><cmd>lua require('util.terminal').toggle()<CR>]])
     map(modes.n, '<C-CR>', terminal.toggle)
-    map(modes.t, '<C-CR>', vim.cmd.FloatermHide)
-    map(modes.t, '<C-]>', vim.cmd.FloatermHide)
+    map(modes.t, '<C-CR>', vim.cmd.ToggleTerm)
+    map(modes.t, '<C-]>', vim.cmd.ToggleTerm)
     map(modes.t, '<S-Esc>', '<C-\\><C-N>')
     map(modes.t, '<C-H>', '<C-\\><C-N><C-W>h')
     map(modes.t, '<C-J>', '<C-\\><C-N><C-W>j')
     map(modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
     map(modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
-    map({ modes.t, modes.i, modes.n }, '<C-\\>', vim.cmd.FloatermToggle, { desc = 'toggle terminal' })
+    map({ modes.t, modes.i, modes.n }, '<C-\\>', vim.cmd.ToggleTerm, { desc = 'toggle terminal' })
 end
 
 function This.setup_lsp(bufnr)
