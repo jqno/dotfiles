@@ -310,6 +310,7 @@ local function define_mappings()
     map(modes.t, '<C-K>', '<C-\\><C-N><C-W>k')
     map(modes.t, '<C-L>', '<C-\\><C-N><C-W>l')
     map({ modes.t, modes.i, modes.n }, '<C-\\>', vim.cmd.ToggleTerm, { desc = 'toggle terminal' })
+    map(modes.t, '<C-Space>', function() terminal.redirect(true) end, { desc = 'toggle terminal location' })
 end
 
 function This.setup_lsp(bufnr)
