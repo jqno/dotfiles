@@ -48,7 +48,6 @@ function This.setup()
 
     local diag = require('util.icons')
     vim.diagnostic.config({
-        virtual_text = false,
         underline = true,
         signs = {
             text = {

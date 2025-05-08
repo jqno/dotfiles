@@ -227,7 +227,6 @@ local function define_mappings()
     map(modes.n, '<leader>xE', [[:%s/\n//g<CR>0]], { desc = 'implode edifact', silent = true })
     map(modes.v, '<leader>xe', [[:s/'/'\r/g<CR>]], { desc = 'expand edifact', silent = true })
     map(modes.v, '<leader>xE', [[:s/\n//g<CR>0]], { desc = 'implode edifact', silent = true })
-    map(modes.n, '<leader>xl', require('util.linkify').linkify, { desc = 'linkify', silent = true })
     map(modes.n, '<leader>xn', require('util.show-full-path').show_full_path,
         { desc = 'show full path', silent = true })
     map(modes.n, '<leader>xo', '<cmd>OutputPanel<CR>', { desc = 'shows logging for LSP server', silent = true })
