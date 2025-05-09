@@ -16,6 +16,10 @@ return {
             },
             files = {
                 formatter = "path.filename_first",
+            },
+            grep = {
+                input_prompt = 'Grep ❯ ',
+                hidden = true
             }
         })
         fzflua.register_ui_select()

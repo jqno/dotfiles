@@ -234,37 +234,24 @@ local function define_mappings()
     map(modes.n, '<leader>xu', 'a<C-R>=v:lua.require("util.uuid").generate()<CR><Esc>', { desc = 'insert a random uuid' })
 
     -- FINDING --
-    map(modes.n, '<leader>fb', function() vim.cmd.Telescope('buffers', 'show_all_buffers=true') end,
+    map(modes.n, '<leader>fb', function() vim.cmd.FzfLua('buffers', 'show_all_buffers=true') end,
         { desc = 'find buffers' })
-    map(modes.n, '<leader>fd', function() vim.cmd.Telescope('diagnostics', 'bufnr=0') end,
+    map(modes.n, '<leader>fd', function() vim.cmd.FzfLua('diagnostics_document') end,
         { desc = 'find diagnostics' })
-    map(modes.n, '<leader>fD', function() vim.cmd.Telescope('diagnostics') end,
+    map(modes.n, '<leader>fD', function() vim.cmd.FzfLua('diagnostics_workspace') end,
         { desc = 'find workspace diagnostics' })
-    map(modes.n, '<leader>ff', function() vim.cmd.Telescope('smart_open', 'cwd_only=true') end,
-        { desc = 'smart find files' })
-    map(modes.n, '<leader>fF',
-        function() vim.cmd.Telescope('find_files', 'find_command=rg,--ignore,--hidden,--files,--glob,!.git/*') end,
-        { desc = 'find files' })
-    map(modes.n, '<leader>fg',
-        function()
-            local s = vim.fn.input({ prompt = 'Grep ❯ ', cancelreturn = '' })
-            if s ~= '' then
-                require('telescope.builtin').grep_string({ search = s })
-            end
-        end,
-        { desc = 'grep in workspace' })
-    map(modes.n, '<leader>fh', function() vim.cmd.Telescope('git_status') end, { desc = 'find modified files' })
-    map(modes.n, '<leader>f?', function() vim.cmd.Telescope('help_tags') end, { desc = 'find help item' })
-    map(modes.n, '<leader>fm', function() vim.cmd.Telescope('keymaps') end, { desc = 'find Vim mapping' })
+    map(modes.n, '<leader>ff', function() vim.cmd.FzfLua('files') end, { desc = 'find files' })
+    map(modes.n, '<leader>fg', function() vim.cmd.FzfLua('grep') end, { desc = 'grep' })
+    map(modes.n, '<leader>fG', function() vim.cmd.FzfLua('live_grep') end, { desc = 'live grep' })
+    map(modes.n, '<leader>fh', function() vim.cmd.FzfLua('git_status') end, { desc = 'find modified files' })
+    map(modes.n, '<leader>f?', function() vim.cmd.FzfLua('helptags') end, { desc = 'find help item' })
+    map(modes.n, '<leader>fm', function() vim.cmd.FzfLua('keymaps') end, { desc = 'find Vim mapping' })
     map(modes.n, '<leader>fn', vim.cmd.NvimTreeFindFileToggle, { desc = 'open file tree' })
     map(modes.n, '<leader>fo', vim.cmd.Outline, { desc = 'open outline' })
-    map(modes.n, '<leader>ft', '<cmd>TodoTelescope<CR>', { desc = 'find TODO comments' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
-    map(modes.n, '<leader>f*',
-        function() require('telescope.builtin').grep_string({ search = vim.fn.expand('<cword>') }) end,
-        { desc = 'grep current wordt in workspace' })
-    map(modes.n, '<leader>f:', function() vim.cmd.Telescope('commands') end, { desc = 'find Vim command' })
-    map(modes.n, '<leader>f<space>', function() vim.cmd.Telescope('resume') end, { desc = 'resume previous search' })
+    map(modes.n, '<leader>f*', function() vim.cmd.FzfLua('grep_cword') end, { desc = 'grep current word' })
+    map(modes.n, '<leader>f:', function() vim.cmd.FzfLua('commands') end, { desc = 'find Vim command' })
+    map(modes.n, '<leader>f<space>', function() vim.cmd.FzfLua('resume') end, { desc = 'resume previous search' })
 
     -- GIT --
     map(modes.n, '<leader>hB',
@@ -319,13 +306,13 @@ function This.setup_lsp(bufnr)
     map(modes.i, '<C-Space>', function() vim.lsp.buf.signature_help() end, { buffer = bufnr, silent = true })
 
     -- FINDING --
-    map(modes.n, '<leader>fi', function() vim.cmd.Telescope('lsp_implementations') end,
+    map(modes.n, '<leader>fi', function() vim.cmd.FzfLua('lsp_implementations') end,
         { buffer = bufnr, desc = 'implementations' })
-    map(modes.n, '<leader>fr', function() vim.cmd.Telescope('lsp_references') end,
+    map(modes.n, '<leader>fr', function() vim.cmd.FzfLua('lsp_references') end,
         { buffer = bufnr, desc = 'references' })
-    map(modes.n, '<leader>fs', function() vim.cmd.Telescope('lsp_document_symbols') end,
+    map(modes.n, '<leader>fs', function() vim.cmd.FzfLua('lsp_document_symbols') end,
         { buffer = bufnr, desc = 'find current file symbols' })
-    map(modes.n, '<leader>fS', function() vim.cmd.Telescope('lsp_workspace_symbols') end,
+    map(modes.n, '<leader>fS', function() vim.cmd.FzfLua('lsp_workspace_symbols') end,
         { buffer = bufnr, desc = 'find workspace symbols' })
 
     -- GOING PLACES  --
