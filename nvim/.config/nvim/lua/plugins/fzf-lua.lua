@@ -18,5 +18,6 @@ return {
                 formatter = "path.filename_first",
             }
         })
+        fzflua.register_ui_select()
     end
 }
