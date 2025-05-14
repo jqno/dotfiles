@@ -22,46 +22,6 @@ local ensure_installed = {
     'sql-formatter',
 }
 
-local lsp_server_configs = {
-    harper_ls = {
-        filetypes = { 'markdown', 'text' },
-        settings = {
-            ['harper-ls'] = {
-                dialect = 'British',
-                linters = {
-                    BoringWords = true
-                }
-            }
-        }
-    },
-    lemminx = {
-        filetypes = { 'xml', 'xsd', 'xsl', 'xslt', 'svg', 'xml.pom' },
-        settings = {
-            xml = {
-                fileAssociations = {
-                    {
-                        systemId = 'http://maven.apache.org/xsd/maven-4.0.0.xsd',
-                        pattern = 'pom.xml'
-                    }
-                }
-            }
-        }
-    },
-    lua_ls = {
-        settings = {
-            Lua = {
-                runtime = { version = 'LuaJIT' },
-                diagnostics = { globals = { 'vim', 'require' } },
-                telemetry = { enable = false },
-                hint = { enable = true }
-            }
-        }
-    },
-    pylsp = {
-        settings = { pylsp = { configurationSources = { 'flake8' } } }
-    }
-}
-
 local function lsp_java_config(capabilities)
     vim.api.nvim_create_autocmd('FileType', {
         group = vim.api.nvim_create_augroup('lsp_define_java', { clear = true }),
@@ -107,8 +67,8 @@ end
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
+        'mason-org/mason.nvim',
+        'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim'
     },
 
@@ -119,18 +79,10 @@ return {
         require('mason').setup({ ui = { border = 'rounded' } })
         require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
         require('mason-lspconfig').setup({
-            handlers = {
-                function(server_name)
-                    if server_name == 'jdtls' or server_name == 'metals' then
-                        -- These require specialized setup
-                        return
-                    end
-
-                    local config = lsp_server_configs[server_name] or {}
-                    config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
-                    require('lspconfig')[server_name].setup(config)
-                end
-            }
+            automatic_enable = {
+                exclude = { 'jdtls', 'metals' }
+            },
+            ensure_installed = {}
         })
 
         lsp_java_config(capabilities)
