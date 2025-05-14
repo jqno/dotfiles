@@ -92,7 +92,7 @@ return {
             },
             experimental = {
                 ghost_text = {
-                    hl_group = 'NonText'
+                    hl_group = 'Conceal'
                 }
             }
         })
