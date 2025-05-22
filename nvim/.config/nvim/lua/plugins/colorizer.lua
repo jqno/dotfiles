@@ -1,9 +1,9 @@
 return {
-    'norcalli/nvim-colorizer.lua',
+    'catgoose/nvim-colorizer.lua',
     ft = { 'css', 'html' },
-    cmd = 'ColorizerToggle',
+    event = 'UIEnter',
 
     opts = {
-        'css', 'html'
+        filetypes = { '!*' } -- Turn off by default
     }
 }
