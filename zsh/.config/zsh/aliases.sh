@@ -18,7 +18,7 @@ alias tree='eza --icons --tree'
 alias top='btop -p 1' # Use the first preset as defined in btop.conf
 alias MAN='command man'
 man() {
-  tldr "$1" || "$(which man)" "$1"
+  tldr "$1" || command man "$1"
 }
 die() {
   kill "$(ps -A | fzf --prompt='Select process to kill: ' | awk '{print $1}')"
