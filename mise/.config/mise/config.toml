@@ -14,3 +14,6 @@ kscript = "latest"
 python = "3.12"
 
 node = "20"
+
+[settings]
+idiomatic_version_file_enable_tools = ["java"]
