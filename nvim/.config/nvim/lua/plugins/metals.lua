@@ -5,6 +5,7 @@ local function metals_config(capabilities)
         statusBarProvider = 'on'
     }
     cfg.settings = {
+        enableBestEffort = true,
         scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf',
 
         inlayHints = {
