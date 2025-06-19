@@ -23,8 +23,8 @@ return {
                     ['ctrl-l'] = actions.file_vsplit
                 }
             },
-            files = {
-                formatter = "path.filename_first",
+            defaults = {
+                formatter = 'path.filename_first'
             },
             grep = {
                 input_prompt = 'Grep ❯ ',
