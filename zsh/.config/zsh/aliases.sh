@@ -29,8 +29,6 @@ alias vim=nvim
 alias vanilla-vim='vim -u NONE -U NONE -N'
 
 # Git
-alias gitk-old='/usr/local/bin/gitk'
-alias gitk='echo "Use tig!"'
 alias gst='git status'
 alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "*Test*"`
 alias pr='gh pr view --web || gh pr create --web'
