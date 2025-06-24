@@ -28,7 +28,7 @@ map(modes.n, '<leader>me',
             'mvn compile exec:java -Dexec.mainClass="' ..
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
-map(modes.n, '<leader>mr', jdtls.update_project_config, { buffer = true, desc = 'reload build configuration' })
+map(modes.n, '<leader>mr', function() jdtls.update_project_config() end, { buffer = true, desc = 'reload build configuration' })
 map(modes.n, '<leader>mcc', function() terminal.send('mvnd clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
 map(modes.n, '<leader>mcv', function() terminal.send('mvnd clean verify') end,
