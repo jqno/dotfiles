@@ -93,11 +93,11 @@ return {
             symbols = {
                 status = {
                     icons = {
-                        enabled = "",
-                        sleep = "",
-                        disabled = "",
-                        warning = "",
-                        unknown = ""
+                        enabled = ' ',
+                        sleep = ' ',
+                        disabled = '',
+                        warning = ' ',
+                        unknown = ' '
                     }
                 }
             }
