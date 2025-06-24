@@ -27,7 +27,7 @@ end
 
 function This.get_split()
     if This.get_orientation() == This.PORTRAIT then
-        return 'split'
+        return 'hsplit'
     else
         return 'vsplit'
     end

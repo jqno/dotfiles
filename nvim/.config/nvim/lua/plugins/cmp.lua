@@ -42,9 +42,6 @@ return {
         end
 
         cmp.setup({
-            enabled = function()
-                return vim.bo.filetype ~= 'copilot-chat' -- Copilot-Chat has its own completion system
-            end,
             completion = {
                 completeopt = 'menu,menuone,noinsert,preview',
                 autocomplete = false

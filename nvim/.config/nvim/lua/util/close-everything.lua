@@ -27,11 +27,11 @@ function This.close_everything()
     vim.cmd.NvimTreeClose()
     vim.cmd.UndotreeHide()
     vim.cmd.OutlineClose()
-    vim.cmd.CopilotChatClose()
 
     close_windows_matching({ ft = 'help' })
     close_windows_matching({ ft = 'outputpanel' })
     close_windows_matching({ ft = 'toggleterm' })
+    close_windows_matching({ ft = 'AiderConsole' })
     close_windows_matching({ name = 'copilot://' })
 end
 

@@ -83,7 +83,7 @@ local function define_mappings()
 
     -- Snippets, jumps and AI suggestions --
     map(modes.i, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : v:lua.require("copilot.suggestion").is_visible() ? '<cmd>lua require("copilot.suggestion").accept_line()<CR>' : JqnoAutocloseSmartJump()]]
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : v:lua.require("copilot.suggestion").is_visible() ? '<cmd>lua require("copilot.suggestion").accept()<CR>' : JqnoAutocloseSmartJump()]]
         ,
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-L>',
@@ -208,9 +208,10 @@ local function define_mappings()
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- AI --
-    map({ modes.n, modes.v }, '<leader>aa', '<cmd>CopilotChatOpen<CR>', { desc = 'open Copilot Chat window' })
-    map({ modes.n, modes.v }, '<leader>a<space>', '<cmd>CopilotChatPrompts<CR>',
-        { desc = 'select a built-in Copilot prompt' })
+    map(modes.n, '<leader>a<CR>',
+        function() require('aider').AiderOpen('', require('util.screen-orientation').get_split()) end,
+        { desc = 'open Aider' })
+    map(modes.n, '<leader>a<Space>', '<cmd>AiderAddModifiedFiles<CR>', { desc = 'add modified files to Aider context' })
 
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })

@@ -5,6 +5,7 @@ brew "mise"
 brew "svn"
 
 # Software to install
+brew "aider" # keep in sync with private dots
 brew "asciidoctor"
 brew "bat"
 brew "btop"

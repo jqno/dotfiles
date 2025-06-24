@@ -4,6 +4,17 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 function This.setup()
+    -- Reload files when leaving terminal buffer
+    -- Useful when running formatters or AI agents
+    vim.api.nvim_create_autocmd("BufLeave", {
+        pattern = "*",
+        callback = function()
+            if vim.bo.buftype == "terminal" then
+                vim.cmd.checktime()
+            end
+        end,
+    })
+
     -- Lead multi space
     local leadmultispace = augroup('lead_multi_space', { clear = true })
     autocmd('OptionSet', {
