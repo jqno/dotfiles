@@ -202,6 +202,7 @@ local function define_mappings()
         end,
         { desc = 'toggle autoformat (globally)' })
     map(modes.n, '<leader>tl', '<cmd>set list! list?<CR>', { desc = 'toggle visible spaces' })
+    map(modes.n, '<leader>tn', require('util.numbertoggle').toggle, { desc = 'toggle relativenumber' })
     map(modes.n, '<leader>ts', '<cmd>exec "set scrolloff=" . (102 - &scrolloff)<CR>',
         { desc = 'toggle typewriter scroll mode' })
     map(modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'toggle wrap' })
