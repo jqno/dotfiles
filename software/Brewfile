@@ -1,7 +1,8 @@
 # Install dependencies
 brew "gcc"
 brew "git"
-brew "mise"
+brew "node"
+brew "python3"
 brew "svn"
 
 # Software to install
@@ -31,3 +32,11 @@ brew "the_silver_searcher"
 brew "tig"
 brew "tldr"
 brew "wget"
+
+# Java stuff
+brew "jbang"
+brew "maven"
+
+# Scala stuff
+brew "coursier"
+brew "sbt"

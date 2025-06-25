@@ -15,6 +15,13 @@ echo "*** Installing SDKMAN"
 curl -s "https://get.sdkman.io?rcupdate=false" | bash
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+sdk install kotlin
+sdk install kscript
+
+
+# Coursier
+coursier install scalafix
+
 
 # JDT.LS
 echo "*** Installing Lombok for jdt.ls"

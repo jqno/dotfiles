@@ -29,8 +29,3 @@ echo "*** Installing software from other package managers..."
 # Install manual software
 echo "*** Installing manual software..."
 "$PWD/software/manual.sh"
-
-
-# Install mise software
-echo "*** Installing mise software..."
-mise install --yes
