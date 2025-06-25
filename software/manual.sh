@@ -10,6 +10,12 @@ rm -rf "$BIN"
 mkdir "$BIN"
 
 
+# SDKMan
+echo "*** Installing SDKMAN"
+curl -s "https://get.sdkman.io?rcupdate=false" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
 # JDT.LS
 echo "*** Installing Lombok for jdt.ls"
 mkdir "$BIN/jdtls"
