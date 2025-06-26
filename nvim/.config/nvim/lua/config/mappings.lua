@@ -209,10 +209,10 @@ local function define_mappings()
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
     -- AI --
-    map(modes.n, '<leader>a<CR>',
+    map(modes.n, '<leader>a<Space>',
         function() require('aider').AiderOpen('', require('util.screen-orientation').get_split()) end,
         { desc = 'open Aider' })
-    map(modes.n, '<leader>a<Space>', '<cmd>AiderAddModifiedFiles<CR>', { desc = 'add modified files to Aider context' })
+    map(modes.n, '<leader>aa', '<cmd>AiderAddModifiedFiles<CR>', { desc = 'add modified files to Aider context' })
 
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
