@@ -6,8 +6,9 @@ fi
 # Prompt
 eval "$(starship init zsh)"
 
-# Mise-en-place
-eval "$($(brew --prefix)/bin/mise activate zsh)"
+# SDKMan
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # ZInit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"

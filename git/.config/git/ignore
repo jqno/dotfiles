@@ -19,9 +19,6 @@ jdt.ls-java-project
 .bloop
 .scala-build
 
-# Mise-en-place
-.mise.local.toml
-
 # Aider
 .aider*
 !.aider.conf.yml
