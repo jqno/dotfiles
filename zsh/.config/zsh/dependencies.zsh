@@ -10,6 +10,15 @@ eval "$(starship init zsh)"
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
+# Completions
+autoload -Uz compinit
+## Use cache unless .zcompdump file is older than a day
+if [ -n "$(find ${ZDOTDIR}/.zcompdump -mmin +1440 2> /dev/null)" ]; then
+  compinit
+else
+  compinit -C
+fi
+
 # ZInit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -22,16 +31,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light jeffreytse/zsh-vi-mode
-
-# Completions
-autoload -Uz compinit
-## Use cache unless .zcompdump file is older than a day
-if [ -n "$(find ${ZDOTDIR}/.zcompdump -mmin +1440 2> /dev/null)" ]; then
-  compinit
-else
-  compinit -C
-fi
-zinit cdreplay -q
 
 ## Case-insensitive completions, and match within words
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'l:|=* r:|=*'
