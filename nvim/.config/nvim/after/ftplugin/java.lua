@@ -29,13 +29,13 @@ map(modes.n, '<leader>me',
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
 map(modes.n, '<leader>mr', function() jdtls.update_project_config() end, { buffer = true, desc = 'reload build configuration' })
-map(modes.n, '<leader>mcc', function() terminal.send('mvnd clean test-compile') end,
+map(modes.n, '<leader>mcc', function() terminal.send('mvn clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
-map(modes.n, '<leader>mcv', function() terminal.send('mvnd clean verify') end,
+map(modes.n, '<leader>mcv', function() terminal.send('mvn clean verify') end,
     { buffer = true, desc = 'mvn clean verify' })
-map(modes.n, '<leader>mp', function() terminal.send('mvnd clean package -DskipTests=true') end,
+map(modes.n, '<leader>mp', function() terminal.send('mvn clean package -DskipTests=true') end,
     { buffer = true, desc = 'mvn package (no tests)' })
-map(modes.n, '<leader>mv', function() terminal.send('mvnd verify') end, { buffer = true, desc = 'mvn verify' })
+map(modes.n, '<leader>mv', function() terminal.send('mvn verify') end, { buffer = true, desc = 'mvn verify' })
 
 map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
 

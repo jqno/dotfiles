@@ -1,8 +1,8 @@
 local This = {}
 
 This.mavenIsQuiet = true
-This.mavenQuietExecutable = 'noglob mvnd -q'
-This.mavenVerboseExecutable = 'noglob mvnd'
+This.mavenQuietExecutable = 'noglob mvn -q'
+This.mavenVerboseExecutable = 'noglob mvn'
 
 function This.get_package()
     return This.get_package_for_language('java')
