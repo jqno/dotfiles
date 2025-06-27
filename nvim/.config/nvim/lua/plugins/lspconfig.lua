@@ -20,6 +20,10 @@ local ensure_installed = {
     -- Formatters
     'shellharden',
     'sql-formatter',
+
+    -- Debuggers
+    'java-debug-adapter',
+    'java-test'
 }
 
 local function lsp_java_config(capabilities)

@@ -338,6 +338,17 @@ function This.setup_lsp(bufnr)
     map(modes.n, '<leader>l<CR>', vim.lsp.codelens.run, { desc = 'run codelens' })
 end
 
+function This.setup_dap(bufnr)
+    -- DEBUG --
+    map(modes.n, '<F5>', require('dap').continue, { buffer = bufnr, desc = 'debug: run/continue' })
+    map(modes.n, '<F6>', require('dap').step_over, { buffer = bufnr, desc = 'debug: step over' })
+    map(modes.n, '<F7>', require('dap').step_into, { buffer = bufnr, desc = 'debug: step into' })
+    map(modes.n, '<F8>', require('dap').step_out, { buffer = bufnr, desc = 'debug: step out' })
+
+    map(modes.n, '<leader>db', require('dap').toggle_breakpoint, { buffer = bufnr, desc = 'debug: toggle breakpoint' })
+    map(modes.n, '<leader>d<Space>', require('dapui').toggle, { buffer = bufnr, desc = 'debug: toggle ui' })
+end
+
 function This.setup()
     define_mappings()
 end
