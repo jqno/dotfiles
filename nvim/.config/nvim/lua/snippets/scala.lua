@@ -17,7 +17,7 @@ return {
             ]],
             {
                 pkg = f(function() return require('util.java').get_package_for_language('scala') end),
-                typ = c(1, { t('class'), t('case class'), t('object') }),
+                typ = c(1, { t('class'), t('case class'), t('object'), t('trait') }),
                 name = f(function() return vim.fn.expand('%:t:r') end),
                 impl = i(2, ''),
                 body = i(0, '')
