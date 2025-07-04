@@ -4,6 +4,7 @@ local map = vim.keymap.set
 local modes = require('util.modes')
 local centered = require('util.centered').centered
 local terminal = require('util.terminal')
+local dap_util = require('util.dap')
 
 local function define_mappings()
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
@@ -340,10 +341,14 @@ end
 
 function This.setup_dap(bufnr)
     -- DEBUG --
-    map(modes.n, '<F5>', require('dap').continue, { buffer = bufnr, desc = 'debug: run/continue' })
-    map(modes.n, '<F6>', require('dap').step_over, { buffer = bufnr, desc = 'debug: step over' })
-    map(modes.n, '<F7>', require('dap').step_into, { buffer = bufnr, desc = 'debug: step into' })
-    map(modes.n, '<F8>', require('dap').step_out, { buffer = bufnr, desc = 'debug: step out' })
+    map(modes.n, '<Up>', function() dap_util.if_debugging(require('dap').continue, 'k') end,
+        { buffer = bufnr, desc = 'debug: run/continue or move up' })
+    map(modes.n, '<Down>', function() dap_util.if_debugging(require('dap').step_over, 'j') end,
+        { buffer = bufnr, desc = 'debug: step over or move down' })
+    map(modes.n, '<Right>', function() dap_util.if_debugging(require('dap').step_into, 'l') end,
+        { buffer = bufnr, desc = 'debug: step into or move right' })
+    map(modes.n, '<Left>', function() dap_util.if_debugging(require('dap').step_out, 'h') end,
+        { buffer = bufnr, desc = 'debug: step out or move left' })
 
     map(modes.n, '<leader>db', require('dap').toggle_breakpoint, { buffer = bufnr, desc = 'debug: toggle breakpoint' })
     map(modes.n, '<leader>d<Space>', require('dapui').toggle, { buffer = bufnr, desc = 'debug: toggle ui' })

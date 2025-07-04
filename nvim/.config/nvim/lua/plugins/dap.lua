@@ -10,10 +10,39 @@ return {
         local dap = require('dap')
         local dapui = require('dapui')
 
-        dapui.setup({})
+        dapui.setup({
+            layouts = {
+                {
+                    elements = {
+                        {
+                            id = 'scopes',
+                            size = 0.5
+                        },
+                        {
+                            id = 'stacks',
+                            size = 0.5
+                        }
+                    },
+                    position = 'left',
+                    size = 40
+                },
+                {
+                    elements = {
+                        {
+                            id = 'console',
+                            size = 1
+                        }
+                    },
+                    position = 'bottom',
+                    size = 10
+                }
+            }
+        })
 
         dap.listeners.after.event_initialized['dapui_config'] = dapui.open
         dap.listeners.before.event_terminated['dapui_config'] = dapui.close
         dap.listeners.before.event_exited['dapui_config'] = dapui.close
+
+        vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
     end
 }
