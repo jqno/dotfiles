@@ -33,6 +33,7 @@ function This.close_everything()
     close_windows_matching({ ft = 'toggleterm' })
     close_windows_matching({ ft = 'AiderConsole' })
     close_windows_matching({ name = 'copilot://' })
+    require('dapui').close()
 end
 
 return This
