@@ -23,12 +23,6 @@ sdk install kscript
 coursier install scalafix
 
 
-# JDT.LS
-echo "*** Installing Lombok for jdt.ls"
-mkdir "$BIN/jdtls"
-curl -L -o "$BIN/jdtls/lombok.jar" https://projectlombok.org/downloads/lombok.jar
-
-
 # Vale Alex and Proselint styles
 echo "*** Installing some styles for Vale linter"
 rm -rf ~/.vale
