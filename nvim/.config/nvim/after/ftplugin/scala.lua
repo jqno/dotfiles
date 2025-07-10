@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local modes = require('util.modes')
+local mappings = require('config.mappings')
 local terminal = require('util.terminal')
 
 vim.opt_local.formatoptions:remove('o')
@@ -18,11 +19,13 @@ map(modes.n, '<leader>mv', function() terminal.send('sbt compile scalafmtCheckAl
     { buffer = true, desc = 'sbt verify' })
 map(modes.n, '<leader>mCv', function() terminal.send('sbt clean compile scalafmtCheckAll test') end,
     { buffer = true, desc = 'sbt verify' })
+mappings.setup_dap(vim.api.nvim_get_current_buf())
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
     buffer = 0,
     callback = function()
         vim.lsp.codelens.refresh()
+        require('metals').setup_dap()
     end
 })

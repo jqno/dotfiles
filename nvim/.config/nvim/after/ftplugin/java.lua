@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local mappings = require('config.mappings')
 local modes = require('util.modes')
 local jdtls = require('jdtls')
 local terminal = require('util.terminal')
@@ -28,7 +29,8 @@ map(modes.n, '<leader>me',
             'mvn compile exec:java -Dexec.mainClass="' ..
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
-map(modes.n, '<leader>mr', function() jdtls.update_project_config() end, { buffer = true, desc = 'reload build configuration' })
+map(modes.n, '<leader>mr', function() jdtls.update_project_config() end,
+    { buffer = true, desc = 'reload build configuration' })
 map(modes.n, '<leader>mcc', function() terminal.send('mvn clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
 map(modes.n, '<leader>mcv', function() terminal.send('mvn clean verify') end,
@@ -38,6 +40,12 @@ map(modes.n, '<leader>mp', function() terminal.send('mvn clean package -DskipTes
 map(modes.n, '<leader>mv', function() terminal.send('mvn verify') end, { buffer = true, desc = 'mvn verify' })
 
 map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = true, desc = 'toggle maven quiet' })
+
+
+-- Debug
+map(modes.n, '<leader>mx', require('jdtls').test_nearest_method, { buffer = true, desc = 'debug test nearest method' })
+map(modes.n, '<leader>mX', require('jdtls').test_class, { buffer = true, desc = 'debug test class' })
+mappings.setup_dap(vim.api.nvim_get_current_buf())
 
 
 -- var keyword: Treesitter matches correctly as @type.builtin.java,

@@ -1,11 +1,17 @@
 local function jdtls_config(capabilities)
-    local location = vim.fn.stdpath('data') .. '/mason/packages/jdtls'
+    local mason_path = vim.fn.stdpath('data') .. '/mason'
+    local jdtls_path = mason_path .. '/packages/jdtls'
+
+    local bundles = {
+        vim.fn.glob(mason_path .. '/share/java-debug-adapter/*.jar', true),
+    };
+    vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. '/share/nvim/mason/share/java-test/*.jar', true), '\n'))
 
     return {
         cmd = {
             'jdtls.sh',
-            location .. '/bin',
-            location,
+            jdtls_path .. '/bin',
+            jdtls_path,
             vim.env.HOME .. '/.vim/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
         },
         root_dir = (function()
@@ -27,6 +33,9 @@ local function jdtls_config(capabilities)
                 end
                 vim.cmd.echo('"' .. msg .. '"')
             end
+        },
+        init_options = {
+            bundles = bundles
         },
         settings = {
             java = {
