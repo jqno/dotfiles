@@ -218,8 +218,10 @@ local function define_mappings()
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
     map(modes.n, '<leader>bd', vim.cmd.BufDel, { desc = 'delete current buffer' })
-    map(modes.n, '<leader>bx', function() vim.cmd('%bd|e#|bd#') end, { desc = 'close all buffers except current' })
-    map(modes.n, '<leader>bX', function() vim.cmd.bufdo('bdelete') end, { desc = 'close all buffers' })
+    map(modes.n, '<leader>bx', function() require('util.close-buffers').close_buffers(false) end,
+        { desc = 'close all buffers except current' })
+    map(modes.n, '<leader>bX', function() require('util.close-buffers').close_buffers(true) end,
+        { desc = 'close all buffers' })
 
     -- EXECUTING THINGS --
     map(modes.n, '<leader>xb', ':%!base64 -d<CR>', { desc = 'base64 decode', silent = true })
