@@ -21,9 +21,6 @@ end
 
 return {
     'scalameta/nvim-metals',
-    dependencies = {
-        'nvim-lua/plenary.nvim'
-    },
     ft = { 'scala' },
 
     metals_config = metals_config
