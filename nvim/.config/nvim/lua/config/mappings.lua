@@ -209,12 +209,6 @@ local function define_mappings()
     map(modes.n, '<leader>tw', '<cmd>set wrap! wrap?<CR>', { desc = 'toggle wrap' })
     map(modes.n, '<leader>tz', vim.cmd.ZenMode, { desc = 'toggle zen mode' })
 
-    -- AI --
-    map(modes.n, '<leader>a<Space>',
-        function() require('aider').AiderOpen('', require('util.screen-orientation').get_split()) end,
-        { desc = 'open Aider' })
-    map(modes.n, '<leader>aa', '<cmd>AiderAddModifiedFiles<CR>', { desc = 'add modified files to Aider context' })
-
     -- BUFFER --
     map(modes.n, '<leader>bb', '<cmd>b#<CR>', { desc = 'go to previous buffer' })
     map(modes.n, '<leader>bd', vim.cmd.BufDel, { desc = 'delete current buffer' })

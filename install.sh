@@ -24,7 +24,6 @@ fi
 echo "*** Stowing dotfiles..."
 "$PWD/clean.sh"
 stow abcde
-stow aider
 stow bash
 stow btop
 stow git
