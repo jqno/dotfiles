@@ -5,6 +5,7 @@ local function metals_config(capabilities)
         statusBarProvider = 'on'
     }
     cfg.settings = {
+        defaultBspToBuildTool = true,
         enableBestEffort = true,
         scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf',
 
