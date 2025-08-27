@@ -18,7 +18,3 @@ jdt.ls-java-project
 .metals
 .bloop
 .scala-build
-
-# Aider
-.aider*
-!.aider.conf.yml
