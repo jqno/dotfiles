@@ -30,6 +30,7 @@ stow git
 stow ideavim
 stow kitty
 stow linters
+stow makefile
 stow maven
 stow nvim
 stow sdkman

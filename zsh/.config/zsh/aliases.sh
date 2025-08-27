@@ -34,6 +34,10 @@ alias git='noglob git'   # So we can type `git add *Test*` instead of `git add "
 alias pr='gh pr view --web || gh pr create --web'
 alias github='gh browse'
 
+# Makefile
+alias MAKE='command make'
+alias make='$HOME/.config/makefile/make.sh'
+
 # Java
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
 alias setjdk='. setjdk.sh'
