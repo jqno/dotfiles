@@ -36,7 +36,7 @@ alias github='gh browse'
 
 # Makefile
 alias MAKE='command make'
-alias make='$HOME/.config/makefile/make.sh'
+alias make='~/.config/makefile/make.sh'
 
 # Java
 alias pitest='mvn clean test org.pitest:pitest-maven:mutationCoverage'
