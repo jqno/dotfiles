@@ -9,11 +9,6 @@ PROJECT_TYPE := $(shell \
 	(test -f package.json && echo node) || \
 	echo unknown)
 
-default: help
-
-help:
-	@echo "TODO: send help"
-
 clean:
 ifeq ($(PROJECT_TYPE),mvnw)
 	./mvnw clean
