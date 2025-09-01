@@ -1,8 +1,7 @@
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-        'nvim-tree/nvim-web-devicons',
-        'AndreM222/copilot-lualine'
+        'nvim-tree/nvim-web-devicons'
     },
 
     config = function()
@@ -88,21 +87,6 @@ return {
             end
         end
 
-        local copilot = {
-            'copilot',
-            symbols = {
-                status = {
-                    icons = {
-                        enabled = ' ',
-                        sleep = ' ',
-                        disabled = '',
-                        warning = ' ',
-                        unknown = ' '
-                    }
-                }
-            }
-        }
-
         local function intelligence_status()
             local result = ''
             local ft = vim.bo.filetype
@@ -174,7 +158,7 @@ return {
                 lualine_a = { { 'mode', fmt = mode_fmt } },
                 lualine_b = { filename, { git_status, padding = { left = 0 } }, window_status },
                 lualine_c = { grapple, autoformat },
-                lualine_x = { word_count, metals_status, diagnostics, copilot, intelligence_status },
+                lualine_x = { word_count, metals_status, diagnostics, intelligence_status },
                 lualine_y = { 'filetype', fileformat, encoding },
                 lualine_z = { progress }
             },

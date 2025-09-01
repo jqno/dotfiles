@@ -84,29 +84,22 @@ local function define_mappings()
 
     -- Snippets, jumps and AI suggestions --
     map(modes.i, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : v:lua.require("copilot.suggestion").is_visible() ? '<cmd>lua require("copilot.suggestion").accept()<CR>' : JqnoAutocloseSmartJump()]]
-        ,
+        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
         { expr = true, replace_keycodes = false })
     map(modes.s, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
         { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-H>',
-        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<cmd>lua require("copilot.suggestion").dismiss()<CR>']],
+    map(modes.i, '<C-H>', [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
         { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-H>',
-        [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
+    map(modes.s, '<C-H>', [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
         { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-J>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<cmd>lua require("copilot.suggestion").next()<CR>']],
+    map(modes.i, '<C-J>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
         { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-J>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
+    map(modes.s, '<C-J>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
         { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-K>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<cmd>lua require("copilot.suggestion").prev()<CR>']],
+    map(modes.i, '<C-K>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
         { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-K>',
-        [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
+    map(modes.s, '<C-K>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
         { expr = true, replace_keycodes = false })
 
     -- UNIMPAIRED --
