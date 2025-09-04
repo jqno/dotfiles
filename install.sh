@@ -28,6 +28,7 @@ stow bash
 stow btop
 stow git
 stow ideavim
+stow just
 stow kitty
 stow linters
 stow maven
