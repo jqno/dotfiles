@@ -49,7 +49,7 @@ jkill() {
 # Just
 alias JUST='command just'
 just() {
-  if [[ ! -f "./justfile" ]]; then
+  if [[ ! -f "./justfile" && ! -f "./.justfile" ]]; then
     # No local justfile; use the global one
     command just --global-justfile "$@"
   elif [[ "$1" == --* ]]; then

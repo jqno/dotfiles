@@ -15,7 +15,7 @@ fail := 'echo "Unkown project type"'
 
 init:
     #!/usr/bin/env bash
-    cat <<EOF > justfile
+    cat <<EOF > .justfile
     import '~/.config/just/justfile'
 
     # Override recipes here
