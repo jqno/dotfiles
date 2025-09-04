@@ -1,0 +1,8 @@
+default:
+    @just --global-justfile --list
+
+clean:
+    echo 'clean'
+
+compile:
+    echo 'compile'
