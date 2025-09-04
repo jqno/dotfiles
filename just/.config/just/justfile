@@ -1,8 +1,26 @@
 default:
     @just --global-justfile --list
 
+build_system := \
+    if path_exists('mvnw') == 'true' { 'maven-wrapper' } \
+    else if path_exists('pom.xml') == 'true' { 'maven' } \
+    else if path_exists('gradlew') == 'true' { 'gradle-wrapper' } \
+    else if path_exists('build.gradle') == 'true' { 'gradle' } \
+    else if path_exists('build.gradle.kts') == 'true' { 'gradle' } \
+    else if path_exists('build.sbt') == 'true' { 'sbt' } \
+    else if path_exists('package.json') == 'true' { 'npm' } \
+    else { 'unknown' }
+
 clean:
-    echo 'clean'
+    {{ \
+    if build_system == 'maven' { 'mvn clean' } \
+    else if build_system == 'maven-wrapper' { './mvnw clean' } \
+    else if build_system == 'gradle' { 'gradle clean' } \
+    else if build_system == 'gradle-wrapper' { './gradlew clean' } \
+    else if build_system == 'sbt' { 'sbt clean' } \
+    else if build_system == 'npm' { 'npm clean' } \
+    else { 'echo "Unknown project type"' } \
+    }}
 
 compile:
     echo 'compile'
