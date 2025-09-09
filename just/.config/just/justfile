@@ -17,6 +17,7 @@ init:
     #!/usr/bin/env bash
     cat <<EOF > .justfile
     import '~/.config/just/justfile'
+    set allow-duplicate-recipes
 
     # Override recipes here
     EOF
