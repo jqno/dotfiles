@@ -11,7 +11,7 @@ build_system := \
     else if path_exists('package.json') == 'true' { 'npm' } \
     else { 'unknown' }
 
-fail := 'echo "Unkown project type"'
+fail := 'echo "Recipe unavailable in this project"'
 
 init:
     #!/usr/bin/env bash
@@ -91,3 +91,9 @@ dependencies:
     else { fail } \
     }}
 
+pitest:
+    {{ \
+    if build_system == 'maven' { 'mvn clean test org.pitest:pitest-maven:mutationCoverage' } \
+    else if build_system == 'maven-wrapper' { './mvnw clean test org.pitest:pitest-maven:mutationCoverage' } \
+    else { fail } \
+    }}
