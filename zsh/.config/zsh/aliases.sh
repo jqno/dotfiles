@@ -46,6 +46,17 @@ jkill() {
   fi
 }
 
+# Just
+alias JUST='command just'
+just() {
+  if [[ ! -f "./justfile" && ! -f "./.justfile" ]]; then
+    # No local justfile; use the global one
+    command just --global-justfile "$@"
+  else
+    command just "$@"
+  fi
+}
+
 # Docker
 dockerstop() {
   local matches

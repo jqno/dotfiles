@@ -1,0 +1,99 @@
+default:
+    @just --global-justfile --list
+
+build_system := \
+    if path_exists('mvnw') == 'true' { 'maven-wrapper' } \
+    else if path_exists('pom.xml') == 'true' { 'maven' } \
+    else if path_exists('gradlew') == 'true' { 'gradle-wrapper' } \
+    else if path_exists('build.gradle') == 'true' { 'gradle' } \
+    else if path_exists('build.gradle.kts') == 'true' { 'gradle' } \
+    else if path_exists('build.sbt') == 'true' { 'sbt' } \
+    else if path_exists('package.json') == 'true' { 'npm' } \
+    else { 'unknown' }
+
+fail := 'echo "Recipe unavailable in this project"'
+
+init:
+    #!/usr/bin/env bash
+    cat <<EOF > .justfile
+    import '~/.config/just/justfile'
+    set allow-duplicate-recipes
+
+    # Override recipes here
+    EOF
+
+clean:
+    {{ \
+    if build_system == 'maven' { 'mvn clean' } \
+    else if build_system == 'maven-wrapper' { './mvnw clean' } \
+    else if build_system == 'gradle' { 'gradle clean' } \
+    else if build_system == 'gradle-wrapper' { './gradlew clean' } \
+    else if build_system == 'sbt' { 'sbt clean' } \
+    else if build_system == 'npm' { 'npm clean' } \
+    else { fail } \
+    }}
+
+superclean:
+    git clean -fdx
+
+compile:
+    {{ \
+    if build_system == 'maven' { 'mvn test-compile' } \
+    else if build_system == 'maven-wrapper' { './mvnw test-compile' } \
+    else if build_system == 'gradle' { 'gradle testClasses' } \
+    else if build_system == 'gradle-wrapper' { './gradlew testClasses' } \
+    else if build_system == 'sbt' { 'sbt Test/compile' } \
+    else if build_system == 'npm' { 'npm run build' } \
+    else { fail } \
+    }}
+
+test:
+    {{ \
+    if build_system == 'maven' { 'mvn test' } \
+    else if build_system == 'maven-wrapper' { './mvnw test' } \
+    else if build_system == 'gradle' { 'gradle test' } \
+    else if build_system == 'gradle-wrapper' { './gradlew test' } \
+    else if build_system == 'sbt' { 'sbt test' } \
+    else if build_system == 'npm' { 'npm test' } \
+    else { fail } \
+    }}
+
+verify:
+    {{ \
+    if build_system == 'maven' { 'mvn verify' } \
+    else if build_system == 'maven-wrapper' { './mvnw verify' } \
+    else if build_system == 'gradle' { 'gradle check' } \
+    else if build_system == 'gradle-wrapper' { './gradlew check' } \
+    else if build_system == 'sbt' { 'sbt test' } \
+    else if build_system == 'npm' { 'npm test' } \
+    else { fail } \
+    }}
+
+format:
+    {{ \
+    if build_system == 'maven' { 'mvn spotless:apply' } \
+    else if build_system == 'maven-wrapper' { './mvnw spotless:apply' } \
+    else if build_system == 'gradle' { 'gradle spotlessApply' } \
+    else if build_system == 'gradle-wrapper' { './gradlew spotlessApply' } \
+    else if build_system == 'sbt' { 'sbt scalafmtAll' } \
+    else if build_system == 'npm' { 'npm run format' } \
+    else { fail } \
+    }}
+
+dependencies:
+    {{ \
+    if build_system == 'maven' { 'mvn dependency:tree' } \
+    else if build_system == 'maven-wrapper' { './mvnw dependency:tree' } \
+    else if build_system == 'gradle' { 'gradle dependencies' } \
+    else if build_system == 'gradle-wrapper' { './gradlew dependencies' } \
+    else if build_system == 'sbt' { 'sbt dependencyTree' } \
+    else if build_system == 'npm' { 'npm list --all' } \
+    else { fail } \
+    }}
+
+pitest:
+    {{ \
+    if build_system == 'maven' { 'mvn clean test org.pitest:pitest-maven:mutationCoverage' } \
+    else if build_system == 'maven-wrapper' { './mvnw clean test org.pitest:pitest-maven:mutationCoverage' } \
+    else { fail } \
+    }}
