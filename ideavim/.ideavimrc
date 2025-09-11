@@ -1,6 +1,14 @@
 " Set Leader to Space.
 let mapleader=' '
 
+
+" Faux plugins
+Plug 'nerdtree'
+Plug 'vim-highlightedyank'
+Plug 'vim-matchit'
+Plug 'vim-surround'
+
+
 " Pleasant defaults.
 set clipboard=unnamed,ideaput
 set ignorecase
@@ -15,57 +23,103 @@ set visualbell
 
 " Search.
 set hlsearch
+noremap <Esc> <Esc>:nohlsearch<CR>
 
-" When finding =, include the whitespace around it!
-noremap t= /\s*=<CR>
-noremap T= ?=\s*?e<CR>
 
+" *** Various mappings to move around the editor.
 " Navigate splits.
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
+" Navigate tabs
+nnoremap <M-S-]> :action NextTab<CR>
+nnoremap <M-S-[> :action PreviousTab<CR>
+" Close current window
+nnoremap <M-W> :action CloseEditor<CR>
+nnoremap <C-W> :action CloseEditor<CR>
+" Close all edit windows except active.
+nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
+" Close all sidebar and other stuff windows.
+nnoremap <C-Esc> :action HideAllWindows<CR>
+" Increase/decrease font size.
+nnoremap <M-=> :action EditorIncreaseFontSize<CR>
+nnoremap <M--> :action EditorDecreaseFontSize<CR>
 
-" Wildfire-like highlighting
+
+" *** Various mappings to modify code.
+" Moving lines and blocks.
+nnoremap <M-S-j> :move .+1<CR>==
+nnoremap <M-S-k> :move .-2<CR>==
+vnoremap <M-S-j> :move '>+1<CR>gv=gv
+vnoremap <M-S-k> :move '<-2<CR>gv=gv
+" Wildfire-like highlighting.
 nmap <CR> :action EditorSelectWord<CR>
 vmap <CR> :action EditorSelectWord<CR>
 vmap <Backspace> :action EditorUnSelectWord<CR>
-
 " Indent and de-indent.
 vnoremap < <gv
 vnoremap > >gv
-
-" Comment like in vim-commentary
+" Comment like in vim-commentary.
 nmap <Bslash><Bslash> :action CommentByLineComment<CR>
 vnoremap <Bslash> :action CommentByLineComment<CR>
 
-" Close all windows except active.
-nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
 
-" *** Prefix <leader><leader>: general things
-noremap <leader><leader>/ <Esc>:nohlsearch<CR>
-" Bind 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
-nnoremap <leader>gb :action Annotate<CR>:action Annotate<CR>
+" *** Unimpaired-style mappings.
+nnoremap ]b :action NextTab<CR>
+nnoremap [b :action PreviousTab<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap ]h :action VcsShowNextChangeMarker<CR>
+nnoremap [h :action VcsShowPreviousChangeMarker<CR>
+nnoremap ]r :action HighlightUsagesInFile<CR>:action FindNext<CR><Esc><Esc>
+nnoremap [r :action HighlightUsagesInFile<CR>:action FindPrevious<CR><Esc><Esc>
+
+
+" *** Prefix <leader><leader>: general things.
 " Hide all toolwindows and give focus to the edit pane.
-nnoremap <leader><leader>f :action HideAllWindows<CR>
+nnoremap <leader><leader><Esc> :action HideAllWindows<CR>
+" Go to test or go to code.
+nnoremap <leader><leader><CR> :action GotoTestOrCode<CR>
 " Reload this file.
 nnoremap <leader><leader>r :source ~/.ideavimrc<CR>:echo "Reloaded .ideavimrc"<CR>
+" Open splits.
+nnoremap <leader><leader>h :vsp<CR><C-W>h
+nnoremap <leader><leader>j :sp<CR>
+nnoremap <leader><leader>k :sp<CR><C-W>k
+nnoremap <leader><leader>l :vsp<CR>
 
 
-" *** Prefix <leader>f: finding things
+" *** Prefix <leader>b: buffer things.
+nnoremap <leader>bd :action CloseEditor<CR>
+nnoremap <leader>bx :action CloseAllEditorsButActive<CR>
+
+
+" *** Prefix <leader>f: finding things.
 nnoremap <leader>fb :action Switcher<CR>
 nnoremap <leader>fc :action GotoClass<CR>
 nnoremap <leader>ff :action GotoFile<CR>
 nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>fh :action Vcs.Show.Local.Changes<CR>
 nnoremap <leader>fr :action FindUsages<CR>
 nnoremap <leader>f* viw:action FindInPath<CR>
-nnoremap <leader>fn :action ActivateProjectToolWindow<CR>
+nnoremap <leader>fn :NERDTreeFind<CR>
 
-" *** Prefix <leader>m: making things
+
+" *** Prefix <leader>h: git things.
+" 'git blame'. We have to call Annotate twice because it interacts weirdly with line numbers.
+nnoremap <leader>hb :action Annotate<CR>:action Annotate<CR>
+nnoremap <leader>hr :action Vcs.RollbackChangedLines<CR>
+nnoremap <leader>hR :action Git.Reset<CR>
+
+
+" *** Prefix <leader>m: making things.
 nnoremap <leader>mf :action ReformatCode<CR>
 nnoremap <leader>mr :action Maven.Reimport<CR>
+nnoremap <leader>mt :action RunClass<CR>
 
-" *** Prefix <leader>r: refactoring things
+
+" *** Prefix <leader>r: refactoring things.
 " Also, go directly to insert mode when renaming or introducing a new variable.
 nnoremap <leader>rr :action RenameElement<CR>i
 nnoremap <leader>rv :action IntroduceVariable<CR>i
@@ -73,9 +127,10 @@ vnoremap <leader>rv :action IntroduceVariable<CR>
 nnoremap <leader>ro :action OptimizeImports<CR>
 nnoremap <leader>ri :action Inline<CR>
 nnoremap <leader>rm :action ExtractMethod<CR>
+nnoremap <leader>r<CR> :action ShowIntentionActions<CR>
 nnoremap <leader>r< :action MoveElementLeft<CR>
 nnoremap <leader>r> :action MoveElementRight<CR>
 
-" *** Prefix <leader>t: running tests
-nnoremap <leader>tt :action RunClass<CR>
 
+" *** Prefix <leader>t: toggling things.
+nnoremap <leader>tw :set wrap! wrap?<CR>
