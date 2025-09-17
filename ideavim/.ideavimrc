@@ -48,6 +48,15 @@ nnoremap <M--> :action EditorDecreaseFontSize<CR>
 
 
 " *** Various mappings to modify code.
+" Copy/paste from system clipboard
+nnoremap Y "+y
+vnoremap Y "+y
+nnoremap <M-C> "+y
+vnoremap <M-C> "+y
+inoremap <M-C> <Esc>"+y
+nnoremap <M-V> "+p
+vnoremap <M-V> "+p
+inoremap <M-V> <Esc>"+p
 " Moving lines and blocks.
 nnoremap <M-S-j> :move .+1<CR>==
 nnoremap <M-S-k> :move .-2<CR>==
