@@ -43,8 +43,8 @@ nnoremap <M-S-W> :action CloseAllEditorsButActive<CR>
 " Close all sidebar and other stuff windows.
 nnoremap <C-Esc> :action HideAllWindows<CR>
 " Increase/decrease font size.
-nnoremap <M-=> :action EditorIncreaseFontSize<CR>
-nnoremap <M--> :action EditorDecreaseFontSize<CR>
+nnoremap <M-=> :action EditorIncreaseFontSizeGlobal<CR>
+nnoremap <M--> :action EditorDecreaseFontSizeGlobal<CR>
 
 
 " *** Various mappings to modify code.
