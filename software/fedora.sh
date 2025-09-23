@@ -32,3 +32,9 @@ sudo dnf --assumeyes install zsh
 sudo dnf --assumeyes install fira-code-fonts
 sudo dnf --assumeyes install fontawesome5-fonts-all
 sudo dnf --assumeyes install unifont-fonts
+
+
+# CD ripper
+sudo dnf --assumeyes install abcde
+sudo dnf --assumeyes install python3-eyed3
+sudo dnf --assumeyes install id3v2
