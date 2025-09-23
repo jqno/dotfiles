@@ -12,8 +12,6 @@ sudo dnf --assumeyes install kitty
 
 # System tools
 sudo dnf --assumeyes install @development-tools
-sudo dnf --assumeyes install docker
-sudo dnf --assumeyes install docker-compose
 sudo dnf --assumeyes install gcc-g++
 sudo dnf --assumeyes install libxcrypt-compat
 sudo dnf --assumeyes install procps-ng

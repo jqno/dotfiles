@@ -29,3 +29,10 @@ echo "*** Installing software from other package managers..."
 # Install manual software
 echo "*** Installing manual software..."
 "$PWD/software/manual.sh"
+
+
+# Docker
+echo "*** *** ***"
+echo "Don't forget to install Docker!"
+echo "https://docs.docker.com/engine/install/"
+echo "*** *** ***"
