@@ -3,9 +3,9 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 
-# Install Ubuntu packages
-echo "*** Installing Ubuntu packages..."
-"$PWD/software/ubuntu.sh"
+# Install Fedora packages
+echo "*** Installing Fedora packages..."
+"$PWD/software/fedora.sh"
 
 
 # Install Homebrew
@@ -29,3 +29,10 @@ echo "*** Installing software from other package managers..."
 # Install manual software
 echo "*** Installing manual software..."
 "$PWD/software/manual.sh"
+
+
+# Docker
+echo "*** *** ***"
+echo "Don't forget to install Docker!"
+echo "https://docs.docker.com/engine/install/"
+echo "*** *** ***"
