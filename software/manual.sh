@@ -36,3 +36,17 @@ ln -s sources/proselint/proselint proselint
 rm proselint/Annotations.yml # Let's allow words like NOTE, TODO and FIXME
 
 popd > /dev/null
+
+
+# Keyd
+rm -rf ~/.keyd
+mkdir ~/.keyd
+pushd ~/.keyd > /dev/null
+
+git clone https://github.com/rvaiya/keyd
+cd keyd
+make && sudo make install
+sudo systemctl enable --now keyd
+
+popd > /dev/null
+rm -rf ~/.keyd
