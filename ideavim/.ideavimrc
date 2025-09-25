@@ -11,6 +11,7 @@ Plug 'vim-surround'
 
 " Pleasant defaults.
 set clipboard=unnamed,ideaput
+set ideajoin
 set ignorecase
 set nrformats-=octal
 set number
@@ -126,12 +127,13 @@ nnoremap <leader>hR :action Git.Reset<CR>
 nnoremap <leader>mf :action ReformatCode<CR>
 nnoremap <leader>mr :action Maven.Reimport<CR>
 nnoremap <leader>mt :action RunClass<CR>
+nnoremap <leader>m<CR> :action Rerun<CR>
 
 
 " *** Prefix <leader>r: refactoring things.
 " Also, go directly to insert mode when renaming or introducing a new variable.
-nnoremap <leader>rr :action RenameElement<CR>i
-nnoremap <leader>rv :action IntroduceVariable<CR>i
+nnoremap <leader>rr :action RenameElement<CR>
+nnoremap <leader>rv :action IntroduceVariable<CR>
 vnoremap <leader>rv :action IntroduceVariable<CR>
 nnoremap <leader>ro :action OptimizeImports<CR>
 nnoremap <leader>ri :action Inline<CR>
