@@ -11,6 +11,7 @@
   "git-conflict.nvim": { "branch": "main", "commit": "4dc906855751096aaeba2edde7c2cdc7bb881c98" },
   "gitsigns.nvim": { "branch": "main", "commit": "02eafb1273afec94447f66d1a43fc5e477c2ab8a" },
   "grapple.nvim": { "branch": "main", "commit": "b41ddfc1c39f87f3d1799b99c2f0f1daa524c5f7" },
+  "guttermarks.nvim": { "branch": "main", "commit": "70ec53afdd985c5158d1ecfaacb59634f9d7071f" },
   "highlight-undo.nvim": { "branch": "main", "commit": "5f588b420179a31d7073854bfd07ed9d5f364645" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lazydev.nvim": { "branch": "main", "commit": "f59bd14a852ca43db38e3662395354cb2a9b13e0" },

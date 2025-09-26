@@ -30,6 +30,9 @@ return {
                 input_prompt = 'Grep ❯ ',
                 hidden = true
             },
+            marks = {
+                marks = '[A-Za-z]'
+            },
             winopts = {
                 on_create = function()
                     -- fzf-lua runs in terminal mode. Global mappings for that mode override fzf action hotkeys
