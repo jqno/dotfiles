@@ -46,6 +46,12 @@ local function jdtls_config(capabilities)
                 inlayHints = {
                     parameterNames = {
                         enabled = "all"
+                    },
+                    parameterTypes = {
+                        enabled = true
+                    },
+                    variableTypes = {
+                        enabled = true
                     }
                 },
                 implementationCodeLens = "all",
