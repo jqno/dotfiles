@@ -144,4 +144,5 @@ nnoremap <leader>r> :action MoveElementRight<CR>
 
 
 " *** Prefix <leader>t: toggling things.
+nnoremap <leader>ti :action Scala.XRayMode<CR>
 nnoremap <leader>tw :set wrap! wrap?<CR>
