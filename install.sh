@@ -3,7 +3,7 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 # Dev software
-read -r -p "*** Do you want to install dev software? Press ! if you do. " -n 1;
+read -r -p "*** Do you want to install dev software? Press ! if you do. " -n 1
 echo ""
 if [[ $REPLY =~ ^[!]$ ]]; then
   source "$PWD/software/install.sh"

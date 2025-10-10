@@ -50,3 +50,9 @@ sudo systemctl enable --now keyd
 
 popd > /dev/null
 rm -rf ~/.keyd
+
+echo "***"
+echo "Don't forget to create a /etc/libinput/local-overrides.quirks -- it really works!"
+echo "https://github.com/rvaiya/keyd?tab=readme-ov-file#why-is-my-trackpad-is-interfering-with-input-after-enabling-keyd"
+echo "***"
+read -r -p "*** Press a key when you've read this " -n 1
