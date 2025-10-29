@@ -35,3 +35,5 @@ export FZF_DEFAULT_OPTS="--bind ctrl-a:select-all"
 # Don't use cowsay when using ansible
 export ANSIBLE_NOCOWS=1
 
+# Always show icons in EZA
+export EZA_ICONS_AUTO=1
