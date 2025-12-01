@@ -96,7 +96,7 @@ local function jdtls_config(capabilities)
 end
 
 return {
-    'mfussenegger/nvim-jdtls',
+    url = 'https://codeberg.org/mfussenegger/nvim-jdtls',
     ft = { 'java' },
 
     jdtls_config = jdtls_config

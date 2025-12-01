@@ -12,7 +12,7 @@ local function reduce_vale_severity()
 end
 
 return {
-    'mfussenegger/nvim-lint',
+    url = 'https://codeberg.org/mfussenegger/nvim-lint',
     event = 'BufReadPre',
 
     config = function()
