@@ -107,16 +107,16 @@ local function define_mappings()
     map(modes.n, ']q', centered(vim.cmd.cnext), { desc = 'go to next quickfix' })
     map(modes.n, '[Q', centered(vim.cmd.qfirst), { desc = 'go to first quickfix' })
     map(modes.n, ']Q', centered(vim.cmd.qlast), { desc = 'go to last quickfix' })
-    map(modes.n, '[d', centered(function() vim.diagnostic.jump({ count = -1, float = true }) end),
-        { desc = 'go to previous diagnostic' })
-    map(modes.n, ']d', centered(function() vim.diagnostic.jump({ count = 1, float = true }) end),
-        { desc = 'go to next diagnostic' })
-    map(modes.n, '[D',
-        centered(function() vim.diagnostic.jump({ count = -1, float = true, severity = vim.diagnostic.severity.ERROR }) end),
+    map(modes.n, '[d',
+        centered(function() vim.diagnostic.jump({ count = -1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end),
         { desc = 'go to previous error' })
-    map(modes.n, ']D',
-        centered(function() vim.diagnostic.jump({ count = 1, float = true, severity = vim.diagnostic.severity.ERROR }) end),
+    map(modes.n, ']d',
+        centered(function() vim.diagnostic.jump({ count = 1, float = true, severity = { min = vim.diagnostic.severity.WARN } }) end),
         { desc = 'go to next error' })
+    map(modes.n, '[D', centered(function() vim.diagnostic.jump({ count = -1, float = true }) end),
+        { desc = 'go to previous diagnostic' })
+    map(modes.n, ']D', centered(function() vim.diagnostic.jump({ count = 1, float = true }) end),
+        { desc = 'go to next diagnostic' })
     map(modes.n, '[<space>', '<cmd>Grapple cycle_backward<CR>', { desc = 'go to previous Grapple file' })
     map(modes.n, ']<space>', '<cmd>Grapple cycle_forward<CR>', { desc = 'go to next Grapple file' })
 
