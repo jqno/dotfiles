@@ -3,7 +3,7 @@ return {
     event = 'UIEnter',
 
     opts = {
-        sign_priority = 10,
+        sign_priority = 2,
         on_attach = function(bufnr)
             local map = vim.keymap.set
             local modes = require('util.modes')
