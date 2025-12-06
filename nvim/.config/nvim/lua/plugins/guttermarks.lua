@@ -5,6 +5,7 @@ return {
     opts = {
         special_mark = {
             enabled = true,
+            priority = 1,
         }
     }
 }
