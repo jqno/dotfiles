@@ -13,7 +13,7 @@ return {
         end,
         highlights = {
             FloatBorder = {
-                link = 'FloatBorder'
+                link = 'WinSeparator'
             }
         },
         float_opts = {
