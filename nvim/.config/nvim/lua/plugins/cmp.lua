@@ -1,6 +1,6 @@
 return {
     'hrsh7th/nvim-cmp',
-    lazy = true,
+    event = 'UIEnter',
     dependencies = {
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-nvim-lsp',
