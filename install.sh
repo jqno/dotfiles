@@ -24,6 +24,7 @@ stow kitty
 stow linters
 stow maven
 stow nvim
+stow sbt
 stow sdkman
 stow starship
 stow tig
