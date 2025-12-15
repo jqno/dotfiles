@@ -22,7 +22,7 @@ end
 
 return {
     'scalameta/nvim-metals',
-    ft = { 'scala' },
+    ft = { 'scala', 'sbt' },
 
     metals_config = metals_config
 }
