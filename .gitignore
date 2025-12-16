@@ -11,3 +11,4 @@ kitty/**/relative_resize.py
 kitty/**/split_window.py
 __pycache__
 btop.log
+.bsp

@@ -1,7 +1,8 @@
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
-        'nvim-tree/nvim-web-devicons'
+        'nvim-tree/nvim-web-devicons',
+        'linrongbin16/lsp-progress.nvim'
     },
 
     config = function()
@@ -79,14 +80,6 @@ return {
             return ''
         end
 
-        local function metals_status()
-            if vim.g.metals_status then
-                return ' ' .. vim.g.metals_status .. ' '
-            else
-                return ''
-            end
-        end
-
         local function intelligence_status()
             local result = ''
             local ft = vim.bo.filetype
@@ -148,6 +141,31 @@ return {
             return line .. ':' .. col .. ' ' .. indicator
         end
 
+        local lsp_status = {
+            function() return require('lsp-progress').progress() end,
+            color = 'Keyword'
+        }
+
+        require('lsp-progress').setup({
+            spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+            -- All this to make it look nice
+            client_format = function(client_name, spinner, series_messages)
+                if #series_messages > 0 then
+                    local max_len = math.floor(vim.api.nvim_win_get_width(0) / 3)
+                    local s = table.concat(series_messages, ', ')
+                    if #s > max_len then
+                        local left_len = math.floor((max_len - 1) / 2)
+                        local right_len = max_len - left_len - 1
+                        s = s:sub(1, left_len) .. '…' .. s:sub(-right_len)
+                    end
+                    return (s .. ' ' .. spinner .. ' ' .. '[' .. client_name .. ']')
+                end
+                return nil
+            end,
+            -- Prevent a permanent message; I prefer to have the one from intelligence_status
+            format = function(client_messages) return table.concat(client_messages, ' ') end
+        })
+
         require('lualine').setup({
             options = {
                 component_separators = '',
@@ -158,7 +176,7 @@ return {
                 lualine_a = { { 'mode', fmt = mode_fmt } },
                 lualine_b = { filename, { git_status, padding = { left = 0 } }, window_status },
                 lualine_c = { grapple, autoformat },
-                lualine_x = { word_count, metals_status, diagnostics, intelligence_status },
+                lualine_x = { word_count, lsp_status, diagnostics, intelligence_status },
                 lualine_y = { 'filetype', fileformat, encoding },
                 lualine_z = { progress }
             },
@@ -178,6 +196,13 @@ return {
                     filetypes = { 'qf', 'NvimTree' }
                 }
             }
+        })
+
+        vim.api.nvim_create_augroup('lualine_augroup', { clear = true })
+        vim.api.nvim_create_autocmd('User', {
+            group = 'lualine_augroup',
+            pattern = 'LspProgressStatusUpdated',
+            callback = require('lualine').refresh,
         })
     end
 }
