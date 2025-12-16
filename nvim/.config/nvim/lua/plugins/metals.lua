@@ -2,7 +2,7 @@ local function metals_config(capabilities)
     local cfg = require('metals').bare_config()
     cfg.capabilities = capabilities
     cfg.init_options = {
-        statusBarProvider = 'on'
+        statusBarProvider = 'off'
     }
     cfg.settings = {
         defaultBspToBuildTool = true,
