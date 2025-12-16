@@ -169,8 +169,7 @@ return {
         require('lualine').setup({
             options = {
                 component_separators = '',
-                section_separators = { left = '', right = '' },
-                theme = 'tranquility'
+                section_separators = { left = '', right = '' }
             },
             sections = {
                 lualine_a = { { 'mode', fmt = mode_fmt } },
