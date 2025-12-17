@@ -21,6 +21,8 @@ map(modes.n, '<leader>mv', function() terminal.send('sbt --client compile scalaf
     { buffer = true, desc = 'sbt verify' })
 map(modes.n, '<leader>mCv', function() terminal.send('sbt --client clean compile scalafmtCheckAll test') end,
     { buffer = true, desc = 'sbt verify' })
+map(modes.n, '<leader>mt', vim.cmd.TestFile, { desc = 'test current file' })
+
 mappings.setup_dap(vim.api.nvim_get_current_buf())
 
 vim.api.nvim_create_autocmd('LspAttach', {
