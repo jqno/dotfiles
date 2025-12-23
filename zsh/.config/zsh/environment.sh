@@ -37,3 +37,6 @@ export ANSIBLE_NOCOWS=1
 
 # Always show icons in EZA
 export EZA_ICONS_AUTO=1
+
+# Use podman-compose
+export PODMAN_COMPOSE_PROVIDER=podman-compose

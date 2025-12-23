@@ -58,6 +58,9 @@ just() {
 }
 
 # Docker
+alias DOCKER='command docker'
+alias docker=podman
+
 dockerstop() {
   local matches
   matches=$(docker ps --format '{{.ID}} {{.Image}}' | grep -F "$1")
