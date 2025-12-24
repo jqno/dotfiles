@@ -13,14 +13,14 @@ map(modes.n, '<leader>m<space>',
 
 map(modes.n, '<leader>ro', '<cmd>MetalsOrganizeImports<CR>', { buffer = true, desc = 'refactor: organize imports' })
 map(modes.n, '<leader>mr', '<cmd>MetalsCompileClean<CR>', { buffer = true, desc = 'Metals clean compile' })
-map(modes.n, '<leader>mCC', function() terminal.send('sbt --client clean Test/compile') end,
+map(modes.n, '<leader>mCC', function() terminal.send('sbt --client "clean; Test/compile:') end,
     { buffer = true, desc = 'sbt clean compile' })
 map(modes.n, '<leader>mcc', function() terminal.send('sbt --client Test/compile') end,
     { buffer = true, desc = 'sbt compile' })
-map(modes.n, '<leader>mv', function() terminal.send('sbt --client compile scalafmtCheckAll testOnlyUnit') end,
+map(modes.n, '<leader>mv', function() terminal.send('sbt --client "compile; scalafmtCheckAll; testOnlyUnit"') end,
     { buffer = true, desc = 'sbt verify' })
-map(modes.n, '<leader>mCv', function() terminal.send('sbt --client clean compile scalafmtCheckAll test') end,
-    { buffer = true, desc = 'sbt verify' })
+map(modes.n, '<leader>mCv', function() terminal.send('sbt --client "clean; compile; scalafmtCheckAll; test"') end,
+    { buffer = true, desc = 'sbt clean verify' })
 map(modes.n, '<leader>mt', vim.cmd.TestFile, { desc = 'test current file' })
 
 mappings.setup_dap(vim.api.nvim_get_current_buf())
