@@ -12,7 +12,7 @@ map(modes.n, '<leader>m<space>',
     { buffer = true, desc = 'run with scala' })
 
 map(modes.n, '<leader>ro', '<cmd>MetalsOrganizeImports<CR>', { buffer = true, desc = 'refactor: organize imports' })
-map(modes.n, '<leader>mr', '<cmd>MetalsCompileClean<CR>', { buffer = true, desc = 'Metals clean compile' })
+map(modes.n, '<leader>mr', '<cmd>MetalsResetWorkspace<CR>', { buffer = true, desc = 'Metals clean compile' })
 map(modes.n, '<leader>mCC', function() terminal.send('sbt --client "clean; Test/compile:') end,
     { buffer = true, desc = 'sbt clean compile' })
 map(modes.n, '<leader>mcc', function() terminal.send('sbt --client Test/compile') end,
