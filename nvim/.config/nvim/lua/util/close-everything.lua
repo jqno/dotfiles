@@ -29,7 +29,6 @@ function This.close_everything()
     vim.cmd.OutlineClose()
 
     close_windows_matching({ ft = 'help' })
-    close_windows_matching({ ft = 'outputpanel' })
     close_windows_matching({ ft = 'toggleterm' })
     require('dapui').close()
 end
