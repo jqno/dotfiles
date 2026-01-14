@@ -242,6 +242,7 @@ local function define_mappings()
     map(modes.n, '<leader>fo', vim.cmd.Outline, { desc = 'open outline' })
     map(modes.n, '<leader>fu', vim.cmd.UndotreeToggle, { desc = 'open undo tree' })
     map(modes.n, '<leader>f*', function() vim.cmd.FzfLua('grep_cword') end, { desc = 'grep current word' })
+    map(modes.v, '<leader>f*', function() vim.cmd.FzfLua('grep_visual') end, { desc = 'grep current selection' })
     map(modes.n, '<leader>f:', function() vim.cmd.FzfLua('commands') end, { desc = 'find Vim command' })
     map(modes.n, '<leader>f<space>', function() vim.cmd.FzfLua('resume') end, { desc = 'resume previous search' })
 
