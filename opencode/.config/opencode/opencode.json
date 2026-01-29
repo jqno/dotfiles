@@ -1,0 +1,20 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "myprovider": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "GreenPT",
+      "options": {
+        "baseURL": "https://api.greenpt.ai/v1"
+      },
+      "models": {
+        "green-r-raw": {
+          "name": "Green-R"
+        },
+        "green-r-raw-new": {
+          "name": "Green-R new"
+        }
+      }
+    }
+  }
+}
