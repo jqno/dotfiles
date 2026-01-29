@@ -1,6 +1,6 @@
 local This = {}
 
-This.mavenIsQuiet = true
+This.mavenIsQuiet = false
 This.mavenQuietExecutable = 'noglob mvn -q'
 This.mavenVerboseExecutable = 'noglob mvn'
 
