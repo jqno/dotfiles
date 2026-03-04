@@ -2,23 +2,16 @@
     "com.github.ulauncher.ulauncher-emoji": {
         "id": "com.github.ulauncher.ulauncher-emoji",
         "url": "https://github.com/Ulauncher/ulauncher-emoji",
-        "updated_at": "2025-09-20T15:54:26.080111",
-        "last_commit": "a294e2d623c09f6443981e33385e97784f55b988",
-        "last_commit_time": "2025-09-08T15:28:24"
-    },
-    "com.github.kuenzelit.ulauncher-firefox-bookmarks": {
-        "id": "com.github.kuenzelit.ulauncher-firefox-bookmarks",
-        "url": "https://github.com/KuenzelIT/ulauncher-firefox-bookmarks",
-        "updated_at": "2025-09-20T15:54:27.724654",
-        "last_commit": "6ad3d3164304faba358d9dfc89a6b664f6b0f747",
-        "last_commit_time": "2025-02-12T17:18:37"
+        "updated_at": "2026-03-04T13:47:58.203088",
+        "last_commit": "195d167ea0cfdbb2169906b5acaac8097db84767",
+        "last_commit_time": "2025-10-05T04:07:23"
     },
     "com.github.rmassidda.ulauncher-firefox-history": {
         "id": "com.github.rmassidda.ulauncher-firefox-history",
         "url": "https://github.com/rmassidda/ulauncher-firefox-history",
-        "updated_at": "2025-09-20T15:54:29.046149",
-        "last_commit": "b1d8e9399a466fe7c8dccd2f6d94ad014a260812",
-        "last_commit_time": "2024-03-01T22:15:25"
+        "updated_at": "2026-03-04T13:43:20.303763",
+        "last_commit": "f5d1f8296a39b321b3ef2b7c331f47abb6dbaaa2",
+        "last_commit_time": "2026-02-11T18:00:38"
     },
     "com.github.fisadev.ulauncher-better-file-browser": {
         "id": "com.github.fisadev.ulauncher-better-file-browser",
@@ -47,5 +40,12 @@
         "updated_at": "2025-09-20T15:54:34.884040",
         "last_commit": "a419cdc5e73453e4b284bb4905448ca60e4a3864",
         "last_commit_time": "2023-09-12T10:42:25"
+    },
+    "com.github.kuenzelit.ulauncher-firefox-bookmarks": {
+        "id": "com.github.kuenzelit.ulauncher-firefox-bookmarks",
+        "url": "https://github.com/KuenzelIT/ulauncher-firefox-bookmarks",
+        "updated_at": "2026-03-04T13:51:40.768138",
+        "last_commit": "6ad3d3164304faba358d9dfc89a6b664f6b0f747",
+        "last_commit_time": "2025-02-12T17:18:37"
     }
 }
