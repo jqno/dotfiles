@@ -9,16 +9,9 @@
     "com.github.rmassidda.ulauncher-firefox-history": {
         "id": "com.github.rmassidda.ulauncher-firefox-history",
         "url": "https://github.com/rmassidda/ulauncher-firefox-history",
-        "updated_at": "2026-03-04T13:43:20.303763",
+        "updated_at": "2026-03-16T19:43:59.488535",
         "last_commit": "f5d1f8296a39b321b3ef2b7c331f47abb6dbaaa2",
         "last_commit_time": "2026-02-11T18:00:38"
-    },
-    "com.github.fisadev.ulauncher-better-file-browser": {
-        "id": "com.github.fisadev.ulauncher-better-file-browser",
-        "url": "https://github.com/fisadev/ulauncher-better-file-browser",
-        "updated_at": "2025-09-20T15:54:30.227462",
-        "last_commit": "8ec8a0dda09e172de62051cd1f251816ce4af368",
-        "last_commit_time": "2019-09-06T19:20:09"
     },
     "com.github.tchar.ulauncher-albert-calculate-anything": {
         "id": "com.github.tchar.ulauncher-albert-calculate-anything",
@@ -34,17 +27,10 @@
         "last_commit": "0ad36c00a888e687b4bfbf76f266f1000040b337",
         "last_commit_time": "2019-07-11T06:53:31"
     },
-    "com.github.mikebarkmin.ulauncher-obsidian": {
-        "id": "com.github.mikebarkmin.ulauncher-obsidian",
-        "url": "https://github.com/mikebarkmin/ulauncher-obsidian",
-        "updated_at": "2025-09-20T15:54:34.884040",
-        "last_commit": "a419cdc5e73453e4b284bb4905448ca60e4a3864",
-        "last_commit_time": "2023-09-12T10:42:25"
-    },
     "com.github.kuenzelit.ulauncher-firefox-bookmarks": {
         "id": "com.github.kuenzelit.ulauncher-firefox-bookmarks",
         "url": "https://github.com/KuenzelIT/ulauncher-firefox-bookmarks",
-        "updated_at": "2026-03-04T13:51:40.768138",
+        "updated_at": "2026-03-16T19:44:03.709341",
         "last_commit": "6ad3d3164304faba358d9dfc89a6b664f6b0f747",
         "last_commit_time": "2025-02-12T17:18:37"
     }
