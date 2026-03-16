@@ -27,7 +27,6 @@ stow nvim
 stow opencode
 stow podman
 stow sbt
-stow sdkman
 stow starship
 stow tig
 stow ulauncher
