@@ -322,9 +322,9 @@ function This.setup_lsp(bufnr)
     map(modes.n, '<leader>ss', vim.lsp.buf.signature_help, { buffer = bufnr, desc = 'show signature help' })
 
     -- LSP/CODELENS --
-    map(modes.n, '<leader>l<SPACE>', function() vim.lsp.codelens.refresh({ bufnr = 0 }) end,
-        { buffer = bufnr, desc = 'refresh codelens' })
-    map(modes.n, '<leader>l<BS>', function() vim.lsp.codelens.clear(nil, 0) end,
+    map(modes.n, '<leader>l<SPACE>', function() vim.lsp.codelens.enable(true, { bufnr = 0 }) end,
+        { buffer = bufnr, desc = 'enable codelens' })
+    map(modes.n, '<leader>l<BS>', function() vim.lsp.codelens.enable(false, { client_id = nil, bufnr = 0 }) end,
         { buffer = bufnr, desc = 'clear codelens' })
     map(modes.n, '<leader>l<CR>', vim.lsp.codelens.run, { desc = 'run codelens' })
 end

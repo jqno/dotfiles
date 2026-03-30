@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('LspAttachScala', { clear = true }),
     buffer = 0,
     callback = function()
-        vim.lsp.codelens.refresh()
+        vim.lsp.codelens.enable(true)
         require('metals').setup_dap()
     end
 })
