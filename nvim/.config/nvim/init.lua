@@ -6,6 +6,8 @@ require('config.commands').setup()
 
 require('util.numbertoggle').setup()
 
+vim.cmd('packadd nvim.undotree')
+
 -- Optionally require ~/.nvim-local.lua
 local local_conf = vim.env.HOME .. '/.nvim-local.lua'
 if vim.fn.filereadable(local_conf) == 1 then

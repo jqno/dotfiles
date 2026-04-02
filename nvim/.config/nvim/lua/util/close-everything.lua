@@ -25,11 +25,11 @@ function This.close_everything()
     vim.cmd.cclose()
     vim.cmd.lclose()
     vim.cmd.NvimTreeClose()
-    vim.cmd.UndotreeHide()
     vim.cmd.OutlineClose()
 
     close_windows_matching({ ft = 'help' })
     close_windows_matching({ ft = 'toggleterm' })
+    close_windows_matching({ ft = 'nvim-undotree' })
     require('dapui').close()
 end
 

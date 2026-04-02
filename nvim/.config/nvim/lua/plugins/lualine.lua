@@ -28,6 +28,9 @@ return {
             path = 0,
             symbols = { modified = '+', readonly = '🔒', unnamed = ' ⊥ ', newfile = ' ⊥ ' },
             fmt = function(s)
+                if vim.bo.filetype == 'nvim-undotree' then
+                    return 'undo'
+                end
                 if s:match('NvimTree') then
                     return ' 󱏒 '
                 elseif s:match('quickfix') then
@@ -192,7 +195,7 @@ return {
                     sections = {
                         lualine_a = { empty(4), filename }
                     },
-                    filetypes = { 'qf', 'NvimTree' }
+                    filetypes = { 'qf', 'NvimTree', 'nvim-undotree' }
                 }
             }
         })
