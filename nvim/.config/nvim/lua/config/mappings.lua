@@ -75,14 +75,18 @@ local function define_mappings()
     map(modes.n, '<M-k>', require('smart-splits').resize_up)
     map(modes.n, '<M-l>', require('smart-splits').resize_right)
 
-    -- Close everything --
+    -- Close everything
     map(modes.n, '<C-Esc>', require('util.close-everything').close_everything, { desc = 'Close everything' })
     map(modes.t, '<C-Esc>', vim.cmd.ToggleTerm, { desc = 'Close everything' })
+
+    -- Wildfire
+    map({ modes.n, modes.x, modes.o }, '<CR>', require('util.wildfire').expand, { desc = 'Wildfire expand' })
+    map({ modes.n, modes.x, modes.o }, '<BS>', require('util.wildfire').contract, { desc = 'Wildfire contract' })
 
     -- Expand %% to the directory of the currently open file
     map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
-    -- Snippets, jumps and AI suggestions --
+    -- Snippets, and jumps suggestions --
     map(modes.i, '<C-L>',
         [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
         { expr = true, replace_keycodes = false })
