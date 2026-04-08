@@ -21,3 +21,9 @@ jdt.ls-java-project
 
 # Just, project-local overrides
 .justfile
+
+# AI, let's not litter my repos with this stuff
+AGENTS.md
+CLAUDE.md
+memory/
+**/.claude/settings.local.json
