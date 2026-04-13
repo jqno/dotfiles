@@ -41,3 +41,6 @@ brew "maven"
 # Scala stuff
 brew "coursier"
 brew "sbt"
+
+# Neovim stuff
+brew "tree-sitter-cli"
