@@ -5,6 +5,11 @@ local modes = require('util.modes')
 local centered = require('util.centered').centered
 local terminal = require('util.terminal')
 local dap_util = require('util.dap')
+local ls = require('luasnip')
+
+local function feed(keys)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), modes.n, false)
+end
 
 local function define_mappings()
     -- REMAPPING EXISTING KEYS TO MAKE THEM BETTER --
@@ -86,25 +91,22 @@ local function define_mappings()
     -- Expand %% to the directory of the currently open file
     map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
 
-    -- Snippets, and jumps suggestions --
-    map(modes.i, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : JqnoAutocloseSmartJump()]],
-        { expr = true, replace_keycodes = false })
+    -- Snippets and jumps --
+    map(modes.i, '<C-L>', function()
+        if ls.expand_or_locally_jumpable() then
+            ls.expand_or_jump()
+        else
+            feed(require('jqnoautoclose.handlers').smart_jump())
+        end
+    end)
     map(modes.s, '<C-L>',
-        [[luasnip#expand_or_locally_jumpable() ? '<cmd>lua require("luasnip").expand_or_jump()<CR>' : '<C-L>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-H>', [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-H>', [[luasnip#jumpable(-1) ? '<cmd>lua require("luasnip").jump(-1)<CR>' : '<C-H>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-J>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-J>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(1)<CR>' : '<C-J>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.i, '<C-K>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
-        { expr = true, replace_keycodes = false })
-    map(modes.s, '<C-K>', [[luasnip#choice_active() ? '<cmd>lua require("luasnip").change_choice(-1)<CR>' : '<C-K>']],
-        { expr = true, replace_keycodes = false })
+        function() if ls.expand_or_locally_jumpable() then ls.expand_or_jump() else feed('<C-L>') end end)
+    map({ modes.i, modes.s }, '<C-H>',
+        function() if ls.jumpable(-1) then ls.jump(-1) else feed('<C-H>') end end)
+    map({ modes.i, modes.s }, '<C-J>',
+        function() if ls.choice_active() then ls.change_choice(1) else feed('<C-J>') end end)
+    map({ modes.i, modes.s }, '<C-K>',
+        function() if ls.choice_active() then ls.change_choice(-1) else feed('<C-K>') end end)
 
     -- UNIMPAIRED --
     map(modes.n, '[q', centered(vim.cmd.cprevious), { desc = 'go to previous quickfix' })
