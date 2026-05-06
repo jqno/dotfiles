@@ -5,7 +5,7 @@ local function autoformat(params)
 
     if vim.g.do_autoformat or vim.b[bufnr].do_autoformat then
         if require('util.is-editable').is_editable(bufnr) then
-            require('conform').format({ bufnr = bufnr, async = async, lsp_fallback = true })
+            require('conform').format({ bufnr = bufnr, async = async })
             vim.cmd('write')
         end
     end
@@ -17,11 +17,12 @@ local This = {
 
     config = function()
         require('conform').setup({
+            default_format_opts = { lsp_format = 'last' },
             formatters_by_ft = {
-                json = { 'jq' },
-                markdown = { 'prettier' },
+                json = { 'jq', lsp_format = 'never' },
+                markdown = { 'prettier', lsp_format = 'never' },
                 sh = { 'shellharden' },
-                sql = { 'configured_sql_formatter' },
+                sql = { 'configured_sql_formatter', lsp_format = 'never' },
                 ['_'] = { 'trim_whitespace' }
             },
             formatters = {
