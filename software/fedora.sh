@@ -40,3 +40,8 @@ sudo dnf --assumeyes install abcde
 sudo dnf --assumeyes install lame
 sudo dnf --assumeyes install python3-eyed3
 sudo dnf --assumeyes install id3v2
+
+
+# Homelab
+sudo dnf --assumeyes install ansible
+sudo dnf --assumeyes install ansible-lint
