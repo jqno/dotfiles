@@ -22,7 +22,6 @@ git config --global merge.conflictstyle zdiff3
 git config --global diff.colorMoved plain
 
 git config --global alias.amend "commit --amend"
-git config --global alias.ci "commit -v"
 git config --global alias.co checkout
 git config --global alias.cpick cherry-pick
 git config --global alias.empty "commit --allow-empty -m \"Trigger notification\""

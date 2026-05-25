@@ -1,0 +1,134 @@
+#!/usr/bin/env bash
+
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/git-ticket"
+TICKETS_FILE="$DATA_DIR/tickets"
+
+mkdir -p "$DATA_DIR"
+if [[ ! -f "$TICKETS_FILE" ]]; then
+    touch "$TICKETS_FILE"
+fi
+
+# Interactively prompt for ticket details and append to the tickets file
+_add_ticket() {
+    read -rep "Ticket number: " ticket_number
+    if [[ -z "$ticket_number" ]]; then
+        echo "Aborted."
+        return 1
+    fi
+    read -rep "Description: " description
+    printf '%s\t%s\n' "$ticket_number" "$description" >> "$TICKETS_FILE"
+    echo "Added: $ticket_number"
+}
+
+# Show fzf ticket picker; sets $selected and returns true if "add new" was chosen
+_fzf_ticket() {
+    selected=$(
+        { printf '%s\n' "$NO_TICKET" "$ADD_NEW"; cat "$TICKETS_FILE"; } |
+            fzf --prompt="Ticket: "
+    )
+    if [[ $? -ne 0 ]]; then
+        echo "Aborted."
+        exit 1
+    fi
+    [[ "$selected" == "$ADD_NEW" ]]
+}
+
+case "${1:-}" in
+    help|-h|--help)
+        cat <<'EOF'
+Usage: git ticket [<git-commit-flags>]
+       git ticket add
+       git ticket remove|rm
+       git ticket help
+
+  (no subcommand)  Select a ticket via fzf, enter a commit message, and run
+                   git commit. Any flags (e.g. -a, --amend) are passed through.
+                   The most recently added ticket is selected by default.
+                   Select "+ [add new ticket]" at the bottom to add on the fly.
+
+  add              Add a new ticket to the list.
+
+  remove, rm       Select a ticket via fzf and remove it from the list.
+
+Tickets are stored in $XDG_DATA_HOME/git-ticket/tickets
+(default: ~/.local/share/git-ticket/tickets)
+EOF
+        ;;
+    add)
+        _add_ticket
+        ;;
+    remove|rm)
+        # Select a ticket via fzf and remove it from the list
+        if [[ ! -s "$TICKETS_FILE" ]]; then
+            echo "No tickets in the list."
+            exit 0
+        fi
+        selected=$(fzf --prompt="Remove ticket: " < "$TICKETS_FILE")
+        if [[ $? -ne 0 ]]; then
+            exit 0
+        fi
+        grep -vxF "$selected" "$TICKETS_FILE" > "$TICKETS_FILE.tmp"
+        mv "$TICKETS_FILE.tmp" "$TICKETS_FILE"
+        echo "Removed: $(printf '%s' "$selected" | cut -f1)"
+        ;;
+    *)
+        # Verify we're inside a git repository
+        git_dir=$(git rev-parse --git-dir 2>/dev/null)
+        if [[ $? -ne 0 ]]; then
+            echo "Not in a git repository."
+            exit 1
+        fi
+
+        # Fall back to editor for merge/cherry-pick/revert commits and amends
+        amend=false
+        for arg in "$@"; do
+            if [[ "$arg" == "--amend" ]]; then
+                amend=true
+            fi
+        done
+        if $amend || [[ -f "$git_dir/MERGE_HEAD" || -f "$git_dir/CHERRY_PICK_HEAD" || -f "$git_dir/REVERT_HEAD" ]]; then
+            git commit -v "$@"
+            exit
+        fi
+
+        # Extract -m flag from args, if present
+        message=""
+        remaining_args=()
+        skip_next=false
+        for arg in "$@"; do
+            if $skip_next; then
+                message="$arg"
+                skip_next=false
+            elif [[ "$arg" == "-m" ]]; then
+                skip_next=true
+            elif [[ "$arg" == -m* ]]; then
+                message="${arg#-m}"
+            else
+                remaining_args+=("$arg")
+            fi
+        done
+
+        # Prompt for a ticket; loop back if the user chose "add new"
+        NO_TICKET=$'-\t[no ticket]'
+        ADD_NEW=$'+\t[add new ticket]'
+        while _fzf_ticket; do
+            _add_ticket
+        done
+
+        # Prompt for commit message if not provided via -m
+        if [[ -z "$message" ]]; then
+            read -rep "Commit message: " message
+            if [[ -z "$message" ]]; then
+                echo "Aborted."
+                exit 1
+            fi
+        fi
+
+        # Prepend ticket number to the commit message if a ticket was selected
+        prefix=""
+        if [[ "$selected" != "$NO_TICKET" ]]; then
+            prefix="$(printf '%s' "$selected" | cut -f1) "
+        fi
+        git commit -m "${prefix}${message}" "${remaining_args[@]}"
+        ;;
+esac
