@@ -85,8 +85,10 @@ local function define_mappings()
     map(modes.t, '<C-Esc>', vim.cmd.ToggleTerm, { desc = 'Close everything' })
 
     -- Wildfire
-    map({ modes.n, modes.x, modes.o }, '<CR>', require('util.wildfire').expand, { desc = 'Wildfire expand' })
-    map({ modes.n, modes.x, modes.o }, '<BS>', require('util.wildfire').contract, { desc = 'Wildfire contract' })
+    map({ modes.n, modes.x, modes.o }, '<CR>', function() require('util.wildfire').expand('<CR>') end,
+        { desc = 'Wildfire expand' })
+    map({ modes.n, modes.x, modes.o }, '<BS>', function() require('util.wildfire').contract('<BS>') end,
+        { desc = 'Wildfire contract' })
 
     -- Expand %% to the directory of the currently open file
     map(modes.c, '%%', [[<C-R>=expand('%:h') . '/'<CR>]])
