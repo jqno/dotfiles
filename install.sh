@@ -18,6 +18,7 @@ stow abcde
 stow bash
 stow btop
 stow git
+stow gstreamer
 stow ideavim
 stow just
 stow k9s
