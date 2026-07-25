@@ -40,6 +40,7 @@ sudo dnf --assumeyes install abcde
 sudo dnf --assumeyes install lame
 sudo dnf --assumeyes install python3-eyed3
 sudo dnf --assumeyes install id3v2
+sudo dnf --assumeyes install mkvtoolnix
 
 
 # Homelab
