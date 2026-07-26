@@ -13,13 +13,7 @@ return {
             callback = function()
                 -- Enable treesitter highlighting and disable regex syntax
                 pcall(vim.treesitter.start)
-
-                -- Enable treesitter-based indentation
-                -- except for Scala, which doesn't have working treesitter indentation rules
-                if vim.bo.filetype ~= 'scala' then
-                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-                end
-            end,
+            end
         })
         require('nvim-treesitter').install({
             'comment', 'diff',

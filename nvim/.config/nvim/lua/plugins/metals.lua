@@ -5,9 +5,10 @@ local function metals_config(capabilities)
         statusBarProvider = 'off'
     }
     cfg.settings = {
-        serverVersion = '1.6.7',
+        serverVersion = '1.6.8',
         defaultBspToBuildTool = true,
         enableBestEffort = true,
+        scalafixLintEnabled = true,
         scalafixConfigPath = vim.env.HOME .. '/.scalafix.conf',
 
         inlayHints = {
