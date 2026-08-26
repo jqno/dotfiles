@@ -47,8 +47,13 @@ stow zsh
 mkdir -p "$HOME"/scripts
 stow scripts
 
-sudo mkdir -p /etc/keyd
-sudo ln -s "$PWD"/keyd/default.conf /etc/keyd/default.conf
+# Keyd: only where there's a physical keyboard to remap, so not on SSH boxes or in containers
+if compgen -G "/dev/input/by-path/*event-kbd" > /dev/null; then
+  sudo mkdir -p /etc/keyd
+  sudo ln -s "$PWD"/keyd/default.conf /etc/keyd/default.conf
+else
+  echo "** No physical keyboard found, skipping keyd configuration..."
+fi
 
 # Running configuration scripts
 echo "*** Running configuration scripts..."

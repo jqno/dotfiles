@@ -38,21 +38,25 @@ rm proselint/Annotations.yml # Let's allow words like NOTE, TODO and FIXME
 popd > /dev/null
 
 
-# Keyd
-rm -rf ~/.keyd
-mkdir ~/.keyd
-pushd ~/.keyd > /dev/null
+# Keyd: only where there's a physical keyboard to remap, so not on SSH boxes or in containers
+if compgen -G "/dev/input/by-path/*event-kbd" > /dev/null; then
+  rm -rf ~/.keyd
+  mkdir ~/.keyd
+  pushd ~/.keyd > /dev/null
 
-git clone https://github.com/rvaiya/keyd
-cd keyd
-make && sudo make install
-sudo systemctl enable --now keyd
+  git clone https://github.com/rvaiya/keyd
+  cd keyd
+  make && sudo make install
+  sudo systemctl enable --now keyd
 
-popd > /dev/null
-rm -rf ~/.keyd
+  popd > /dev/null
+  rm -rf ~/.keyd
 
-echo "***"
-echo "Don't forget to create a /etc/libinput/local-overrides.quirks -- it really works!"
-echo "https://github.com/rvaiya/keyd?tab=readme-ov-file#why-is-my-trackpad-is-interfering-with-input-after-enabling-keyd"
-echo "***"
-read -r -p "*** Press a key when you've read this " -n 1
+  echo "***"
+  echo "Don't forget to create a /etc/libinput/local-overrides.quirks -- it really works!"
+  echo "https://github.com/rvaiya/keyd?tab=readme-ov-file#why-is-my-trackpad-is-interfering-with-input-after-enabling-keyd"
+  echo "***"
+  read -r -p "*** Press a key when you've read this " -n 1
+else
+  echo "** No physical keyboard found, skipping keyd..."
+fi
