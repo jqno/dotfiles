@@ -2,6 +2,16 @@
 
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
+# Fedora packages
+read -r -p "*** Do you want to install Fedora packages? Press ! if you do. " -n 1
+echo ""
+if [[ $REPLY =~ ^[!]$ ]]; then
+  echo "*** Installing Fedora packages..."
+  "$PWD/software/fedora.sh"
+else
+  echo "** Skipping installation of Fedora packages..."
+fi
+
 # Dev software
 read -r -p "*** Do you want to install dev software? Press ! if you do. " -n 1
 echo ""

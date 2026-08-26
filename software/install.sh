@@ -3,11 +3,6 @@
 PWD="$(cd -P "$(dirname "$SOURCE")" && pwd)"
 
 
-# Install Fedora packages
-echo "*** Installing Fedora packages..."
-"$PWD/software/fedora.sh"
-
-
 # Install Homebrew
 if ! [ -x "$(command -v brew)" ]; then
   echo "*** Installing Homebrew..."
