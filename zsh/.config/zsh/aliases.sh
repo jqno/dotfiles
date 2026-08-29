@@ -57,9 +57,9 @@ just() {
   fi
 }
 
-# Docker
-alias DOCKER='command docker'
-alias docker=podman
+# # Docker
+# alias DOCKER='command docker'
+# alias docker=podman
 
 dockerstop() {
   local matches
