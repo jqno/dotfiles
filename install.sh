@@ -36,6 +36,7 @@ stow kitty
 stow linters
 stow maven
 stow nvim
+stow opencode
 stow podman
 stow sbt
 stow starship
