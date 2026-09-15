@@ -5,7 +5,7 @@ local function metals_config(capabilities)
         statusBarProvider = 'off'
     }
     cfg.settings = {
-        serverVersion = '1.6.8',
+        serverVersion = '1.6.9',
         defaultBspToBuildTool = true,
         enableBestEffort = true,
         scalafixLintEnabled = true,
