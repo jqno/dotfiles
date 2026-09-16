@@ -5,7 +5,10 @@
 # alias setjdk=". setjdk.sh"
 
 function print_usage() {
-    VERSIONS=$(/bin/ls "$SDKMAN_DIR"/candidates/java | grep -v current | awk -F'.' '{print $1}' | sort -nr | uniq)
+    CANDIDATES=$(/bin/ls "$SDKMAN_DIR"/candidates/java | grep -v current)
+    PLAIN=$(echo "$CANDIDATES" | grep -v graal | awk -F'.' '{print $1}')
+    GRAAL=$(echo "$CANDIDATES" | grep graal | sed -E 's/-([^-]*)$/ (\1)/')
+    VERSIONS=$(printf '%s\n%s\n' "$PLAIN" "$GRAAL" | grep . | sort -nr | uniq)
     CURRENT=$(basename "$(readlink "$JAVA_HOME" || echo "$JAVA_HOME")" | awk -F'.' '{print $1}')
     echo "Available JDK versions: "
     echo "$VERSIONS"
@@ -18,7 +21,11 @@ function print_usage() {
 
 if [[ $# -eq 1 ]]; then
   VERSION_NUMBER=$1
-  IDENTIFIER=$(/bin/ls "$SDKMAN_DIR"/candidates/java | grep -v current | grep "^$VERSION_NUMBER." | sort -r | head -n 1)
+  CANDIDATES=$(/bin/ls "$SDKMAN_DIR"/candidates/java | grep -v current | grep "^$VERSION_NUMBER." | sort -r)
+  IDENTIFIER=$(echo "$CANDIDATES" | grep -v graal | head -n 1)
+  if [[ -z $IDENTIFIER ]]; then
+    IDENTIFIER=$(echo "$CANDIDATES" | head -n 1)
+  fi
   if [[ -z $IDENTIFIER ]]; then
     echo "No valid JDK found for version [$VERSION_NUMBER]"
   else
