@@ -31,7 +31,6 @@ stow git
 stow gstreamer
 stow ideavim
 stow just
-stow k9s
 stow kitty
 stow linters
 stow maven
