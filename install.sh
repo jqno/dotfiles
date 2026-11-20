@@ -28,6 +28,7 @@ stow abcde
 stow bash
 stow btop
 stow git
+stow gradle
 stow gstreamer
 stow ideavim
 stow just

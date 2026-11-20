@@ -91,6 +91,15 @@ dependencies:
     else { fail } \
     }}
 
+lathe:
+    {{ \
+    if build_system == 'maven' { 'mvn clean test -Dlathe.capture.only=true' } \
+    else if build_system == 'maven-wrapper' { './mvnw clean test -Dlathe.capture.only=true' } \
+    else if build_system == 'gradle' { 'gradle latheSync -Plathe.capture.only=true --continue' } \
+    else if build_system == 'gradle-wrapper' { './gradlew latheSync -Plathe.capture.only=true --continue' } \
+    else { fail } \
+    }}
+
 pitest:
     {{ \
     if build_system == 'maven' { 'mvn clean test org.pitest:pitest-maven:mutationCoverage' } \

@@ -1,24 +1,34 @@
 local map = vim.keymap.set
 local mappings = require('config.mappings')
 local modes = require('util.modes')
-local jdtls = require('jdtls')
 local terminal = require('util.terminal')
 
 vim.opt_local.formatoptions:remove('o')
 vim.opt_local.commentstring = '// %s'
 
-map(modes.n, '<leader>gs', jdtls.super_implementation, { buffer = true, desc = 'go to super implementation' })
+local function code_action(kind, title_filter)
+    return function()
+        vim.lsp.buf.code_action({
+            context = { only = { kind } },
+            filter = function(action) return title_filter(action.title) end,
+            apply = true
+        })
+    end
+end
 
-map(modes.n, '<leader>rR', function() jdtls.code_action(false, 'refactor') end,
+local function replaces_all(title) return title:find('replace all', 1, true) ~= nil end
+local function replaces_one(title) return not replaces_all(title) end
+
+map(modes.n, '<leader>gs', vim.lsp.buf.declaration, { buffer = true, desc = 'go to super implementation' })
+
+map(modes.n, '<leader>rR', function() vim.lsp.buf.code_action({ context = { only = { 'refactor' } } }) end,
     { buffer = true, desc = 'refactor: menu' })
-map(modes.n, '<leader>rm', jdtls.extract_method, { buffer = true, desc = 'refactor: extract method' })
-map(modes.v, '<leader>rm', function() jdtls.extract_method({ visual = true }) end,
+map({ modes.n, modes.v }, '<leader>rm', code_action('refactor.extract.method', replaces_one),
     { buffer = true, desc = 'refactor: extract method' })
-map(modes.n, '<leader>ro', jdtls.organize_imports, { buffer = true, desc = 'refactor: organize imports' })
-map(modes.n, '<leader>rv', jdtls.extract_variable, { buffer = true, desc = 'refactor: extract variable' })
-map(modes.v, '<leader>rv', function() jdtls.extract_variable({ visual = true }) end,
+map(modes.n, '<leader>ro', vim.cmd.LatheMissingImports, { buffer = true, desc = 'refactor: add missing imports' })
+map({ modes.n, modes.v }, '<leader>rv', code_action('refactor.extract.variable', replaces_one),
     { buffer = true, desc = 'refactor: extract variable' })
-map(modes.n, '<leader>rV', jdtls.extract_variable_all,
+map({ modes.n, modes.v }, '<leader>rV', code_action('refactor.extract.variable', replaces_all),
     { buffer = true, desc = 'refactor: extract variable (all occurrences)' })
 
 map(modes.n, '<leader>m<space>', function() terminal.send('runjava ' .. vim.fn.expand('%:p') .. '') end,
@@ -29,7 +39,7 @@ map(modes.n, '<leader>me',
             'mvn compile exec:java -Dexec.mainClass="' ..
             require('util.java').get_class() .. '"')
     end, { buffer = true, desc = 'mvn exec:java' })
-map(modes.n, '<leader>mr', function() jdtls.update_project_config() end,
+map(modes.n, '<leader>mr', vim.cmd.LatheSync,
     { buffer = true, desc = 'reload build configuration' })
 map(modes.n, '<leader>mcc', function() terminal.send('mvn clean test-compile') end,
     { buffer = true, desc = 'mvn clean compile' })
@@ -43,8 +53,7 @@ map(modes.n, '<leader>tq', require('util.java').toggle_maven_quiet, { buffer = t
 
 
 -- Debug
-map(modes.n, '<leader>mx', require('jdtls').test_nearest_method, { buffer = true, desc = 'debug test nearest method' })
-map(modes.n, '<leader>mX', require('jdtls').test_class, { buffer = true, desc = 'debug test class' })
+map(modes.n, '<leader>mx', vim.cmd.LatheDebug, { buffer = true, desc = 'debug test or main at cursor' })
 mappings.setup_dap(vim.api.nvim_get_current_buf())
 
 

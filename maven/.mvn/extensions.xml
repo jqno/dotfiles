@@ -1,0 +1,7 @@
+<extensions>
+    <extension>
+        <groupId>io.github.ag-libs</groupId>
+        <artifactId>lathe-maven-extension</artifactId>
+        <version>0.3.1</version>
+    </extension>
+</extensions>

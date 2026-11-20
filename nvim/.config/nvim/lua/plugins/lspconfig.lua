@@ -2,7 +2,6 @@ local ensure_installed = {
     -- LSP
     'bash-language-server',
     'harper-ls',
-    'jdtls',
     'lemminx',
     'lua-language-server',
     'python-lsp-server',
@@ -19,22 +18,8 @@ local ensure_installed = {
 
     -- Formatters
     'shellharden',
-    'sql-formatter',
-
-    -- Debuggers
-    'java-debug-adapter',
-    'java-test'
+    'sql-formatter'
 }
-
-local function lsp_java_config(capabilities)
-    vim.api.nvim_create_autocmd('FileType', {
-        group = vim.api.nvim_create_augroup('lsp_define_java', { clear = true }),
-        pattern = 'java',
-        callback = function()
-            require('jdtls').start_or_attach(require('plugins.jdtls').jdtls_config(capabilities))
-        end
-    })
-end
 
 local function lsp_scala_config(capabilities)
     vim.api.nvim_create_autocmd('FileType', {
@@ -84,12 +69,11 @@ return {
         require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
         require('mason-lspconfig').setup({
             automatic_enable = {
-                exclude = { 'jdtls', 'metals' }
+                exclude = { 'metals' }
             },
             ensure_installed = {}
         })
 
-        lsp_java_config(capabilities)
         lsp_scala_config(capabilities)
 
         vim.api.nvim_create_autocmd('LspAttach', {
